@@ -5,6 +5,7 @@
 #include "constants/main.h"
 
 #include "structs/main.h"
+#include "structs/ewram.h"
 
 extern void _intr_main(void);
 
@@ -60,8 +61,6 @@ extern u32 *sUnk_080E3664;
 extern u32 *sUnk_080E5264;
 extern u32 *sUnk_080E3464;
 
-extern struct EwramData *sUnk_084f0b14;
-
 /**
  * @brief 1F4 | Main function
  * 
@@ -87,7 +86,7 @@ void AgbMain(void)
         {
             sub_0803DB6C();
             UpdateInput();
-            if (sUnk_084f0b14->unk_14.newKeysRaw & KEY_START)
+            if (sUnk_084f0b14->unk_14.newInput & KEY_START)
             {
                 if (sUnk_084f0b14->unk_A074_1)
                 {
@@ -457,40 +456,40 @@ void UpdateInput(void)
 
     unk_14 = &sUnk_084f0b14->unk_14;
     key_input = READ_16(REG_KEY_INPUT) ^ KEY_MASK;
-    unk_14->newKeysRaw = key_input & ~unk_14->heldKeysRaw;
-    unk_14->heldKeysRaw = key_input;
+    unk_14->newInput = key_input & ~unk_14->heldInput;
+    unk_14->heldInput = key_input;
 
     if (unk_14->unk_1B == 0)
     {
-        unk_14->unk_1C = key_input;
-        unk_14->unk_1E = unk_14->newKeysRaw;
+        unk_14->playerHeldInput = key_input;
+        unk_14->playerNewInput = unk_14->newInput;
     }
     else
     {
         unk_14->unk_1B = 0;
     }
-    unk_14->unk_18 = 0;
+    unk_14->repeatedInput = 0;
 
-    tmp = unk_14->newKeysRaw; // Required to match
-    if (unk_14->newKeysRaw != 0)
+    tmp = unk_14->newInput; // Required to match
+    if (unk_14->newInput != 0)
     {
-        unk_14->unk_1A = 32;
-        unk_14->unk_18 = key_input;
+        unk_14->repeatedInputTimer = 32;
+        unk_14->repeatedInput = key_input;
         return;
     }
 
-    --unk_14->unk_1A;
-    if (unk_14->unk_1A == 0)
+    --unk_14->repeatedInputTimer;
+    if (unk_14->repeatedInputTimer == 0)
     {
-        unk_14->unk_1A = 6;
-        unk_14->unk_18 = unk_14->heldKeysRaw;
+        unk_14->repeatedInputTimer = 6;
+        unk_14->repeatedInput = unk_14->heldInput;
     }
 }
 
 /**
  * @brief 950 | Check if the system should perform a soft reset
  * 
- * @return u32 bool Soft reset keys held
+ * @return u32 bool, soft reset keys held
  */
 u32 SoftResetCheck(void)
 {
@@ -504,13 +503,13 @@ u32 SoftResetCheck(void)
         return 0;
     }
 
-    if ((sUnk_084f0b14->unk_14.newKeysRaw & SOFT_RESET_KEYS) == SOFT_RESET_KEYS)
+    if ((sUnk_084f0b14->unk_14.newInput & SOFT_RESET_KEYS) == SOFT_RESET_KEYS)
         return 0;
 
-    if (sUnk_084f0b14->unk_14.newKeysRaw == 0)
+    if (sUnk_084f0b14->unk_14.newInput == 0)
         return 0;
 
-    if ((sUnk_084f0b14->unk_14.heldKeysRaw & SOFT_RESET_KEYS) == SOFT_RESET_KEYS)
+    if ((sUnk_084f0b14->unk_14.heldInput & SOFT_RESET_KEYS) == SOFT_RESET_KEYS)
         result = 1;
     else
         result = 0;
