@@ -49,9 +49,9 @@ struct Unk_03002C60 {
 struct Unk_03002CB0 {
     u16 unk_0;
     u8 unk_2;
-    u32 *unk_4;
-    u32 unk_8;
-    u8 pad0[0x808 - 0xC];
+    u16 *unk_4;
+    u16 *unk_8;
+    u8 pad_C[0x808 - 0xC];
     u32 *unk_808;
     u32 unk_80C;
 };

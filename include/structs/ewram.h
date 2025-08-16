@@ -31,12 +31,21 @@ struct EwramData_unk4E4 {
     u8 unk_4ED;
     u8 pad_4EE[0x4F4 - 0x4EE];
     u8 unk_4F4;
-    u8 pad_4F5[0x53D - 0x4F5];
-    u8 unk_53D;
+    u8 pad_4F5[0x524 - 0x4F5];
+    u32 unk_524; // values or pointers?
+    u32 unk_528;
+    u8 pad_52C[0x53D - 0x52C];
+    u8 unk_53D; // bitfield?
     u8 pad_53E[0x547 - 0x53E];
     u8 unk_547;
     u8 unk_548;
     u8 pad_549[0x568 - 0x549];
+};
+
+struct EwramData_unkA084 {
+    u32 unk_A084; // values or pointers?
+    u32 unk_A088;
+    u8 pad_A08C[0xA0A0 - 0xA08C];
 };
 
 struct EwramData {
@@ -57,17 +66,20 @@ struct EwramData {
     struct EwramData_unk7864 unk_7864;
     u8 pad_786C[0xA074 - 0x786C];
 
-    // u8 unk_A074;
     u8 unk_A074_0:1;
     u8 unk_A074_1:1;
     u8 unk_A074_2:2;
     u8 unk_A074_4:2;
 
-    u8 pad_A075[0xFEC0 - 0xA075];
+    u8 pad_A075[0xA084 - 0xA075];
+    struct EwramData_unkA084 unk_A084[1]; // TODO: figure out length
+    u8 pad_A08C[0xFEC0 - 0xA0A0];
     s8 unk_FEC0;
     s8 unk_FEC1;
     u8 pad_FEC2[0x12FE0 - 0xFEC2];
     s8 unk_12FE0;
+    u8 pac_12FE1[0x133F4 - 0x12FE1];
+    u8 unk_133F4[0x1000];
 };
 
 extern struct EwramData *sUnk_084f0b14;

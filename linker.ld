@@ -18,6 +18,8 @@ SECTIONS {
         . = 0x00002CB0; gUnk_03002CB0 = .;
 
         . = 0x00003CD0; gUnk_03003CD0 = .;
+
+        . = 0x000052D4; gUnk_030052D4 = .;
     } >iwram
 
     .text : ALIGN(2) {
