@@ -30,20 +30,20 @@ SECTIONS {
         asm/rom_header.o(.text);
         asm/crt0.o(.text);
         asm/main.o(.text);
-        asm/code_080009A0.o(.text);
-        asm/code_080109B8.o(.text);
-        asm/code_080211F0.o(.text);
-        asm/code_08030A24.o(.text);
-        asm/code_08040A38.o(.text);
-        asm/code_08050A3C.o(.text);
-        asm/code_08060B98.o(.text);
-        asm/code_080709D8.o(.text);
-        asm/code_080809C0.o(.text);
-        asm/code_08090914.o(.text);
-        asm/code_080A0A8C.o(.text);
-        asm/code_080B0AD4.o(.text);
-        asm/code_080C0A1C.o(.text);
-        asm/code_080D0998.o(.text);
+        asm/code/code_080009A0.o(.text);
+        asm/code/code_080109B8.o(.text);
+        asm/code/code_080211F0.o(.text);
+        asm/code/code_08030A24.o(.text);
+        asm/code/code_08040A38.o(.text);
+        asm/code/code_08050A3C.o(.text);
+        asm/code/code_08060B98.o(.text);
+        asm/code/code_080709D8.o(.text);
+        asm/code/code_080809C0.o(.text);
+        asm/code/code_08090914.o(.text);
+        asm/code/code_080A0A8C.o(.text);
+        asm/code/code_080B0AD4.o(.text);
+        asm/code/code_080C0A1C.o(.text);
+        asm/code/code_080D0998.o(.text);
         asm/libagbsyscall.o(.text);
         asm/agb_sram.o(.text);
         asm/agb_print.o(.text);
@@ -97,11 +97,11 @@ SECTIONS {
         *libc.a:libcfunc.o(.text);
         *libc.a:lseekr.o(.text);
         *libc.a:readr.o(.text);
-        asm/code_080E032C.o(.text);
+        asm/code/code_080E032C.o(.text);
     } >rom
 
     .rodata : ALIGN(2) {
-        asm/data_0E0334.o(.rodata);
+        asm/data/data_0E0334.o(.rodata);
         *libc.a:memcpy.o(.rodata);
         *libc.a:memset.o(.rodata);
         *libc.a:sprintf.o(.rodata);
@@ -142,7 +142,7 @@ SECTIONS {
 
     .data : ALIGN(2) {
         src/ewram.o(.data);
-        asm/data_4F0B14.o(.data);
+        asm/data/data_4F0B14.o(.data);
         *libc.a:memcpy.o(.data);
         *libc.a:memset.o(.data);
         *libc.a:sprintf.o(.data);
