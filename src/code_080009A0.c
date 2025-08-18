@@ -29,7 +29,7 @@ u32 sub_080009A0(s32 param_0, u32 param_1)
 {
     struct EwramData_unk14 *unk_14;
 
-    unk_14 = &sUnk_084f0b14->unk_14;
+    unk_14 = &gEwramData->unk_14;
     if (unk_14->unk_1B == 0 || param_0 < unk_14->unk_1B)
     {
         unk_14->unk_1B = param_0;
@@ -91,7 +91,7 @@ s32 sub_080009E4(s32 param_0)
 void sub_08000A90(void)
 {
     // Possibly RNG?
-    sUnk_084f0b14->unk_8 = (sUnk_084f0b14->unk_8 >> 8) * 0x3243F6AD + 0x1B0CB175;
+    gEwramData->unk_8 = (gEwramData->unk_8 >> 8) * 0x3243F6AD + 0x1B0CB175;
 }
 
 /**
@@ -103,13 +103,13 @@ u32 sub_08000AB0(void)
 {
     u32 var_0;
 
-    if ((sUnk_084f0b14->unk_4CC & 0x40) != 0)
+    if ((gEwramData->unk_4CC & 0x40) != 0)
     {
-        var_0 = sUnk_084f0b14->unk_C = (sUnk_084f0b14->unk_C >> 0) * 0x3243F6AD + 0x1B0CB175;
+        var_0 = gEwramData->unk_C = (gEwramData->unk_C >> 0) * 0x3243F6AD + 0x1B0CB175;
     }
     else
     {
-        var_0 = sUnk_084f0b14->unk_8 = (sUnk_084f0b14->unk_8 >> 8) * 0x3243F6AD + 0x1B0CB175;
+        var_0 = gEwramData->unk_8 = (gEwramData->unk_8 >> 8) * 0x3243F6AD + 0x1B0CB175;
     }
     return var_0;
 }
@@ -127,7 +127,7 @@ struct EwramData_unk4E4 *sub_08000B00(u32 *param_0) {
 
     var_r5 = NULL;
     var_r3 = 0;
-    var_r2 = sUnk_084f0b14->unk_4E4;
+    var_r2 = gEwramData->unk_4E4;
 
     for (; var_r3 < 0xD0; var_r3++, var_r2++) 
     {
@@ -159,8 +159,8 @@ void sub_08000B64(void)
     struct EwramData_unk4E4 *var_1;
     s32 var_2;
 
-    var_0 = sUnk_084f0b14->unk_4E4;
-    if (sUnk_084f0b14->unk_A074_0 == 0)
+    var_0 = gEwramData->unk_4E4;
+    if (gEwramData->unk_A074_0 == 0)
     {
         var_1 = var_0;
         for (var_2 = 0; var_2 < 0xD0; var_2++, var_1++)
@@ -180,7 +180,7 @@ void sub_08000B64(void)
         }
     }
     
-    for (var_2 = sUnk_084f0b14->unk_13; var_2 < 0xD0; var_2 = var_1->unk_4EC)
+    for (var_2 = gEwramData->unk_13; var_2 < 0xD0; var_2 = var_1->unk_4EC)
     {
         var_1 = &var_0[var_2];
         if (var_1->unk_4E4 != NULL)
@@ -196,7 +196,7 @@ void sub_08000B64(void)
 // TODO: verify
 static inline u8 GetUnk4E4Index(struct EwramData_unk4E4 *param_0)
 {
-    return ((u8*)param_0 - (u8*)&sUnk_084f0b14->unk_4E4[0]) / sizeof(struct EwramData_unk4E4);
+    return ((u8*)param_0 - (u8*)&gEwramData->unk_4E4[0]) / sizeof(struct EwramData_unk4E4);
 }
 
 /**
@@ -211,18 +211,18 @@ void sub_08000C28(struct EwramData_unk4E4 *param_0)
     struct EwramData_unk4E4 *var2;
 
     var_0 = GetUnk4E4Index(param_0);
-    if (var_0 == sUnk_084f0b14->unk_13)
+    if (var_0 == gEwramData->unk_13)
     {
-        sUnk_084f0b14->unk_13 = param_0->unk_4EC;
+        gEwramData->unk_13 = param_0->unk_4EC;
     }
     else
     {
-        var1 = &sUnk_084f0b14->unk_4E4[param_0->unk_4ED];
+        var1 = &gEwramData->unk_4E4[param_0->unk_4ED];
         var1->unk_4EC = param_0->unk_4EC;
 
         if (param_0->unk_4EC != 0xFF)
         {
-            var2 = &sUnk_084f0b14->unk_4E4[param_0->unk_4EC];
+            var2 = &gEwramData->unk_4E4[param_0->unk_4EC];
             var2->unk_4ED = param_0->unk_4ED;
         }
     }
@@ -242,8 +242,8 @@ void sub_08000C94(void)
     s32 var_2;
     struct EwramData_unk4E4 *var_3;
 
-    var_0 = sUnk_084f0b14->unk_4E4;
-    var_3 = sUnk_084f0b14->unk_7024;
+    var_0 = gEwramData->unk_4E4;
+    var_3 = gEwramData->unk_7024;
     var_1 = var_3;
 
     for (var_2 = 0; var_2 < 0x10; var_2++, var_1++)
@@ -261,7 +261,7 @@ void sub_08000C94(void)
         }
     }
 
-    for (var_2 = sUnk_084f0b14->unk_13; var_2 < 0xD0 + 0x10; var_2 = var_1->unk_4EC)
+    for (var_2 = gEwramData->unk_13; var_2 < 0xD0 + 0x10; var_2 = var_1->unk_4EC)
     {
         var_1 = &var_0[var_2];
         if (var_1->unk_4E4 != NULL)
@@ -283,8 +283,8 @@ void sub_08000D44(void)
     s32 var_r4;
     struct EwramData_unk4E4 *var_r2;
 
-    var_r2 = sUnk_084f0b14->unk_4E4;
-    sUnk_084f0b14->unk_13 = 0xFF;
+    var_r2 = gEwramData->unk_4E4;
+    gEwramData->unk_13 = 0xFF;
     for (var_r4 = 0; var_r4 < 0xE0; var_r4++, var_r2++)
     {
         DMA_FILL_32(3, 0, var_r2, sizeof(struct EwramData_unk4E4));
@@ -309,7 +309,7 @@ struct EwramData_unk4E4 *sub_08000DA0(s32 param_0, s32 param_1, u32 *param_2) {
 
     var_r6 = NULL;
     var_r2 = param_0;
-    var_r3 = &sUnk_084f0b14->unk_4E4[var_r2];
+    var_r3 = &gEwramData->unk_4E4[var_r2];
 
     for (; var_r2 <= param_1; var_r2++, var_r3++) 
     {
@@ -353,7 +353,7 @@ void sub_08000E50(void)
     s32 var_r6;
     struct EwramData_unk4E4 *var_r4;
 
-    var_r4 = sUnk_084f0b14->unk_4E4;
+    var_r4 = gEwramData->unk_4E4;
     var_r6 = 0;
     for (; var_r6 < 0xE0; var_r6++, var_r4++)
     {
@@ -381,7 +381,7 @@ s32 sub_08000EA8(u8 param_0)
     {
         for (var_r8 = 0xE0 - 1; var_r8 >= 0x0; var_r8--)
         {
-            temp_r4 = &sUnk_084f0b14->unk_4E4[var_r8];
+            temp_r4 = &gEwramData->unk_4E4[var_r8];
             if (temp_r4->unk_547 == param_0)
             {
                 sub_0803AAEC(temp_r4, 0);
@@ -412,7 +412,7 @@ void sub_08000F38(void)
  */
 u8 sub_08000F3C(struct EwramData_unk4E4 *param_0)
 {
-    return ((u8*)param_0 - (u8*)&sUnk_084f0b14->unk_4E4[0]) / sizeof(struct EwramData_unk4E4);
+    return ((u8*)param_0 - (u8*)&gEwramData->unk_4E4[0]) / sizeof(struct EwramData_unk4E4);
 }
 
 /**
@@ -427,10 +427,10 @@ void sub_08000F60(s32 param_0)
     s32 var_0;
     s32 var_1;
 
-    var_0 = -sUnk_084f0b14->unk_A084[param_0].unk_A084;
-    var_1 = -sUnk_084f0b14->unk_A084[param_0].unk_A088;
+    var_0 = -gEwramData->unk_A084[param_0].unk_A084;
+    var_1 = -gEwramData->unk_A084[param_0].unk_A088;
 
-    var_r2 = sUnk_084f0b14->unk_4E4;
+    var_r2 = gEwramData->unk_4E4;
     var_r3 = 0;
     for(; var_r3 < 0xD0; var_r3++, var_r2++)
     {
@@ -451,13 +451,13 @@ void sub_08000FBC(struct EwramData_unk4E4 *param_0)
 {
     struct EwramData_unk4E4 *var_0;
 
-    param_0->unk_4EC = sUnk_084f0b14->unk_13;
-    sUnk_084f0b14->unk_13 = GetUnk4E4Index(param_0);
+    param_0->unk_4EC = gEwramData->unk_13;
+    gEwramData->unk_13 = GetUnk4E4Index(param_0);
 
     if (param_0->unk_4EC != 0xFF)
     {
-        var_0 = &sUnk_084f0b14->unk_4E4[param_0->unk_4EC];
-        var_0->unk_4ED = sUnk_084f0b14->unk_13;
+        var_0 = &gEwramData->unk_4E4[param_0->unk_4EC];
+        var_0->unk_4ED = gEwramData->unk_13;
     }
 }
 
@@ -473,22 +473,22 @@ u32 sub_08001004(void)
     u32 error_addr;
 
     dst = SRAM_BASE;
-    DMA_FILL_32(3, 0, sUnk_084f0b14->unk_133F4, 0x1000);
+    DMA_FILL_32(3, 0, gEwramData->unk_133F4, 0x1000);
 
     for (i = 0; i < SRAM_SIZE; i += 0x1000)
     {
-        error_addr = sub_080D82C8(sUnk_084f0b14->unk_133F4, dst + i, 0x1000);
+        error_addr = sub_080D82C8(gEwramData->unk_133F4, dst + i, 0x1000);
         if (error_addr != 0)
             return error_addr;
     }
 
-    dst = sUnk_084f0b14->unk_133F4;
+    dst = gEwramData->unk_133F4;
     for (i = 0; i < 0x10; i += 1)
     {
         dst[i] = sUnk_084F0B18[i];
     }
 
-    error_addr = sub_080D82C8(sUnk_084f0b14->unk_133F4, SRAM_BASE, 0x10);
+    error_addr = sub_080D82C8(gEwramData->unk_133F4, SRAM_BASE, 0x10);
     return error_addr;
 }
 
@@ -505,7 +505,7 @@ s32 sub_08001094(void)
     u8 *var_r4;
 
     var_r5 = 1;
-    var_r4 = sUnk_084f0b14->unk_133F4;
+    var_r4 = gEwramData->unk_133F4;
     ((void (*)(const u8 *, u8 *, u32))gUnk_030052D4)(SRAM_BASE, var_r4, 0x10);
 
     var_r2 = 0x10;
@@ -651,7 +651,7 @@ u16* sub_0800125C(u16 param_0, u16 param_1, u8 param_2, u8 *param_3)
     u16 *tmp3;
 
     var_r2 = param_2 << 0xC;
-    var_r3 = (u16*)sUnk_084f0b14->unk_133F4;
+    var_r3 = (u16*)gEwramData->unk_133F4;
     var_r4 = 0;
     while (param_3[var_r4] != 0)
     {
@@ -674,7 +674,7 @@ u16* sub_0800125C(u16 param_0, u16 param_1, u8 param_2, u8 *param_3)
     {
         tmp += param_1 << 6;
     }
-    tmp2 = sUnk_084f0b14->unk_133F4;
+    tmp2 = gEwramData->unk_133F4;
     tmp3 = gUnk_03002CB0.unk_4;
 
     if ((u32) (&tmp3[var_r4] + 2) >= (u32) &gUnk_03002CB0.unk_808)
@@ -724,7 +724,7 @@ u16* sub_08001350(u16 param_0, u16 param_1, u8 param_2, s32 param_3, s32 param_4
     }
 
     temp_r0 = (param_2 << 0xC) | 0x300;
-    var_r5 = (s16*)&sUnk_084f0b14->unk_133F4[param_3];
+    var_r5 = (s16*)&gEwramData->unk_133F4[param_3];
     var_r6 = 0;
     sp8 = param_3 << 0x18;
 
@@ -772,7 +772,7 @@ u16* sub_08001350(u16 param_0, u16 param_1, u8 param_2, s32 param_3, s32 param_4
     {
         tmp += param_1 << 6;
     }
-    tmp2 = sUnk_084f0b14->unk_133F4;
+    tmp2 = gEwramData->unk_133F4;
     tmp3 = gUnk_03002CB0.unk_4;
 
     temp_r3 = sp8 >> 0x18;
@@ -812,7 +812,7 @@ u16* sub_0800148C(u16 arg0, u16 arg1, u8 arg2, u8 *arg3)
     // temp_r1 = arg1;
     // temp_r2_2 = arg2;
     var_r2 = arg2 << 0xC;
-    var_r3 = (u16 *)sUnk_084f0b14->unk_133F4;
+    var_r3 = (u16 *)gEwramData->unk_133F4;
     var_r4 = 0;
 
     while (*(arg3 + var_r4) != 0)
@@ -834,7 +834,7 @@ u16* sub_0800148C(u16 arg0, u16 arg1, u8 arg2, u8 *arg3)
     {
         tmp += arg1 << 6;
     }
-    tmp2 = sUnk_084f0b14->unk_133F4;
+    tmp2 = gEwramData->unk_133F4;
     tmp3 = gUnk_03002CB0.unk_4;
 
     if ((u32) (&gUnk_03002CB0.unk_4[var_r4] + 2) >= (u32) &gUnk_03002CB0.unk_808)
@@ -967,7 +967,7 @@ void sub_08001718(u8 arg0, u8 arg1, u8 arg2, s32 arg3)
     struct EwramData *var_1;
     struct EwramData_unk7864 *var_0;
 
-    var_1 = sUnk_084f0b14;
+    var_1 = gEwramData;
     var_0 = &var_1->unk_7864;
     var_0->unk_7865 = arg1;
     var_0->unk_7866 = arg2;
@@ -1004,13 +1004,13 @@ s32 sub_08001780(s32 param_0, s32 param_1)
     var_9 = 0;
 
     var_2 = gUnk_08116650;
-    var_3 = sUnk_084f0b14->unk_8C_0 + (param_0 >> 8);
-    var_4 = (sUnk_084f0b14->unk_8C_7 + (param_1 >> 8)) << 6;
+    var_3 = gEwramData->unk_8C_0 + (param_0 >> 8);
+    var_4 = (gEwramData->unk_8C_7 + (param_1 >> 8)) << 6;
     var_1 = gUnk_08116650[var_3 + var_4] >> 6;
     var_1 = var_1 & 0xF;
 
-    var_5 = sUnk_084f0b14->unk_8C_0 + (param_0 >> 8);
-    var_6 = (sUnk_084f0b14->unk_8C_7 + (param_1 >> 8)) << 6;
+    var_5 = gEwramData->unk_8C_0 + (param_0 >> 8);
+    var_6 = (gEwramData->unk_8C_7 + (param_1 >> 8)) << 6;
     var_0 = var_2[var_5 + var_6];
     var_0 = var_0 & 0x3F;
 

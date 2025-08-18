@@ -76,7 +76,7 @@ void AgbMain(void)
     u8 var_6;
     struct EwramData_unk7864 *unk_7864;
 
-    unk_7864 = &sUnk_084f0b14->unk_7864;
+    unk_7864 = &gEwramData->unk_7864;
     InitializeGame();
     for (;;)
     {
@@ -86,17 +86,17 @@ void AgbMain(void)
         {
             sub_0803DB6C();
             UpdateInput();
-            if (sUnk_084f0b14->unk_14.newInput & KEY_START)
+            if (gEwramData->unk_14.newInput & KEY_START)
             {
-                if (sUnk_084f0b14->unk_A074_1)
+                if (gEwramData->unk_A074_1)
                 {
-                    sUnk_084f0b14->unk_A074_0 = sUnk_084f0b14->unk_A074_0 ^ 1;
+                    gEwramData->unk_A074_0 = gEwramData->unk_A074_0 ^ 1;
                 }
             }
 
             sub_08000500();
             sub_0803DF70();
-            sUnk_084f0b14->unk_0 = sUnk_084f0b14->unk_0 + 1;
+            gEwramData->unk_0 = gEwramData->unk_0 + 1;
             sub_08000424();
             sub_0803CDDC();
 
@@ -145,7 +145,7 @@ void sub_08000384(void)
 {
     struct EwramData_unk7864 *unk_7864;
 
-    unk_7864 = &sUnk_084f0b14->unk_7864;
+    unk_7864 = &gEwramData->unk_7864;
     sub_080D7F1C();
     m4aSoundVSync();
 
@@ -171,8 +171,8 @@ void sub_08000424(void)
     u32 var_0;
     u32 var_1;
 
-    var_0 = sUnk_084f0b14->unk_FEC0;
-    var_1 = sUnk_084f0b14->unk_FEC1;
+    var_0 = gEwramData->unk_FEC0;
+    var_1 = gEwramData->unk_FEC1;
 
     // Move BG1-3 Offset down-right?
     gUnk_03002C60.bg1HOfs = gUnk_03002C60.bg1HOfs + var_0;
@@ -194,8 +194,8 @@ void sub_08000470(void)
     u32 var_0;
     u32 var_1;
 
-    var_0 = sUnk_084f0b14->unk_FEC0;
-    var_1 = sUnk_084f0b14->unk_FEC1;
+    var_0 = gEwramData->unk_FEC0;
+    var_1 = gEwramData->unk_FEC1;
 
     // Move BG1-3 Offset up-left?
     gUnk_03002C60.bg1HOfs = gUnk_03002C60.bg1HOfs - var_0;
@@ -240,7 +240,7 @@ void sub_08000500(void)
 
     result = -1;
     
-    switch (sUnk_084f0b14->unk_10)
+    switch (gEwramData->unk_10)
     {
         case GAME_MODE_KONAMI_LOGO:
             result = sub_08002990();
@@ -328,13 +328,13 @@ void sub_08000500(void)
 
     if (result == -2)
     {
-        sUnk_084f0b14->unk_10 = sUnk_084f0b14->unk_10 + 1;
-        sUnk_084f0b14->unk_11 = sUnk_084f0b14->unk_12 = 0;
+        gEwramData->unk_10 = gEwramData->unk_10 + 1;
+        gEwramData->unk_11 = gEwramData->unk_12 = 0;
     }
     else if (result != -1)
     {
-        sUnk_084f0b14->unk_10 = result;
-        sUnk_084f0b14->unk_11 = sUnk_084f0b14->unk_12 = 0;
+        gEwramData->unk_10 = result;
+        gEwramData->unk_11 = gEwramData->unk_12 = 0;
     }
 }
 
@@ -345,8 +345,8 @@ void sub_08000500(void)
  */
 void sub_0800062C(u8 param_0)
 {
-    sUnk_084f0b14->unk_10 = param_0;
-    sUnk_084f0b14->unk_11 = sUnk_084f0b14->unk_12 = 0;
+    gEwramData->unk_10 = param_0;
+    gEwramData->unk_11 = gEwramData->unk_12 = 0;
 }
 
 /**
@@ -355,8 +355,8 @@ void sub_0800062C(u8 param_0)
  */
 void sub_08000640(void)
 {
-    sUnk_084f0b14->unk_10 = sUnk_084f0b14->unk_10 + 1;
-    sUnk_084f0b14->unk_11 = sUnk_084f0b14->unk_12 = 0;
+    gEwramData->unk_10 = gEwramData->unk_10 + 1;
+    gEwramData->unk_11 = gEwramData->unk_12 = 0;
 }
 
 /**
@@ -377,7 +377,7 @@ void sub_08000658(void)
     gUnk_03002C60.bg2Cnt = 0x1E02;
     gUnk_03002C60.bg3Cnt = 0x1F02;
 
-    sUnk_084f0b14->unk_A074_2 = sUnk_084f0b14->unk_A074_4 = 0;
+    gEwramData->unk_A074_2 = gEwramData->unk_A074_4 = 0;
 }
 
 /**
@@ -386,7 +386,7 @@ void sub_08000658(void)
  */
 void sub_080006CC(void)
 {
-    DMA_FILL_32(3, 0, sUnk_084f0b14, 0x25554);
+    DMA_FILL_32(3, 0, gEwramData, 0x25554);
     gUnk_03002CB0.unk_4 = (u16*)&gUnk_03002CB0.unk_8;
     gUnk_03002CB0.unk_808 = &gUnk_03002CB0.unk_80C;
 
@@ -441,7 +441,7 @@ void InitializeGame(void)
     {
         sub_08001004(); // return value ignored
     }
-    sUnk_084f0b14->unk_8 = 0x1E86EF;
+    gEwramData->unk_8 = 0x1E86EF;
 }
 
 /**
@@ -454,7 +454,7 @@ void UpdateInput(void)
     u16 key_input;
     u16 tmp;
 
-    unk_14 = &sUnk_084f0b14->unk_14;
+    unk_14 = &gEwramData->unk_14;
     key_input = READ_16(REG_KEY_INPUT) ^ KEY_MASK;
     unk_14->newInput = key_input & ~unk_14->heldInput;
     unk_14->heldInput = key_input;
@@ -497,19 +497,19 @@ u32 SoftResetCheck(void)
 
     result = 0;
 
-    if ((sUnk_084f0b14->unk_12FE0 & 4) != 0)
+    if ((gEwramData->unk_12FE0 & 4) != 0)
     {
-        sUnk_084f0b14->unk_12FE0 = sUnk_084f0b14->unk_12FE0 & ~4;
+        gEwramData->unk_12FE0 = gEwramData->unk_12FE0 & ~4;
         return 0;
     }
 
-    if ((sUnk_084f0b14->unk_14.newInput & SOFT_RESET_KEYS) == SOFT_RESET_KEYS)
+    if ((gEwramData->unk_14.newInput & SOFT_RESET_KEYS) == SOFT_RESET_KEYS)
         return 0;
 
-    if (sUnk_084f0b14->unk_14.newInput == 0)
+    if (gEwramData->unk_14.newInput == 0)
         return 0;
 
-    if ((sUnk_084f0b14->unk_14.heldInput & SOFT_RESET_KEYS) == SOFT_RESET_KEYS)
+    if ((gEwramData->unk_14.heldInput & SOFT_RESET_KEYS) == SOFT_RESET_KEYS)
         result = 1;
     else
         result = 0;

@@ -5,4 +5,4 @@
 
     .section .data
 
-    .incbin "data/data_4F0B14.bin"
+    .incbin "data/data_4F0B18.bin"

@@ -8,10 +8,10 @@
         "size": 1
     },
     {
-        "path": "data_4F0B14.bin",
-        "count": "0x15FF38",
+        "path": "data_4F0B18.bin",
+        "count": "0x15FF34",
         "addr": {
-            "us": "0x4F0B14"
+            "us": "0x4F0B18"
         },
         "size": 1
     }

@@ -67,7 +67,7 @@ struct Unk_03002CB0 {
     u8 unk_100C;
 };
 
-extern struct Unk_03002C60 gUnk_03002C60;
+extern struct Unk_03002C60 gUnk_03002C60; // May be an array instead of struct
 extern struct Unk_03002CB0 gUnk_03002CB0;
 extern u8 *gUnk_03003CD0;
 

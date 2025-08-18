@@ -6,7 +6,7 @@
 	thumb_func_start AgbMain
 AgbMain: @ 0x080001F4
 	push {r4, r5, lr}
-	ldr r0, _08000210 @ =0x084F0B14
+	ldr r0, _08000210 @ =gEwramData
 	ldr r0, [r0]
 	ldr r1, _08000214 @ =0x00007864
 	adds r4, r0, r1
@@ -18,12 +18,12 @@ _08000208:
 	bl sub_080006CC
 	b _08000348
 	.align 2, 0
-_08000210: .4byte 0x084F0B14
+_08000210: .4byte gEwramData
 _08000214: .4byte 0x00007864
 _08000218:
 	bl sub_0803DB6C
 	bl UpdateInput
-	ldr r0, _0800029C @ =0x084F0B14
+	ldr r0, _0800029C @ =gEwramData
 	ldr r2, [r0]
 	ldrh r1, [r2, #0x16]
 	movs r0, #8
@@ -48,7 +48,7 @@ _08000218:
 _0800024C:
 	bl sub_08000500
 	bl sub_0803DF70
-	ldr r0, _0800029C @ =0x084F0B14
+	ldr r0, _0800029C @ =gEwramData
 	ldr r1, [r0]
 	ldr r0, [r1]
 	adds r0, #1
@@ -82,7 +82,7 @@ _0800024C:
 	strb r0, [r4]
 	b _080002E6
 	.align 2, 0
-_0800029C: .4byte 0x084F0B14
+_0800029C: .4byte gEwramData
 _080002A0: .4byte 0x0000A074
 _080002A4:
 	movs r0, #2
@@ -186,7 +186,7 @@ _08000380: .4byte 0x03002CB0
 	thumb_func_start sub_08000384
 sub_08000384: @ 0x08000384
 	push {r4, lr}
-	ldr r0, _08000404 @ =0x084F0B14
+	ldr r0, _08000404 @ =gEwramData
 	ldr r0, [r0]
 	ldr r1, _08000408 @ =0x00007864
 	adds r4, r0, r1
@@ -248,7 +248,7 @@ _080003F0:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08000404: .4byte 0x084F0B14
+_08000404: .4byte gEwramData
 _08000408: .4byte 0x00007864
 _0800040C: .4byte 0x040000B0
 _08000410: .4byte 0x0000C5FF
@@ -259,7 +259,7 @@ _08000420: .4byte 0x03007FF8
 
 	thumb_func_start sub_08000424
 sub_08000424: @ 0x08000424
-	ldr r0, _08000460 @ =0x084F0B14
+	ldr r0, _08000460 @ =gEwramData
 	ldr r0, [r0]
 	ldr r2, _08000464 @ =0x0000FEC0
 	adds r1, r0, r2
@@ -290,14 +290,14 @@ sub_08000424: @ 0x08000424
 	strh r0, [r1, #0x16]
 	bx lr
 	.align 2, 0
-_08000460: .4byte 0x084F0B14
+_08000460: .4byte gEwramData
 _08000464: .4byte 0x0000FEC0
 _08000468: .4byte 0x0000FEC1
 _0800046C: .4byte 0x03002C60
 
 	thumb_func_start sub_08000470
 sub_08000470: @ 0x08000470
-	ldr r0, _080004AC @ =0x084F0B14
+	ldr r0, _080004AC @ =gEwramData
 	ldr r0, [r0]
 	ldr r2, _080004B0 @ =0x0000FEC0
 	adds r1, r0, r2
@@ -328,7 +328,7 @@ sub_08000470: @ 0x08000470
 	strh r0, [r1, #0x16]
 	bx lr
 	.align 2, 0
-_080004AC: .4byte 0x084F0B14
+_080004AC: .4byte gEwramData
 _080004B0: .4byte 0x0000FEC0
 _080004B4: .4byte 0x0000FEC1
 _080004B8: .4byte 0x03002C60
@@ -375,7 +375,7 @@ sub_08000500: @ 0x08000500
 	push {lr}
 	movs r3, #1
 	rsbs r3, r3, #0
-	ldr r0, _0800051C @ =0x084F0B14
+	ldr r0, _0800051C @ =gEwramData
 	ldr r0, [r0]
 	ldrb r0, [r0, #0x10]
 	cmp r0, #0x14
@@ -386,7 +386,7 @@ sub_08000500: @ 0x08000500
 	ldr r0, [r0]
 	mov pc, r0
 	.align 2, 0
-_0800051C: .4byte 0x084F0B14
+_0800051C: .4byte gEwramData
 _08000520: .4byte _08000524
 _08000524: @ jump table
 	.4byte _08000578 @ case 0
@@ -476,7 +476,7 @@ _080005F0:
 	rsbs r0, r0, #0
 	cmp r3, r0
 	bne _0800060C
-	ldr r3, _08000608 @ =0x084F0B14
+	ldr r3, _08000608 @ =gEwramData
 	ldr r1, [r3]
 	ldrb r0, [r1, #0x10]
 	adds r0, #1
@@ -485,13 +485,13 @@ _080005F0:
 	ldr r0, [r3]
 	b _0800061E
 	.align 2, 0
-_08000608: .4byte 0x084F0B14
+_08000608: .4byte gEwramData
 _0800060C:
 	movs r0, #1
 	rsbs r0, r0, #0
 	cmp r3, r0
 	beq _08000622
-	ldr r1, _08000628 @ =0x084F0B14
+	ldr r1, _08000628 @ =gEwramData
 	ldr r0, [r1]
 	movs r2, #0
 	strb r3, [r0, #0x10]
@@ -503,11 +503,11 @@ _08000622:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08000628: .4byte 0x084F0B14
+_08000628: .4byte gEwramData
 
 	thumb_func_start sub_0800062C
 sub_0800062C: @ 0x0800062C
-	ldr r2, _0800063C @ =0x084F0B14
+	ldr r2, _0800063C @ =gEwramData
 	ldr r1, [r2]
 	movs r3, #0
 	strb r0, [r1, #0x10]
@@ -516,11 +516,11 @@ sub_0800062C: @ 0x0800062C
 	strb r3, [r0, #0x11]
 	bx lr
 	.align 2, 0
-_0800063C: .4byte 0x084F0B14
+_0800063C: .4byte gEwramData
 
 	thumb_func_start sub_08000640
 sub_08000640: @ 0x08000640
-	ldr r3, _08000654 @ =0x084F0B14
+	ldr r3, _08000654 @ =gEwramData
 	ldr r1, [r3]
 	ldrb r0, [r1, #0x10]
 	adds r0, #1
@@ -531,7 +531,7 @@ sub_08000640: @ 0x08000640
 	strb r2, [r0, #0x11]
 	bx lr
 	.align 2, 0
-_08000654: .4byte 0x084F0B14
+_08000654: .4byte gEwramData
 
 	thumb_func_start sub_08000658
 sub_08000658: @ 0x08000658
@@ -560,7 +560,7 @@ sub_08000658: @ 0x08000658
 	strh r0, [r1, #4]
 	ldr r0, _080006C0 @ =0x00001F02
 	strh r0, [r1, #6]
-	ldr r0, _080006C4 @ =0x084F0B14
+	ldr r0, _080006C4 @ =gEwramData
 	ldr r2, [r0]
 	ldr r0, _080006C8 @ =0x0000A074
 	adds r2, r2, r0
@@ -582,7 +582,7 @@ _080006B4: .4byte 0x00001C02
 _080006B8: .4byte 0x00001D02
 _080006BC: .4byte 0x00001E02
 _080006C0: .4byte 0x00001F02
-_080006C4: .4byte 0x084F0B14
+_080006C4: .4byte gEwramData
 _080006C8: .4byte 0x0000A074
 
 	thumb_func_start sub_080006CC
@@ -594,7 +594,7 @@ sub_080006CC: @ 0x080006CC
 	ldr r0, _080007B0 @ =0x040000D4
 	mov r1, sp
 	str r1, [r0]
-	ldr r1, _080007B4 @ =0x084F0B14
+	ldr r1, _080007B4 @ =gEwramData
 	ldr r1, [r1]
 	str r1, [r0, #4]
 	ldr r1, _080007B8 @ =0x85009555
@@ -691,7 +691,7 @@ sub_080006CC: @ 0x080006CC
 	bx r0
 	.align 2, 0
 _080007B0: .4byte 0x040000D4
-_080007B4: .4byte 0x084F0B14
+_080007B4: .4byte gEwramData
 _080007B8: .4byte 0x85009555
 _080007BC: .4byte 0x03002CB0
 _080007C0: .4byte 0x00000808
@@ -765,7 +765,7 @@ InitializeGame: @ 0x08000804
 	bne _08000870
 	bl sub_08001004
 _08000870:
-	ldr r0, _080008A8 @ =0x084F0B14
+	ldr r0, _080008A8 @ =gEwramData
 	ldr r1, [r0]
 	ldr r0, _080008AC @ =0x001E86EF
 	str r0, [r1, #8]
@@ -783,13 +783,13 @@ _08000898: .4byte _intr_main
 _0800089C: .4byte 0x03003CD0
 _080008A0: .4byte 0x84000220
 _080008A4: .4byte 0x03007FFC
-_080008A8: .4byte 0x084F0B14
+_080008A8: .4byte gEwramData
 _080008AC: .4byte 0x001E86EF
 
 	thumb_func_start UpdateInput
 UpdateInput: @ 0x080008B0
 	push {r4, r5, lr}
-	ldr r0, _080008E4 @ =0x084F0B14
+	ldr r0, _080008E4 @ =gEwramData
 	ldr r2, [r0]
 	adds r4, r2, #0
 	adds r4, #0x14
@@ -814,7 +814,7 @@ UpdateInput: @ 0x080008B0
 	strh r0, [r4, #0xa]
 	b _080008F6
 	.align 2, 0
-_080008E4: .4byte 0x084F0B14
+_080008E4: .4byte gEwramData
 _080008E8: .4byte 0x04000130
 _080008EC: .4byte 0x000003FF
 _080008F0:
@@ -872,7 +872,7 @@ _0800094C: .4byte 0xFFFFFC00
 SoftResetCheck: @ 0x08000950
 	push {r4, lr}
 	movs r4, #0
-	ldr r0, _08000974 @ =0x084F0B14
+	ldr r0, _08000974 @ =gEwramData
 	ldr r2, [r0]
 	ldr r0, _08000978 @ =0x00012FE0
 	adds r3, r2, r0
@@ -889,7 +889,7 @@ _0800096E:
 	movs r0, #0
 	b _0800099A
 	.align 2, 0
-_08000974: .4byte 0x084F0B14
+_08000974: .4byte gEwramData
 _08000978: .4byte 0x00012FE0
 _0800097C:
 	ldrh r1, [r2, #0x16]

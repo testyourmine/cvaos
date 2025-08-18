@@ -85,6 +85,6 @@ struct EwramData {
     u8 unk_133F4[0x1000];
 };
 
-extern struct EwramData *sUnk_084f0b14;
+extern struct EwramData *gEwramData;
 
 #endif /* EWRAM_STRUCTS_H */

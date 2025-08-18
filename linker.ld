@@ -141,6 +141,7 @@ SECTIONS {
     } >rom
 
     .data : ALIGN(2) {
+        src/ewram.o(.data);
         asm/data_4F0B14.o(.data);
         *libc.a:memcpy.o(.data);
         *libc.a:memset.o(.data);
