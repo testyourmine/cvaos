@@ -8,10 +8,13 @@
 extern void sub_080426B0(struct EwramData_unk4E4 *param_0);
 extern void sub_0803AAEC(struct EwramData_unk4E4 *param_0, u32 param_1);
 extern void sub_08042828(struct EwramData_unk4E4 *param_0);
+u32 sub_08001980(u32 param_0, u32 param_1);
 
 extern u16 gUnk_080E0368[];
 // sUnk_084F0B18 = "CASTLEVANIA2-010"
 extern const u8 sUnk_084F0B18[0x10];
+extern u16 gUnk_08116650[];
+extern u32 gUnk_0850E968[];
 
 extern u32 *gUnk_030052D4;
 
@@ -879,4 +882,148 @@ u16* sub_08001580(u8 param_0, u8 param_1, u8* param_2, u32 param_3)
         tmp1 = NULL;
     }
     return tmp1;
+}
+
+/**
+ * @brief 15E4 | To document
+ * 
+ */
+void sub_080015E4(void)
+{
+    struct Unk_030034BC *var_0;
+    u8 *var_1;
+
+    var_0 = &gUnk_03002CB0.unk_80C;
+    while ((u32)var_0 < (u32)gUnk_03002CB0.unk_808)
+    {
+        if (var_0->unk_814 != 0)
+        {
+            DMA_SET(3, &var_0->unk_818, var_0->unk_810, C_32_2_16(DMA_ENABLE, var_0->unk_814 / sizeof(u16)));
+            var_1 = var_0->unk_814 + (u8*)var_0 + 0xC;
+        }
+        else
+        {
+            DMA_SET(3, var_0->unk_80C, var_0->unk_810, C_32_2_16(DMA_ENABLE, var_0->unk_818 / sizeof(u16)));
+            var_1 = (u8*)var_0 + 0x10;
+        }
+        var_0 = (struct Unk_030034BC *)((s32)((var_1 + 3)) & ~3);
+    }
+    gUnk_03002CB0.unk_808 = &gUnk_03002CB0.unk_80C;
+}
+
+/**
+ * @brief 1668 | To document
+ * 
+ * @param arg0 To document
+ * @param arg1 To document
+ * @param arg2 To document
+ * @return struct Unk_030034BC* To document
+ */
+struct Unk_030034BC* sub_08001668(u16 arg0, s32 arg1, u32 *arg2)
+{
+    struct Unk_030034BC *temp_r0;
+    struct Unk_030034BC *tmp1;
+
+    tmp1 = gUnk_03002CB0.unk_808;
+    if (((s32) ((u8*)tmp1 + (arg0 + 0xC)) >= (s32) (&gUnk_03002CB0 + 1)) || (arg0 == 0))
+    {
+        return 0;
+    }
+
+    tmp1->unk_80C = (u32*)&tmp1->unk_818;
+    tmp1->unk_810 = arg2;
+    tmp1->unk_814 = arg0;
+
+    DMA_SET(3, arg1, tmp1->unk_80C, C_32_2_16(DMA_ENABLE, (u32) (arg0) >> 0x1))
+    temp_r0 = (struct Unk_030034BC*)(((u32)((u8*)tmp1 + arg0 + 0xF)) & ~3);
+    gUnk_03002CB0.unk_808 = temp_r0;
+    return temp_r0;
+}
+
+s32 sub_080016D0(u32 arg0, u32 *arg1, u32 *arg2)
+{
+    s32 temp_r0;
+    struct Unk_030034BC *temp_r3;
+
+    temp_r3 = gUnk_03002CB0.unk_808;
+    if ((u32) temp_r3->pad_81C < (u32) (&gUnk_03002CB0 + 1))
+    {
+        temp_r3->unk_80C = arg1;
+        temp_r3->unk_810 = arg2;
+        temp_r3->unk_814 = 0;
+        temp_r3->unk_818 = arg0;
+        temp_r0 = (s32) &temp_r3->unk_82F & ~3;
+        gUnk_03002CB0.unk_808 = (struct Unk_030034BC *)temp_r0;
+    }
+    else
+    {
+        temp_r0 = 0;
+    }
+    return temp_r0;
+}
+
+void sub_08001718(u8 arg0, u8 arg1, u8 arg2, s32 arg3)
+{
+    struct EwramData *var_1;
+    struct EwramData_unk7864 *var_0;
+
+    var_1 = sUnk_084f0b14;
+    var_0 = &var_1->unk_7864;
+    var_0->unk_7865 = arg1;
+    var_0->unk_7866 = arg2;
+    var_0->unk_7868 = arg3;
+
+    if (arg0 != 0)
+    {
+        // TODO: does struct EwramData_unk7864 have more members?
+        DMA_FILL_16(3, 0, &var_1->pad_786C[0], (arg0 * arg2));
+        DMA_FILL_16(3, 0, &var_1->pad_786C[0xA00], (arg0 * arg2));
+    }
+}
+
+/**
+ * @brief 1780 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @return s32 To document
+ */
+s32 sub_08001780(s32 param_0, s32 param_1)
+{
+    u32 var_0;
+    u32 var_1;
+    u16 *var_2;
+    u32 var_3;
+    u32 var_4;
+    u32 var_5;
+    u32 var_6;
+    u32 var_7;
+    u32 var_8;
+    u32 var_9;
+
+    var_9 = 0;
+
+    var_2 = gUnk_08116650;
+    var_3 = sUnk_084f0b14->unk_8C_0 + (param_0 >> 8);
+    var_4 = (sUnk_084f0b14->unk_8C_7 + (param_1 >> 8)) << 6;
+    var_1 = gUnk_08116650[var_3 + var_4] >> 6;
+    var_1 = var_1 & 0xF;
+
+    var_5 = sUnk_084f0b14->unk_8C_0 + (param_0 >> 8);
+    var_6 = (sUnk_084f0b14->unk_8C_7 + (param_1 >> 8)) << 6;
+    var_0 = var_2[var_5 + var_6];
+    var_0 = var_0 & 0x3F;
+
+    var_7 = sub_08001980(var_1, var_0);
+    var_8 = 0;
+    while(gUnk_0850E968[var_8])
+    {
+        if (gUnk_0850E968[var_8] == var_7)
+        {
+            var_9 = 1;
+            break;
+        }
+        var_8++;
+    }
+    return var_9;
 }

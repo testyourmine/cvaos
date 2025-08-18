@@ -1,9 +1,17 @@
 [
     {
-        "path": "data.bin",
-        "count": 5705280,
+        "path": "data_0E0334.bin",
+        "count": "0x4107E0",
         "addr": {
-            "us": 918324
+            "us": "0xE0334"
+        },
+        "size": 1
+    },
+    {
+        "path": "data_4F0B14.bin",
+        "count": "0x160660",
+        "addr": {
+            "us": "0x4F0B14"
         },
         "size": 1
     }

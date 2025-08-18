@@ -67,6 +67,9 @@ SECTIONS {
         asm/data_0E0334.o(.rodata);
     } >rom
 
+    .data : ALIGN(2) {
+    } >rom
+
     /* DWARF debug sections.
        Symbols in the DWARF debugging sections are relative to the beginning
        of the section so we begin them at 0.  */

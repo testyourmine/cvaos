@@ -29,11 +29,11 @@ def extract_data(region: str, quiet: bool = False) -> None:
 
         addr = entry["addr"].get(region)
         if addr is not None:
-            count = entry["count"]
+            count = int(entry["count"], 16)
             if isinstance(count, dict):
                 count = count[region]
             size: int = count * entry["size"]
-            rom.seek(entry["addr"][region])
+            rom.seek(int(entry["addr"][region], 16))
             with open(path_obj, "wb") as f:
                 f.write(rom.read(size))
 

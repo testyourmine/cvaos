@@ -46,14 +46,25 @@ struct Unk_03002C60 {
     u16 unk_56;
 };
 
+struct Unk_030034BC {
+    u32 *unk_80C; // 34BC
+    u32 *unk_810; // 34C0
+    u16 unk_814; // 34C4
+    u32 unk_818; // 34C8
+    u8 pad_81C[0x82F - 0x81C]; // TODO: verify
+    u8 unk_82F;
+    u8 pad_830[0x100C - 0x830];
+};
+
 struct Unk_03002CB0 {
     u16 unk_0;
     u8 unk_2;
     u16 *unk_4;
     u16 *unk_8;
     u8 pad_C[0x808 - 0xC];
-    u32 *unk_808;
-    u32 unk_80C;
+    struct Unk_030034BC *unk_808;
+    struct Unk_030034BC unk_80C;
+    u8 unk_100C;
 };
 
 extern struct Unk_03002C60 gUnk_03002C60;

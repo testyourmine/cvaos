@@ -387,7 +387,7 @@ void sub_08000658(void)
 void sub_080006CC(void)
 {
     DMA_FILL_32(3, 0, sUnk_084f0b14, 0x25554);
-    gUnk_03002CB0.unk_4 = gUnk_03002CB0.unk_8;
+    gUnk_03002CB0.unk_4 = (u16*)&gUnk_03002CB0.unk_8;
     gUnk_03002CB0.unk_808 = &gUnk_03002CB0.unk_80C;
 
     DMA_SET(3, &sUnk_080E3664, VRAM_BASE + 0x6000, C_32_2_16(DMA_ENABLE | DMA_32BIT, 0x1C00 / sizeof(u32)));

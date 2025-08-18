@@ -58,7 +58,10 @@ struct EwramData {
     u8 unk_12;
     u8 unk_13;
     struct EwramData_unk14 unk_14;
-    u8 pad_20[0x4CC - 0x20];
+    u8 pad_20[0x8C - 0x20];
+    u8 unk_8C_0:7;
+    u16 unk_8C_7:7;
+    u8 pad_8D[0x4CC - 0x8E];
     u8 unk_4CC;
     u8 pad_4CD[0x4E4 - 0x4CD];
     struct EwramData_unk4E4 unk_4E4[0xD0];
