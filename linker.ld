@@ -64,8 +64,6 @@ SECTIONS {
 
         *libc.a:memcpy.o(.text);
         *libc.a:memset.o(.text);
-        *libc.a:memcpy.o(.text);
-        *libc.a:memset.o(.text);
         *libc.a:sprintf.o(.text);
         *libc.a:vfprintf.o(.text);
         *libc.a:vsprintf.o(.text);
@@ -106,8 +104,6 @@ SECTIONS {
         asm/data_0E0334.o(.rodata);
         *libc.a:memcpy.o(.rodata);
         *libc.a:memset.o(.rodata);
-        *libc.a:memcpy.o(.rodata);
-        *libc.a:memset.o(.rodata);
         *libc.a:sprintf.o(.rodata);
         *libc.a:vfprintf.o(.rodata);
         *libc.a:vsprintf.o(.rodata);
@@ -146,8 +142,6 @@ SECTIONS {
 
     .data : ALIGN(2) {
         asm/data_4F0B14.o(.data);
-        *libc.a:memcpy.o(.data);
-        *libc.a:memset.o(.data);
         *libc.a:memcpy.o(.data);
         *libc.a:memset.o(.data);
         *libc.a:sprintf.o(.data);
