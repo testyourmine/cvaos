@@ -1,9 +1,41 @@
 [
     {
         "path": "data_0E0334.bin",
-        "count": "0x4105C4",
+        "count": "0x3130",
         "addr": {
             "us": "0xE0334"
+        },
+        "size": 1
+    },
+    {
+        "path": "data_0E3464.bin",
+        "count": "0x200",
+        "addr": {
+            "us": "0xE3464"
+        },
+        "size": 1
+    },
+    {
+        "path": "data_0E3664.bin",
+        "count": "0x1C00",
+        "addr": {
+            "us": "0xE3664"
+        },
+        "size": 1
+    },
+    {
+        "path": "data_0E5264.bin",
+        "count": "0x100",
+        "addr": {
+            "us": "0xE5264"
+        },
+        "size": 1
+    },
+    {
+        "path": "data_0E5364.bin",
+        "count": "0x40B594",
+        "addr": {
+            "us": "0xE5364"
         },
         "size": 1
     },

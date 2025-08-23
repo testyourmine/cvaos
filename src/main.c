@@ -2,6 +2,8 @@
 #include "gba.h"
 #include "macros.h"
 
+#include "data/data_0E3464.h"
+
 #include "constants/main.h"
 
 #include "structs/main.h"
@@ -56,10 +58,6 @@ extern s32 sub_08035930(void);
 extern s32 sub_08036670(void);
 extern s32 sub_0803681C(void);
 extern s32 sub_08038A38(void);
-
-extern u32 *sUnk_080E3664;
-extern u32 *sUnk_080E5264;
-extern u32 *sUnk_080E3464;
 
 /**
  * @brief 1F4 | Main function

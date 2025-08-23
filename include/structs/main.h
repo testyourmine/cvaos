@@ -50,6 +50,7 @@ struct Unk_030034BC {
     u32 *unk_80C; // 34BC
     u32 *unk_810; // 34C0
     u16 unk_814; // 34C4
+    u16 unk_816;
     u32 unk_818; // 34C8
     u8 pad_81C[0x82F - 0x81C]; // TODO: verify
     u8 unk_82F;

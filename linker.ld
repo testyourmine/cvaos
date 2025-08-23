@@ -29,7 +29,7 @@ SECTIONS {
     .text : ALIGN(2) {
         asm/rom_header.o(.text);
         asm/crt0.o(.text);
-        asm/main.o(.text);
+        src/main.o(.text);
         asm/code/code_080009A0.o(.text);
         asm/code/code_080109B8.o(.text);
         asm/code/code_080211F0.o(.text);
@@ -102,6 +102,8 @@ SECTIONS {
 
     .rodata : ALIGN(2) {
         asm/data/data_0E0334.o(.rodata);
+        src/data/data_0E3464.o(.rodata);
+        asm/data/data_0E5364.o(.rodata);
         *libc.a:memcpy.o(.rodata);
         *libc.a:memset.o(.rodata);
         *libc.a:sprintf.o(.rodata);
