@@ -101,7 +101,8 @@ SECTIONS {
     } >rom
 
     .rodata : ALIGN(2) {
-        asm/data/data_0E0334.o(.rodata);
+        src/data/data_0E0334.o(.rodata);
+        asm/data/data_0E0B68.o(.rodata);
         src/data/data_0E3464.o(.rodata);
         asm/data/data_0E5364.o(.rodata);
         *libc.a:memcpy.o(.rodata);

@@ -5,4 +5,4 @@
 
     .section .rodata
 
-    .incbin "data/data_0E0334.bin"
+    .incbin "data/data_0E0B68.bin"

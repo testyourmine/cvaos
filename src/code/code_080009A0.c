@@ -2,6 +2,8 @@
 #include "macros.h"
 #include "agb_sram.h"
 
+#include "data/data_0E0334.h"
+
 #include "structs/ewram.h"
 #include "structs/main.h"
 
@@ -10,9 +12,7 @@ extern void sub_0803AAEC(struct EwramData_unk4E4 *param_0, u32 param_1);
 extern void sub_08042828(struct EwramData_unk4E4 *param_0);
 u32* sub_08001980(s32 param_0, s32 param_1);
 
-extern u16 gUnk_080E0368[];
-// sUnk_084F0B18 = "CASTLEVANIA2-010"
-extern const u8 sUnk_084F0B18[0x10];
+extern u8 sUnk_084F0B18[0x10]; // "CASTLEVANIA2-010"
 
 extern u16 gUnk_08116650[];
 extern u32 *gUnk_0850E968[];
@@ -50,13 +50,15 @@ u32 sub_080009A0(s32 param_0, u32 param_1)
  */
 s32 sub_080009E4(s32 param_0)
 {
-    // This function may relate to angles and trig
-    param_0 += 8;
+    // This function relates to angles and trig
+    // Why the `>> 4`?
+    param_0 += (0x80) >> 4;
     param_0 = param_0 & 0xFFFF;
-    if (param_0 & 0x8000)
+
+    if (param_0 & Q_16_16(0.5f))
     {
-        param_0 -= 0x8000;
-        if (param_0 & 0x4000)
+        param_0 -= Q_16_16(0.5f);
+        if (param_0 & Q_16_16(0.25f))
         {
             if (param_0 & 0xFFFFBFF0)
             {
@@ -64,7 +66,7 @@ s32 sub_080009E4(s32 param_0)
             }
             else
             {
-                return 0xFFFF0000;
+                return -Q_16_16(1);
             }
         }
         else
@@ -72,7 +74,8 @@ s32 sub_080009E4(s32 param_0)
             return -gUnk_080E0368[param_0 >> 4];
         }
     }
-    if (param_0 & 0x4000)
+
+    if (param_0 & Q_16_16(0.25f))
     {
         if (param_0 & 0xFFFFBFF0)
         {
@@ -80,7 +83,7 @@ s32 sub_080009E4(s32 param_0)
         }
         else
         {
-            return 0x10000;
+            return Q_16_16(1);
         }
     }
     return gUnk_080E0368[param_0 >> 4];
@@ -503,7 +506,7 @@ s32 sub_08001094(void)
 {
     s32 var_r2;
     s32 var_r5;
-    const u8 *var_r1;
+    u8 *var_r1;
     u8 *var_r4;
 
     var_r5 = 1;
