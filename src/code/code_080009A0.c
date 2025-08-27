@@ -576,75 +576,81 @@ u32 sub_08001164(u32 param_0)
     return !((var_0 >> param_0) & 1);
 }
 
-// https://decomp.me/scratch/RB0CO
+/**
+ * @brief 1194 | To document
+ * 
+ */
 void sub_08001194(void)
 {
     u16 var_0;
-    u32 var_1;
-    u32 var_2;
-    u32 var_5;
-    u32 var_6;
-    u32 var_7;
+    u16 var_1;
+    u16 var_6;
+    u16 *var_7;
     u16 *var_8;
-    u16 *var_9;
+    u16 var_9;
     u16 var_10;
-    u32 var_11;
-    u32 var_13;
-    u32 var_14;
-    u16 *var_15;
-    u16 *var_16;
-    u16 *var_18;
+    u16 *var_13;
+    u32 var_16;
+    u32 var_17;
+    s32 var_18;
+    u16 var_19;
+    s32 var_20;
+    s32 var_21;
+    u16 *var_22;
 
-    // var_9 = gUnk_03002CB0.unk_8;
-    var_9 = (u16*)&gUnk_03002CB0.unk_8;
-    var_18 = gUnk_03002CB0.unk_4;
-    while (var_9 < var_18)
+    var_8 = gUnk_03002CB0.unk_8;
+    while (var_8 < gUnk_03002CB0.unk_4)
     {
-        var_14 = 0x4000;
-        var_16 = (u16*)&gUnk_03002C60;
-        var_13 = 0x8000;
-        var_6 = *var_9;
-        var_0 = var_6 >> 8;
-        var_11 = (u8)var_6;
-        var_10 = 3;
-        var_10 = var_10 & (var_6 >> 8);
-        var_2 = var_1 = var_16[var_10];
-        var_9 = var_9 + 1;
-        var_8 = (VRAM_BASE + *var_9);
-        var_9 = var_9 + 1;
-        if ((var_10) <= 1)
+        var_0 = (*var_8 >> 8) & 0xFF;
+        var_10 = (u8)(*var_8);
+        var_9 = var_0 & 3;
+        var_1 = ((u16*)&gUnk_03002C60)[var_9];
+        var_8++;
+        var_7 = (VRAM_BASE + *var_8);
+        var_8++;
+        if (var_9 == 0 || var_9 == 1)
         {
-            var_15 = var_8;
-            var_1 &= var_14;
-            var_7 = (var_1) ? 0x40 : 0x20;
-            var_2 &= var_13;
-            var_1 = (var_2) ? 0x40 : 0x20;
-            var_5 = 0x80;
-            var_5 = var_5 & var_0;
-            if (var_5)
+            var_13 = var_7;
+            var_22 = var_8;
+            var_6 = (var_1 & 0x4000) ? 0x40 : 0x20;
+            var_19 = (var_1 & 0x8000) ? 0x40 : 0x20;
+
+            if (var_0 & 0x80)
             {
-                var_1 = var_7 * (var_1 - 1) * 2;
-                var_0 = var_7 * 2;
+                var_16 = var_6 * (var_19 - 1) * 2;
+                var_17 = var_6 * 2;
             }
             else
             {
-                var_1 = (var_7 * 2) - 1;
-                var_0 = 2;
+                var_16 = (var_6 * 2) - 1;
+                var_17 = 2;
             }
-            while (var_11 != 0)
+
+            for (var_18 = 0; var_18 < var_10; var_18++)
             {
-                *var_15 = *var_9;
-                var_15 = (u16*)(((u32)var_15 & ~var_1) | (((u32)var_15 + var_0) & var_1));
-                var_9 += 1;
-                var_11 -= 1;
+                *var_13 = *var_22;
+                var_20 = ((u32)var_13 & ~var_16);
+                var_21 = (((u32)var_13 + var_17) & var_16);
+                var_21 |= var_20;
+                var_13 = (u16*)(var_21);
+                var_22 += 1;
             }
+            var_8 = var_22;
+            var_7 = VRAM_BASE;
         }
-        var_18 = gUnk_03002CB0.unk_4;
     }
-    gUnk_03002CB0.unk_4 = (u16*)&gUnk_03002CB0.unk_4 + 2;
+    gUnk_03002CB0.unk_4 = gUnk_03002CB0.unk_8;
 }
 
-// https://decomp.me/scratch/65EcP
+/**
+ * @brief 125C | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @param param_3 To document
+ * @return u16* To document
+ */
 u16* sub_0800125C(u16 param_0, u16 param_1, u8 param_2, u8 *param_3)
 {
     u16 *temp_r2;
@@ -654,31 +660,24 @@ u16* sub_0800125C(u16 param_0, u16 param_1, u8 param_2, u8 *param_3)
     u32 tmp;
     u8 *tmp2;
     u16 *tmp3;
+    u32 tmp4;
 
     var_r2 = param_2 << 0xC;
     var_r3 = (u16*)gEwramData->unk_133F4;
     var_r4 = 0;
     while (param_3[var_r4] != 0)
     {
-        // var_r2 = param_2 << 0xC;
+        tmp4 = var_r2;
         if (!(param_2 & 0xF0))
         {
-            var_r2 |= param_3[var_r4] + 0x300;
+            tmp4 |= param_3[var_r4] + 0x300;
         }
-        *var_r3 = var_r2;
+        *var_r3 = tmp4;
         var_r3++;
         var_r4++;
     }
 
-    tmp = ((param_0 * 2) + (u32)(VRAM_BASE + 0xE000));
-    if (gUnk_03002C60.bg0Cnt & 0x4000)
-    {
-        tmp += param_1 << 7;
-    }
-    else
-    {
-        tmp += param_1 << 6;
-    }
+    tmp = (u32)(VRAM_BASE + 0xE000) + (param_0 * 2) + ((gUnk_03002C60.bg0Cnt & 0x4000) ? (param_1 << 7) : (param_1 << 6));
     tmp2 = gEwramData->unk_133F4;
     tmp3 = gUnk_03002CB0.unk_4;
 
@@ -698,29 +697,28 @@ u16* sub_0800125C(u16 param_0, u16 param_1, u8 param_2, u8 *param_3)
     return temp_r2;
 }
 
-// https://decomp.me/scratch/Lnswj
+/**
+ * @brief 1350 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @param param_4 To document
+ * @return u16* To document
+ */
 u16* sub_08001350(u16 param_0, u16 param_1, u8 param_2, s32 param_3, s32 param_4)
 {
-    s32 sp0;
     s32 sp4;
-    u32 sp8;
-    s16 *var_r5;
+    u8 sp8;
+    u16 *var_r5;
     s32 temp_r4;
-    s32 var_r0;
     s32 var_r6;
-    s32 var_r6_2;
-    s32 var_r7;
     u16 *temp_r2;
-    u16 *temp_r2_2;
-    u16 *temp_r2_3;
     u16 temp_r0;
-    u32 temp_r3;
     u32 tmp;
     u8 *tmp2;
     u16 *tmp3;
-    u32 tmp4;
 
-    // var_r7 = param_4;
     sp4 = 0;
     if (param_4 < 0)
     {
@@ -729,129 +727,101 @@ u16* sub_08001350(u16 param_0, u16 param_1, u8 param_2, s32 param_3, s32 param_4
     }
 
     temp_r0 = (param_2 << 0xC) | 0x300;
-    var_r5 = (s16*)&gEwramData->unk_133F4[param_3];
+    var_r5 = (u16*)&gEwramData->unk_133F2 + param_3;
     var_r6 = 0;
-    sp8 = param_3 << 0x18;
 
-    while (TRUE)
+    do
     {
-        temp_r4 = param_4 % 10;
-        param_4 = param_4 / 10;
+        temp_r4 = Mod(param_4, 10);
+        param_4 = Div(param_4, 10);
         *var_r5 = (temp_r4 + 0x30) | temp_r0;
         var_r5 -= 1;
         var_r6 += 1;
-        if (var_r6 < param_3)
-        {
-            if (param_4 == 0)
-            {
-                if (sp4 != 0)
-                {
-                    *var_r5 = temp_r0 | 0x2D;
-                    var_r5 -= 1;
-                    var_r6 += 1;
-                }
-                if (var_r6 < param_3)
-                {
-                    tmp4 = 0x20;
-                    var_r6 = param_3 - var_r6;
-                    do {
-                        *var_r5 = tmp4;
-                        var_r6 -= 1;
-                        var_r5 -= 1;
-                    } while (var_r6 != 0);
-                }
-                break;
-            }
-            else
-                continue;
-        }
-        break;
+    } while (var_r6 < param_3 && param_4 != 0);
+
+    if (var_r6 < param_3 && sp4 != 0)
+    {
+        *var_r5 = temp_r0 | 0x2D;
+        var_r5 -= 1;
+        var_r6 += 1;
+    }
+    while (var_r6 < param_3)
+    {
+        *var_r5 = 0x20;
+        var_r6 += 1;
+        var_r5 -= 1;
     }
 
-    tmp = ((param_0 * 2) + (u32)(VRAM_BASE + 0xE000));
-    if (gUnk_03002C60.bg0Cnt & 0x4000)
-    {
-        tmp += param_1 << 7;
-    }
-    else
-    {
-        tmp += param_1 << 6;
-    }
+    tmp = (u32)(VRAM_BASE + 0xE000) + (param_0 * 2) + ((gUnk_03002C60.bg0Cnt & 0x4000) ? (param_1 << 7) : (param_1 << 6));
+    sp8 = param_3;
     tmp2 = gEwramData->unk_133F4;
     tmp3 = gUnk_03002CB0.unk_4;
 
-    temp_r3 = sp8 >> 0x18;
-    if ((u32) (&tmp3[temp_r3] + 2) >= (u32) &gUnk_03002CB0.unk_808)
+    if ((u8*)(tmp3 + sp8 + 2) >= (u8*)&gUnk_03002CB0.unk_808)
     {
         temp_r2 = NULL;
     }
     else
     {
-        *tmp3++ = temp_r3;
+        *tmp3++ = sp8;
         *tmp3++ = tmp;
-        DMA_SET(3, tmp2, tmp3, C_32_2_16(DMA_ENABLE, temp_r3));
-        tmp3 = &tmp3[temp_r3];
+        DMA_SET(3, tmp2, tmp3, C_32_2_16(DMA_ENABLE, sp8));
+        tmp3 = tmp3 + sp8;
         gUnk_03002CB0.unk_4 = tmp3;
         temp_r2 = tmp3;
     }
-
     return temp_r2;
 }
 
-// https://decomp.me/scratch/tM1R5
-u16* sub_0800148C(u16 arg0, u16 arg1, u8 arg2, u8 *arg3)
+/**
+ * @brief 148C | (Duplicate of sub_0800125C) To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @param param_3 To document
+ * @return u16* To document
+ */
+u16* sub_0800148C(u16 param_0, u16 param_1, u8 param_2, u8 *param_3)
 {
-    s32 var_r0;
     u16 *temp_r2;
-    u16 *temp_r2_3;
-    u16 *temp_r2_4;
-    u16 temp_r1;
     u16 var_r2;
     u16 *var_r3;
-    u8 temp_r2_2;
     u8 var_r4;
     u32 tmp;
     u8 *tmp2;
     u16 *tmp3;
+    u32 tmp4;
 
-    // temp_r1 = arg1;
-    // temp_r2_2 = arg2;
-    var_r2 = arg2 << 0xC;
-    var_r3 = (u16 *)gEwramData->unk_133F4;
+    var_r2 = param_2 << 0xC;
+    var_r3 = (u16*)gEwramData->unk_133F4;
     var_r4 = 0;
-
-    while (*(arg3 + var_r4) != 0)
+    while (param_3[var_r4] != 0)
     {
-        
-        if (!(0xF0 & arg2)) {
-            var_r2 |= *(arg3 + var_r4) + 0x300;
+        tmp4 = var_r2;
+        if (!(param_2 & 0xF0))
+        {
+            tmp4 |= param_3[var_r4] + 0x300;
         }
-        *var_r3++ = var_r2;
-        var_r4 = var_r4 + 1;
+        *var_r3 = tmp4;
+        var_r3++;
+        var_r4++;
     }
 
-    tmp = ((arg0 * 2) + (u32)(VRAM_BASE + 0xE000));
-    if (gUnk_03002C60.bg0Cnt & 0x4000)
-    {
-        tmp += arg1 << 7;
-    }
-    else
-    {
-        tmp += arg1 << 6;
-    }
+    tmp = (u32)(VRAM_BASE + 0xE000) + (param_0 * 2) + ((gUnk_03002C60.bg0Cnt & 0x4000) ? (param_1 << 7) : (param_1 << 6));
     tmp2 = gEwramData->unk_133F4;
     tmp3 = gUnk_03002CB0.unk_4;
 
-    if ((u32) (&gUnk_03002CB0.unk_4[var_r4] + 2) >= (u32) &gUnk_03002CB0.unk_808)
+    if ((u32) (&tmp3[var_r4] + 2) >= (u32) &gUnk_03002CB0.unk_808)
     {
         temp_r2 = NULL;
     }
-    else
+    else 
     {
-        *tmp3++ = (u16) var_r4;
+        *tmp3++ = var_r4;
         *tmp3++ = tmp;
         DMA_SET(3, tmp2, tmp3, C_32_2_16(DMA_ENABLE, var_r4));
-        tmp3 = &tmp3[var_r4];
+        tmp3 = tmp3 + var_r4;
         gUnk_03002CB0.unk_4 = tmp3;
         temp_r2 = tmp3;
     }
@@ -930,7 +900,7 @@ struct Unk_030034BC* sub_08001668(u16 arg0, s32 arg1, u32 *arg2)
     struct Unk_030034BC *tmp1;
 
     tmp1 = gUnk_03002CB0.unk_808;
-    if (((s32) ((u8*)tmp1 + (arg0 + 0xC)) >= (s32) (&gUnk_03002CB0 + 1)) || (arg0 == 0))
+    if (((s32) ((u8*)tmp1 + (arg0 + 0xC)) >= (s32) (&gUnk_03002CB0.unk_100C)) || (arg0 == 0))
     {
         return 0;
     }
@@ -945,28 +915,43 @@ struct Unk_030034BC* sub_08001668(u16 arg0, s32 arg1, u32 *arg2)
     return temp_r0;
 }
 
+/**
+ * @brief 16D0 | To document
+ * 
+ * @param arg0 To document
+ * @param arg1 To document
+ * @param arg2 To document
+ * @return s32 To document
+ */
 s32 sub_080016D0(u32 arg0, u32 *arg1, u32 *arg2)
 {
     s32 temp_r0;
     struct Unk_030034BC *temp_r3;
 
     temp_r3 = gUnk_03002CB0.unk_808;
-    if ((u32) temp_r3->pad_81C < (u32) (&gUnk_03002CB0 + 1))
+    if ((u32) temp_r3->pad_81C >= (u32) (&gUnk_03002CB0.unk_100C))
     {
-        temp_r3->unk_80C = arg1;
-        temp_r3->unk_810 = arg2;
-        temp_r3->unk_814 = 0;
-        temp_r3->unk_818 = arg0;
-        temp_r0 = (s32) &temp_r3->unk_82F & ~3;
-        gUnk_03002CB0.unk_808 = (struct Unk_030034BC *)temp_r0;
+        return 0;
     }
-    else
-    {
-        temp_r0 = 0;
-    }
+
+    temp_r3->unk_80C = arg1;
+    temp_r3->unk_810 = arg2;
+    temp_r3->unk_814 = 0;
+    temp_r3->unk_818 = arg0;
+    temp_r0 = (s32)&temp_r3->unk_81F & ~3;
+    gUnk_03002CB0.unk_808 = (struct Unk_030034BC *)temp_r0;
+    
     return temp_r0;
 }
 
+/**
+ * @brief 1718 | To document
+ * 
+ * @param arg0 To document
+ * @param arg1 To document
+ * @param arg2 To document
+ * @param arg3 To document
+ */
 void sub_08001718(u8 arg0, u8 arg1, u8 arg2, s32 arg3)
 {
     struct EwramData *var_1;

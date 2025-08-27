@@ -4,7 +4,7 @@
 #include "types.h"
 
 struct Unk_03002C60 {
-    u16 bg0Cnt;
+    u16 bg0Cnt; // bgCnt array?
     u16 bg1Cnt;
     u16 bg2Cnt;
     u16 bg3Cnt;
@@ -52,7 +52,9 @@ struct Unk_030034BC {
     u16 unk_814; // 34C4
     u16 unk_816;
     u32 unk_818; // 34C8
-    u8 pad_81C[0x82F - 0x81C]; // TODO: verify
+    u8 pad_81C[0x81F - 0x81C]; // TODO: verify
+    u8 unk_81F; // Type?
+    u8 pad_820[0x82F - 0x820];
     u8 unk_82F;
     u8 pad_830[0x100C - 0x830];
 };
@@ -61,7 +63,7 @@ struct Unk_03002CB0 {
     u16 unk_0;
     u8 unk_2;
     u16 *unk_4;
-    u16 *unk_8;
+    u16 unk_8[1]; // TODO: length/verify
     u8 pad_C[0x808 - 0xC];
     struct Unk_030034BC *unk_808;
     struct Unk_030034BC unk_80C;

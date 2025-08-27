@@ -116,7 +116,7 @@ void AgbMain(void)
 
             sub_080D7EEC();
             sub_080D7E94();
-            DMA_SET(3, &gUnk_03002C60, REG_BG0CNT, C_32_2_16(DMA_ENABLE | DMA_32BIT, sizeof(struct Unk_03002C60) / sizeof(u32)));
+            DMA_SET(3, &gUnk_03002C60, REG_BG0CNT, C_32_2_16(DMA_ENABLE | DMA_32BIT, sizeof(gUnk_03002C60) / sizeof(u32)));
 
             if (unk_7864->unk_7864_2)
             {
@@ -515,23 +515,6 @@ u32 SoftResetCheck(void)
     return result;
 }
 
-/*
-Interrupt Table:
-
-    sub_08000384, // INTR_FLAG_VBLANK
-    sub_080d7d30, // (INTR_FLAG_SERIAL | INTR_FLAG_TIMER3)
-    sub_080004bc, // INTR_FLAG_HBLANK
-    sub_080004c0, // INTR_FLAG_VCOUNT
-    sub_080004bc, // INTR_FLAG_DMA0
-    sub_080004bc, // INTR_FLAG_DMA1
-    sub_080004bc, // INTR_FLAG_DMA2
-    sub_080004bc, // INTR_FLAG_DMA3
-    sub_080004bc, // INTR_FLAG_KEYPAD
-    0, // INTR_FLAG_GAMEPAK ?
-
-*/
-
-
 // NOTE: 080E0334 is the beginning of rodata
 // NOTE: 084F0B14 is the beginning of .data?
-// NOTE: 08650A84 is the end of rom?
+// NOTE: 08651194 is the end of rom?

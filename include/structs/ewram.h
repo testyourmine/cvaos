@@ -81,7 +81,9 @@ struct EwramData {
     s8 unk_FEC1;
     u8 pad_FEC2[0x12FE0 - 0xFEC2];
     s8 unk_12FE0;
-    u8 pac_12FE1[0x133F4 - 0x12FE1];
+    u8 pad_12FE1[0x133F2 - 0x12FE1];
+    u8 unk_133F2; // what's going on here?
+    u8 unk_133F3;
     u8 unk_133F4[0x1000];
 };
 

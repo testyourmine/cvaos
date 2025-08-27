@@ -145,7 +145,7 @@ SECTIONS {
 
     .data : ALIGN(2) {
         src/ewram.o(.data);
-        asm/data/data_4F0B14.o(.data);
+        asm/data/data_4F0B18.o(.data);
         *libc.a:memcpy.o(.data);
         *libc.a:memset.o(.data);
         *libc.a:sprintf.o(.data);
