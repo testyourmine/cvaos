@@ -23536,7 +23536,7 @@ _0802CE84:
 	lsrs r1, r0, #0x10
 	cmp r0, #0
 	beq _0802CEA4
-	ldr r0, _0802CEE8 @ =0x03002CB0
+	ldr r0, _0802CEE8 @ =gUnk_03002CB0
 	ldr r2, _0802CEEC @ =0x0000100D
 	adds r0, r0, r2
 	ldrb r7, [r0]
@@ -23581,7 +23581,7 @@ _0802CEA4:
 	movs r6, #1
 	b _0802CF28
 	.align 2, 0
-_0802CEE8: .4byte 0x03002CB0
+_0802CEE8: .4byte gUnk_03002CB0
 _0802CEEC: .4byte 0x0000100D
 _0802CEF0:
 	cmp r0, #0

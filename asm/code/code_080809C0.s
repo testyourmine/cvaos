@@ -6078,16 +6078,16 @@ _08083982:
 	bl sub_0806D518
 	cmp r0, #0
 	beq _080839A0
-	ldr r2, _08083998 @ =0x03002CB0
+	ldr r2, _08083998 @ =gUnk_03002CB0
 	ldrh r1, [r2]
 	ldr r0, _0808399C @ =0x0000FBFF
 	ands r0, r1
 	b _080839AC
 	.align 2, 0
-_08083998: .4byte 0x03002CB0
+_08083998: .4byte gUnk_03002CB0
 _0808399C: .4byte 0x0000FBFF
 _080839A0:
-	ldr r2, _08083A34 @ =0x03002CB0
+	ldr r2, _08083A34 @ =gUnk_03002CB0
 	ldrh r1, [r2]
 	movs r3, #0x80
 	lsls r3, r3, #3
@@ -6128,7 +6128,7 @@ _080839BE:
 	movs r1, #8
 	orrs r0, r1
 	strb r0, [r2]
-	ldr r2, _08083A34 @ =0x03002CB0
+	ldr r2, _08083A34 @ =gUnk_03002CB0
 	ldrh r1, [r2]
 	ldr r0, _08083A3C @ =0x0000FBFF
 	ands r0, r1
@@ -6161,7 +6161,7 @@ _08083A2C:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08083A34: .4byte 0x03002CB0
+_08083A34: .4byte gUnk_03002CB0
 _08083A38: .4byte gEwramData
 _08083A3C: .4byte 0x0000FBFF
 

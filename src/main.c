@@ -1,4 +1,5 @@
 #include "main.h"
+#include "agb_sram.h"
 #include "gba.h"
 #include "macros.h"
 
@@ -34,7 +35,6 @@ extern void sub_08042754(void);
 extern void sub_080137B8(void);
 extern void sub_0801391C(void);
 extern void InitializeAudio(void);
-extern void sub_080D8230(void);
 extern u32 sub_08001094(void);
 extern void sub_08001004(void); // might be u32?
 
@@ -433,7 +433,7 @@ void InitializeGame(void)
     (*(void **)0x3007FFC) = &gUnk_03003CD0;
 
     InitializeAudio();
-    sub_080D8230();
+    SetSramFastFunc();
 
     if (sub_08001094() == 0)
     {

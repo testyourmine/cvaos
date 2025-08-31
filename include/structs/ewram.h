@@ -45,7 +45,9 @@ struct EwramData_unk4E4 {
 struct EwramData_unkA084 {
     u32 unk_A084; // values or pointers?
     u32 unk_A088;
-    u8 pad_A08C[0xA0A0 - 0xA08C];
+    u8 pad_A08C[0xA094 - 0xA08C];
+    struct Unk_08001800* unk_A094;
+    u8 pad_A098[0xA0A0 - 0xA098];
 };
 
 struct EwramData {
@@ -76,7 +78,11 @@ struct EwramData {
 
     u8 pad_A075[0xA084 - 0xA075];
     struct EwramData_unkA084 unk_A084[1]; // TODO: figure out length
-    u8 pad_A08C[0xFEC0 - 0xA0A0];
+    u8 pad_A08C[0xA108 - 0xA0A0];
+    u16 unk_A108[1]; // Length?
+    u8 pad_A10C[0xC0EC - 0xA10A];
+    u16 unk_C0EC[1]; // Length?
+    u8 pad_C0EE[0xFEC0 - 0xC0EE];
     s8 unk_FEC0;
     s8 unk_FEC1;
     u8 pad_FEC2[0x12FE0 - 0xFEC2];

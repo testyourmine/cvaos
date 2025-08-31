@@ -2,39 +2,52 @@
 #include "macros.h"
 #include "gba.h"
 
-extern u16 gUnk_030021E0[];
-extern u16 gUnk_03002140[];
+#include "structs/agb_sram.h"
 
-extern u32 *gUnk_030052D4;
-extern u32 *gUnk_030052D8;
+// const char sAgbLibSramVersion[] = "SRAM_F_V102";
 
-extern u32 gUnk_030021E1[];
-extern u32 gUnk_03002141[];
+static u16 verifySramFast_Work[80]; // buffer to hold code of VerifySramFast_Core
+static u16 readSramFast_Work[64]; // buffer to hold code of ReadSramFast_Core
 
-// WriteSram
-void sub_080D8164(const u8* src, u8* dst, u32 size)
+/**
+ * @brief D8164 | Function that is transferred to WRAM for reading SRAM fast
+ * 
+ * @param src Source pointer
+ * @param dst Destination pointer
+ * @param size Size in bytes
+ */
+void ReadSramFast_Core(const u8* src, u8* dst, u32 size)
 {
     WRITE_16(REG_WAITCNT, (READ_16(REG_WAITCNT) & ~WAIT_SRAM_CYCLES_MASK) | WAIT_SRAM_8CYCLES);
 
     while (--size != -1)
-    {
         *dst++ = *src++;
-    }
 }
 
-// WriteSram again?
-void sub_080D81A4(const u8* src, u8* dst, u32 size)
+/**
+ * @brief D81A4 | Write SRAM fast
+ * 
+ * @param src Source pointer
+ * @param dst Destination pointer
+ * @param size Size in bytes
+ */
+void WriteSramFast(const u8* src, u8* dst, u32 size)
 {
     WRITE_16(REG_WAITCNT, (READ_16(REG_WAITCNT) & ~WAIT_SRAM_CYCLES_MASK) | WAIT_SRAM_8CYCLES);
 
     while (--size != -1)
-    {
         *dst++ = *src++;
-    }
 }
 
-// VerifySramCore
-u32 sub_080D81E4(const u8* src, u8* dst, u32 size)
+/**
+ * @brief D81E4 | Function that is transferred to WRAM for verifying that SRAM is valid
+ * 
+ * @param src Source pointer
+ * @param dst Destination pointer
+ * @param size Size in bytes
+ * @return u32 0 if the SRAM verified, otherwise the address it failed at
+ */
+u32 VerifySramFast_Core(const u8* src, u8* dst, u32 size)
 {
     WRITE_16(REG_WAITCNT, (READ_16(REG_WAITCNT) & ~WAIT_SRAM_CYCLES_MASK) | WAIT_SRAM_8CYCLES);
 
@@ -48,51 +61,69 @@ u32 sub_080D81E4(const u8* src, u8* dst, u32 size)
     return 0;
 }
 
-// VerifySram
-void sub_080D8230(void)
+/**
+ * @brief D8230 | Transfer read and verify SRAM functions to WRAM
+ * 
+ */
+void SetSramFastFunc(void)
 {
-
     u16 *src;
     u16 *dst;
     u16 size;
 
-    src = (void*)((u32)sub_080D8164);
-    src = (void*)((u32)src ^ 1);
-    dst = gUnk_030021E0;
-    size = ((u32)sub_080D81A4 - (u32)sub_080D8164) / 2;
+    src = (u16*)((u32)ReadSramFast_Core);
+    // clear the least significant bit so that we get the actual start address of the function
+    src = (u16*)((u32)src ^ 1); // Note: ^ 1 likely a bug, fixed in next revision as & ~1
+    dst = readSramFast_Work;
+    // get the size of the function by subtracting the address of the next function
+    size = ((u32)WriteSramFast - (u32)ReadSramFast_Core) / sizeof(u16);
 
+    // copy the function into the WRAM buffer
     while (size != 0)
     {
         *dst++ = *src++;
         size--;
     }
-    gUnk_030052D4 = gUnk_030021E1;
+    // add 1 to the address of the buffer so that we stay in THUMB mode when bx-ing to the address
+    gReadSramFast = (void*)((u32)readSramFast_Work + 1);
 
 
-    src = (void*)((u32)sub_080D81E4);
-    src = (void*)((u32)src ^ 1);
-    dst = gUnk_03002140;
-    size = ((u32)sub_080D8230 - (u32)sub_080D81E4) / 2;
+    src = (u16*)((u32)VerifySramFast_Core);
+    // clear the least significant bit so that we get the actual start address of the function
+    src = (u16*)((u32)src ^ 1); // Note: ^ 1 likely a bug, fixed in next revision as & ~1
+    dst = verifySramFast_Work;
+    // get the size of the function by subtracting the address of the next function
+    size = ((u32)SetSramFastFunc - (u32)VerifySramFast_Core) / 2;
 
+    // copy the function into the WRAM buffer
     while (size != 0)
     {
         *dst++ = *src++;
         size--;
     }
-    gUnk_030052D8 = gUnk_03002141;
+    // add 1 to the address of the buffer so that we stay in THUMB mode when bx-ing to the address
+    gVerifySramFast = (void*)((u32)verifySramFast_Work + 1);
 
     WRITE_16(REG_WAITCNT, (READ_16(REG_WAITCNT) & ~3) | 3);
 }
 
-// WriteSramEx
-u32 sub_080D82C8(const u8 *src, u8 *dst, u32 size)
+/**
+ * @brief D82C8 | Write to SRAM and verify data is correct
+ * 
+ * @param src Source pointer
+ * @param dst Destination pointer
+ * @param size Size in bytes
+ * @return u32 0 if the SRAM verified, otherwise the address it failed at
+ */
+u32 WriteAndVerifySramFast(const u8 *src, u8 *dst, u32 size)
 {
     u8 i;
     u32 error_addr;
 
+    // try writing and verifying the data 3 times
     for (i = 0; i < 3; i++) {
-        sub_080D81A4(src, dst, size);
-        error_addr = ((u32 (*)(const u8 *, u8 *, u32))gUnk_030052D8)(src, dst, size);
+        WriteSramFast(src, dst, size);
+        error_addr = gVerifySramFast(src, dst, size);
         if (error_addr == 0)
         {
             break;

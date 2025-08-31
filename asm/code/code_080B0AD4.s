@@ -25627,7 +25627,7 @@ sub_080BD20C: @ 0x080BD20C
 	adds r0, r0, r1
 	ldr r1, [r2]
 	adds r6, r1, r0
-	ldr r2, _080BD244 @ =0x03002CB0
+	ldr r2, _080BD244 @ =gUnk_03002CB0
 	ldrh r1, [r2]
 	movs r3, #0x80
 	lsls r3, r3, #8
@@ -25643,9 +25643,9 @@ sub_080BD20C: @ 0x080BD20C
 	.align 2, 0
 _080BD23C: .4byte gEwramData
 _080BD240: .4byte 0x000004E4
-_080BD244: .4byte 0x03002CB0
+_080BD244: .4byte gUnk_03002CB0
 _080BD248:
-	ldr r1, _080BD2C0 @ =0x03002C60
+	ldr r1, _080BD2C0 @ =gUnk_03002C60
 	adds r0, r1, #0
 	adds r0, #0x42
 	movs r4, #0x3f
@@ -25704,7 +25704,7 @@ _080BD2B8:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_080BD2C0: .4byte 0x03002C60
+_080BD2C0: .4byte gUnk_03002C60
 _080BD2C4: .4byte 0x081C15F4
 _080BD2C8: .4byte 0x0820ED60
 _080BD2CC: .4byte sub_0803B9D0
@@ -32162,7 +32162,7 @@ sub_080C05D8: @ 0x080C05D8
 	bl sub_08001D94
 	lsls r0, r0, #0x10
 	lsrs r2, r0, #0x10
-	ldr r0, _080C0610 @ =0x03002CB0
+	ldr r0, _080C0610 @ =gUnk_03002CB0
 	ldr r1, _080C0614 @ =0x0000100D
 	adds r0, r0, r1
 	ldrb r1, [r0]
@@ -32187,7 +32187,7 @@ _080C05FC:
 	movs r0, #2
 	b _080C061A
 	.align 2, 0
-_080C0610: .4byte 0x03002CB0
+_080C0610: .4byte gUnk_03002CB0
 _080C0614: .4byte 0x0000100D
 _080C0618:
 	movs r0, #0

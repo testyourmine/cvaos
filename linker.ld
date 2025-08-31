@@ -12,6 +12,7 @@ SECTIONS {
     } >ewram
 
     iwram (NOLOAD) : ALIGN(4) {
+        . = 0x00002140; src/agb_sram.o(.bss);
         . = 0x00002800; *libgcc.a:dp-bit.o(.bss);
         *libgcc.a:fp-bit.o(.bss);
         *libc.a:*.o(.bss*);
@@ -21,7 +22,8 @@ SECTIONS {
 
         . = 0x00003CD0; gUnk_03003CD0 = .;
 
-        . = 0x000052D4; gUnk_030052D4 = .;
+        . = 0x000052D4; gReadSramFast = .;
+        . = 0x000052D8; gVerifySramFast = .;
 
         . = 0x00006000; *libc.a:*.o(COMMON*);
     } >iwram
@@ -45,7 +47,7 @@ SECTIONS {
         asm/code/code_080C0A1C.o(.text);
         asm/code/code_080D0998.o(.text);
         asm/libagbsyscall.o(.text);
-        asm/agb_sram.o(.text);
+        src/agb_sram.o(.text);
         asm/agb_print.o(.text);
         asm/m4a0.o(.text);
         asm/m4a.o(.text);
