@@ -1005,14 +1005,6 @@ s32 sub_08001780(s32 param_0, s32 param_1)
     return var_4;
 }
 
-struct Unk_08001800 {
-    u8 unk_0;
-    u16 unk_2;
-    u16* unk_4;
-    u8 pad_1[0xC - 0x8];
-    u16 *unk_C;
-};
-
 /**
  * @brief 1800 | To document
  * 
@@ -1021,7 +1013,7 @@ struct Unk_08001800 {
  * @param param_2 To document
  * @return s32 To document
  */
-s32 sub_08001800(struct Unk_08001800 *param_0, u16 param_1, u16 param_2)
+s32 sub_08001800(struct EwramData_unkA094 *param_0, u16 param_1, u16 param_2)
 {
     u16 temp_r2_2;
     u16 temp_r5;
@@ -1133,7 +1125,7 @@ u32* sub_08001980(s32 param_0, s32 param_1)
     return gUnk_0850EF08[param_0][param_1];
 }
 
-u32 sub_08001994(struct Unk_08001800 *param_0, u16 param_1, u16 param_2)
+u32 sub_08001994(struct EwramData_unkA094 *param_0, u16 param_1, u16 param_2)
 {
     s32 temp_r0;
     u16 *var_r0;
@@ -1160,4 +1152,633 @@ u32 sub_08001994(struct Unk_08001800 *param_0, u16 param_1, u16 param_2)
     // var_r1 = (void*)(temp_r0*2 + (u32)var_r0); // alternative
     var_r1 = var_r0 - - temp_r0; // - - instead of + to match
     return (gUnk_03002CB0.unk_100C << 8) ^ *var_r1;
+}
+
+// TODO: Fix gotos
+u8 sub_08001A00(s32 arg0, s32 arg1)
+{
+    s32 var_r0;
+    s32 var_r1;
+    s32 var_r5;
+    s32 var_r6;
+    struct EwramData_unkA094 *temp_r3;
+    u8 *var_r4;
+    u8 var_r3;
+
+    temp_r3 = gEwramData->unk_A084[0].unk_A094;
+    if (temp_r3->unk_8 == NULL)
+    {
+        var_r3 = 0;
+    }
+    else
+    {
+        var_r5 = arg0 >> 3;
+        if (temp_r3->unk_0 != 1)
+        {
+            var_r0 = temp_r3->unk_0 << 5;
+        }
+        else
+        {
+            var_r0 = 0x1E;
+        }
+        if (var_r5 < 0)
+        {
+            var_r5 = 0;
+        }
+        else if (var_r5 >= var_r0)
+        {
+            var_r5 = var_r0 - 1;
+        }
+        var_r6 = arg1 >> 3;
+        if (temp_r3->unk_1 != 1)
+        {
+            var_r0 = temp_r3->unk_1 << 5;
+        }
+        else
+        {
+            var_r0 = 0x1A;
+        }
+        if (var_r6 < 0)
+        {
+            var_r6 = 0;
+        }
+        else if (var_r6 >= var_r0)
+        {
+            var_r6 = var_r0 - 1;
+        }
+        if (2 & temp_r3->unk_2)
+        {
+            var_r4 = gEwramData->unk_E0D0;
+        }
+        else
+        {
+            var_r4 = temp_r3->unk_8;
+        }
+        var_r3 = var_r4[sub_08001800(temp_r3, var_r5, var_r6)];
+        if (var_r3 & 0xC0)
+        {
+            u32 tmp = var_r3 & 2;
+            var_r1 = 1;
+            if (var_r3 & 2)
+            {
+                var_r1 = 1;
+                goto block_24;
+            }
+        }
+        else
+        {
+            var_r1 = 0;
+        }
+        if (var_r1 != 0)
+        {
+block_24:
+            if (gUnk_03002CB0.unk_100C & 4)
+            {
+                var_r3 ^= 4;
+            }
+            if (gUnk_03002CB0.unk_100C & 3)
+            {
+                var_r3 ^= 2;
+            }
+        }
+    }
+    if (gEwramData->unk_A074_6)
+    {
+        if (var_r3 != 0)
+        {
+            if (var_r3 & 8)
+            {
+                u32 tmp = var_r3 & 1;
+                var_r1 = 1;
+                if (tmp)
+                {
+                    var_r1 = 1;
+                    goto block_35;
+                }
+            }
+            else
+            {
+                var_r1 = 0;
+            }
+            if (var_r1 != 0)
+            {
+                goto block_35;
+            }
+        }
+        else
+        {
+block_35:
+            var_r5 = var_r5 >> 1;
+            var_r6 = var_r6 >> 1;
+            if (gEwramData->unk_F0C0[((var_r6 << 2) + ((var_r5 >> 5) << 9)) >> 2] & (1 << (var_r5 & 0x1F)))
+            {
+                var_r3 = 3;
+            }
+        }
+    }
+    return var_r3;
+}
+
+// TODO: Fix gotos
+s32 sub_08001B40(u8 arg0, s16 arg1)
+{
+    u32 var_r0;
+    s32 var_r3;
+    s16 var_r1;
+    u32 tmp;
+
+    var_r1 = (arg0 & 0x30) >> 3;
+    if (arg0 & 0xC0)
+    {
+        u32 tmp = arg0 & 2;
+        var_r3 = 1;
+        if (tmp)
+        {
+            var_r3 = 1;
+            goto block_5;
+        }
+    }
+    else
+    {
+        var_r3 = 0;
+    }
+    if (var_r3 != 0)
+    {
+block_5:
+        tmp = (arg0 >> 6) - 1;
+        // if (arg0 & 4)
+        // {
+        //     var_r0 = 7 - arg1;
+        // }
+        // else
+        // {
+        //     var_r0 = arg1;
+        // }
+        // var_r0 = var_r0 & 7;
+        var_r1 = var_r1 + ((((arg0 & 4) ? (7 - arg1) : arg1) & 7) >> tmp);
+    }
+    return var_r1;
+}
+
+/**
+ * @brief 1BA0 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @return u8 To document
+ */
+u8 sub_08001BA0(u8 param_0, s16 param_1)
+{
+    s32 var_1;
+
+    switch (param_1)
+    {
+        case 1:
+            if (param_0 & 8)
+            {
+                if (param_0 & param_1)
+                {
+                    var_1 = 2;
+                }
+                else
+                {
+                    var_1 = 1;
+                }
+            }
+            else
+            {
+                var_1 = 0;
+            }
+
+            switch (var_1)
+            {
+                case 1:
+                    param_0 = (param_0 & ~8) | 1;
+                    break;
+
+                case 2:
+                    param_0 = 9;
+                    break;
+            }
+            break;
+
+        case 2:
+            if (param_0 & 8)
+            {
+                if (param_0 & 1)
+                {
+                    var_1 = 2;
+                }
+                else
+                {
+                    var_1 = 1;
+                }
+            }
+            else
+            {
+                var_1 = 0;
+            }
+
+            switch (var_1)
+            {
+                case 1:
+                    param_0 = (param_0 & ~8) | 1;
+                    break;
+
+                case 2:
+                    param_0 = param_0 ^ 10;
+                    break;
+
+                case 0:
+                    param_0 = 0;
+                    break;
+            }
+            break;
+    }
+    return param_0;
+}
+
+/**
+ * @brief 1C1C | To document
+ * 
+ * @param arg0 To document
+ * @param arg1 To document
+ * @return s16 To document
+ */
+s16 sub_08001C1C(s32 arg0, s32 arg1)
+{
+    s16 var_r1;
+    s16 var_r5;
+    u32 var_r0_2;
+    u8 temp_r2;
+    u32 var_0;
+
+    for (var_r5 = 0; var_r5 < 9;)
+    {
+        temp_r2 = sub_08001A00(arg0, arg1);
+
+        if (var_r5 == 0)
+        {
+            gUnk_03002CB0.unk_100D = temp_r2;
+        }
+
+        if ((temp_r2 & 2) == 0)
+            break;
+
+        if (temp_r2 == 0xFF)
+        {
+            var_r1 = 0x10 - (arg1 & 0xF);
+            var_r5 += var_r1;
+            arg1 += var_r1;
+            continue;
+        }
+
+        if (temp_r2 & 0xC0)
+        {
+            if (temp_r2 & 2)
+            {
+                var_r0_2 = 2;
+            }
+            else
+            {
+                var_r0_2 = 1;
+            }
+        }
+        else
+        {
+            var_r0_2 = 0;
+        }
+
+        if (var_r0_2 == 2)
+        {
+            var_r5 += 1 - (arg1 & 7) + sub_08001B40(temp_r2, arg0);
+
+            if (var_r5 < 0)
+            {
+                var_r5 = 0;
+            }
+            break;
+        }
+
+        var_r1 = 8 - (arg1 & 7);
+        var_r5 += var_r1;
+        arg1 += var_r1;
+    }
+    return var_r5;
+}
+
+/**
+ * @brief 1CCC | To document
+ * 
+ * @param arg0 To document
+ * @param arg1 To document
+ * @param arg2 To document
+ * @return s16 To document
+ */
+s16 sub_08001CCC(s32 arg0, s32 arg1, u32 arg2)
+{
+    s16 var_r1;
+    s16 var_r5;
+    u32 var_r0_2;
+    u8 temp_r2;
+    u32 var_0;
+    u8 var_1;
+
+    for (var_r5 = 0; var_r5 < 9;)
+    {
+        temp_r2 = sub_08001A00(arg0, arg1);
+
+        if (var_r5 == 0)
+        {
+            gUnk_03002CB0.unk_100D = temp_r2;
+        }
+
+        temp_r2 = sub_08001BA0(temp_r2, arg2);
+        if ((temp_r2 & 2) == 0)
+            break;
+
+        if (temp_r2 == 0xFF)
+        {
+            var_r1 = 0x10 - (arg1 & 0xF);
+            var_r5 += var_r1;
+            arg1 += var_r1;
+            continue;
+        }
+
+        if (temp_r2 & 0xC0)
+        {
+            if (temp_r2 & 2)
+            {
+                var_r0_2 = 2;
+            }
+            else
+            {
+                var_r0_2 = 1;
+            }
+        }
+        else
+        {
+            var_r0_2 = 0;
+        }
+
+        if (var_r0_2 == 2)
+        {
+            var_r5 += 1 - (arg1 & 7) + sub_08001B40(temp_r2, arg0);
+
+            if (var_r5 < 0)
+            {
+                var_r5 = 0;
+            }
+            break;
+        }
+
+        var_r1 = 8 - (arg1 & 7);
+        var_r5 += var_r1;
+        arg1 += var_r1;
+    }
+    return var_r5;
+}
+
+/**
+ * @brief 1D94 | To document
+ * 
+ * @param arg0 To document
+ * @param arg1 To document
+ * @return s16 To document
+ */
+s16 sub_08001D94(s32 arg0, s32 arg1)
+{
+    s16 var_r1;
+    s16 var_r5;
+    u32 var_r0_2;
+    u8 temp_r2;
+    u32 var_0;
+
+    for (var_r5 = 0; var_r5 >= -8;)
+    {
+        temp_r2 = sub_08001A00(arg0, arg1);
+
+        if (var_r5 == 0)
+        {
+            gUnk_03002CB0.unk_100D = temp_r2;
+        }
+
+        if ((temp_r2 & 1) == 0)
+            break;
+
+        if (temp_r2 == 0xFF)
+        {
+            var_r1 = -(arg1 & 0xF) - 1;
+            var_r5 += var_r1;
+            arg1 += var_r1;
+            continue;
+        }
+
+        if (temp_r2 & 0xC0)
+        {
+            if (temp_r2 & 2)
+            {
+                var_r0_2 = 2;
+            }
+            else
+            {
+                var_r0_2 = 1;
+            }
+        }
+        else
+        {
+            var_r0_2 = 0;
+        }
+
+        if (var_r0_2 == 1)
+        {
+            var_r5 += -(arg1 & 7) - 1 + sub_08001B40(temp_r2, arg0);
+
+            if (var_r5 > 0)
+            {
+                var_r5 = 0;
+            }
+            break;
+        }
+
+        var_r1 = -(arg1 & 7) - 1;
+        var_r5 += var_r1;
+        arg1 += var_r1;
+    }
+    return var_r5;
+}
+
+/**
+ * @brief 1E58 | To document
+ * 
+ * @param arg0 To document
+ * @param arg1 To document
+ * @param arg2 To document
+ * @return s16 To document
+ */
+s16 sub_08001E58(s32 arg0, s32 arg1, u32 arg2)
+{
+    s16 var_r1;
+    s16 var_r5;
+    u32 var_r0_2;
+    u8 temp_r2;
+    u32 var_0;
+    u8 var_1;
+
+    for (var_r5 = 0; var_r5 >= -8;)
+    {
+        temp_r2 = sub_08001A00(arg0, arg1);
+
+        if (var_r5 == 0)
+        {
+            gUnk_03002CB0.unk_100D = temp_r2;
+        }
+
+        temp_r2 = sub_08001BA0(temp_r2, arg2);
+        if ((temp_r2 & 1) == 0)
+            break;
+
+        if (temp_r2 == 0xFF)
+        {
+            var_r1 = ~(arg1 & 0xF);
+            var_r5 += var_r1;
+            arg1 += var_r1;
+            continue;
+        }
+
+        if (temp_r2 & 0xC0)
+        {
+            if (temp_r2 & 2)
+            {
+                var_r0_2 = 2;
+            }
+            else
+            {
+                var_r0_2 = 1;
+            }
+        }
+        else
+        {
+            var_r0_2 = 0;
+        }
+
+        if (var_r0_2 == 1)
+        {
+            var_r5 += -(arg1 & 7) - 1 + sub_08001B40(temp_r2, arg0);
+
+            if (var_r5 > 0)
+            {
+                var_r5 = 0;
+            }
+            break;
+        }
+
+        var_r1 = -(arg1 & 7) - 1;
+        var_r5 += var_r1;
+        arg1 += var_r1;
+    }
+    return var_r5;
+}
+
+/**
+ * @brief 1F3C | To document
+ * 
+ * @param arg0 To document
+ * @param arg1 To document
+ * @return s16 To document
+ */
+s16 sub_08001F3C(s32 arg0, s32 arg1)
+{
+    s16 var_r5;
+    u32 var_r0_2;
+    u8 temp_r2;
+    s16 var_0;
+    s32 var_1;
+    u32 var_3;
+    u32 var_4;
+
+    for (var_r5 = 0; ;)
+    {
+        temp_r2 = sub_08001A00(arg0, arg1);
+    
+        if (temp_r2 & 0xC0)
+        {
+            if (temp_r2 & 2)
+            {
+                var_r0_2 = 2;
+            }
+            else
+            {
+                var_r0_2 = 1;
+            }
+        }
+        else
+        {
+            var_r0_2 = 0;
+        }
+        var_3 = var_r0_2;
+    
+        if (temp_r2 & 8)
+        {
+            if (temp_r2 & 1)
+            {
+                var_r0_2 = 2;
+            }
+            else
+            {
+                var_r0_2 = 1;
+            }
+        }
+        else
+        {
+            var_r0_2 = 0;
+        }
+        var_4 = var_r0_2;
+    
+        if (var_3 != 0)
+        {
+            if (var_4 != 0)
+            {
+                var_0 = sub_08001B40(temp_r2, arg0);
+                temp_r2 = arg1 & 7;
+                if (var_3 == 1)
+                {
+                    var_0++,var_0--; // Fake
+                    var_1 = var_0 - temp_r2;
+                }
+                else
+                {
+                    
+                    var_1 = temp_r2 - var_0;
+                }
+                var_0 = var_1;
+    
+                switch (var_4)
+                {
+                    case 1:
+                        if ((var_0 << 0x10) <= 0)
+                        {
+                            var_r5 = 1;
+                        }
+                        break;
+                    case 2:
+                        if ((var_0 << 0x10) >= 0)
+                        {
+                            var_r5 = 1;
+                        }
+                        break;
+                }
+            }
+        }
+        else
+        {
+            if (var_4 != 0)
+            {
+                var_r5 = 1;
+            }
+        }
+        break;
+    }
+
+    return var_r5;
 }

@@ -8,14 +8,12 @@ end = 0x3006004;
 
 SECTIONS {
     ewram (NOLOAD) : ALIGN(4) {
-        . = 0x00000000; gUnk_02000000 = .;
     } >ewram
 
     iwram (NOLOAD) : ALIGN(4) {
         . = 0x00002140; src/agb_sram.o(.bss);
-        . = 0x00002800; *libgcc.a:dp-bit.o(.bss);
-        *libgcc.a:fp-bit.o(.bss);
-        *libc.a:*.o(.bss*);
+        . = 0x00002800; *libgcc.a:*.o(.bss);
+        *libc.a:*.o(.bss);
 
         . = 0x00002C60; gUnk_03002C60 = .;
         . = 0x00002CB0; gUnk_03002CB0 = .;
@@ -25,7 +23,7 @@ SECTIONS {
         . = 0x000052D4; gReadSramFast = .;
         . = 0x000052D8; gVerifySramFast = .;
 
-        . = 0x00006000; *libc.a:*.o(COMMON*);
+        . = 0x00006000; *libc.a:*.o(COMMON);
     } >iwram
 
     .text : ALIGN(2) {
