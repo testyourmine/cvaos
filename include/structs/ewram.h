@@ -89,9 +89,9 @@ struct EwramData {
 
     u8 pad_A075[0xA084 - 0xA075];
     struct EwramData_unkA084 unk_A084[1]; // TODO: figure out length
-    u8 pad_A08C[0xA108 - 0xA0A0];
+    u8 pad_A0A0[0xA108 - 0xA0A0];
     u16 unk_A108[1]; // Length?
-    u8 pad_A10C[0xC0EC - 0xA10A];
+    u8 pad_A10A[0xC0EC - 0xA10A];
     u16 unk_C0EC[1]; // Length?
     u8 pad_C0EE[0xE0D0 - 0xC0EE];
     u8 unk_E0D0[1]; // Length?

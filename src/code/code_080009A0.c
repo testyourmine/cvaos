@@ -94,7 +94,7 @@ s32 sub_080009E4(s32 param_0)
  */
 void sub_08000A90(void)
 {
-    // Possibly RNG?
+    // RNG updater
     gEwramData->unk_8 = (gEwramData->unk_8 >> 8) * 0x3243F6AD + 0x1B0CB175;
 }
 
@@ -124,7 +124,8 @@ u32 sub_08000AB0(void)
  * @param param_0 To document
  * @return struct EwramData_unk4E4* To document
  */
-struct EwramData_unk4E4 *sub_08000B00(u32 *param_0) {
+struct EwramData_unk4E4 *sub_08000B00(u32 *param_0)
+{
     struct EwramData_unk4E4 *var_r5;
     s32 var_r3;
     struct EwramData_unk4E4 *var_r2;
@@ -292,7 +293,7 @@ void sub_08000D44(void)
     for (var_r4 = 0; var_r4 < 0xE0; var_r4++, var_r2++)
     {
         DMA_FILL_32(3, 0, var_r2, sizeof(struct EwramData_unk4E4));
-        var_r2->unk_548 |= 0xFF;
+        var_r2->unk_548 = 0xFF;
         var_r2->unk_4EC = 0xFE;
         var_r2->unk_4ED = 0xFE;
     }
@@ -327,7 +328,7 @@ struct EwramData_unk4E4 *sub_08000DA0(s32 param_0, s32 param_1, u32 *param_2) {
         var_r3->unk_4EC = 0xFE;
         var_r3->unk_4ED = 0xFE;
         var_r3->unk_4E4 = param_2;
-        var_r3->unk_4F4 = (u8) var_r2;
+        var_r3->unk_4F4 = var_r2;
         var_r6 = var_r3;
         break;
     }
