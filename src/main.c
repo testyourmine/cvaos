@@ -2,6 +2,7 @@
 #include "agb_sram.h"
 #include "gba.h"
 #include "macros.h"
+#include "syscalls.h"
 
 #include "data/data_0E3464.h"
 
@@ -21,7 +22,6 @@ extern void sub_080015E4(void);
 extern void sub_08001194(void);
 extern void sub_0803BF60(void);
 extern void sub_0803E594(void);
-extern void SoftReset(u32 resetFlags);
 extern void sub_080D7F1C(void);
 extern void m4aSoundVSync(void);
 extern void sub_080D7900(void);
@@ -131,7 +131,7 @@ void AgbMain(void)
             WRITE_16(REG_DISPCNT, gUnk_03002CB0.unk_0);
             sub_08000470();
         }
-        SoftReset(0xFF);
+        SoftReset(RESET_ALL);
     }
 }
 

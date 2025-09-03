@@ -609,21 +609,21 @@ sub_080006CC: @ 0x080006CC
 	adds r5, #4
 	adds r1, r4, r5
 	str r1, [r2]
-	ldr r1, _080007C4 @ =0x080E3664
+	ldr r1, _080007C4 @ =sUnk_080E3664
 	str r1, [r0]
 	ldr r1, _080007C8 @ =0x06006000
 	str r1, [r0, #4]
 	ldr r1, _080007CC @ =0x84000700
 	str r1, [r0, #8]
 	ldr r1, [r0, #8]
-	ldr r1, _080007D0 @ =0x080E5264
+	ldr r1, _080007D0 @ =sUnk_080E5264
 	str r1, [r0]
 	ldr r1, _080007D4 @ =0x06008000
 	str r1, [r0, #4]
 	ldr r1, _080007D8 @ =0x84000040
 	str r1, [r0, #8]
 	ldr r1, [r0, #8]
-	ldr r1, _080007DC @ =0x080E3464
+	ldr r1, _080007DC @ =sUnk_080E3464
 	str r1, [r0]
 	movs r1, #0xa0
 	lsls r1, r1, #0x13
@@ -695,13 +695,13 @@ _080007B4: .4byte gEwramData
 _080007B8: .4byte 0x85009555
 _080007BC: .4byte gUnk_03002CB0
 _080007C0: .4byte 0x00000808
-_080007C4: .4byte 0x080E3664
+_080007C4: .4byte sUnk_080E3664
 _080007C8: .4byte 0x06006000
 _080007CC: .4byte 0x84000700
-_080007D0: .4byte 0x080E5264
+_080007D0: .4byte sUnk_080E5264
 _080007D4: .4byte 0x06008000
 _080007D8: .4byte 0x84000040
-_080007DC: .4byte 0x080E3464
+_080007DC: .4byte sUnk_080E3464
 _080007E0: .4byte 0x84000080
 _080007E4: .4byte 0x0600E000
 _080007E8: .4byte 0x85000200
@@ -751,7 +751,7 @@ InitializeGame: @ 0x08000804
 	ldr r1, [r0, #8]
 	ldr r1, _08000898 @ =_intr_main
 	str r1, [r0]
-	ldr r2, _0800089C @ =0x03003CD0
+	ldr r2, _0800089C @ =gUnk_03003CD0
 	str r2, [r0, #4]
 	ldr r1, _080008A0 @ =0x84000220
 	str r1, [r0, #8]
@@ -780,7 +780,7 @@ _0800088C: .4byte 0x85010000
 _08000890: .4byte 0x85001F80
 _08000894: .4byte 0x85006000
 _08000898: .4byte _intr_main
-_0800089C: .4byte 0x03003CD0
+_0800089C: .4byte gUnk_03003CD0
 _080008A0: .4byte 0x84000220
 _080008A4: .4byte 0x03007FFC
 _080008A8: .4byte gEwramData

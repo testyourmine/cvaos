@@ -42,22 +42,51 @@ struct EwramData_unk4E4 {
     u8 pad_549[0x568 - 0x549];
 };
 
-struct EwramData_unkA094 {
+struct EwramData_unkA094_0 {
     u8 unk_0;
     u8 unk_1;
     u16 unk_2;
     u16* unk_4;
     u8* unk_8;
-    u8 pad_1[0xC - 0x8];
     u16 *unk_C;
+};
+
+struct EwramData_unkA094_1 {
+    u8 pad_0[0x6 - 0x0];
+    s16 unk_6;
+    s16 unk_8;
+    s16 unk_A;
+};
+
+union EwramDataUnion_unkA084 {
+    struct EwramData_unkA094_0* unk_A094_0;
+    struct EwramData_unkA094_1* unk_A094_1;
+};
+
+struct EwramData_unk_0_0 {
+    s16 unk[4];
+};
+
+struct EwramData_unk_0_1 {
+    u32 unk[2];
+};
+
+union EwramData_unk_0 {
+    struct EwramData_unk_0_0 unk_0_0;
+    struct EwramData_unk_0_1 unk_1_1;
 };
 
 struct EwramData_unkA084 {
     u32 unk_A084; // values or pointers?
     u32 unk_A088;
     u8 pad_A08C[0xA094 - 0xA08C];
-    struct EwramData_unkA094* unk_A094;
-    u8 pad_A098[0xA0A0 - 0xA098];
+    union EwramDataUnion_unkA084 unk_A094;
+    union EwramData_unk_0 unk_A098;
+};
+
+struct EwramData_unk13110 {
+    u8 pad_13110[0x40 - 0x0];
+    union EwramData_unk_0 unk_13150;
 };
 
 struct EwramData {
@@ -79,7 +108,8 @@ struct EwramData {
     struct EwramData_unk4E4 unk_4E4[0xD0];
     struct EwramData_unk4E4 unk_7024[0x10];
     struct EwramData_unk7864 unk_7864;
-    u8 pad_786C[0xA074 - 0x786C];
+    s16 unk_786C[2][0x500]; // TODO: Size
+    u8 pad_8C6C[0xA074 - 0x8C6C];
 
     u8 unk_A074_0:1;
     u8 unk_A074_1:1;
@@ -96,8 +126,7 @@ struct EwramData {
     u8 pad_C0EE[0xE0D0 - 0xC0EE];
     u8 unk_E0D0[1]; // Length?
     u8 pad_E0D2[0xF0C0 - 0xE0D1];
-    u32 unk_F0C0[1]; // Length?
-    u8 pad_F0C4[0xFEC0 - 0xF0C4];
+    u32 unk_F0C0[0x380];
     s8 unk_FEC0;
     s8 unk_FEC1;
     u8 pad_FEC2[0x12FE0 - 0xFEC2];
