@@ -100,7 +100,7 @@ SECTIONS {
         asm/code/code_080E032C.o(.text);
     } >rom
 
-    .rodata : ALIGN(2) {
+    .rodata : ALIGN(4) {
         src/data/data_0E0334.o(.rodata);
         asm/data/data_0E0B68.o(.rodata);
         src/data/data_0E3464.o(.rodata);

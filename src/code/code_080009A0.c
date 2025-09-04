@@ -4,6 +4,7 @@
 #include "syscalls.h"
 
 #include "data/data_0E0334.h"
+#include "data/data_0E3464.h"
 
 #include "structs/agb_sram.h"
 #include "structs/ewram.h"
@@ -15,6 +16,20 @@ extern void sub_08042828(struct EwramData_unk4E4 *param_0);
 u32* sub_08001980(s32 param_0, s32 param_1);
 s16 sub_080022A8(s32 param_0, s32 param_1, u8 param_2);
 s16 sub_080022E8(s32 param_0, s32 param_1, u8 param_2);
+extern void sub_08008ED0(); // Type?
+
+extern void sub_0803D9A8(void);
+extern void sub_0803E438(void);
+extern void sub_08039DC0(void);
+extern void sub_0803BEEC(void);
+extern void sub_0804059C(void);
+extern void sub_08042754(void);
+extern void sub_0803FD9C(u8* param_0, u32* param_1, u16 param_2);
+extern void sub_0803C918(u8* param_0, u16 param_1, u16 param_2, u16 param_3);
+extern void sub_0803F8A8(u32 param_0, u32* param_1, u16 param_2, u16 param_3);
+extern void sub_08002944(void);
+extern void sub_080D7910(u16 param_0);
+extern void sub_0803C8B0(u8* param_0);
 
 extern u8 sUnk_084F0B18[0x10]; // "CASTLEVANIA2-010"
 
@@ -110,7 +125,7 @@ u32 sub_08000AB0(void)
 {
     u32 var_0;
 
-    if ((gEwramData->unk_4CC & 0x40) != 0)
+    if ((gEwramData->unk_4CC_6) != 0)
     {
         var_0 = gEwramData->unk_C = (gEwramData->unk_C >> 0) * 0x3243F6AD + 0x1B0CB175;
     }
@@ -2138,5 +2153,434 @@ void sub_08002428(void)
 {
     gUnk_03002CB0.unk_0 &= 0xBFFF;
     gEwramData->unk_7864.unk_7864_1 = 1;
+}
+
+extern const char sUnk_080E0C94[]; // "Please Select.\n"
+
+/*
+    Debug menu, string is displayed, and the integer is the (debug) game mode
+        0: "Exit", 0x10 (GAME_MODE_DEBUG_EXIT)
+        1: "Start", 0xD (GAME_MODE_RESET)
+        2: "Trade", 0xA (GAME_MODE_SOUL_TRADE_MENU)
+        3: "1967", 0x11 (GAME_MODE_DEBUG_1967)
+        4: "2229", 0x12 (GAME_MODE_DEBUG_2229)
+        5: "2739", 0x13 (GAME_MODE_DEBUG_2739)
+        6: "4531", 0x14 (GAME_MODE_DEBUG_4531)
+        7: "Staff Roll", (GAME_MODE_CREDITS)
+*/
+struct Unk_084F0B28 {
+    char *unk_0;
+    u32 unk_1;
+};
+extern struct Unk_084F0B28 sUnk_084F0B28[];
+
+// TODO: sub_08002454 should be in another file, due to implicit call of sub_0800125C
+/**
+ * @brief 2454 | Handle debug game mode
+ * 
+ * @return s32 Game mode, -1 is no change, -2 is next game mode, else the specified game mode
+ */
+s32 sub_08002454(void)
+{
+    s32 var_r4;
+    s32 var_r6;
+    s32 var_r7;
+    u16 temp_r3;
+    u16 temp_r4_2;
+    u8 temp_r0;
+    u8 temp_r4;
+
+    var_r7 = -1;
+    temp_r3 = gEwramData->unk_14.repeatedInput;
+    temp_r4 = gEwramData->unk_11;
+
+    switch (temp_r4)
+    {
+        case 0:
+            DMA_FILL_32(3, 0, VRAM_BASE + 0xE000, 0x800);
+            sub_0800125C(1, 1, 0, (u8*)sUnk_080E0C94);
+            gEwramData->unk_11 += 1;
+            gEwramData->unk_12 = temp_r4;
+            break;
+
+        case 1:
+            for (var_r6 = 0; sUnk_084F0B28[var_r6].unk_0 != 0; var_r6++);
+
+            if (gEwramData->unk_14.newInput & (KEY_START | KEY_A))
+            {
+                DMA_FILL_32(3, 0, 0x0600E000, 0x800);
+                var_r7 = sUnk_084F0B28[gEwramData->unk_12].unk_1;
+                if ((var_r7 == 0) && (temp_r3 & KEY_SELECT))
+                {
+                    sub_08008ED0(0);
+                    var_r7 = 4;
+                }
+            }
+            else
+            {
+                temp_r4_2 = temp_r3 & KEY_UP;
+                if (temp_r4_2 != 0)
+                {
+                    temp_r0 = gEwramData->unk_12;
+                    if (gEwramData->unk_12 != 0)
+                    {
+                        gEwramData->unk_12 = temp_r0 - 1;
+                    }
+                    else
+                    {
+                        gEwramData->unk_12 = var_r6 - 1;
+                    }
+                }
+                else if (temp_r3 & KEY_DOWN)
+                {
+                    gEwramData->unk_12 += 1;
+                    if (gEwramData->unk_12 >= var_r6)
+                    {
+                        gEwramData->unk_12 = temp_r4_2;
+                    }
+                }
+
+                for (var_r4 = 0; var_r4 < var_r6; var_r4++)
+                {
+                    sub_0800125C(4, var_r4 + 3, (var_r4 == gEwramData->unk_12) ? 1 : 3, sUnk_084F0B28[var_r4].unk_0);
+                }
+            }
+            break;
+    }
+    return var_r7;
+}
+
+struct Unk_084F0B70 {
+    s32 unk_0; // Type/length?
+    s32 unk_4; // Type/length?
+    u32* unk_8; // Type?
+    u8* unk_C; // Type?
+};
+struct Unk_084F0B70 sUnk_084F0B70[1];
+
+extern const char sUnk_080E0CA4[]; // " "
+extern const char sUnk_080E0CA8[]; // ">"
+
+extern s32 sUnk_084F0C80; // 0x11
+
+// TODO: create struct for 0x0850F15C
+// TODO: sub_08002588 should be in another file, due to implicit call of sub_0800125C
+/**
+ * @brief 2588 | Handle exit debug game mode
+ * 
+ * @return s32 Game mode, -1 is no change, -2 is next game mode, else the specified game mode
+ */
+s32 sub_08002588(void)
+{
+    s32 temp_r3_2;
+    s32 var_r4;
+    s32 var_r7;
+    u32 temp_r5;
+    u32 var_r5_2;
+
+    var_r7 = -1;
+
+    switch (gEwramData->unk_11)
+    {
+        case 0:
+            gUnk_03002CB0.unk_0 = 0x100;
+            DMA_SET(3, &sUnk_080E3664, VRAM_BASE + 0x6000, C_32_2_16(DMA_ENABLE | DMA_32BIT, sizeof(sUnk_080E3664) / sizeof(u32)));
+            DMA_SET(3, &sUnk_080E5264, VRAM_BASE + 0x8000, C_32_2_16(DMA_ENABLE | DMA_32BIT, sizeof(sUnk_080E5264) / sizeof(u32)));
+            DMA_SET(3, &sUnk_080E3464, PALRAM_BASE, C_32_2_16(DMA_ENABLE | DMA_32BIT, sizeof(sUnk_080E3464) / sizeof(u32)));
+            DMA_FILL_32(3, 0, VRAM_BASE + 0xE000, 0x800);
+            gEwramData->unk_12 = 0;
+
+            for (var_r4 = 0; var_r4 < sUnk_084F0C80; var_r4++)
+            {
+                sub_0800125C(5, var_r4 + 2, 0, sUnk_084F0B70[var_r4].unk_C);
+            }
+
+            gEwramData->unk_11 += 1;
+            gEwramData->unk_12 = 0;
+            break;
+
+        case 1:
+            gEwramData->unk_11 += 1;
+            gEwramData->unk_12 = 0;
+            /* fallthrough */
+
+        case 2:
+            temp_r5 = gEwramData->unk_14.newInput & KEY_UP;
+            if (gEwramData->unk_14.newInput & KEY_UP)
+            {
+                sub_0800125C(4, gEwramData->unk_12 + 2, 2, (u8 *) sUnk_080E0CA4);
+                if (--gEwramData->unk_12 > sUnk_084F0C80)
+                {
+                    gEwramData->unk_12 = sUnk_084F0C80 - 1;
+                }
+            }
+            else if (gEwramData->unk_14.newInput & KEY_DOWN)
+            {
+                sub_0800125C(4, gEwramData->unk_12 + 2, 2, (u8 *) sUnk_080E0CA4);
+                if (++gEwramData->unk_12 >= sUnk_084F0C80)
+                {
+                    gEwramData->unk_12 = temp_r5;
+                }
+            }
+
+            sub_0800125C(4, gEwramData->unk_12 + 2, 2, (u8 *) sUnk_080E0CA8);
+            if (gEwramData->unk_14.newInput & KEY_A)
+            {
+                if (gEwramData->unk_12 == 0)
+                {
+                    if (gEwramData->unk_14.heldInput & KEY_LEFT)
+                    {
+                        gEwramData->unk_428 = 2;
+                    }
+                    else if (gEwramData->unk_14.heldInput & KEY_RIGHT)
+                    {
+                        gEwramData->unk_428 = 4;
+                    }
+                    
+                    sub_08014548();
+                    gEwramData->unk_9E = 0;
+                    gEwramData->unk_9F = 0;
+                    gEwramData->unk_334 = 0;
+                    gEwramData->unk_336 = 0x200;
+                    gEwramData->unk_338 = 0x78;
+                    gEwramData->unk_33A = 0x8D;
+                    gEwramData->unk_3CC = sub_08001980(gEwramData->unk_9E, gEwramData->unk_9F);
+                    gEwramData->unk_88 = 0;
+                }
+                else
+                {
+                    gEwramData->unk_88 = sUnk_084F0B70[gEwramData->unk_12].unk_8;
+                    gEwramData->unk_37C = -1;
+                    sub_08014548();
+                    sub_0804B26C(2, 0x3a);
+                    sub_0804B26C(0, 8);
+                    sub_0804B26C(1, 0x24);
+                    sub_08033E38(0x63);
+                    sub_08021344(5, 3, 2);
+                    sub_0804AD9C();
+                }
+
+                if ((gEwramData->unk_88 == 0) && (gEwramData->unk_3CC == 0))
+                {
+                    var_r5_2 = 0;
+                    gEwramData->unk_428 = sUnk_084F0B70[gEwramData->unk_12].unk_4 * 2;
+                    temp_r3_2 = sub_08013700(gEwramData->unk_428 + 1, 0);
+                    if ((gEwramData->unk_14.heldInput & KEY_RIGHT) && (temp_r3_2 != 0))
+                    {
+                        var_r5_2 = (-gEwramData->unk_38 | gEwramData->unk_38) >> 0x1F;
+                    }
+
+                    if (sub_08012744(gEwramData->unk_428 + var_r5_2) != 0)
+                    {
+                        gEwramData->unk_3CC = sub_08001980(gEwramData->unk_9E, gEwramData->unk_9F);
+                    }
+                    else
+                    {
+                        gEwramData->unk_88 = (u32*)0x0850F15C;
+                    }
+                }
+
+                gEwramData->unk_A074_2 = gEwramData->unk_A074_4 = 3;
+                gUnk_03002C60.bldCnt = (BLDCNT_BRIGHTNESS_DECREASE_EFFECT | BLDCNT_SCREEN_SECOND_TARGET | BLDCNT_SCREEN_FIRST_TARGET);
+                gUnk_03002C60.bldY = BLDY_MAX_VALUE;
+                gEwramData->unk_11 += 1;
+            }
+            break;
+
+        case 3:
+            var_r7 = sUnk_084F0B70[gEwramData->unk_12].unk_0;
+            gEwramData->unk_4CC_6 = 0;
+            gEwramData->unk_4CC_0 = 0;
+            gEwramData->unk_378 = -1;
+
+            if (sUnk_084F0B70[gEwramData->unk_12].unk_8 != (u32*)0x0850F15C)
+            {
+                sub_08012048(0x20);
+            }
+            break;
+    }
+
+    return var_r7;
+}
+
+extern const u16 sUnk_080E0CAC[]; // Konami code inputs
+
+/**
+ * @brief 2944 | Check and update konami code logic
+ * 
+ */
+void sub_08002944(void)
+{
+    u16 new_input;
+
+    new_input = gEwramData->unk_14.newInput;
+    if (gEwramData->unk_A075 >= 1 && gEwramData->unk_A075 <= 10)
+    {
+        if (new_input == sUnk_080E0CAC[gEwramData->unk_A075 - 1])
+        {
+            gEwramData->unk_A075++;
+        }
+        else if (new_input != 0)
+        {
+            gEwramData->unk_A075 = 0;
+        }
+    }
+}
+
+/**
+ * @brief 2990 | Handle Konami logo game mode
+ * 
+ * @return s32 Game mode, -1 is no change, -2 is next game mode, else the specified game mode
+ */
+s32 sub_08002990(void)
+{
+    s32 var_r5;
+
+    var_r5 = -1;
+
+    switch (gEwramData->unk_11)
+    {
+        case 0:
+            gUnk_03002CB0.unk_0 = 0x100;
+            gUnk_03002C60.bg0Cnt = 0x1C00;
+            gUnk_03002C60.bldCnt = 0xBF;
+            gUnk_03002C60.bldY = 0x10;
+            sub_08000D44();
+            sub_0803D9A8();
+            sub_0803E438();
+            sub_08039DC0();
+            sub_0803BEEC();
+            sub_0804059C();
+            sub_08042754();
+            if ((gEwramData->unk_380 & 0x3F) && (gEwramData->unk_A075 != 0xFF))
+            {
+                gEwramData->unk_A075 = 1;
+            }
+            else
+            {
+                gEwramData->unk_A075 = 0;
+            }
+            gEwramData->unk_11 += 1;
+            gEwramData->unk_12 = 0;
+            break;
+
+        case 1:
+            sub_0803FD9C((u8 *)0x080E5C18, (u32 *)0x06000000, 0);
+            sub_0803C918((u8 *)0x080E6C40, 0, 1, 0);
+            sub_0803F8A8(0, (u32 *)0x080E9614, 0, 0);
+            gEwramData->unk_11 += 1;
+            gEwramData->unk_12 = 0;
+            break;
+
+        case 2:
+            if (gUnk_03002C60.bldY > 1)
+            {
+                gUnk_03002C60.bldY -= 1;
+            }
+            else
+            {
+                gUnk_03002C60.bldY = 0;
+                gEwramData->unk_4 = 0xF0;
+                gEwramData->unk_11 += 1;
+                gEwramData->unk_12 = 0;
+            }
+            break;
+
+        case 3:
+            sub_08002944();
+            if (((--gEwramData->unk_4 << 0x10) == 0) || (gEwramData->unk_14.newInput & (KEY_START | KEY_A)))
+            {
+                gUnk_03002C60.bldCnt = 0xFF;
+                gEwramData->unk_11 += 1;
+                gEwramData->unk_12 = 0;
+            }
+            break;
+    
+        case 4:
+            if (gUnk_03002C60.bldY < 0x10)
+            {
+                gUnk_03002C60.bldY++;
+            }
+            else
+            {
+                if (gEwramData->unk_A075 == 0xB)
+                {
+                    sub_080D7910(0x1AC);
+                    gEwramData->unk_A075 = 0xFF;
+                }
+                var_r5 = 1;
+            }
+            break;
+    }
+
+    return var_r5;
+}
+
+/**
+ * @brief 2990 | Handle Licensed by Nintendo game mode
+ * 
+ * @return s32 Game mode, -1 is no change, -2 is next game mode, else the specified game mode
+ */
+s32 sub_08002B54(void)
+{
+    s32 var_r5;
+
+    var_r5 = -1;
+
+    switch (gEwramData->unk_11)
+    {
+        case 0:
+            gUnk_03002CB0.unk_0 = 0x100;
+            gUnk_03002C60.bg0Cnt = 0x1C02;
+            gUnk_03002C60.bldCnt = 0xBF;
+            gUnk_03002C60.bldY = 0x10;
+            gEwramData->unk_11 += 1;
+            gEwramData->unk_12 = 0;
+            break;
+
+        case 1:
+            sub_0803FD9C((u8 *)0x080E5C00, (u32 *)0x06000000, 0);
+            sub_0803C8B0((u8 *)0x080E6838);
+            sub_0803F8A8(0, (u32 *)0x080E94F4, 0, 0);
+            gEwramData->unk_11 += 1;
+            gEwramData->unk_12 = 0;
+            break;
+
+        case 2:
+            if (gUnk_03002C60.bldY > 1)
+            {
+                gUnk_03002C60.bldY -= 2;
+            }
+            else
+            {
+                gUnk_03002C60.bldY = 0;
+                gEwramData->unk_4 = 0x78;
+                gEwramData->unk_11 += 1;
+                gEwramData->unk_12 = 0;
+            }
+            break;
+
+        case 3:
+            if ((--gEwramData->unk_4 << 0x10) == 0)
+            {
+                gUnk_03002C60.bldCnt = 0xBF;
+                gEwramData->unk_11 += 1;
+                gEwramData->unk_12 = 0;
+            }
+            break;
+
+        case 4:
+            if (gUnk_03002C60.bldY < 0x10)
+            {
+                gUnk_03002C60.bldY += 2;
+            }
+            else
+            {
+                var_r5 = 0;
+            }
+            break;
+    }
+
+    return var_r5;
 }
 
