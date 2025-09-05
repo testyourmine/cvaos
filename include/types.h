@@ -106,4 +106,25 @@ struct Coordinates {
 // void, void function pointer
 typedef void (*Func_T)(void);
 
+// BgAffineSet source data
+struct BgAffineSrcData {
+    s32 texX;
+    s32 texY;
+    s16 scrX;
+    s16 scrY;
+    s16 sx;
+    s16 sy;
+    u16 alpha;
+};
+
+// BgAffineSet destination data
+struct BgAffineDstData {
+    s16 pa;
+    s16 pb;
+    s16 pc;
+    s16 pd;
+    s32 dx;
+    s32 dy;
+};
+
 #endif /* TYPES_H */

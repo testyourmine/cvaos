@@ -5493,7 +5493,7 @@ _080033F4:
 	ldr r0, [r0]
 	lsls r0, r0, #4
 	strh r0, [r1, #0x10]
-	ldr r1, _08003444 @ =0x03002C78
+	ldr r1, _08003444 @ =gUnk_03002C60+0x18
 	adds r0, r2, #0
 	movs r2, #1
 	bl BgAffineSet
@@ -5504,7 +5504,7 @@ _08003434: .4byte 0xFFFFE000
 _08003438: .4byte gUnk_03002C60
 _0800343C: .4byte 0x0002FFFF
 _08003440: .4byte 0x00007FFF
-_08003444: .4byte 0x03002C78
+_08003444: .4byte gUnk_03002C60+0x18
 _08003448:
 	ldr r4, _08003530 @ =gEwramData
 	bl sub_08002FF8
@@ -5549,7 +5549,7 @@ _0800346E:
 	ldr r0, [r0]
 	lsls r0, r0, #4
 	strh r0, [r1, #0x10]
-	ldr r1, _0800353C @ =0x03002C78
+	ldr r1, _0800353C @ =gUnk_03002C60+0x18
 	adds r0, r2, #0
 	movs r2, #1
 	bl BgAffineSet
@@ -5595,7 +5595,7 @@ _080034C2:
 	ldr r0, [r0]
 	lsls r0, r0, #4
 	strh r0, [r1, #0x10]
-	ldr r5, _0800353C @ =0x03002C78
+	ldr r5, _0800353C @ =gUnk_03002C60+0x18
 	adds r0, r1, #0
 	adds r1, r5, #0
 	movs r2, #1
@@ -5627,7 +5627,7 @@ _08003520:
 _08003530: .4byte gEwramData
 _08003534: .4byte 0xFFFFE000
 _08003538: .4byte 0x00005FFF
-_0800353C: .4byte 0x03002C78
+_0800353C: .4byte gUnk_03002C60+0x18
 _08003540:
 	movs r0, #0x88
 	mov r3, r8
@@ -5683,7 +5683,7 @@ _0800357A:
 	ldr r0, [r0]
 	lsls r0, r0, #4
 	strh r0, [r1, #0x10]
-	ldr r4, _080035EC @ =0x03002C78
+	ldr r4, _080035EC @ =gUnk_03002C60+0x18
 	adds r0, r1, #0
 	adds r1, r4, #0
 	movs r2, #1
@@ -5711,7 +5711,7 @@ _080035DC: .4byte gEwramData
 _080035E0: .4byte 0x00007FFF
 _080035E4: .4byte 0x00000FFF
 _080035E8: .4byte 0xFFFFFEE8
-_080035EC: .4byte 0x03002C78
+_080035EC: .4byte gUnk_03002C60+0x18
 _080035F0:
 	mov r3, r8
 	ldrh r0, [r3, #0x18]
@@ -5782,7 +5782,7 @@ _08003648:
 	ldr r0, [r0]
 	lsls r0, r0, #4
 	strh r0, [r1, #0x10]
-	ldr r1, _080036F4 @ =0x03002C78
+	ldr r1, _080036F4 @ =gUnk_03002C60+0x18
 	adds r0, r2, #0
 	movs r2, #1
 	bl BgAffineSet
@@ -5838,7 +5838,7 @@ _080036E4: .4byte gEwramData
 _080036E8: .4byte 0x00007FFF
 _080036EC: .4byte 0x00000FFF
 _080036F0: .4byte 0xFFFFFEE8
-_080036F4: .4byte 0x03002C78
+_080036F4: .4byte gUnk_03002C60+0x18
 _080036F8: .4byte 0x0000037F
 _080036FC: .4byte gUnk_03002C60
 _08003700:
@@ -24701,7 +24701,7 @@ sub_0800D0F8: @ 0x0800D0F8
 	muls r0, r5, r0
 	lsls r0, r0, #7
 	strh r0, [r1, #0x10]
-	ldr r1, _0800D150 @ =0x03002C78
+	ldr r1, _0800D150 @ =gUnk_03002C60+0x18
 	mov r0, sp
 	movs r2, #1
 	bl BgAffineSet
@@ -24711,7 +24711,7 @@ sub_0800D0F8: @ 0x0800D0F8
 	bx r0
 	.align 2, 0
 _0800D14C: .4byte gEwramData
-_0800D150: .4byte 0x03002C78
+_0800D150: .4byte gUnk_03002C60+0x18
 
 	thumb_func_start sub_0800D154
 sub_0800D154: @ 0x0800D154
@@ -25306,13 +25306,13 @@ _0800D61C:
 	rsbs r0, r0, #0
 	lsls r0, r0, #9
 	strh r0, [r1, #0x10]
-	ldr r1, _0800D668 @ =0x03002C78
+	ldr r1, _0800D668 @ =gUnk_03002C60+0x18
 	mov r0, sp
 	movs r2, #1
 	bl BgAffineSet
 	b _0800D98E
 	.align 2, 0
-_0800D668: .4byte 0x03002C78
+_0800D668: .4byte gUnk_03002C60+0x18
 _0800D66C:
 	ldr r2, _0800D678 @ =gUnk_03002CB0
 	ldrh r1, [r2]
@@ -25402,13 +25402,13 @@ _0800D6E0:
 	rsbs r5, r5, #0
 	lsls r5, r5, #7
 	strh r5, [r4, #0x10]
-	ldr r1, _0800D730 @ =0x03002C78
+	ldr r1, _0800D730 @ =gUnk_03002C60+0x18
 	adds r0, r4, #0
 	movs r2, #1
 	bl BgAffineSet
 	b _0800D98E
 	.align 2, 0
-_0800D730: .4byte 0x03002C78
+_0800D730: .4byte gUnk_03002C60+0x18
 _0800D734:
 	mov r0, r8
 	movs r1, #0x38

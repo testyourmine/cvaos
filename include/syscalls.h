@@ -14,7 +14,7 @@
 #define RESET_ALL        0xFF
 
 u16 ArcTan2(s16 x, s16 y);
-// void BgAffineSet(struct BgAffineSrcData *src, struct BgAffineDstData *dest, s32 count);
+void BgAffineSet(struct BgAffineSrcData *src, struct BgAffineDstData *dest, s32 count);
 void CpuSet(const void *src, void *dest, u32 control);
 s32 Div(s32 num, s32 denom);
 s32 Mod(s32 num, s32 denom);
