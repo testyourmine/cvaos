@@ -20,24 +20,26 @@ struct Unk_03002C60 {
     u16 bg2PB;
     u16 bg2PC;
     u16 bg2PD;
-    u16 bg2X_L; // May be u32
+    u16 bg2X_L;
     u16 bg2X_H;
-    u16 bg2Y_L; // May be u32
+    u16 bg2Y_L;
     u16 bg2Y_H;
     u16 bg3PA;
     u16 bg3PB;
     u16 bg3PC;
     u16 bg3PD;
-    u16 bg3X_L; // May be u32
+    u16 bg3X_L;
     u16 bg3X_H;
-    u16 bg3Y_L; // May be u32
+    u16 bg3Y_L;
     u16 bg3Y_H;
     u16 win0H;
     u16 win1H;
     u16 win0V;
     u16 win1V;
-    u16 winIn;
-    u16 winOut;
+    u8 winIn_L;
+    u8 winIn_H;
+    u8 winOut_L;
+    u8 winOut_H;
     u16 mosaic;
     u16 unk_4e;
     u16 bldCnt;
@@ -71,7 +73,7 @@ struct Unk_03002CB0 {
     u8 unk_100D;
 };
 
-extern struct Unk_03002C60 gUnk_03002C60; // May be an array instead of struct
+extern struct Unk_03002C60 gUnk_03002C60;
 extern struct Unk_03002CB0 gUnk_03002CB0;
 extern u8 *gUnk_03003CD0;
 
