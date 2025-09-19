@@ -495,9 +495,9 @@ u32 SoftResetCheck(void)
 
     result = 0;
 
-    if ((gEwramData->unk_12FE0 & 4) != 0)
+    if (gEwramData->unk_12FE0_2)
     {
-        gEwramData->unk_12FE0 = gEwramData->unk_12FE0 & ~4;
+        gEwramData->unk_12FE0_2 = 0;
         return 0;
     }
 
