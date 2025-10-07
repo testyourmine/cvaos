@@ -1001,12 +1001,12 @@ void sub_080015E4(void)
     {
         if (var_0->unk_814 != 0)
         {
-            DMA_SET(3, &var_0->unk_818, var_0->unk_810, C_32_2_16(DMA_ENABLE, var_0->unk_814 / sizeof(u16)));
+            DMA_COPY_16(3, &var_0->unk_818, var_0->unk_810, var_0->unk_814);
             var_1 = var_0->unk_814 + (u8*)var_0 + 0xC;
         }
         else
         {
-            DMA_SET(3, var_0->unk_80C, var_0->unk_810, C_32_2_16(DMA_ENABLE, var_0->unk_818 / sizeof(u16)));
+            DMA_COPY_16(3, var_0->unk_80C, var_0->unk_810, var_0->unk_818);
             var_1 = (u8*)var_0 + 0x10;
         }
         var_0 = (struct Unk_030034BC *)((s32)((var_1 + 3)) & ~3);
@@ -2399,9 +2399,9 @@ s32 sub_08002588(void)
     {
         case 0:
             gUnk_03002CB0.unk_0 = 0x100;
-            DMA_SET(3, &sUnk_080E3664, VRAM_BASE + 0x6000, C_32_2_16(DMA_ENABLE | DMA_32BIT, sizeof(sUnk_080E3664) / sizeof(u32)));
-            DMA_SET(3, &sUnk_080E5264, VRAM_BASE + 0x8000, C_32_2_16(DMA_ENABLE | DMA_32BIT, sizeof(sUnk_080E5264) / sizeof(u32)));
-            DMA_SET(3, &sUnk_080E3464, PALRAM_BASE, C_32_2_16(DMA_ENABLE | DMA_32BIT, sizeof(sUnk_080E3464) / sizeof(u32)));
+            DMA_COPY_32(3, &sUnk_080E3664, VRAM_BASE + 0x6000, sizeof(sUnk_080E3664));
+            DMA_COPY_32(3, &sUnk_080E5264, VRAM_BASE + 0x8000, sizeof(sUnk_080E5264));
+            DMA_COPY_32(3, &sUnk_080E3464, PALRAM_BASE, sizeof(sUnk_080E3464));
             DMA_FILL_32(3, 0, VRAM_BASE + 0xE000, 0x800);
             gEwramData->unk_12 = 0;
 
@@ -7475,10 +7475,10 @@ s32 sub_080089D8(void)
     u16 temp_r3;
     u16 temp_r6;
     s32 temp_r2_3;
-    u8 *temp_r5;
+    struct EwramData_unk68 *temp_r5;
     struct EwramData_unkA094_0 *temp_r4;
 
-    temp_r5 = (u8*)&gEwramData->unk_60.unk_68;
+    temp_r5 = &gEwramData->unk_60.unk_68;
     temp_r7 = gEwramData->unk_4E4;
     var_r8 = -1;
 
@@ -7493,7 +7493,7 @@ s32 sub_080089D8(void)
             sub_0803BEEC();
             sub_0804059C();
             sub_08042754();
-            DMA_SET(3, &gUnk_03002C60.bgCnt[1], temp_r5 + 8, C_32_2_16(DMA_ENABLE | DMA_32BIT, 0x8 / sizeof(u32)));
+            DMA_COPY_32(3, &gUnk_03002C60.bgCnt[1], temp_r5->unk_70, sizeof(temp_r5->unk_70));
             gUnk_03002CB0.unk_0 = 0x1F00;
             sub_0803C8B0((u8 *)0x080E6634);
             sub_0803FD9C((u8 *)0x080E5BF0, 0x06008000, 0);
@@ -7616,7 +7616,7 @@ s32 sub_080089D8(void)
                 sub_0803BEEC();
                 sub_0804059C();
                 sub_08042754();
-                DMA_SET(3, &temp_r5_3->unk_60.unk_68 + 8, &gUnk_03002C60.bgCnt[1], C_32_2_16(DMA_ENABLE | DMA_32BIT, 0x8 / sizeof(u32)));
+                DMA_COPY_32(3, &temp_r5_3->unk_60.unk_68.unk_70, &gUnk_03002C60.bgCnt[1], sizeof(temp_r5_3->unk_60.unk_68.unk_70));
                 sub_080D7910(0x1010);
                 gEwramData->unk_11 += 1;
                 gEwramData->unk_12 = 0;
@@ -7649,7 +7649,7 @@ s32 sub_080089D8(void)
         sub_0803BEEC();
         sub_0804059C();
         sub_08042754();
-        DMA_SET(3, &temp_r5_2->unk_60.unk_68 + 8, &gUnk_03002C60.bgCnt[1], C_32_2_16(DMA_ENABLE | DMA_32BIT, 0x8 / sizeof(u32)));
+        DMA_COPY_32(3, &temp_r5_2->unk_60.unk_68.unk_70, &gUnk_03002C60.bgCnt[1], sizeof(temp_r5_2->unk_60.unk_68.unk_70));
         sub_080D7910(0x1010);
         if (gEwramData->unk_6 == 0)
         {
@@ -11130,9 +11130,9 @@ void sub_0800D154(void)
     unk_68->unk_6E_0 = gUnk_03002CB0.unk_2;
     unk_68->unk_6E_7 = gEwramData->unk_7864.unk_7864_0;
     unk_68->unk_6F = gEwramData->unk_7864.unk_7865;
-    
-    DMA_SET(3, &gUnk_03002C60, &ewramData->unk_60.unk_68 + 8, C_32_2_16(DMA_ENABLE | DMA_32BIT, 0x2));
-    DMA_SET(3, &gUnk_03002C60.win0H, &ewramData->unk_60.pad_78, C_32_2_16(DMA_ENABLE | DMA_32BIT, 0x4));
+
+    DMA_COPY_32(3, &gUnk_03002C60.bgCnt, &ewramData->unk_60.unk_68.unk_70, sizeof(gUnk_03002C60.bgCnt));
+    DMA_COPY_32(3, &gUnk_03002C60.win0H, &ewramData->unk_60.unk_78, sizeof(ewramData->unk_60.unk_78));
 }
 
 /**
@@ -11153,8 +11153,8 @@ void sub_0800D1F0(void)
     gEwramData->unk_7864.unk_7864_0 = unk_68->unk_6E_7;
     gEwramData->unk_7864.unk_7865 = unk_68->unk_6F;
     
-    DMA_SET(3, &ewramData->unk_60.unk_68 + 8, &gUnk_03002C60, C_32_2_16(DMA_ENABLE | DMA_32BIT, 0x2));
-    DMA_SET(3, &ewramData->unk_60.pad_78, &gUnk_03002C60.win0H, C_32_2_16(DMA_ENABLE | DMA_32BIT, 0x4));
+    DMA_COPY_32(3, &ewramData->unk_60.unk_68.unk_70, &gUnk_03002C60.bgCnt, sizeof(ewramData->unk_60.unk_68.unk_70));
+    DMA_COPY_32(3, &ewramData->unk_60.unk_78, &gUnk_03002C60.win0H, sizeof(ewramData->unk_60.unk_78));
 }
 
 static inline s32 sub_0800D288_inline_0(s32 param_0, s32 param_1, s32 param_2, s32 param_3, s32 param_4)

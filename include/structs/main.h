@@ -27,7 +27,7 @@ struct Unk_03002C60 {
     u16 bg3X_H;
     u16 bg3Y_L;
     u16 bg3Y_H;
-    u16 win0H;
+    u16 win0H; // TODO: struct from win0H to unk_4E?
     u16 win1H;
     u16 win0V;
     u16 win1V;

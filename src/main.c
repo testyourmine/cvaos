@@ -116,12 +116,12 @@ void AgbMain(void)
 
             sub_080D7EEC();
             sub_080D7E94();
-            DMA_SET(3, &gUnk_03002C60, REG_BG0CNT, C_32_2_16(DMA_ENABLE | DMA_32BIT, sizeof(gUnk_03002C60) / sizeof(u32)));
+            DMA_COPY_32(3, &gUnk_03002C60, REG_BG0CNT, sizeof(gUnk_03002C60));
 
             if (unk_7864->unk_7864_2)
             {
                 // TODO: What is happening in source
-                DMA_SET(3, ((unk_7864->unk_7864_3 * 0x140) + 1 + unk_7864), unk_7864->unk_7868, C_32_2_16(DMA_ENABLE, unk_7864->unk_7866 / sizeof(u16)));
+                DMA_COPY_16(3, ((unk_7864->unk_7864_3 * 0x140) + 1 + unk_7864), unk_7864->unk_7868, unk_7864->unk_7866);
             }
 
             sub_080015E4();
@@ -388,9 +388,9 @@ void sub_080006CC(void)
     gUnk_03002CB0.unk_4 = (u16*)&gUnk_03002CB0.unk_8;
     gUnk_03002CB0.unk_808 = &gUnk_03002CB0.unk_80C;
 
-    DMA_SET(3, &sUnk_080E3664, VRAM_BASE + 0x6000, C_32_2_16(DMA_ENABLE | DMA_32BIT, sizeof(sUnk_080E3664) / sizeof(u32)));
-    DMA_SET(3, &sUnk_080E5264, VRAM_BASE + 0x8000, C_32_2_16(DMA_ENABLE | DMA_32BIT, sizeof(sUnk_080E5264) / sizeof(u32)));
-    DMA_SET(3, &sUnk_080E3464, PALRAM_BASE, C_32_2_16(DMA_ENABLE | DMA_32BIT, sizeof(sUnk_080E3464) / sizeof(u32)));
+    DMA_COPY_32(3, &sUnk_080E3664, VRAM_BASE + 0x6000, sizeof(sUnk_080E3664));
+    DMA_COPY_32(3, &sUnk_080E5264, VRAM_BASE + 0x8000, sizeof(sUnk_080E5264));
+    DMA_COPY_32(3, &sUnk_080E3464, PALRAM_BASE, sizeof(sUnk_080E3464));
 
     DMA_FILL_32(3, 0, VRAM_BASE + 0xE000, 0x800);
     DMA_FILL_32(3, 0, VRAM_BASE + 0xE800, 0x800);
@@ -429,7 +429,7 @@ void InitializeGame(void)
     DMA_FILL_32(3, 0, IWRAM_BASE, IWRAM_SIZE - 0x200);
     DMA_FILL_32(3, 0, VRAM_BASE, VRAM_SIZE);
 
-    DMA_SET(3, &_intr_main, &gUnk_03003CD0, C_32_2_16(DMA_ENABLE | DMA_32BIT, 0x880 / sizeof(u32)));
+    DMA_COPY_32(3, &_intr_main, &gUnk_03003CD0, 0x880);
     (*(void **)0x3007FFC) = &gUnk_03003CD0;
 
     InitializeAudio();

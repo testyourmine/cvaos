@@ -46,19 +46,36 @@
 #define DMA_FILL_32(channel, value, dest, size)                                \
     DMA_FILL(channel, value, dest, size, 32)
 
-#define dma_clear(channel, dest, size, bit)                                    \
+#define DMA_CLEAR(channel, dest, size, bit)                                    \
     {                                                                          \
         vu##bit *dma_dest_ = (vu##bit *)(dest);                                \
         u32 dma_size_      = size;                                             \
         DMA_FILL_##bit(channel, 0, dma_dest_, dma_size_);                      \
     }
 
-#define dma_clear16(channel, dest, size) dma_clear(channel, dest, size, 16)
-#define dma_clear32(channel, dest, size) dma_clear(channel, dest, size, 32)
+#define DMA_CLEAR_16(channel, dest, size) DMA_CLEAR(channel, dest, size, 16)
+#define DMA_CLEAR_32(channel, dest, size) DMA_CLEAR(channel, dest, size, 32)
+
+#define DMA_COPY(channel, src, dst, size, bit)                                 \
+    {                                                                          \
+        DMA_SET(                                                               \
+            channel,                                                           \
+            src,                                                               \
+            dst,                                                               \
+            (DMA_ENABLE | DMA_START_NOW | DMA_##bit##BIT | DMA_SRC_INC         \
+             | DMA_DEST_INC)                                                   \
+                    << 16                                                      \
+                | ((size) / (bit / 8)));                                       \
+    }
+
+#define DMA_COPY_16(channel, src, dest, size)                                  \
+    DMA_COPY(channel, src, dest, size, 16)
+#define DMA_COPY_32(channel, src, dest, size)                                  \
+    DMA_COPY(channel, src, dest, size, 32)
 
 #define DMA_STOP(dmaNum)                                        \
 {                                                               \
-    vu16 *dmaRegs = (vu16 *)REG_DMA##dmaNum;               \
+    vu16 *dmaRegs = (vu16 *)REG_DMA##dmaNum;                    \
     dmaRegs[5] &= ~(DMA_START_MASK | DMA_DREQ_ON | DMA_REPEAT); \
     dmaRegs[5] &= ~DMA_ENABLE;                                  \
     dmaRegs[5];                                                 \
