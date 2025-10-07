@@ -3,35 +3,6 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080109B8
-sub_080109B8: @ 0x080109B8
-	push {r4, lr}
-	bl sub_0800FBD8
-	movs r4, #0xa
-_080109C0:
-	lsls r0, r4, #0x10
-	lsrs r0, r0, #0x10
-	bl sub_0803CCBC
-	adds r4, #1
-	cmp r4, #0xd
-	ble _080109C0
-	bl sub_0806C354
-	bl sub_080124A8
-	ldr r0, _080109EC @ =gEwramData
-	ldr r1, [r0]
-	ldr r0, _080109F0 @ =0x00007864
-	adds r1, r1, r0
-	ldrb r0, [r1]
-	movs r2, #2
-	orrs r0, r2
-	strb r0, [r1]
-	pop {r4}
-	pop {r0}
-	bx r0
-	.align 2, 0
-_080109EC: .4byte gEwramData
-_080109F0: .4byte 0x00007864
-
 	thumb_func_start sub_080109F4
 sub_080109F4: @ 0x080109F4
 	push {r4, r5, r6, r7, lr}

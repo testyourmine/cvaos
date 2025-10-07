@@ -3,19 +3,14 @@
 
 #include "types.h"
 
+struct BgOffset {
+    u16 hOfs;
+    u16 vOfs;
+};
+
 struct Unk_03002C60 {
-    u16 bg0Cnt; // bgCnt array?
-    u16 bg1Cnt;
-    u16 bg2Cnt;
-    u16 bg3Cnt;
-    u16 bg0HOfs;
-    u16 bg0VOfs;
-    u16 bg1HOfs;
-    u16 bg1VOfs;
-    u16 bg2HOfs;
-    u16 bg2VOfs;
-    u16 bg3HOfs;
-    u16 bg3VOfs;
+    u16 bgCnt[4];
+    struct BgOffset bgOfs[4];
     u16 bg2PA;
     u16 bg2PB;
     u16 bg2PC;

@@ -24005,7 +24005,7 @@ sub_0800CB8C: @ 0x0800CB8C
 	adds r1, r1, r2
 	adds r6, r3, r1
 	lsls r2, r0, #2
-	ldr r1, _0800CC84 @ =0x03002C68
+	ldr r1, _0800CC84 @ =gUnk_03002C60+0x8
 	adds r7, r2, r1
 	lsls r1, r0, #3
 	subs r1, r1, r0
@@ -24100,7 +24100,7 @@ _0800CC58:
 _0800CC78: .4byte gEwramData
 _0800CC7C: .4byte 0x00007864
 _0800CC80: .4byte 0x0000786C
-_0800CC84: .4byte 0x03002C68
+_0800CC84: .4byte gUnk_03002C60+0x8
 _0800CC88: .4byte 0x0000A078
 _0800CC8C: .4byte 0x04000010
 
@@ -24134,7 +24134,7 @@ sub_0800CC90: @ 0x0800CC90
 	adds r0, r0, r1
 	adds r5, r2, r0
 	lsls r1, r4, #2
-	ldr r0, _0800CCF8 @ =0x03002C68
+	ldr r0, _0800CCF8 @ =gUnk_03002C60+0x8
 	adds r1, r1, r0
 	mov r8, r1
 	lsls r0, r4, #3
@@ -24156,7 +24156,7 @@ sub_0800CC90: @ 0x0800CC90
 _0800CCEC: .4byte gEwramData
 _0800CCF0: .4byte 0x00007864
 _0800CCF4: .4byte 0x0000786C
-_0800CCF8: .4byte 0x03002C68
+_0800CCF8: .4byte gUnk_03002C60+0x8
 _0800CCFC: .4byte 0x0000A078
 _0800CD00:
 	cmp r6, #0xa0
@@ -24280,7 +24280,7 @@ sub_0800CDAC: @ 0x0800CDAC
 	adds r0, r0, r2
 	mov r8, r0
 	lsls r1, r3, #2
-	ldr r0, _0800CE14 @ =0x03002C68
+	ldr r0, _0800CE14 @ =gUnk_03002C60+0x8
 	adds r1, r1, r0
 	mov sl, r1
 	lsls r0, r3, #3
@@ -24302,7 +24302,7 @@ sub_0800CDAC: @ 0x0800CDAC
 _0800CE08: .4byte gEwramData
 _0800CE0C: .4byte 0x00007864
 _0800CE10: .4byte 0x0000786C
-_0800CE14: .4byte 0x03002C68
+_0800CE14: .4byte gUnk_03002C60+0x8
 _0800CE18: .4byte 0x0000A078
 _0800CE1C:
 	cmp r5, #0xa0
@@ -24430,7 +24430,7 @@ sub_0800CED4: @ 0x0800CED4
 	adds r0, r0, r2
 	mov r8, r0
 	lsls r1, r3, #2
-	ldr r0, _0800CF40 @ =0x03002C68
+	ldr r0, _0800CF40 @ =gUnk_03002C60+0x8
 	adds r1, r1, r0
 	mov sl, r1
 	lsls r0, r3, #3
@@ -24452,7 +24452,7 @@ sub_0800CED4: @ 0x0800CED4
 _0800CF34: .4byte gEwramData
 _0800CF38: .4byte 0x00007864
 _0800CF3C: .4byte 0x0000786C
-_0800CF40: .4byte 0x03002C68
+_0800CF40: .4byte gUnk_03002C60+0x8
 _0800CF44: .4byte 0x0000A078
 _0800CF48:
 	cmp r5, #0xa0
@@ -24902,7 +24902,7 @@ _0800D2C2:
 	adds r7, r1, r0
 	mov r0, r8
 	lsls r1, r0, #2
-	ldr r0, _0800D30C @ =0x03002C68
+	ldr r0, _0800D30C @ =gUnk_03002C60+0x8
 	adds r3, r1, r0
 	mov sl, r3
 	adds r0, #2
@@ -24926,7 +24926,7 @@ _0800D2F4:
 _0800D300: .4byte gEwramData
 _0800D304: .4byte 0x0000A094
 _0800D308: .4byte 0x0000A078
-_0800D30C: .4byte 0x03002C68
+_0800D30C: .4byte gUnk_03002C60+0x8
 _0800D310: .4byte _0800D314
 _0800D314: @ jump table
 	.4byte _0800D3A4 @ case 0
@@ -25431,7 +25431,7 @@ _0800D74C:
 	adds r0, r2, r1
 	ldr r0, [r0]
 	mov sb, r0
-	ldr r0, _0800D7E0 @ =0x03002C6A
+	ldr r0, _0800D7E0 @ =gUnk_03002C60+0xA
 	adds r0, r3, r0
 	str r0, [sp, #0x38]
 	ldr r1, _0800D7E4 @ =0x00007864
@@ -25496,7 +25496,7 @@ _0800D79E:
 	strh r0, [r2]
 	b _0800DA22
 	.align 2, 0
-_0800D7E0: .4byte 0x03002C6A
+_0800D7E0: .4byte gUnk_03002C60+0xA
 _0800D7E4: .4byte 0x00007864
 _0800D7E8: .4byte 0x0000786C
 _0800D7EC: .4byte 0x04000012
@@ -25522,7 +25522,7 @@ _0800D7F4:
 	ldr r1, _0800D864 @ =0x0000786C
 	adds r0, r0, r1
 	adds r6, r2, r0
-	ldr r0, _0800D868 @ =0x03002C68
+	ldr r0, _0800D868 @ =gUnk_03002C60+0x8
 	ldr r3, [sp, #0x44]
 	adds r7, r3, r0
 	ldr r2, _0800D86C @ =0x04000010
@@ -25556,7 +25556,7 @@ _0800D844:
 _0800D85C: .4byte gEwramData
 _0800D860: .4byte 0x00007864
 _0800D864: .4byte 0x0000786C
-_0800D868: .4byte 0x03002C68
+_0800D868: .4byte gUnk_03002C60+0x8
 _0800D86C: .4byte 0x04000010
 _0800D870:
 	movs r7, #0x78
@@ -25683,7 +25683,7 @@ _0800D994:
 	adds r0, r2, r7
 	ldr r0, [r0]
 	mov sl, r0
-	ldr r0, _0800DA40 @ =0x03002C6A
+	ldr r0, _0800DA40 @ =gUnk_03002C60+0xA
 	ldr r3, [sp, #0x44]
 	adds r0, r0, r3
 	mov sb, r0
@@ -25757,7 +25757,7 @@ _0800DA2A:
 	bx r0
 	.align 2, 0
 _0800DA3C: .4byte gEwramData
-_0800DA40: .4byte 0x03002C6A
+_0800DA40: .4byte gUnk_03002C60+0xA
 _0800DA44: .4byte 0x00007864
 _0800DA48: .4byte 0x0000786C
 _0800DA4C: .4byte 0x04000012
@@ -31672,3 +31672,31 @@ _080109AC: .4byte 0x0000FEC0
 _080109B0: .4byte gUnk_03002C60
 _080109B4: .4byte 0x00003FBF
 
+	thumb_func_start sub_080109B8
+sub_080109B8: @ 0x080109B8
+	push {r4, lr}
+	bl sub_0800FBD8
+	movs r4, #0xa
+_080109C0:
+	lsls r0, r4, #0x10
+	lsrs r0, r0, #0x10
+	bl sub_0803CCBC
+	adds r4, #1
+	cmp r4, #0xd
+	ble _080109C0
+	bl sub_0806C354
+	bl sub_080124A8
+	ldr r0, _080109EC @ =gEwramData
+	ldr r1, [r0]
+	ldr r0, _080109F0 @ =0x00007864
+	adds r1, r1, r0
+	ldrb r0, [r1]
+	movs r2, #2
+	orrs r0, r2
+	strb r0, [r1]
+	pop {r4}
+	pop {r0}
+	bx r0
+	.align 2, 0
+_080109EC: .4byte gEwramData
+_080109F0: .4byte 0x00007864

@@ -173,14 +173,14 @@ void sub_08000424(void)
     var_1 = gEwramData->unk_FEC1;
 
     // Move BG1-3 Offset down-right?
-    gUnk_03002C60.bg1HOfs = gUnk_03002C60.bg1HOfs + var_0;
-    gUnk_03002C60.bg1VOfs = gUnk_03002C60.bg1VOfs + var_1;
+    gUnk_03002C60.bgOfs[1].hOfs += var_0;
+    gUnk_03002C60.bgOfs[1].vOfs += var_1;
 
-    gUnk_03002C60.bg2HOfs = gUnk_03002C60.bg2HOfs + var_0;
-    gUnk_03002C60.bg2VOfs = gUnk_03002C60.bg2VOfs + var_1;
+    gUnk_03002C60.bgOfs[2].hOfs += var_0;
+    gUnk_03002C60.bgOfs[2].vOfs += var_1;
 
-    gUnk_03002C60.bg3HOfs = gUnk_03002C60.bg3HOfs + var_0;
-    gUnk_03002C60.bg3VOfs = gUnk_03002C60.bg3VOfs + var_1;
+    gUnk_03002C60.bgOfs[3].hOfs += var_0;
+    gUnk_03002C60.bgOfs[3].vOfs += var_1;
 }
 
 /**
@@ -196,14 +196,14 @@ void sub_08000470(void)
     var_1 = gEwramData->unk_FEC1;
 
     // Move BG1-3 Offset up-left?
-    gUnk_03002C60.bg1HOfs = gUnk_03002C60.bg1HOfs - var_0;
-    gUnk_03002C60.bg1VOfs = gUnk_03002C60.bg1VOfs - var_1;
+    gUnk_03002C60.bgOfs[1].hOfs -= var_0;
+    gUnk_03002C60.bgOfs[1].vOfs -= var_1;
 
-    gUnk_03002C60.bg2HOfs = gUnk_03002C60.bg2HOfs - var_0;
-    gUnk_03002C60.bg2VOfs = gUnk_03002C60.bg2VOfs - var_1;
+    gUnk_03002C60.bgOfs[2].hOfs -= var_0;
+    gUnk_03002C60.bgOfs[2].vOfs -= var_1;
 
-    gUnk_03002C60.bg3HOfs = gUnk_03002C60.bg3HOfs - var_0;
-    gUnk_03002C60.bg3VOfs = gUnk_03002C60.bg3VOfs - var_1;
+    gUnk_03002C60.bgOfs[3].hOfs -= var_0;
+    gUnk_03002C60.bgOfs[3].vOfs -= var_1;
 }
 
 /**
@@ -370,10 +370,10 @@ void sub_08000658(void)
     gUnk_03002C60.bg2PD = 0x100;
     gUnk_03002C60.bg2PA = 0x100;
 
-    gUnk_03002C60.bg0Cnt = 0x1C02;
-    gUnk_03002C60.bg1Cnt = 0x1D02;
-    gUnk_03002C60.bg2Cnt = 0x1E02;
-    gUnk_03002C60.bg3Cnt = 0x1F02;
+    gUnk_03002C60.bgCnt[0] = 0x1C02;
+    gUnk_03002C60.bgCnt[1] = 0x1D02;
+    gUnk_03002C60.bgCnt[2] = 0x1E02;
+    gUnk_03002C60.bgCnt[3] = 0x1F02;
 
     gEwramData->unk_A074_2 = gEwramData->unk_A074_4 = 0;
 }

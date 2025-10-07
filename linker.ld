@@ -31,7 +31,7 @@ SECTIONS {
         asm/crt0.o(.text);
         src/main.o(.text);
         asm/code/code_080009A0.o(.text);
-        asm/code/code_080109B8.o(.text);
+        asm/code/code_080109F4.o(.text);
         asm/code/code_080211F0.o(.text);
         asm/code/code_08030A24.o(.text);
         asm/code/code_08040A38.o(.text);

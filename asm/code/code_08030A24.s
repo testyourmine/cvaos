@@ -30509,7 +30509,7 @@ sub_0803F710: @ 0x0803F710
 	adds r2, r2, r1
 	mov r8, r2
 	lsls r2, r0, #2
-	ldr r1, _0803F7C0 @ =0x03002C68
+	ldr r1, _0803F7C0 @ =gUnk_03002C60+0x8
 	adds r4, r2, r1
 	mov r2, r8
 	ldrh r1, [r2, #6]
@@ -30580,7 +30580,7 @@ _0803F766:
 	.align 2, 0
 _0803F7B8: .4byte gEwramData
 _0803F7BC: .4byte 0x0000A078
-_0803F7C0: .4byte 0x03002C68
+_0803F7C0: .4byte gUnk_03002C60+0x8
 _0803F7C4: .4byte 0x0600E000
 
 	thumb_func_start sub_0803F7C8
@@ -31109,7 +31109,7 @@ sub_0803FBBC: @ 0x0803FBBC
 	ldr r1, [r1]
 	adds r4, r1, r0
 	lsls r1, r5, #2
-	ldr r0, _0803FC04 @ =0x03002C68
+	ldr r0, _0803FC04 @ =gUnk_03002C60+0x8
 	adds r7, r1, r0
 	adds r0, #2
 	adds r1, r1, r0
@@ -31128,7 +31128,7 @@ sub_0803FBBC: @ 0x0803FBBC
 	.align 2, 0
 _0803FBFC: .4byte gEwramData
 _0803FC00: .4byte 0x0000A078
-_0803FC04: .4byte 0x03002C68
+_0803FC04: .4byte gUnk_03002C60+0x8
 _0803FC08:
 	cmp r3, #0
 	bge _0803FC18
@@ -31202,7 +31202,7 @@ sub_0803FC6C: @ 0x0803FC6C
 	ldr r1, [r1]
 	adds r4, r1, r0
 	lsls r1, r5, #2
-	ldr r0, _0803FCB4 @ =0x03002C68
+	ldr r0, _0803FCB4 @ =gUnk_03002C60+0x8
 	adds r7, r1, r0
 	adds r0, #2
 	adds r1, r1, r0
@@ -31221,7 +31221,7 @@ sub_0803FC6C: @ 0x0803FC6C
 	.align 2, 0
 _0803FCAC: .4byte gEwramData
 _0803FCB0: .4byte 0x0000A078
-_0803FCB4: .4byte 0x03002C68
+_0803FCB4: .4byte gUnk_03002C60+0x8
 _0803FCB8:
 	cmp r3, #0
 	bge _0803FCC8
