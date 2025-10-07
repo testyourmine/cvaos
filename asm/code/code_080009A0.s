@@ -65,7 +65,7 @@ sub_080009E4: @ 0x080009E4
 	ands r0, r2
 	cmp r0, #0
 	beq _08000A34
-	ldr r0, _08000A2C @ =gUnk_080E0368
+	ldr r0, _08000A2C @ =sSineTable
 	ldr r1, _08000A30 @ =0x0000800F
 	subs r1, r1, r2
 	asrs r1, r1, #4
@@ -78,7 +78,7 @@ sub_080009E4: @ 0x080009E4
 _08000A20: .4byte 0x0000FFFF
 _08000A24: .4byte 0xFFFF8000
 _08000A28: .4byte 0xFFFFBFF0
-_08000A2C: .4byte gUnk_080E0368
+_08000A2C: .4byte sSineTable
 _08000A30: .4byte 0x0000800F
 _08000A34:
 	ldr r0, _08000A38 @ =0xFFFF0000
@@ -86,7 +86,7 @@ _08000A34:
 	.align 2, 0
 _08000A38: .4byte 0xFFFF0000
 _08000A3C:
-	ldr r0, _08000A4C @ =gUnk_080E0368
+	ldr r0, _08000A4C @ =sSineTable
 	asrs r1, r2, #4
 	lsls r1, r1, #1
 	adds r1, r1, r0
@@ -94,7 +94,7 @@ _08000A3C:
 	rsbs r0, r0, #0
 	b _08000A88
 	.align 2, 0
-_08000A4C: .4byte gUnk_080E0368
+_08000A4C: .4byte sSineTable
 _08000A50:
 	movs r0, #0x80
 	lsls r0, r0, #7
@@ -105,21 +105,21 @@ _08000A50:
 	ands r0, r2
 	cmp r0, #0
 	beq _08000A78
-	ldr r0, _08000A70 @ =gUnk_080E0368
+	ldr r0, _08000A70 @ =sSineTable
 	ldr r1, _08000A74 @ =0x0000800F
 	subs r1, r1, r2
 	asrs r1, r1, #4
 	b _08000A82
 	.align 2, 0
 _08000A6C: .4byte 0xFFFFBFF0
-_08000A70: .4byte gUnk_080E0368
+_08000A70: .4byte sSineTable
 _08000A74: .4byte 0x0000800F
 _08000A78:
 	movs r0, #0x80
 	lsls r0, r0, #9
 	b _08000A88
 _08000A7E:
-	ldr r0, _08000A8C @ =gUnk_080E0368
+	ldr r0, _08000A8C @ =sSineTable
 	asrs r1, r2, #4
 _08000A82:
 	lsls r1, r1, #1
@@ -129,7 +129,7 @@ _08000A88:
 	pop {r1}
 	bx r1
 	.align 2, 0
-_08000A8C: .4byte gUnk_080E0368
+_08000A8C: .4byte sSineTable
 
 	thumb_func_start sub_08000A90
 sub_08000A90: @ 0x08000A90
