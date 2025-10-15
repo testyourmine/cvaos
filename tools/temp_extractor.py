@@ -1,25 +1,34 @@
-from io import BufferedReader
-from pathlib import Path
+#!/usr/bin/env python3
+import struct
 
-GAME = "cvaos"
-REGION = "us"
+ROM_PATH = "cvaos_us_baserom.gba"
+ROM_OFFSET = 0x004F1020
+ENTRY_COUNT = 13
+ENTRY_SIZE = 4  # includes 2 bytes padding
 
-rom: BufferedReader = open(f"{GAME}_{REGION}_baserom.gba", "rb")
+def read_structs():
+    with open(ROM_PATH, "rb") as f:
+        f.seek(ROM_OFFSET)
+        entries = []
+        for i in range(ENTRY_COUNT):
+            data = f.read(ENTRY_SIZE)
+            if len(data) < ENTRY_SIZE:
+                break
+            # read only first 4 bytes (the actual struct content)
+            unk_0, = struct.unpack("<I", data[:4])
+            entries.append((unk_0, ))
+        return entries
 
-addr: int = 0xE0368
+def main():
+    structs = read_structs()
+    print(f"u8 *sUnk_084F1020[{ENTRY_COUNT}] = {{")
+    for i, (unk_0, ) in enumerate(structs):
+        # print(f"    [{i}] = {{")
+        # print(f"        .unk_0 = {unk_0},")
+        # print(f"        .unk_4 = {unk_4}")
+        # print(f"    }},")
+        print(f"    0x{unk_0:08X},")
+    print("};")
 
-rom.seek(addr)
-
-counter = 0
-while addr < 0xE0368 + 0x800:
-    halfword = int.from_bytes(rom.read(2), byteorder='little')
-    halfword = float(halfword)
-    halfword = halfword / 0x10000
-    print(f"Q_16_16({halfword:.16f}f),", end="")
-    counter += 1
-    if counter == 16:
-        print("")
-        counter = 0
-    else:
-        print(" ", end="")
-    addr += 2
+if __name__ == "__main__":
+    main()

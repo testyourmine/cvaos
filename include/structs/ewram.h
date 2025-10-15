@@ -429,9 +429,7 @@ struct EwramData_unk60 {
     u8 unk_64;
     u8 unk_65;
     u16 unk_66;
-    // u8 unk_68[0x10]; // Length/Type?
     struct EwramData_unk68 unk_68;
-    // u8 pad_78[0x88 - 0x78];
     u8 unk_78[0x10];
     struct EwramData_unk88* unk_88;
     u16 unk_8C_0:7;

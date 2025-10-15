@@ -1,13 +1,5 @@
 [
     {
-        "path": "data_0E0B68.bin",
-        "count": "0x28FC",
-        "addr": {
-            "us": "0xE0B68"
-        },
-        "size": 1
-    },
-    {
         "path": "data_0E3464.bin",
         "count": "0x200",
         "addr": {
@@ -28,22 +20,6 @@
         "count": "0x100",
         "addr": {
             "us": "0xE5264"
-        },
-        "size": 1
-    },
-    {
-        "path": "data_0E5364.bin",
-        "count": "0x40B594",
-        "addr": {
-            "us": "0xE5364"
-        },
-        "size": 1
-    },
-    {
-        "path": "data_4F0B18.bin",
-        "count": "0x15FF34",
-        "addr": {
-            "us": "0x4F0B18"
         },
         "size": 1
     }

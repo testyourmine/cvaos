@@ -30,7 +30,16 @@ SECTIONS {
         asm/rom_header.o(.text);
         asm/crt0.o(.text);
         src/main.o(.text);
-        asm/code/code_080009A0.o(.text);
+        src/code_080009A0.o(.text);
+        src/code_08001004.o(.text);
+        src/code_08001194.o(.text);
+        src/code_08002454.o(.text);
+        src/code_08005894.o(.text);
+        src/code_08008750.o(.text);
+        src/code_080096AC.o(.text);
+        src/code_0800B700.o(.text);
+        src/code_0800CB00.o(.text);
+        src/code_0800F1FC.o(.text);
         asm/code/code_080109F4.o(.text);
         asm/code/code_080211F0.o(.text);
         asm/code/code_08030A24.o(.text);
@@ -102,6 +111,16 @@ SECTIONS {
 
     .rodata : ALIGN(4) {
         src/data/data_0E0334.o(.rodata);
+        src/code_080009A0.o(.rodata);
+        src/code_08001004.o(.rodata);
+        src/code_08001194.o(.rodata);
+        src/code_08002454.o(.rodata);
+        src/code_08005894.o(.rodata);
+        src/code_08008750.o(.rodata);
+        src/code_080096AC.o(.rodata);
+        src/code_0800B700.o(.rodata);
+        src/code_0800CB00.o(.rodata);
+        src/code_0800F1FC.o(.rodata);
         asm/data/data_0E0B68.o(.rodata);
         src/data/data_0E3464.o(.rodata);
         asm/data/data_0E5364.o(.rodata);
@@ -143,8 +162,18 @@ SECTIONS {
         *libc.a:readr.o(.rodata);
     } >rom
 
-    .data : ALIGN(2) {
+    .data : ALIGN(4) {
         src/ewram.o(.data);
+        src/code_080009A0.o(.data);
+        src/code_08001004.o(.data);
+        src/code_08001194.o(.data);
+        src/code_08002454.o(.data);
+        src/code_08005894.o(.data);
+        src/code_08008750.o(.data);
+        src/code_080096AC.o(.data);
+        src/code_0800B700.o(.data);
+        src/code_0800CB00.o(.data);
+        src/code_0800F1FC.o(.data);
         asm/data/data_4F0B18.o(.data);
         *libc.a:memcpy.o(.data);
         *libc.a:memset.o(.data);

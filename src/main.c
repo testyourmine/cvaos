@@ -1,4 +1,10 @@
 #include "main.h"
+#include "code_08009A0.h"
+#include "code_08001004.h"
+#include "code_08001194.h"
+#include "code_08002454.h"
+#include "code_08005894.h"
+#include "code_080096AC.h"
 #include "agb_sram.h"
 #include "gba.h"
 #include "macros.h"
@@ -13,51 +19,36 @@
 
 extern void _intr_main(void);
 
-extern void sub_0803DB6C(void);
-extern void sub_0803DF70(void);
-extern void sub_0803CDDC(void);
-extern void sub_080D7EEC(void);
-extern void sub_080D7E94(void);
-extern void sub_080015E4(void);
-extern void sub_08001194(void);
-extern void sub_0803BF60(void);
-extern void sub_0803E594(void);
-extern void sub_080D7F1C(void);
-extern void m4aSoundVSync(void);
-extern void sub_080D7900(void);
-extern void sub_08000D44(void);
-extern void sub_0803D9A8(void);
-extern void sub_0803E438(void);
-extern void sub_08039DC0(void);
-extern void sub_0803BEEC(void);
-extern void sub_0804059C(void);
-extern void sub_08042754(void);
 extern void sub_080137B8(void);
 extern void sub_0801391C(void);
-extern void InitializeAudio(void);
-extern u32 sub_08001094(void);
-extern void sub_08001004(void); // might be u32?
-
-extern s32 sub_08002990(void);
-extern s32 sub_0800312C(void);
-extern s32 sub_08004A48(void);
-extern s32 sub_0800C5D4(void);
-extern s32 sub_0800BEC0(void);
 extern s32 sub_08013FA0(void);
 extern s32 sub_0801430C(void);
-extern s32 sub_080089D8(void);
-extern s32 sub_08008750(void);
-extern s32 sub_080089D0(void);
-extern s32 sub_0800A3A4(void);
-extern s32 sub_0800B8D0(void);
-extern s32 sub_08002B54(void);
-extern s32 sub_08002C88(void);
-extern s32 sub_08002454(void);
-extern s32 sub_08002588(void);
+
 extern s32 sub_08035930(void);
 extern s32 sub_08036670(void);
 extern s32 sub_0803681C(void);
 extern s32 sub_08038A38(void);
+extern void sub_08039DC0(void);
+extern void sub_0803BEEC(void);
+extern void sub_0803BF60(void);
+extern void sub_0803CDDC(void);
+extern void sub_0803D9A8(void);
+extern void sub_0803DB6C(void);
+extern void sub_0803DF70(void);
+extern void sub_0803E438(void);
+extern void sub_0803E594(void);
+extern void sub_0804059C(void);
+
+extern void sub_08042754(void);
+
+extern void InitializeAudio(void);
+extern void sub_080D7900(void);
+extern void sub_080D7E94(void);
+extern void sub_080D7EEC(void);
+extern void sub_080D7F1C(void);
+
+extern void m4aSoundVSync(void);
+
 
 /**
  * @brief 1F4 | Main function
