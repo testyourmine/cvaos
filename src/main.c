@@ -5,6 +5,12 @@
 #include "code_08002454.h"
 #include "code_08005894.h"
 #include "code_080096AC.h"
+#include "code_0800F1FC.h"
+#include "code/code_080109F4.h"
+#include "code/code_080211F0.h"
+#include "code/code_08030A24.h"
+#include "code/code_08040A38.h"
+#include "code/code_080D0998.h"
 #include "agb_sram.h"
 #include "gba.h"
 #include "macros.h"
@@ -18,34 +24,6 @@
 #include "structs/ewram.h"
 
 extern void _intr_main(void);
-
-extern void sub_080137B8(void);
-extern void sub_0801391C(void);
-extern s32 sub_08013FA0(void);
-extern s32 sub_0801430C(void);
-
-extern s32 sub_08035930(void);
-extern s32 sub_08036670(void);
-extern s32 sub_0803681C(void);
-extern s32 sub_08038A38(void);
-extern void sub_08039DC0(void);
-extern void sub_0803BEEC(void);
-extern void sub_0803BF60(void);
-extern void sub_0803CDDC(void);
-extern void sub_0803D9A8(void);
-extern void sub_0803DB6C(void);
-extern void sub_0803DF70(void);
-extern void sub_0803E438(void);
-extern void sub_0803E594(void);
-extern void sub_0804059C(void);
-
-extern void sub_08042754(void);
-
-extern void InitializeAudio(void);
-extern void sub_080D7900(void);
-extern void sub_080D7E94(void);
-extern void sub_080D7EEC(void);
-extern void sub_080D7F1C(void);
 
 extern void m4aSoundVSync(void);
 
