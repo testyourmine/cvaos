@@ -2,11 +2,11 @@
 import struct
 
 ROM_PATH = "cvaos_us_baserom.gba"
-ROM_OFFSET = 0x004F1020
-ENTRY_COUNT = 13
-ENTRY_SIZE = 4  # includes 2 bytes padding
+ROM_OFFSET = 0x004F0ED8  # start address of the function pointer array
+ENTRY_COUNT = 0x38       # 56 entries
+ENTRY_SIZE = 4           # each entry is a 32-bit function pointer
 
-def read_structs():
+def read_entries():
     with open(ROM_PATH, "rb") as f:
         f.seek(ROM_OFFSET)
         entries = []
@@ -14,20 +14,18 @@ def read_structs():
             data = f.read(ENTRY_SIZE)
             if len(data) < ENTRY_SIZE:
                 break
-            # read only first 4 bytes (the actual struct content)
-            unk_0, = struct.unpack("<I", data[:4])
-            entries.append((unk_0, ))
+            (addr,) = struct.unpack("<I", data)
+            entries.append(addr)
         return entries
 
 def main():
-    structs = read_structs()
-    print(f"u8 *sUnk_084F1020[{ENTRY_COUNT}] = {{")
-    for i, (unk_0, ) in enumerate(structs):
-        # print(f"    [{i}] = {{")
-        # print(f"        .unk_0 = {unk_0},")
-        # print(f"        .unk_4 = {unk_4}")
-        # print(f"    }},")
-        print(f"    0x{unk_0:08X},")
+    entries = read_entries()
+    print(f"void (*sUnk_084F0ED8[{ENTRY_COUNT}])(struct EwramData_unk4E4 *) = {{")
+    for i, addr in enumerate(entries):
+        # You can uncomment the cast version if you prefer:
+        # print(f"    [{i}] = (void (*)(struct EwramData_unk4E4 *))0x{addr:08X},")
+        print(f"    [{i}] = sub_{(addr - 1):08X},")
+        # print(f"extern void sub_{(addr - 1):08X}(struct EwramData_unk4E4 *param_0);")
     print("};")
 
 if __name__ == "__main__":
