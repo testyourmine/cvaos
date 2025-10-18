@@ -32,6 +32,8 @@ extern void sub_0803B980(s32 param_0);
 extern void sub_0803B9D0(struct EwramData_unk4E4* param_0);
 extern void sub_0803BEEC(void);
 extern void sub_0803BF60(void);
+extern void sub_0803C294(void);
+extern void sub_0803C3E0(void);
 extern void sub_0803C674(void);
 extern void sub_0803C7B4(u8 *param_0, u16 param_1, u16 param_2, u16 param_3);
 extern void sub_0803C8B0(u8* param_0);
