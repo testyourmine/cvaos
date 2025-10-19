@@ -2164,7 +2164,7 @@ void sub_0800EBE0(void)
     }
 
     gEwramData->unk_7864.unk_7864_1 = 1;
-    DMA_FILL_32(3, 0, &gEwramData->unk_786C, 0x280 * 4);
+    DMA_FILL_32(3, 0, &gEwramData->unk_786C, 0xA00);
 }
 
 /**

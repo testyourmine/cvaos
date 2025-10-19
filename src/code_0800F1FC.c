@@ -1231,7 +1231,7 @@ s32 sub_0800FFCC(struct EwramData_unk60 *param_0)
 void sub_08010144(struct EwramData_unk60 *param_0)
 {
     DMA_FILL_32(3, 0, 0x0600E280, 0x80);
-    DMA_FILL_32(3, 0, gEwramData->unk_786C[0], 0xA00);
+    DMA_FILL_32(3, 0, &gEwramData->unk_786C, 0xA00);
 
     gUnk_03002CB0.unk_0 &= 0xDFFF;
     if (param_0->unk_4CC_2)
@@ -1286,26 +1286,26 @@ void sub_08010244(struct EwramData_unk60 *param_0)
     gEwramData->unk_A074_0 = 1;
     sub_08010244_inline_1();
 
-    if (gEwramData->unk_13110[0].unk_13150.unk_0_0.unk[3] >= 0x31 && gEwramData->unk_13110[0].unk_13150.unk_0_0.unk[3] <= 0xCF)
+    if (gEwramData->unk_13110->unk_13150.unk_0_0.unk[3] >= 0x31 && gEwramData->unk_13110->unk_13150.unk_0_0.unk[3] <= 0xCF)
     {
-        if (gEwramData->unk_13110[0].unk_13150.unk_0_0.unk[1] < 0x78)
+        if (gEwramData->unk_13110->unk_13150.unk_0_0.unk[1] < 0x78)
         {
-            if (gEwramData->unk_13110[1].unk_13110 > 0)
+            if (gEwramData->unk_13110->unk_13158 > 0)
             {
-                gEwramData->unk_13110[1].unk_13110 = 0;
-                gEwramData->unk_13110[1].unk_13118 = 0;
+                gEwramData->unk_13110->unk_13158 = 0;
+                gEwramData->unk_13110->unk_13160 = 0;
             }
         }
 
-        else if (gEwramData->unk_13110[1].unk_13110 < 0)
+        else if (gEwramData->unk_13110->unk_13158 < 0)
         {
-            gEwramData->unk_13110[1].unk_13110 = 0;
-            gEwramData->unk_13110[1].unk_13118 = 0;
+            gEwramData->unk_13110->unk_13158 = 0;
+            gEwramData->unk_13110->unk_13160 = 0;
         }
 
-        if (gEwramData->unk_13110[1].unk_13114 < -0x50000)
+        if (gEwramData->unk_13110->unk_1315C < -0x50000)
         {
-            gEwramData->unk_13110[1].unk_13114 = -0x10000;
+            gEwramData->unk_13110->unk_1315C = -0x10000;
         }
     }
 }
@@ -1540,7 +1540,7 @@ s32 sub_080106DC(struct EwramData_unk60 *param_0)
             sub_0806C354();
             sub_080124A8();
             gEwramData->unk_7864.unk_7864_1 = 1;
-            gEwramData->unk_13110[1].unk_13120_5 = 0;
+            gEwramData->unk_13110->unk_13164_5 = 0;
             param_0->unk_65 += 1;
         }
     }
@@ -1686,8 +1686,9 @@ void sub_08010978(struct EwramData_unk60 *param_0)
 /**
  * @brief 109B8 | To document
  * 
+ * @param param_0 (Unused) To document
  */
-void sub_080109B8(void)
+void sub_080109B8(struct EwramData_unk60 *param_0)
 {
     // TODO: Inline for sub_080104EC and sub_080106DC?
     s32 var_r4;

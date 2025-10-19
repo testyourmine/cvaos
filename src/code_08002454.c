@@ -29,35 +29,6 @@
 
 // Note: sub_0800125C is implicitly called
 
-const u8 sUnk_080E0B68[] = "Staff Roll";
-const u8 sUnk_080E0B74[] = "4531";
-const u8 sUnk_080E0B7C[] = "2739";
-const u8 sUnk_080E0B84[] = "2229";
-const u8 sUnk_080E0B8C[] = "1967";
-const u8 sUnk_080E0B94[] = "Trade";
-const u8 sUnk_080E0B9C[] = "Start";
-const u8 sUnk_080E0BA4[] = "Exit";
-
-const u8 sUnk_080E0BAC[] = "  VS Collector";
-const u8 sUnk_080E0BBC[] = "  VS Balor";
-const u8 sUnk_080E0BC8[] = "  VS Legion";
-const u8 sUnk_080E0BD4[] = " Boss Rush 2P";
-const u8 sUnk_080E0BE4[] = " Boss Rush 1P";
-const u8 sUnk_080E0BF4[] = " Chaos Boss";
-const u8 sUnk_080E0C00[] = " Chaos Start";
-const u8 sUnk_080E0C10[] = "9.Saijo-kai";
-const u8 sUnk_080E0C1C[] = "8.Arena";
-const u8 sUnk_080E0C24[] = "7.Water Vein";
-const u8 sUnk_080E0C34[] = "6.Clock Tower";
-const u8 sUnk_080E0C44[] = "5.Babylon";
-const u8 sUnk_080E0C50[] = "4.Harem";
-const u8 sUnk_080E0C58[] = "3.Dance Hall";
-const u8 sUnk_080E0C68[] = "2.Library";
-const u8 sUnk_080E0C74[] = "1.Adoration Hall";
-const u8 sUnk_080E0C88[] = "0.Entrance";
-
-const u8 sUnk_080E0C94[] = "Please select.\n";
-
 struct Unk_084F0B28 {
     const u8 *unk_0;
     u32 unk_4;
@@ -65,35 +36,35 @@ struct Unk_084F0B28 {
 
 struct Unk_084F0B28 sUnk_084F0B28[] = {
     [0] = {
-        .unk_0 = sUnk_080E0BA4,
+        .unk_0 = "Exit",
         .unk_4 = GAME_MODE_DEBUG_EXIT
     },
     [1] = {
-        .unk_0 = sUnk_080E0B9C,
+        .unk_0 = "Start",
         .unk_4 = GAME_MODE_RESET
     },
     [2] = {
-        .unk_0 = sUnk_080E0B94,
+        .unk_0 = "Trade",
         .unk_4 = GAME_MODE_SOUL_TRADE_MENU
     },
     [3] = {
-        .unk_0 = sUnk_080E0B8C,
+        .unk_0 = "1967",
         .unk_4 = GAME_MODE_DEBUG_1967
     },
     [4] = {
-        .unk_0 = sUnk_080E0B84,
+        .unk_0 = "2229",
         .unk_4 = GAME_MODE_DEBUG_2229
     },
     [5] = {
-        .unk_0 = sUnk_080E0B7C,
+        .unk_0 = "2739",
         .unk_4 = GAME_MODE_DEBUG_2739
     },
     [6] = {
-        .unk_0 = sUnk_080E0B74,
+        .unk_0 = "4531",
         .unk_4 = GAME_MODE_DEBUG_4531
     },
     [7] = {
-        .unk_0 = sUnk_080E0B68,
+        .unk_0 = "Staff Roll",
         .unk_4 = GAME_MODE_CREDITS
     },
     [8] = {
@@ -101,6 +72,124 @@ struct Unk_084F0B28 sUnk_084F0B28[] = {
         .unk_4 = 0
     },
 };
+
+struct Unk_084F0B70 {
+    s32 unk_0;
+    s32 unk_4;
+    u32* unk_8; // Type?
+    const u8* unk_C;
+};
+
+struct Unk_084F0B70 sUnk_084F0B70[0x11] = {
+    [0] = {
+        .unk_0 = GAME_MODE_IN_GAME,
+        .unk_4 = 0,
+        .unk_8 = (u32*)0x850F15C,
+        .unk_C = "0.Entrance"
+    },
+    [1] = {
+        .unk_0 = GAME_MODE_IN_GAME,
+        .unk_4 = 0,
+        .unk_8 = (u32*)0x85122FC,
+        .unk_C = "1.Adoration Hall"
+    },
+    [2] = {
+        .unk_0 = GAME_MODE_IN_GAME,
+        .unk_4 = 0,
+        .unk_8 = (u32*)0x85132D4,
+        .unk_C = "2.Library"
+    },
+    [3] = {
+        .unk_0 = GAME_MODE_IN_GAME,
+        .unk_4 = 0,
+        .unk_8 = (u32*)0x8514AB0,
+        .unk_C = "3.Dance Hall"
+    },
+    [4] = {
+        .unk_0 = GAME_MODE_IN_GAME,
+        .unk_4 = 0,
+        .unk_8 = (u32*)0x8516768,
+        .unk_C = "4.Harem"
+    },
+    [5] = {
+        .unk_0 = GAME_MODE_IN_GAME,
+        .unk_4 = 0,
+        .unk_8 = (u32*)0x8517790,
+        .unk_C = "5.Babylon"
+    },
+    [6] = {
+        .unk_0 = GAME_MODE_IN_GAME,
+        .unk_4 = 0,
+        .unk_8 = (u32*)0x85196E0,
+        .unk_C = "6.Clock Tower"
+    },
+    [7] = {
+        .unk_0 = GAME_MODE_IN_GAME,
+        .unk_4 = 0,
+        .unk_8 = (u32*)0x851ADD4,
+        .unk_C = "7.Water Vein"
+    },
+    [8] = {
+        .unk_0 = GAME_MODE_IN_GAME,
+        .unk_4 = 0,
+        .unk_8 = (u32*)0x851E7F8,
+        .unk_C = "8.Arena"
+    },
+    [9] = {
+        .unk_0 = GAME_MODE_IN_GAME,
+        .unk_4 = 0,
+        .unk_8 = (u32*)0x85209B8,
+        .unk_C = "9.Saijo-kai"
+    },
+    [10] = {
+        .unk_0 = GAME_MODE_IN_GAME,
+        .unk_4 = 0,
+        .unk_8 = (u32*)0x8523064,
+        .unk_C = " Chaos Start"
+    },
+    [11] = {
+        .unk_0 = GAME_MODE_IN_GAME,
+        .unk_4 = 0,
+        .unk_8 = (u32*)0x8522ABC,
+        .unk_C = " Chaos Boss"
+    },
+    [12] = {
+        .unk_0 = GAME_MODE_IN_GAME,
+        .unk_4 = 0,
+        .unk_8 = (u32*)0x8524E5C,
+        .unk_C = " Boss Rush 1P"
+    },
+    [13] = {
+        .unk_0 = GAME_MODE_BOSS_RUSH_MENU,
+        .unk_4 = 0,
+        .unk_8 = (u32*)0x8524020,
+        .unk_C = " Boss Rush 2P"
+    },
+    [14] = {
+        .unk_0 = GAME_MODE_IN_GAME,
+        .unk_4 = 0,
+        .unk_8 = (u32*)0x851BF1C,
+        .unk_C = "  VS Legion"
+    },
+    [15] = {
+        .unk_0 = GAME_MODE_IN_GAME,
+        .unk_4 = 0,
+        .unk_8 = (u32*)0x851E490,
+        .unk_C = "  VS Balor"
+    },
+    [16] = {
+        .unk_0 = GAME_MODE_IN_GAME,
+        .unk_4 = 0,
+        .unk_8 = (u32*)0x8515EF0,
+        .unk_C = "  VS Collector"
+    },
+};
+
+s32 sUnk_084F0C80 = ARRAY_SIZE(sUnk_084F0B70);
+
+const u8 sUnk_080E0C94[] = "Please select.\n";
+const u8 sUnk_080E0CA4[] = " ";
+const u8 sUnk_080E0CA8[0x4] = ">";
 
 /**
  * @brief 2454 | Handle debug game mode
@@ -170,123 +259,6 @@ s32 sub_08002454(void)
     }
     return var_r7;
 }
-
-const u8 sUnk_080E0CA4[] = " ";
-const u8 sUnk_080E0CA8[0x4] = ">";
-
-struct Unk_084F0B70 {
-    s32 unk_0;
-    s32 unk_4;
-    u32* unk_8; // Type?
-    const u8* unk_C;
-};
-
-struct Unk_084F0B70 sUnk_084F0B70[0x11] = {
-    [0] = {
-        .unk_0 = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
-        .unk_8 = (u32*)0x850F15C,
-        .unk_C = sUnk_080E0C88
-    },
-    [1] = {
-        .unk_0 = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
-        .unk_8 = (u32*)0x85122FC,
-        .unk_C = sUnk_080E0C74
-    },
-    [2] = {
-        .unk_0 = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
-        .unk_8 = (u32*)0x85132D4,
-        .unk_C = sUnk_080E0C68
-    },
-    [3] = {
-        .unk_0 = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
-        .unk_8 = (u32*)0x8514AB0,
-        .unk_C = sUnk_080E0C58
-    },
-    [4] = {
-        .unk_0 = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
-        .unk_8 = (u32*)0x8516768,
-        .unk_C = sUnk_080E0C50
-    },
-    [5] = {
-        .unk_0 = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
-        .unk_8 = (u32*)0x8517790,
-        .unk_C = sUnk_080E0C44
-    },
-    [6] = {
-        .unk_0 = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
-        .unk_8 = (u32*)0x85196E0,
-        .unk_C = sUnk_080E0C34
-    },
-    [7] = {
-        .unk_0 = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
-        .unk_8 = (u32*)0x851ADD4,
-        .unk_C = sUnk_080E0C24
-    },
-    [8] = {
-        .unk_0 = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
-        .unk_8 = (u32*)0x851E7F8,
-        .unk_C = sUnk_080E0C1C
-    },
-    [9] = {
-        .unk_0 = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
-        .unk_8 = (u32*)0x85209B8,
-        .unk_C = sUnk_080E0C10
-    },
-    [10] = {
-        .unk_0 = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
-        .unk_8 = (u32*)0x8523064,
-        .unk_C = sUnk_080E0C00
-    },
-    [11] = {
-        .unk_0 = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
-        .unk_8 = (u32*)0x8522ABC,
-        .unk_C = sUnk_080E0BF4
-    },
-    [12] = {
-        .unk_0 = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
-        .unk_8 = (u32*)0x8524E5C,
-        .unk_C = sUnk_080E0BE4
-    },
-    [13] = {
-        .unk_0 = GAME_MODE_BOSS_RUSH_MENU,
-        .unk_4 = 0,
-        .unk_8 = (u32*)0x8524020,
-        .unk_C = sUnk_080E0BD4
-    },
-    [14] = {
-        .unk_0 = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
-        .unk_8 = (u32*)0x851BF1C,
-        .unk_C = sUnk_080E0BC8
-    },
-    [15] = {
-        .unk_0 = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
-        .unk_8 = (u32*)0x851E490,
-        .unk_C = sUnk_080E0BBC
-    },
-    [16] = {
-        .unk_0 = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
-        .unk_8 = (u32*)0x8515EF0,
-        .unk_C = sUnk_080E0BAC
-    },
-};
-
-s32 sUnk_084F0C80 = ARRAY_SIZE(sUnk_084F0B70);
 
 extern u32* sub_08001980(s32 param_0, s32 param_1);
 
@@ -416,7 +388,7 @@ s32 sub_08002588(void)
             var_r7 = sUnk_084F0B70[gEwramData->unk_12].unk_0;
             gEwramData->unk_60.unk_4CC_6 = 0;
             gEwramData->unk_60.unk_4CC_0 = 0;
-            gEwramData->unk_60.unk_378 = -1;
+            gEwramData->unk_60.unk_378[0] = -1;
 
             if (sUnk_084F0B70[gEwramData->unk_12].unk_8 != (u32*)0x0850F15C)
             {

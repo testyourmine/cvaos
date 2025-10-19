@@ -4,6 +4,7 @@
 #include "code_0800CB00.h"
 #include "code_0800F1FC.h"
 #include "code/code_08030A24.h"
+#include "code/code_08040A38.h"
 #include "gba.h"
 #include "macros.h"
 #include "agb_sram.h"
@@ -306,7 +307,7 @@ void sub_08010C4C(struct EwramData_unk60 *param_0, s32 param_1, s32 param_2, s32
 
 extern u16 sUnk_08116650[];
 
-extern u8 sUnk_084F1054[];
+extern u8 sUnk_084F1054[][2];
 
 static inline struct EwramData_unk13110* Get_unk_13110()
 {
@@ -315,57 +316,36 @@ static inline struct EwramData_unk13110* Get_unk_13110()
 
 static inline s32 sub_08010D60_inline_0(struct EwramData_unk60 *param_0, s32 var_r5, s32 var_r7)
 {
-    u8 *var_r1_2;
     s32 var_r3;
-    u8 *var_r2;
 
-    if (*sUnk_084F1054 != 0)
+    for (var_r3 = 0; sUnk_084F1054[var_r3][0] != 0; var_r3 += 1)
     {
-        var_r3 = 0;
-        var_r2 = sUnk_084F1054 + 1;
-        var_r1_2 = sUnk_084F1054;
-        while (TRUE)
-        {
-            if ((var_r5 == *var_r1_2) && (var_r7 == *var_r2))
-                return FALSE;
-    
-            var_r3 += 2;
-            var_r2 += 2;
-            var_r1_2 += 2;
-            if (*(sUnk_084F1054 + var_r3) == 0)
-                break;
-        }
+        if ((var_r5 == sUnk_084F1054[var_r3][0]) && (var_r7 == sUnk_084F1054[var_r3][1]))
+            return FALSE;
     }
     return TRUE;
 }
 
-// nonmatch: https://decomp.me/scratch/4KfEu
+/**
+ * @brief 10D60 | To document
+ * 
+ * @param param_0 To document
+ */
 void sub_08010D60(struct EwramData_unk60 *param_0)
 {
-    s16 *var_r1;
-    s32 temp_r4;
+    u16 *var_r1;
     s32 var_r0;
     s32 var_r1_5;
-    s32 var_r3;
-    s32 var_r3_2;
-    s32 var_r3_3;
     s32 var_r3_4;
     s32 var_r5;
     s32 var_r7;
     s32 temp_r4_2;
     s32 temp_r4_4;
-    u32 temp_r4_3;
-    u8 *var_r1_2;
-    u8 *var_r1_3;
-    u8 *var_r1_4;
-    u8 *var_r2;
-    u8 *var_r2_2;
-    u8 *var_r2_3;
 
-    var_r1 = (s16 *)0x0600E000;
+    var_r1 = (u16 *)0x0600E000;
     var_r0 = 0;
 
-    for (var_r7 = 0; var_r7 < 0x14; var_r7++)
+    for (var_r7 = 0; var_r7 < 20; var_r7++)
     {
         for (var_r5 = 0; var_r5 < 0x20; var_r5++)
         {
@@ -397,14 +377,14 @@ void sub_08010D60(struct EwramData_unk60 *param_0)
                 continue;
             }
 
-            temp_r4_3 = (temp_r4_2 >> 6) & 0xF;
-            if ((param_0->unk_B8[((var_r7 * 8) + ((var_r5 >> 5) * 0x140)) >> 2] & (1 << (var_r5 & 0x1F))))
+            temp_r4_2 = (temp_r4_2 >> 6) & 0xF;
+            if (param_0->unk_B8[((var_r7 * 8) + ((var_r5 >> 5) * 0x140)) >> 2] & (1 << (var_r5 & 0x1F)))
             {
                 sub_08010C4C(param_0, var_r5, var_r7, 4);
             }
             else
             {
-                if ((gEwramData->unk_132B1 != 0) && (temp_r4_3 < 2))
+                if ((gEwramData->unk_132B1 != 0) && (temp_r4_2 == 0 || temp_r4_2 == 1))
                 {
                     if (sub_08010D60_inline_0(param_0, var_r5, var_r7))
                     {
@@ -413,7 +393,7 @@ void sub_08010D60(struct EwramData_unk60 *param_0)
                     }
                 }
 
-                if ((gEwramData->unk_132B2 != 0) && (temp_r4_3 == 3))
+                if ((gEwramData->unk_132B2 != 0) && (temp_r4_2 == 3))
                 {
                     if (sub_08010D60_inline_0(param_0, var_r5, var_r7))
                     {
@@ -422,7 +402,7 @@ void sub_08010D60(struct EwramData_unk60 *param_0)
                     }
                 }
 
-                if ((gEwramData->unk_132B3 != 0) && (temp_r4_3 == 5))
+                if ((gEwramData->unk_132B3 != 0) && (temp_r4_2 == 5))
                 {
                     if (sub_08010D60_inline_0(param_0, var_r5, var_r7))
                     {
@@ -435,7 +415,7 @@ void sub_08010D60(struct EwramData_unk60 *param_0)
     }
 
     
-    for (var_r7 = 0; var_r7 < 0x23; var_r7++)
+    for (var_r7 = 0; var_r7 < 35; var_r7++)
     {
         for (var_r5 = 0; var_r5 < 0x40; var_r5++)
         {
@@ -443,7 +423,7 @@ void sub_08010D60(struct EwramData_unk60 *param_0)
             if (temp_r4_4 == 0xFFFF)
                 continue;
 
-            if ((param_0->unk_B4[((var_r7 * 8) + ((var_r5 >> 5) * 0x140)) >> 2] & (1 << (var_r5 & 0x1F))))
+            if (param_0->unk_B4[((var_r7 * 8) + ((var_r5 >> 5) * 0x140)) >> 2] & (1 << (var_r5 & 0x1F)))
             {
                 if (temp_r4_4 & 0x4000)
                 {
@@ -619,3 +599,468 @@ s32 sub_080110E4(struct EwramData_unk60 *param_0)
     gEwramData->unk_7864.unk_7864_1 = 1;
     return var_r7;
 }
+
+/**
+ * @brief 11338 | To document
+ * 
+ * @param param_0 To document
+ */
+void sub_08011338(struct EwramData_unk60 *param_0)
+{
+    sub_0800D154();
+    gUnk_03002C60.bldCnt = 0xFF;
+    gUnk_03002CB0.unk_0 &= ~0x2000;
+    gUnk_03002C60.bldY = 0x10;
+    gEwramData->unk_A074_1 = 0;
+    gEwramData->unk_A074_0 = 1;
+    param_0->unk_64 = 4;
+    param_0->unk_65 = 0;
+    gUnk_03002C60.bldY = 0x10;
+    DMA_COPY_32(3, &gEwramData->unk_7864, &gEwramData->pad_8C6C, 0x1408);
+    gUnk_03002C60.bgOfs[0].hOfs = 0;
+    gUnk_03002C60.bgOfs[0].vOfs = 0;
+    gEwramData->unk_7864.unk_7864_1 = 1;
+    DMA_FILL_32(3, 0, &gEwramData->unk_786C, 0xA00);
+    sub_08013BCC();
+    DMA_COPY_32(3, sUnk_080E3664, 0x06006000, sizeof(sUnk_080E3664));
+}
+
+/**
+ * @brief 11430 | To document
+ * 
+ * @param param_0 To document
+ */
+void sub_08011430(struct EwramData_unk60 *param_0)
+{
+    struct EwramData_unk13110 *temp_r4;
+    s32 temp_r7;
+    s32 temp_r8;
+    s32 temp_r0;
+    s32 temp_r1;
+    s32 temp_r2;
+
+    temp_r4 = gEwramData->unk_13110;
+    if (temp_r4->unk_13150.unk_0_0.unk[1] < 0xF0)
+    {
+        temp_r7 = sub_08002188(temp_r4);
+        temp_r8 = sub_080021A8(temp_r4);
+        if ((sub_08001894(sub_08002188(gEwramData->unk_13110), sub_080021A8(gEwramData->unk_13110)) != 11))
+        {
+            temp_r0 = gEwramData->unk_60.unk_4CC_0 != 0;
+            if (!temp_r0)
+            {
+                temp_r1 = param_0->unk_8C_0 + (temp_r7 >> 8);
+                temp_r2 = (((param_0->unk_8C_7 + (temp_r8 >> 8)) * 8) + ((temp_r1 >> 5) * 0x140)) >> 2;
+                param_0->unk_B4[temp_r2] |= 1 << (temp_r1 & 0x1F);
+                param_0->unk_B8[temp_r2] |= 1 << (temp_r1 & 0x1F);
+            }
+        }
+    }
+}
+
+/**
+ * @brief 114FC | To document
+ * 
+ */
+void sub_080114FC(void)
+{
+    u16 temp_r4;
+
+    temp_r4 = gEwramData->unk_14.repeatedInput;
+
+    if (gEwramData->unk_60.unk_378[0] == 0)
+    {
+        gEwramData->unk_60.unk_3F4 = gEwramData->unk_60.unk_378[0];
+        return;
+    }
+
+    if (temp_r4 & (KEY_UP | KEY_LEFT))
+    {
+        sub_080D7910(0xF1);
+        do
+        {
+            if (--gEwramData->unk_60.unk_3F4 < 0)
+            {
+                gEwramData->unk_60.unk_3F4 = 7;
+            }
+        }
+        while (!(gEwramData->unk_60.unk_378[gEwramData->unk_60.unk_3F4 >> 5] & (1 << (gEwramData->unk_60.unk_3F4 & 0x1F))));
+    }
+
+    if (temp_r4 & (KEY_DOWN | KEY_RIGHT))
+    {
+        sub_080D7910(0xF1);
+        do
+        {
+            if (++gEwramData->unk_60.unk_3F4 > 7)
+            {
+                gEwramData->unk_60.unk_3F4 = 0;
+            }
+        }
+        while (!(gEwramData->unk_60.unk_378[gEwramData->unk_60.unk_3F4 >> 5] & (1 << (gEwramData->unk_60.unk_3F4 & 0x1F))));
+    }
+}
+
+/**
+ * @brief 115D4 | To document
+ * 
+ * @param param_0 To document
+ */
+void sub_080115D4(struct EwramData_unk60 *param_0)
+{
+    sub_0800D154();
+    gUnk_03002C60.bldCnt = 0xFF;
+    gEwramData->unk_A074_1 = 0;
+    gEwramData->unk_A074_0 = 1;
+    param_0->unk_64 = 7;
+    param_0->unk_65 = 0;
+    gUnk_03002C60.bldY = 0x10;
+    DMA_COPY_32(3, &gEwramData->unk_7864, &gEwramData->pad_8C6C, 0x1408);
+    gUnk_03002C60.bgOfs[0].hOfs = 0;
+    gUnk_03002C60.bgOfs[0].vOfs = 0;
+    gEwramData->unk_7864.unk_7864_1 = 1;
+    DMA_FILL_32(3, 0, &gEwramData->unk_786C, 0xA00);
+    sub_08013BCC();
+    DMA_COPY_32(3, sUnk_080E3664, 0x06006000, sizeof(sUnk_080E3664));
+}
+
+/**
+ * @brief 116A8 | To document
+ * 
+ * @param param_0 To document
+ * @return s32 To document
+ */
+s32 sub_080116A8(struct EwramData_unk60 *param_0)
+{
+    s32 sp4;
+    u16 temp_r0_4;
+    u16 temp_r1_4;
+    s32 temp_r4_4;
+    u16 temp_r8;
+    struct EwramData_unk88 *temp_r4;
+    struct Unk_08525FBC *temp_r7;
+    union EwramData_unkA078 *temp_r0_6;
+    s32 var_0;
+
+    temp_r4 = param_0->unk_88;
+    temp_r8 = gEwramData->unk_14.newInput;
+    sp4 = 0;
+
+    switch (param_0->unk_65)
+    {
+        case 0:
+            sub_08000B64();
+            gEwramData->unk_A074_2 = gEwramData->unk_A074_4 = 3;
+            if (gUnk_03002C60.bldY == 0x10)
+            {
+                temp_r8 = gEwramData->unk_60.unk_8C_0 + (sub_08002188(gEwramData->unk_13110) >> 8);
+                temp_r1_4 = gEwramData->unk_60.unk_8C_7 + (sub_080021A8(gEwramData->unk_13110) >> 8);
+                sub_0803C8B0((u8 *)0x081183CC);
+                sub_08010D60(param_0);
+                param_0->unk_65 += 1;
+                gEwramData->unk_60.unk_3F4 = sub_0804F85C(temp_r8, temp_r1_4);
+                if (gEwramData->unk_60.unk_3F4 <= -1)
+                {
+                    gEwramData->unk_60.unk_3F4 = 0;
+                }
+                if (!(gEwramData->unk_60.unk_378[0] & 1))
+                {
+                    gEwramData->unk_60.unk_378[0] |= 1;
+                    gEwramData->unk_60.unk_3F4 = 0;
+                }
+                gUnk_03002C60.bgOfs[0].hOfs = 0;
+                gUnk_03002C60.bgOfs[0].vOfs = 0;
+                sub_0803C294();
+            }
+            break;
+
+        case 1:
+            gUnk_03002CB0.unk_0 = 0x4100;
+            gUnk_03002C60.bldY -= 4;
+            if (gUnk_03002C60.bldY == 0)
+            {
+                gUnk_03002C60.bldCnt = 0xBF;
+                gUnk_03002C60.winIn_H = 0x3F;
+                gUnk_03002C60.winOut_L = 0x1F;
+                gUnk_03002C60.win1H = 0xF0F1;
+                gUnk_03002C60.win1V = 0xA0A1;
+                sub_08002400();
+                param_0->unk_65 += 1;
+            }
+            break;
+
+        case 2:
+            sub_080114FC();
+            temp_r7 = sub_0804F84C(gEwramData->unk_60.unk_3F4);
+            temp_r0_4 = ((temp_r7->unk_0 + 4) * 4) + 2;
+            temp_r1_4 = ((temp_r7->unk_2 + 2) * 4) + 2;
+            temp_r4_4 = gEwramData->unk_0 >> 2;
+            var_0 = 8 - (temp_r4_4 & 3);
+            gUnk_03002C60.bldY = (temp_r4_4 & 7) + 8;
+            sub_08002324(temp_r0_4, temp_r1_4, var_0);
+            if (temp_r8 & 6)
+            {
+                sub_080D7910(0xF0);
+                gUnk_03002C60.bldCnt = 0xFF;
+                gUnk_03002C60.winIn_H = 0;
+                gUnk_03002C60.bldY = 0;
+                sub_08002428();
+                param_0->unk_65 += 1;
+                gEwramData->unk_60.unk_3F4 = -1;
+            }
+            else if (temp_r8 & 1)
+            {
+                sub_080D7910(0xF4);
+                sub_08011F44(temp_r7->var_4, 0, 0, 0x78, 0x80);
+                gUnk_03002C60.bldCnt = 0xFF;
+                gUnk_03002C60.winIn_H = 0;
+                gUnk_03002C60.bldY = 0;
+                sub_08002428();
+                param_0->unk_65 += 1;
+            }
+            break;
+
+        case 3:
+            gUnk_03002C60.bldY += 4;
+            if (gUnk_03002C60.bldY == 0x10)
+            {
+                param_0->unk_65 += 1;
+            }
+            break;
+
+        case 4:
+            sub_0803C3E0();
+            sub_0800DA50();
+            temp_r0_6 = &gEwramData->unk_A078[1];
+            sub_0803F8A8(1, (u32 *) temp_r0_6->unk_A094.unk_A094.unk_A094_0, (u16) temp_r0_6->unk_A094.unk_A098.unk_0_0.unk[1], temp_r0_6->unk_A078.unk_A082);
+            gUnk_03002CB0.unk_0 = 0;
+            sub_080108DC(temp_r4);
+            sub_080108FC(temp_r4);
+            param_0->unk_65 += 1;
+            break;
+
+        case 5:
+            sub_0800D1F0();
+            DMA_COPY_32(3, &gEwramData->pad_8C6C, &gEwramData->unk_7864, 0x1408);
+            sub_08000B64();
+            gUnk_03002C60.bldY = 0;
+            gUnk_03002C60.bldCnt |= 0x3F00;
+            gEwramData->unk_A074_1 = 1;
+            gEwramData->unk_A074_0 = 0;
+            sub_08013B44();
+            gEwramData->unk_A074_2 = gEwramData->unk_A074_4 = 0;
+            sp4 = 1;
+            break;
+
+        case 6:
+            if (gUnk_03002C60.bldY < 0x10)
+            {
+                gUnk_03002C60.bldY += 4;
+            }
+            else
+            {
+                sub_08010D60(param_0);
+                param_0->unk_65 = 1;
+            }
+            break;
+    }
+
+    gEwramData->unk_7864.unk_7864_1 = 1;
+    return sp4;
+}
+
+/**
+ * @brief 11A44 | To document
+ * 
+ * @param param_0 To document
+ * @return s32 To document
+ */
+s32 sub_08011A44(struct EwramData_unk13110 *param_0)
+{
+    union EwramData_unkA078 *temp_r2;
+    struct EwramData_unkA094_0 *temp_r6;
+    u32 temp_r1;
+    u32 var_0;
+    u32 var_r0;
+    u32 var_r2;
+
+    temp_r2 = &gEwramData->unk_A078[1];
+    temp_r6 = temp_r2->unk_A094.unk_A094.unk_A094_0;
+    temp_r1 = param_0->unk_13150.unk_0_0.unk[1] + temp_r2->unk_A094.unk_A098.unk_0_0.unk[1];
+    var_0 = param_0->unk_13150.unk_0_0.unk[3] + temp_r2->unk_A094.unk_A098.unk_0_0.unk[3];
+    if (gEwramData->unk_1325C.unk_1327A != 0)
+    {
+        if (temp_r6->unk_0 > 1)
+        {
+            var_r2 = temp_r6->unk_0 << 8;
+        }
+        else
+        {
+            var_r2 = 0xF0;
+        }
+
+        if (temp_r6->unk_1 > 1)
+        {
+            var_r0 = (temp_r6->unk_1 << 8) - 0x30;
+        }
+        else
+        {
+            var_r0 = 0xD0;
+        }
+
+        if (temp_r1 > var_r2)
+            return 0;
+
+        if (var_0 < 0x30 || var_0 > var_r0)
+            return 0;
+
+        if (sub_08001FE8(gEwramData->unk_13110, 0, 0) == 0xF0)
+            return 0;
+    }
+    return 1;
+}
+
+/**
+ * @brief 11AD0 | To document
+ * 
+ * @param param_0 To document
+ */
+void sub_08011AD0(struct EwramData_unk60 *param_0)
+{
+    gUnk_03002C60.bldCnt = 0xFF;
+    gUnk_03002C60.bldY = 0x10;
+    gUnk_03002CB0.unk_0 &= ~0x2000;
+    gEwramData->unk_A074_1 = 0;
+    gEwramData->unk_A074_0 = 1;
+    param_0->unk_64 = 8;
+    param_0->unk_65 = 0;
+}
+
+/**
+ * @brief 11B2C | To document
+ * 
+ * @param param_0 To document
+ * @return s32 To document
+ */
+s32 sub_08011B2C(struct EwramData_unk60 *param_0)
+{
+    s32 var_r4;
+    struct EwramData_unk88 *temp_r6;
+
+    var_r4 = 0;
+
+    switch (param_0->unk_65)
+    {
+        case 0:
+            sub_08000B64();
+            gEwramData->unk_A074_2 = gEwramData->unk_A074_4 = 3;
+            param_0->unk_65 += 1;
+            break;
+
+        case 1:
+            sub_080109B8(param_0);
+            DMA_FILL_32(3, 0, 0x0600E800, 0x800);
+            DMA_FILL_32(3, 0, 0x0600F000, 0x800);
+            DMA_FILL_32(3, 0, 0x0600F800, 0x800);
+            gEwramData->unk_13110->unk_13150.unk_0_0.unk[1] = gEwramData->unk_60.unk_400;
+            gEwramData->unk_13110->unk_13150.unk_0_0.unk[3] = gEwramData->unk_60.unk_402;
+            gEwramData->unk_13110->unk_13158 = 0;
+            gEwramData->unk_13110->unk_1315C = 0;
+            gEwramData->unk_60.unk_88 = gEwramData->unk_60.unk_3F8;
+            sub_0800ECA0(gEwramData->unk_60.unk_3FC, gEwramData->unk_60.unk_3FE);
+            sub_0801083C(param_0);
+            gEwramData->unk_A074_0 = 0;
+            sub_08000B64();
+            gEwramData->unk_A074_0 = 1;
+            param_0->unk_65 += 1;
+            /* fallthrough */
+        case 2:
+            temp_r6 = param_0->unk_88;
+            if (!(gEwramData->unk_60.unk_42C & 0x800000))
+            {
+                gEwramData->unk_A074_1 = 1;
+            }
+            gEwramData->unk_60.unk_42C &= ~0x800000;
+            gEwramData->unk_A074_0 = 0;
+            gEwramData->unk_A074_2 = gEwramData->unk_A074_4 = 0;
+            gUnk_03002CB0.unk_0 = temp_r6->unk_0;
+            gUnk_03002C60.bldY = 8;
+            gUnk_03002C60.bldCnt = temp_r6->unk_1E;
+            sub_0800C778();
+            gUnk_03002C60.mosaic = 0;
+            var_r4 = 1;
+            break;
+    }
+
+    return var_r4;
+}
+
+/**
+ * @brief 11CD0 | To document
+ * 
+ */
+void sub_08011CD0(void)
+{
+    if (gEwramData->unk_A074_0)
+        return;
+
+    if (gEwramData->unk_60.unk_4C1 != 0)
+    {
+        gEwramData->unk_60.unk_4C1 -= 1;
+
+        if (gEwramData->unk_60.unk_4C2 != 0)
+        {
+            gEwramData->unk_FEC0 = sub_08000A90() & gEwramData->unk_60.unk_4C2;
+        }
+        if (gEwramData->unk_60.unk_4C3 != 0)
+        {
+            gEwramData->unk_FEC1 = sub_08000A90() & gEwramData->unk_60.unk_4C3;
+        }
+
+        if (gEwramData->unk_60.unk_4C1 == 0)
+        {
+            gEwramData->unk_60.unk_4C2 = 0;
+            gEwramData->unk_60.unk_4C3 = 0;
+            gEwramData->unk_FEC0 = gEwramData->unk_60.unk_4C2;
+            gEwramData->unk_FEC1 = gEwramData->unk_60.unk_4C3;
+            gEwramData->unk_60.unk_4C0 = 0;
+        }
+    }
+    else
+    {
+        gEwramData->unk_FEC0 = gEwramData->unk_60.unk_4C2;
+        gEwramData->unk_FEC1 = gEwramData->unk_60.unk_4C3;
+        gEwramData->unk_60.unk_4C0 = 0;
+        gEwramData->unk_60.unk_4C2 = 0;
+        gEwramData->unk_60.unk_4C3 = 0;
+    }
+}
+
+/**
+ * @brief 11DD0 | To document
+ * 
+ * @param param_0 To document
+ * @return s32 To document
+ */
+s32 sub_08011DD0(struct EwramData_unk60 *param_0)
+{
+    s32 var_r1;
+    s32 var_r3;
+    s32 var_r6;
+
+    var_r6 = 0;
+
+    for (var_r1 = 0; var_r1 < 0x28; var_r1++)
+    {
+        for (var_r3 = 0; var_r3 < 0x40; var_r3++)
+        {
+            if (param_0->unk_B8[((var_r1 * 8) + ((var_r3 >> 5) * 0x140)) >> 2] & (1 << (var_r3 & 0x1F)))
+            {
+                var_r6 += 1;
+            }
+        }
+    }
+
+    return var_r6;
+}
+

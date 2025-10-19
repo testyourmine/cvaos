@@ -27,6 +27,6 @@ void sub_080108DC(struct EwramData_unk88 *param_0);
 void sub_080108FC(struct EwramData_unk88 *param_0);
 void sub_0801093C(struct EwramData_unk60 *param_0);
 void sub_08010978(struct EwramData_unk60 *param_0);
-void sub_080109B8(void);
+void sub_080109B8(struct EwramData_unk60 *param_0);
 
 #endif /* CODE_0800F1FC_H */

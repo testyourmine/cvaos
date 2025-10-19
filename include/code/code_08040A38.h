@@ -47,6 +47,15 @@ extern void sub_0804F084(struct EwramData_unk4E4 *param_0);
 extern void sub_0804F6E4(struct EwramData_unk4E4 *param_0);
 extern void sub_0804F770(struct EwramData_unk4E4 *param_0);
 extern void sub_0804F7A4(void);
+
+struct Unk_08525FBC {
+    s16 unk_0;
+    s16 unk_2;
+    void *var_4;
+};
+extern struct Unk_08525FBC *sub_0804F84C(u8 param_0);
+
+extern s32 sub_0804F85C(u16 param_0, u16 param_1); // return s32 or s8?
 extern void sub_0804FFA0(struct EwramData_unk4E4 *param_0);
 extern void sub_0805008C(struct EwramData_unk4E4 *param_0);
 extern void sub_080501D0(struct EwramData_unk4E4 *param_0);
