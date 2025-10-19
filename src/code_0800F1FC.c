@@ -711,7 +711,6 @@ struct Unk_080E0FA4 {
     s32 unk_4;
 };
 
-// extern struct Unk_080E0FA4 sUnk_080E0FA4[13];
 const struct Unk_080E0FA4 sUnk_080E0FA4[13] = {
     [0] = {
         .unk_0 = 0,
@@ -767,14 +766,31 @@ const struct Unk_080E0FA4 sUnk_080E0FA4[13] = {
     },
 };
 
-#ifdef NON_MATCHING
-// nonmatch: https://decomp.me/scratch/IlAgk
+static inline s32 sub_0800FCB8_inline_0(s32 temp_r8, s32 temp_r3, struct Unk_080E0FA4 *unk_080E0FA4)
+{
+    s32 var_r2;
+
+    for (var_r2 = 0; var_r2 < 13; var_r2++)
+    {
+        if ((temp_r8 == unk_080E0FA4[var_r2].unk_0) && (temp_r3 == unk_080E0FA4[var_r2].unk_4))
+        {
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
+
+/**
+ * @brief FCB8 | To document
+ * 
+ * @param param_0 To document
+ * @return s32 To document
+ */
 s32 sub_0800FCB8(struct EwramData_unk60 *param_0)
 {
     s32 temp_r3;
     s32 temp_r8;
     s32 var_r1;
-    s32 var_r2;
     s32 var_r4;
     u8 temp_r4;
     u8 temp_r5;
@@ -785,10 +801,15 @@ s32 sub_0800FCB8(struct EwramData_unk60 *param_0)
     struct Unk_080E0FA4 unk_080E0FA4[13];
     s32 var_0;
 
+    gEwramData++,gEwramData--; // Fake
     temp_r0 = &gEwramData->unk_A078[1];
     temp_r7 = temp_r0->unk_A094.unk_A098.unk_0_2.unk[3];
     temp_r6 = temp_r0->unk_A094.unk_A098.unk_0_2.unk[7];
-    if ((sub_08001780(temp_r7, temp_r6) == 0) && (sub_0800190C(temp_r7, temp_r6) == 0) && (sub_08001944(temp_r7, temp_r6) == 0))
+    if ((sub_08001780(temp_r7, temp_r6) != 0) || (sub_0800190C(temp_r7, temp_r6) != 0) || (sub_08001944(temp_r7, temp_r6) != 0))
+    {
+        return -1;
+    }
+    else
     {
         memcpy(&unk_080E0FA4, sUnk_080E0FA4, 0x68);
         temp_r0_2 = &gEwramData->unk_A078[1];
@@ -797,46 +818,28 @@ s32 sub_0800FCB8(struct EwramData_unk60 *param_0)
         temp_r8 = sub_08001894(temp_r4, temp_r5);
         temp_r3 = sub_080018D0(temp_r4, temp_r5);
 
-        for (var_r2 = 0; var_r2 < 13; var_r2++)
+        if (sub_0800FCB8_inline_0(temp_r8, temp_r3, unk_080E0FA4))
         {
-            if ((temp_r8 == unk_080E0FA4[var_r2].unk_0) && (temp_r3 == unk_080E0FA4[var_r2].unk_4))
-            {
-                return -1;
-            }
+            return -1;
         }
 
         var_r4 = sub_08001894(temp_r7, temp_r6);
-        if (sub_080018D0(temp_r7, temp_r6) == 0xD)
-        {
-            if (var_r4 == 7)
-            {
-                var_r4 = 0xC;
-                var_0 = 0;
-            }
-            else
-            {
-                var_0 = 1;
-            }
-        }
-        else
-        {
-            var_0 = 1;
-        }
 
-        if (var_0)
+        if ((sub_080018D0(temp_r7, temp_r6) == 13) && (var_r4 == 7))
         {
-            if ((sub_080018D0(temp_r7, temp_r6) == 9) && (var_r4 == 8))
-            {
-                var_r4 = 0xD;
-            }
-            else if ((sub_080018D0(temp_r7, temp_r6) == 10) && (var_r4 == 8))
-            {
-                var_r4 = 0xE;
-            }
-            else if ((sub_080018D0(temp_r7, temp_r6) == 11) && (var_r4 == 8))
-            {
-                var_r4 = 0xF;
-            }
+            var_r4 = 12;
+        }
+        else if ((sub_080018D0(temp_r7, temp_r6) == 9) && (var_r4 == 8))
+        {
+            var_r4 = 13;
+        }
+        else if ((sub_080018D0(temp_r7, temp_r6) == 10) && (var_r4 == 8))
+        {
+            var_r4 = 14;
+        }
+        else if ((sub_080018D0(temp_r7, temp_r6) == 11) && (var_r4 == 8))
+        {
+            var_r4 = 15;
         }
         
         if (!((param_0->unk_37C >> var_r4) & 1))
@@ -851,147 +854,6 @@ s32 sub_0800FCB8(struct EwramData_unk60 *param_0)
     }
     return -1;
 }
-#else
-NAKED_FUNCTION
-s32 sub_0800FCB8(struct EwramData_unk60 *param_0)
-{
-    asm(" .syntax unified \n\
-	push {r4, r5, r6, r7, lr} \n\
-	mov r7, sb \n\
-	mov r6, r8 \n\
-	push {r6, r7} \n\
-	sub sp, #0x68 \n\
-	mov sb, r0 \n\
-	ldr r4, _0800FD4C @ =gEwramData \n\
-	ldr r0, [r4] \n\
-	ldr r1, _0800FD50 @ =0x0000A094 \n\
-	adds r0, r0, r1 \n\
-	ldrb r7, [r0, #7] \n\
-	ldrb r6, [r0, #0xb] \n\
-	adds r0, r7, #0 \n\
-	adds r1, r6, #0 \n\
-	bl sub_08001780 \n\
-	cmp r0, #0 \n\
-	bne _0800FD58 \n\
-	adds r0, r7, #0 \n\
-	adds r1, r6, #0 \n\
-	bl sub_0800190C \n\
-	cmp r0, #0 \n\
-	bne _0800FD58 \n\
-	adds r0, r7, #0 \n\
-	adds r1, r6, #0 \n\
-	bl sub_08001944 \n\
-	cmp r0, #0 \n\
-	bne _0800FD58 \n\
-	ldr r1, _0800FD54 @ =0x080E0FA4 \n\
-	mov r0, sp \n\
-	movs r2, #0x68 \n\
-	bl memcpy \n\
-	ldr r0, [r4] \n\
-	ldr r1, _0800FD50 @ =0x0000A094 \n\
-	adds r0, r0, r1 \n\
-	ldrb r4, [r0, #7] \n\
-	ldrb r5, [r0, #0xb] \n\
-	adds r0, r4, #0 \n\
-	adds r1, r5, #0 \n\
-	bl sub_08001894 \n\
-	mov r8, r0 \n\
-	adds r0, r4, #0 \n\
-	adds r1, r5, #0 \n\
-	bl sub_080018D0 \n\
-	adds r3, r0, #0 \n\
-	movs r2, #0 \n\
-	mov r1, sp \n\
-_0800FD20: \n\
-	ldr r0, [r1] \n\
-	cmp r8, r0 \n\
-	bne _0800FD2C \n\
-	ldr r0, [r1, #4] \n\
-	cmp r3, r0 \n\
-	beq _0800FD58 \n\
-_0800FD2C: \n\
-	adds r1, #8 \n\
-	adds r2, #1 \n\
-	cmp r2, #0xc \n\
-	ble _0800FD20 \n\
-	adds r0, r7, #0 \n\
-	adds r1, r6, #0 \n\
-	bl sub_08001894 \n\
-	adds r4, r0, #0 \n\
-	adds r0, r7, #0 \n\
-	adds r1, r6, #0 \n\
-	bl sub_080018D0 \n\
-	cmp r0, #0xd \n\
-	bne _0800FD66 \n\
-	b _0800FD5E \n\
-	.align 2, 0 \n\
-_0800FD4C: .4byte gEwramData \n\
-_0800FD50: .4byte 0x0000A094 \n\
-_0800FD54: .4byte 0x080E0FA4 \n\
-_0800FD58: \n\
-	movs r0, #1 \n\
-	rsbs r0, r0, #0 \n\
-	b _0800FDB8 \n\
-_0800FD5E: \n\
-	cmp r4, #7 \n\
-	bne _0800FD66 \n\
-	movs r4, #0xc \n\
-	b _0800FDA0 \n\
-_0800FD66: \n\
-	adds r0, r7, #0 \n\
-	adds r1, r6, #0 \n\
-	bl sub_080018D0 \n\
-	cmp r0, #9 \n\
-	bne _0800FD7A \n\
-	cmp r4, #8 \n\
-	bne _0800FD7A \n\
-	movs r4, #0xd \n\
-	b _0800FDA0 \n\
-_0800FD7A: \n\
-	adds r0, r7, #0 \n\
-	adds r1, r6, #0 \n\
-	bl sub_080018D0 \n\
-	cmp r0, #0xa \n\
-	bne _0800FD8E \n\
-	cmp r4, #8 \n\
-	bne _0800FD8E \n\
-	movs r4, #0xe \n\
-	b _0800FDA0 \n\
-_0800FD8E: \n\
-	adds r0, r7, #0 \n\
-	adds r1, r6, #0 \n\
-	bl sub_080018D0 \n\
-	cmp r0, #0xb \n\
-	bne _0800FDA0 \n\
-	cmp r4, #8 \n\
-	bne _0800FDA0 \n\
-	movs r4, #0xf \n\
-_0800FDA0: \n\
-	movs r0, #0xc7 \n\
-	lsls r0, r0, #2 \n\
-	add r0, sb \n\
-	ldrh r0, [r0] \n\
-	asrs r0, r4 \n\
-	movs r1, #1 \n\
-	ands r0, r1 \n\
-	subs r1, #2 \n\
-	cmp r0, #0 \n\
-	bne _0800FDB6 \n\
-	adds r1, r4, #0 \n\
-_0800FDB6: \n\
-	adds r0, r1, #0 \n\
-_0800FDB8: \n\
-	add sp, #0x68 \n\
-	pop {r3, r4} \n\
-	mov r8, r3 \n\
-	mov sb, r4 \n\
-	pop {r4, r5, r6, r7} \n\
-	pop {r1} \n\
-	bx r1 \n\
-	.align 2, 0 \n\
-    .syntax divided ");
-}
-#endif
 
 /**
  * @brief FDC8 | To document
