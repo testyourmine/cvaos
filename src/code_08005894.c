@@ -41,18 +41,18 @@ extern void sub_08046DD4(s32 param_0, s32 param_1, u16 param_2, s32 param_3);
 void sub_08005894(u8 arg0, u8 arg1, u8 arg2, u8 arg3)
 {
     gUnk_03002CB0.unk_0 |= 0x2000;
-    gUnk_03002C60.bldCnt = 0x3FBF;
+    gDisplayRegisters.bldCnt = BLDCNT_SCREEN_SECOND_TARGET | BLDCNT_BRIGHTNESS_INCREASE_EFFECT | BLDCNT_SCREEN_FIRST_TARGET;
 
-    gUnk_03002C60.winIn_L = 0x3F;
-    gUnk_03002C60.winOut_L = 0x1F;
+    gDisplayRegisters.winIn_L = WIN0_ALL;
+    gDisplayRegisters.winOut_L = WIN0_ALL_NO_COLOR_EFFECT;
 
-    gUnk_03002C60.win0H = C_16_2_8(arg0, arg1);
-    gUnk_03002C60.win0V = C_16_2_8(arg2, arg3);
+    gDisplayRegisters.win0H = C_16_2_8(arg0, arg1);
+    gDisplayRegisters.win0V = C_16_2_8(arg2, arg3);
 
-    gUnk_03002C60.bldY = (sub_080009E4(gEwramData->unk_0 << 0xA) >> 0xE) + 4;
-    if (gUnk_03002C60.bldY < 2)
+    gDisplayRegisters.bldY = (sub_080009E4(gEwramData->unk_0 << 0xA) >> 0xE) + 4;
+    if (gDisplayRegisters.bldY < 2)
     {
-        gUnk_03002C60.bldY = 2;
+        gDisplayRegisters.bldY = 2;
     }
 }
 
@@ -1210,7 +1210,7 @@ void sub_0800744C(struct EwramData_unk4E4 *param_0)
 s32 sub_080074C0(struct EwramData_unk4E4 *param_0)
 {
     s32 sp0;
-    s32 temp_r1;
+    s32 repeatedInput;
     s32 var_r0_2;
     s32 var_r4;
     s32 var_r4_2;
@@ -1218,13 +1218,13 @@ s32 sub_080074C0(struct EwramData_unk4E4 *param_0)
     u8 var_0;
     struct EwramData_unk60 *unk_60;
 
-    temp_r1 = gEwramData->unk_14.repeatedInput;
+    repeatedInput = gEwramData->unk_14.repeatedInput;
     var_r5 = param_0->unk_4F8.unk_4F8_8.unk_4F9;
     sp0 = 0;
     if (param_0->unk_4FC.unk_4FC_8.unk_4FD != 0)
     {
         var_r5 = param_0->unk_4FC.unk_4FC_8.unk_4FE;
-        if (temp_r1 & 2)
+        if (repeatedInput & KEY_B)
         {
             var_r4 = param_0->unk_4F8.unk_4F8_8.unk_4F9;
             if (var_r4 > 5)
@@ -1236,7 +1236,7 @@ s32 sub_080074C0(struct EwramData_unk4E4 *param_0)
             param_0->unk_4FC.unk_4FC_8.unk_4FD = 0;
             param_0->unk_4FC.unk_4FC_8.unk_4FE = 0;
         }
-        else if (temp_r1 & 1)
+        else if (repeatedInput & KEY_A)
         {
             if (var_r5 != 0)
             {
@@ -1259,11 +1259,11 @@ s32 sub_080074C0(struct EwramData_unk4E4 *param_0)
             }
             param_0->unk_4FC.unk_4FC_8.unk_4FD = 0;
         }
-        else if (temp_r1 & 0x10)
+        else if (repeatedInput & KEY_RIGHT)
         {
             var_r5 = 1;
         }
-        else if (temp_r1 & 0x20)
+        else if (repeatedInput & KEY_LEFT)
         {
             var_r5 = 0;
         }
@@ -1275,11 +1275,11 @@ s32 sub_080074C0(struct EwramData_unk4E4 *param_0)
     }
     else
     {
-        if (temp_r1 & 2)
+        if (repeatedInput & KEY_B)
         {
             sp0 = -1;
         }
-        else if (temp_r1 & 1)
+        else if (repeatedInput & KEY_A)
         {
             unk_60 = &gEwramData->unk_60; // fake?
 
@@ -1328,15 +1328,15 @@ s32 sub_080074C0(struct EwramData_unk4E4 *param_0)
                 param_0->unk_4FC.unk_4FC_8.unk_4FD = 1;
             }
         }
-        else if (temp_r1 & 0x10)
+        else if (repeatedInput & KEY_RIGHT)
         {
             var_r5 = Mod(var_r5 + 2, 6);
         }
-        else if (temp_r1 & 0x20)
+        else if (repeatedInput & KEY_LEFT)
         {
             var_r5 = Mod(var_r5 + 4, 6);
         }
-        else if (temp_r1 & 0x80)
+        else if (repeatedInput & KEY_DOWN)
         {
             if (var_r5 > 5)
             {
@@ -1347,7 +1347,7 @@ s32 sub_080074C0(struct EwramData_unk4E4 *param_0)
                 var_r5 += 1;
             }
         }
-        else if (temp_r1 & 0x40)
+        else if (repeatedInput & KEY_UP)
         {
             if (var_r5 & 1)
             {
@@ -1496,16 +1496,16 @@ s32 sub_08007914(struct EwramData_unk4E4 *param_0)
     s32 var_r0_2;
     s32 var_r0_3;
     s32 var_r7;
-    u32 temp_r1;
+    u32 repeatedInput;
     s32 var_r6;
 
     var_r6 = param_0->unk_4F8.unk_4F8_8.unk_4F9;
-    temp_r1 = gEwramData->unk_14.repeatedInput;
+    repeatedInput = gEwramData->unk_14.repeatedInput;
     var_r7 = 0;
     switch (param_0->unk_4F0)
     {
         case 0:
-            if (temp_r1 & 1)
+            if (repeatedInput & KEY_A)
             {
                 sub_080D7910(0xF3);
                 sub_0804728C(0x359);
@@ -1517,15 +1517,15 @@ s32 sub_08007914(struct EwramData_unk4E4 *param_0)
                 param_0->unk_4F8.unk_4F8_8.unk_4F9 = 0xFE;
                 param_0->unk_4F0 += 1;
             }
-            else if (temp_r1 & 2)
+            else if (repeatedInput & KEY_B)
             {
                 var_r7 = -1;
             }
-            else if (temp_r1 & 0x30)
+            else if (repeatedInput & (KEY_LEFT | KEY_RIGHT))
             {
                 do
                 {
-                    if (temp_r1 & 0x10)
+                    if (repeatedInput & KEY_RIGHT)
                     {
                         var_r0 = var_r6 + 2;
                     }
@@ -1539,7 +1539,7 @@ s32 sub_08007914(struct EwramData_unk4E4 *param_0)
             break;
 
         case 1:
-            if (temp_r1 & 1)
+            if (repeatedInput & KEY_A)
             {
                 sub_080D7910(0xF3);
                 sub_08005908(-1);
@@ -1555,7 +1555,7 @@ s32 sub_08007914(struct EwramData_unk4E4 *param_0)
                 sub_08041318(sub_08041434(0x34D), 0);
                 sub_0804066C(0, 1);
             }
-            else if (temp_r1 & 2)
+            else if (repeatedInput & KEY_B)
             {
                 sub_080D7910(0xF0);
                 sub_08005908(0x358);
@@ -1563,11 +1563,11 @@ s32 sub_08007914(struct EwramData_unk4E4 *param_0)
                 param_0->unk_4F0 -= 1;
                 sub_0800737C(param_0, param_0->unk_4F6, param_0->unk_4F7);
             }
-            else if (temp_r1 & 0x30)
+            else if (repeatedInput & (KEY_LEFT | KEY_RIGHT))
             {
                 do
                 {
-                    if (temp_r1 & 0x10)
+                    if (repeatedInput & KEY_RIGHT)
                     {
                         var_r0_2 = var_r6 + 2;
                     }
@@ -1581,7 +1581,7 @@ s32 sub_08007914(struct EwramData_unk4E4 *param_0)
             break;
 
         case 2:
-            if ((temp_r1 & 1) && (var_r6 == 0))
+            if ((repeatedInput & KEY_A) && (var_r6 == 0))
             {
                 sub_080D7910(0xF4);
                 sub_08012E30(param_0->unk_4F6, param_0->unk_4F7);
@@ -1593,16 +1593,16 @@ s32 sub_08007914(struct EwramData_unk4E4 *param_0)
                 sub_08013698(param_0->unk_4F7 + 1);
                 param_0->unk_4F5 &= ~(1 << (param_0->unk_4F7 + 1));
             }
-            else if (temp_r1 & 3)
+            else if (repeatedInput & (KEY_A | KEY_B))
             {
                 sub_080D7910(0xF0);
                 sub_08005908(0x359);
                 var_r6 = param_0->unk_4F8.unk_4F8_8.unk_4F9 = param_0->unk_4F7;
                 param_0->unk_4F0 -= 1;
             }
-            else if (temp_r1 & 0x30)
+            else if (repeatedInput & (KEY_LEFT | KEY_RIGHT))
             {
-                var_r6 = (temp_r1 >> 4) & 1;
+                var_r6 = (repeatedInput >> 4) & 1; // repeatedInput & KEY_RIGHT
             }
             break;
     }
@@ -1651,20 +1651,20 @@ s32 sub_08007B8C(struct EwramData_unk4E4 *param_0)
     s32 var_r0;
     s32 var_r0_2;
     s32 var_r7;
-    u32 temp_r1;
+    u32 repeatedInput;
     s32 var_r6;
 
-    temp_r1 = gEwramData->unk_14.repeatedInput;
+    repeatedInput = gEwramData->unk_14.repeatedInput;
     var_r6 = param_0->unk_4F8.unk_4F8_8.unk_4F9;
     var_r7 = 0;
     switch (param_0->unk_4F0)
     {
         case 0:
-            if (temp_r1 & 2)
+            if (repeatedInput & KEY_B)
             {
                 var_r7 = -1;
             }
-            else if (temp_r1 & 1)
+            else if (repeatedInput & KEY_A)
             {
                 if (param_0->unk_4F4 != 0)
                 {
@@ -1688,9 +1688,9 @@ s32 sub_08007B8C(struct EwramData_unk4E4 *param_0)
                     sub_0804066C(0, 1);
                 }
             }
-            else if (temp_r1 & 0x30)
+            else if (repeatedInput & (KEY_LEFT | KEY_RIGHT))
             {
-                if (temp_r1 & 0x10)
+                if (repeatedInput & KEY_RIGHT)
                 {
                     var_r0 = var_r6 + 2;
                 }
@@ -1703,7 +1703,7 @@ s32 sub_08007B8C(struct EwramData_unk4E4 *param_0)
             break;
 
         case 1:
-            if ((temp_r1 & 1) && (var_r6 == 0))
+            if ((repeatedInput & KEY_A) && (var_r6 == 0))
             {
                 sub_080D7910(0xF4);
                 if (!(param_0->unk_4F6 & 1))
@@ -1725,16 +1725,16 @@ s32 sub_08007B8C(struct EwramData_unk4E4 *param_0)
                     param_0->unk_4F5 &= ~(1 << (param_0->unk_4F6 + 1));
                 }
             }
-            else if (temp_r1 & 3)
+            else if (repeatedInput & (KEY_A | KEY_B))
             {
                 sub_080D7910(0xF0);
                 sub_0804728C(0x35A);
                 var_r6 = param_0->unk_4F8.unk_4F8_8.unk_4F9 = param_0->unk_4F6;
                 param_0->unk_4F0 -= 1;
             }
-            else if (temp_r1 & 0x30)
+            else if (repeatedInput & (KEY_LEFT | KEY_RIGHT))
             {
-                var_r6 = (temp_r1 >> 4) & 1;
+                var_r6 = (repeatedInput >> 4) & 1; // repeatedInput & KEY_RIGHT
             }
             break;
     }
@@ -1862,7 +1862,7 @@ void sub_08007EE0(s32 param_0)
     var_r5 = (s16 *)0x0600E3C4;
     DMA_FILL_32(3, 0, 0x0600E000, 0x800);
     DMA_FILL_32(3, 0, 0x06008000, 0x2000);
-    gUnk_03002C60.bgCnt[0] = 0x1C08;
+    gDisplayRegisters.bgCnt[0] = CREATE_BGCNT(2, 28, BGCNT_HIGH_PRIORITY, BGCNT_SIZE_256x256);
     sub_0803C918((u8*)0x081183F4, 0, 1, 0xC);
     sub_080412DC(0x06008000);
     sub_080412F0(8);
@@ -1907,23 +1907,23 @@ void sub_08007FF0(struct EwramData_unk4E4 *param_0)
     DMA_FILL_32(3, 0, 0x0600E800, 0x200 * 4);
     DMA_FILL_32(3, 0, 0x0600F000, 0x200 * 4);
     DMA_FILL_32(3, 0, 0x0600F800, 0x200 * 4);
-    DMA_FILL_32(3, 0, &gUnk_03002C60, sizeof(gUnk_03002C60));
+    DMA_FILL_32(3, 0, &gDisplayRegisters, sizeof(gDisplayRegisters));
 
-    gUnk_03002C60.bg3PD = 0x100;
-    gUnk_03002C60.bg3PA = 0x100;
-    gUnk_03002C60.bg2PD = 0x100;
-    gUnk_03002C60.bg2PA = 0x100;
+    gDisplayRegisters.bg3PD = 0x100;
+    gDisplayRegisters.bg3PA = 0x100;
+    gDisplayRegisters.bg2PD = 0x100;
+    gDisplayRegisters.bg2PA = 0x100;
 
-    gUnk_03002C60.bgCnt[0] = 0x1C00;
-    gUnk_03002C60.bgCnt[1] = 0x1D01;
-    gUnk_03002C60.bgCnt[2] = 0x1E02;
-    gUnk_03002C60.bgCnt[3] = 0x1F03;
+    gDisplayRegisters.bgCnt[0] = CREATE_BGCNT(0, 28, BGCNT_HIGH_PRIORITY, BGCNT_SIZE_256x256);
+    gDisplayRegisters.bgCnt[1] = CREATE_BGCNT(0, 29, BGCNT_HIGH_MID_PRIORITY, BGCNT_SIZE_256x256);
+    gDisplayRegisters.bgCnt[2] = CREATE_BGCNT(0, 30, BGCNT_LOW_MID_PRIORITY, BGCNT_SIZE_256x256);
+    gDisplayRegisters.bgCnt[3] = CREATE_BGCNT(0, 31, BGCNT_LOW_PRIORITY, BGCNT_SIZE_256x256);
 
     gEwramData->unk_A074_2 = gEwramData->unk_A074_4 = 0;
     gUnk_03002CB0.unk_0 = 0x1F00;
-    gUnk_03002C60.bldCnt = 0x844;
-    gUnk_03002C60.bldAlpha = 0xA06;
-    gUnk_03002C60.bldY = 0;
+    gDisplayRegisters.bldCnt = BLDCNT_BG3_SECOND_TARGET_PIXEL | BLDCNT_ALPHA_BLENDING_EFFECT | BLDCNT_BG2_FIRST_TARGET_PIXEL;
+    gDisplayRegisters.bldAlpha = C_16_2_8(10, 6);
+    gDisplayRegisters.bldY = 0;
     gEwramData->unk_60.unk_4CC_0 = 0;
 
     sub_0803FD9C((u8 *)0x080E5BB0, 0x06000000, 0);
@@ -1964,18 +1964,18 @@ s32 sub_080081AC(struct EwramData_unk4E4 *param_0)
 {
     s32 temp_r2;
     s32 var_r7;
-    s32 temp_r1;
+    s32 repeatedInput;
     s32 var_r4;
     s32 var_0;
 
-    temp_r1 = gEwramData->unk_14.repeatedInput;
+    repeatedInput = gEwramData->unk_14.repeatedInput;
     var_r4 = param_0->unk_4F8.unk_4F8_8.unk_4F9;
     var_r7 = 0;
-    if (temp_r1 & 2)
+    if (repeatedInput & KEY_B)
     {
         var_r7 = -1;
     }
-    else if (temp_r1 & 1)
+    else if (repeatedInput & KEY_A)
     {
         sub_08012744(var_r4);
         if (param_0->unk_4F4 != 0)
@@ -2022,11 +2022,11 @@ s32 sub_080081AC(struct EwramData_unk4E4 *param_0)
             var_r7 = 1;
         }
     }
-    else if (temp_r1 & 0x10)
+    else if (repeatedInput & KEY_RIGHT)
     {
         var_r4 = Mod(var_r4 + 2, 6);
     }
-    else if (temp_r1 & 0x20)
+    else if (repeatedInput & KEY_LEFT)
     {
         var_r4 = Mod(var_r4 + 4, 6);
     }
@@ -2119,7 +2119,7 @@ void sub_08008324(struct EwramData_unk4E4 *param_0)
         *var_r2++ = var_r3;
     }
     gUnk_03002CB0.unk_0 = 0x7A00;
-    gUnk_03002C60.bldCnt = 0x3F52;
+    gDisplayRegisters.bldCnt = BLDCNT_SCREEN_SECOND_TARGET | BLDCNT_ALPHA_BLENDING_EFFECT | BLDCNT_OBJ_FIRST_TARGET_PIXEL | BLDCNT_BG1_FIRST_TARGET_PIXEL;
     param_0->unk_4F8.unk_4F8_8.unk_4FB = 0;
     param_0->unk_4F8.unk_4F8_8.unk_4F9 = 0;
     param_0->unk_4EE = 6;

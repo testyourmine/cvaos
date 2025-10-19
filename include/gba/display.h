@@ -83,6 +83,7 @@
 #define BGCNT_SIZE_512x512 3
 
 #define BGCNT_MOSAIC          (1 << 6)
+#define BGCNT_256_COLOR       (1 << 7)
 #define BGCNT_SCREEN_OVERFLOW (1 << 13)
 
 #define BGCNT_CHAR_BASE_BLOCK_SHIFT 2

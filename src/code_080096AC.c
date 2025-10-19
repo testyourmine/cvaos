@@ -838,7 +838,7 @@ s32 sub_08009C8C(struct EwramData_unk4E4 *param_0)
     s32 var_2;
     s32 var_3;
 
-    if (gEwramData->unk_14.repeatedInput & 0x80)
+    if (gEwramData->unk_14.repeatedInput & KEY_DOWN)
     {
         sub_080D7910(0xF1);
         param_0->unk_4F8.unk_4F8_8.unk_4F8 += 1;
@@ -847,7 +847,7 @@ s32 sub_08009C8C(struct EwramData_unk4E4 *param_0)
             param_0->unk_4F8.unk_4F8_8.unk_4F8 = 0;
         }
     }
-    else if (gEwramData->unk_14.repeatedInput & 0x40)
+    else if (gEwramData->unk_14.repeatedInput & KEY_UP)
     {
         sub_080D7910(0xF1);
         param_0->unk_4F8.unk_4F8_8.unk_4F8 -= 1;
@@ -857,7 +857,7 @@ s32 sub_08009C8C(struct EwramData_unk4E4 *param_0)
         }
     }
 
-    if (gEwramData->unk_14.repeatedInput & 1)
+    if (gEwramData->unk_14.repeatedInput & KEY_A)
     {
         if (sub_080096AC(param_0->unk_4F8.unk_4F8_8.unk_4F8) != 0)
         {
@@ -872,7 +872,7 @@ s32 sub_08009C8C(struct EwramData_unk4E4 *param_0)
             return 1;
         }
     }
-    else if (gEwramData->unk_14.repeatedInput & 2)
+    else if (gEwramData->unk_14.repeatedInput & KEY_B)
     {
         sub_080D7910(0xF0);
         return -1;
@@ -997,7 +997,7 @@ void sub_0800A00C(s32 param_0)
     s32 var_r4;
 
     DMA_FILL_32(3, 0, 0x0600E000, 0x800);
-    gUnk_03002C60.bgCnt[0] = 0x1C08;
+    gDisplayRegisters.bgCnt[0] = CREATE_BGCNT(2, 28, BGCNT_HIGH_PRIORITY, BGCNT_SIZE_256x256);
     sub_0803C918((u8 *)0x080E5C20, 4, 2, 0xD);
     sub_0803C918((u8 *)0x080E5C20, 3, 1, 0xF);
     sub_080412DC(0x06008000);
@@ -1052,19 +1052,19 @@ s32 sub_0800A108(struct EwramData_unk4E4 *param_0)
     temp_r4 = param_0->unk_4FC.unk_4FC_16.unk_4FC;
     var_sl = 0;
 
-    if (gEwramData->unk_14.repeatedInput & 0x80)
+    if (gEwramData->unk_14.repeatedInput & KEY_DOWN)
     {
         var_sl = sub_0800975C(param_0, 1);
     }
-    else if (gEwramData->unk_14.repeatedInput & 0x40)
+    else if (gEwramData->unk_14.repeatedInput & KEY_UP)
     {
         var_sl = sub_0800975C(param_0, -1);
     }
-    else if (gEwramData->unk_14.repeatedInput & 0x110)
+    else if (gEwramData->unk_14.repeatedInput & (KEY_RIGHT | KEY_R))
     {
         var_sl = sub_0800975C(param_0, 8);
     }
-    else if (gEwramData->unk_14.repeatedInput & 0x220)
+    else if (gEwramData->unk_14.repeatedInput & (KEY_LEFT | KEY_L))
     {
         var_sl = sub_0800975C(param_0, -8);
     }
@@ -1089,18 +1089,18 @@ s32 sub_0800A108(struct EwramData_unk4E4 *param_0)
     // gEwramData->unk_4E4[3].unk_524.unk_524_16.unk_526 = 0x7C;
     // gEwramData->unk_4E4[3].unk_528.unk_528_16.unk_52A = (param_0->unk_50C * 8) + 0x24;
 
-    if (gEwramData->unk_14.repeatedInput & 1)
+    if (gEwramData->unk_14.repeatedInput & KEY_A)
     {
         sub_0800997C_inline_0(param_0->unk_4F8.unk_4F8_8.unk_4F8 + 1, param_0->unk_4FC.unk_4FC_16.unk_4FC);
         return 1;
     }
-    else if (gEwramData->unk_14.repeatedInput & 2)
+    else if (gEwramData->unk_14.repeatedInput & KEY_B)
     {
         sub_08009BB0(param_0);
         sub_080D7910(0xF0);
         return -1;
     }
-    else if ((param_0->unk_504.unk_504_8.unk_504 != 0) && (gEwramData->unk_14.repeatedInput & 4))
+    else if ((param_0->unk_504.unk_504_8.unk_504 != 0) && (gEwramData->unk_14.repeatedInput & KEY_SELECT))
     {
         return 1;
     }
@@ -1222,9 +1222,9 @@ s32 sub_0800A3A4(void)
             DMA_FILL_32(3, 0, &gEwramData->unk_25484[0], 4);
             DMA_FILL_32(3, 0, &gEwramData->unk_25484[1], 4);
             gUnk_03002CB0.unk_0 = 0x1F00;
-            gUnk_03002C60.bldCnt = 0x844;
-            gUnk_03002C60.bldAlpha = 0xA06;
-            gUnk_03002C60.bldY = 0x10;
+            gDisplayRegisters.bldCnt = 0x844;
+            gDisplayRegisters.bldAlpha = 0xA06;
+            gDisplayRegisters.bldY = 0x10;
             gEwramData->unk_60.unk_4CC_0 = 0;
             sub_08008300(temp_r0);
             sub_0803D18C(0U, 0U, 0U, 0, 0x10000, 0x10);
@@ -1254,16 +1254,16 @@ s32 sub_0800A3A4(void)
                 sub_08000E14(&gEwramData->unk_4E4[6]);
                 sub_08000E14(&gEwramData->unk_4E4[5]);
                 sub_08008314(&gEwramData->unk_4E4[4]);
-                gUnk_03002C60.bldCnt = 0xFF;
-                gUnk_03002C60.bldY = 0x10;
+                gDisplayRegisters.bldCnt = 0xFF;
+                gDisplayRegisters.bldY = 0x10;
                 spC = 1;
             }
             else if (var_r4 != 0)
             {
                 sub_080D7910(0xF4U);
                 gUnk_03002CB0.unk_0 &= 0xFBFF;
-                gUnk_03002C60.bldCnt = 0x853;
-                gUnk_03002C60.bldAlpha = 0x10;
+                gDisplayRegisters.bldCnt = 0x853;
+                gDisplayRegisters.bldAlpha = 0x10;
                 gEwramData->unk_4 = 0;
                 var_r4 = 0;
                 gEwramData->unk_11 = 4;
@@ -1272,11 +1272,11 @@ s32 sub_0800A3A4(void)
             break;
 
         case 4:
-            if (gUnk_03002C60.bldAlpha < 0x1000)
+            if (gDisplayRegisters.bldAlpha < 0x1000)
             {
                 gEwramData->unk_4 += 2;
                 temp_r2_2 = gEwramData->unk_4;
-                gUnk_03002C60.bldAlpha = (temp_r2_2 << 8) | (0x10 - temp_r2_2);
+                gDisplayRegisters.bldAlpha = (temp_r2_2 << 8) | (0x10 - temp_r2_2);
                 if (gEwramData->unk_4 >= 0xD)
                 {
                     temp_r0->unk_4EE = 0;
@@ -1286,7 +1286,7 @@ s32 sub_0800A3A4(void)
             {
                 gEwramData->unk_7864.unk_7864_1 = 1;
                 sub_08008314(&gEwramData->unk_4E4[4]);
-                gUnk_03002C60.bldCnt = 0x853;
+                gDisplayRegisters.bldCnt = 0x853;
                 gUnk_03002CB0.unk_0 &= 0xFBFF;
                 sub_0800A00C(0);
                 sub_08000E14(&gEwramData->unk_4E4[3]);
@@ -1311,9 +1311,9 @@ s32 sub_0800A3A4(void)
                 sub_08048C74(&gEwramData->unk_4E4[3], 0xEU);
                 sub_0803F8A8(1U, (u32 *)0x080E7164, 0U, 0U);
                 sub_0803F8A8(2U, (u32 *)0x080E6F24, 0U, 0U);
-                gUnk_03002C60.bgCnt[1] = 0x1D01;
-                gUnk_03002C60.bgCnt[2] = 0x1E02;
-                gUnk_03002C60.bgCnt[3] = 0x1F03;
+                gDisplayRegisters.bgCnt[1] = 0x1D01;
+                gDisplayRegisters.bgCnt[2] = 0x1E02;
+                gDisplayRegisters.bgCnt[3] = 0x1F03;
                 sub_08040748(0U, 1U, 0x20U, 4U);
                 sub_08040FE0();
                 sub_08040748(0U, 1U, 0x1EU, 4U);
@@ -1335,13 +1335,13 @@ s32 sub_0800A3A4(void)
             {
                 gEwramData->unk_4 -= 2;
                 temp_r3 = gEwramData->unk_4;
-                gUnk_03002C60.bldAlpha = (temp_r3 << 8) | (0x10 - temp_r3);
+                gDisplayRegisters.bldAlpha = (temp_r3 << 8) | (0x10 - temp_r3);
             }
             else
             {
                 gUnk_03002CB0.unk_0 |= 0xF00;
-                gUnk_03002C60.bldCnt = 0x844;
-                gUnk_03002C60.bldAlpha = 0xA06;
+                gDisplayRegisters.bldCnt = 0x844;
+                gDisplayRegisters.bldAlpha = 0xA06;
                 gEwramData->unk_11 = 6;
                 gEwramData->unk_12 = 0;
             }
@@ -1457,8 +1457,8 @@ s32 sub_0800A3A4(void)
                 sub_080D7910(0xF0U);
                 sub_08000E14(&gEwramData->unk_4E4[5]);
                 sub_08008314(&gEwramData->unk_4E4[4]);
-                gUnk_03002C60.bldCnt = 0xFF;
-                gUnk_03002C60.bldY = 0x10;
+                gDisplayRegisters.bldCnt = 0xFF;
+                gDisplayRegisters.bldY = 0x10;
                 spC = 1;
             }
             break;
@@ -1469,8 +1469,8 @@ s32 sub_0800A3A4(void)
             sub_08000E14(&gEwramData->unk_4E4[3]);
             sub_08000E14(&gEwramData->unk_4E4[6]);
             sub_08000E14(&gEwramData->unk_4E4[5]);
-            gUnk_03002C60.bldCnt = 0xFF;
-            gUnk_03002C60.bldY = 0x10;
+            gDisplayRegisters.bldCnt = 0xFF;
+            gDisplayRegisters.bldY = 0x10;
             spC = 1;
             break;
 
@@ -1871,7 +1871,7 @@ s32 sub_0800A3A4(void)
             temp_r6->unk_504.unk_504_8.unk_504 = 0;
             temp_r6->unk_504.unk_504_8.unk_506 = 0;
             sub_0800997C_inline_0(0, 0);
-            gUnk_03002C60.bldCnt = 0x3FFF;
+            gDisplayRegisters.bldCnt = 0x3FFF;
             sub_08008300(temp_r0);
             sub_08000E14(&gEwramData->unk_4E4[3]);
             sub_08000E14(&gEwramData->unk_4E4[6]);
@@ -1978,7 +1978,7 @@ _0800A454: \n\
 	movs r0, #0xf8 \n\
 	lsls r0, r0, #5 \n\
 	strh r0, [r1] \n\
-	ldr r2, _0800A4FC @ =gUnk_03002C60 \n\
+	ldr r2, _0800A4FC @ =gDisplayRegisters \n\
 	adds r1, r2, #0 \n\
 	adds r1, #0x48 \n\
 	ldr r0, _0800A500 @ =0x00000844 \n\
@@ -2028,7 +2028,7 @@ _0800A4EC: .4byte 0x00025484 \n\
 _0800A4F0: .4byte 0x85000001 \n\
 _0800A4F4: .4byte 0x00025494 \n\
 _0800A4F8: .4byte gUnk_03002CB0 \n\
-_0800A4FC: .4byte gUnk_03002C60 \n\
+_0800A4FC: .4byte gDisplayRegisters \n\
 _0800A500: .4byte 0x00000844 \n\
 _0800A504: .4byte 0x00000A06 \n\
 _0800A508: .4byte 0x000004CC \n\
@@ -2086,7 +2086,7 @@ _0800A574: \n\
 	movs r4, #0 \n\
 	movs r3, #0 \n\
 	strh r0, [r2] \n\
-	ldr r1, _0800A5AC @ =gUnk_03002C60 \n\
+	ldr r1, _0800A5AC @ =gDisplayRegisters \n\
 	adds r2, r1, #0 \n\
 	adds r2, #0x48 \n\
 	ldr r0, _0800A5B0 @ =0x00000853 \n\
@@ -2102,11 +2102,11 @@ _0800A574: \n\
 	.align 2, 0 \n\
 _0800A5A4: .4byte gUnk_03002CB0 \n\
 _0800A5A8: .4byte 0x0000FBFF \n\
-_0800A5AC: .4byte gUnk_03002C60 \n\
+_0800A5AC: .4byte gDisplayRegisters \n\
 _0800A5B0: .4byte 0x00000853 \n\
 _0800A5B4: .4byte gEwramData \n\
 _0800A5B8: \n\
-	ldr r4, _0800A5EC @ =gUnk_03002C60 \n\
+	ldr r4, _0800A5EC @ =gDisplayRegisters \n\
 	adds r3, r4, #0 \n\
 	adds r3, #0x4a \n\
 	ldrh r1, [r3] \n\
@@ -2134,7 +2134,7 @@ _0800A5E4: \n\
 	strb r0, [r1, #0xa] \n\
 	b _0800ACBA \n\
 	.align 2, 0 \n\
-_0800A5EC: .4byte gUnk_03002C60 \n\
+_0800A5EC: .4byte gDisplayRegisters \n\
 _0800A5F0: .4byte 0x00000FFF \n\
 _0800A5F4: \n\
 	ldr r1, [r7] \n\
@@ -2239,7 +2239,7 @@ _0800A67E: \n\
 	movs r2, #0 \n\
 	movs r3, #0 \n\
 	bl sub_0803F8A8 \n\
-	ldr r1, _0800A7D4 @ =gUnk_03002C60 \n\
+	ldr r1, _0800A7D4 @ =gDisplayRegisters \n\
 	ldr r0, _0800A7D8 @ =0x00001D01 \n\
 	strh r0, [r1, #2] \n\
 	ldr r0, _0800A7DC @ =0x00001E02 \n\
@@ -2346,7 +2346,7 @@ _0800A7C4: .4byte 0x85000200 \n\
 _0800A7C8: .4byte gEwramData \n\
 _0800A7CC: .4byte 0x080E7164 \n\
 _0800A7D0: .4byte 0x080E6F24 \n\
-_0800A7D4: .4byte gUnk_03002C60 \n\
+_0800A7D4: .4byte gDisplayRegisters \n\
 _0800A7D8: .4byte 0x00001D01 \n\
 _0800A7DC: .4byte 0x00001E02 \n\
 _0800A7E0: .4byte 0x00001F03 \n\
@@ -2360,7 +2360,7 @@ _0800A7EC: \n\
 	subs r0, #2 \n\
 	strh r0, [r1, #4] \n\
 	ldrh r3, [r1, #4] \n\
-	ldr r2, _0800A80C @ =gUnk_03002C60 \n\
+	ldr r2, _0800A80C @ =gDisplayRegisters \n\
 	lsls r1, r3, #8 \n\
 	movs r0, #0x10 \n\
 	subs r0, r0, r3 \n\
@@ -2369,7 +2369,7 @@ _0800A7EC: \n\
 	strh r1, [r2] \n\
 	bl _0800B5C4 \n\
 	.align 2, 0 \n\
-_0800A80C: .4byte gUnk_03002C60 \n\
+_0800A80C: .4byte gDisplayRegisters \n\
 _0800A810: \n\
 	ldr r2, _0800A840 @ =gUnk_03002CB0 \n\
 	ldrh r1, [r2] \n\
@@ -2379,7 +2379,7 @@ _0800A810: \n\
 	movs r3, #0 \n\
 	orrs r0, r1 \n\
 	strh r0, [r2] \n\
-	ldr r1, _0800A844 @ =gUnk_03002C60 \n\
+	ldr r1, _0800A844 @ =gDisplayRegisters \n\
 	adds r2, r1, #0 \n\
 	adds r2, #0x48 \n\
 	ldr r0, _0800A848 @ =0x00000844 \n\
@@ -2395,7 +2395,7 @@ _0800A810: \n\
 	bl _0800B5C4 \n\
 	.align 2, 0 \n\
 _0800A840: .4byte gUnk_03002CB0 \n\
-_0800A844: .4byte gUnk_03002C60 \n\
+_0800A844: .4byte gDisplayRegisters \n\
 _0800A848: .4byte 0x00000844 \n\
 _0800A84C: .4byte 0x00000A06 \n\
 _0800A850: \n\
@@ -2762,7 +2762,7 @@ _0800AB52: \n\
 	ldr r7, _0800AB8C @ =0x000006F4 \n\
 	adds r0, r0, r7 \n\
 	bl sub_08008314 \n\
-	ldr r1, _0800AB90 @ =gUnk_03002C60 \n\
+	ldr r1, _0800AB90 @ =gDisplayRegisters \n\
 	adds r2, r1, #0 \n\
 	adds r2, #0x48 \n\
 	movs r0, #0xff \n\
@@ -2778,7 +2778,7 @@ _0800AB80: .4byte 0x0000F22E \n\
 _0800AB84: .4byte 0x0000F23E \n\
 _0800AB88: .4byte gEwramData \n\
 _0800AB8C: .4byte 0x000006F4 \n\
-_0800AB90: .4byte gUnk_03002C60 \n\
+_0800AB90: .4byte gDisplayRegisters \n\
 _0800AB94: \n\
 	bl sub_080D7FD0 \n\
 	movs r0, #0xf0 \n\
@@ -2798,7 +2798,7 @@ _0800AB94: \n\
 	lsls r3, r3, #3 \n\
 	adds r0, r0, r3 \n\
 	bl sub_08000E14 \n\
-	ldr r1, _0800ABE4 @ =gUnk_03002C60 \n\
+	ldr r1, _0800ABE4 @ =gDisplayRegisters \n\
 	adds r2, r1, #0 \n\
 	adds r2, #0x48 \n\
 	movs r0, #0xff \n\
@@ -2812,7 +2812,7 @@ _0800AB94: \n\
 	.align 2, 0 \n\
 _0800ABDC: .4byte gEwramData \n\
 _0800ABE0: .4byte 0x000007FC \n\
-_0800ABE4: .4byte gUnk_03002C60 \n\
+_0800ABE4: .4byte gDisplayRegisters \n\
 _0800ABE8: \n\
 	adds r0, r6, #0 \n\
 	bl sub_0800A2AC \n\
@@ -4018,7 +4018,7 @@ _0800B568: \n\
 	ldr r3, _0800B5D8 @ =0x00025484 \n\
 	adds r0, r0, r3 \n\
 	strb r4, [r0, #1] \n\
-	ldr r0, _0800B5DC @ =gUnk_03002C60 \n\
+	ldr r0, _0800B5DC @ =gDisplayRegisters \n\
 	adds r0, #0x48 \n\
 	movs r5, #0 \n\
 	ldr r1, _0800B5E0 @ =0x00003FFF \n\
@@ -4054,7 +4054,7 @@ _0800B5C4: \n\
 	bx r1 \n\
 	.align 2, 0 \n\
 _0800B5D8: .4byte 0x00025484 \n\
-_0800B5DC: .4byte gUnk_03002C60 \n\
+_0800B5DC: .4byte gDisplayRegisters \n\
 _0800B5E0: .4byte 0x00003FFF \n\
 _0800B5E4: .4byte 0x000007FC \n\
     .syntax divided ");

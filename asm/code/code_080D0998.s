@@ -5074,7 +5074,7 @@ _080D305E:
 	mov r2, r8
 	ands r0, r2
 	str r0, [r1]
-	ldr r0, _080D31B0 @ =gUnk_03002C60
+	ldr r0, _080D31B0 @ =gDisplayRegisters
 	adds r0, #0x48
 	strh r5, [r0]
 _080D30B6:
@@ -5197,7 +5197,7 @@ _080D31A0: .4byte 0x0000042C
 _080D31A4: .4byte gEwramData
 _080D31A8: .4byte 0x0000A074
 _080D31AC: .4byte 0x08522C54
-_080D31B0: .4byte gUnk_03002C60
+_080D31B0: .4byte gDisplayRegisters
 _080D31B4: .4byte 0x000004CC
 _080D31B8: .4byte 0x00013110
 _080D31BC:

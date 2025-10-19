@@ -784,7 +784,7 @@ _08010FB4:
 	mov r7, r8
 	cmp r7, #0x22
 	ble _08010F56
-	ldr r0, _08010FF0 @ =gUnk_03002C60
+	ldr r0, _08010FF0 @ =gDisplayRegisters
 	movs r1, #0xe2
 	lsls r1, r1, #5
 	strh r1, [r0]
@@ -804,7 +804,7 @@ _08010FE0: .4byte 0x000132B3
 _08010FE4: .4byte 0x084F1054
 _08010FE8: .4byte 0x08116650
 _08010FEC: .4byte 0x0000FFFF
-_08010FF0: .4byte gUnk_03002C60
+_08010FF0: .4byte gDisplayRegisters
 
 	thumb_func_start sub_08010FF4
 sub_08010FF4: @ 0x08010FF4
@@ -892,7 +892,7 @@ sub_08010FF4: @ 0x08010FF4
 	cmp r1, r0
 	bne _080110BC
 _080110A4:
-	ldr r0, _080110B8 @ =gUnk_03002C60
+	ldr r0, _080110B8 @ =gDisplayRegisters
 	adds r0, #0x4c
 	mov r1, r8
 	b _080110C6
@@ -900,9 +900,9 @@ _080110A4:
 _080110AC: .4byte gEwramData
 _080110B0: .4byte 0x00013110
 _080110B4: .4byte 0x000004CC
-_080110B8: .4byte gUnk_03002C60
+_080110B8: .4byte gDisplayRegisters
 _080110BC:
-	ldr r0, _080110E0 @ =gUnk_03002C60
+	ldr r0, _080110E0 @ =gDisplayRegisters
 	movs r1, #0xf
 	ands r3, r1
 	adds r1, r3, #1
@@ -922,7 +922,7 @@ _080110D4:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_080110E0: .4byte gUnk_03002C60
+_080110E0: .4byte gDisplayRegisters
 
 	thumb_func_start sub_080110E4
 sub_080110E4: @ 0x080110E4
@@ -974,7 +974,7 @@ _08011130:
 _0801114C: .4byte gEwramData
 _08011150: .4byte 0x0000A074
 _08011154:
-	ldr r1, _08011168 @ =gUnk_03002C60
+	ldr r1, _08011168 @ =gDisplayRegisters
 	movs r0, #0
 	strh r0, [r1, #8]
 	strh r0, [r1, #0xa]
@@ -983,14 +983,14 @@ _08011154:
 	bl sub_0803C8B0
 	b _0801130C
 	.align 2, 0
-_08011168: .4byte gUnk_03002C60
+_08011168: .4byte gDisplayRegisters
 _0801116C: .4byte 0x081183CC
 _08011170:
 	ldr r4, _080111C0 @ =gUnk_03002CB0
 	movs r3, #0x80
 	lsls r3, r3, #1
 	strh r3, [r4]
-	ldr r2, _080111C4 @ =gUnk_03002C60
+	ldr r2, _080111C4 @ =gDisplayRegisters
 	adds r1, r2, #0
 	adds r1, #0x4c
 	ldrh r0, [r1]
@@ -1027,7 +1027,7 @@ _0801118C:
 	b _08011314
 	.align 2, 0
 _080111C0: .4byte gUnk_03002CB0
-_080111C4: .4byte gUnk_03002C60
+_080111C4: .4byte gDisplayRegisters
 _080111C8: .4byte 0x0000F0F1
 _080111CC: .4byte 0x0000A0A1
 _080111D0:
@@ -1039,7 +1039,7 @@ _080111D0:
 	bne _080111E0
 	b _08011316
 _080111E0:
-	ldr r4, _08011204 @ =gUnk_03002C60
+	ldr r4, _08011204 @ =gDisplayRegisters
 	adds r1, r4, #0
 	adds r1, #0x48
 	movs r2, #0
@@ -1056,9 +1056,9 @@ _080111E0:
 	adds r0, #1
 	b _08011314
 	.align 2, 0
-_08011204: .4byte gUnk_03002C60
+_08011204: .4byte gDisplayRegisters
 _08011208:
-	ldr r1, _08011224 @ =gUnk_03002C60
+	ldr r1, _08011224 @ =gDisplayRegisters
 	adds r1, #0x4c
 	ldrh r0, [r1]
 	adds r0, #4
@@ -1073,7 +1073,7 @@ _0801121C:
 	adds r0, #1
 	b _08011314
 	.align 2, 0
-_08011224: .4byte gUnk_03002C60
+_08011224: .4byte gDisplayRegisters
 _08011228:
 	bl sub_0803C3E0
 	bl sub_0800DA50
@@ -1115,7 +1115,7 @@ _08011268:
 	str r0, [r2, #8]
 	ldr r0, [r2, #8]
 	bl sub_08000B64
-	ldr r1, _080112EC @ =gUnk_03002C60
+	ldr r1, _080112EC @ =gDisplayRegisters
 	adds r2, r1, #0
 	adds r2, #0x4c
 	movs r0, #0
@@ -1160,10 +1160,10 @@ _080112DC: .4byte gEwramData
 _080112E0: .4byte 0x00008C6C
 _080112E4: .4byte 0x00007864
 _080112E8: .4byte 0x84000502
-_080112EC: .4byte gUnk_03002C60
+_080112EC: .4byte gDisplayRegisters
 _080112F0: .4byte 0x0000A074
 _080112F4:
-	ldr r0, _08011308 @ =gUnk_03002C60
+	ldr r0, _08011308 @ =gDisplayRegisters
 	adds r1, r0, #0
 	adds r1, #0x4c
 	ldrh r0, [r1]
@@ -1173,7 +1173,7 @@ _080112F4:
 	strh r0, [r1]
 	b _08011316
 	.align 2, 0
-_08011308: .4byte gUnk_03002C60
+_08011308: .4byte gDisplayRegisters
 _0801130C:
 	adds r0, r5, #0
 	bl sub_08010D60
@@ -1207,7 +1207,7 @@ sub_08011338: @ 0x08011338
 	sub sp, #4
 	mov sb, r0
 	bl sub_0800D154
-	ldr r0, _080113F8 @ =gUnk_03002C60
+	ldr r0, _080113F8 @ =gDisplayRegisters
 	mov ip, r0
 	mov r1, ip
 	adds r1, #0x48
@@ -1293,7 +1293,7 @@ sub_08011338: @ 0x08011338
 	pop {r0}
 	bx r0
 	.align 2, 0
-_080113F8: .4byte gUnk_03002C60
+_080113F8: .4byte gDisplayRegisters
 _080113FC: .4byte gUnk_03002CB0
 _08011400: .4byte 0x0000DFFF
 _08011404: .4byte gEwramData
@@ -1529,7 +1529,7 @@ sub_080115D4: @ 0x080115D4
 	sub sp, #4
 	adds r4, r0, #0
 	bl sub_0800D154
-	ldr r0, _08011678 @ =gUnk_03002C60
+	ldr r0, _08011678 @ =gDisplayRegisters
 	mov ip, r0
 	mov r1, ip
 	adds r1, #0x48
@@ -1604,7 +1604,7 @@ sub_080115D4: @ 0x080115D4
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08011678: .4byte gUnk_03002C60
+_08011678: .4byte gDisplayRegisters
 _0801167C: .4byte gEwramData
 _08011680: .4byte 0x0000A074
 _08011684: .4byte 0x040000D4
@@ -1666,7 +1666,7 @@ _080116FC:
 	movs r1, #0xc
 	orrs r0, r1
 	strb r0, [r2]
-	ldr r2, _080117C8 @ =gUnk_03002C60
+	ldr r2, _080117C8 @ =gDisplayRegisters
 	mov sb, r2
 	mov r0, sb
 	adds r0, #0x4c
@@ -1752,7 +1752,7 @@ _080117B4:
 	.align 2, 0
 _080117C0: .4byte gEwramData
 _080117C4: .4byte 0x0000A074
-_080117C8: .4byte gUnk_03002C60
+_080117C8: .4byte gDisplayRegisters
 _080117CC: .4byte 0x00013110
 _080117D0: .4byte 0x081183CC
 _080117D4:
@@ -1760,7 +1760,7 @@ _080117D4:
 	movs r0, #0x82
 	lsls r0, r0, #7
 	strh r0, [r1]
-	ldr r2, _08011818 @ =gUnk_03002C60
+	ldr r2, _08011818 @ =gDisplayRegisters
 	adds r1, r2, #0
 	adds r1, #0x4c
 	ldrh r0, [r1]
@@ -1790,7 +1790,7 @@ _080117F0:
 	b _08011A18
 	.align 2, 0
 _08011814: .4byte gUnk_03002CB0
-_08011818: .4byte gUnk_03002C60
+_08011818: .4byte gDisplayRegisters
 _0801181C: .4byte 0x0000F0F1
 _08011820: .4byte 0x0000A0A1
 _08011824:
@@ -1822,7 +1822,7 @@ _08011824:
 	ands r3, r4
 	movs r2, #8
 	subs r2, r2, r3
-	ldr r6, _080118C4 @ =gUnk_03002C60
+	ldr r6, _080118C4 @ =gDisplayRegisters
 	movs r3, #7
 	ands r4, r3
 	adds r4, #8
@@ -1869,7 +1869,7 @@ _08011824:
 	b _08011A1A
 	.align 2, 0
 _080118C0: .4byte gEwramData
-_080118C4: .4byte gUnk_03002C60
+_080118C4: .4byte gDisplayRegisters
 _080118C8:
 	movs r0, #1
 	mov r2, r8
@@ -1902,7 +1902,7 @@ _080118D4:
 	adds r0, #1
 	b _08011A18
 _08011908:
-	ldr r1, _08011924 @ =gUnk_03002C60
+	ldr r1, _08011924 @ =gDisplayRegisters
 	adds r1, #0x4c
 	ldrh r0, [r1]
 	adds r0, #4
@@ -1917,7 +1917,7 @@ _0801191C:
 	adds r0, #1
 	b _08011A18
 	.align 2, 0
-_08011924: .4byte gUnk_03002C60
+_08011924: .4byte gDisplayRegisters
 _08011928:
 	bl sub_0803C3E0
 	bl sub_0800DA50
@@ -1959,7 +1959,7 @@ _08011968:
 	str r0, [r2, #8]
 	ldr r0, [r2, #8]
 	bl sub_08000B64
-	ldr r1, _080119F0 @ =gUnk_03002C60
+	ldr r1, _080119F0 @ =gDisplayRegisters
 	adds r2, r1, #0
 	adds r2, #0x4c
 	movs r0, #0
@@ -2005,10 +2005,10 @@ _080119E0: .4byte gEwramData
 _080119E4: .4byte 0x00008C6C
 _080119E8: .4byte 0x00007864
 _080119EC: .4byte 0x84000502
-_080119F0: .4byte gUnk_03002C60
+_080119F0: .4byte gDisplayRegisters
 _080119F4: .4byte 0x0000A074
 _080119F8:
-	ldr r0, _08011A0C @ =gUnk_03002C60
+	ldr r0, _08011A0C @ =gDisplayRegisters
 	adds r1, r0, #0
 	adds r1, #0x4c
 	ldrh r0, [r1]
@@ -2018,7 +2018,7 @@ _080119F8:
 	strh r0, [r1]
 	b _08011A1A
 	.align 2, 0
-_08011A0C: .4byte gUnk_03002C60
+_08011A0C: .4byte gDisplayRegisters
 _08011A10:
 	adds r0, r5, #0
 	bl sub_08010D60
@@ -2127,7 +2127,7 @@ _08011ACA:
 	thumb_func_start sub_08011AD0
 sub_08011AD0: @ 0x08011AD0
 	push {r4, r5, r6, lr}
-	ldr r2, _08011B18 @ =gUnk_03002C60
+	ldr r2, _08011B18 @ =gDisplayRegisters
 	adds r3, r2, #0
 	adds r3, #0x48
 	movs r6, #0
@@ -2163,7 +2163,7 @@ sub_08011AD0: @ 0x08011AD0
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08011B18: .4byte gUnk_03002C60
+_08011B18: .4byte gDisplayRegisters
 _08011B1C: .4byte gUnk_03002CB0
 _08011B20: .4byte 0x0000DFFF
 _08011B24: .4byte gEwramData
@@ -2332,7 +2332,7 @@ _08011C3C:
 	ldrh r0, [r6]
 	movs r4, #0
 	strh r0, [r1]
-	ldr r5, _08011CCC @ =gUnk_03002C60
+	ldr r5, _08011CCC @ =gDisplayRegisters
 	adds r1, r5, #0
 	adds r1, #0x4c
 	movs r0, #8
@@ -2365,7 +2365,7 @@ _08011CBC: .4byte 0x0000A074
 _08011CC0: .4byte 0x0000042C
 _08011CC4: .4byte 0xFF7FFFFF
 _08011CC8: .4byte gUnk_03002CB0
-_08011CCC: .4byte gUnk_03002C60
+_08011CCC: .4byte gDisplayRegisters
 
 	thumb_func_start sub_08011CD0
 sub_08011CD0: @ 0x08011CD0
@@ -6753,7 +6753,7 @@ _08013FEC:
 	movs r0, #0x90
 	lsls r0, r0, #5
 	strh r0, [r1]
-	ldr r4, _08014088 @ =gUnk_03002C60
+	ldr r4, _08014088 @ =gDisplayRegisters
 	ldr r0, _0801408C @ =0x00001D81
 	strh r0, [r4, #2]
 	ldr r0, _08014090 @ =0x080E5C08
@@ -6807,7 +6807,7 @@ _08014078: .4byte 0x040000D4
 _0801407C: .4byte 0x0600E000
 _08014080: .4byte 0x85000200
 _08014084: .4byte gUnk_03002CB0
-_08014088: .4byte gUnk_03002C60
+_08014088: .4byte gDisplayRegisters
 _0801408C: .4byte 0x00001D81
 _08014090: .4byte 0x080E5C08
 _08014094: .4byte 0x080E5C10
@@ -6846,7 +6846,7 @@ _080140D4:
 	beq _08014100
 	subs r1, #1
 	strh r1, [r2, #4]
-	ldr r3, _080140FC @ =gUnk_03002C60
+	ldr r3, _080140FC @ =gDisplayRegisters
 	lsls r1, r1, #0x10
 	lsrs r1, r1, #0x11
 	lsls r2, r1, #8
@@ -6857,7 +6857,7 @@ _080140D4:
 	strh r2, [r3]
 	b _080142BA
 	.align 2, 0
-_080140FC: .4byte gUnk_03002C60
+_080140FC: .4byte gDisplayRegisters
 _08014100:
 	ldrb r0, [r2, #0x11]
 	adds r0, #1
@@ -6984,7 +6984,7 @@ _08014210:
 	bne _080142BA
 	bl sub_0803D270
 	bl sub_0803CED4
-	ldr r1, _08014248 @ =gUnk_03002C60
+	ldr r1, _08014248 @ =gDisplayRegisters
 	adds r2, r1, #0
 	adds r2, #0x48
 	movs r0, #0xbf
@@ -7005,7 +7005,7 @@ _08014210:
 	ldr r0, _08014250 @ =0x0825B220
 	b _0801425E
 	.align 2, 0
-_08014248: .4byte gUnk_03002C60
+_08014248: .4byte gDisplayRegisters
 _0801424C: .4byte gEwramData
 _08014250: .4byte 0x0825B220
 _08014254:
@@ -7024,7 +7024,7 @@ _0801425E:
 	movs r1, #8
 	orrs r0, r1
 	strb r0, [r2]
-	ldr r2, _080142D0 @ =gUnk_03002C60
+	ldr r2, _080142D0 @ =gDisplayRegisters
 	adds r0, r2, #0
 	adds r0, #0x48
 	movs r1, #0
@@ -7071,7 +7071,7 @@ _080142BA:
 	bx r1
 	.align 2, 0
 _080142CC: .4byte 0x0826E85C
-_080142D0: .4byte gUnk_03002C60
+_080142D0: .4byte gDisplayRegisters
 _080142D4: .4byte gEwramData
 _080142D8: .4byte 0x0000A074
 _080142DC: .4byte gUnk_03002CB0
@@ -7151,7 +7151,7 @@ _08014374:
 	lsls r0, r0, #3
 _0801437A:
 	strh r0, [r1]
-	ldr r1, _080143AC @ =gUnk_03002C60
+	ldr r1, _080143AC @ =gDisplayRegisters
 	movs r3, #0
 	ldr r0, _080143B0 @ =0x00001D03
 	strh r0, [r1, #2]
@@ -7175,7 +7175,7 @@ _0801437A:
 	b _0801453E
 	.align 2, 0
 _080143A8: .4byte gUnk_03002CB0
-_080143AC: .4byte gUnk_03002C60
+_080143AC: .4byte gDisplayRegisters
 _080143B0: .4byte 0x00001D03
 _080143B4:
 	movs r0, #0x1a
@@ -7256,7 +7256,7 @@ _08014458:
 _0801446C: .4byte 0x080E8874
 _08014470: .4byte gEwramData
 _08014474:
-	ldr r0, _0801448C @ =gUnk_03002C60
+	ldr r0, _0801448C @ =gDisplayRegisters
 	adds r0, #0x4c
 	movs r2, #0
 	movs r1, #0
@@ -7269,7 +7269,7 @@ _08014474:
 	strb r2, [r0, #0x12]
 	b _0801453E
 	.align 2, 0
-_0801448C: .4byte gUnk_03002C60
+_0801448C: .4byte gDisplayRegisters
 _08014490:
 	movs r4, #0x84
 	lsls r4, r4, #8
@@ -7307,7 +7307,7 @@ _080144C6:
 	beq _0801453E
 	ldr r0, _08014500 @ =0x00001010
 	bl sub_080D7910
-	ldr r0, _08014504 @ =gUnk_03002C60
+	ldr r0, _08014504 @ =gDisplayRegisters
 	adds r0, #0x48
 	movs r2, #0
 	movs r1, #0xbf
@@ -7324,9 +7324,9 @@ _080144C6:
 _080144F8: .4byte gEwramData
 _080144FC: .4byte 0x0000042C
 _08014500: .4byte 0x00001010
-_08014504: .4byte gUnk_03002C60
+_08014504: .4byte gDisplayRegisters
 _08014508:
-	ldr r6, _08014524 @ =gUnk_03002C60
+	ldr r6, _08014524 @ =gDisplayRegisters
 	ldr r0, [r4]
 	ldrh r0, [r0, #4]
 	lsrs r0, r0, #3
@@ -7341,7 +7341,7 @@ _08014508:
 	strh r0, [r1, #4]
 	b _0801453E
 	.align 2, 0
-_08014524: .4byte gUnk_03002C60
+_08014524: .4byte gDisplayRegisters
 _08014528:
 	ldr r0, [r4]
 	adds r0, #0x60

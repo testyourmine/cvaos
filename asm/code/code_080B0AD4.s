@@ -25645,7 +25645,7 @@ _080BD23C: .4byte gEwramData
 _080BD240: .4byte 0x000004E4
 _080BD244: .4byte gUnk_03002CB0
 _080BD248:
-	ldr r1, _080BD2C0 @ =gUnk_03002C60
+	ldr r1, _080BD2C0 @ =gDisplayRegisters
 	adds r0, r1, #0
 	adds r0, #0x42
 	movs r4, #0x3f
@@ -25704,7 +25704,7 @@ _080BD2B8:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_080BD2C0: .4byte gUnk_03002C60
+_080BD2C0: .4byte gDisplayRegisters
 _080BD2C4: .4byte 0x081C15F4
 _080BD2C8: .4byte 0x0820ED60
 _080BD2CC: .4byte sub_0803B9D0

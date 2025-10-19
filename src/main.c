@@ -85,7 +85,7 @@ void AgbMain(void)
 
             sub_080D7EEC();
             sub_080D7E94();
-            DMA_COPY_32(3, &gUnk_03002C60, REG_BG0CNT, sizeof(gUnk_03002C60));
+            DMA_COPY_32(3, &gDisplayRegisters, REG_BG0CNT, sizeof(gDisplayRegisters));
 
             if (unk_7864->unk_7864_2)
             {
@@ -142,14 +142,14 @@ void sub_08000424(void)
     var_1 = gEwramData->unk_FEC1;
 
     // Move BG1-3 Offset down-right?
-    gUnk_03002C60.bgOfs[1].hOfs += var_0;
-    gUnk_03002C60.bgOfs[1].vOfs += var_1;
+    gDisplayRegisters.bgOfs[1].hOfs += var_0;
+    gDisplayRegisters.bgOfs[1].vOfs += var_1;
 
-    gUnk_03002C60.bgOfs[2].hOfs += var_0;
-    gUnk_03002C60.bgOfs[2].vOfs += var_1;
+    gDisplayRegisters.bgOfs[2].hOfs += var_0;
+    gDisplayRegisters.bgOfs[2].vOfs += var_1;
 
-    gUnk_03002C60.bgOfs[3].hOfs += var_0;
-    gUnk_03002C60.bgOfs[3].vOfs += var_1;
+    gDisplayRegisters.bgOfs[3].hOfs += var_0;
+    gDisplayRegisters.bgOfs[3].vOfs += var_1;
 }
 
 /**
@@ -165,14 +165,14 @@ void sub_08000470(void)
     var_1 = gEwramData->unk_FEC1;
 
     // Move BG1-3 Offset up-left?
-    gUnk_03002C60.bgOfs[1].hOfs -= var_0;
-    gUnk_03002C60.bgOfs[1].vOfs -= var_1;
+    gDisplayRegisters.bgOfs[1].hOfs -= var_0;
+    gDisplayRegisters.bgOfs[1].vOfs -= var_1;
 
-    gUnk_03002C60.bgOfs[2].hOfs -= var_0;
-    gUnk_03002C60.bgOfs[2].vOfs -= var_1;
+    gDisplayRegisters.bgOfs[2].hOfs -= var_0;
+    gDisplayRegisters.bgOfs[2].vOfs -= var_1;
 
-    gUnk_03002C60.bgOfs[3].hOfs -= var_0;
-    gUnk_03002C60.bgOfs[3].vOfs -= var_1;
+    gDisplayRegisters.bgOfs[3].hOfs -= var_0;
+    gDisplayRegisters.bgOfs[3].vOfs -= var_1;
 }
 
 /**
@@ -332,17 +332,17 @@ void sub_08000640(void)
  */
 void sub_08000658(void)
 {
-    DMA_FILL_32(3, 0, &gUnk_03002C60, sizeof(gUnk_03002C60));
+    DMA_FILL_32(3, 0, &gDisplayRegisters, sizeof(gDisplayRegisters));
 
-    gUnk_03002C60.bg3PD = 0x100;
-    gUnk_03002C60.bg3PA = 0x100;
-    gUnk_03002C60.bg2PD = 0x100;
-    gUnk_03002C60.bg2PA = 0x100;
+    gDisplayRegisters.bg3PD = 0x100;
+    gDisplayRegisters.bg3PA = 0x100;
+    gDisplayRegisters.bg2PD = 0x100;
+    gDisplayRegisters.bg2PA = 0x100;
 
-    gUnk_03002C60.bgCnt[0] = 0x1C02;
-    gUnk_03002C60.bgCnt[1] = 0x1D02;
-    gUnk_03002C60.bgCnt[2] = 0x1E02;
-    gUnk_03002C60.bgCnt[3] = 0x1F02;
+    gDisplayRegisters.bgCnt[0] = CREATE_BGCNT(0, 28, BGCNT_LOW_MID_PRIORITY, BGCNT_SIZE_256x256);
+    gDisplayRegisters.bgCnt[1] = CREATE_BGCNT(0, 29, BGCNT_LOW_MID_PRIORITY, BGCNT_SIZE_256x256);
+    gDisplayRegisters.bgCnt[2] = CREATE_BGCNT(0, 30, BGCNT_LOW_MID_PRIORITY, BGCNT_SIZE_256x256);
+    gDisplayRegisters.bgCnt[3] = CREATE_BGCNT(0, 31, BGCNT_LOW_MID_PRIORITY, BGCNT_SIZE_256x256);
 
     gEwramData->unk_A074_2 = gEwramData->unk_A074_4 = 0;
 }

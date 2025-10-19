@@ -99,8 +99,8 @@ s32 sub_08008750(void)
             sub_08042754();
             gEwramData->unk_A074_2 = gEwramData->unk_A074_4 = 3;
             gUnk_03002CB0.unk_0 = 0x100;
-            gUnk_03002C60.bldCnt = 0x3FFF;
-            gUnk_03002C60.bldY = 0x10;
+            gDisplayRegisters.bldCnt = BLDCNT_SCREEN_SECOND_TARGET | BLDCNT_BRIGHTNESS_DECREASE_EFFECT | BLDCNT_SCREEN_FIRST_TARGET;
+            gDisplayRegisters.bldY = BLDY_MAX_VALUE;
             gEwramData->unk_11 = 5;
             gEwramData->unk_12 = 0;
             gEwramData->unk_60.unk_A1 = (gEwramData->unk_60.unk_A1 & 0xF) | 0x10;
@@ -154,7 +154,7 @@ s32 sub_080089D0(void)
 // TODO: No inline?
 static inline void sub_080089D8_inline(s32 temp_r0_2)
 {
-    gUnk_03002C60.bldAlpha = (temp_r0_2 << 8) | (0x10 - temp_r0_2);
+    gDisplayRegisters.bldAlpha = C_16_2_8(temp_r0_2, BLDALPHA_MAX_VALUE - temp_r0_2);
 }
 
 /**
@@ -194,7 +194,7 @@ s32 sub_080089D8(void)
             sub_0803BEEC();
             sub_0804059C();
             sub_08042754();
-            DMA_COPY_32(3, &gUnk_03002C60.bgCnt[1], temp_r5->unk_70, sizeof(temp_r5->unk_70));
+            DMA_COPY_32(3, &gDisplayRegisters.bgCnt[1], temp_r5->unk_70, sizeof(temp_r5->unk_70));
             gUnk_03002CB0.unk_0 = 0x1F00;
             sub_0803C8B0((u8 *)0x080E6634);
             sub_0803FD9C((u8 *)0x080E5BF0, 0x06008000, 0);
@@ -202,10 +202,10 @@ s32 sub_080089D8(void)
             sub_0803F8A8(1, (u32 *)0x080E9464, 0, 0x160);
             sub_0803F8A8(2, (u32 *)0x080E9244, 0, 0x260);
             sub_0803F8A8(3, (u32 *)0x080E9354, 0, 0xC9);
-            gUnk_03002C60.bgCnt[0] = 0x1C00;
-            gUnk_03002C60.bgCnt[1] = 0x1D09;
-            gUnk_03002C60.bgCnt[2] = 0x1E0A;
-            gUnk_03002C60.bgCnt[3] = 0x1F0B;
+            gDisplayRegisters.bgCnt[0] = CREATE_BGCNT(0, 28, BGCNT_HIGH_PRIORITY, BGCNT_SIZE_256x256);
+            gDisplayRegisters.bgCnt[1] = CREATE_BGCNT(2, 29, BGCNT_HIGH_MID_PRIORITY, BGCNT_SIZE_256x256);
+            gDisplayRegisters.bgCnt[2] = CREATE_BGCNT(2, 30, BGCNT_LOW_MID_PRIORITY, BGCNT_SIZE_256x256);
+            gDisplayRegisters.bgCnt[3] = CREATE_BGCNT(2, 31, BGCNT_LOW_PRIORITY, BGCNT_SIZE_256x256);
             var_r2 = (s16 *)0x0600E000;
             var_r1 = 0;
             for ( ; var_r1 < 0x400; )
@@ -223,15 +223,15 @@ s32 sub_080089D8(void)
             sub_0803DC18(0, 0x18, 0x14, 0x1F);
             sub_0803FD60();
             sub_080094AC(temp_r7);
-            gUnk_03002C60.bldCnt = 0xFF;
-            gUnk_03002C60.bldY = 0x10;
+            gDisplayRegisters.bldCnt = BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_DECREASE_EFFECT;
+            gDisplayRegisters.bldY = BLDY_MAX_VALUE;
             gEwramData->unk_4 = 0;
             gEwramData->unk_11 += 1;
             gEwramData->unk_12 = 0;
             break;
     
         case 1:
-            temp_r3 = gUnk_03002C60.bldY = 0x10 - (gEwramData->unk_4 >> 3);
+            temp_r3 = gDisplayRegisters.bldY = BLDY_MAX_VALUE - (gEwramData->unk_4 >> 3);
             if (temp_r3 != 0)
             {
                 if (gEwramData->unk_4 == 0)
@@ -242,8 +242,8 @@ s32 sub_080089D8(void)
             }
             else
             {
-                gUnk_03002C60.bldCnt = 0x3FC0;
-                gEwramData->unk_4 = temp_r3;
+                gDisplayRegisters.bldCnt = BLDCNT_SCREEN_SECOND_TARGET | BLDCNT_BRIGHTNESS_DECREASE_EFFECT;
+                gEwramData->unk_4 = 0;
                 gEwramData->unk_11 += 1;
                 gEwramData->unk_12 = 0;
             }
@@ -256,14 +256,14 @@ s32 sub_080089D8(void)
     
         case 3:
             temp_r4 = (struct EwramData_unkA094_0 *)&gEwramData->unk_A078[1].unk_A094.unk_A094.unk_A094_0;
-            gUnk_03002C60.bgOfs[1].hOfs = 0;
+            gDisplayRegisters.bgOfs[1].hOfs = 0;
             sub_0803FC6C(1, 0, -0x1C00);
             sub_0803FC6C(2, 0, -0x3200);
             sub_0803FC6C(3, 0, -0x1000);
             temp_r2 = temp_r4->unk_10;
             if (temp_r2 == 0)
             {
-                gUnk_03002C60.bldCnt = 0x3F40;
+                gDisplayRegisters.bldCnt = BLDCNT_SCREEN_SECOND_TARGET | BLDCNT_ALPHA_BLENDING_EFFECT;
                 gEwramData->unk_4 = temp_r2;
                 temp_r7->unk_53C_5 = 0;
                 gEwramData->unk_11 += 1;
@@ -278,7 +278,7 @@ s32 sub_080089D8(void)
             {
                 temp_r2_3 = gEwramData->unk_4 >> 3;
                 temp_r1_5 = (gEwramData->unk_4 & 2) + (0x10 - (gEwramData->unk_4 >> 0x4));
-                gUnk_03002C60.bldAlpha = (temp_r1_5 << 8) | (0x10 - temp_r1_5);
+                gDisplayRegisters.bldAlpha = C_16_2_8(temp_r1_5, BLDALPHA_MAX_VALUE - temp_r1_5);
                 if (temp_r2_3 > 0xA)
                 {
                     gEwramData->unk_4 = temp_r6;
@@ -291,7 +291,7 @@ s32 sub_080089D8(void)
         case 5:
             gEwramData->unk_4 += 1;
             sub_080089D8_inline((gEwramData->unk_4 & 1) + ((sub_08000A90() & 1) * 2) + 0xD);
-            if ((gEwramData->unk_4 > 0x77) || (gEwramData->unk_14.newInput & 9))
+            if ((gEwramData->unk_4 > 0x77) || (gEwramData->unk_14.newInput & (KEY_A | KEY_START)))
             {
                 sub_0803D18C(0, 0, 0, 0x10000, 0, 0x78);
                 sub_0803CDF0(0, 0, 0, 0x10000, 0, 0x78);
@@ -307,8 +307,8 @@ s32 sub_080089D8(void)
                 temp_r5_3 = gEwramData;
                 sub_0803D270();
                 sub_0803CED4();
-                gUnk_03002C60.bldCnt = 0xFF;
-                gUnk_03002C60.bldY = 0x10;
+                gDisplayRegisters.bldCnt = BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_DECREASE_EFFECT;
+                gDisplayRegisters.bldY = BLDY_MAX_VALUE;
                 gEwramData->unk_7864.unk_7864_1 = 1;
                 sub_08000D44();
                 sub_0803D9A8();
@@ -317,7 +317,7 @@ s32 sub_080089D8(void)
                 sub_0803BEEC();
                 sub_0804059C();
                 sub_08042754();
-                DMA_COPY_32(3, &temp_r5_3->unk_60.unk_68.unk_70, &gUnk_03002C60.bgCnt[1], sizeof(temp_r5_3->unk_60.unk_68.unk_70));
+                DMA_COPY_32(3, &temp_r5_3->unk_60.unk_68.unk_70, &gDisplayRegisters.bgCnt[1], sizeof(temp_r5_3->unk_60.unk_68.unk_70));
                 sub_080D7910(0x1010);
                 gEwramData->unk_11 += 1;
                 gEwramData->unk_12 = 0;
@@ -333,15 +333,15 @@ s32 sub_080089D8(void)
             break;
     }
 
-    if ((gEwramData->unk_14.newInput & 9) && (gEwramData->unk_11 < 6))
+    if ((gEwramData->unk_14.newInput & (KEY_A | KEY_START)) && (gEwramData->unk_11 < 6))
     {
         gEwramData->unk_11 = 0x63;
         gEwramData->unk_12 = 0;
         temp_r5_2 = gEwramData;
         sub_0803D270();
         sub_0803CED4();
-        gUnk_03002C60.bldCnt = 0xFF;
-        gUnk_03002C60.bldY = 0x10;
+        gDisplayRegisters.bldCnt = BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_DECREASE_EFFECT;
+        gDisplayRegisters.bldY = BLDY_MAX_VALUE;
         gEwramData->unk_7864.unk_7864_1 = 1;
         sub_08000D44();
         sub_0803D9A8();
@@ -350,7 +350,7 @@ s32 sub_080089D8(void)
         sub_0803BEEC();
         sub_0804059C();
         sub_08042754();
-        DMA_COPY_32(3, &temp_r5_2->unk_60.unk_68.unk_70, &gUnk_03002C60.bgCnt[1], sizeof(temp_r5_2->unk_60.unk_68.unk_70));
+        DMA_COPY_32(3, &temp_r5_2->unk_60.unk_68.unk_70, &gDisplayRegisters.bgCnt[1], sizeof(temp_r5_2->unk_60.unk_68.unk_70));
         sub_080D7910(0x1010);
         if (gEwramData->unk_6 == 0)
         {
@@ -358,8 +358,8 @@ s32 sub_080089D8(void)
         }
         else
         {
-            gUnk_03002C60.bldCnt = 0xFF;
-            gUnk_03002C60.bldY = 0x10;
+            gDisplayRegisters.bldCnt = BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_DECREASE_EFFECT;
+            gDisplayRegisters.bldY = BLDY_MAX_VALUE;
             var_r8 = 1;
         }
     }
@@ -519,7 +519,7 @@ void sub_08009054(struct EwramData_unk4E4 *param_0)
             {
                 param_0->unk_524.unk_524_16.unk_526 = 0xF8;
                 temp_r1_2 = 10;
-                gUnk_03002C60.bldAlpha = (temp_r1_2 << 8) | (0x10 - temp_r1_2);
+                gDisplayRegisters.bldAlpha = C_16_2_8(temp_r1_2,  BLDALPHA_MAX_VALUE - temp_r1_2);
             }
             else
             {
@@ -544,7 +544,7 @@ void sub_08009054(struct EwramData_unk4E4 *param_0)
                 if (param_0->unk_4EF == 0)
                 {
                     temp_r1_3 = 0x10 - (param_0->unk_4F8.unk_4F8_32 / 48);
-                    gUnk_03002C60.bldAlpha = (temp_r1_3 << 8) | (0x10 - temp_r1_3);
+                    gDisplayRegisters.bldAlpha = C_16_2_8(temp_r1_3,  BLDALPHA_MAX_VALUE - temp_r1_3);
                 }
             }
             else
@@ -768,7 +768,7 @@ void sub_080094AC(struct EwramData_unk4E4 *param_0)
     param_0->unk_53E_1 = 1;
     param_0->unk_4E4 = (u32 *) sub_08009648;
     param_0->unk_53C_5 = 1;
-    gUnk_03002C60.bgOfs[0].vOfs = param_0->unk_4FC.unk_4FC_16.unk_4FE[0] = -0xA4;
+    gDisplayRegisters.bgOfs[0].vOfs = param_0->unk_4FC.unk_4FC_16.unk_4FE[0] = -0xA4;
 
     temp_r4_2 = sub_08000DA0(0x49, 0xCF, (u32*)sub_08008F40);
     var_0 = sub_0803B800((u8 *)0x08160498, 0);
@@ -823,13 +823,13 @@ void sub_08009648(struct EwramData_unk4E4 *param_0)
     param_0->unk_4F1 = Mod(param_0->unk_4F1 + 1, 5);
     if (param_0->unk_4F1 == 0)
     {
-        temp_r4 = gUnk_03002C60.bgOfs[0].vOfs;
+        temp_r4 = gDisplayRegisters.bgOfs[0].vOfs;
         temp_r4++;
         if (Mod(temp_r4 + 0xF0, 0xC) == 0)
         {
             sub_080093E0(param_0);
         }
-        gUnk_03002C60.bgOfs[0].vOfs = temp_r4;
+        gDisplayRegisters.bgOfs[0].vOfs = temp_r4;
     }
     if (gEwramData->unk_11 > 6)
     {

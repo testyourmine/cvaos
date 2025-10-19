@@ -8,7 +8,7 @@ struct BgOffset {
     u16 vOfs;
 };
 
-struct Unk_03002C60 {
+struct DisplayRegisters {
     u16 bgCnt[4];
     struct BgOffset bgOfs[4];
     u16 bg2PA;
@@ -68,7 +68,7 @@ struct Unk_03002CB0 {
     u8 unk_100D;
 };
 
-extern struct Unk_03002C60 gUnk_03002C60;
+extern struct DisplayRegisters gDisplayRegisters;
 extern struct Unk_03002CB0 gUnk_03002CB0;
 extern u8 *gUnk_03003CD0;
 

@@ -627,7 +627,7 @@ void sub_0800F9EC(struct EwramData_unk88 *arg0, u16 arg1, u16 arg2)
     }
 
     var_r6 = arg0->unk_8;
-    sp18 = gUnk_03002C60.bgCnt;
+    sp18 = gDisplayRegisters.bgCnt;
     for (var_r7 = 1; var_r7 < 4; var_r7++)
     {
         sp18[var_r7] = var_r6->unk_2;
@@ -1101,18 +1101,18 @@ void sub_0800FE98(struct EwramData_unk60 *param_0, s32 param_1)
     }
 
     gUnk_03002CB0.unk_0 |= 0x2000;
-    gUnk_03002C60.bldY = 8;
-    var_0 = (gUnk_03002C60.bldCnt & ~1) | 0x3F00;
-    gUnk_03002C60.win0H = 0xF0;
-    gUnk_03002C60.winIn_L = 0x3F;
-    gUnk_03002C60.winOut_L = 0x1F;
-    gUnk_03002C60.win0V = 0x465E;
-    gUnk_03002C60.bldCnt = (var_0 | 0xFF) & ~1;
+    gDisplayRegisters.bldY = BLDALPHA_MAX_VALUE / 2;
+    var_0 = (gDisplayRegisters.bldCnt & ~BLDCNT_BG0_FIRST_TARGET_PIXEL) | BLDCNT_SCREEN_SECOND_TARGET;
+    gDisplayRegisters.win0H = C_16_2_8(0, SCREEN_SIZE_X);
+    gDisplayRegisters.winIn_L = WIN0_ALL;
+    gDisplayRegisters.winOut_L = WIN0_ALL_NO_COLOR_EFFECT;
+    gDisplayRegisters.win0V = C_16_2_8(70, 94);
+    gDisplayRegisters.bldCnt = (var_0 | BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_DECREASE_EFFECT) & ~BLDCNT_BG0_FIRST_TARGET_PIXEL;
 
     if (!gEwramData->unk_7864.unk_7864_0)
     {
         param_0->unk_4CC_2 = 1;
-        sub_08001718(0xF0U, 0x60U, 2U, 0x04000010);
+        sub_08001718(240, 96, 2, (u32)REG_BG0HOFS);
         sub_0800FDC8(param_0->unk_66);
     }
     else
@@ -1120,19 +1120,19 @@ void sub_0800FE98(struct EwramData_unk60 *param_0, s32 param_1)
         param_0->unk_4CC_2 = 0;
     }
 
-    sub_0803C918((u8 *)0x08266520, 0U, 1U, 0xCU);
+    sub_0803C918((u8 *)0x08266520, 0, 1, 0xC);
     switch (gEwramData->unk_60.unk_4D0)
     {
         case 2:
-            sub_0803FD9C(sUnk_084F1020[param_1], 0x06006000, 0U);
+            sub_0803FD9C(sUnk_084F1020[param_1], (u32)VRAM_BASE + 0x6000, 0);
             break;
 
         case 3:
-            sub_0803FD9C(sUnk_084F0FEC[param_1], 0x06006000, 0U);
+            sub_0803FD9C(sUnk_084F0FEC[param_1], (u32)VRAM_BASE + 0x6000, 0);
             break;
 
         default:
-            sub_0803FD9C(sUnk_084F0FB8[param_1], 0x06006000, 0U);
+            sub_0803FD9C(sUnk_084F0FB8[param_1], (u32)VRAM_BASE + 0x6000, 0);
             break;
     }
 
@@ -1200,7 +1200,7 @@ s32 sub_0800FFCC(struct EwramData_unk60 *param_0)
         sub_0800FDC8(param_0->unk_66);
         if (param_0->unk_66 > 0x1F)
         {
-            gUnk_03002C60.bldY = (0x60 - param_0->unk_66) >> 3;
+            gDisplayRegisters.bldY = (0x60 - param_0->unk_66) >> 3;
         }
         if (param_0->unk_66 > 0x5F)
         {
@@ -1242,14 +1242,14 @@ void sub_08010144(struct EwramData_unk60 *param_0)
 
     param_0->unk_4CD = 0;
     gEwramData->unk_A074_0 = 0;
-    gUnk_03002C60.bldCnt |= 0x3F00;
-    gUnk_03002C60.bgOfs[0].hOfs = 0;
+    gDisplayRegisters.bldCnt |= BLDCNT_SCREEN_SECOND_TARGET;
+    gDisplayRegisters.bgOfs[0].hOfs = 0;
     gEwramData->unk_A074_2 = gEwramData->unk_A074_4 = 0;
-    gUnk_03002C60.bldCnt = param_0->unk_88->unk_1E;
-    gUnk_03002C60.bldY = 0;
+    gDisplayRegisters.bldCnt = param_0->unk_88->unk_1E;
+    gDisplayRegisters.bldY = 0;
     sub_0800C778();
-    gUnk_03002C60.winIn_L = 0x3F;
-    gUnk_03002C60.winOut_L = 0x3F;
+    gDisplayRegisters.winIn_L = WIN0_ALL;
+    gDisplayRegisters.winOut_L = WIN0_ALL;
 }
 
 static inline void sub_08010244_inline_0()
@@ -1278,9 +1278,9 @@ void sub_08010244(struct EwramData_unk60 *param_0)
     param_0->unk_65 = 0;
 
     gEwramData->unk_FEC0 = gEwramData->unk_FEC1 = 0;
-    gUnk_03002C60.bldCnt = 0xFF;
+    gDisplayRegisters.bldCnt = BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_DECREASE_EFFECT;
     gUnk_03002CB0.unk_0 &= ~0x2000;
-    gUnk_03002C60.bldY = 0x10;
+    gDisplayRegisters.bldY = BLDY_MAX_VALUE;
 
     gEwramData->unk_A074_1 = 0;
     gEwramData->unk_A074_0 = 1;
@@ -1432,7 +1432,7 @@ s32 sub_080104EC(struct EwramData_unk60 *param_0)
     if (param_0->unk_65 == 0)
     {
         gEwramData->unk_A074_2 = gEwramData->unk_A074_4 = 3;
-        gUnk_03002C60.bldY = 0x10;
+        gDisplayRegisters.bldY = BLDY_MAX_VALUE;
         sub_0800FBD8();
 
         for (var_r4 = 10; var_r4 < 14; var_r4++)
@@ -1468,10 +1468,10 @@ s32 sub_080104EC(struct EwramData_unk60 *param_0)
             gUnk_03002CB0.unk_0 = param_0->unk_88->unk_0;
             gEwramData->unk_A074_2 = gEwramData->unk_A074_4 = 0;
             var_0 = param_0->unk_88; // Fake?
-            gUnk_03002C60.bldCnt = var_0->unk_1E;
+            gDisplayRegisters.bldCnt = var_0->unk_1E;
             sub_0800C778();
-            gUnk_03002C60.winIn_L = 0x3F;
-            gUnk_03002C60.winOut_L = 0x3F;
+            gDisplayRegisters.winIn_L = WIN0_ALL;
+            gDisplayRegisters.winOut_L = WIN0_ALL;
 
             gEwramData->unk_A074_0 = 0;
             param_0->unk_65 += 1;
@@ -1495,7 +1495,7 @@ s32 sub_080104EC(struct EwramData_unk60 *param_0)
 
     else if (param_0->unk_65 == 3)
     {
-        gUnk_03002C60.bldY = 0;
+        gDisplayRegisters.bldY = 0;
         gEwramData->unk_A074_1 = 1;
         param_0->unk_65 = 0;
         return 1;
@@ -1522,11 +1522,11 @@ s32 sub_080106DC(struct EwramData_unk60 *param_0)
     if (param_0->unk_65 == 0)
     {
         gEwramData->unk_A074_2 = gEwramData->unk_A074_4 = 3;
-        if (gUnk_03002C60.bldY < 0x10)
+        if (gDisplayRegisters.bldY < BLDY_MAX_VALUE)
         {
             if (!(param_0->unk_66 & 3))
             {
-                gUnk_03002C60.bldY += 1;
+                gDisplayRegisters.bldY += 1;
             }
             param_0->unk_66 += 1;
         }
@@ -1568,9 +1568,9 @@ s32 sub_080106DC(struct EwramData_unk60 *param_0)
         param_0->unk_66 += 1;
         if (!(param_0->unk_66 & 1))
         {
-            gUnk_03002C60.bldY -= 1;
+            gDisplayRegisters.bldY -= 1;
         }
-        if (gUnk_03002C60.bldY == 0)
+        if (gDisplayRegisters.bldY == 0)
         {
             param_0->unk_65 = 0;
             gEwramData->unk_A074_2 = gEwramData->unk_A074_4 = 0;
@@ -1679,7 +1679,7 @@ void sub_08010978(struct EwramData_unk60 *param_0)
     param_0->unk_65 = 0;
 
     gEwramData->unk_FEC0 = gEwramData->unk_FEC1 = 0;
-    gUnk_03002C60.bldCnt = 0x3FBF;
+    gDisplayRegisters.bldCnt = BLDCNT_SCREEN_SECOND_TARGET | BLDCNT_BRIGHTNESS_INCREASE_EFFECT | BLDCNT_SCREEN_FIRST_TARGET;
     param_0->unk_66 = 0;
 }
 

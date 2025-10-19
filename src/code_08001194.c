@@ -52,7 +52,7 @@ void sub_08001194(void)
         var_0 = (*var_8 >> 8) & 0xFF;
         var_10 = (u8)(*var_8);
         var_9 = var_0 & 3;
-        var_1 = gUnk_03002C60.bgCnt[var_9];
+        var_1 = gDisplayRegisters.bgCnt[var_9];
         var_8++;
         var_7 = (VRAM_BASE + *var_8);
         var_8++;
@@ -60,8 +60,8 @@ void sub_08001194(void)
         {
             var_13 = var_7;
             var_22 = var_8;
-            var_6 = (var_1 & 0x4000) ? 0x40 : 0x20;
-            var_19 = (var_1 & 0x8000) ? 0x40 : 0x20;
+            var_6 = (var_1 & (BGCNT_SIZE_512x256 << BGCNT_SCREEN_SIZE_SHIFT)) ? 0x40 : 0x20;
+            var_19 = (var_1 & (BGCNT_SIZE_256x512 << BGCNT_SCREEN_SIZE_SHIFT)) ? 0x40 : 0x20;
 
             if (var_0 & 0x80)
             {
@@ -125,7 +125,7 @@ u16* sub_0800125C(u16 param_0, u16 param_1, u8 param_2, u8 *param_3)
         var_r4++;
     }
 
-    tmp = (u32)(VRAM_BASE + 0xE000) + (param_0 * 2) + ((gUnk_03002C60.bgCnt[0] & 0x4000) ? (param_1 << 7) : (param_1 << 6));
+    tmp = (u32)(VRAM_BASE + 0xE000) + (param_0 * 2) + ((gDisplayRegisters.bgCnt[0] & (BGCNT_SIZE_512x256 << BGCNT_SCREEN_SIZE_SHIFT)) ? (param_1 << 7) : (param_1 << 6));
     tmp2 = gEwramData->unk_133F4;
     tmp3 = gUnk_03002CB0.unk_4;
 
@@ -200,7 +200,7 @@ u16* sub_08001350(u16 param_0, u16 param_1, u8 param_2, s32 param_3, s32 param_4
         var_r5 -= 1;
     }
 
-    tmp = (u32)(VRAM_BASE + 0xE000) + (param_0 * 2) + ((gUnk_03002C60.bgCnt[0] & 0x4000) ? (param_1 << 7) : (param_1 << 6));
+    tmp = (u32)(VRAM_BASE + 0xE000) + (param_0 * 2) + ((gDisplayRegisters.bgCnt[0] & (BGCNT_SIZE_512x256 << BGCNT_SCREEN_SIZE_SHIFT)) ? (param_1 << 7) : (param_1 << 6));
     sp8 = param_3;
     tmp2 = gEwramData->unk_133F4;
     tmp3 = gUnk_03002CB0.unk_4;
@@ -256,7 +256,7 @@ u16* sub_0800148C(u16 param_0, u16 param_1, u8 param_2, u8 *param_3)
         var_r4++;
     }
 
-    tmp = (u32)(VRAM_BASE + 0xE000) + (param_0 * 2) + ((gUnk_03002C60.bgCnt[0] & 0x4000) ? (param_1 << 7) : (param_1 << 6));
+    tmp = (u32)(VRAM_BASE + 0xE000) + (param_0 * 2) + ((gDisplayRegisters.bgCnt[0] & (BGCNT_SIZE_512x256 << BGCNT_SCREEN_SIZE_SHIFT)) ? (param_1 << 7) : (param_1 << 6));
     tmp2 = gEwramData->unk_133F4;
     tmp3 = gUnk_03002CB0.unk_4;
 
@@ -1578,7 +1578,7 @@ void sub_08002324(s16 param_0, s16 param_1, s16 param_2)
     }
     temp_r7 = var_r0;
 
-    gUnk_03002C60.win1V = (temp_r5 << 8) | temp_r7;
+    gDisplayRegisters.win1V = (temp_r5 << 8) | temp_r7;
 
     for (var_r4 = temp_r5; var_r4 < temp_r7; var_r4 += 1)
     {
