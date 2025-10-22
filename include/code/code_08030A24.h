@@ -47,6 +47,7 @@ extern void sub_0803D18C(u16 param_0, u16 param_1, u16 param_2, s32 param_3, s32
 extern void sub_0803D270(void);
 extern void sub_0803D2D0(s32 param_0, u8* param_1, u16 param_2, s32 param_3, s16 param_4, s32 param_5);
 extern s32 sub_0803D408(void);
+extern s32 sub_0803D8B4(s32 param_0);
 extern void sub_0803D9A8(void);
 extern void sub_0803DB6C(void);
 extern void sub_0803DC18(s32 param_0, s32 param_1, s32 param_2, s32 param_3);

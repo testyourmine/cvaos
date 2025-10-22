@@ -103,7 +103,7 @@ s32 sub_08008750(void)
             gDisplayRegisters.bldY = BLDY_MAX_VALUE;
             gEwramData->unk_11 = 5;
             gEwramData->unk_12 = 0;
-            gEwramData->unk_60.unk_A1 = (gEwramData->unk_60.unk_A1 & 0xF) | 0x10;
+            gEwramData->unk_60.unk_A1_4 = 1;
             gEwramData->unk_60.unk_37C = -1;
             gEwramData->unk_60.unk_33C[3] &= ~0x40000;
             DMA_FILL_32(3, 0, gEwramData->unk_13294, 0x8 * 4);

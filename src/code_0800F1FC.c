@@ -250,7 +250,7 @@ s32 sub_0800F1FC(struct EwramData_unk_3DC *param_0)
                 break;
 
             case 5:
-                if ((gEwramData->unk_60.unk_A1 & 0xF0) && (gEwramData->unk_1325C.unk_13266 == 0))
+                if ((gEwramData->unk_60.unk_A1_4) && (gEwramData->unk_1325C.unk_13266 == 0))
                 {
                     if (!(gEwramData->unk_60.unk_360[temp_r0->unk_514.unk_514_16.unk_514 >> 5] & (1 << (temp_r0->unk_514.unk_514_16.unk_514 & 0x1F))))
                     {

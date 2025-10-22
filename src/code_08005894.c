@@ -1240,11 +1240,11 @@ s32 sub_080074C0(struct EwramData_unk4E4 *param_0)
         {
             if (var_r5 != 0)
             {
-                gEwramData->unk_60.unk_A1 = (gEwramData->unk_60.unk_A1 & 0xF) | 0x10;
+                gEwramData->unk_60.unk_A1_4 = 1;
             }
             else
             {
-                gEwramData->unk_60.unk_A1 = gEwramData->unk_60.unk_A1 & 0xF;
+                gEwramData->unk_60.unk_A1_4 = 0;
             }
             
             if (param_0->unk_4F8.unk_4F8_8.unk_4F9 < 6)
