@@ -348,7 +348,7 @@ void sub_08005928(struct EwramData_unk4E4 *param_0)
                 if (var_r6_2 == 0)
                 {
                     sub_08013700(var_r5_4 * 2, 1);
-                    if (sub_080137F8((u8*)(unk_20 + 1)) != 0)
+                    if (sub_080137F8(unk_20 + 1) != 0)
                     {
                         param_0->unk_549 = var_r5_4 + 3;
                     }
@@ -497,7 +497,7 @@ void sub_08005E28(struct EwramData_unk4E4 *param_0)
     {
         unk_20_0 = *unk_20;
         sub_08013700(var_r4_2 * 2, 0);
-        if (sub_080137F8(unk_20->unk_20) != 0)
+        if (sub_080137F8(unk_20) != 0)
         {
             param_0->unk_549 = var_r4_2 + 3;
         }
@@ -652,7 +652,7 @@ void sub_0800656C(struct EwramData_unk4E4 *param_0)
                 sub_08005928_inline_2(param_0, 1);
                 sub_08013700(var_r6_3 * 2, 1);
                 
-                if (sub_080137F8((u8*)(unk_20 + 1)) != 0)
+                if (sub_080137F8(unk_20 + 1) != 0)
                 {
                     var_r1 = 3;
                 }

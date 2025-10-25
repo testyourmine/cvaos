@@ -133,5 +133,5 @@ u32 sub_08001164(u32 param_0)
 
     gReadSramFast(SRAM_BASE + 0x10, &var_0, 1);
 
-    return !((var_0 >> param_0) & 1);
+    return (var_0 & (1 << param_0)) == 0;
 }

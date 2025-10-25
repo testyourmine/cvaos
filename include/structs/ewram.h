@@ -450,7 +450,8 @@ struct EwramData_unk60 {
     u8 unk_A0;
     u8 unk_A1_0:4;
     u8 unk_A1_4:4;
-    u8 pad_A2[0xA4 - 0xA2];
+    u8 pad_A2[0xA3 - 0xA2];
+    u8 unk_A3;
     u8 unk_A4;
     u8 unk_A5;
     u16 unk_A6;
@@ -523,7 +524,8 @@ struct EwramData_unk20 {
     u8 unk_2B;
     u8 unk_2C;
     u8 unk_2D;
-    u8 pad_2E[0x30 - 0x2E];
+    u8 unk_2E;
+    u8 unk_2F;
     u8 unk_30;
     u8 unk_31;
     u16 unk_32;
@@ -546,7 +548,11 @@ struct EwramData_unk1325C {
     u8 pad_1325C[0x13266 - 0x1325C];
     u8 unk_13266;
     u8 unk_13267;
-    u8 pad_13268[0x13279 - 0x13268];
+    u8 pad_13268[0x13269 - 0x13268];
+    u8 unk_13269;
+    u8 unk_1326A;
+    u8 unk_1326B;
+    u8 pad_1326C[0x13279 - 0x1326C];
     u8 unk_13279;
     s16 unk_1327A;
     s16 unk_1327C;
