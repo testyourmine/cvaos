@@ -72,6 +72,7 @@ extern s16 sub_0803F17C(struct EwramData_unk4E4* param_0);
 extern s32 sub_0803F2C8(struct EwramData_unk4E4 *param_0, u16 param_1, u8 param_2, u8 param_3);
 extern void sub_0803F8A8(u32 param_0, u32* param_1, u16 param_2, u16 param_3);
 extern void sub_0803FBBC(s32 param_0, s32 param_1, s32 param_2);
+extern void sub_0803FC6C(s32 param_0, s32 param_1, s32 param_2);
 extern void sub_0803FD60(void);
 extern void sub_0803FD9C(u8* param_0, s32 param_1, u16 param_2);
 extern void sub_0803FE0C(void *param_0, s32 param_1, s32 param_2, s32 param_3);

@@ -70,6 +70,18 @@ extern void sub_08013B44(void);
 extern void sub_08013BCC(void);
 extern s32 sub_08013C5C(void);
 extern s32 sub_08013CF0(s32 param_0);
+extern void sub_08013D30(void);
+extern s32 sub_08013D60(s32 param_0);
+extern s32 sub_08013DA8(s32 param_0);
+extern s32 sub_08013E18(s32 param_0);
+extern void sub_08013E74(void);
+extern void sub_08013EAC(void);
+extern void sub_08013EEC(s32 param_0);
+extern void sub_08013F38(void);
+extern void sub_08013F6C(s32 param_0);
+extern s32 sub_08013FA0(void);
+extern void sub_080142E8(struct EwramData_unk4E4 *param_0);
+extern s32 sub_0801430C(void);
 extern void sub_08014548(void);
 extern void sub_0801487C(s32 param_0); // param real or implicit call?
 
