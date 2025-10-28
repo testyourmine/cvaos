@@ -57,7 +57,7 @@ struct EwramData_unk4FC_16 {
 union EwramData_unk4FC {
     struct EwramData_unk4FC_8 unk_4FC_8;
     struct EwramData_unk4FC_16 unk_4FC_16;
-    u32 unk_4FC_32;
+    u32 unk_4FC_32; // TODO: sub_0801487C stores a pointer here
 };
 
 struct EwramData_unk500_8 {
@@ -185,7 +185,43 @@ struct EwramData_unk514_16 {
 union EwramData_unk514 {
     struct EwramData_unk514_8 unk_514_8;
     struct EwramData_unk514_16 unk_514_16;
-    s32 unk_514_32;
+    struct EwramData_unk4E4 *unk_514_32;
+};
+
+struct EwramData_unk4F4_8 {
+    u8 unk_4F4;
+    u8 unk_4F5;
+    u8 unk_4F6;
+    u8 unk_4F7;
+};
+
+struct EwramData_unk4F4_16 {
+    s16 unk_4F4;
+    s16 unk_4F6;
+}; 
+
+union EwramData_unk4F4 {
+    struct EwramData_unk4F4_8 unk_4F4_8;
+    struct EwramData_unk4F4_16 unk_4F4_16;
+    s32 unk_4F4_32;
+};
+
+struct EwramData_unk50C_8 {
+    u8 unk_50C;
+    u8 unk_50D;
+    u8 unk_50E;
+    u8 unk_50F;
+};
+
+struct EwramData_unk50C_16 {
+    s16 unk_50C;
+    s16 unk_50E;
+}; 
+
+union EwramData_unk50C {
+    struct EwramData_unk50C_8 unk_50C_8;
+    struct EwramData_unk50C_16 unk_50C_16;
+    s32 unk_50C_32;
 };
 
 struct EwramData_unk4E4 {
@@ -198,10 +234,11 @@ struct EwramData_unk4E4 {
     u8 unk_4F0;
     u8 unk_4F1;
     u8 pad_4F2[0x4F4 - 0x4F2];
-    u8 unk_4F4;
-    u8 unk_4F5;
-    u8 unk_4F6;
-    u8 unk_4F7; // Real?
+    // u8 unk_4F4;
+    // u8 unk_4F5;
+    // u8 unk_4F6;
+    // u8 unk_4F7; // Real?
+    union EwramData_unk4F4 unk_4F4;
     union EwramData_unk4F8 unk_4F8; // Type?
     union EwramData_unk4FC unk_4FC; // Type?
     union EwramData_unk500 unk_500; // Type?
@@ -210,8 +247,9 @@ struct EwramData_unk4E4 {
     // u8 unk_509;
     // u16 unk_50A;
     union EwramData_unk508 unk_508;
-    s16 unk_50C;
-    s16 unk_50E;
+    // s16 unk_50C;
+    // s16 unk_50E;
+    union EwramData_unk50C unk_50C;
     u8 unk_510;
     u8 pad_511[0x514 - 0x511];
     // s16 unk_514;
@@ -249,10 +287,13 @@ struct EwramData_unk4E4 {
     u8 unk_547;
     u8 unk_548;
     u8 unk_549;
-    u8 pad_54A[0x552 - 0x54A];
+    u8 pad_54A[0x551 - 0x54A];
+    u8 unk_551;
     u8 unk_552;
     u8 unk_553;
-    u8 pad_554[0x568 - 0x554];
+    u8 pad_554[0x556 - 0x554];
+    u8 unk_556;
+    u8 pad_557[0x568 - 0x557];
 };
 
 struct EwramData_unkA094_0 {
@@ -548,7 +589,9 @@ struct EwramData_unk25484 {
 };
 
 struct EwramData_unk1325C {
-    u8 pad_1325C[0x13266 - 0x1325C];
+    u8 pad_1325C[0x13260 - 0x1325C];
+    u32 unk_13260;
+    u8 pad_13264[0x13266 - 0x13264];
     u8 unk_13266;
     u8 unk_13267;
     u8 pad_13268[0x13269 - 0x13268];
@@ -635,12 +678,35 @@ struct EwramData {
     s8 unk_12FE0_3:5; // Real/Length?
     u8 pad_12FE1[0x13110 - 0x12FE1];
     struct EwramData_unk13110 *unk_13110;
-    u8 pad_13112[0x13168 - 0x13114];
-    s32 unk_13168; // type?
-    u8 pad_1316C[0x13214 - 0x1316C];
+    u8 pad_13112[0x1311C - 0x13114];
+    u32 unk_1311C;
+    struct EwramData_unk4E4 *unk_13120;
+    u8 pad_13124[0x13144 - 0x13124];
+    u32 unk_13144[8];
+    u8 pad_13164[0x13168 - 0x13164];
+    struct EwramData_unk4E4 *unk_13168; // type?
+    u8 pad_1316C[0x131B4 - 0x1316C];
+    u8 unk_131B4;
+    u8 pad_131B5[0x131B8 - 0x131B5];
+    u32 unk_131B8;
+    u8 pad_131BC[0x131BE - 0x131BC];
+    u8 unk_131BE;
+    u8 pad_131BF[0x131C0 - 0x131BF];
+    u8 unk_131C1;
+    u8 unk_131C2;
+    u8 pad_131C3[0x131C8 - 0x131C3];
+    u32 unk_131C8;
+    u32 unk_131CC;
+    u32 unk_131D0;
+    u8 pad_131D4[0x13214 - 0x131D4];
     s16 unk_13214;
     s16 unk_13216;
-    u8 pad_13218[0x13224 - 0x13218];
+    u8 unk_13218;
+    u8 unk_13219;
+    u8 unk_1321A;
+    u8 unk_1321B;
+    u8 unk_1321C;
+    u8 pad_1321D[0x13224 - 0x1321D];
     u16 unk_13224;
     u8 unk_13226;
     u8 pad_13227[0x1325C - 0x13227];

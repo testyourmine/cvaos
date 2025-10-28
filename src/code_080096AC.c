@@ -861,10 +861,10 @@ s32 sub_08009C8C(struct EwramData_unk4E4 *param_0)
     {
         if (sub_080096AC(param_0->unk_4F8.unk_4F8_8.unk_4F8) != 0)
         {
-            param_0->unk_50C = 0;
-            param_0->unk_50E = 0;
+            param_0->unk_50C.unk_50C_16.unk_50C = 0;
+            param_0->unk_50C.unk_50C_16.unk_50E = 0;
             temp_r0_3 = param_0->unk_4FC.unk_4FC_16.unk_4FC = gEwramData->unk_143F4[0];
-            param_0->unk_50C = sub_08009C8C_inline_0(temp_r0_3);
+            param_0->unk_50C.unk_50C_16.unk_50C = sub_08009C8C_inline_0(temp_r0_3);
             
             sub_0800B5E8(param_0);
             sub_08009DD8(param_0);
@@ -921,7 +921,7 @@ void sub_08009DD8(struct EwramData_unk4E4 *param_0)
         sub_08041204();
         sub_08046DD4(0x10, var_r4 + 4, var_r4 * 0x20 + 0xF100, 0xA);
     }
-    sub_08009EB8(param_0->unk_4F8.unk_4F8_8.unk_4F8, param_0->unk_50C);
+    sub_08009EB8(param_0->unk_4F8.unk_4F8_8.unk_4F8, param_0->unk_50C.unk_50C_16.unk_50C);
 }
 
 
@@ -1076,11 +1076,11 @@ s32 sub_0800A108(struct EwramData_unk4E4 *param_0)
     }
     if (var_sl != 0)
     {
-        sub_08009EB8(param_0->unk_4F8.unk_4F8_8.unk_4F8, param_0->unk_50E);
+        sub_08009EB8(param_0->unk_4F8.unk_4F8_8.unk_4F8, param_0->unk_50C.unk_50C_16.unk_50E);
     }
 
     // TODO: what?
-    var_0_0 = param_0->unk_50C;
+    var_0_0 = param_0->unk_50C.unk_50C_16.unk_50C;
     var_1 = gEwramData;
     var_2 = 0x7C;
     var_3 = (var_0_0 * 8) + 0x24;

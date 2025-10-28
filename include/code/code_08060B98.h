@@ -6,6 +6,7 @@
 #include "structs/main.h"
 
 extern void sub_08068F48(void);
+extern void sub_0806B1FC(struct EwramData_unk4E4 *param_0);
 extern void sub_0806C354(void);
 extern void sub_0806D4A8(struct EwramData_unk4E4 *param_0, s32 param_1);
 extern void sub_0806E028(void);

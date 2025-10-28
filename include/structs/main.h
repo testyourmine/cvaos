@@ -59,13 +59,15 @@ struct Unk_030034BC {
 struct Unk_03002CB0 {
     u16 unk_0;
     u8 unk_2;
+    u8 unk_3;
     u16 *unk_4;
     u16 unk_8[1]; // TODO: length/verify
-    u8 pad_C[0x808 - 0xC];
+    u8 pad_C[0x808 - 0xA];
     struct Unk_030034BC *unk_808;
     struct Unk_030034BC unk_80C;
     u8 unk_100C;
     u8 unk_100D;
+    u8 unk_100E;
 };
 
 extern struct DisplayRegisters gDisplayRegisters;

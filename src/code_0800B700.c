@@ -2096,12 +2096,10 @@ void sub_0800C7A4(struct EwramData_unk60 *param_0)
  */
 s32 sub_0800C8C8(void)
 {
-    s32 temp_r0_2;
     s32 var_r8;
     struct EwramData *temp_r4;
     struct EwramData_unk60 *temp_r5;
     struct EwramData_unk60 *temp_r6;
-    u8 temp_r5_2;
 
     temp_r6 = &gEwramData->unk_60;
     var_r8 = -1;
@@ -2121,23 +2119,21 @@ s32 sub_0800C8C8(void)
         gEwramData->unk_60.unk_42C &= 0xFDFFFFFF;
     }
 
-    temp_r5_2 = temp_r6->unk_65;
-    switch (temp_r5_2)
+    switch (temp_r6->unk_65)
     {
         case 0:
             sub_0800EB04();
             sub_080235C8();
             sub_0802DFF0();
-            gEwramData->unk_13168 = temp_r5_2;
+            gEwramData->unk_13168 = 0;
             sub_080D7910(0x1010);
-            temp_r6->unk_AC = temp_r5_2;
+            temp_r6->unk_AC = 0;
             temp_r6->unk_65 += 1;
-            sub_0803D18C(0, 0, 0, 0x10000, temp_r5_2, 0x40);
-            sub_0803CDF0(0, 0, 0, 0x10000, temp_r5_2, 0x80);
+            sub_0803D18C(0, 0, 0, 0x10000, 0, 0x40);
+            sub_0803CDF0(0, 0, 0, 0x10000, 0, 0x80);
             /* fallthrough */
         case 1:
-            temp_r0_2 = sub_0803D06C();
-            if (temp_r0_2 == 0)
+            if (sub_0803D06C() == 0)
             {
                 sub_0803D270();
                 sub_0803CED4();
@@ -2145,7 +2141,7 @@ s32 sub_0800C8C8(void)
                 {
                     gEwramData->unk_A074_1 = 0;
                     gEwramData->unk_60.unk_42C |= 0x800000;
-                    sub_08011F44((void *)0x085236A4, 0, 0, 0, temp_r0_2);
+                    sub_08011F44((void *)0x085236A4, 0, 0, 0, 0);
                     sub_08011AD0(&gEwramData->unk_60);
                     gDisplayRegisters.bldCnt = BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_DECREASE_EFFECT;
                     var_r8 = 4;

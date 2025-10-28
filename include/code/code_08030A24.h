@@ -18,6 +18,7 @@ extern void sub_08032CE0(void);
 extern void sub_08032D18(u8 param_0);
 extern void sub_08032D58(s32 param_0, s32 param_1);
 extern s32 sub_08032DF0(void);
+extern void sub_0803319C(s32 param_0);
 extern void sub_08033C84(struct EwramData_unk4E4 *param_0);
 extern void sub_08033C90(struct EwramData_unk4E4 *param_0);
 extern void sub_08033DA4(void);
@@ -28,6 +29,10 @@ extern void sub_0803407C(void);
 extern void sub_080341D0(void);
 extern void sub_0803427C(void);
 extern void sub_08034498(s32 param_0);
+extern void sub_080344F0(struct EwramData_unk4E4 *param_0);
+extern struct EwramData_unk4E4 *sub_080354C8(s32 param_0, s32 param_1, u8 *param_2, struct EwramData_unk4E4 *param_3); // Types?
+extern struct EwramData_unk4E4 *sub_080355D0(void);
+extern void sub_08035638(struct EwramData_unk4E4 *param_0);
 extern s32 sub_08035930(void);
 extern s32 sub_08036670(void);
 extern s32 sub_0803681C(void);

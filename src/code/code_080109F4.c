@@ -1494,7 +1494,7 @@ void sub_080123EC(struct EwramData_unk4E4 *param_0)
             var_0 = (s8)param_0->unk_4F8.unk_4F8_8.unk_4F9;
             if (temp_r0_2 < 8)
             {
-                param_0->unk_4F4 = temp_r0_2;
+                param_0->unk_4F4.unk_4F4_8.unk_4F4 = temp_r0_2;
                 sub_0803B924(param_0, (u8*)&sUnk_080E10F0[temp_r0_2], gEwramData->unk_11DD8, var_0);
                 param_0->unk_549 = 0;
             }
@@ -1503,7 +1503,7 @@ void sub_080123EC(struct EwramData_unk4E4 *param_0)
             break;
 
         case 3:
-            gEwramData->unk_115C8[(s8)param_0->unk_4F4] = 0;
+            gEwramData->unk_115C8[(s8)param_0->unk_4F4.unk_4F4_8.unk_4F4] = 0;
             sub_0803AAEC(param_0, 0);
             /* fallthrough */
         case 2:
@@ -1537,7 +1537,7 @@ s32 sub_080124F4(struct EwramData_unk4E4 *param_0, u32 param_1, s32 param_2)
     if (param_1 >= 8)
         return 0;
 
-    param_0->unk_4F4 = param_1;
+    param_0->unk_4F4.unk_4F4_8.unk_4F4 = param_1;
     temp_r0 = sub_0803B924(param_0, (u8*)&sUnk_080E10F0[param_1], gEwramData->unk_11DD8, param_2);
     param_0->unk_549 = 0;
     return temp_r0;
@@ -1554,7 +1554,7 @@ void sub_08012534(struct EwramData_unk4E4 *param_0, s32 param_1)
     // TODO: inline for sub_080123EC?
     if (param_1 != 0)
     {
-        gEwramData->unk_115C8[(s8)param_0->unk_4F4] = 0;
+        gEwramData->unk_115C8[(s8)param_0->unk_4F4.unk_4F4_8.unk_4F4] = 0;
     }
     sub_0803AAEC(param_0, 0);
 }
@@ -3204,3 +3204,162 @@ void sub_08014548(void)
     }
 }
 
+// TODO: investigate sub_08014628 and the data 
+struct Unk_080E12F8 {
+    u8 unk_0;
+    u8 unk_1;
+    u8 unk_2;
+    u8 unk_3;
+};
+
+extern struct Unk_080E12F8 sUnk_080E12F8[];
+
+extern u8 sUnk_080E126C[]; // TODO: array or single value?
+
+/**
+ * @brief 14628 | To document
+ * 
+ * @param param_0 To document
+ */
+void sub_08014628(struct EwramData_unk4E4 *param_0)
+{
+    s32 temp_r4;
+    s32 temp_r1;
+    struct Unk_080E12F8 unk_0;
+
+    temp_r4 = sub_0803B800((u8 *)0x080E11D4, 0x10000);
+    sub_0803C7B4((u8 *)0x082097D4, 0, 1, 0);
+    sub_0803B924(param_0, (u8 *)0x080E11C4, temp_r4, 0);
+    param_0->unk_551 = 0xFF;
+    unk_0 = *sUnk_080E12F8;
+    if (!(gEwramData->unk_131B8 & 0x800) && (param_0->unk_551 != 0))
+    {
+        sub_0803F2C8(param_0, 0, 3, 1);
+        sub_080428B4(param_0, &unk_0);
+        param_0->unk_504.unk_504_16.unk_504 = 0xFF;
+        param_0->unk_4F4.unk_4F4_32 &= ~0x200000;
+        temp_r1 = sUnk_080E126C[0];
+        if (param_0->unk_508.unk_508_8.unk_50A != temp_r1)
+        {
+            param_0->unk_508.unk_508_8.unk_50A = temp_r1;
+            sub_0803C7B4((u8 *)0x082097D4, temp_r1, 1, 0);
+        }
+    }
+    sub_0803F17C(param_0);
+    param_0->unk_4E8 = (u32 *) sub_08021494;
+    sub_0804277C(param_0, 1, sub_080211F4, 0);
+    sub_080428B4(param_0, &sUnk_080E12F8);
+    param_0->unk_556 |= 2;
+    gEwramData->unk_1325C.unk_13260 = 0;
+}
+
+/**
+ * @brief 14720 | To document
+ * 
+ * @param param_0 To document
+ */
+void sub_08014720(struct EwramData_unk4E4 *param_0)
+{
+    s32 temp_r4;
+    s32 var_r2;
+
+    sub_0804C3C8();
+    if (gEwramData->unk_1325C.unk_13279 > 1)
+    {
+        sub_08033E38(1);
+    }
+
+    temp_r4 = sub_0803B800((u8 *)0x080E12C8, 0x10000);
+    sub_0803C7B4((u8 *)0x0820C028, 0, 1, 0);
+    sub_0803B924(param_0, (u8 *)0x08252748, temp_r4, 0);
+
+    param_0->unk_551 = 0xFF;
+    sub_08021438(param_0, 0, 1);
+    sub_0803F17C(param_0);
+
+    param_0->unk_4E8 = (u32 *) sub_080214DC;
+    sub_0804277C(param_0, 1, sub_080211F4, 0);
+    sub_0806B1FC(param_0);
+
+    gEwramData->unk_1325C.unk_13260 = 0x8000;
+    sub_08032ADC(5, 1);
+
+    for (var_r2 = 0; var_r2 < 8; var_r2++)
+    {
+        gEwramData->unk_13144[var_r2] = 0;
+    }
+
+    sub_08042A54(0, 0x1E);
+    sub_0804B26C(2, 0x32);
+    sub_0804B26C(0, 0xFF);
+    sub_0804B26C(1, 0xFF);
+    sub_08021344(0, 0, 0);
+
+    sub_0803B800((u8 *)0x081FA2B8, 0x10000);
+    sub_0803C7B4((u8 *)0x0820C04C, 0, 1, 2);
+    sub_0803C7B4((u8 *)0x0820C04C, 1, 1, 3);
+    sub_08000E14(&gEwramData->unk_4E4[0x11]);
+
+    sub_08000DA0(0x11, 0x11, (u32 *) sub_080344F0);
+    param_0->unk_514.unk_514_32 = sub_080355D0();
+    gEwramData->unk_13120 = sub_080354C8(0x01300000, 0, (u8 *)0x081FA2B8, param_0->unk_514.unk_514_32);
+    sub_08035638(gEwramData->unk_13120);
+}
+
+// sub_08014628, sub_08014720
+extern void (*sUnk_084F10AC[])(struct EwramData_unk4E4 *);
+// sub_0801B0D8, sub_0801FEF8
+extern void (*sUnk_084F10B4[])(struct EwramData_unk4E4 *);
+
+/**
+ * @brief 1487C | To document
+ * 
+ * @param param_0 (Unused) To document
+ */
+void sub_0801487C(s32 param_0)
+{
+    struct EwramData_unk4E4 *temp_r0;
+
+    gEwramData->unk_131BE = 0;
+    gEwramData->unk_131C8 = -1;
+    gEwramData->unk_131CC = -1;
+    gEwramData->unk_131D0 = -1;
+    gEwramData->unk_1311C = 0;
+    gEwramData->unk_13120 = 0;
+    gEwramData->unk_131C1 = -1;
+    gEwramData->unk_131C2 = -1;
+
+    sub_080235C8();
+    sub_0802DFF0();
+
+    temp_r0 = sub_08000DA0(0, 0, (u32*) sUnk_084F10B4[gEwramData->unk_1325C.unk_13266]);
+    sUnk_084F10AC[gEwramData->unk_1325C.unk_13266](temp_r0);
+    gEwramData->unk_13110 = (struct EwramData_unk13110 *) temp_r0;
+    gEwramData->unk_13168 = temp_r0;
+
+    sub_08021E50(7);
+    temp_r0->unk_53D_1 = 1;
+    temp_r0->unk_540 = 0xE;
+    temp_r0->unk_4F4.unk_4F4_32 = 0x300000;
+    // Uh oh, unk_4FC_32 is normally a number, but here it's a pointer
+    // TODO: investigate, possible there are several different entitity structs
+    temp_r0->unk_4FC.unk_4FC_32 = 0x080E12DC;
+
+    sub_08021F18();
+    gEwramData->unk_13214 = 0x78;
+    gEwramData->unk_13216 = 0x6F;
+    gEwramData->unk_131B4 = 0;
+    temp_r0->unk_504.unk_504_16.unk_504 = 0xFF;
+    temp_r0->unk_508.unk_508_8.unk_508 = 0;
+    temp_r0->unk_508.unk_508_8.unk_509 = 0;
+    temp_r0->unk_50C.unk_50C_8.unk_50D = 0xFF;
+    temp_r0->unk_50C.unk_50C_8.unk_50C = 0;
+    gEwramData->unk_13218 = 4;
+    gEwramData->unk_13219 = 0xF8;
+    gEwramData->unk_1321A = 0xF4;
+    gEwramData->unk_1321B = 0xEC;
+    gEwramData->unk_1321C = 0xE4;
+    gEwramData->unk_131B8 = 0;
+    sub_080430B0();
+    gEwramData->unk_60.unk_4BE = 0;
+}

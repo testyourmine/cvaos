@@ -1353,17 +1353,17 @@ void sub_080039D4(struct EwramData_unk4E4 *param_0)
         param_0->unk_53E_1 = 0;
     }
 
-    param_0->unk_50C += param_0->unk_52C.unk_52C_16.unk_52E;
-    param_0->unk_50E += param_0->unk_530.unk_530_16.unk_532;
+    param_0->unk_50C.unk_50C_16.unk_50C += param_0->unk_52C.unk_52C_16.unk_52E;
+    param_0->unk_50C.unk_50C_16.unk_50E += param_0->unk_530.unk_530_16.unk_532;
 
-    var_r1 = param_0->unk_534 * sub_080009E4(param_0->unk_50C + 0x4000);
+    var_r1 = param_0->unk_534 * sub_080009E4(param_0->unk_50C.unk_50C_16.unk_50C + 0x4000);
     if (var_r1 < 0)
     {
         var_r1 += 0xFFF;
     }
     param_0->unk_524.unk_524_32 += var_r1 >> 0xC;
 
-    var_r0 = param_0->unk_538 * sub_080009E4(param_0->unk_50E);
+    var_r0 = param_0->unk_538 * sub_080009E4(param_0->unk_50C.unk_50C_16.unk_50E);
     if (var_r0 < 0)
     {
         var_r0 += 0xFFF;
@@ -1478,8 +1478,8 @@ void sub_08003A9C(struct EwramData_unk4E4 *param_0)
     }
     param_0->unk_504.unk_504_32 = var_r0_3 >> 4;
 
-    param_0->unk_50C = (sub_08000A90() & 0xFF) << 8;
-    param_0->unk_50E = param_0->unk_50C + 0x8000 + ((sub_08000A90() & 0x1F) << 4);
+    param_0->unk_50C.unk_50C_16.unk_50C = (sub_08000A90() & 0xFF) << 8;
+    param_0->unk_50C.unk_50C_16.unk_50E = param_0->unk_50C.unk_50C_16.unk_50C + 0x8000 + ((sub_08000A90() & 0x1F) << 4);
     param_0->unk_52C.unk_52C_16.unk_52E = (sub_08000A90() & 0xFF) + 0x800;
     param_0->unk_530.unk_530_16.unk_532 = (sub_08000A90() & 0xFF) + 0xA00;
 }
@@ -2326,7 +2326,7 @@ s32 sub_08004928(struct EwramData_unk4E4 *param_0)
         var_r6 = -1;
     }
 
-    if ((param_0->unk_4F5 != 0) && (var_r6 == 0))
+    if ((param_0->unk_4F4.unk_4F4_8.unk_4F5 != 0) && (var_r6 == 0))
     {
         if (repeatedInput & KEY_DOWN)
         {
@@ -2847,7 +2847,7 @@ s32 sub_08004A48(void)
             temp_r7->unk_4F0 = 0;
             gEwramData->unk_11 += 1;
             gEwramData->unk_12 = 0;
-            if (temp_r7->unk_4F5 == 0)
+            if (temp_r7->unk_4F4.unk_4F4_8.unk_4F5 == 0)
             {
                 temp_r7->unk_4EF = 0;
             }
@@ -2958,9 +2958,9 @@ s32 sub_08004A48(void)
             sub_0800480C((s32) temp_r7->unk_4EF);
             sub_0803F8A8(1, (u32 *)0x080E73A4, 0, 0);
             sub_0803F8A8(2, (u32 *)0x080E7434, 0, 0);
-            if (temp_r7->unk_4F5 == 0)
+            if (temp_r7->unk_4F4.unk_4F4_8.unk_4F5 == 0)
             {
-                temp_r7->unk_4EF = temp_r7->unk_4F5;
+                temp_r7->unk_4EF = 0;
             }
             temp_r7->unk_4EE = 1;
             gEwramData->unk_11 += 1;

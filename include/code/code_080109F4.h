@@ -83,6 +83,8 @@ extern s32 sub_08013FA0(void);
 extern void sub_080142E8(struct EwramData_unk4E4 *param_0);
 extern s32 sub_0801430C(void);
 extern void sub_08014548(void);
+extern void sub_08014628(struct EwramData_unk4E4 *param_0);
+extern void sub_08014720(struct EwramData_unk4E4 *param_0);
 extern void sub_0801487C(s32 param_0); // param real or implicit call?
 
 #endif /* CODE_080109F4_H */

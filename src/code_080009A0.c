@@ -219,7 +219,7 @@ struct EwramData_unk4E4 *sub_08000B00(u32 *param_0)
         var_r2->unk_4EC = 0xFE;
         var_r2->unk_4ED = 0xFE;
         var_r2->unk_4E4 = param_0;
-        var_r2->unk_4F4 = var_r3;
+        var_r2->unk_4F4.unk_4F4_8.unk_4F4 = var_r3;
         var_r5 = var_r2;
         break;
     }
@@ -402,7 +402,7 @@ struct EwramData_unk4E4 *sub_08000DA0(s32 param_0, s32 param_1, u32 *param_2)
         var_r3->unk_4EC = 0xFE;
         var_r3->unk_4ED = 0xFE;
         var_r3->unk_4E4 = param_2;
-        var_r3->unk_4F4 = var_r2;
+        var_r3->unk_4F4.unk_4F4_8.unk_4F4 = var_r2;
         var_r6 = var_r3;
         break;
     }
