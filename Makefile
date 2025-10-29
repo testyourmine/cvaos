@@ -154,8 +154,10 @@ $(LD_SCRIPT): linker.ld
 	$Q$(PREPROC) $< $(PREPROCFLAGS) | $(CPP) $(CPPFLAGS) | $(CC) -o $@ $(CFLAGS) && printf '\t.align 2, 0 @ dont insert nops\n' >> $@
 
 src/agb_sram.s: CC := tools/agbcc/bin/old_agbcc$(EXE)
-src/agb_sram.s: CFLAGS = -Werror -O1 -mthumb-interwork -fhex-asm -f2003-patch
-src/agb_sram.s: src/agb_sram.c
+src/agb_sram.s: CFLAGS = -Werror -O1 -mthumb-interwork -fhex-asm
+
+src/m4a.s: CC := tools/agbcc/bin/old_agbcc$(EXE)
+src/m4a.s: CFLAGS = -Werror -O2 -mthumb-interwork -fhex-asm
 
 tools/%: tools/%.c
 	$(MSG) HOSTCC $@

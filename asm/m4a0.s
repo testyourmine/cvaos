@@ -5,7 +5,7 @@
 
 	thumb_func_start umul3232H32
 umul3232H32: @ 0x080D86B8
-	add r2, pc, #0x0 @ =__umul3232H32
+	adr r2, __umul3232H32
 	bx r2
 
 	arm_func_start __umul3232H32
@@ -85,7 +85,7 @@ SoundMainRAM: @ 0x080D874C
 	ldrb r3, [r0, #5]
 	cmp r3, #0
 	beq SoundMainRAM_NoReverb
-	add r1, pc, #0x4 @ =SoundMainRAM_Reverb
+	adr r1, SoundMainRAM_Reverb
 	bx r1
 	.align 2, 0
 
@@ -128,14 +128,13 @@ _080D87AA:
 	stm r5!, {r0}
 	subs r1, #1
 	bgt _080D87AA
-
-	non_word_aligned_thumb_func_start _080D87B6
 _080D87B6: @ 0x080D87B6
 	ldr r4, [sp, #0x18]
 	ldr r0, [r4, #0x18]
 	mov ip, r0
 	ldrb r0, [r4, #6]
 	adds r4, #0x50
+
 _080D87C0:
 	str r0, [sp, #4]
 	ldr r3, [r4, #0x24]
@@ -153,6 +152,7 @@ _080D87D4:
 	b _080D8A62
 	.align 2, 0
 _080D87DC: .4byte 0x04000006
+
 _080D87E0:
 	ldrb r6, [r4]
 	movs r0, #0xc7
@@ -493,7 +493,7 @@ _080D8AD8:
 MPlayJumpTableCopy: @ 0x080D8AE4
 	mov ip, lr
 	movs r1, #0x24
-	ldr r2, _080D8B14 @ =0x0827DCB4
+	ldr r2, _080D8B14 @ =gMPlayJumpTableTemplate
 _080D8AEA:
 	ldr r3, [r2]
 	bl chk_adr_r2
@@ -513,7 +513,7 @@ chk_adr_r2: @ 0x080D8AFE
 	push {r0}
 	lsrs r0, r2, #0x19
 	bne _080D8B10
-	ldr r0, _080D8B14 @ =0x0827DCB4
+	ldr r0, _080D8B14 @ =gMPlayJumpTableTemplate
 	cmp r2, r0
 	blo _080D8B0E
 	lsrs r0, r2, #0xe
@@ -524,7 +524,7 @@ _080D8B10:
 	pop {r0}
 	bx lr
 	.align 2, 0
-_080D8B14: .4byte 0x0827DCB4
+_080D8B14: .4byte gMPlayJumpTableTemplate
 
 	thumb_func_start ld_r3_tp_adr_i
 ld_r3_tp_adr_i: @ 0x080D8B18
@@ -947,7 +947,7 @@ _080D8DCC:
 	beq _080D8E54
 	b _080D8DF8
 _080D8DEE:
-	ldr r0, _080D8F40 @ =0x0827DF28
+	ldr r0, _080D8F40 @ =gClockTable
 	subs r1, #0x80
 	adds r1, r1, r0
 	ldrb r0, [r1]
@@ -1134,7 +1134,7 @@ _080D8F2C:
 call_r3:
 	bx r3
 	.align 2, 0
-_080D8F40: .4byte 0x0827DF28
+_080D8F40: .4byte gClockTable
 _080D8F44: .4byte 0x03007FF0
 _080D8F48: .4byte 0x68736D53
 
@@ -1221,7 +1221,7 @@ MP2K_event_nxx: @ 0x080D8FC0
 	ldr r1, _080D91B8 @ =0x03007FF0
 	ldr r1, [r1]
 	str r1, [sp, #4]
-	ldr r1, _080D91BC @ =0x0827DF28
+	ldr r1, _080D91BC @ =gClockTable
 	adds r0, r0, r1
 	ldrb r0, [r0]
 	strb r0, [r5, #4]
@@ -1484,7 +1484,7 @@ _080D91A6:
 	bx r0
 	.align 2, 0
 _080D91B8: .4byte 0x03007FF0
-_080D91BC: .4byte 0x0827DF28
+_080D91BC: .4byte gClockTable
 
 	thumb_func_start MP2K_event_endtie
 MP2K_event_endtie: @ 0x080D91C0

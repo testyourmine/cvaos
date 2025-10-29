@@ -4,39 +4,81 @@
 #include "gba/memory.h"
 
 #define REG_SOUND1CNT_L (REG_BASE + 0x60)
+#define REG_NR10 (REG_BASE + 0x60)
 #define REG_SOUND1CNT_H (REG_BASE + 0x62)
+#define REG_NR11 (REG_BASE + 0x62)
+#define REG_NR12 (REG_BASE + 0x63)
 #define REG_SOUND1CNT_X (REG_BASE + 0x64)
+#define REG_NR13 (REG_BASE + 0x64)
+#define REG_NR14 (REG_BASE + 0x65)
 
 #define REG_SOUND2CNT_L (REG_BASE + 0x68)
+#define REG_NR21 (REG_BASE + 0x68)
+#define REG_NR22 (REG_BASE + 0x69)
 #define REG_SOUND2CNT_H (REG_BASE + 0x6C)
+#define REG_NR23 (REG_BASE + 0x6C)
+#define REG_NR24 (REG_BASE + 0x6D)
 
 #define REG_SOUND3CNT_L (REG_BASE + 0x70)
+#define REG_NR30 (REG_BASE + 0x70)
 #define REG_SOUND3CNT_H (REG_BASE + 0x72)
+#define REG_NR31 (REG_BASE + 0x72)
+#define REG_NR32 (REG_BASE + 0x73)
 #define REG_SOUND3CNT_X (REG_BASE + 0x74)
+#define REG_NR33 (REG_BASE + 0x74)
+#define REG_NR34 (REG_BASE + 0x75)
 
 #define REG_SOUND4CNT_L (REG_BASE + 0x78)
+#define REG_NR41 (REG_BASE + 0x78)
+#define REG_NR42 (REG_BASE + 0x79)
 #define REG_SOUND4CNT_H (REG_BASE + 0x7C)
+#define REG_NR43 (REG_BASE + 0x7C)
+#define REG_NR44 (REG_BASE + 0x7D)
 
 #define REG_SOUNDCNT_L (REG_BASE + 0x80)
+#define REG_NR50 (REG_BASE + 0x80)
+#define REG_NR51 (REG_BASE + 0x81)
 #define REG_SOUNDCNT_H (REG_BASE + 0x82)
 
 #define REG_SOUNDCNT_X (REG_BASE + 0x84)
+#define REG_NR52 (REG_BASE + 0x84)
 #define REG_SOUNDBIAS  (REG_BASE + 0x88)
+#define REG_SOUNDBIAS_L  (REG_BASE + 0x88)
+#define REG_SOUNDBIAS_H  (REG_BASE + 0x89)
 
-#define REG_WAVE_RAM0_L (REG_BASE + 0x90)
-#define REG_WAVE_RAM0_H (REG_BASE + 0x92)
-#define REG_WAVE_RAM1_L (REG_BASE + 0x94)
-#define REG_WAVE_RAM1_H (REG_BASE + 0x96)
-#define REG_WAVE_RAM2_L (REG_BASE + 0x98)
-#define REG_WAVE_RAM2_H (REG_BASE + 0x9A)
-#define REG_WAVE_RAM3_L (REG_BASE + 0x9C)
-#define REG_WAVE_RAM3_H (REG_BASE + 0x9E)
+#define REG_WAVE_RAM0 (REG_BASE + 0x90)
+#define REG_WAVE_RAM1 (REG_BASE + 0x94)
+#define REG_WAVE_RAM2 (REG_BASE + 0x98)
+#define REG_WAVE_RAM3 (REG_BASE + 0x9C)
 
 #define REG_FIFO_A (REG_BASE + 0xA0)
 #define REG_FIFO_B (REG_BASE + 0xA4)
 
-#define SOUNDCNT_ENVELOPE_INCREASE (1 << 11)
-#define SOUNDCNT_LENGTH_STOPS_SOUND (1 << 14)
-#define SOUNDCNT_RESTART_SOUND (1 << 15)
+// SOUND_CNT_H
+#define SOUND_CGB_MIX_QUARTER 0x0000
+#define SOUND_CGB_MIX_HALF    0x0001
+#define SOUND_CGB_MIX_FULL    0x0002
+#define SOUND_A_MIX_HALF      0x0000
+#define SOUND_A_MIX_FULL      0x0004
+#define SOUND_B_MIX_HALF      0x0000
+#define SOUND_B_MIX_FULL      0x0008
+#define SOUND_ALL_MIX_FULL    0x000E
+#define SOUND_A_RIGHT_OUTPUT  0x0100
+#define SOUND_A_LEFT_OUTPUT   0x0200
+#define SOUND_A_TIMER_0       0x0000
+#define SOUND_A_TIMER_1       0x0400
+#define SOUND_A_FIFO_RESET    0x0800
+#define SOUND_B_RIGHT_OUTPUT  0x1000
+#define SOUND_B_LEFT_OUTPUT   0x2000
+#define SOUND_B_TIMER_0       0x0000
+#define SOUND_B_TIMER_1       0x4000
+#define SOUND_B_FIFO_RESET    0x8000
+
+// SOUND_CNT_X
+#define SOUND_1_ON          0x0001
+#define SOUND_2_ON          0x0002
+#define SOUND_3_ON          0x0004
+#define SOUND_4_ON          0x0008
+#define SOUND_MASTER_ENABLE 0x0080
 
 #endif /* GBA_AUDIO_H */

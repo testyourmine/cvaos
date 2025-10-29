@@ -4,7 +4,8 @@ MEMORY {
     rom    (rx): ORIGIN = 0x08000000 LENGTH = 32M
 }
 
-end = 0x3006004;
+gNumMusicPlayers = 8;
+gMaxLines = 0;
 
 SECTIONS {
     ewram (NOLOAD) : ALIGN(4) {
@@ -12,8 +13,20 @@ SECTIONS {
 
     iwram (NOLOAD) : ALIGN(4) {
         . = 0x00002140; src/agb_sram.o(.bss);
+
+        . = 0x00002260; gMPlayTrack_0 = .;
+        . = 0x00002490; gMPlayTrack_1 = .;
+        . = 0x00002620; gMPlayTrack_2 = .;
+        . = 0x00002670; gMPlayTrack_3 = .;
+        . = 0x000026C0; gMPlayTrack_4 = .;
+        . = 0x00002710; gMPlayTrack_5 = .;
+        . = 0x00002760; gMPlayTrack_6 = .;
+        . = 0x000027B0; gMPlayTrack_7 = .;
+
         . = 0x00002800; *libgcc.a:*.o(.bss);
         *libc.a:*.o(.bss);
+
+        . = 0x000028D8; SoundMainRAM_Buffer = .;
 
         . = 0x00002C60; gDisplayRegisters = .;
         . = 0x00002CB0; gUnk_03002CB0 = .;
@@ -23,7 +36,24 @@ SECTIONS {
         . = 0x000052D4; gReadSramFast = .;
         . = 0x000052D8; gVerifySramFast = .;
 
+        . = 0x000052E0; gMPlayInfo_5 = .;
+        . = 0x00005320; gMPlayInfo_6 = .;
+        . = 0x00005360; gMPlayInfo_0 = .;
+        . = 0x000053A0; gMPlayInfo_7 = .;
+        . = 0x000053E0; gMPlayInfo_1 = .;
+        . = 0x00005420; gMPlayInfo_2 = .;
+        . = 0x00005460; gMPlayInfo_4 = .;
+
+        . = 0x000054A0; gMPlayMemAccArea = .;
+
+        . = 0x000054B0; gMPlayInfo_3 = .;
+
+        . = 0x000054F0; gSoundInfo = .;
+        . = 0x00005E70; gMPlayJumpTable = .;
+        . = 0x00005F00; gCgbChans = .;
+
         . = 0x00006000; *libc.a:*.o(COMMON);
+        end = .;
     } >iwram
 
     .text : ALIGN(2) {
@@ -57,7 +87,7 @@ SECTIONS {
         src/agb_sram.o(.text);
         asm/agb_print.o(.text);
         asm/m4a0.o(.text);
-        asm/m4a.o(.text);
+        src/m4a.o(.text);
         *libgcc.a:_call_via_rX.o(.text);
         *libgcc.a:_divsi3.o(.text);
         *libgcc.a:_dvmd_tls.o(.text);
@@ -124,6 +154,9 @@ SECTIONS {
         asm/data/data_0E0B68.o(.rodata);
         src/data/data_0E3464.o(.rodata);
         asm/data/data_0E5364.o(.rodata);
+        asm/sound_data.o(.rodata);
+        src/data/m4a_tables.o(.rodata);
+        asm/data/data_27DF8C.o(.rodata);
         *libc.a:memcpy.o(.rodata);
         *libc.a:memset.o(.rodata);
         *libc.a:sprintf.o(.rodata);

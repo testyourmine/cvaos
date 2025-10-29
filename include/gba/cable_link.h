@@ -9,6 +9,13 @@
 #define REG_TM3CNT_L (REG_BASE + 0x10C)
 #define REG_TM3CNT_H (REG_BASE + 0x10E)
 
+#define TIMER_1CLK        0x00
+#define TIMER_64CLK       0x01
+#define TIMER_256CLK      0x02
+#define TIMER_1024CLK     0x03
+#define TIMER_INTR_ENABLE 0x40
+#define TIMER_ENABLE      0x80
+
 #define REG_SIO_MULTI (REG_BASE + 0x120)
 #define REG_SIO (REG_BASE + 0x128)
 #define REG_SIO_DATA8 (REG_BASE + 0x12A)
