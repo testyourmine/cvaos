@@ -85,7 +85,7 @@ SECTIONS {
         asm/code/code_080D0998.o(.text);
         asm/libagbsyscall.o(.text);
         src/agb_sram.o(.text);
-        asm/agb_print.o(.text);
+        src/agb_print.o(.text);
         asm/m4a0.o(.text);
         src/m4a.o(.text);
         *libgcc.a:_call_via_rX.o(.text);
@@ -154,6 +154,9 @@ SECTIONS {
         asm/data/data_0E0B68.o(.rodata);
         src/data/data_0E3464.o(.rodata);
         asm/data/data_0E5364.o(.rodata);
+        src/agb_sram.o(.rodata);
+        src/agb_print.o(.rodata);
+        asm/data/data_27B2C0.o(.rodata);
         asm/sound_data.o(.rodata);
         src/data/m4a_tables.o(.rodata);
         asm/data/data_27DF8C.o(.rodata);

@@ -103,4 +103,4 @@ sUnk_08268344: @ 0x08268344
 sUnk_08268440: @ 0x08268440
     .incbin "cvaos_us_baserom.gba", 0x268440, 0x1 @ TODO: size
 
-    .incbin "cvaos_us_baserom.gba", 0x268441, 0x14897
+    .incbin "cvaos_us_baserom.gba", 0x268441, 0x12DE3

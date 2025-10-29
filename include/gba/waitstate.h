@@ -15,6 +15,7 @@
 #define WAIT_BANK0_3CYCLES (1 << 2)
 #define WAIT_BANK0_2CYCLES (1 << 3)
 #define WAIT_BANK0_8CYCLES (1 << 2 | 1 << 3)
+#define WAIT_BANK0_SUBSEQUENT_2CYCLE (0 << 4)
 #define WAIT_BANK0_SUBSEQUENT_1CYCLE (1 << 4)
 #define WAIT_BANK0_CYCLES_MASK (1 << 2 | 1 << 3 | 1 << 4)
 

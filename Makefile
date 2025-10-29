@@ -46,7 +46,7 @@ PREPROC = tools/preproc/preproc
 # Flags
 ASFLAGS = -mcpu=arm7tdmi
 CFLAGS = -Werror -O2 -mthumb-interwork -fhex-asm -f2003-patch
-CPPFLAGS = -nostdinc -Iinclude/
+CPPFLAGS = -nostdinc -I include/ -I tools/agbcc/include
 PREPROCFLAGS = charmap.txt
 
 # Objects
@@ -158,6 +158,9 @@ src/agb_sram.s: CFLAGS = -Werror -O1 -mthumb-interwork -fhex-asm
 
 src/m4a.s: CC := tools/agbcc/bin/old_agbcc$(EXE)
 src/m4a.s: CFLAGS = -Werror -O2 -mthumb-interwork -fhex-asm
+
+src/agb_print.s: CC := tools/agbcc/bin/old_agbcc$(EXE)
+src/agb_print.s: CFLAGS = -Werror -O0 -mthumb-interwork -fhex-asm
 
 tools/%: tools/%.c
 	$(MSG) HOSTCC $@

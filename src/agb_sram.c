@@ -4,7 +4,7 @@
 
 #include "structs/agb_sram.h"
 
-// const char sAgbLibSramVersion[] = "SRAM_F_V102";
+const char sAgbLibSramVersion[] = "SRAM_F_V102";
 
 static u16 verifySramFast_Work[80]; // buffer to hold code of VerifySramFast_Core
 static u16 readSramFast_Work[64]; // buffer to hold code of ReadSramFast_Core
