@@ -13,6 +13,7 @@
 #include "code/code_080D0998.h"
 #include "agb_sram.h"
 #include "agb_multi_sio_sync.h"
+#include "m4a.h"
 #include "gba.h"
 #include "macros.h"
 #include "syscalls.h"
@@ -25,9 +26,6 @@
 #include "structs/ewram.h"
 
 extern void _intr_main(void);
-
-extern void m4aSoundVSync(void);
-
 
 /**
  * @brief 1F4 | Main function
@@ -126,7 +124,7 @@ void VblankInterrupt(void)
         WRITE_16(REG_DISPSTAT, C_16_2_8(unk_7864->unk_7865, 0x28));
     }
 
-    *(u16 *)0x03007FF8 |= IF_VBLANK;
+    INTR_CHECK |= IF_VBLANK;
     sub_080D7900();
 }
 
@@ -195,7 +193,7 @@ void VcountInterrupt(void)
     {
         DMA_STOP(0);
     }
-    *(u16 *)0x03007FF8 |= IF_VCOUNT;
+    INTR_CHECK |= IF_VCOUNT;
 }
 
 /**
@@ -399,8 +397,8 @@ void InitializeGame(void)
     DMA_FILL_32(3, 0, IWRAM_BASE, IWRAM_SIZE - 0x200);
     DMA_FILL_32(3, 0, VRAM_BASE, VRAM_SIZE);
 
-    DMA_COPY_32(3, &_intr_main, &gUnk_03003CD0, 0x880);
-    (*(void **)0x3007FFC) = &gUnk_03003CD0;
+    DMA_COPY_32(3, &_intr_main, &gIntrMainBuffer, 0x880);
+    INTR_VECTOR = &gIntrMainBuffer;
 
     InitializeAudio();
     SetSramFastFunc();
@@ -409,7 +407,7 @@ void InitializeGame(void)
     {
         sub_08001004(); // return value ignored
     }
-    gEwramData->unk_8 = 0x1E86EF;
+    gEwramData->randomNumber = 0x1E86EF;
 }
 
 /**

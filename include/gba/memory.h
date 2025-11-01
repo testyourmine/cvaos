@@ -32,4 +32,7 @@
 #define SRAM_BASE (void *)0x0e000000
 #define SRAM_SIZE (32 * 0x400)
 
+#define INTR_CHECK     (*(u16 *)0x03007FF8)
+#define INTR_VECTOR    (*(void **)0x03007FFC)
+
 #endif /* GBA_MEMORY_H */

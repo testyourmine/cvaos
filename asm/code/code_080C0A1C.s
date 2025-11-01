@@ -94,7 +94,7 @@ _080C0ABC:
 	ldrb r0, [r5, #0xc]
 	cmp r0, #0
 	beq _080C0B6C
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0xff
 	ands r1, r0
 	cmp r1, #3
@@ -719,7 +719,7 @@ _080C0F94:
 	str r2, [r4, #0x4c]
 	b _080C0FC6
 _080C0F9A:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	ldr r1, _080C0FA8 @ =0x00001FFF
 	ands r1, r0
 	adds r1, r5, r1
@@ -728,7 +728,7 @@ _080C0F9A:
 	.align 2, 0
 _080C0FA8: .4byte 0x00001FFF
 _080C0FAC:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	ldr r1, _080C1000 @ =0x00001FFF
 	ands r1, r0
 	adds r1, r5, r1
@@ -1438,7 +1438,7 @@ _080C153E:
 	adds r1, #0x42
 	strh r0, [r1]
 _080C1544:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	adds r2, r4, #0
 	adds r2, #0x46
 	movs r1, #0x1f
@@ -1718,7 +1718,7 @@ _080C1720:
 	bne _080C1778
 	cmp r7, #0x50
 	ble _080C176E
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x1f
 	ands r1, r0
 	cmp r1, #0
@@ -1735,7 +1735,7 @@ _080C1778:
 	rsbs r0, r0, #0
 	cmp r7, r0
 	bge _080C178E
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x1f
 	ands r1, r0
 	cmp r1, #0
@@ -1919,7 +1919,7 @@ _080C18C6:
 	adds r4, r0, #0
 	cmp r4, #0
 	beq _080C18E6
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	ands r0, r7
 	cmp r0, #0
 	beq _080C18E6
@@ -1977,7 +1977,7 @@ _080C193A:
 sub_080C1940: @ 0x080C1940
 	push {r4, r5, lr}
 	adds r4, r0, #0
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	adds r5, r0, #0
 	movs r0, #0x3f
 	ands r5, r0
@@ -2258,7 +2258,7 @@ _080C1B6A:
 	movs r5, #2
 	movs r0, #2
 	strb r0, [r1]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	adds r2, r7, #0
 	adds r2, #0x42
 	movs r1, #0x1f
@@ -2271,7 +2271,7 @@ _080C1B6A:
 	adds r0, #0x42
 	movs r4, #0
 	strh r1, [r0]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	adds r2, r7, #0
 	adds r2, #0x46
 	movs r1, #0xf
@@ -2290,7 +2290,7 @@ _080C1B6A:
 	adds r0, #1
 	strb r0, [r6, #0xa]
 	strb r4, [r6, #0xd]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	ldr r1, _080C1BF0 @ =0x00003FFF
 	ands r1, r0
 	ldr r0, _080C1BF4 @ =0xFFFFE000
@@ -2299,7 +2299,7 @@ _080C1B6A:
 	movs r0, #0xd0
 	lsls r0, r0, #4
 	strh r0, [r6, #0x26]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x7f
 	ands r1, r0
 	adds r1, #0x40
@@ -3017,7 +3017,7 @@ _080C2142:
 _080C214C:
 	strb r1, [r0]
 	adds r6, r0, #0
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x1e
 	bl __umodsi3
 	cmp r0, #0xd
@@ -3810,7 +3810,7 @@ _080C2772:
 _080C277C:
 	strb r1, [r0]
 	adds r6, r0, #0
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #6
 	bl __umodsi3
 	adds r4, r0, #0
@@ -4022,7 +4022,7 @@ _080C2912:
 	ldrb r0, [r5, #0x15]
 	cmp r0, #3
 	bne _080C294E
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #3
 	bl __umodsi3
 	cmp r0, #0
@@ -5078,7 +5078,7 @@ _080C3134:
 	strb r1, [r4, #0xb]
 	b _080C3186
 _080C3142:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x7f
 	ands r1, r0
 	cmp r1, #0
@@ -5543,7 +5543,7 @@ _080C345A:
 	movs r1, #4
 	orrs r0, r1
 	strb r0, [r4, #0x1a]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #1
 	ands r0, r1
 	strb r1, [r4, #0xa]
@@ -5611,7 +5611,7 @@ _080C3552:
 	bl sub_0806CC20
 	cmp r0, #0
 	bne _080C35C6
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x50
 	bl __umodsi3
 	adds r0, #0x28
@@ -5852,7 +5852,7 @@ _080C3726:
 	strb r5, [r4, #0xa]
 	b _080C38DA
 _080C3732:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x1f
 	ands r1, r0
 	strh r1, [r4, #0x1c]
@@ -5888,7 +5888,7 @@ _080C3758:
 	rsbs r0, r0, #0
 	str r0, [r4, #0x48]
 _080C3778:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x3f
 	ands r1, r0
 	adds r1, #0x80
@@ -5940,7 +5940,7 @@ _080C37D0:
 	ands r0, r1
 _080C37DA:
 	strb r0, [r2]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #7
 	ands r1, r0
 	adds r1, #1
@@ -5964,7 +5964,7 @@ _080C3800:
 	ands r0, r1
 	cmp r0, #0
 	beq _080C381E
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0xf
 	ands r1, r0
 	cmp r1, #0
@@ -5992,7 +5992,7 @@ _080C3824:
 	ldrsh r5, [r4, r0]
 	cmp r5, #0
 	bne _080C385C
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	adds r1, r0, #0
 	movs r0, #3
 	ands r1, r0
@@ -6044,7 +6044,7 @@ _080C389A:
 	adds r0, #1
 	movs r5, #0
 	strb r0, [r4, #0x19]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x28
 	bl __umodsi3
 	ldrb r2, [r4, #0x19]
@@ -6061,7 +6061,7 @@ _080C38C2:
 	cmp r0, #0x30
 	ble _080C38E0
 	strb r5, [r4, #0x19]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x32
 	bl __umodsi3
 	cmp r0, #0xe
@@ -6155,7 +6155,7 @@ sub_080C3958: @ 0x080C3958
 	beq _080C39D6
 	b _080C39EE
 _080C3968:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #7
 	ands r1, r0
 	cmp r1, #0
@@ -8234,7 +8234,7 @@ _080C494C:
 _080C4952:
 	b _080C4B66
 _080C4954:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0xb4
 	lsls r1, r1, #1
 	bl __umodsi3
@@ -9751,7 +9751,7 @@ _080C54C0:
 	ldrsh r0, [r5, r1]
 	cmp r0, #0
 	bne _080C54D8
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0xfa
 	lsls r1, r1, #1
 	bl __umodsi3
@@ -9778,7 +9778,7 @@ _080C54F0:
 	str r0, [r5, #0x54]
 	cmp r6, #0
 	ble _080C551E
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x19
 	bl __umodsi3
 	subs r0, #0x19
@@ -9792,7 +9792,7 @@ _080C54F0:
 	ands r0, r1
 	b _080C5534
 _080C551E:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r4, #0x19
 	movs r1, #0x19
 	bl __umodsi3
@@ -9805,7 +9805,7 @@ _080C5534:
 	strh r0, [r5, #0x16]
 	cmp r7, #0x19
 	ble _080C5558
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x19
 	bl __umodsi3
 	subs r0, #0x14
@@ -9819,7 +9819,7 @@ _080C5534:
 	ands r0, r1
 	b _080C5570
 _080C5558:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x19
 	bl __umodsi3
 	movs r1, #0x46
@@ -10495,7 +10495,7 @@ _080C5A6A:
 	strh r4, [r5, #0x14]
 	lsls r4, r4, #0x10
 	asrs r4, r4, #0x10
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #5
 	bl __umodsi3
 	adds r0, #1
@@ -10817,7 +10817,7 @@ sub_080C5CE8: @ 0x080C5CE8
 	subs r0, r1, #1
 	b _080C5D08
 _080C5CFA:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0xb4
 	lsls r1, r1, #1
 	bl __umodsi3
@@ -11607,13 +11607,13 @@ sub_080C6310: @ 0x080C6310
 	adds r5, r4, r0
 	movs r6, #0x80
 	lsls r6, r6, #0xd
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	adds r1, r6, #0
 	bl __umodsi3
 	ldr r1, _080C6398 @ =0xFFF80000
 	adds r0, r0, r1
 	str r0, [r7, #0x14]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	adds r1, r6, #0
 	bl __umodsi3
 	ldr r1, _080C6398 @ =0xFFF80000
@@ -11624,7 +11624,7 @@ sub_080C6310: @ 0x080C6310
 	str r4, [r7, #0x40]
 	adds r5, r5, r0
 	str r5, [r7, #0x44]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #1
 	adds r3, r7, #0
 	adds r3, #0x58
@@ -11695,7 +11695,7 @@ sub_080C639C: @ 0x080C639C
 	movs r1, #0x20
 	orrs r0, r1
 	strb r0, [r2]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x3f
 	ands r1, r0
 	strb r1, [r4, #0xd]
@@ -12855,7 +12855,7 @@ _080C6CAE:
 	.align 2, 0
 _080C6CF0: .4byte 0xFFFFF000
 _080C6CF4:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0xb4
 	bl __umodsi3
 	adds r0, #0xa
@@ -12895,7 +12895,7 @@ sub_080C6D0C: @ 0x080C6D0C
 	ldrb r0, [r4, #0x17]
 	cmp r0, #9
 	bne _080C6D4A
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #3
 	ands r1, r0
 	strb r1, [r4, #0x16]
@@ -13064,7 +13064,7 @@ _080C6E7E:
 	ldrb r0, [r4, #0x17]
 	cmp r0, #9
 	bne _080C6E96
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #3
 	ands r1, r0
 	strb r1, [r4, #0x16]
@@ -14901,17 +14901,17 @@ sub_080C7C94: @ 0x080C7C94
 	strb r0, [r5, #0xa]
 	strb r4, [r5, #0xc]
 	strb r4, [r5, #0xb]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	ldr r1, _080C7CDC @ =0x000007FF
 	ands r1, r0
 	adds r1, #0x80
 	strh r1, [r5, #0x14]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0xff
 	ands r1, r0
 	adds r1, #0x20
 	strh r1, [r5, #0x16]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	ldr r1, _080C7CE0 @ =0x000001FF
 	ands r1, r0
 	movs r0, #0x80
@@ -15093,7 +15093,7 @@ _080C7E26:
 	str r0, [r6, #0x48]
 	str r0, [r6, #0x54]
 	str r0, [r6, #0x4c]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #3
 	ands r1, r0
 	cmp r1, #0
@@ -15238,7 +15238,7 @@ _080C7F36:
 	ldrh r0, [r6, #0x18]
 	adds r0, #0x20
 	strh r0, [r6, #0x18]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0xff
 	ands r1, r0
 	adds r1, #0x20
@@ -15355,7 +15355,7 @@ _080C8030:
 _080C8034:
 	strb r0, [r6, #0xb]
 	strb r1, [r6, #0xc]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	ldr r1, _080C8054 @ =0x000007FF
 	ands r1, r0
 	adds r1, #0x80
@@ -15420,7 +15420,7 @@ _080C80A0:
 	movs r3, #0
 	bl sub_0803F2C8
 _080C80B6:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x3f
 	ands r1, r0
 	adds r1, #0x40
@@ -15442,7 +15442,7 @@ _080C80C8:
 	ldrh r0, [r6, #0x16]
 	adds r0, #0x20
 	strh r0, [r6, #0x16]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	ldr r1, _080C81A8 @ =0x000003FF
 	ands r1, r0
 	movs r0, #0x80
@@ -15850,7 +15850,7 @@ _080C83FC:
 	ldr r1, _080C8464 @ =0xFFF00000
 	adds r0, r0, r1
 	str r0, [r4, #0x44]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #1
 	adds r3, r4, #0
 	adds r3, #0x58
@@ -16893,7 +16893,7 @@ _080C8C16:
 	str r4, [r6, #0x48]
 	str r4, [r6, #0x54]
 	str r4, [r6, #0x4c]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #6
 	bl __umodsi3
 	cmp r0, #5
@@ -16965,7 +16965,7 @@ _080C8C8A:
 	rsbs r0, r0, #0
 	str r0, [r6, #0x48]
 _080C8CC0:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0xff
 	ands r1, r0
 	adds r1, #0x80
@@ -17107,7 +17107,7 @@ _080C8DD6:
 	str r4, [r6, #0x48]
 	str r4, [r6, #0x54]
 	str r4, [r6, #0x4c]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0xff
 	ands r1, r0
 	adds r1, #0x80
@@ -17169,7 +17169,7 @@ _080C8E4A:
 	movs r0, #2
 	strb r0, [r6, #0xb]
 	strb r1, [r6, #0xc]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x1f
 	ands r1, r0
 	adds r1, #0x10
@@ -17229,7 +17229,7 @@ _080C8EB4:
 	movs r3, #0
 	bl sub_0803F2C8
 _080C8ECA:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x3f
 	ands r1, r0
 	adds r1, #0x40
@@ -17245,7 +17245,7 @@ _080C8EDC:
 	lsrs r0, r0, #0x18
 	cmp r0, #0xff
 	bne _080C8F18
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	ldr r1, _080C8F98 @ =0x000003FF
 	ands r1, r0
 	movs r0, #0x80
@@ -17335,7 +17335,7 @@ _080C8F82:
 	.align 2, 0
 _080C8F98: .4byte 0x000003FF
 _080C8F9C:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	adds r1, r0, #0
 	ldr r0, _080C8FB8 @ =0x000003FF
 	ands r1, r0
@@ -17542,7 +17542,7 @@ _080C911C:
 	ldr r1, _080C9194 @ =0xFFF00000
 	adds r0, r0, r1
 	str r0, [r4, #0x44]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	adds r3, r4, #0
 	adds r3, #0x58
 	mov r7, r8
@@ -17614,7 +17614,7 @@ _080C91A8:
 	strb r0, [r2]
 	ldr r0, _080C9208 @ =sub_0803B9D0
 	str r0, [r4, #4]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #1
 	adds r3, r4, #0
 	adds r3, #0x58
@@ -17843,7 +17843,7 @@ _080C938C:
 	ldr r1, _080C93F4 @ =0xFFF00000
 	adds r0, r0, r1
 	str r0, [r4, #0x44]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #1
 	adds r3, r4, #0
 	adds r3, #0x58
@@ -18578,12 +18578,12 @@ sub_080C9938: @ 0x080C9938
 	strb r0, [r4, #0xa]
 	strb r5, [r4, #0xc]
 	strb r5, [r4, #0xb]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x1f
 	ands r1, r0
 	adds r1, #0x10
 	strh r1, [r4, #0x14]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	ldr r1, _080C9978 @ =0x000003FF
 	ands r1, r0
 	movs r0, #0x80
@@ -20389,7 +20389,7 @@ _080CA71A:
 	bl sub_0806CC20
 	cmp r0, #0
 	bne _080CA76A
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x50
 	bl __umodsi3
 	adds r0, #0x28
@@ -20603,7 +20603,7 @@ _080CA8AE:
 	strb r5, [r4, #0xa]
 	b _080CA9AE
 _080CA8B6:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x1f
 	ands r1, r0
 	movs r2, #0
@@ -20617,14 +20617,14 @@ _080CA8CA:
 	bl sub_0806BC40
 	movs r0, #0x14
 	strb r0, [r4, #0xd]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	ldr r1, _080CA93C @ =0x00003FFF
 	ands r1, r0
 	movs r0, #0x80
 	lsls r0, r0, #8
 	adds r1, r1, r0
 	str r1, [r4, #0x24]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x7f
 	ands r1, r0
 	adds r1, #0x40
@@ -20700,7 +20700,7 @@ _080CA96E:
 	adds r0, #1
 	movs r5, #0
 	strb r0, [r4, #0x19]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x28
 	bl __umodsi3
 	ldrb r1, [r4, #0x19]
@@ -20717,7 +20717,7 @@ _080CA996:
 	cmp r0, #0x30
 	ble _080CA9B4
 	strb r5, [r4, #0x19]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x32
 	bl __umodsi3
 	cmp r0, #0xe
@@ -22304,7 +22304,7 @@ _080CB594:
 	ldrsh r0, [r5, r1]
 	cmp r0, #0
 	beq _080CB5C6
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	ldr r1, _080CB5DC @ =0x0000FFFF
 	bl __umodsi3
 	strh r0, [r5, #0x14]
@@ -22367,7 +22367,7 @@ _080CB624:
 	cmp r0, #0
 	beq _080CB674
 	strb r2, [r4, #0xc]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x7f
 	ands r1, r0
 	strb r1, [r4, #0xd]
@@ -23065,7 +23065,7 @@ _080CBB86:
 	cmp r0, #0xff
 	bne _080CBC5C
 	strb r5, [r4, #0xd]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #1
 	ands r1, r0
 	cmp r1, #0
@@ -23091,7 +23091,7 @@ _080CBBC2:
 	beq _080CBBFE
 	b _080CBC5C
 _080CBBC8:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x1f
 	ands r1, r0
 	adds r1, #0x20
@@ -23138,7 +23138,7 @@ _080CBC14:
 	lsrs r0, r0, #0x18
 	cmp r0, #0xff
 	bne _080CBC5C
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #1
 	ands r1, r0
 	cmp r1, #0
@@ -24910,7 +24910,7 @@ _080CC97A:
 _080CC990:
 	movs r0, #0
 	strb r0, [r6, #0xd]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	adds r1, r0, #0
 	movs r0, #7
 	ands r1, r0
@@ -24936,7 +24936,7 @@ _080CC9B8:
 	ldrb r0, [r6, #0xc]
 	adds r0, #1
 	strb r0, [r6, #0xc]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #3
 	ands r1, r0
 	adds r1, #1
@@ -25062,7 +25062,7 @@ _080CCABC:
 	beq _080CCAF8
 	b _080CCB56
 _080CCAC2:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x1f
 	ands r1, r0
 	adds r1, #0x20
@@ -25109,7 +25109,7 @@ _080CCB0E:
 	lsrs r0, r0, #0x18
 	cmp r0, #0xff
 	bne _080CCB56
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #1
 	ands r1, r0
 	cmp r1, #0
@@ -25375,7 +25375,7 @@ _080CCD08:
 	strb r0, [r5, #0xd]
 	movs r4, #0x19
 	ldrsb r4, [r7, r4]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #5
 	bl __umodsi3
 	adds r0, #1
@@ -27246,7 +27246,7 @@ _080CDB2E:
 	.align 2, 0
 _080CDB74: .4byte 0xFFFFF000
 _080CDB78:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0xb4
 	bl __umodsi3
 	adds r0, #0xa
@@ -27303,7 +27303,7 @@ _080CDBE4:
 	ldrb r0, [r4, #0x17]
 	cmp r0, #9
 	bne _080CDBFE
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #3
 	ands r1, r0
 	movs r0, #0
@@ -27481,7 +27481,7 @@ _080CDD34:
 	ldrb r0, [r4, #0x17]
 	cmp r0, #9
 	bne _080CDD4C
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #3
 	ands r1, r0
 	strb r1, [r4, #0x16]
@@ -27688,7 +27688,7 @@ _080CDEBE:
 	ldrb r0, [r5, #0xb]
 	adds r0, #1
 	strb r0, [r5, #0xb]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x3f
 	ands r1, r0
 	adds r4, r1, #0
@@ -32178,7 +32178,7 @@ _080D0154:
 	bl sub_0806C1B0
 	cmp r0, #0
 	beq _080D0196
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0xc
 	bl __umodsi3
 	adds r1, r0, #0
@@ -32187,7 +32187,7 @@ _080D0154:
 	movs r0, #9
 	b _080D024E
 _080D0176:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	adds r1, r0, #0
 	movs r0, #7
 	ands r1, r0
@@ -32196,7 +32196,7 @@ _080D0176:
 	movs r0, #4
 	b _080D024E
 _080D0188:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	adds r1, r0, #0
 	movs r0, #3
 	ands r1, r0
@@ -32254,7 +32254,7 @@ _080D01B8:
 	ldrb r0, [r0]
 	cmp r0, #0
 	bne _080D0228
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	adds r1, r0, #0
 	movs r0, #7
 	ands r1, r0
@@ -32266,7 +32266,7 @@ _080D01B8:
 _080D020C: .4byte gEwramData
 _080D0210: .4byte 0x00013110
 _080D0214:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #6
 	bl __umodsi3
 	adds r1, r0, #0
@@ -32275,7 +32275,7 @@ _080D0214:
 	movs r0, #4
 	b _080D024E
 _080D0228:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0xa
 	bl __umodsi3
 	adds r1, r0, #0
@@ -32284,7 +32284,7 @@ _080D0228:
 	movs r0, #7
 	b _080D024E
 _080D023C:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x32
 	bl __umodsi3
 	adds r1, r0, #0
@@ -32303,7 +32303,7 @@ _080D0256:
 	ands r1, r0
 	cmp r1, #0
 	beq _080D027C
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x3c
 	bl __umodsi3
 	cmp r0, #0x14
@@ -32327,7 +32327,7 @@ _080D027C:
 	bl sub_0806C1B0
 	cmp r0, #0
 	beq _080D032C
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x1e
 	bl __umodsi3
 	cmp r0, #0
@@ -32335,7 +32335,7 @@ _080D027C:
 	ldrh r0, [r5, #0x22]
 	cmp r0, #0
 	bne _080D032C
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #3
 	ands r1, r0
 	movs r2, #0
@@ -32363,7 +32363,7 @@ _080D02CE:
 	adds r0, r5, #0
 	adds r2, r3, #0
 	bl sub_0806E140
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	adds r4, r0, #0
 	movs r0, #3
 	ands r4, r0
@@ -32456,7 +32456,7 @@ _080D038A:
 	cmp r0, #4
 	bne _080D03A8
 	ldr r4, _080D03C8 @ =0x08528D38
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #1
 	ands r1, r0
 	lsls r1, r1, #1
@@ -32667,7 +32667,7 @@ _080D0518:
 	beq _080D0534
 	b _080D08D6
 _080D0534:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #1
 	ands r1, r0
 	cmp r1, #0
@@ -32861,7 +32861,7 @@ _080D06A0:
 	adds r0, r5, #0
 	bl sub_080D14F8
 	adds r4, r0, #0
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	adds r2, r4, #0
 	adds r2, #0x42
 	movs r1, #0xf
@@ -33093,7 +33093,7 @@ _080D0866:
 	bne _080D088A
 	movs r0, #0xfc
 	bl sub_080D7910
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #3
 	bl __umodsi3
 	cmp r0, #0

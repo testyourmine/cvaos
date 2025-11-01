@@ -7,8 +7,8 @@
 
 u32 sub_080009A0(s32 param_0, u32 param_1);
 s32 sub_080009E4(s32 param_0);
-u32 sub_08000A90(void);
-u32 sub_08000AB0(void);
+u32 RandomNumberGenerator(void);
+u32 RandomNumberGenerator2(void);
 struct EwramData_unk4E4 *sub_08000B00(u32 *param_0);
 void sub_08000B64(void);
 void sub_08000C28(struct EwramData_unk4E4 *param_0);

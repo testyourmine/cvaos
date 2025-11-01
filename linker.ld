@@ -31,7 +31,7 @@ SECTIONS {
         . = 0x00002C60; gDisplayRegisters = .;
         . = 0x00002CB0; gUnk_03002CB0 = .;
 
-        . = 0x00003CD0; gUnk_03003CD0 = .;
+        . = 0x00003CD0; gIntrMainBuffer = .;
 
         . = 0x00005190; sUnk_03005190 = .;
         . = 0x00005280; sUnk_03005280 = .;

@@ -995,7 +995,7 @@ _08031224: .4byte 0xFFFFC000
 _08031228: .4byte 0x000131C2
 _0803122C: .4byte 0x000131C4
 _08031230:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0xff
 	ands r1, r0
 	cmp r1, #0
@@ -1036,7 +1036,7 @@ _08031274:
 	.align 2, 0
 _0803127C: .4byte 0x00007FFF
 _08031280:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0xff
 	ands r1, r0
 	cmp r1, #1
@@ -1095,7 +1095,7 @@ _080312E2:
 	movs r0, #0x80
 	b _0803137A
 _080312F6:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #7
 	ands r1, r0
 	adds r1, #0x10
@@ -1581,7 +1581,7 @@ _080316C8:
 	movs r0, #2
 	orrs r0, r1
 	strb r0, [r2]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x7f
 	ands r1, r0
 	cmp r1, #0
@@ -1650,7 +1650,7 @@ _08031754:
 	movs r0, #2
 	orrs r0, r1
 	strb r0, [r2]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x7f
 	ands r1, r0
 	cmp r1, #1
@@ -1703,7 +1703,7 @@ _080317B6:
 	strb r0, [r6, #0xd]
 	b _08031862
 _080317CC:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0xf
 	ands r1, r0
 	lsls r1, r1, #0x10
@@ -2020,7 +2020,7 @@ _08031A50:
 	ands r1, r0
 	cmp r1, #0
 	bne _08031A6A
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #1
 	ands r1, r0
 	cmp r1, #0
@@ -4911,7 +4911,7 @@ _08032F28:
 	bne _08032F88
 	ldr r0, [r2]
 	ldr r4, [r0, #0x44]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r2, #4
 	ldrsh r1, [r5, r2]
 	lsls r1, r1, #8
@@ -5134,7 +5134,7 @@ _08033104:
 	adds r1, r4, #0
 	adds r1, #0x65
 	strb r0, [r1]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #1
 	ands r0, r1
 	adds r3, r4, #0
@@ -8141,7 +8141,7 @@ _08034804:
 	adds r1, r7, #0
 	movs r2, #0x14
 	bl sub_08031EA4
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	movs r1, #0x3f
 	ands r1, r0
 	cmp r1, #0x17
@@ -12091,7 +12091,7 @@ _080367C0: .4byte 0x0820A3D8
 _080367C4: .4byte 0x082121F0
 _080367C8: .4byte sub_0803B9D0
 _080367CC:
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	lsrs r0, r0, #4
 	ands r0, r4
 	cmp r0, #0
@@ -12108,7 +12108,7 @@ _080367E2:
 	subs r0, #1
 _080367EA:
 	strh r0, [r1]
-	bl sub_08000A90
+	bl RandomNumberGenerator
 	lsrs r0, r0, #4
 	movs r1, #1
 	ands r0, r1

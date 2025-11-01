@@ -162,33 +162,33 @@ s32 sub_080009E4(s32 param_0)
 }
 
 /**
- * @brief A90 | To document
+ * @brief A90 | Update and return random number
  * 
+ * @return u32 New random number
  */
-u32 sub_08000A90(void)
+u32 RandomNumberGenerator(void)
 {
-    // RNG updater
-    return gEwramData->unk_8 = (gEwramData->unk_8 >> 8) * 0x3243F6AD + 0x1B0CB175;
+    return gEwramData->randomNumber = (gEwramData->randomNumber >> 8) * 0x3243F6AD + 0x1B0CB175;
 }
 
 /**
- * @brief AB0 | To document
+ * @brief AB0 | Update and return random number
  * 
- * @return u32 To document
+ * @return u32 New random number
  */
-u32 sub_08000AB0(void)
+u32 RandomNumberGenerator2(void)
 {
-    u32 var_0;
+    u32 randomNumber;
 
     if ((gEwramData->unk_60.unk_4CC_6) != 0)
     {
-        var_0 = gEwramData->unk_C = (gEwramData->unk_C >> 0) * 0x3243F6AD + 0x1B0CB175;
+        randomNumber = gEwramData->randomNumber2 = (gEwramData->randomNumber2 >> 0) * 0x3243F6AD + 0x1B0CB175;
     }
     else
     {
-        var_0 = gEwramData->unk_8 = (gEwramData->unk_8 >> 8) * 0x3243F6AD + 0x1B0CB175;
+        randomNumber = gEwramData->randomNumber = (gEwramData->randomNumber >> 8) * 0x3243F6AD + 0x1B0CB175;
     }
-    return var_0;
+    return randomNumber;
 }
 
 /**

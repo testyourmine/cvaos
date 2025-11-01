@@ -245,7 +245,7 @@ void MultiSioSyncVSync(void)
         if (!sUnk_03005190.sioInterrupted)
         {
             WRITE_16(REG_IME, 0);
-            *(u16 *)0x03007FF8 |= IF_SERIAL;
+            INTR_CHECK |= IF_SERIAL;
             WRITE_16(REG_IME, 1);
         }
         sUnk_03005190.sioInterrupted = 0;
@@ -284,7 +284,7 @@ void MultiSioSyncInterrupt(void)
         }
 
         WRITE_16(REG_IME, 0);
-        *(u16 *)0x03007FF8 |= IF_SERIAL;
+        INTR_CHECK |= IF_SERIAL;
         WRITE_16(REG_IME, 1);
     }
 

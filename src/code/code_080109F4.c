@@ -1014,11 +1014,11 @@ void sub_08011CD0(void)
 
         if (gEwramData->unk_60.unk_4C2 != 0)
         {
-            gEwramData->unk_FEC0 = sub_08000A90() & gEwramData->unk_60.unk_4C2;
+            gEwramData->unk_FEC0 = RandomNumberGenerator() & gEwramData->unk_60.unk_4C2;
         }
         if (gEwramData->unk_60.unk_4C3 != 0)
         {
-            gEwramData->unk_FEC1 = sub_08000A90() & gEwramData->unk_60.unk_4C3;
+            gEwramData->unk_FEC1 = RandomNumberGenerator() & gEwramData->unk_60.unk_4C3;
         }
 
         if (gEwramData->unk_60.unk_4C1 == 0)

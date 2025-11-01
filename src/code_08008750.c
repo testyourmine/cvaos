@@ -290,7 +290,7 @@ s32 sub_080089D8(void)
     
         case 5:
             gEwramData->unk_4 += 1;
-            sub_080089D8_inline((gEwramData->unk_4 & 1) + ((sub_08000A90() & 1) * 2) + 0xD);
+            sub_080089D8_inline((gEwramData->unk_4 & 1) + ((RandomNumberGenerator() & 1) * 2) + 0xD);
             if ((gEwramData->unk_4 > 0x77) || (gEwramData->unk_14.newInput & (KEY_A | KEY_START)))
             {
                 sub_0803D18C(0, 0, 0, 0x10000, 0, 0x78);

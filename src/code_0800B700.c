@@ -1772,7 +1772,7 @@ s32 sub_0800BEC0(void)
                 temp_r7->unk_64 = 0xC;
                 gEwramData->unk_13224 = 0;
                 gEwramData->unk_13226 = 0;
-                gEwramData->unk_C = 0;
+                gEwramData->randomNumber2 = 0;
             }
             break;
 

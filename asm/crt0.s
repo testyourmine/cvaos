@@ -11,7 +11,7 @@ _start: @ 0x080000C0
 	mov r0, #PSR_SYS_MODE
 	msr cpsr_fc, r0
 	ldr sp, sp_sys @ =0x03007F00
-	ldr r1, =0x03007FFC
+	ldr r1, =INTR_VECTOR
 	adr r0, _intr_main
 	str r0, [r1]
 	ldr r1, =AgbMain + 1

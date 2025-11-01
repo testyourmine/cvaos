@@ -72,6 +72,6 @@ struct Unk_03002CB0 {
 
 extern struct DisplayRegisters gDisplayRegisters;
 extern struct Unk_03002CB0 gUnk_03002CB0;
-extern u8 *gUnk_03003CD0;
+extern u8 *gIntrMainBuffer;
 
 #endif /* MAIN_STRUCT_H */

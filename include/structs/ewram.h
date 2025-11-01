@@ -618,8 +618,8 @@ struct EwramData {
     u32 unk_0;
     u16 unk_4;
     u16 unk_6;
-    u32 unk_8;
-    u32 unk_C;
+    u32 randomNumber;
+    u32 randomNumber2;
     u8 unk_10;
     u8 unk_11;
     u8 unk_12;

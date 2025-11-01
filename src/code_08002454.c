@@ -1447,16 +1447,16 @@ void sub_08003A9C(struct EwramData_unk4E4 *param_0)
 
     sub_0803F2C8(param_0, 0, 0, 1);
     sub_0803F17C(param_0);
-    param_0->unk_552 = sub_08000A90() & 3;
-    param_0->unk_553 = sub_08000A90() & 3;
+    param_0->unk_552 = RandomNumberGenerator() & 3;
+    param_0->unk_553 = RandomNumberGenerator() & 3;
 
     param_0->unk_53E_1 = 1;
     param_0->unk_53C_5 = 1;
     param_0->unk_53D_1 = 1;
     param_0->unk_540 = 7;
 
-    param_0->unk_534 = ((sub_08000A90() & 0xFF) * 0x10) + 0x400;
-    param_0->unk_538 = ((sub_08000A90() & 0xFF) * 0x10) + 0x400;
+    param_0->unk_534 = ((RandomNumberGenerator() & 0xFF) * 0x10) + 0x400;
+    param_0->unk_538 = ((RandomNumberGenerator() & 0xFF) * 0x10) + 0x400;
 
     temp_r4 = ArcTan2(param_0->unk_524.unk_524_16.unk_526 - 0x78, param_0->unk_528.unk_528_16.unk_52A - 0x60);
     param_0->unk_4FC.unk_4FC_32 = sub_080009E4(temp_r4 + 0x4000);
@@ -1478,10 +1478,10 @@ void sub_08003A9C(struct EwramData_unk4E4 *param_0)
     }
     param_0->unk_504.unk_504_32 = var_r0_3 >> 4;
 
-    param_0->unk_50C.unk_50C_16.unk_50C = (sub_08000A90() & 0xFF) << 8;
-    param_0->unk_50C.unk_50C_16.unk_50E = param_0->unk_50C.unk_50C_16.unk_50C + 0x8000 + ((sub_08000A90() & 0x1F) << 4);
-    param_0->unk_52C.unk_52C_16.unk_52E = (sub_08000A90() & 0xFF) + 0x800;
-    param_0->unk_530.unk_530_16.unk_532 = (sub_08000A90() & 0xFF) + 0xA00;
+    param_0->unk_50C.unk_50C_16.unk_50C = (RandomNumberGenerator() & 0xFF) << 8;
+    param_0->unk_50C.unk_50C_16.unk_50E = param_0->unk_50C.unk_50C_16.unk_50C + 0x8000 + ((RandomNumberGenerator() & 0x1F) << 4);
+    param_0->unk_52C.unk_52C_16.unk_52E = (RandomNumberGenerator() & 0xFF) + 0x800;
+    param_0->unk_530.unk_530_16.unk_532 = (RandomNumberGenerator() & 0xFF) + 0xA00;
 }
 
 /**
@@ -1805,7 +1805,7 @@ void sub_08004160(struct EwramData_unk4E4 *param_0)
     u8* tmp;
     u8* tmp2;
 
-    gEwramData->unk_8 = 0x1967;
+    gEwramData->randomNumber = 0x1967;
     sub_0803D9A8();
     sub_08068F48();
     sub_0806E028();
