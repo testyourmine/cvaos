@@ -158,6 +158,7 @@ SECTIONS {
         asm/data/data_0E0B68.o(.rodata);
         src/data/data_0E3464.o(.rodata);
         asm/data/data_0E5364.o(.rodata);
+        src/agb_multi_sio_sync.o(.rodata);
         src/agb_sram.o(.rodata);
         src/agb_print.o(.rodata);
         asm/data/data_27B2C0.o(.rodata);
