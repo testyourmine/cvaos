@@ -4,11 +4,11 @@
 #include "types.h"
 
 void AgbMain(void);
-void sub_08000384(void);
+void VblankInterrupt(void);
 void sub_08000424(void);
 void sub_08000470(void);
-void sub_080004BC(void);
-void sub_080004C0(void);
+void EmptyInterrupt(void);
+void VcountInterrupt(void);
 void sub_08000500(void);
 void sub_0800062C(u8 param_0);
 void sub_08000640(void);

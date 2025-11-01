@@ -18,7 +18,7 @@ void BgAffineSet(struct BgAffineSrcData *src, struct BgAffineDstData *dest, s32 
 void CpuSet(const void *src, void *dest, u32 control);
 s32 Div(s32 num, s32 denom);
 s32 Mod(s32 num, s32 denom);
-void IntrWait(void);
+void IntrWait(s32 flagClear, s32 interruptFlags);
 void LZ77UnCompWram(const u32 *src, void *dest);
 void SoftReset(u32 resetFlags);
 u16 Sqrt(u32 num);

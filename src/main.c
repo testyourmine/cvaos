@@ -12,6 +12,7 @@
 #include "code/code_08040A38.h"
 #include "code/code_080D0998.h"
 #include "agb_sram.h"
+#include "agb_multi_sio_sync.h"
 #include "gba.h"
 #include "macros.h"
 #include "syscalls.h"
@@ -108,7 +109,7 @@ void AgbMain(void)
  * @brief 384 | V-Blank interrupt
  * 
  */
-void sub_08000384(void)
+void VblankInterrupt(void)
 {
     struct EwramData_unk7864 *unk_7864;
 
@@ -179,7 +180,7 @@ void sub_08000470(void)
  * @brief 4BC | Empty interrupt function
  * 
  */
-void sub_080004BC(void)
+void EmptyInterrupt(void)
 {
     return;
 }
@@ -188,7 +189,7 @@ void sub_080004BC(void)
  * @brief 4C0 | V-Count interrupt
  * 
  */
-void sub_080004C0(void)
+void VcountInterrupt(void)
 {
     if (gUnk_03002CB0.unk_2 == 2)
     {

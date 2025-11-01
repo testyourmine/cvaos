@@ -15,6 +15,7 @@
 #include "code/code_08040A38.h"
 #include "code/code_08050A3C.h"
 #include "code/code_080D0998.h"
+#include "agb_multi_sio_sync.h"
 #include "gba.h"
 #include "macros.h"
 #include "agb_sram.h"
@@ -596,8 +597,8 @@ static inline void sub_0800A3A4_inline_0(u8 param_0)
 {
     (&gEwramData->unk_25484[0])->unk_25487 = 0xD;
     (&gEwramData->unk_25484[0])->unk_25484_4 = param_0;
-    sub_080D8020(&gEwramData->unk_25484[0], 4);
-    sub_080D8088(&gEwramData->unk_25484[1], 4);
+    sub_080D8020((u8*)&gEwramData->unk_25484[0], 4);
+    sub_080D8088((u8*)&gEwramData->unk_25484[1], 4);
 }
 
 static inline void sub_0800A3A4_inline_1(struct EwramData_unk4E4 *temp_r6, s32 temp_r4_4)
@@ -1395,7 +1396,7 @@ s32 sub_0800A3A4(void)
                     {
                         if (++gEwramData->unk_12 > 4)
                         {
-                            if (sub_080D80BC() < 2)
+                            if (MultiSioSyncGetId() < 2)
                             {
                                 gEwramData->unk_11 = 0xA;
                                 gEwramData->unk_12 = 0;
@@ -1750,7 +1751,7 @@ s32 sub_0800A3A4(void)
                     {
     
                     }
-                    else if (sub_080D80BC() == 1)
+                    else if (MultiSioSyncGetId() == 1)
                     {
                         // TODO: what?
                         var_2 = unk_25484_4_32(1);
@@ -1764,7 +1765,7 @@ s32 sub_0800A3A4(void)
                     }
                     else
                     {
-                        temp_r1_11 = sub_080D80BC();
+                        temp_r1_11 = MultiSioSyncGetId();
                         if (temp_r1_11 == 0)
                         {
                             if (++temp_r6->unk_500.unk_500_16.unk_500 > 4)
@@ -2552,7 +2553,7 @@ _0800A984: \n\
 	bhi _0800A996 \n\
 	bl _0800B5C4 \n\
 _0800A996: \n\
-	bl sub_080D80BC \n\
+	bl MultiSioSyncGetId \n\
 	lsls r0, r0, #0x10 \n\
 	asrs r0, r0, #0x10 \n\
 	cmp r0, #1 \n\
@@ -3548,7 +3549,7 @@ _0800B1C4: \n\
 	beq _0800B1D0 \n\
 	b _0800B5C4 \n\
 _0800B1D0: \n\
-	bl sub_080D80BC \n\
+	bl MultiSioSyncGetId \n\
 	lsls r0, r0, #0x10 \n\
 	asrs r0, r0, #0x10 \n\
 	cmp r0, #1 \n\
@@ -3572,7 +3573,7 @@ _0800B1F2: \n\
 	strb r0, [r1, #0x12] \n\
 	b _0800B5C4 \n\
 _0800B1FE: \n\
-	bl sub_080D80BC \n\
+	bl MultiSioSyncGetId \n\
 	lsls r0, r0, #0x10 \n\
 	asrs r1, r0, #0x10 \n\
 	cmp r1, #0 \n\
@@ -4140,6 +4141,6 @@ void sub_0800B6B8(u8 param_0)
     // TODO: sub_0800B6B8 is the same as sub_0800A3A4_inline_0
     (&gEwramData->unk_25484[0])->unk_25487 = 0xD;
     (&gEwramData->unk_25484[0])->unk_25484_4 = param_0;
-    sub_080D8020(&gEwramData->unk_25484[0], 4);
-    sub_080D8088(&gEwramData->unk_25484[1], 4);
+    sub_080D8020((u8*)&gEwramData->unk_25484[0], 4);
+    sub_080D8088((u8*)&gEwramData->unk_25484[1], 4);
 }

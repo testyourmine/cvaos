@@ -33,6 +33,9 @@ SECTIONS {
 
         . = 0x00003CD0; gUnk_03003CD0 = .;
 
+        . = 0x00005190; sUnk_03005190 = .;
+        . = 0x00005280; sUnk_03005280 = .;
+
         . = 0x000052D4; gReadSramFast = .;
         . = 0x000052D8; gVerifySramFast = .;
 
@@ -83,6 +86,7 @@ SECTIONS {
         asm/code/code_080B0AD4.o(.text);
         asm/code/code_080C0A1C.o(.text);
         asm/code/code_080D0998.o(.text);
+        src/agb_multi_sio_sync.o(.text);
         asm/libagbsyscall.o(.text);
         src/agb_sram.o(.text);
         src/agb_print.o(.text);

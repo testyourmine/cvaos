@@ -15,6 +15,7 @@
 #include "code/code_08050A3C.h"
 #include "code/code_08060B98.h"
 #include "code/code_080D0998.h"
+#include "agb_multi_sio_sync.h"
 #include "gba.h"
 #include "macros.h"
 #include "agb_sram.h"
