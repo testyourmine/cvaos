@@ -52,7 +52,7 @@ void AgbMain(void)
         {
             sub_0803DB6C();
             UpdateInput();
-            if (gEwramData->unk_14.newInput & KEY_START)
+            if (gEwramData->inputData.newInput & KEY_START)
             {
                 if (gEwramData->unk_A074_1)
                 {
@@ -305,23 +305,23 @@ void GameModeUpdate(void)
 }
 
 /**
- * @brief 62C | To document
+ * @brief 62C | Set the game mode
  * 
- * @param param_0 To document
+ * @param gameMode The game mode to set to
  */
-void sub_0800062C(u8 param_0)
+void SetGameMode(u8 gameMode)
 {
-    gEwramData->gameMode = param_0;
+    gEwramData->gameMode = gameMode;
     gEwramData->gameModeUpdateStage = gEwramData->unk_12 = 0;
 }
 
 /**
- * @brief 640 | To document
+ * @brief 640 | (Unused) Set game mode to the next mode
  * 
  */
-void sub_08000640(void)
+void IncrementGameMode(void)
 {
-    gEwramData->gameMode = gEwramData->gameMode + 1;
+    gEwramData->gameMode++;
     gEwramData->gameModeUpdateStage = gEwramData->unk_12 = 0;
 }
 
@@ -382,8 +382,8 @@ void sub_080006CC(void)
     sub_0801391C();
 
     gUnk_03002CB0.dispCnt = DCNT_OBJ | DCNT_BG3 | DCNT_BG2 | DCNT_BG1 | DCNT_BG0;
-    sub_0800062C(0);
-    sub_0800062C(13);
+    SetGameMode(GAME_MODE_KONAMI_LOGO);
+    SetGameMode(GAME_MODE_RESET);
 }
 
 /**
@@ -397,7 +397,7 @@ void InitializeGame(void)
     DMA_FILL_32(3, 0, IWRAM_BASE, IWRAM_SIZE - 0x200);
     DMA_FILL_32(3, 0, VRAM_BASE, VRAM_SIZE);
 
-    DMA_COPY_32(3, &_intr_main, &gIntrMainBuffer, 0x880);
+    DMA_COPY_32(3, &_intr_main, &gIntrMainBuffer, sizeof(gIntrMainBuffer));
     INTR_VECTOR = &gIntrMainBuffer;
 
     InitializeAudio();
@@ -416,39 +416,39 @@ void InitializeGame(void)
  */
 void UpdateInput(void)
 {
-    struct EwramData_unk14 *unk_14;
-    u16 key_input;
+    struct InputData *inputData;
+    u16 keyInput;
     u16 tmp;
 
-    unk_14 = &gEwramData->unk_14;
-    key_input = READ_16(REG_KEY_INPUT) ^ KEY_MASK;
-    unk_14->newInput = key_input & ~unk_14->heldInput;
-    unk_14->heldInput = key_input;
+    inputData = &gEwramData->inputData;
+    keyInput = READ_16(REG_KEY_INPUT) ^ KEY_MASK;
+    inputData->newInput = keyInput & ~inputData->heldInput;
+    inputData->heldInput = keyInput;
 
-    if (unk_14->unk_1B == 0)
+    if (inputData->unk_1B == 0)
     {
-        unk_14->playerHeldInput = key_input;
-        unk_14->playerNewInput = unk_14->newInput;
+        inputData->playerHeldInput = keyInput;
+        inputData->playerNewInput = inputData->newInput;
     }
     else
     {
-        unk_14->unk_1B = 0;
+        inputData->unk_1B = 0;
     }
-    unk_14->repeatedInput = 0;
+    inputData->repeatedInput = 0;
 
-    tmp = unk_14->newInput; // Required to match
-    if (unk_14->newInput != 0)
+    tmp = inputData->newInput; // Required to match
+    if (inputData->newInput != 0)
     {
-        unk_14->repeatedInputTimer = 32;
-        unk_14->repeatedInput = key_input;
+        inputData->repeatedInputTimer = 32;
+        inputData->repeatedInput = keyInput;
         return;
     }
 
-    --unk_14->repeatedInputTimer;
-    if (unk_14->repeatedInputTimer == 0)
+    --inputData->repeatedInputTimer;
+    if (inputData->repeatedInputTimer == 0)
     {
-        unk_14->repeatedInputTimer = 6;
-        unk_14->repeatedInput = unk_14->heldInput;
+        inputData->repeatedInputTimer = 6;
+        inputData->repeatedInput = inputData->heldInput;
     }
 }
 
@@ -469,13 +469,13 @@ u32 SoftResetCheck(void)
         return 0;
     }
 
-    if ((gEwramData->unk_14.newInput & SOFT_RESET_KEYS) == SOFT_RESET_KEYS)
+    if ((gEwramData->inputData.newInput & SOFT_RESET_KEYS) == SOFT_RESET_KEYS)
         return 0;
 
-    if (gEwramData->unk_14.newInput == 0)
+    if (gEwramData->inputData.newInput == 0)
         return 0;
 
-    if ((gEwramData->unk_14.heldInput & SOFT_RESET_KEYS) == SOFT_RESET_KEYS)
+    if ((gEwramData->inputData.heldInput & SOFT_RESET_KEYS) == SOFT_RESET_KEYS)
         result = 1;
     else
         result = 0;

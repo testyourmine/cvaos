@@ -1218,7 +1218,7 @@ s32 sub_080074C0(struct EwramData_unk4E4 *param_0)
     u8 var_0;
     struct EwramData_unk60 *unk_60;
 
-    repeatedInput = gEwramData->unk_14.repeatedInput;
+    repeatedInput = gEwramData->inputData.repeatedInput;
     var_r5 = param_0->unk_4F8.unk_4F8_8.unk_4F9;
     sp0 = 0;
     if (param_0->unk_4FC.unk_4FC_8.unk_4FD != 0)
@@ -1500,7 +1500,7 @@ s32 sub_08007914(struct EwramData_unk4E4 *param_0)
     s32 var_r6;
 
     var_r6 = param_0->unk_4F8.unk_4F8_8.unk_4F9;
-    repeatedInput = gEwramData->unk_14.repeatedInput;
+    repeatedInput = gEwramData->inputData.repeatedInput;
     var_r7 = 0;
     switch (param_0->unk_4F0)
     {
@@ -1654,7 +1654,7 @@ s32 sub_08007B8C(struct EwramData_unk4E4 *param_0)
     u32 repeatedInput;
     s32 var_r6;
 
-    repeatedInput = gEwramData->unk_14.repeatedInput;
+    repeatedInput = gEwramData->inputData.repeatedInput;
     var_r6 = param_0->unk_4F8.unk_4F8_8.unk_4F9;
     var_r7 = 0;
     switch (param_0->unk_4F0)
@@ -1968,7 +1968,7 @@ s32 sub_080081AC(struct EwramData_unk4E4 *param_0)
     s32 var_r4;
     s32 var_0;
 
-    repeatedInput = gEwramData->unk_14.repeatedInput;
+    repeatedInput = gEwramData->inputData.repeatedInput;
     var_r4 = param_0->unk_4F8.unk_4F8_8.unk_4F9;
     var_r7 = 0;
     if (repeatedInput & KEY_B)
@@ -2181,7 +2181,7 @@ s32 sub_080083C8(struct EwramData_unk4E4 *param_0)
     u8 *var_0;
 
     temp_r5 = gEwramData->unk_20;
-    temp_r4 = gEwramData->unk_14.repeatedInput;
+    temp_r4 = gEwramData->inputData.repeatedInput;
     var_sb = param_0->unk_4F8.unk_4F8_8.unk_4F9;
     var_r8 = 0;
     var_sl = 0;

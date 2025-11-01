@@ -647,7 +647,7 @@ s32 GameModeSoundTestMenu(void)
             break;
 
         case 3:
-            if (gEwramData->unk_14.newInput & 8)
+            if (gEwramData->inputData.newInput & 8)
             {
                 gEwramData->gameModeUpdateStage = 4;
                 gEwramData->unk_12 = 0;
@@ -658,11 +658,11 @@ s32 GameModeSoundTestMenu(void)
             temp_r2 = &gEwramData->unk_4E4[2].unk_4FC.unk_4FC_16.unk_4FC;
             do{var_1 = 0;}while(0);
             var_2 = 2;
-            if (gEwramData->unk_14.repeatedInput & var_0)
+            if (gEwramData->inputData.repeatedInput & var_0)
             {
                 *temp_r2 += 1;
             }
-            else if (gEwramData->unk_14.repeatedInput & 0x40)
+            else if (gEwramData->inputData.repeatedInput & 0x40)
             {
                 *temp_r2 -= 1;
             }
@@ -683,19 +683,19 @@ s32 GameModeSoundTestMenu(void)
                 temp_r3_2 = &gEwramData->unk_4E4[2].unk_4FC.unk_4FC_16.unk_4FE[gEwramData->unk_4E4[2].unk_4FC.unk_4FC_16.unk_4FC];
                 do {var_6 = 0;}while(0);
                 temp_r5 = var_3.unk_2;
-                if (gEwramData->unk_14.repeatedInput & var_4)
+                if (gEwramData->inputData.repeatedInput & var_4)
                 {
                     *temp_r3_2 += 1;
                 }
-                else if (gEwramData->unk_14.repeatedInput & 0x20)
+                else if (gEwramData->inputData.repeatedInput & 0x20)
                 {
                     *temp_r3_2 -= 1;
                 }
-                if (gEwramData->unk_14.repeatedInput & 0x100)
+                if (gEwramData->inputData.repeatedInput & 0x100)
                 {
                     *temp_r3_2 += 0xA;
                 }
-                if (gEwramData->unk_14.repeatedInput & 0x200)
+                if (gEwramData->inputData.repeatedInput & 0x200)
                 {
                     *temp_r3_2 -= 0xA;
                 }
@@ -711,7 +711,7 @@ s32 GameModeSoundTestMenu(void)
             }
 
             temp_r7->unk_528.unk_528_16.unk_52A = (gEwramData->unk_4E4[2].unk_4FC.unk_4FC_16.unk_4FC * 0x10) + 0x34;
-            if (gEwramData->unk_14.newInput & 1)
+            if (gEwramData->inputData.newInput & 1)
             {
                 switch (gEwramData->unk_4E4[2].unk_4FC.unk_4FC_16.unk_4FC)
                 {
@@ -746,7 +746,7 @@ s32 GameModeSoundTestMenu(void)
                 GameModeSoundTestMenu_inline_0(temp_sl, sUnk_080E0DF8[gEwramData->unk_4E4[2].unk_4FC.unk_4FC_16.unk_4FE[gEwramData->unk_4E4[2].unk_4FC.unk_4FC_16.unk_4FC]].unk_2);
             }
 
-            if (gEwramData->unk_14.newInput & 2)
+            if (gEwramData->inputData.newInput & 2)
             {
                 for (var_r4_3 = 0; var_r4_3 < 3; var_r4_3++)
                 {
@@ -1650,12 +1650,12 @@ s32 GameModeInGameUpdate(void)
 
                 if (gEwramData->unk_A074_1)
                 {
-                    if ((gEwramData->unk_14.newInput & KEY_SELECT) && (temp_r7->unk_88 != NULL))
+                    if ((gEwramData->inputData.newInput & KEY_SELECT) && (temp_r7->unk_88 != NULL))
                     {
                         sub_0801093C(temp_r7);
                         sub_08011338(temp_r7);
                     }
-                    else if (gEwramData->unk_1325C.unk_13266 == 0 && (gEwramData->unk_14.newInput & KEY_START))
+                    else if (gEwramData->unk_1325C.unk_13266 == 0 && (gEwramData->inputData.newInput & KEY_START))
                     {
                         sub_0801093C(temp_r7);
                         sub_080473F4(temp_r7);

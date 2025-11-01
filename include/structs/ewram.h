@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-struct EwramData_unk14 {
+struct InputData {
     u16 heldInput;
     u16 newInput;
     u16 repeatedInput;
@@ -624,7 +624,7 @@ struct EwramData {
     u8 gameModeUpdateStage;
     u8 unk_12;
     u8 unk_13;
-    struct EwramData_unk14 unk_14;
+    struct InputData inputData;
     // Is this two arrays, or one array and some variables?
     struct EwramData_unk20 unk_20[2];
     // u8 *unk_40; // pointer or array?

@@ -204,7 +204,7 @@ s32 GameModeDebugUpdate(void)
     u16 repeatedInput;
 
     gameMode = GAME_MODE_SAME_MODE;
-    repeatedInput = gEwramData->unk_14.repeatedInput;
+    repeatedInput = gEwramData->inputData.repeatedInput;
 
     switch (gEwramData->gameModeUpdateStage)
     {
@@ -218,7 +218,7 @@ s32 GameModeDebugUpdate(void)
         case 1:
             for (var_r6 = 0; sUnk_084F0B28[var_r6].unk_0 != NULL; var_r6++);
 
-            if (gEwramData->unk_14.newInput & (KEY_START | KEY_A))
+            if (gEwramData->inputData.newInput & (KEY_START | KEY_A))
             {
                 DMA_FILL_32(3, 0, 0x0600E000, 0x800);
                 gameMode = sUnk_084F0B28[gEwramData->unk_12].unk_4;
@@ -301,7 +301,7 @@ s32 GameModeDebugExitUpdate(void)
             /* fallthrough */
 
         case 2:
-            if (gEwramData->unk_14.newInput & KEY_UP)
+            if (gEwramData->inputData.newInput & KEY_UP)
             {
                 sub_0800125C(4, gEwramData->unk_12 + 2, 2, (u8 *) sUnk_080E0CA4);
                 if (--gEwramData->unk_12 > sUnk_084F0C80)
@@ -309,7 +309,7 @@ s32 GameModeDebugExitUpdate(void)
                     gEwramData->unk_12 = sUnk_084F0C80 - 1;
                 }
             }
-            else if (gEwramData->unk_14.newInput & KEY_DOWN)
+            else if (gEwramData->inputData.newInput & KEY_DOWN)
             {
                 sub_0800125C(4, gEwramData->unk_12 + 2, 2, (u8 *) sUnk_080E0CA4);
                 if (++gEwramData->unk_12 >= sUnk_084F0C80)
@@ -319,15 +319,15 @@ s32 GameModeDebugExitUpdate(void)
             }
 
             sub_0800125C(4, gEwramData->unk_12 + 2, 2, (u8 *) sUnk_080E0CA8);
-            if (gEwramData->unk_14.newInput & KEY_A)
+            if (gEwramData->inputData.newInput & KEY_A)
             {
                 if (gEwramData->unk_12 == 0)
                 {
-                    if (gEwramData->unk_14.heldInput & KEY_LEFT)
+                    if (gEwramData->inputData.heldInput & KEY_LEFT)
                     {
                         gEwramData->unk_60.unk_428 = 2;
                     }
-                    else if (gEwramData->unk_14.heldInput & KEY_RIGHT)
+                    else if (gEwramData->inputData.heldInput & KEY_RIGHT)
                     {
                         gEwramData->unk_60.unk_428 = 4;
                     }
@@ -360,7 +360,7 @@ s32 GameModeDebugExitUpdate(void)
                     var_r5_2 = 0;
                     gEwramData->unk_60.unk_428 = sUnk_084F0B70[gEwramData->unk_12].unk_4 * 2;
                     temp_r3_2 = sub_08013700(gEwramData->unk_60.unk_428 + 1, 0);
-                    if ((gEwramData->unk_14.heldInput & KEY_RIGHT) && (temp_r3_2 != 0))
+                    if ((gEwramData->inputData.heldInput & KEY_RIGHT) && (temp_r3_2 != 0))
                     {
                         var_r5_2 = (-gEwramData->unk_20[0].unk_38 | gEwramData->unk_20[0].unk_38) >> 0x1F;
                     }
@@ -410,7 +410,7 @@ void KonamiCodeCheck(void)
 {
     u16 new_input;
 
-    new_input = gEwramData->unk_14.newInput;
+    new_input = gEwramData->inputData.newInput;
     if (gEwramData->konamiCodeInputsCounter >= 1 && gEwramData->konamiCodeInputsCounter <= ARRAY_SIZE(sKonamiCodeInputs))
     {
         if (new_input == sKonamiCodeInputs[gEwramData->konamiCodeInputsCounter - 1])
@@ -485,7 +485,7 @@ s32 GameModeKonamiLogoUpdate(void)
 
         case 3:
             KonamiCodeCheck();
-            if ((--gEwramData->unk_4 == 0) || (gEwramData->unk_14.newInput & (KEY_START | KEY_A)))
+            if ((--gEwramData->unk_4 == 0) || (gEwramData->inputData.newInput & (KEY_START | KEY_A)))
             {
                 gDisplayRegisters.bldCnt = BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_DECREASE_EFFECT;
                 gEwramData->gameModeUpdateStage += 1;
@@ -675,17 +675,17 @@ s32 GameModeResetUpdate(void)
         case 4:
             var_r4 = unk_60->unk_4D0;
             temp_r3 = var_r4;
-            if (gEwramData->unk_14.newInput & KEY_A)
+            if (gEwramData->inputData.newInput & KEY_A)
             {
                 gDisplayRegisters.bldCnt = BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_INCREASE_EFFECT;
                 gEwramData->gameModeUpdateStage += 1;
                 gEwramData->unk_12 = 0;
             }
-            else if (gEwramData->unk_14.newInput & KEY_B)
+            else if (gEwramData->inputData.newInput & KEY_B)
             {
                 var_r4 = var_0;
             }
-            else if (gEwramData->unk_14.newInput & KEY_UP)
+            else if (gEwramData->inputData.newInput & KEY_UP)
             {
                 if (var_r4 == var_0)
                 {
@@ -696,7 +696,7 @@ s32 GameModeResetUpdate(void)
                     var_r4 -= 1;
                 }
             }
-            else if (gEwramData->unk_14.newInput & KEY_DOWN)
+            else if (gEwramData->inputData.newInput & KEY_DOWN)
             {
                 if (var_r4 == var_1)
                 {
@@ -1185,7 +1185,7 @@ s32 GameModeTitleScreenUpdate(void)
                 var_r0_7 += 0xFFF;
             }
             sub_0800312C_inline_0((var_r0_7 >> 12) - (temp_r7->unk_4FC.unk_4FC_16.unk_4FE[0] - 0x118));
-            if (gEwramData->unk_14.repeatedInput & (KEY_DOWN | KEY_UP))
+            if (gEwramData->inputData.repeatedInput & (KEY_DOWN | KEY_UP))
             {
                 gEwramData->unk_4 = 0x258;
             }
@@ -1193,7 +1193,7 @@ s32 GameModeTitleScreenUpdate(void)
             {
                 gEwramData->unk_6 = 1;
             }
-            if (gEwramData->unk_14.newInput & (KEY_START | KEY_A))
+            if (gEwramData->inputData.newInput & (KEY_START | KEY_A))
             {
                 if (sTitleScreenNextGameMode[temp_r6->unk_4FC.unk_4FC_8.unk_4FC + temp_r6->unk_500.unk_500_8.unk_500] == GAME_MODE_KONAMI_LOGO)
                 {
@@ -1201,14 +1201,14 @@ s32 GameModeTitleScreenUpdate(void)
                     break;
                 }
             }
-            else if ((gEwramData->unk_14.newInput & KEY_B) && (temp_r6->unk_500.unk_500_8.unk_500 != 0))
+            else if ((gEwramData->inputData.newInput & KEY_B) && (temp_r6->unk_500.unk_500_8.unk_500 != 0))
             {
                 sub_08004648(temp_r6);
                 break;
             }
 
 
-            if ((temp_r6->unk_500.unk_500_8.unk_502 == 0) && ((gEwramData->unk_6 != 0) || (gEwramData->unk_14.newInput & (KEY_START | KEY_A))))
+            if ((temp_r6->unk_500.unk_500_8.unk_502 == 0) && ((gEwramData->unk_6 != 0) || (gEwramData->inputData.newInput & (KEY_START | KEY_A))))
             {
                 sub_080D7910(0x1010);
                 temp_r6->unk_4FC.unk_4FC_8.unk_4FE = 1;
@@ -1243,7 +1243,7 @@ s32 GameModeTitleScreenUpdate(void)
             break;
     }
 
-    if ((gEwramData->gameModeUpdateStage >= 2 && gEwramData->gameModeUpdateStage <= 7) && (gEwramData->unk_14.newInput & (KEY_START | KEY_A)))
+    if ((gEwramData->gameModeUpdateStage >= 2 && gEwramData->gameModeUpdateStage <= 7) && (gEwramData->inputData.newInput & (KEY_START | KEY_A)))
     {
         gDisplayRegisters.bldCnt = BLDCNT_OBJ_SECOND_TARGET_PIXEL | BLDCNT_BG2_SECOND_TARGET_PIXEL | BLDCNT_ALPHA_BLENDING_EFFECT | BLDCNT_BG1_FIRST_TARGET_PIXEL;
         gUnk_03002CB0.dispCnt |= DCNT_BG1 | DCNT_BG0;
@@ -1930,12 +1930,12 @@ void sub_0800432C(struct EwramData_unk4E4 *param_0)
                 break;
         }
 
-        if (gEwramData->unk_14.repeatedInput & KEY_DOWN)
+        if (gEwramData->inputData.repeatedInput & KEY_DOWN)
         {
             param_0->unk_4FC.unk_4FC_8.unk_4FC = Mod(param_0->unk_4FC.unk_4FC_8.unk_4FC + 1, param_0->unk_4FC.unk_4FC_8.unk_4FD);
         }
 
-        else if (gEwramData->unk_14.repeatedInput & KEY_UP)
+        else if (gEwramData->inputData.repeatedInput & KEY_UP)
         {
             param_0->unk_4FC.unk_4FC_8.unk_4FC -= 1;
             if (param_0->unk_4FC.unk_4FC_8.unk_4FC < 0)
@@ -2257,7 +2257,7 @@ s32 sub_08004928(struct EwramData_unk4E4 *param_0)
     s32 var_r6;
     u16 repeatedInput;
 
-    repeatedInput = gEwramData->unk_14.repeatedInput;
+    repeatedInput = gEwramData->inputData.repeatedInput;
     var_r6 = 0;
 
     if (repeatedInput & (KEY_START | KEY_A))

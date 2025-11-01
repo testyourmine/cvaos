@@ -284,7 +284,7 @@ s32 GameModeIntroCutsceneUpdate(void)
         case 5:
             gEwramData->unk_4 += 1;
             GameModeIntroCutsceneUpdate_inline((gEwramData->unk_4 & 1) + ((RandomNumberGenerator() & 1) * 2) + 0xD);
-            if ((gEwramData->unk_4 > 0x77) || (gEwramData->unk_14.newInput & (KEY_A | KEY_START)))
+            if ((gEwramData->unk_4 > 0x77) || (gEwramData->inputData.newInput & (KEY_A | KEY_START)))
             {
                 sub_0803D18C(0, 0, 0, 0x10000, 0, 0x78);
                 sub_0803CDF0(0, 0, 0, 0x10000, 0, 0x78);
@@ -326,7 +326,7 @@ s32 GameModeIntroCutsceneUpdate(void)
             break;
     }
 
-    if ((gEwramData->unk_14.newInput & (KEY_A | KEY_START)) && (gEwramData->gameModeUpdateStage < 6))
+    if ((gEwramData->inputData.newInput & (KEY_A | KEY_START)) && (gEwramData->gameModeUpdateStage < 6))
     {
         gEwramData->gameModeUpdateStage = 0x63;
         gEwramData->unk_12 = 0;

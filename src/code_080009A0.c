@@ -33,14 +33,14 @@
  */
 u32 sub_080009A0(s32 param_0, u32 param_1)
 {
-    struct EwramData_unk14 *unk_14;
+    struct InputData *inputData;
 
-    unk_14 = &gEwramData->unk_14;
-    if (unk_14->unk_1B == 0 || param_0 < unk_14->unk_1B)
+    inputData = &gEwramData->inputData;
+    if (inputData->unk_1B == 0 || param_0 < inputData->unk_1B)
     {
-        unk_14->unk_1B = param_0;
-        unk_14->playerNewInput = ~unk_14->playerHeldInput & param_1;
-        unk_14->playerHeldInput = param_1;
+        inputData->unk_1B = param_0;
+        inputData->playerNewInput = ~inputData->playerHeldInput & param_1;
+        inputData->playerHeldInput = param_1;
         return 1;
     }
     return 0;

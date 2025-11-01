@@ -839,7 +839,7 @@ s32 sub_08009C8C(struct EwramData_unk4E4 *param_0)
     s32 var_2;
     s32 var_3;
 
-    if (gEwramData->unk_14.repeatedInput & KEY_DOWN)
+    if (gEwramData->inputData.repeatedInput & KEY_DOWN)
     {
         sub_080D7910(0xF1);
         param_0->unk_4F8.unk_4F8_8.unk_4F8 += 1;
@@ -848,7 +848,7 @@ s32 sub_08009C8C(struct EwramData_unk4E4 *param_0)
             param_0->unk_4F8.unk_4F8_8.unk_4F8 = 0;
         }
     }
-    else if (gEwramData->unk_14.repeatedInput & KEY_UP)
+    else if (gEwramData->inputData.repeatedInput & KEY_UP)
     {
         sub_080D7910(0xF1);
         param_0->unk_4F8.unk_4F8_8.unk_4F8 -= 1;
@@ -858,7 +858,7 @@ s32 sub_08009C8C(struct EwramData_unk4E4 *param_0)
         }
     }
 
-    if (gEwramData->unk_14.repeatedInput & KEY_A)
+    if (gEwramData->inputData.repeatedInput & KEY_A)
     {
         if (sub_080096AC(param_0->unk_4F8.unk_4F8_8.unk_4F8) != 0)
         {
@@ -873,7 +873,7 @@ s32 sub_08009C8C(struct EwramData_unk4E4 *param_0)
             return 1;
         }
     }
-    else if (gEwramData->unk_14.repeatedInput & KEY_B)
+    else if (gEwramData->inputData.repeatedInput & KEY_B)
     {
         sub_080D7910(0xF0);
         return -1;
@@ -1053,19 +1053,19 @@ s32 sub_0800A108(struct EwramData_unk4E4 *param_0)
     temp_r4 = param_0->unk_4FC.unk_4FC_16.unk_4FC;
     var_sl = 0;
 
-    if (gEwramData->unk_14.repeatedInput & KEY_DOWN)
+    if (gEwramData->inputData.repeatedInput & KEY_DOWN)
     {
         var_sl = sub_0800975C(param_0, 1);
     }
-    else if (gEwramData->unk_14.repeatedInput & KEY_UP)
+    else if (gEwramData->inputData.repeatedInput & KEY_UP)
     {
         var_sl = sub_0800975C(param_0, -1);
     }
-    else if (gEwramData->unk_14.repeatedInput & (KEY_RIGHT | KEY_R))
+    else if (gEwramData->inputData.repeatedInput & (KEY_RIGHT | KEY_R))
     {
         var_sl = sub_0800975C(param_0, 8);
     }
-    else if (gEwramData->unk_14.repeatedInput & (KEY_LEFT | KEY_L))
+    else if (gEwramData->inputData.repeatedInput & (KEY_LEFT | KEY_L))
     {
         var_sl = sub_0800975C(param_0, -8);
     }
@@ -1090,18 +1090,18 @@ s32 sub_0800A108(struct EwramData_unk4E4 *param_0)
     // gEwramData->unk_4E4[3].unk_524.unk_524_16.unk_526 = 0x7C;
     // gEwramData->unk_4E4[3].unk_528.unk_528_16.unk_52A = (param_0->unk_50C * 8) + 0x24;
 
-    if (gEwramData->unk_14.repeatedInput & KEY_A)
+    if (gEwramData->inputData.repeatedInput & KEY_A)
     {
         sub_0800997C_inline_0(param_0->unk_4F8.unk_4F8_8.unk_4F8 + 1, param_0->unk_4FC.unk_4FC_16.unk_4FC);
         return 1;
     }
-    else if (gEwramData->unk_14.repeatedInput & KEY_B)
+    else if (gEwramData->inputData.repeatedInput & KEY_B)
     {
         sub_08009BB0(param_0);
         sub_080D7910(0xF0);
         return -1;
     }
-    else if ((param_0->unk_504.unk_504_8.unk_504 != 0) && (gEwramData->unk_14.repeatedInput & KEY_SELECT))
+    else if ((param_0->unk_504.unk_504_8.unk_504 != 0) && (gEwramData->inputData.repeatedInput & KEY_SELECT))
     {
         return 1;
     }
@@ -1362,7 +1362,7 @@ s32 GameModeSoulTradeMenu(void)
 
         case 8:
             GameModeSoulTradeMenu_inline_1(temp_r6, 0x373);
-            if (gEwramData->unk_14.repeatedInput & 2)
+            if (gEwramData->inputData.repeatedInput & 2)
             {
                 gEwramData->gameModeUpdateStage = 9;
                 gEwramData->unk_12 = 0;
@@ -1452,7 +1452,7 @@ s32 GameModeSoulTradeMenu(void)
                 }
             }
             gEwramData->unk_4 += 1;
-            if (gEwramData->unk_14.repeatedInput & 3)
+            if (gEwramData->inputData.repeatedInput & 3)
             {
                 gEwramData->unk_4 = 0;
                 sub_080D7910(0xF0U);
@@ -1577,7 +1577,7 @@ s32 GameModeSoulTradeMenu(void)
             }
     block_102:
             sub_08000B64();
-            if (gEwramData->unk_14.repeatedInput & 0x30)
+            if (gEwramData->inputData.repeatedInput & 0x30)
             {
                 sub_080D7910(0xF1U);
                 gEwramData->unk_12 ^= 1;
@@ -1593,7 +1593,7 @@ s32 GameModeSoulTradeMenu(void)
             // gEwramData->unk_4E4[6].unk_524.unk_524_16.unk_526 = (gEwramData->unk_12 * 0x3C) + 0x50;
             // gEwramData->unk_4E4[6].unk_528.unk_528_16.unk_52A = 0x8E;
     
-            if (gEwramData->unk_14.repeatedInput & 1)
+            if (gEwramData->inputData.repeatedInput & 1)
             {
                 if (gEwramData->unk_12 == 0)
                 {
@@ -1606,7 +1606,7 @@ s32 GameModeSoulTradeMenu(void)
                     sub_080099E0(temp_r6);
                 }
             }
-            else if (gEwramData->unk_14.repeatedInput & 2)
+            else if (gEwramData->inputData.repeatedInput & 2)
             {
                 sub_080099E0(temp_r6);
             }
@@ -1615,7 +1615,7 @@ s32 GameModeSoulTradeMenu(void)
         case 13:
             GameModeSoulTradeMenu_inline_1(temp_r6, 0x373);
             sub_08000B64();
-            if (gEwramData->unk_14.repeatedInput & 2)
+            if (gEwramData->inputData.repeatedInput & 2)
             {
                 sub_0800997C(temp_r6);
             }

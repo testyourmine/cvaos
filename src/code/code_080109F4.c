@@ -506,7 +506,7 @@ s32 sub_080110E4(struct EwramData_unk60 *param_0)
     union EwramData_unkA078 *temp_r0_4;
 
     temp_r6 = param_0->unk_88;
-    new_input = gEwramData->unk_14.newInput;
+    new_input = gEwramData->inputData.newInput;
     var_r7 = 0;
 
     switch (param_0->unk_65)
@@ -670,7 +670,7 @@ void sub_080114FC(void)
 {
     u16 repeatedInput;
 
-    repeatedInput = gEwramData->unk_14.repeatedInput;
+    repeatedInput = gEwramData->inputData.repeatedInput;
 
     if (gEwramData->unk_60.unk_378[0] == 0)
     {
@@ -747,7 +747,7 @@ s32 sub_080116A8(struct EwramData_unk60 *param_0)
     s32 var_0;
 
     temp_r4 = param_0->unk_88;
-    temp_r8 = gEwramData->unk_14.newInput;
+    temp_r8 = gEwramData->inputData.newInput;
     sp4 = 0;
 
     switch (param_0->unk_65)
@@ -3009,7 +3009,7 @@ s32 GameModeGameOverUpdate(void)
             break;
 
         case 3:
-            if (gEwramData->unk_14.newInput != 0)
+            if (gEwramData->inputData.newInput != 0)
             {
                 sub_0803D18C(0x1F, 0x1F, 0x1F, 0x10000, 0, 0x20);
                 sub_0803CDF0(0x1F, 0x1F, 0x1F, 0x10000, 0, 0x20);
@@ -3140,7 +3140,7 @@ s32 GameModeCreditsUpdate(void)
                 sub_0803FC6C(3, 0, 0x8400);
             }
 
-            if ((temp_r6->unk_A078.unk_A088 == 0) && (gEwramData->unk_14.newInput & (KEY_A | KEY_START)))
+            if ((temp_r6->unk_A078.unk_A088 == 0) && (gEwramData->inputData.newInput & (KEY_A | KEY_START)))
             {
                 sub_080D7910(0x1010);
                 gDisplayRegisters.bldCnt = BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_INCREASE_EFFECT;
