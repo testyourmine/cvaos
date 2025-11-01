@@ -57,7 +57,7 @@ struct Unk_030034BC {
 };
 
 struct Unk_03002CB0 {
-    u16 unk_0;
+    u16 dispCnt;
     u8 unk_2;
     u8 unk_3;
     u16 *unk_4;

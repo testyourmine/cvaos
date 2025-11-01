@@ -211,50 +211,50 @@ s32 sub_0800975C(struct EwramData_unk4E4 *param_0, s32 param_1)
 
     if (param_1 > 0)
     {
-        pos = sub_0800975C_inline_0(param_0->unk_50C + param_0->unk_50E, param_1);
+        pos = sub_0800975C_inline_0(param_0->unk_50C.unk_50C_16.unk_50C + param_0->unk_50C.unk_50C_16.unk_50E, param_1);
         if (pos >= 0)
         {
             param_0->unk_4FC.unk_4FC_16.unk_4FC = pos[gEwramData->unk_143F4];
 
-            if (pos >= param_0->unk_50E + 8)
+            if (pos >= param_0->unk_50C.unk_50C_16.unk_50E + 8)
             {
-                pos = sub_0800975C_inline_1(param_0->unk_50E, param_1);
+                pos = sub_0800975C_inline_1(param_0->unk_50C.unk_50C_16.unk_50E, param_1);
 
                 if (pos >= 0)
                 {
-                    param_0->unk_50E = pos;
-                    param_0->unk_50C = sub_0800975C_inline_2(param_0->unk_50E, param_0->unk_4FC.unk_4FC_8.unk_4FC);
+                    param_0->unk_50C.unk_50C_16.unk_50E = pos;
+                    param_0->unk_50C.unk_50C_16.unk_50C = sub_0800975C_inline_2(param_0->unk_50C.unk_50C_16.unk_50E, param_0->unk_4FC.unk_4FC_8.unk_4FC);
                     return 1;
                 }
             }
             else
             {
-                param_0->unk_50C = sub_0800975C_inline_2(param_0->unk_50E, param_0->unk_4FC.unk_4FC_16.unk_4FC);
+                param_0->unk_50C.unk_50C_16.unk_50C = sub_0800975C_inline_2(param_0->unk_50C.unk_50C_16.unk_50E, param_0->unk_4FC.unk_4FC_16.unk_4FC);
             }
         }
     }
 
     else if (param_1 < 0)
     {
-        pos = sub_0800975C_inline_1(param_0->unk_50C + param_0->unk_50E, param_1);
+        pos = sub_0800975C_inline_1(param_0->unk_50C.unk_50C_16.unk_50C + param_0->unk_50C.unk_50C_16.unk_50E, param_1);
         if (pos >= 0)
         {
             param_0->unk_4FC.unk_4FC_16.unk_4FC = pos[gEwramData->unk_143F4];
 
-            if (pos < param_0->unk_50E)
+            if (pos < param_0->unk_50C.unk_50C_16.unk_50E)
             {
-                pos = sub_0800975C_inline_1(param_0->unk_50E, param_1);
+                pos = sub_0800975C_inline_1(param_0->unk_50C.unk_50C_16.unk_50E, param_1);
 
                 if (pos >= 0)
                 {
-                    param_0->unk_50E = pos;
-                    param_0->unk_50C = sub_0800975C_inline_2(param_0->unk_50E, param_0->unk_4FC.unk_4FC_8.unk_4FC);
+                    param_0->unk_50C.unk_50C_16.unk_50E = pos;
+                    param_0->unk_50C.unk_50C_16.unk_50C = sub_0800975C_inline_2(param_0->unk_50C.unk_50C_16.unk_50E, param_0->unk_4FC.unk_4FC_8.unk_4FC);
                     return 1;
                 }
             }
             else
             {
-                param_0->unk_50C = sub_0800975C_inline_2(param_0->unk_50E, param_0->unk_4FC.unk_4FC_16.unk_4FC);
+                param_0->unk_50C.unk_50C_16.unk_50C = sub_0800975C_inline_2(param_0->unk_50C.unk_50C_16.unk_50E, param_0->unk_4FC.unk_4FC_16.unk_4FC);
             }
         }
     }
@@ -593,7 +593,7 @@ static inline void sub_0800997C_inline_1(s32 val_0, s32 val_1)
     unk_25485[1] = val_1;
 }
 
-static inline void sub_0800A3A4_inline_0(u8 param_0)
+static inline void GameModeSoulTradeMenu_inline_0(u8 param_0)
 {
     (&gEwramData->unk_25484[0])->unk_25487 = 0xD;
     (&gEwramData->unk_25484[0])->unk_25484_4 = param_0;
@@ -601,7 +601,7 @@ static inline void sub_0800A3A4_inline_0(u8 param_0)
     sub_080D8088((u8*)&gEwramData->unk_25484[1], 4);
 }
 
-static inline void sub_0800A3A4_inline_1(struct EwramData_unk4E4 *temp_r6, s32 temp_r4_4)
+static inline void GameModeSoulTradeMenu_inline_1(struct EwramData_unk4E4 *temp_r6, s32 temp_r4_4)
 {
     s32 var_0;
     u8 *var_1;
@@ -649,7 +649,7 @@ void sub_0800997C(struct EwramData_unk4E4 *param_0)
 {
     struct EwramData_unk25484* unk_25484;
     sub_080D7910(0xF0);
-    gEwramData->unk_11 = 0xA;
+    gEwramData->gameModeUpdateStage = 0xA;
     gEwramData->unk_12 = 0;
 
     sub_0800997C_inline_0(0, 0);
@@ -914,7 +914,7 @@ void sub_08009DD8(struct EwramData_unk4E4 *param_0)
 
     var_1 = sUnk_084F0DC0[param_0->unk_4F8.unk_4F8_8.unk_4F8];
 
-    sub_0800A3A4_inline_1(param_0, var_1 + param_0->unk_4FC.unk_4FC_16.unk_4FC);
+    GameModeSoulTradeMenu_inline_1(param_0, var_1 + param_0->unk_4FC.unk_4FC_16.unk_4FC);
 
     for (var_r4 = 0; var_r4 < 8; var_r4++)
     {
@@ -1073,7 +1073,7 @@ s32 sub_0800A108(struct EwramData_unk4E4 *param_0)
     if (temp_r4 != param_0->unk_4FC.unk_4FC_16.unk_4FC)
     {
         sub_080D7910(0xF1);
-        sub_0800A3A4_inline_1(param_0, temp_r6 + param_0->unk_4FC.unk_4FC_16.unk_4FC);
+        GameModeSoulTradeMenu_inline_1(param_0, temp_r6 + param_0->unk_4FC.unk_4FC_16.unk_4FC);
     }
     if (var_sl != 0)
     {
@@ -1174,7 +1174,7 @@ s32 sub_0800A2AC(struct EwramData_unk4E4 *param_0)
 // sub_08046DD4 is implicitly called here
 // nonmatch: https://decomp.me/scratch/Luxz2
 #ifdef NON_MATCHING
-s32 sub_0800A3A4(void)
+s32 GameModeSoulTradeMenu(void)
 {
     s32 spC;
     s32 temp_r1_11;
@@ -1217,12 +1217,12 @@ s32 sub_0800A3A4(void)
     temp_r6 = &gEwramData->unk_4E4[5];
     spC = -1;
     gEwramData->unk_12FE0_2 = 1;
-    switch (gEwramData->unk_11)
+    switch (gEwramData->gameModeUpdateStage)
     {
         case 0:
             DMA_FILL_32(3, 0, &gEwramData->unk_25484[0], 4);
             DMA_FILL_32(3, 0, &gEwramData->unk_25484[1], 4);
-            gUnk_03002CB0.unk_0 = 0x1F00;
+            gUnk_03002CB0.dispCnt = 0x1F00;
             gDisplayRegisters.bldCnt = 0x844;
             gDisplayRegisters.bldAlpha = 0xA06;
             gDisplayRegisters.bldY = 0x10;
@@ -1230,7 +1230,7 @@ s32 sub_0800A3A4(void)
             sub_08008300(temp_r0);
             sub_0803D18C(0U, 0U, 0U, 0, 0x10000, 0x10);
             sub_0803CDF0(0U, 0U, 0U, 0, 0x10000, 0x10);
-            gEwramData->unk_11 = 1;
+            gEwramData->gameModeUpdateStage = 1;
             gEwramData->unk_12 = 0;
             break;
 
@@ -1241,7 +1241,7 @@ s32 sub_0800A3A4(void)
             {
                 sub_0803CED4();
                 sub_0803D270();
-                gEwramData->unk_11 = 3;
+                gEwramData->gameModeUpdateStage = 3;
                 gEwramData->unk_12 = var_r4;
             }
             break;
@@ -1262,12 +1262,12 @@ s32 sub_0800A3A4(void)
             else if (var_r4 != 0)
             {
                 sub_080D7910(0xF4U);
-                gUnk_03002CB0.unk_0 &= 0xFBFF;
+                gUnk_03002CB0.dispCnt &= 0xFBFF;
                 gDisplayRegisters.bldCnt = 0x853;
                 gDisplayRegisters.bldAlpha = 0x10;
                 gEwramData->unk_4 = 0;
                 var_r4 = 0;
-                gEwramData->unk_11 = 4;
+                gEwramData->gameModeUpdateStage = 4;
                 gEwramData->unk_12 = var_r4;
             }
             break;
@@ -1288,7 +1288,7 @@ s32 sub_0800A3A4(void)
                 gEwramData->unk_7864.unk_7864_1 = 1;
                 sub_08008314(&gEwramData->unk_4E4[4]);
                 gDisplayRegisters.bldCnt = 0x853;
-                gUnk_03002CB0.unk_0 &= 0xFBFF;
+                gUnk_03002CB0.dispCnt &= 0xFBFF;
                 sub_0800A00C(0);
                 sub_08000E14(&gEwramData->unk_4E4[3]);
                 sub_08000E14(&gEwramData->unk_4E4[6]);
@@ -1323,9 +1323,9 @@ s32 sub_0800A3A4(void)
                 {
                     sub_08046DD4(3, var_r4_2 + 0xF, var_r4_2 * 0x20 + 0xF020, 0x17);
                 }
-                sub_0800A3A4_inline_1(temp_r6, 0x373);
+                GameModeSoulTradeMenu_inline_1(temp_r6, 0x373);
                 gEwramData->unk_4 = 0x10;
-                gEwramData->unk_11 = 5;
+                gEwramData->gameModeUpdateStage = 5;
                 gEwramData->unk_12 = 0;
             }
             sub_08000B64();
@@ -1340,36 +1340,36 @@ s32 sub_0800A3A4(void)
             }
             else
             {
-                gUnk_03002CB0.unk_0 |= 0xF00;
+                gUnk_03002CB0.dispCnt |= 0xF00;
                 gDisplayRegisters.bldCnt = 0x844;
                 gDisplayRegisters.bldAlpha = 0xA06;
-                gEwramData->unk_11 = 6;
+                gEwramData->gameModeUpdateStage = 6;
                 gEwramData->unk_12 = 0;
             }
             break;
 
         case 6:
-            gEwramData->unk_11 = 7;
+            gEwramData->gameModeUpdateStage = 7;
             gEwramData->unk_12 = 0;
             break;
 
         case 7:
             sub_080D7F78();
             sub_080D7FB8();
-            gEwramData->unk_11 = 8;
+            gEwramData->gameModeUpdateStage = 8;
             gEwramData->unk_12 = 0;
             break;
 
         case 8:
-            sub_0800A3A4_inline_1(temp_r6, 0x373);
+            GameModeSoulTradeMenu_inline_1(temp_r6, 0x373);
             if (gEwramData->unk_14.repeatedInput & 2)
             {
-                gEwramData->unk_11 = 9;
+                gEwramData->gameModeUpdateStage = 9;
                 gEwramData->unk_12 = 0;
             }
             else
             {
-                sub_0800A3A4_inline_0(0);
+                GameModeSoulTradeMenu_inline_0(0);
                 var_r4_5 = 0;
                 if (sub_080D7F28() != 0)
                 {
@@ -1398,12 +1398,12 @@ s32 sub_0800A3A4(void)
                         {
                             if (MultiSioSyncGetId() < 2)
                             {
-                                gEwramData->unk_11 = 0xA;
+                                gEwramData->gameModeUpdateStage = 0xA;
                                 gEwramData->unk_12 = 0;
                             }
                             else
                             {
-                                gEwramData->unk_11 = 0x14;
+                                gEwramData->gameModeUpdateStage = 0x14;
                                 gEwramData->unk_12 = 0;
                             }
                         }
@@ -1432,8 +1432,8 @@ s32 sub_0800A3A4(void)
             {
                 sub_08046DD4(3, var_r4_7 + 0xF, var_r4_7 * 0x20 + 0xF020, 0x17);
             }
-            sub_0800A3A4_inline_1(temp_r6, 0x372);
-            gEwramData->unk_11 = 0x15;
+            GameModeSoulTradeMenu_inline_1(temp_r6, 0x372);
+            gEwramData->gameModeUpdateStage = 0x15;
             gEwramData->unk_12 = 0;
             gEwramData->unk_4 = 0;
             /* fallthrough */
@@ -1477,7 +1477,7 @@ s32 sub_0800A3A4(void)
 
         case 10:
             var_r4 = sub_0800A2AC(temp_r6);
-            sub_0800A3A4_inline_0(0);
+            GameModeSoulTradeMenu_inline_0(0);
             var_r5_4 = 0;
             if (sub_080D7F28() != 0)
             {
@@ -1513,29 +1513,29 @@ s32 sub_0800A3A4(void)
                 temp_r6->unk_500.unk_500_16.unk_502 = 0;
                 goto block_81;
                 lbl_8d0:
-                gEwramData->unk_11 = 0x14;
+                gEwramData->gameModeUpdateStage = 0x14;
                 gEwramData->unk_12 = 0;
                 break;
             }
     block_81:
             if (var_r4 == -1)
             {
-                gEwramData->unk_11 = 9;
+                gEwramData->gameModeUpdateStage = 9;
                 gEwramData->unk_12 = 0;
             }
             else if (var_r4 != 0)
             {
                 sub_08048C74(&gEwramData->unk_4E4[6], 0xEU);
-                gEwramData->unk_11 = 0xC;
+                gEwramData->gameModeUpdateStage = 0xC;
                 gEwramData->unk_12 = 0;
             }
             sub_08000B64();
             break;
 
         case 12:
-            sub_0800A3A4_inline_1(temp_r6, 0x376);
+            GameModeSoulTradeMenu_inline_1(temp_r6, 0x376);
             sub_08009A9C(temp_r6);
-            sub_0800A3A4_inline_0(0);
+            GameModeSoulTradeMenu_inline_0(0);
             var_r4_10 = 0;
             if (sub_080D7F28() != 0)
             {
@@ -1571,7 +1571,7 @@ s32 sub_0800A3A4(void)
                 temp_r6->unk_500.unk_500_16.unk_502 = 0;
                 goto block_102;
                 lbl_a28:
-                gEwramData->unk_11 = 0x14;
+                gEwramData->gameModeUpdateStage = 0x14;
                 gEwramData->unk_12 = 0;
                 break;
             }
@@ -1598,7 +1598,7 @@ s32 sub_0800A3A4(void)
                 if (gEwramData->unk_12 == 0)
                 {
                     sub_08000E14(var_17);
-                    gEwramData->unk_11 = 0xD;
+                    gEwramData->gameModeUpdateStage = 0xD;
                     gEwramData->unk_12 = 0;
                 }
                 else
@@ -1613,7 +1613,7 @@ s32 sub_0800A3A4(void)
             break;
 
         case 13:
-            sub_0800A3A4_inline_1(temp_r6, 0x373);
+            GameModeSoulTradeMenu_inline_1(temp_r6, 0x373);
             sub_08000B64();
             if (gEwramData->unk_14.repeatedInput & 2)
             {
@@ -1623,7 +1623,7 @@ s32 sub_0800A3A4(void)
             {
                 sub_0800997C_inline_0(temp_r6->unk_504.unk_504_8.unk_504, temp_r6->unk_504.unk_504_8.unk_505);
                 sub_0800997C_inline_1(temp_r6->unk_504.unk_504_8.unk_506, temp_r6->unk_504.unk_504_8.unk_507);
-                sub_0800A3A4_inline_0(1);
+                GameModeSoulTradeMenu_inline_0(1);
                 var_r4_12 = 0;
                 if (sub_080D7F28() != 0)
                 {
@@ -1655,7 +1655,7 @@ s32 sub_0800A3A4(void)
                         goto block_128;
                     }
                     var_r4 = 0;
-                    gEwramData->unk_11 = 0x14;
+                    gEwramData->gameModeUpdateStage = 0x14;
                     gEwramData->unk_12 = var_r4;
                     break;
                 }
@@ -1672,7 +1672,7 @@ s32 sub_0800A3A4(void)
                 var_1 &= var_0;
                 if (var_1)
                 {
-                    gEwramData->unk_11 = 0xE;
+                    gEwramData->gameModeUpdateStage = 0xE;
                     gEwramData->unk_12 = 0;
                     temp_r6->unk_500.unk_500_16.unk_502 = 0;
                 }
@@ -1680,18 +1680,18 @@ s32 sub_0800A3A4(void)
             break;
 
         case 14:
-            sub_0800A3A4_inline_1(temp_r6, 0x374);
+            GameModeSoulTradeMenu_inline_1(temp_r6, 0x374);
             gEwramData->unk_12 += 1;
             if (gEwramData->unk_12 > 0x10)
             {
-                gEwramData->unk_11 = 0x14;
+                gEwramData->gameModeUpdateStage = 0x14;
                 gEwramData->unk_12 = 0;
             }
             else
             {
                 sub_0800997C_inline_0(temp_r6->unk_504.unk_504_8.unk_504, temp_r6->unk_504.unk_504_8.unk_505);
                 sub_0800997C_inline_1(temp_r6->unk_504.unk_504_8.unk_506, temp_r6->unk_504.unk_504_8.unk_507);
-                sub_0800A3A4_inline_0(1);
+                GameModeSoulTradeMenu_inline_0(1);
                 var_r4_15 = 0;
                 if (sub_080D7F28() != 0)
                 {
@@ -1723,7 +1723,7 @@ s32 sub_0800A3A4(void)
                         goto block_152;
                     }
                     var_r4 = 0;
-                    gEwramData->unk_11 = 0x14;
+                    gEwramData->gameModeUpdateStage = 0x14;
                     gEwramData->unk_12 = var_r4;
                     break;
                 }
@@ -1740,7 +1740,7 @@ s32 sub_0800A3A4(void)
                     // temp_r1_10 = unk_25484_4_32(1); // TODO
                     if (!(var_6))
                     {
-                        gEwramData->unk_11 = 0x14;
+                        gEwramData->gameModeUpdateStage = 0x14;
                         gEwramData->unk_12 = var_6;
                     }
                     else if ((temp_r6->unk_4F8.unk_4F8_8.unk_4F8 + 1) != unk_25484_2_32(1))
@@ -1759,7 +1759,7 @@ s32 sub_0800A3A4(void)
                         var_3 &= var_2;
                         if (var_3)
                         {
-                            gEwramData->unk_11 = 0x10;
+                            gEwramData->gameModeUpdateStage = 0x10;
                             gEwramData->unk_12 = 0;
                         }
                     }
@@ -1771,7 +1771,7 @@ s32 sub_0800A3A4(void)
                             if (++temp_r6->unk_500.unk_500_16.unk_500 > 4)
                             {
                                 temp_r6->unk_500.unk_500_16.unk_502 = temp_r1_11;
-                                gEwramData->unk_11 = 0xF;
+                                gEwramData->gameModeUpdateStage = 0xF;
                                 gEwramData->unk_12 = 0;
                             }
                         }
@@ -1781,10 +1781,10 @@ s32 sub_0800A3A4(void)
             break;
 
         case 15:
-            sub_0800A3A4_inline_1(temp_r6, 0x374);
+            GameModeSoulTradeMenu_inline_1(temp_r6, 0x374);
             sub_0800997C_inline_0(temp_r6->unk_504.unk_504_8.unk_504, temp_r6->unk_504.unk_504_8.unk_505);
             sub_0800997C_inline_1(temp_r6->unk_504.unk_504_8.unk_506, temp_r6->unk_504.unk_504_8.unk_507);
-            sub_0800A3A4_inline_0(5);
+            GameModeSoulTradeMenu_inline_0(5);
             var_r4_18 = 0;
             if (sub_080D7F28() != 0)
             {
@@ -1820,14 +1820,14 @@ s32 sub_0800A3A4(void)
                 temp_r6->unk_500.unk_500_16.unk_502 = 0;
                 goto block_186;
                 lbl_4e4:
-                gEwramData->unk_11 = 0x14;
+                gEwramData->gameModeUpdateStage = 0x14;
                 gEwramData->unk_12 = 0;
                 break;
             }
     block_186:
             if (++gEwramData->unk_12 > 0x10)
             {
-                gEwramData->unk_11 = 0x10;
+                gEwramData->gameModeUpdateStage = 0x10;
                 gEwramData->unk_12 = 0;
             }
             break;
@@ -1835,9 +1835,9 @@ s32 sub_0800A3A4(void)
         case 16:
             if (temp_r6->unk_504.unk_504_8.unk_506 != 0)
             {
-                sub_0800A3A4_inline_1(temp_r6, sUnk_084F0DC0[temp_r6->unk_504.unk_504_8.unk_506 - 1] + temp_r6->unk_504.unk_504_8.unk_507);
+                GameModeSoulTradeMenu_inline_1(temp_r6, sUnk_084F0DC0[temp_r6->unk_504.unk_504_8.unk_506 - 1] + temp_r6->unk_504.unk_504_8.unk_507);
             }
-            gEwramData->unk_11 = 0x11;
+            gEwramData->gameModeUpdateStage = 0x11;
             gEwramData->unk_12 = 0;
             break;
 
@@ -1855,15 +1855,15 @@ s32 sub_0800A3A4(void)
             {
                 sub_08013620(gEwramData->unk_60.unk_428);
             }
-            gEwramData->unk_11 = 0x12;
+            gEwramData->gameModeUpdateStage = 0x12;
             gEwramData->unk_12 = 0;
             break;
 
         case 18:
-            sub_0800A3A4_inline_1(temp_r6, 0x375);
+            GameModeSoulTradeMenu_inline_1(temp_r6, 0x375);
             if (gEwramData->unk_12++ > 0x2F)
             {
-                gEwramData->unk_11 = 0x13;
+                gEwramData->gameModeUpdateStage = 0x13;
                 gEwramData->unk_12 = 0;
             }
             break;
@@ -1878,7 +1878,7 @@ s32 sub_0800A3A4(void)
             sub_08000E14(&gEwramData->unk_4E4[6]);
             gEwramData->unk_4 = 0;
             sub_080D7FD0();
-            gEwramData->unk_11 = 3;
+            gEwramData->gameModeUpdateStage = 3;
             gEwramData->unk_12 = 0;
             break;
     }
@@ -1886,7 +1886,7 @@ s32 sub_0800A3A4(void)
 }
 #else
 NAKED_FUNCTION
-s32 sub_0800A3A4(void)
+s32 GameModeSoulTradeMenu(void)
 {
     asm(" .syntax unified \n\
 	push {r4, r5, r6, r7, lr} \n\
@@ -4093,7 +4093,7 @@ void sub_0800B5E8(struct EwramData_unk4E4 *param_0)
  */
 void sub_0800B634(struct EwramData_unk4E4 *param_0, s32 param_1)
 {
-    // TODO: sub_0800B634 is the same as sub_0800A3A4_inline_1
+    // TODO: sub_0800B634 is the same as GameModeSoulTradeMenu_inline_1
     s32 var_0;
     u8 *var_1;
     s32 var_2;
@@ -4138,7 +4138,7 @@ void sub_0800B634(struct EwramData_unk4E4 *param_0, s32 param_1)
  */
 void sub_0800B6B8(u8 param_0)
 {
-    // TODO: sub_0800B6B8 is the same as sub_0800A3A4_inline_0
+    // TODO: sub_0800B6B8 is the same as GameModeSoulTradeMenu_inline_0
     (&gEwramData->unk_25484[0])->unk_25487 = 0xD;
     (&gEwramData->unk_25484[0])->unk_25484_4 = param_0;
     sub_080D8020((u8*)&gEwramData->unk_25484[0], 4);

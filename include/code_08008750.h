@@ -5,9 +5,9 @@
 #include "structs/ewram.h"
 #include "structs/main.h"
 
-s32 sub_08008750(void);
-s32 sub_080089D0(void);
-s32 sub_080089D8(void);
+s32 GameModeBossRushMenuUpdate(void);
+s32 GameModeUnk9Update(void);
+s32 GameModeIntroCutsceneUpdate(void);
 void sub_08008ED0(s32 arg0);
 void sub_08008F40(struct EwramData_unk4E4 *param_0);
 void sub_08008FEC(struct EwramData_unk4E4 *param_0);

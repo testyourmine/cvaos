@@ -5,16 +5,16 @@
 #include "structs/ewram.h"
 #include "structs/main.h"
 
-s32 sub_08002454(void);
-s32 sub_08002588(void);
-void sub_08002944(void);
-s32 sub_08002990(void);
-s32 sub_08002B54(void);
-s32 sub_08002C88(void);
+s32 GameModeDebugUpdate(void);
+s32 GameModeDebugExitUpdate(void);
+void KonamiCodeCheck(void);
+s32 GameModeKonamiLogoUpdate(void);
+s32 GameModeLicensedByNintendoUpdate(void);
+s32 GameModeResetUpdate(void);
 void sub_08002F44(s32 arg0);
 void sub_08002FF8(void);
 void sub_08003080(void);
-s32 sub_0800312C(void);
+s32 GameModeTitleScreenUpdate(void);
 void sub_080039D4(struct EwramData_unk4E4 *param_0);
 void sub_08003A9C(struct EwramData_unk4E4 *param_0);
 void sub_08003C18(struct EwramData_unk4E4 *param_0);
@@ -37,6 +37,6 @@ void sub_08004750(void);
 void sub_0800480C(s32 param_0);
 s32 sub_08004928(struct EwramData_unk4E4 *param_0);
 void sub_080049C4(struct EwramData_unk4E4 *param_0);
-s32 sub_08004A48(void);
+s32 GameModeMainMenuUpdate(void);
 
 #endif /* CODE_08002454_H */

@@ -6703,8 +6703,8 @@ _08013F92:
 _08013F98: .4byte gEwramData
 _08013F9C: .4byte 0x0000042C
 
-	thumb_func_start sub_08013FA0
-sub_08013FA0: @ 0x08013FA0
+	thumb_func_start GameModeGameOverUpdate
+GameModeGameOverUpdate: @ 0x08013FA0
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -7098,8 +7098,8 @@ sub_080142E8: @ 0x080142E8
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0801430C
-sub_0801430C: @ 0x0801430C
+	thumb_func_start GameModeCreditsUpdate
+GameModeCreditsUpdate: @ 0x0801430C
 	push {r4, r5, r6, r7, lr}
 	ldr r1, _08014330 @ =gEwramData
 	ldr r0, [r1]

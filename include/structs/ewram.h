@@ -620,8 +620,8 @@ struct EwramData {
     u16 unk_6;
     u32 randomNumber;
     u32 randomNumber2;
-    u8 unk_10;
-    u8 unk_11;
+    u8 gameMode;
+    u8 gameModeUpdateStage;
     u8 unk_12;
     u8 unk_13;
     struct EwramData_unk14 unk_14;
@@ -650,7 +650,7 @@ struct EwramData {
     u8 unk_A074_4:2;
     u8 unk_A074_6:2;
 
-    u8 unk_A075;
+    u8 konamiCodeInputsCounter;
     u8 pad_A076[0xA078 - 0xA076];
     union EwramData_unkA078 unk_A078[4];
     u8 pad_A0E8[0xA108 - 0xA0E8];

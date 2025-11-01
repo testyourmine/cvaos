@@ -6,10 +6,10 @@
 #include "structs/main.h"
 
 void sub_0800B700(s32 param_0);
-s32 sub_0800B8D0(void);
-s32 sub_0800BEC0(void);
+s32 GameModeSoundTestMenu(void);
+s32 GameModeInGameUpdate(void);
 s32 sub_0800C5A8(s32 param_0);
-s32 sub_0800C5D4(void);
+s32 GameModeUnk3Update(void);
 void sub_0800C5D8(void);
 void sub_0800C6F8(void);
 void sub_0800C72C(void);

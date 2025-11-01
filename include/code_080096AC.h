@@ -18,7 +18,7 @@ void sub_08009EB8(s32 param_0, s32 param_1);
 void sub_0800A00C(s32 param_0);
 s32 sub_0800A108(struct EwramData_unk4E4 *param_0);
 s32 sub_0800A2AC(struct EwramData_unk4E4 *param_0);
-s32 sub_0800A3A4(void);
+s32 GameModeSoulTradeMenu(void);
 void sub_0800B5E8(struct EwramData_unk4E4 *param_0);
 void sub_0800B634(struct EwramData_unk4E4 *param_0, s32 param_1);
 void sub_0800B6B8(u8 param_0);

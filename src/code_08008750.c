@@ -28,10 +28,8 @@
 #include "structs/ewram.h"
 #include "structs/main.h"
 
-const u8 sUnk_080E0DE4[8] = {
+const u8 sUnk_080E0DE4[] = {
     0x3, 0x4, 0x5, 0x6, 0x17, 0x18, 0xFF,
-    // padding
-    0
 };
 
 /**
@@ -39,24 +37,24 @@ const u8 sUnk_080E0DE4[8] = {
  * 
  * @return s32 Game mode, -1 is no change, -2 is next game mode, else the specified game mode
  */
-s32 sub_08008750(void)
+s32 GameModeBossRushMenuUpdate(void)
 {
     struct EwramData_unk4E4 *temp_r3;
-    s32 var_r7;
+    s32 gameMode;
     s32 temp_r0_2;
     s32 temp_r0_3;
     s32 var_0;
 
     temp_r3 = &gEwramData->unk_4E4[4];
-    var_r7 = -1;
+    gameMode = GAME_MODE_SAME_MODE;
 
-    switch (gEwramData->unk_11)
+    switch (gEwramData->gameModeUpdateStage)
     {
         case 0:
             sub_08008300(temp_r3);
             sub_0803D18C(0, 0, 0, 0, 0x10000, 0x10);
             sub_0803CDF0(0, 0, 0, 0, 0x10000, 0x10);
-            gEwramData->unk_11 = 1;
+            gEwramData->gameModeUpdateStage = 1;
             gEwramData->unk_12 = 0;
             break;
     
@@ -67,7 +65,7 @@ s32 sub_08008750(void)
             {
                 sub_0803CED4();
                 sub_0803D270();
-                gEwramData->unk_11 = 3;
+                gEwramData->gameModeUpdateStage = 3;
                 gEwramData->unk_12 = temp_r0_2;
             }
             break;
@@ -77,12 +75,12 @@ s32 sub_08008750(void)
             if (temp_r0_3 == -1)
             {
                 sub_080D7910(0xF0);
-                var_r7 = 1;
+                gameMode = GAME_MODE_TITLE_SCREEN;
             }
             else if (temp_r0_3 != 0)
             {
                 sub_080D7910(0xF4);
-                gEwramData->unk_11 = 4;
+                gEwramData->gameModeUpdateStage = 4;
                 gEwramData->unk_12 = 0;
             }
             break;
@@ -98,10 +96,10 @@ s32 sub_08008750(void)
             sub_0804059C();
             sub_08042754();
             gEwramData->unk_A074_2 = gEwramData->unk_A074_4 = 3;
-            gUnk_03002CB0.unk_0 = 0x100;
+            gUnk_03002CB0.dispCnt = DCNT_BG0;
             gDisplayRegisters.bldCnt = BLDCNT_SCREEN_SECOND_TARGET | BLDCNT_BRIGHTNESS_DECREASE_EFFECT | BLDCNT_SCREEN_FIRST_TARGET;
             gDisplayRegisters.bldY = BLDY_MAX_VALUE;
-            gEwramData->unk_11 = 5;
+            gEwramData->gameModeUpdateStage = 5;
             gEwramData->unk_12 = 0;
             gEwramData->unk_60.unk_A1_4 = 1;
             gEwramData->unk_60.unk_37C = -1;
@@ -135,55 +133,52 @@ s32 sub_08008750(void)
         case 5:
             gEwramData->unk_60.unk_4CC_0 = 1;
             gEwramData->unk_60.unk_88 = (struct EwramData_unk88 *)0x085247B4;
-            var_r7 = 4;
+            gameMode = GAME_MODE_IN_GAME;
             break;
     }
-    return var_r7;
+
+    return gameMode;
 }
 
 /**
- * @brief 8750 | Handle empty game mode
+ * @brief 89D0 | Handle empty game mode
  * 
  * @return s32 Game mode, -1 is no change, -2 is next game mode, else the specified game mode
  */
-s32 sub_080089D0(void)
+s32 GameModeUnk9Update(void)
 {
     return -1;
 }
 
 // TODO: No inline?
-static inline void sub_080089D8_inline(s32 temp_r0_2)
+static inline void GameModeIntroCutsceneUpdate_inline(s32 temp_r0_2)
 {
     gDisplayRegisters.bldAlpha = C_16_2_8(temp_r0_2, BLDALPHA_MAX_VALUE - temp_r0_2);
 }
 
 /**
- * @brief 8750 | Handle intro cutscene game mode
+ * @brief 89D8 | Handle intro cutscene game mode
  * 
  * @return s32 Game mode, -1 is no change, -2 is next game mode, else the specified game mode
  */
-s32 sub_080089D8(void)
+s32 GameModeIntroCutsceneUpdate(void)
 {
     s16 *var_r2;
-    s32 temp_r0_2;
     s32 temp_r1_5;
-    s32 temp_r2;
     s32 var_r1;
-    s32 var_r8;
+    s32 gameMode;
     struct EwramData *temp_r5_2;
     struct EwramData *temp_r5_3;
     struct EwramData_unk4E4 *temp_r7;
-    u16 temp_r3;
-    u16 temp_r6;
     s32 temp_r2_3;
     struct EwramData_unk68 *temp_r5;
     struct EwramData_unkA094_0 *temp_r4;
 
     temp_r5 = &gEwramData->unk_60.unk_68;
     temp_r7 = gEwramData->unk_4E4;
-    var_r8 = -1;
+    gameMode = GAME_MODE_SAME_MODE;
 
-    switch (gEwramData->unk_11)
+    switch (gEwramData->gameModeUpdateStage)
     {
         case 0:
             gEwramData->unk_7864.unk_7864_1 = 1;
@@ -195,7 +190,7 @@ s32 sub_080089D8(void)
             sub_0804059C();
             sub_08042754();
             DMA_COPY_32(3, &gDisplayRegisters.bgCnt[1], temp_r5->unk_70, sizeof(temp_r5->unk_70));
-            gUnk_03002CB0.unk_0 = 0x1F00;
+            gUnk_03002CB0.dispCnt = DCNT_OBJ | DCNT_BG3 | DCNT_BG2 | DCNT_BG1 | DCNT_BG0;
             sub_0803C8B0((u8 *)0x080E6634);
             sub_0803FD9C((u8 *)0x080E5BF0, 0x06008000, 0);
             sub_0803FD9C((u8 *)0x080E5BF8, 0x0600A000, 0);
@@ -226,13 +221,13 @@ s32 sub_080089D8(void)
             gDisplayRegisters.bldCnt = BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_DECREASE_EFFECT;
             gDisplayRegisters.bldY = BLDY_MAX_VALUE;
             gEwramData->unk_4 = 0;
-            gEwramData->unk_11 += 1;
+            gEwramData->gameModeUpdateStage += 1;
             gEwramData->unk_12 = 0;
             break;
     
         case 1:
-            temp_r3 = gDisplayRegisters.bldY = BLDY_MAX_VALUE - (gEwramData->unk_4 >> 3);
-            if (temp_r3 != 0)
+            gDisplayRegisters.bldY = BLDY_MAX_VALUE - (gEwramData->unk_4 >> 3);
+            if (gDisplayRegisters.bldY != 0)
             {
                 if (gEwramData->unk_4 == 0)
                 {
@@ -244,13 +239,13 @@ s32 sub_080089D8(void)
             {
                 gDisplayRegisters.bldCnt = BLDCNT_SCREEN_SECOND_TARGET | BLDCNT_BRIGHTNESS_DECREASE_EFFECT;
                 gEwramData->unk_4 = 0;
-                gEwramData->unk_11 += 1;
+                gEwramData->gameModeUpdateStage += 1;
                 gEwramData->unk_12 = 0;
             }
             break;
     
         case 2:
-            gEwramData->unk_11 += 1;
+            gEwramData->gameModeUpdateStage += 1;
             gEwramData->unk_12 = 0;
             break;
     
@@ -260,29 +255,27 @@ s32 sub_080089D8(void)
             sub_0803FC6C(1, 0, -0x1C00);
             sub_0803FC6C(2, 0, -0x3200);
             sub_0803FC6C(3, 0, -0x1000);
-            temp_r2 = temp_r4->unk_10;
-            if (temp_r2 == 0)
+            if (temp_r4->unk_10 == 0)
             {
                 gDisplayRegisters.bldCnt = BLDCNT_SCREEN_SECOND_TARGET | BLDCNT_ALPHA_BLENDING_EFFECT;
-                gEwramData->unk_4 = temp_r2;
+                gEwramData->unk_4 = 0;
                 temp_r7->unk_53C_5 = 0;
-                gEwramData->unk_11 += 1;
+                gEwramData->gameModeUpdateStage += 1;
                 gEwramData->unk_12 = 0;
             }
             break;
     
         case 4:
             gEwramData->unk_4 += 1;
-            temp_r6 = gEwramData->unk_4 & 7;
-            if (temp_r6 == 0)
+            if (!(gEwramData->unk_4 & 7))
             {
                 temp_r2_3 = gEwramData->unk_4 >> 3;
                 temp_r1_5 = (gEwramData->unk_4 & 2) + (0x10 - (gEwramData->unk_4 >> 0x4));
                 gDisplayRegisters.bldAlpha = C_16_2_8(temp_r1_5, BLDALPHA_MAX_VALUE - temp_r1_5);
                 if (temp_r2_3 > 0xA)
                 {
-                    gEwramData->unk_4 = temp_r6;
-                    gEwramData->unk_11 += 1;
+                    gEwramData->unk_4 = 0;
+                    gEwramData->gameModeUpdateStage += 1;
                     gEwramData->unk_12 = 0;
                 }
             }
@@ -290,13 +283,13 @@ s32 sub_080089D8(void)
     
         case 5:
             gEwramData->unk_4 += 1;
-            sub_080089D8_inline((gEwramData->unk_4 & 1) + ((RandomNumberGenerator() & 1) * 2) + 0xD);
+            GameModeIntroCutsceneUpdate_inline((gEwramData->unk_4 & 1) + ((RandomNumberGenerator() & 1) * 2) + 0xD);
             if ((gEwramData->unk_4 > 0x77) || (gEwramData->unk_14.newInput & (KEY_A | KEY_START)))
             {
                 sub_0803D18C(0, 0, 0, 0x10000, 0, 0x78);
                 sub_0803CDF0(0, 0, 0, 0x10000, 0, 0x78);
                 sub_080D7910(0x1010);
-                gEwramData->unk_11 += 1;
+                gEwramData->gameModeUpdateStage += 1;
                 gEwramData->unk_12 = 0;
             }
             break;
@@ -319,23 +312,23 @@ s32 sub_080089D8(void)
                 sub_08042754();
                 DMA_COPY_32(3, &temp_r5_3->unk_60.unk_68.unk_70, &gDisplayRegisters.bgCnt[1], sizeof(temp_r5_3->unk_60.unk_68.unk_70));
                 sub_080D7910(0x1010);
-                gEwramData->unk_11 += 1;
+                gEwramData->gameModeUpdateStage += 1;
                 gEwramData->unk_12 = 0;
                 if (gEwramData->unk_6 == 0)
                 {
-                    var_r8 = 4;
+                    gameMode = GAME_MODE_IN_GAME;
                 }
                 else
                 {
-                    var_r8 = 0;
+                    gameMode = GAME_MODE_KONAMI_LOGO;
                 }
             }
             break;
     }
 
-    if ((gEwramData->unk_14.newInput & (KEY_A | KEY_START)) && (gEwramData->unk_11 < 6))
+    if ((gEwramData->unk_14.newInput & (KEY_A | KEY_START)) && (gEwramData->gameModeUpdateStage < 6))
     {
-        gEwramData->unk_11 = 0x63;
+        gEwramData->gameModeUpdateStage = 0x63;
         gEwramData->unk_12 = 0;
         temp_r5_2 = gEwramData;
         sub_0803D270();
@@ -354,21 +347,21 @@ s32 sub_080089D8(void)
         sub_080D7910(0x1010);
         if (gEwramData->unk_6 == 0)
         {
-            var_r8 = 4;
+            gameMode = GAME_MODE_IN_GAME;
         }
         else
         {
             gDisplayRegisters.bldCnt = BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_DECREASE_EFFECT;
             gDisplayRegisters.bldY = BLDY_MAX_VALUE;
-            var_r8 = 1;
+            gameMode = GAME_MODE_TITLE_SCREEN;
         }
     }
     sub_08000B64();
-    if (var_r8 == 4)
+    if (gameMode == GAME_MODE_IN_GAME)
     {
         sub_08008ED0(0);
     }
-    return var_r8;
+    return gameMode;
 }
 
 struct Unk_084F0D8C {
@@ -831,7 +824,7 @@ void sub_08009648(struct EwramData_unk4E4 *param_0)
         }
         gDisplayRegisters.bgOfs[0].vOfs = temp_r4;
     }
-    if (gEwramData->unk_11 > 6)
+    if (gEwramData->gameModeUpdateStage > 6)
     {
         sub_0803B980(sub_0803AFB8((u8 *)0x08160490));
         param_0->unk_53D_3 = 1;

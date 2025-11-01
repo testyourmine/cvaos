@@ -33,10 +33,10 @@ extern void sub_080344F0(struct EwramData_unk4E4 *param_0);
 extern struct EwramData_unk4E4 *sub_080354C8(s32 param_0, s32 param_1, u8 *param_2, struct EwramData_unk4E4 *param_3); // Types?
 extern struct EwramData_unk4E4 *sub_080355D0(void);
 extern void sub_08035638(struct EwramData_unk4E4 *param_0);
-extern s32 sub_08035930(void);
-extern s32 sub_08036670(void);
-extern s32 sub_0803681C(void);
-extern s32 sub_08038A38(void);
+extern s32 GameModeDebug1967Update(void);
+extern s32 GameModeDebug2229Update(void);
+extern s32 GameModeDebug2739Update(void);
+extern s32 GameModeDebug4531Update(void);
 extern void sub_08039DC0(void);
 extern void sub_0803AAEC(struct EwramData_unk4E4 *param_0, u32 param_1);
 extern s32 sub_0803AC40(struct EwramData_unk4E4 *param_0);

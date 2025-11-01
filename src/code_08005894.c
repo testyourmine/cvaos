@@ -40,7 +40,7 @@ extern void sub_08046DD4(s32 param_0, s32 param_1, u16 param_2, s32 param_3);
  */
 void sub_08005894(u8 arg0, u8 arg1, u8 arg2, u8 arg3)
 {
-    gUnk_03002CB0.unk_0 |= 0x2000;
+    gUnk_03002CB0.dispCnt |= DCNT_WIN0;
     gDisplayRegisters.bldCnt = BLDCNT_SCREEN_SECOND_TARGET | BLDCNT_BRIGHTNESS_INCREASE_EFFECT | BLDCNT_SCREEN_FIRST_TARGET;
 
     gDisplayRegisters.winIn_L = WIN0_ALL;
@@ -675,7 +675,7 @@ void sub_0800656C(struct EwramData_unk4E4 *param_0)
             }
             else
             {
-                if (gEwramData->unk_10 == 0xA)
+                if (gEwramData->gameMode == GAME_MODE_SOUL_TRADE_MENU)
                 {
                     sub_08013700((var_r6_3 * 2) + var_sb, 1);
                     if (gEwramData->unk_20[1].unk_38 != 0)
@@ -1816,7 +1816,7 @@ void sub_08007D84(struct EwramData_unk4E4 *param_0, s32 param_1)
         }
         *var_r1_2 = 0;
         gEwramData->unk_7864.unk_7864_0 = 1;
-        if (gEwramData->unk_10 == 0xA)
+        if (gEwramData->gameMode == GAME_MODE_SOUL_TRADE_MENU)
         {
             temp_r2 = sub_08013700(param_1 + 1, 1);
             if ((temp_sb[1].unk_38 != 0) && (temp_r2 != 0))
@@ -1920,7 +1920,7 @@ void sub_08007FF0(struct EwramData_unk4E4 *param_0)
     gDisplayRegisters.bgCnt[3] = CREATE_BGCNT(0, 31, BGCNT_LOW_PRIORITY, BGCNT_SIZE_256x256);
 
     gEwramData->unk_A074_2 = gEwramData->unk_A074_4 = 0;
-    gUnk_03002CB0.unk_0 = 0x1F00;
+    gUnk_03002CB0.dispCnt = DCNT_OBJ | DCNT_BG3 | DCNT_BG2 | DCNT_BG1 | DCNT_BG0;
     gDisplayRegisters.bldCnt = BLDCNT_BG3_SECOND_TARGET_PIXEL | BLDCNT_ALPHA_BLENDING_EFFECT | BLDCNT_BG2_FIRST_TARGET_PIXEL;
     gDisplayRegisters.bldAlpha = C_16_2_8(10, 6);
     gDisplayRegisters.bldY = 0;
@@ -1985,7 +1985,7 @@ s32 sub_080081AC(struct EwramData_unk4E4 *param_0)
         else
         {
             temp_r2 = sub_08013700(var_r4 + 1, 1);
-            if (gEwramData->unk_10 == 0xA)
+            if (gEwramData->gameMode == GAME_MODE_SOUL_TRADE_MENU)
             {
                 if (!(gEwramData->unk_20[0].unk_30 == 0 && ((gEwramData->unk_20[1].unk_38 == 0) || (temp_r2 == 0))))
                 {
@@ -2118,7 +2118,7 @@ void sub_08008324(struct EwramData_unk4E4 *param_0)
     {
         *var_r2++ = var_r3;
     }
-    gUnk_03002CB0.unk_0 = 0x7A00;
+    gUnk_03002CB0.dispCnt = DCNT_WIN1 | DCNT_WIN0 | DCNT_OBJ | DCNT_BG3 | DCNT_BG1;
     gDisplayRegisters.bldCnt = BLDCNT_SCREEN_SECOND_TARGET | BLDCNT_ALPHA_BLENDING_EFFECT | BLDCNT_OBJ_FIRST_TARGET_PIXEL | BLDCNT_BG1_FIRST_TARGET_PIXEL;
     param_0->unk_4F8.unk_4F8_8.unk_4FB = 0;
     param_0->unk_4F8.unk_4F8_8.unk_4F9 = 0;

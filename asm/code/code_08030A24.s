@@ -10258,8 +10258,8 @@ _08035924: .4byte 0x0820F18C
 _08035928: .4byte sub_0803B9D0
 _0803592C: .4byte 0x080E1F74
 
-	thumb_func_start sub_08035930
-sub_08035930: @ 0x08035930
+	thumb_func_start GameModeDebug1967Update
+GameModeDebug1967Update: @ 0x08035930
 	push {r4, r5, r6, r7, lr}
 	sub sp, #4
 	movs r7, #1
@@ -11924,8 +11924,8 @@ _08036664: .4byte gEwramData
 _08036668: .4byte 0x00013110
 _0803666C: .4byte 0xFFFD0000
 
-	thumb_func_start sub_08036670
-sub_08036670: @ 0x08036670
+	thumb_func_start GameModeDebug2229Update
+GameModeDebug2229Update: @ 0x08036670
 	push {r4, lr}
 	sub sp, #4
 	ldr r4, _08036688 @ =gEwramData
@@ -12134,8 +12134,8 @@ _08036814:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0803681C
-sub_0803681C: @ 0x0803681C
+	thumb_func_start GameModeDebug2739Update
+GameModeDebug2739Update: @ 0x0803681C
 	push {r4, r5, lr}
 	sub sp, #4
 	movs r5, #1
@@ -16355,8 +16355,8 @@ sub_08038A34: @ 0x08038A34
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_08038A38
-sub_08038A38: @ 0x08038A38
+	thumb_func_start GameModeDebug4531Update
+GameModeDebug4531Update: @ 0x08038A38
 	push {r4, r5, lr}
 	sub sp, #0x48
 	ldr r1, _08038A74 @ =0x080E2668
@@ -17299,7 +17299,7 @@ _080391C4:
 	ands r0, r2
 	strb r0, [r1]
 _08039204:
-	bl sub_0800BEC0
+	bl GameModeInGameUpdate
 	mov sb, r0
 	ldr r2, [r4]
 	ldr r0, [r2, #0x14]

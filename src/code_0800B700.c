@@ -508,8 +508,8 @@ const struct Unk_080E0DF8 sUnk_080E0DF8[95] = {
     },
 };
 
-// similar to sub_0800A3A4_inline_1, but uses unk_4FC instead of unk_508
-static inline void sub_0800B8D0_inline_0(struct EwramData_unk4E4 *temp_r6, s32 temp_r4_4)
+// similar to GameModeSoulTradeMenu_inline_1, but uses unk_4FC instead of unk_508
+static inline void GameModeSoundTestMenu_inline_0(struct EwramData_unk4E4 *temp_r6, s32 temp_r4_4)
 {
     s32 var_0;
     u8 *var_1;
@@ -551,7 +551,7 @@ static inline void sub_0800B8D0_inline_0(struct EwramData_unk4E4 *temp_r6, s32 t
 // sound test menu game mode
 // nonmatch: https://decomp.me/scratch/HEj6T
 #ifdef NON_MATCHING
-s32 sub_0800B8D0(void)
+s32 GameModeSoundTestMenu(void)
 {
     struct EwramData_unk4E4 *temp_r7;
     struct EwramData_unk4E4 *temp_sl;
@@ -575,13 +575,13 @@ s32 sub_0800B8D0(void)
     temp_sl = &gEwramData->unk_4E4[4];
     spC = -1;
 
-    switch (gEwramData->unk_11)
+    switch (gEwramData->gameModeUpdateStage)
     {
         case 0:
-            gUnk_03002CB0.unk_0 = 0x1B00;
+            gUnk_03002CB0.dispCnt = 0x1B00;
             gDisplayRegisters.bldCnt = 0x3FFF;
             gDisplayRegisters.bldY = 0x10;
-            gEwramData->unk_11 = 1;
+            gEwramData->gameModeUpdateStage = 1;
             gEwramData->unk_12 = 0;
             sub_080D7910(0x1000U);
             sub_08000E14(&gEwramData->unk_4E4[3]);
@@ -593,7 +593,7 @@ s32 sub_0800B8D0(void)
             DMA_FILL_32(3, 0, 0x0600E800, 0x800);
             DMA_FILL_32(3, 0, 0x0600F000, 0x800);
             DMA_FILL_32(3, 0, 0x0600F800, 0x800);
-            gUnk_03002CB0.unk_0 &= 0xFBFF;
+            gUnk_03002CB0.dispCnt &= 0xFBFF;
             gDisplayRegisters.bldCnt = 0x853;
             gDisplayRegisters.bldAlpha = 0xA06;
             gDisplayRegisters.bldY = 0;
@@ -622,7 +622,7 @@ s32 sub_0800B8D0(void)
             sub_0803F8A8(1U, (u32 *)0x080E6D74, 0U, 0U);
             sub_0800B700(0x3AC);
             gEwramData->unk_4 = 0x10;
-            gEwramData->unk_11 = 2;
+            gEwramData->gameModeUpdateStage = 2;
             gEwramData->unk_12 = 0;
             sub_08048C74(temp_r7, 0xEU);
             temp_r7->unk_524.unk_524_16.unk_526 = 0x52;
@@ -638,10 +638,10 @@ s32 sub_0800B8D0(void)
             }
             else
             {
-                gUnk_03002CB0.unk_0 |= 0xF00;
+                gUnk_03002CB0.dispCnt |= 0xF00;
                 gDisplayRegisters.bldCnt = 0x844;
                 gDisplayRegisters.bldAlpha = 0xA06;
-                gEwramData->unk_11 = 3;
+                gEwramData->gameModeUpdateStage = 3;
                 gEwramData->unk_12 = 0;
             }
             break;
@@ -649,7 +649,7 @@ s32 sub_0800B8D0(void)
         case 3:
             if (gEwramData->unk_14.newInput & 8)
             {
-                gEwramData->unk_11 = 4;
+                gEwramData->gameModeUpdateStage = 4;
                 gEwramData->unk_12 = 0;
                 break;
             }
@@ -735,7 +735,7 @@ s32 sub_0800B8D0(void)
                     
                     case 2:
                         sub_080D7910(0x1000U);
-                        gEwramData->unk_11 = 4;
+                        gEwramData->gameModeUpdateStage = 4;
                         gEwramData->unk_12 = 0;
                         break;
                 }
@@ -743,7 +743,7 @@ s32 sub_0800B8D0(void)
 
             if (gEwramData->unk_4E4[2].unk_4FC.unk_4FC_16.unk_4FC == 0)
             {
-                sub_0800B8D0_inline_0(temp_sl, sUnk_080E0DF8[gEwramData->unk_4E4[2].unk_4FC.unk_4FC_16.unk_4FE[gEwramData->unk_4E4[2].unk_4FC.unk_4FC_16.unk_4FC]].unk_2);
+                GameModeSoundTestMenu_inline_0(temp_sl, sUnk_080E0DF8[gEwramData->unk_4E4[2].unk_4FC.unk_4FC_16.unk_4FE[gEwramData->unk_4E4[2].unk_4FC.unk_4FC_16.unk_4FC]].unk_2);
             }
 
             if (gEwramData->unk_14.newInput & 2)
@@ -762,13 +762,13 @@ s32 sub_0800B8D0(void)
             break;
 
         case 4:
-            gEwramData->unk_11 = 5;
+            gEwramData->gameModeUpdateStage = 5;
             gEwramData->unk_12 = 0;
-            gUnk_03002CB0.unk_0 &= 0xFBFF;
+            gUnk_03002CB0.dispCnt &= 0xFBFF;
             gDisplayRegisters.bldCnt = 0x3FFF;
             gDisplayRegisters.bldY = 0x10;
             gEwramData->unk_4 = 0;
-            gEwramData->unk_11 = 5;
+            gEwramData->gameModeUpdateStage = 5;
             gEwramData->unk_12 = 0;
             break;
 
@@ -781,7 +781,7 @@ s32 sub_0800B8D0(void)
             }
             else
             {
-                gUnk_03002CB0.unk_0 |= 0xF00;
+                gUnk_03002CB0.dispCnt |= 0xF00;
                 spC = 1;
             }
             break;
@@ -802,7 +802,7 @@ s32 sub_0800B8D0(void)
 }
 #else
 NAKED_FUNCTION
-s32 sub_0800B8D0(void)
+s32 GameModeSoundTestMenu(void)
 {
     asm(" .syntax unified \n\
 	push {r4, r5, r6, r7, lr} \n\
@@ -1515,29 +1515,32 @@ _0800BEBC: .4byte gUnk_03002CB0 \n\
 }
 #endif
 
-static inline void sub_0800BEC0_inline_0(s32 param_0)
+static inline void GameModeInGameUpdate_inline_0(s32 param_0)
 {
     gEwramData->unk_A074_1 = param_0;
 }
 
-// in game game mode
-// fakematch: https://decomp.me/scratch/FERDb
-s32 sub_0800BEC0(void)
+/**
+ * @brief BEC0 | Handle in game game mode
+ * 
+ * @return s32 Game mode, -1 is no change, -2 is next game mode, else the specified game mode
+ */
+s32 GameModeInGameUpdate(void)
 {
     s32 temp_r0_5;
-    s32 var_sl;
+    s32 gameMode;
     struct EwramData_unk60 *temp_r7;
     u32 var_r4;
     s32 var_0;
     s32 var_1;
 
     temp_r7 = &gEwramData->unk_60;
-    var_sl = -1;
+    gameMode = GAME_MODE_SAME_MODE;
 
     switch (temp_r7->unk_64)
     {
         case 0:
-            sub_0800BEC0_inline_0(0);
+            GameModeInGameUpdate_inline_0(0);
             gEwramData->unk_A074_0 = 0;
 
             switch (temp_r7->unk_65)
@@ -1592,7 +1595,7 @@ s32 sub_0800BEC0(void)
                         sub_0803D270();
                         sub_0803CED4();
 
-                        sub_0800BEC0_inline_0(1);
+                        GameModeInGameUpdate_inline_0(1);
                         gEwramData->unk_A074_0 = 0;
 
                         temp_r7->unk_65 = 0;
@@ -1612,7 +1615,7 @@ s32 sub_0800BEC0(void)
                             sub_080D7F78();
                             sub_080D7FB8();
                             temp_r7->unk_66 = 0x10;
-                            sub_0800BEC0_inline_0(1);
+                            GameModeInGameUpdate_inline_0(1);
                         }
                     }
                     break;
@@ -1662,7 +1665,7 @@ s32 sub_0800BEC0(void)
             break;
 
         case 2:
-            var_sl = sub_0800C8C8();
+            gameMode = sub_0800C8C8();
             break;
 
         case 3:
@@ -1678,7 +1681,7 @@ s32 sub_0800BEC0(void)
                 if (!gEwramData->unk_60.unk_4CC_6)
                 {
                     temp_r7->unk_64 = 1;
-                    sub_0800BEC0_inline_0(1);
+                    GameModeInGameUpdate_inline_0(1);
                 }
                 else
                 {
@@ -1721,24 +1724,19 @@ s32 sub_0800BEC0(void)
                 break;
             }
 
-            if (gEwramData->unk_60.unk_3F4 >= 0)
+            if (gEwramData->unk_60.unk_3F4 < 0)
             {
-                #ifndef NON_MATCHING
-                asm("":::"r3");
-                #endif
-                if (gEwramData->unk_60.unk_42C & 0x20000)
-                {
-                    temp_r7->unk_64 = 1;
-                    gEwramData->unk_60.unk_42C &= ~0x20000;
-                }
-                else
-                {
-                    sub_08011AD0(temp_r7);
-                }
+                temp_r7->unk_64 = 1;
+                
+            }
+            else if (gEwramData->unk_60.unk_42C & 0x20000)
+            {
+                temp_r7->unk_64 = 1;
+                gEwramData->unk_60.unk_42C &= ~0x20000;
             }
             else
             {
-                temp_r7->unk_64 = 1;
+                sub_08011AD0(temp_r7);
             }
             break;
 
@@ -1757,7 +1755,7 @@ s32 sub_0800BEC0(void)
             break;
 
         case 10:
-            var_sl = sub_0800CA98();
+            gameMode = sub_0800CA98();
             break;
 
         case 11:
@@ -1895,8 +1893,9 @@ s32 sub_0800BEC0(void)
             }
             break;
     }
+
     sub_0801266C();
-    return var_sl;
+    return gameMode;
 }
 
 /**
@@ -1907,7 +1906,7 @@ s32 sub_0800BEC0(void)
  */
 s32 sub_0800C5A8(s32 param_0)
 {
-    // TODO: sub_0800C5A8 is the same as sub_0800BEC0_inline_0
+    // TODO: sub_0800C5A8 is the same as GameModeInGameUpdate_inline_0
     gEwramData->unk_A074_1 = param_0;
     return param_0;
 }
@@ -1917,7 +1916,7 @@ s32 sub_0800C5A8(s32 param_0)
  * 
  * @return s32 Game mode, -1 is no change, -2 is next game mode, else the specified game mode
  */
-s32 sub_0800C5D4(void)
+s32 GameModeUnk3Update(void)
 {
     return;
 }
@@ -2074,7 +2073,7 @@ void sub_0800C7A4(struct EwramData_unk60 *param_0)
     sub_0804059C();
     sub_08042754();
 
-    gUnk_03002CB0.unk_0 = 0x1F00;
+    gUnk_03002CB0.dispCnt = DCNT_OBJ | DCNT_BG3 | DCNT_BG2 | DCNT_BG1 | DCNT_BG0;
 
     DMA_FILL_32(3, 0, &gEwramData->unk_60, sizeof(gEwramData->unk_60));
     DMA_FILL_32(3, 0, &gEwramData->unk_13110, 0x14C);
@@ -2097,13 +2096,13 @@ void sub_0800C7A4(struct EwramData_unk60 *param_0)
  */
 s32 sub_0800C8C8(void)
 {
-    s32 var_r8;
+    s32 gameMode;
     struct EwramData *temp_r4;
     struct EwramData_unk60 *temp_r5;
     struct EwramData_unk60 *temp_r6;
 
     temp_r6 = &gEwramData->unk_60;
-    var_r8 = -1;
+    gameMode = GAME_MODE_SAME_MODE;
 
     gEwramData->unk_A074_0 ^= 1;
     sub_08000B64();
@@ -2145,17 +2144,17 @@ s32 sub_0800C8C8(void)
                     sub_08011F44((void *)0x085236A4, 0, 0, 0, 0);
                     sub_08011AD0(&gEwramData->unk_60);
                     gDisplayRegisters.bldCnt = BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_DECREASE_EFFECT;
-                    var_r8 = 4;
+                    gameMode = GAME_MODE_IN_GAME;
                 }
                 else
                 {
                     sub_0800C7A4(temp_r6);
-                    var_r8 = 5;
+                    gameMode = GAME_MODE_GAME_OVER;
                 }
             }
             break;
     }
-    return var_r8;
+    return gameMode;
 }
 
 /**
@@ -2206,7 +2205,7 @@ s32 sub_0800CA98(void)
     gDisplayRegisters.bldY = BLDY_MAX_VALUE;
     gDisplayRegisters.bldCnt = BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_DECREASE_EFFECT;
 
-    return 6;
+    return GAME_MODE_CREDITS;
 }
 
 /**

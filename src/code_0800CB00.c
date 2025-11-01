@@ -388,7 +388,7 @@ void sub_0800D154(void)
 
     ewramData = gEwramData;
     unk_68 = &gEwramData->unk_60.unk_68;
-    unk_68->unk_68 = gUnk_03002CB0.unk_0;
+    unk_68->unk_68 = gUnk_03002CB0.dispCnt;
     unk_68->unk_6A = gDisplayRegisters.bldCnt;
     unk_68->unk_6C = gDisplayRegisters.bldAlpha;
     unk_68->unk_6E_0 = gUnk_03002CB0.unk_2;
@@ -410,7 +410,7 @@ void sub_0800D1F0(void)
 
     ewramData = gEwramData;
     unk_68 = &gEwramData->unk_60.unk_68;
-    gUnk_03002CB0.unk_0 = unk_68->unk_68;
+    gUnk_03002CB0.dispCnt = unk_68->unk_68;
     gDisplayRegisters.bldCnt = unk_68->unk_6A;
     gDisplayRegisters.bldAlpha = unk_68->unk_6C;
     gUnk_03002CB0.unk_2 = unk_68->unk_6E_0;
@@ -556,7 +556,7 @@ void sub_0800D288(void)
             case 18:
                 if (!(gEwramData->unk_60.unk_4CC_0) && (gEwramData->unk_60.unk_33C[3] & 0x40000))
                 {
-                    gUnk_03002CB0.unk_0 &= ~0x400;
+                    gUnk_03002CB0.dispCnt &= ~DCNT_BG2;
                 }
                 sub_0803FBBC(var_r8, sp2C, sp30);
                 break;
@@ -603,7 +603,7 @@ void sub_0800D288(void)
                 }
                 else
                 {
-                    gUnk_03002CB0.unk_0 &= ~0x400;
+                    gUnk_03002CB0.dispCnt &= ~DCNT_BG2;
                 }
                 break;
 
@@ -2190,7 +2190,7 @@ void sub_0800ECA0(u16 param_0, u16 param_1)
             param_1 = (temp_r4->unk_8->unk_8->unk_1 << 0x8) + 0xFF00;
         }
         sub_0800F9EC(temp_r4, param_0, param_1);
-        gUnk_03002CB0.unk_0 = temp_r4->unk_0;
+        gUnk_03002CB0.dispCnt = temp_r4->unk_0;
         gDisplayRegisters.bldCnt = temp_r4->unk_1E;
         sub_0800C778();
         sub_0800D288();

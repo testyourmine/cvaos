@@ -9,7 +9,7 @@ void sub_08000424(void);
 void sub_08000470(void);
 void EmptyInterrupt(void);
 void VcountInterrupt(void);
-void sub_08000500(void);
+void GameModeUpdate(void);
 void sub_0800062C(u8 param_0);
 void sub_08000640(void);
 void sub_08000658(void);

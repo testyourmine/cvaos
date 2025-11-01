@@ -606,7 +606,7 @@ void sub_0800F9EC(struct EwramData_unk88 *arg0, u16 arg1, u16 arg2)
     }
     arg0 = var_r1;
 
-    gUnk_03002CB0.unk_0 = arg0->unk_0;
+    gUnk_03002CB0.dispCnt = arg0->unk_0;
 
     var_r4 = arg0->unk_C;
     while (var_r4->unk_0 != 0)
@@ -962,7 +962,7 @@ void sub_0800FE98(struct EwramData_unk60 *param_0, s32 param_1)
         return;
     }
 
-    gUnk_03002CB0.unk_0 |= 0x2000;
+    gUnk_03002CB0.dispCnt |= DCNT_WIN0;
     gDisplayRegisters.bldY = BLDALPHA_MAX_VALUE / 2;
     var_0 = (gDisplayRegisters.bldCnt & ~BLDCNT_BG0_FIRST_TARGET_PIXEL) | BLDCNT_SCREEN_SECOND_TARGET;
     gDisplayRegisters.win0H = C_16_2_8(0, SCREEN_SIZE_X);
@@ -1025,7 +1025,7 @@ s32 sub_0800FFCC(struct EwramData_unk60 *param_0)
     if (param_0->unk_4CD == 0)
     {
         gEwramData->unk_60.unk_42C |= 0x80;
-        gUnk_03002CB0.unk_0 = param_0->unk_88->unk_0;
+        gUnk_03002CB0.dispCnt = param_0->unk_88->unk_0;
         sub_0800C5A8(0);
         gEwramData->unk_A074_0 = 1;
         param_0->unk_66 = 0x3E;
@@ -1095,7 +1095,7 @@ void sub_08010144(struct EwramData_unk60 *param_0)
     DMA_FILL_32(3, 0, 0x0600E280, 0x80);
     DMA_FILL_32(3, 0, &gEwramData->unk_786C, 0xA00);
 
-    gUnk_03002CB0.unk_0 &= 0xDFFF;
+    gUnk_03002CB0.dispCnt &= ~DCNT_WIN0;
     if (param_0->unk_4CC_2)
     {
         gEwramData->unk_7864.unk_7864_1 = 1;
@@ -1141,7 +1141,7 @@ void sub_08010244(struct EwramData_unk60 *param_0)
 
     gEwramData->unk_FEC0 = gEwramData->unk_FEC1 = 0;
     gDisplayRegisters.bldCnt = BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_DECREASE_EFFECT;
-    gUnk_03002CB0.unk_0 &= ~0x2000;
+    gUnk_03002CB0.dispCnt &= ~DCNT_WIN0;
     gDisplayRegisters.bldY = BLDY_MAX_VALUE;
 
     gEwramData->unk_A074_1 = 0;
@@ -1311,7 +1311,7 @@ s32 sub_080104EC(struct EwramData_unk60 *param_0)
     else if (param_0->unk_65 == 1)
     {
         sub_08010350(param_0);
-        gUnk_03002CB0.unk_0 = 0;
+        gUnk_03002CB0.dispCnt = 0;
         param_0->unk_65 += 1;
     }
 
@@ -1327,7 +1327,7 @@ s32 sub_080104EC(struct EwramData_unk60 *param_0)
                 gEwramData->unk_60.unk_42C |= 0x80;
             }
 
-            gUnk_03002CB0.unk_0 = param_0->unk_88->unk_0;
+            gUnk_03002CB0.dispCnt = param_0->unk_88->unk_0;
             gEwramData->unk_A074_2 = gEwramData->unk_A074_4 = 0;
             var_0 = param_0->unk_88; // Fake?
             gDisplayRegisters.bldCnt = var_0->unk_1E;

@@ -60,7 +60,7 @@ void AgbMain(void)
                 }
             }
 
-            sub_08000500();
+            GameModeUpdate();
             sub_0803DF70();
             gEwramData->unk_0 = gEwramData->unk_0 + 1;
             sub_08000424();
@@ -96,7 +96,7 @@ void AgbMain(void)
             sub_08001194();
             sub_0803BF60();
             sub_0803E594();
-            WRITE_16(REG_DISPCNT, gUnk_03002CB0.unk_0);
+            WRITE_16(REG_DISPCNT, gUnk_03002CB0.dispCnt);
             sub_08000470();
         }
         SoftReset(RESET_ALL);
@@ -197,110 +197,110 @@ void VcountInterrupt(void)
 }
 
 /**
- * @brief 500 | Handle game modes
+ * @brief 500 | Handle current game mode update
  * 
  */
-void sub_08000500(void)
+void GameModeUpdate(void)
 {
-    s32 result;
+    s32 gameMode;
 
-    result = -1;
+    gameMode = GAME_MODE_SAME_MODE;
     
-    switch (gEwramData->unk_10)
+    switch (gEwramData->gameMode)
     {
         case GAME_MODE_KONAMI_LOGO:
-            result = sub_08002990();
+            gameMode = GameModeKonamiLogoUpdate();
             break;
 
         case GAME_MODE_TITLE_SCREEN:
-            result = sub_0800312C();
+            gameMode = GameModeTitleScreenUpdate();
             break;
 
         case GAME_MODE_MAIN_MENU:
-            result = sub_08004A48();
+            gameMode = GameModeMainMenuUpdate();
             break;
 
         case GAME_MODE_UNK_3:
-            result = sub_0800C5D4();
+            gameMode = GameModeUnk3Update();
             break;
 
         case GAME_MODE_IN_GAME:
-            result = sub_0800BEC0();
+            gameMode = GameModeInGameUpdate();
             break;
 
         case GAME_MODE_BOSS_RUSH_MENU:
-            result = sub_08008750();
+            gameMode = GameModeBossRushMenuUpdate();
             break;
 
         case GAME_MODE_UNK_9:
-            result = sub_080089D0();
+            gameMode = GameModeUnk9Update();
             break;
 
         case GAME_MODE_GAME_OVER:
-            result = sub_08013FA0();
+            gameMode = GameModeGameOverUpdate();
             break;
 
         case GAME_MODE_CREDITS:
-            result = sub_0801430C();
+            gameMode = GameModeCreditsUpdate();
             break;
 
         case GAME_MODE_INTRO_CUTSCENE:
-            result = sub_080089D8();
+            gameMode = GameModeIntroCutsceneUpdate();
             break;
 
         case GAME_MODE_SOUL_TRADE_MENU:
-            result = sub_0800A3A4();
+            gameMode = GameModeSoulTradeMenu();
             break;
 
         case GAME_MODE_SOUND_TEST_MENU:
-            result = sub_0800B8D0();
+            gameMode = GameModeSoundTestMenu();
             break;
 
         case GAME_MODE_LICENSED_BY_NINTENDO:
-            result = sub_08002B54();
+            gameMode = GameModeLicensedByNintendoUpdate();
             break;
 
         case GAME_MODE_RESET:
-            result = sub_08002C88();
+            gameMode = GameModeResetUpdate();
             break;
 
         case GAME_MODE_DEBUG:
-            result = sub_08002454();
+            gameMode = GameModeDebugUpdate();
             break;
 
         case GAME_MODE_DEBUG_EXIT:
-            result = sub_08002588();
+            gameMode = GameModeDebugExitUpdate();
             break;
 
         case GAME_MODE_DEBUG_1967:
-            result = sub_08035930();
+            gameMode = GameModeDebug1967Update();
             break;
 
         case GAME_MODE_DEBUG_2229:
-            result = sub_08036670();
+            gameMode = GameModeDebug2229Update();
             break;
 
         case GAME_MODE_DEBUG_2739:
-            result = sub_0803681C();
+            gameMode = GameModeDebug2739Update();
             break;
 
         case GAME_MODE_DEBUG_4531:
-            result = sub_08038A38();
+            gameMode = GameModeDebug4531Update();
             break;
 
         case GAME_MODE_UNK_F:
             break;
     }
 
-    if (result == -2)
+    if (gameMode == GAME_MODE_NEXT_MODE)
     {
-        gEwramData->unk_10 = gEwramData->unk_10 + 1;
-        gEwramData->unk_11 = gEwramData->unk_12 = 0;
+        gEwramData->gameMode++;
+        gEwramData->gameModeUpdateStage = gEwramData->unk_12 = 0;
     }
-    else if (result != -1)
+    else if (gameMode != GAME_MODE_SAME_MODE)
     {
-        gEwramData->unk_10 = result;
-        gEwramData->unk_11 = gEwramData->unk_12 = 0;
+        gEwramData->gameMode = gameMode;
+        gEwramData->gameModeUpdateStage = gEwramData->unk_12 = 0;
     }
 }
 
@@ -311,8 +311,8 @@ void sub_08000500(void)
  */
 void sub_0800062C(u8 param_0)
 {
-    gEwramData->unk_10 = param_0;
-    gEwramData->unk_11 = gEwramData->unk_12 = 0;
+    gEwramData->gameMode = param_0;
+    gEwramData->gameModeUpdateStage = gEwramData->unk_12 = 0;
 }
 
 /**
@@ -321,8 +321,8 @@ void sub_0800062C(u8 param_0)
  */
 void sub_08000640(void)
 {
-    gEwramData->unk_10 = gEwramData->unk_10 + 1;
-    gEwramData->unk_11 = gEwramData->unk_12 = 0;
+    gEwramData->gameMode = gEwramData->gameMode + 1;
+    gEwramData->gameModeUpdateStage = gEwramData->unk_12 = 0;
 }
 
 /**
@@ -381,7 +381,7 @@ void sub_080006CC(void)
     sub_080137B8();
     sub_0801391C();
 
-    gUnk_03002CB0.unk_0 = DCNT_OBJ | DCNT_BG3 | DCNT_BG2 | DCNT_BG1 | DCNT_BG0;
+    gUnk_03002CB0.dispCnt = DCNT_OBJ | DCNT_BG3 | DCNT_BG2 | DCNT_BG1 | DCNT_BG0;
     sub_0800062C(0);
     sub_0800062C(13);
 }

@@ -527,11 +527,11 @@ s32 sub_080110E4(struct EwramData_unk60 *param_0)
             break;
 
         case 1:
-            gUnk_03002CB0.unk_0 = 0x100;
+            gUnk_03002CB0.dispCnt = DCNT_BG0;
             gDisplayRegisters.bldY -= 4;
             if (gDisplayRegisters.bldY == 0)
             {
-                gUnk_03002CB0.unk_0 |= 0x4000;
+                gUnk_03002CB0.dispCnt |= DCNT_WIN1;
                 gDisplayRegisters.bldCnt = BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_INCREASE_EFFECT;
                 gDisplayRegisters.winIn_H = WIN1_ALL >> 8;
                 gDisplayRegisters.winOut_L = WIN0_ALL_NO_COLOR_EFFECT;
@@ -567,7 +567,7 @@ s32 sub_080110E4(struct EwramData_unk60 *param_0)
             temp_r0_4 = &gEwramData->unk_A078[1];
             // TODO: A094 types
             sub_0803F8A8(1, (u32 *) temp_r0_4->unk_A094.unk_A094.unk_A094_0, temp_r0_4->unk_A094.unk_A098.unk_0_0.unk[1], temp_r0_4->unk_A078.unk_A082);
-            gUnk_03002CB0.unk_0 = 0;
+            gUnk_03002CB0.dispCnt = 0;
             sub_080108DC(temp_r6);
             sub_080108FC(temp_r6);
             param_0->unk_65 += 1;
@@ -613,7 +613,7 @@ void sub_08011338(struct EwramData_unk60 *param_0)
 {
     sub_0800D154();
     gDisplayRegisters.bldCnt = BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_DECREASE_EFFECT;
-    gUnk_03002CB0.unk_0 &= ~0x2000;
+    gUnk_03002CB0.dispCnt &= ~DCNT_WIN0;
     gDisplayRegisters.bldY = BLDY_MAX_VALUE;
     gEwramData->unk_A074_1 = 0;
     gEwramData->unk_A074_0 = 1;
@@ -779,7 +779,7 @@ s32 sub_080116A8(struct EwramData_unk60 *param_0)
             break;
 
         case 1:
-            gUnk_03002CB0.unk_0 = 0x4100;
+            gUnk_03002CB0.dispCnt = DCNT_WIN1 | DCNT_BG0;
             gDisplayRegisters.bldY -= 4;
             if (gDisplayRegisters.bldY == 0)
             {
@@ -837,7 +837,7 @@ s32 sub_080116A8(struct EwramData_unk60 *param_0)
             sub_0800DA50();
             temp_r0_6 = &gEwramData->unk_A078[1];
             sub_0803F8A8(1, (u32 *) temp_r0_6->unk_A094.unk_A094.unk_A094_0, (u16) temp_r0_6->unk_A094.unk_A098.unk_0_0.unk[1], temp_r0_6->unk_A078.unk_A082);
-            gUnk_03002CB0.unk_0 = 0;
+            gUnk_03002CB0.dispCnt = 0;
             sub_080108DC(temp_r4);
             sub_080108FC(temp_r4);
             param_0->unk_65 += 1;
@@ -933,7 +933,7 @@ void sub_08011AD0(struct EwramData_unk60 *param_0)
 {
     gDisplayRegisters.bldCnt = BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_DECREASE_EFFECT;
     gDisplayRegisters.bldY = BLDY_MAX_VALUE;
-    gUnk_03002CB0.unk_0 &= ~0x2000;
+    gUnk_03002CB0.dispCnt &= ~DCNT_WIN0;
     gEwramData->unk_A074_1 = 0;
     gEwramData->unk_A074_0 = 1;
     param_0->unk_64 = 8;
@@ -987,7 +987,7 @@ s32 sub_08011B2C(struct EwramData_unk60 *param_0)
             gEwramData->unk_60.unk_42C &= ~0x800000;
             gEwramData->unk_A074_0 = 0;
             gEwramData->unk_A074_2 = gEwramData->unk_A074_4 = 0;
-            gUnk_03002CB0.unk_0 = temp_r6->unk_0;
+            gUnk_03002CB0.dispCnt = temp_r6->unk_0;
             gDisplayRegisters.bldY = BLDY_MAX_VALUE / 2;
             gDisplayRegisters.bldCnt = temp_r6->unk_1E;
             sub_0800C778();
@@ -2924,20 +2924,20 @@ void sub_08013F6C(s32 param_0)
  * 
  * @return s32 Game mode, -1 is no change, -2 is next game mode, else the specified game mode
  */
-s32 sub_08013FA0(void)
+s32 GameModeGameOverUpdate(void)
 {
     struct EwramData_unk4E4 *temp_r5;
-    s32 var_r8;
+    s32 gameMode;
     s32 var_r4;
 
     temp_r5 = gEwramData->unk_4E4;
-    var_r8 = -1;
+    gameMode = GAME_MODE_SAME_MODE;
 
-    switch (gEwramData->unk_11)
+    switch (gEwramData->gameModeUpdateStage)
     {
         case 0:
             DMA_FILL_32(3, 0, VRAM_BASE + 0xE000, 0x800);
-            gUnk_03002CB0.unk_0 = 0x1200;
+            gUnk_03002CB0.dispCnt = DCNT_OBJ | DCNT_BG1;
             gDisplayRegisters.bgCnt[1] = CREATE_BGCNT(0, 29, BGCNT_HIGH_MID_PRIORITY, BGCNT_SIZE_256x256) | BGCNT_256_COLOR;
             sub_0803FD9C((u8 *)0x080E5C08, (u32)VRAM_BASE, 0);
             sub_0803FD9C((u8 *)0x080E5C10, (u32)VRAM_BASE + 0x4000, 0);
@@ -2947,7 +2947,7 @@ s32 sub_08013FA0(void)
             gDisplayRegisters.bldCnt = BLDCNT_BG1_SECOND_TARGET_PIXEL | BLDCNT_ALPHA_BLENDING_EFFECT | BLDCNT_OBJ_FIRST_TARGET_PIXEL;
             gDisplayRegisters.bldAlpha = C_16_2_8(BLDALPHA_MAX_VALUE, 0);
             gEwramData->unk_4 = 0x20;
-            gEwramData->unk_11 += 1;
+            gEwramData->gameModeUpdateStage += 1;
             gEwramData->unk_12 = 0;
             sub_080D7910(0xF);
             break;
@@ -2956,7 +2956,7 @@ s32 sub_08013FA0(void)
             if (sub_0803D408() == 0)
             {
                 sub_0803D270();
-                gEwramData->unk_11 += 1;
+                gEwramData->gameModeUpdateStage += 1;
                 gEwramData->unk_12 = 0;
                 gEwramData->unk_12 = 0x80;
             }
@@ -2972,7 +2972,7 @@ s32 sub_08013FA0(void)
                 }
                 else
                 {
-                    gEwramData->unk_11 += 1;
+                    gEwramData->gameModeUpdateStage += 1;
                     gEwramData->unk_12 = 0;
                 }
             }
@@ -3013,7 +3013,7 @@ s32 sub_08013FA0(void)
             {
                 sub_0803D18C(0x1F, 0x1F, 0x1F, 0x10000, 0, 0x20);
                 sub_0803CDF0(0x1F, 0x1F, 0x1F, 0x10000, 0, 0x20);
-                gEwramData->unk_11 += 1;
+                gEwramData->gameModeUpdateStage += 1;
                 gEwramData->unk_12 = 0;
                 sub_080D7910(0x1010);
             }
@@ -3045,15 +3045,15 @@ s32 sub_08013FA0(void)
                 gDisplayRegisters.bldAlpha = 0;
                 gDisplayRegisters.bldY = 0;
                 gEwramData->unk_A074_2 = gEwramData->unk_A074_4 = 0;
-                gUnk_03002CB0.unk_0 = 0x80;
-                var_r8 = 0;
+                gUnk_03002CB0.dispCnt = DCNT_BLANK;
+                gameMode = GAME_MODE_KONAMI_LOGO;
                 DMA_FILL_32(3, 0, 0x06000000, 0x18000);
             }
             break;
     }
 
     sub_08000B64();
-    return var_r8;
+    return gameMode;
 }
 
 /**
@@ -3074,24 +3074,24 @@ void sub_080142E8(struct EwramData_unk4E4 *param_0)
  * 
  * @return s32 Game mode, -1 is no change, -2 is next game mode, else the specified game mode
  */
-s32 sub_0801430C(void)
+s32 GameModeCreditsUpdate(void)
 {
     union EwramData_unkA078 *temp_r6;
-    s32 var_r7;
+    s32 gameMode;
 
     temp_r6 = &gEwramData->unk_A078[1];
-    var_r7 = -1;
+    gameMode = GAME_MODE_SAME_MODE;
 
-    switch (gEwramData->unk_11)
+    switch (gEwramData->gameModeUpdateStage)
     {
         case 0:
             if (gEwramData->unk_60.unk_42C & 0x4000)
             {
-                gUnk_03002CB0.unk_0 = 0xE00;
+                gUnk_03002CB0.dispCnt = DCNT_BG3 | DCNT_BG2 | DCNT_BG1;
             }
             else
             {
-                gUnk_03002CB0.unk_0 = 0x600;
+                gUnk_03002CB0.dispCnt = DCNT_BG2 | DCNT_BG1;
             }
 
             gDisplayRegisters.bgCnt[1] = CREATE_BGCNT(0, 29, BGCNT_LOW_PRIORITY, BGCNT_SIZE_256x256);
@@ -3099,7 +3099,7 @@ s32 sub_0801430C(void)
             gDisplayRegisters.bgCnt[3] = CREATE_BGCNT(0, 31, BGCNT_HIGH_MID_PRIORITY, BGCNT_SIZE_256x256);
             gDisplayRegisters.bldCnt = BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_DECREASE_EFFECT;
             gDisplayRegisters.bldY = BLDY_MAX_VALUE;
-            gEwramData->unk_11 += 1;
+            gEwramData->gameModeUpdateStage += 1;
             gEwramData->unk_12 = 0;
             break;
 
@@ -3121,13 +3121,13 @@ s32 sub_0801430C(void)
                 sub_0803F8A8(2, (u32 *)0x080E8874, 0, 0x50);
             }
 
-            gEwramData->unk_11 += 1;
+            gEwramData->gameModeUpdateStage += 1;
             gEwramData->unk_12 = 0;
             break;
 
         case 2:
             gDisplayRegisters.bldY = 0;
-            gEwramData->unk_11 += 1;
+            gEwramData->gameModeUpdateStage += 1;
             gEwramData->unk_12 = 0;
             break;
 
@@ -3145,7 +3145,7 @@ s32 sub_0801430C(void)
                 sub_080D7910(0x1010);
                 gDisplayRegisters.bldCnt = BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_INCREASE_EFFECT;
                 gEwramData->unk_4 = 0;
-                gEwramData->unk_11 += 1;
+                gEwramData->gameModeUpdateStage += 1;
                 gEwramData->unk_12 = 0;
             }
             break;
@@ -3161,12 +3161,12 @@ s32 sub_0801430C(void)
                 sub_0800C7A4(&gEwramData->unk_60);
                 gDisplayRegisters.bldCnt = BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_INCREASE_EFFECT;
                 gDisplayRegisters.bldY = BLDY_MAX_VALUE;
-                var_r7 = 0;
+                gameMode = GAME_MODE_KONAMI_LOGO;
             }
             break;
     }
 
-    return var_r7;
+    return gameMode;
 }
 
 /**

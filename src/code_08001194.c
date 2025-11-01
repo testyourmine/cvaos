@@ -1609,7 +1609,7 @@ void sub_08002324(s16 param_0, s16 param_1, s16 param_2)
  */
 void sub_08002400(void)
 {
-    gUnk_03002CB0.unk_0 |= 0x4000;
+    gUnk_03002CB0.dispCnt |= DCNT_WIN1;
     sub_08001718(0xA0, 0x9F, 2, (u32)REG_WIN1H);
 }
 
@@ -1619,6 +1619,6 @@ void sub_08002400(void)
  */
 void sub_08002428(void)
 {
-    gUnk_03002CB0.unk_0 &= 0xBFFF;
+    gUnk_03002CB0.dispCnt &= ~DCNT_WIN1;
     gEwramData->unk_7864.unk_7864_1 = 1;
 }
