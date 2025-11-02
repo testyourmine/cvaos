@@ -391,7 +391,7 @@ void sub_0800F678(struct EwramData_unk_3DC *param_0)
 
     if (param_0 != NULL)
     {
-        DMA_FILL_32(3, 0, &temp_r5->pad_2[2], 8);
+        DMA_FILL_32(3, 0, &temp_r5->unk_4, sizeof(temp_r5->unk_4));
         temp_r2 = &gEwramData->unk_A078[1];
         temp_r7 = temp_r2->unk_A094.unk_A094.unk_A094_0;
         if (gEwramData->unk_60.unk_8E_4)
@@ -399,7 +399,7 @@ void sub_0800F678(struct EwramData_unk_3DC *param_0)
             temp_r2->unk_A078.unk_A082 += 0x30;
         }
         sub_0800F92C(param_0);
-        DMA_FILL_32(3, 0, &temp_r5->pad_2[2], 8);
+        DMA_FILL_32(3, 0, &temp_r5->unk_4, sizeof(temp_r5->unk_4));
 
         if (temp_r7->unk_0 >= temp_r7->unk_1)
         {
@@ -415,7 +415,7 @@ void sub_0800F678(struct EwramData_unk_3DC *param_0)
         if (gEwramData->unk_60.unk_8E_4)
         {
             temp_r1 = &gEwramData->unk_A078[1];
-            temp_r1->unk_A078.unk_A082 = (u16) (temp_r1->unk_A078.unk_A082 - 0x30);
+            temp_r1->unk_A078.unk_A082 -= 0x30;
         }
     }
 }
@@ -493,7 +493,7 @@ void sub_0800F750(void)
             temp_r1_5 = temp_r0->unk_A078.unk_A088;
             if (temp_r1_5 > 0)
             {
-                var_r5 = (u8) temp_r7->unk_1;
+                var_r5 = temp_r7->unk_1;
                 temp_r6_3 = temp_r0->unk_A094.unk_A098.unk_1_1.unk[1] + 0xD00000;
                 while ((temp_r6_3 - temp_r1_5) > (temp_r3[var_r5].unk_2 << 0x10))
                 {
@@ -1093,7 +1093,7 @@ s32 sub_0800FFCC(struct EwramData_unk60 *param_0)
 void sub_08010144(struct EwramData_unk60 *param_0)
 {
     DMA_FILL_32(3, 0, 0x0600E280, 0x80);
-    DMA_FILL_32(3, 0, &gEwramData->unk_786C, 0xA00);
+    DMA_FILL_32(3, 0, &gEwramData->unk_786C, sizeof(gEwramData->unk_786C[0]));
 
     gUnk_03002CB0.dispCnt &= ~DCNT_WIN0;
     if (param_0->unk_4CC_2)

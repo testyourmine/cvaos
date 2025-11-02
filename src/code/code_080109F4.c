@@ -576,7 +576,7 @@ s32 sub_080110E4(struct EwramData_unk60 *param_0)
         case 5:
             sub_0800D1F0();
             // TODO: 7864 and 8C6C
-            DMA_COPY_32(3, &gEwramData->pad_8C6C, &gEwramData->unk_7864, 0x1408);
+            DMA_COPY_32(3, &gEwramData->unk_8C6C, &gEwramData->unk_7864, 0x1408);
             sub_08000B64();
             gDisplayRegisters.bldY = 0;
             gDisplayRegisters.bldCnt |= BLDCNT_SCREEN_SECOND_TARGET;
@@ -620,11 +620,11 @@ void sub_08011338(struct EwramData_unk60 *param_0)
     param_0->unk_64 = 4;
     param_0->unk_65 = 0;
     gDisplayRegisters.bldY = BLDY_MAX_VALUE;
-    DMA_COPY_32(3, &gEwramData->unk_7864, &gEwramData->pad_8C6C, 0x1408);
+    DMA_COPY_32(3, &gEwramData->unk_7864, &gEwramData->unk_8C6C, 0x1408);
     gDisplayRegisters.bgOfs[0].hOfs = 0;
     gDisplayRegisters.bgOfs[0].vOfs = 0;
     gEwramData->unk_7864.unk_7864_1 = 1;
-    DMA_FILL_32(3, 0, &gEwramData->unk_786C, 0xA00);
+    DMA_FILL_32(3, 0, &gEwramData->unk_786C, sizeof(gEwramData->unk_786C[0]));
     sub_08013BCC();
     DMA_COPY_32(3, sUnk_080E3664, 0x06006000, sizeof(sUnk_080E3664));
 }
@@ -719,11 +719,11 @@ void sub_080115D4(struct EwramData_unk60 *param_0)
     param_0->unk_64 = 7;
     param_0->unk_65 = 0;
     gDisplayRegisters.bldY = BLDY_MAX_VALUE;
-    DMA_COPY_32(3, &gEwramData->unk_7864, &gEwramData->pad_8C6C, 0x1408);
+    DMA_COPY_32(3, &gEwramData->unk_7864, &gEwramData->unk_8C6C, 0x1408);
     gDisplayRegisters.bgOfs[0].hOfs = 0;
     gDisplayRegisters.bgOfs[0].vOfs = 0;
     gEwramData->unk_7864.unk_7864_1 = 1;
-    DMA_FILL_32(3, 0, &gEwramData->unk_786C, 0xA00);
+    DMA_FILL_32(3, 0, &gEwramData->unk_786C, sizeof(gEwramData->unk_786C[0]));
     sub_08013BCC();
     DMA_COPY_32(3, sUnk_080E3664, 0x06006000, sizeof(sUnk_080E3664));
 }
@@ -845,7 +845,7 @@ s32 sub_080116A8(struct EwramData_unk60 *param_0)
 
         case 5:
             sub_0800D1F0();
-            DMA_COPY_32(3, &gEwramData->pad_8C6C, &gEwramData->unk_7864, 0x1408);
+            DMA_COPY_32(3, &gEwramData->unk_8C6C, &gEwramData->unk_7864, 0x1408);
             sub_08000B64();
             gDisplayRegisters.bldY = 0;
             gDisplayRegisters.bldCnt |= BLDCNT_SCREEN_SECOND_TARGET;

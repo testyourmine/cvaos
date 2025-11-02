@@ -318,11 +318,9 @@ void sub_08000C94(void)
     struct EwramData_unk4E4 *var_0;
     struct EwramData_unk4E4 *var_1;
     s32 var_2;
-    struct EwramData_unk4E4 *var_3;
 
     var_0 = gEwramData->unk_4E4;
-    var_3 = gEwramData->unk_7024;
-    var_1 = var_3;
+    var_1 = gEwramData->unk_7024;
 
     for (var_2 = 0; var_2 < 0x10; var_2++, var_1++)
     {

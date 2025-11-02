@@ -4,24 +4,24 @@
 #include "types.h"
 
 struct InputData {
-    u16 heldInput;
-    u16 newInput;
-    u16 repeatedInput;
-    u16 repeatedInputTimer:10;
-    u8 unk_1B:6;
-    u16 playerHeldInput;
-    u16 playerNewInput;
-};
+    /* 0x00014 */ u16 heldInput;
+    /* 0x00016 */ u16 newInput;
+    /* 0x00018 */ u16 repeatedInput;
+    /* 0x0001A */ u16 repeatedInputTimer:10;
+    /* 0x0001B */ u8 unk_1B:6;
+    /* 0x0001C */ u16 playerHeldInput;
+    /* 0x0001E */ u16 playerNewInput;
+}; /* size = 0xC */
 
 struct EwramData_unk7864 {
-    u8 unk_7864_0:1;
-    u8 unk_7864_1:1;
-    u8 unk_7864_2:1;
-    u16 unk_7864_3:1;
-    u8 unk_7865;
-    u8 unk_7866;
-    u8 unk_7867;
-    u32 unk_7868;
+    /* 0x07864 */ u8 unk_7864_0:1;
+    /* 0x07864 */ u8 unk_7864_1:1;
+    /* 0x07864 */ u8 unk_7864_2:1;
+    /* 0x07864 */ u16 unk_7864_3:1;
+    /* 0x07865 */ u8 unk_7865;
+    /* 0x07866 */ u8 unk_7866;
+    /* 0x07867 */ u8 unk_7867;
+    /* 0x07868 */ u32 unk_7868;
 };
 
 struct EwramData_unk4F8_8 {
@@ -225,76 +225,65 @@ union EwramData_unk50C {
 };
 
 struct EwramData_unk4E4 {
-    u32 *unk_4E4; // type unknown
-    u32 *unk_4E8; // type unknown
-    u8 unk_4EC;
-    u8 unk_4ED;
-    u8 unk_4EE;
-    u8 unk_4EF;
-    u8 unk_4F0;
-    u8 unk_4F1;
-    u8 pad_4F2[0x4F4 - 0x4F2];
-    // u8 unk_4F4;
-    // u8 unk_4F5;
-    // u8 unk_4F6;
-    // u8 unk_4F7; // Real?
-    union EwramData_unk4F4 unk_4F4;
-    union EwramData_unk4F8 unk_4F8; // Type?
-    union EwramData_unk4FC unk_4FC; // Type?
-    union EwramData_unk500 unk_500; // Type?
-    union EwramData_unk504 unk_504;
-    // u8 unk_508;
-    // u8 unk_509;
-    // u16 unk_50A;
-    union EwramData_unk508 unk_508;
-    // s16 unk_50C;
-    // s16 unk_50E;
-    union EwramData_unk50C unk_50C;
-    u8 unk_510;
-    u8 pad_511[0x514 - 0x511];
-    // s16 unk_514;
-    // s16 unk_516;
-    union EwramData_unk514 unk_514;
-    u16 unk_518;
-    u8 unk_51A;
-    u8 unk_51B;
-    u8 pad_51C[0x524 - 0x51C];
-    union EwramData_unk524 unk_524; // Type?
-    union EwramData_unk528 unk_528; // Type?
-    union EwramData_unk52C unk_52C; // Type?
-    union EwramData_unk530 unk_530; // Type?
-    u32 unk_534; // Type?
-    u32 unk_538; // Type?
-    u8 unk_53C_0:5;
-    u8 unk_53C_5:1;
-    u8 unk_53C_6:1;
-    u8 unk_53C_7:1;
-    u8 unk_53D_0:1; // bitfield?
-    u8 unk_53D_1:1;
-    u8 unk_53D_2:1;
-    u8 unk_53D_3:1;
-    u8 unk_53D_4:1;
-    u8 unk_53D_5:1;
-    u8 unk_53D_6:2;
-    u8 unk_53E_0:1;
-    u8 unk_53E_1:2;
-    u8 unk_53E_3:4;
-    u8 unk_53E_7:1; // Real?
-    u8 unk_53F; // Type?
-    u8 unk_540;
-    u8 pad_541[0x546 - 0x541];
-    u8 unk_546;
-    u8 unk_547;
-    u8 unk_548;
-    u8 unk_549;
-    u8 pad_54A[0x551 - 0x54A];
-    u8 unk_551;
-    u8 unk_552;
-    u8 unk_553;
-    u8 pad_554[0x556 - 0x554];
-    u8 unk_556;
-    u8 pad_557[0x568 - 0x557];
-};
+    /* 0x004E4 */ u32 *unk_4E4; // type unknown
+    /* 0x004E8 */ u32 *unk_4E8; // type unknown
+    /* 0x004EC */ u8 unk_4EC;
+    /* 0x004ED */ u8 unk_4ED;
+    /* 0x004EE */ u8 unk_4EE;
+    /* 0x004EF */ u8 unk_4EF;
+    /* 0x004F0 */ u8 unk_4F0;
+    /* 0x004F1 */ u8 unk_4F1;
+    /* 0x004F2 */ u8 pad_4F2[0x4F4 - 0x4F2];
+    /* 0x004F4 */ union EwramData_unk4F4 unk_4F4;
+    /* 0x004F8 */ union EwramData_unk4F8 unk_4F8; // Type?
+    /* 0x004FC */ union EwramData_unk4FC unk_4FC; // Type?
+    /* 0x00500 */ union EwramData_unk500 unk_500; // Type?
+    /* 0x00504 */ union EwramData_unk504 unk_504;
+    /* 0x00508 */ union EwramData_unk508 unk_508;
+    /* 0x0050C */ union EwramData_unk50C unk_50C;
+    /* 0x00510 */ u8 unk_510;
+    /* 0x00511 */ u8 pad_511[0x514 - 0x511];
+    /* 0x00514 */ union EwramData_unk514 unk_514;
+    /* 0x00518 */ u16 unk_518;
+    /* 0x0051A */ u8 unk_51A;
+    /* 0x0051B */ u8 unk_51B;
+    /* 0x0051C */ u8 pad_51C[0x524 - 0x51C];
+    /* 0x00524 */ union EwramData_unk524 unk_524; // Type?
+    /* 0x00528 */ union EwramData_unk528 unk_528; // Type?
+    /* 0x0052C */ union EwramData_unk52C unk_52C; // Type?
+    /* 0x00530 */ union EwramData_unk530 unk_530; // Type?
+    /* 0x00534 */ u32 unk_534; // Type?
+    /* 0x00538 */ u32 unk_538; // Type?
+    /* 0x0053C */ u8 unk_53C_0:5;
+    /* 0x0053C */ u8 unk_53C_5:1;
+    /* 0x0053C */ u8 unk_53C_6:1;
+    /* 0x0053C */ u8 unk_53C_7:1;
+    /* 0x0053D */ u8 unk_53D_0:1;
+    /* 0x0053D */ u8 unk_53D_1:1;
+    /* 0x0053D */ u8 unk_53D_2:1;
+    /* 0x0053D */ u8 unk_53D_3:1;
+    /* 0x0053D */ u8 unk_53D_4:1;
+    /* 0x0053D */ u8 unk_53D_5:1;
+    /* 0x0053D */ u8 unk_53D_6:2;
+    /* 0x0053E */ u8 unk_53E_0:1;
+    /* 0x0053E */ u8 unk_53E_1:2;
+    /* 0x0053E */ u8 unk_53E_3:4;
+    /* 0x0053E */ u8 unk_53E_7:1; // Real?
+    /* 0x0053F */ u8 unk_53F; // Type?
+    /* 0x00540 */ u8 unk_540;
+    /* 0x00541 */ u8 pad_541[0x546 - 0x541];
+    /* 0x00546 */ u8 unk_546;
+    /* 0x00547 */ u8 unk_547;
+    /* 0x00548 */ u8 unk_548;
+    /* 0x00549 */ u8 unk_549;
+    /* 0x0054A */ u8 pad_54A[0x551 - 0x54A];
+    /* 0x00551 */ u8 unk_551;
+    /* 0x00552 */ u8 unk_552;
+    /* 0x00553 */ u8 unk_553;
+    /* 0x00554 */ u8 pad_554[0x556 - 0x554];
+    /* 0x00556 */ u8 unk_556;
+    /* 0x00557 */ u8 pad_557[0x568 - 0x557];
+}; /* size = 0x84 */
 
 struct EwramData_unkA094_0 {
     u8 unk_0;
@@ -388,14 +377,14 @@ struct EwramData_unk13110 {
 };
 
 struct EwramData_unk68 {
-    u16 unk_68;
-    u16 unk_6A;
-    u16 unk_6C;
-    u8 unk_6E_0:7;
-    u8 unk_6E_7:1;
-    u8 unk_6F;
-    u8 unk_70[0x8];
-};
+    /* 0x00068 */ u16 unk_68;
+    /* 0x0006A */ u16 unk_6A;
+    /* 0x0006C */ u16 unk_6C;
+    /* 0x0006E */ u8 unk_6E_0:7;
+    /* 0x0006E */ u8 unk_6E_7:1;
+    /* 0x0006F */ u8 unk_6F;
+    /* 0x00070 */ u8 unk_70[0x8];
+}; /* size = 0x10 */
 
 struct EwramData_unk_88_8_8 {
     u8 unk_0;
@@ -446,300 +435,292 @@ struct EwramData_unk88 {
     u16 unk_22_7:7;
     u16 unk_23_0:1;
     u16 unk_23_1:1;
-    u8 pad_23[0x2C - 0x24];
+    u8 pad_24[0x2C - 0x24];
     u8 unk_2C;
+    u8 pad_2D[0x30 - 0x2D];
 };
 
 struct EwramData_unk_3DC {
-    s16 unk_0;
-    s16 unk_2;
-    u8 unk_4;
-    u8 unk_5;
-    u8 unk_6;
-    u8 unk_7;
-    u16 unk_8;
-    u16 unk_A;
-};
+    /* 0x0 */ s16 unk_0;
+    /* 0x2 */ s16 unk_2;
+    /* 0x4 */ u8 unk_4;
+    /* 0x5 */ u8 unk_5;
+    /* 0x6 */ u8 unk_6;
+    /* 0x7 */ u8 unk_7;
+    /* 0x8 */ u16 unk_8;
+    /* 0xA */ u16 unk_A;
+}; /* size = 0xC */
 
 struct EwramData_unk3D0 {
-    u8 unk_0;
-    u8 unk_1;
-    u8 pad_2[0x4 - 0x2];
-    s32 unk_4[2]; // Type?
-    struct EwramData_unk_3DC *unk_C;
-};
+    /* 0x003D0 */ u8 unk_0;
+    /* 0x003D1 */ u8 unk_1;
+    /* 0x003D2 */ u8 pad_2[0x4 - 0x2];
+    /* 0x003D4 */ s32 unk_4[2]; // Type?
+    /* 0x003DC */ struct EwramData_unk_3DC *unk_C;
+}; /* size = 0x10 */
 
 struct EwramData_unk60 {
-    u32 unk_60; // Type?
-    u8 unk_64;
-    u8 unk_65;
-    u16 unk_66;
-    struct EwramData_unk68 unk_68;
-    u8 unk_78[0x10];
-    struct EwramData_unk88* unk_88;
-    u16 unk_8C_0:7;
-    u16 unk_8C_7:7;
-    u16 unk_8D_6:2; // Fake?
-    u8 unk_8E_0:1; // Length? part of unk_8C/unk_8D?
-    u8 unk_8E_1:3; // Length? part of unk_8C/unk_8D?
-    u8 unk_8E_4:2;
-    u8 pad_8F[0x90 - 0x8F];
-    u16 unk_90;
-    u8 pad_92[0x94 - 0x92];
-    u8 *unk_94;
-    u8 pad_98[0x9E - 0x98];
-    u8 unk_9E;
-    u8 unk_9F;
-    u8 unk_A0;
-    u8 unk_A1_0:4;
-    u8 unk_A1_4:4;
-    u8 pad_A2[0xA3 - 0xA2];
-    u8 unk_A3;
-    u8 unk_A4;
-    u8 unk_A5;
-    u16 unk_A6;
-    u32 unk_A8; // type?
-    u32 unk_AC; // type?
-    u8 pad_B0[0xB4 - 0xB0];
-    u32 unk_B4[1]; // Length?
-    u32 unk_B8[1]; // Length?
-    u8 pad_BC[0x334 - 0xBC];
-    u16 unk_334;
-    u16 unk_336;
-    s16 unk_338;
-    s16 unk_33A;
-    u32 unk_33C[8]; // Length?
-    u8 pad_35C[0x360 - 0x35C];
-    u32 unk_360[1]; // Length?
-    u8 pad_364[0x378 - 0x364];
-    u32 unk_378[1]; // TODO: what is going on here?
-    u16 unk_37C;
-    s16 unk_37E;
-    u8 unk_380;
-    u8 pad_381[0x3CC - 0x381];
-    u32 *unk_3CC;
-    //u8 pad_3D0[0x3D4 - 0x3D0];
-    //s32 unk_3D4[1]; //TODO: Length?
-    //u8 pad_3D8[0x3F4 - 0x3D8];
-    struct EwramData_unk3D0 unk_3D0;
-    u8 pad_3E0[0x3F4 - 0x3E0];
-    s8 unk_3F4;
-    u8 pad_3F5[0x3F8 - 0x3F5];
-    struct EwramData_unk88 *unk_3F8; // Type?
-    u16 unk_3FC;
-    u16 unk_3FE;
-    s16 unk_400;
-    s16 unk_402;
-    s16 unk_404;
-    s16 unk_406;
-    s16 unk_408;
-    s16 unk_40A;
-    u8 pad_40C[0x420 - 0x40C];
-    u16 unk_420;
-    u8 unk_422;
-    u8 unk_423;
-    u8 unk_424;
-    u8 pad_425[0x427 - 0x425];
-    u8 unk_427;
-    u8 unk_428;
-    u8 pad_429[0x42C - 0x429];
-    u32 unk_42C; // type?
-    u8 pad_430[0x4BE - 0x430];
-    s16 unk_4BE;
-    u8 unk_4C0;
-    u8 unk_4C1;
-    s8 unk_4C2;
-    s8 unk_4C3;
-    u8 pad_4C4[0x4C8 - 0x4C4];
-    u32 unk_4C8;
-    u8 unk_4CC_0:2;
-    u8 unk_4CC_2:1;
-    u8 unk_4CC_3:3; // More fields?
-    u8 unk_4CC_6:1;
-    u8 unk_4CD;
-    u8 pad_4CE[0x4D0 - 0x4CE];
-    u32 unk_4D0; // Type?
-};
+    /* 0x00060 */ u32 unk_60; // Type?
+    /* 0x00064 */ u8 unk_64;
+    /* 0x00065 */ u8 unk_65;
+    /* 0x00066 */ u16 unk_66;
+    /* 0x00068 */ struct EwramData_unk68 unk_68;
+    /* 0x00078 */ u8 unk_78[0x10];
+    /* 0x00088 */ struct EwramData_unk88* unk_88;
+    /* 0x0008C */ u16 unk_8C_0:7;
+    /* 0x0008C */ u16 unk_8C_7:7;
+    /* 0x0008D */ u16 unk_8D_6:2; // Fake?
+    /* 0x0008E */ u8 unk_8E_0:1; // Length? part of unk_8C/unk_8D?
+    /* 0x0008E */ u8 unk_8E_1:3; // Length? part of unk_8C/unk_8D?
+    /* 0x0008E */ u8 unk_8E_4:2;
+    /* 0x0008F */ u8 pad_8F[0x90 - 0x8F];
+    /* 0x00090 */ u16 unk_90;
+    /* 0x00092 */ u8 pad_92[0x94 - 0x92];
+    /* 0x00094 */ u8 *unk_94;
+    /* 0x00098 */ u8 pad_98[0x9E - 0x98];
+    /* 0x0009E */ u8 unk_9E;
+    /* 0x0009F */ u8 unk_9F;
+    /* 0x000A0 */ u8 unk_A0;
+    /* 0x000A1 */ u8 unk_A1_0:4;
+    /* 0x000A1 */ u8 unk_A1_4:4;
+    /* 0x000A2 */ u8 pad_A2[0xA3 - 0xA2];
+    /* 0x000A3 */ u8 unk_A3;
+    /* 0x000A4 */ u8 unk_A4;
+    /* 0x000A5 */ u8 unk_A5;
+    /* 0x000A6 */ u16 unk_A6;
+    /* 0x000A8 */ u32 unk_A8; // type?
+    /* 0x000AC */ u32 unk_AC; // type?
+    /* 0x000B0 */ u8 pad_B0[0xB4 - 0xB0];
+    /* 0x000B4 */ u32 unk_B4[1]; // Length?
+    /* 0x000B8 */ u32 unk_B8[1]; // Length?
+    /* 0x000BC */ u8 pad_BC[0x334 - 0xBC];
+    /* 0x00334 */ u16 unk_334;
+    /* 0x00336 */ u16 unk_336;
+    /* 0x00338 */ s16 unk_338;
+    /* 0x0033A */ s16 unk_33A;
+    /* 0x0033C */ u32 unk_33C[8]; // Length?
+    /* 0x0035C */ u8 pad_35C[0x360 - 0x35C];
+    /* 0x00360 */ u32 unk_360[1]; // Length?
+    /* 0x00364 */ u8 pad_364[0x378 - 0x364];
+    /* 0x00378 */ u32 unk_378[1]; // TODO: what is going on here?
+    /* 0x0037C */ u16 unk_37C;
+    /* 0x0037E */ s16 unk_37E;
+    /* 0x00380 */ u8 unk_380;
+    /* 0x00381 */ u8 pad_381[0x3CC - 0x381];
+    /* 0x003CC */ u32 *unk_3CC;
+    /* 0x003D0 */ struct EwramData_unk3D0 unk_3D0;
+    /* 0x003E0 */ u8 pad_3E0[0x3F4 - 0x3E0];
+    /* 0x003F4 */ s8 unk_3F4;
+    /* 0x003F5 */ u8 pad_3F5[0x3F8 - 0x3F5];
+    /* 0x003F8 */ struct EwramData_unk88 *unk_3F8; // Type?
+    /* 0x003FC */ u16 unk_3FC;
+    /* 0x003FE */ u16 unk_3FE;
+    /* 0x00400 */ s16 unk_400;
+    /* 0x00402 */ s16 unk_402;
+    /* 0x00404 */ s16 unk_404;
+    /* 0x00406 */ s16 unk_406;
+    /* 0x00408 */ s16 unk_408;
+    /* 0x0040A */ s16 unk_40A;
+    /* 0x0040C */ u8 pad_40C[0x420 - 0x40C];
+    /* 0x00420 */ u16 unk_420;
+    /* 0x00422 */ u8 unk_422;
+    /* 0x00423 */ u8 unk_423;
+    /* 0x00424 */ u8 unk_424;
+    /* 0x00425 */ u8 pad_425[0x427 - 0x425];
+    /* 0x00427 */ u8 unk_427;
+    /* 0x00428 */ u8 unk_428;
+    /* 0x00429 */ u8 pad_429[0x42C - 0x429];
+    /* 0x0042C */ u32 unk_42C; // type?
+    /* 0x00430 */ u8 pad_430[0x4BE - 0x430];
+    /* 0x004BE */ s16 unk_4BE;
+    /* 0x004C0 */ u8 unk_4C0;
+    /* 0x004C1 */ u8 unk_4C1;
+    /* 0x004C2 */ s8 unk_4C2;
+    /* 0x004C3 */ s8 unk_4C3;
+    /* 0x004C4 */ u8 pad_4C4[0x4C8 - 0x4C4];
+    /* 0x004C8 */ u32 unk_4C8;
+    /* 0x004CC */ u8 unk_4CC_0:2;
+    /* 0x004CC */ u8 unk_4CC_2:1;
+    /* 0x004CC */ u8 unk_4CC_3:3; // More fields?
+    /* 0x004CC */ u8 unk_4CC_6:1;
+    /* 0x004CD */ u8 unk_4CD;
+    /* 0x004CE */ u8 pad_4CE[0x4D0 - 0x4CE];
+    /* 0x004D0 */ u32 unk_4D0; // Type?
+}; /* size = 0x474 */
 
 struct EwramData_unk20 {
-    u8 unk_20[8]; // length?
-    u8 pad_28[0x2A - 0x28];
-    u8 unk_2A;
-    u8 unk_2B;
-    u8 unk_2C;
-    u8 unk_2D;
-    u8 unk_2E;
-    u8 unk_2F;
-    u8 unk_30;
-    u8 unk_31;
-    u16 unk_32;
-    u32 unk_34;
-    u32 unk_38;
-    u32 unk_3C;
-};
+    /* 0x00020 */ u8 unk_20[8]; // length?
+    /* 0x00028 */ u8 pad_28[0x2A - 0x28];
+    /* 0x0002A */ u8 unk_2A;
+    /* 0x0002B */ u8 unk_2B;
+    /* 0x0002C */ u8 unk_2C;
+    /* 0x0002D */ u8 unk_2D;
+    /* 0x0002E */ u8 unk_2E;
+    /* 0x0002F */ u8 unk_2F;
+    /* 0x00030 */ u8 unk_30;
+    /* 0x00031 */ u8 unk_31;
+    /* 0x00032 */ u16 unk_32;
+    /* 0x00034 */ u32 unk_34;
+    /* 0x00038 */ u32 unk_38;
+    /* 0x0003C */ u32 unk_3C;
+}; /* size = 0x20 */
 
 struct EwramData_unk25484 {
-    u8 unk_25484_0:2;
-    u8 unk_25484_2:2;
-    u8 unk_25484_4:4;
-    u8 unk_25485[2];
-    // u8 unk_25486;
-    u8 unk_25487;
-    u8 pad_25488[0x25494 - 0x25488];
-};
+    /* 0x25484 */ u8 unk_25484_0:2;
+    /* 0x25484 */ u8 unk_25484_2:2;
+    /* 0x25484 */ u8 unk_25484_4:4;
+    /* 0x25485 */ u8 unk_25485[2];
+    /* 0x25487 */ u8 unk_25487;
+    /* 0x25488 */ u8 pad_25488[0x25494 - 0x25488];
+}; /* size = 0x10 */
 
 struct EwramData_unk1325C {
-    u8 pad_1325C[0x13260 - 0x1325C];
-    u32 unk_13260;
-    u8 pad_13264[0x13266 - 0x13264];
-    u8 unk_13266;
-    u8 unk_13267;
-    u8 pad_13268[0x13269 - 0x13268];
-    u8 unk_13269;
-    u8 unk_1326A;
-    u8 unk_1326B;
-    u8 pad_1326C[0x13279 - 0x1326C];
-    u8 unk_13279;
-    s16 unk_1327A;
-    s16 unk_1327C;
-    u16 unk_1327E;
-    u16 unk_13280;
-    u8 pad_13282[0x13284 - 0x13282];
-};
+    /* 0x1325C */ u8 pad_1325C[0x13260 - 0x1325C];
+    /* 0x13260 */ u32 unk_13260;
+    /* 0x13264 */ u8 pad_13264[0x13266 - 0x13264];
+    /* 0x13266 */ u8 unk_13266;
+    /* 0x13267 */ u8 unk_13267;
+    /* 0x13268 */ u8 pad_13268[0x13269 - 0x13268];
+    /* 0x13269 */ u8 unk_13269;
+    /* 0x1326A */ u8 unk_1326A;
+    /* 0x1326B */ u8 unk_1326B;
+    /* 0x1326C */ u8 pad_1326C[0x13279 - 0x1326C];
+    /* 0x13279 */ u8 unk_13279;
+    /* 0x1327A */ s16 unk_1327A;
+    /* 0x1327C */ s16 unk_1327C;
+    /* 0x1327E */ u16 unk_1327E;
+    /* 0x13280 */ u16 unk_13280;
+    /* 0x13282 */ u8 pad_13282[0x13284 - 0x13282];
+}; /* size = 0x28 */
 
 struct EwramData_unkFEC8 {
-    s32 unk_FEC8;
-    u8 unk_FECC;
-    u8 unk_FECD;
-    u8 pad_FECE[0xFEDC - 0xFECE];
-};
+    /* 0x0FEC8 */ s32 unk_FEC8;
+    /* 0x0FECC */ u8 unk_FECC;
+    /* 0x0FECD */ u8 unk_FECD;
+    /* 0x0FEC8 */ u8 pad_FECE[0xFEDC - 0xFECE];
+}; /* size = 0x14 */
 
 struct EwramData {
-    u32 unk_0;
-    u16 unk_4;
-    u16 unk_6;
-    u32 randomNumber;
-    u32 randomNumber2;
-    u8 gameMode;
-    u8 gameModeUpdateStage;
-    u8 unk_12;
-    u8 unk_13;
-    struct InputData inputData;
-    // Is this two arrays, or one array and some variables?
-    struct EwramData_unk20 unk_20[2];
-    // u8 *unk_40; // pointer or array?
-    // u8 pad_44[0x4D - 0x44];
-    // u8 unk_4D;
-    // u8 pad_4E[0x58 - 0x4E];
-    // u32 unk_58; // Type?
-    // u8 pad_5C[0x60 - 0x5C];
-    struct EwramData_unk60 unk_60;
+    /* 0x00000 */ u32 unk_0;
+    /* 0x00004 */ u16 unk_4;
+    /* 0x00006 */ u16 unk_6;
+    /* 0x00008 */ u32 randomNumber;
+    /* 0x0000C */ u32 randomNumber2;
+
+    /* 0x00010 */ u8 gameMode;
+    /* 0x00011 */ u8 gameModeUpdateStage;
+    /* 0x00012 */ u8 unk_12;
+    /* 0x00013 */ u8 unk_13;
+    /* 0x00014 */ struct InputData inputData;
+
+    /* 0x00020 */ struct EwramData_unk20 unk_20[2];
+
+    /* 0x00060 */ struct EwramData_unk60 unk_60;
     
-    u8 pad_4CD[0x4E1 - 0x4D4];
-    u8 unk_4E1;
-    u16 unk_4E2;
-    struct EwramData_unk4E4 unk_4E4[0xD0];
-    struct EwramData_unk4E4 unk_7024[0x10];
-    struct EwramData_unk7864 unk_7864;
-    s16 unk_786C[2][0x500]; // TODO: Size
-    u8 pad_8C6C[0xA074 - 0x8C6C];
+    /* 0x004D4 */ u8 pad_4D4[0x4E1 - 0x4D4];
+    /* 0x004E1 */ u8 unk_4E1;
+    /* 0x004E2 */ u16 unk_4E2;
+    /* 0x004E4 */ struct EwramData_unk4E4 unk_4E4[0xD0];
+    /* 0x07024 */ struct EwramData_unk4E4 unk_7024[0x10];
+    /* 0x07864 */ struct EwramData_unk7864 unk_7864;
+    /* 0x0786C */ s16 unk_786C[2][0x500]; // TODO: probably part of EwramData_unk7864
+    /* 0x08C6C */ u8 unk_8C6C[0x1408]; // TODO: probably a backup of EwramData_unk7864
 
-    u8 unk_A074_0:1;
-    u8 unk_A074_1:1;
-    u8 unk_A074_2:2;
-    u8 unk_A074_4:2;
-    u8 unk_A074_6:2;
+    /* 0x0A074 */ u8 unk_A074_0:1;
+    /* 0x0A074 */ u8 unk_A074_1:1;
+    /* 0x0A074 */ u8 unk_A074_2:2;
+    /* 0x0A074 */ u8 unk_A074_4:2;
+    /* 0x0A074 */ u8 unk_A074_6:2;
 
-    u8 konamiCodeInputsCounter;
-    u8 pad_A076[0xA078 - 0xA076];
-    union EwramData_unkA078 unk_A078[4];
-    u8 pad_A0E8[0xA108 - 0xA0E8];
-    u16 unk_A108[1]; // Length?
-    u8 pad_A10A[0xC0EC - 0xA10A];
-    u16 unk_C0EC[1]; // Length?
-    u8 pad_C0EE[0xE0D0 - 0xC0EE];
-    u8 unk_E0D0[1]; // Length?
-    u8 pad_E0D2[0xF0C0 - 0xE0D1];
-    u32 unk_F0C0[0x380];
-    s8 unk_FEC0;
-    s8 unk_FEC1;
-    u8 pad_FEC2[0xFEC8 - 0xFEC2];
-    struct EwramData_unkFEC8 unk_FEC8[1]; // length?
-    u8 pad_FEDC[0x115C8 - 0xFEDC];
-    u8 unk_115C8[8];
-    u8 unk_115D0[8];
-    u8 unk_115D8[0x400]; // Struct or array?
-    u8 unk_119D8[0x400]; // Struct or array?
-    u8 unk_11DD8;
-    u8 unk_11DD9;
-    u8 pad_11DDA[0x12FE0 - 0x11DDA];
-    s8 unk_12FE0_0:2; // Length?
-    s8 unk_12FE0_2:1; // Length?
-    s8 unk_12FE0_3:5; // Real/Length?
-    u8 pad_12FE1[0x13110 - 0x12FE1];
-    struct EwramData_unk13110 *unk_13110;
-    u8 pad_13112[0x1311C - 0x13114];
-    u32 unk_1311C;
-    struct EwramData_unk4E4 *unk_13120;
-    u8 pad_13124[0x13144 - 0x13124];
-    u32 unk_13144[8];
-    u8 pad_13164[0x13168 - 0x13164];
-    struct EwramData_unk4E4 *unk_13168; // type?
-    u8 pad_1316C[0x131B4 - 0x1316C];
-    u8 unk_131B4;
-    u8 pad_131B5[0x131B8 - 0x131B5];
-    u32 unk_131B8;
-    u8 pad_131BC[0x131BE - 0x131BC];
-    u8 unk_131BE;
-    u8 pad_131BF[0x131C0 - 0x131BF];
-    u8 unk_131C1;
-    u8 unk_131C2;
-    u8 pad_131C3[0x131C8 - 0x131C3];
-    u32 unk_131C8;
-    u32 unk_131CC;
-    u32 unk_131D0;
-    u8 pad_131D4[0x13214 - 0x131D4];
-    s16 unk_13214;
-    s16 unk_13216;
-    u8 unk_13218;
-    u8 unk_13219;
-    u8 unk_1321A;
-    u8 unk_1321B;
-    u8 unk_1321C;
-    u8 pad_1321D[0x13224 - 0x1321D];
-    u16 unk_13224;
-    u8 unk_13226;
-    u8 pad_13227[0x1325C - 0x13227];
-    // u8 unk_13266;
-    // u8 pad_13267[0x13279 - 0x13267];
-    // u8 unk_13279;
-    // u16 unk_1327A;
-    // u16 unk_1327C;
-    // u16 unk_1327E;
-    // u16 unk_13280;
-    struct EwramData_unk1325C unk_1325C;
-    u8 pad_13284[0x13290 - 0x13284];
-    u32 unk_13290; // Type?
-    u8 unk_13294[0x18]; // Size?
-    u8 pad_132AC[0x132B1 - 0x132AC];
-    u8 unk_132B1;
-    u8 unk_132B2;
-    u8 unk_132B3;
-    u8 unk_132B4;
-    u8 pad_132B5[0x132EF - 0x132B5];
-    u8 unk_132EF;
-    u8 pad_132F0[0x133F2 - 0x132F0];
-    u8 unk_133F2; // what's going on here?
-    u8 unk_133F3;
-    u8 unk_133F4[0x1000];
-    u8 unk_143F4[0x80]; // Length?
-    u8 pad_14474[0x25484 - 0x14474];
-    struct EwramData_unk25484 unk_25484[2];
-    u8 pad_254A4[0x254C4 - 0x254A4];
-    u16 unk_254C4[4];
-    u16 unk_254CC;
-    u16 unk_254CE;
-};
+    /* 0x0A075 */ u8 konamiCodeInputsCounter;
+    /* 0x0A076 */ u8 pad_A076[0xA078 - 0xA076];
+    /* 0x0A078 */ union EwramData_unkA078 unk_A078[4];
+    /* 0x0A0E8 */ u8 pad_A0E8[0xA108 - 0xA0E8];
+    /* 0x0A108 */ u16 unk_A108[1]; // Length?
+    /* 0x0A10A */ u8 pad_A10A[0xC0EC - 0xA10A];
+    /* 0x0C0EC */ u16 unk_C0EC[1]; // Length?
+    /* 0x0C0EE */ u8 pad_C0EE[0xE0D0 - 0xC0EE];
+    /* 0x0E0D0 */ u8 unk_E0D0[1]; // Length?
+    /* 0x0E0D2 */ u8 pad_E0D2[0xF0C0 - 0xE0D1];
+    /* 0x0F0C0 */ u32 unk_F0C0[0x380];
+    /* 0x0FEC0 */ s8 unk_FEC0;
+    /* 0x0FEC1 */ s8 unk_FEC1;
+    /* 0x0FEC2 */ u8 pad_FEC2[0xFEC8 - 0xFEC2];
+    /* 0x0FEC8 */ struct EwramData_unkFEC8 unk_FEC8[0x10];
+    /* 0x0FEDC */ u8 pad_FEDC[0x115C8 - 0x10008];
+
+    /* 0x115C8 */ u8 unk_115C8[8];
+    /* 0x115D0 */ u8 unk_115D0[8];
+    /* 0x115D8 */ u8 unk_115D8[0x400]; // Struct or array?
+    /* 0x119D8 */ u8 unk_119D8[0x400]; // Struct or array?
+    /* 0x11DD8 */ u8 unk_11DD8;
+    /* 0x11DD9 */ u8 unk_11DD9;
+    /* 0x11DDA */ u8 pad_11DDA[0x12FE0 - 0x11DDA];
+
+    /* 0x12FE0 */ s8 unk_12FE0_0:2; // Length?
+    /* 0x12FE0 */ s8 unk_12FE0_2:1; // Length?
+    /* 0x12FE0 */ s8 unk_12FE0_3:5; // Real/Length?
+    /* 0x12FE1 */ u8 pad_12FE1[0x13110 - 0x12FE1];
+
+    /* 0x13110 */ struct EwramData_unk13110 *unk_13110;
+    /* 0x13112 */ u8 pad_13112[0x1311C - 0x13114];
+    /* 0x1311C */ u32 unk_1311C;
+    /* 0x13120 */ struct EwramData_unk4E4 *unk_13120;
+    /* 0x13124 */ u8 pad_13124[0x13144 - 0x13124];
+    /* 0x13144 */ u32 unk_13144[8];
+    /* 0x13164 */ u8 pad_13164[0x13168 - 0x13164];
+    /* 0x13168 */ struct EwramData_unk4E4 *unk_13168; // type?
+    /* 0x1316C */ u8 pad_1316C[0x131B4 - 0x1316C];
+    /* 0x131B4 */ u8 unk_131B4;
+    /* 0x131B5 */ u8 pad_131B5[0x131B8 - 0x131B5];
+    /* 0x131B8 */ u32 unk_131B8;
+    /* 0x131BC */ u8 pad_131BC[0x131BE - 0x131BC];
+    /* 0x131BE */ u8 unk_131BE;
+    /* 0x131BF */ u8 pad_131BF[0x131C0 - 0x131BF];
+    /* 0x131C1 */ u8 unk_131C1;
+    /* 0x131C2 */ u8 unk_131C2;
+    /* 0x131C3 */ u8 pad_131C3[0x131C8 - 0x131C3];
+    /* 0x131C8 */ u32 unk_131C8;
+    /* 0x131CC */ u32 unk_131CC;
+    /* 0x131D0 */ u32 unk_131D0;
+    /* 0x131D4 */ u8 pad_131D4[0x13214 - 0x131D4];
+    /* 0x13214 */ s16 unk_13214;
+    /* 0x13216 */ s16 unk_13216;
+    /* 0x13218 */ u8 unk_13218;
+    /* 0x13219 */ u8 unk_13219;
+    /* 0x1321A */ u8 unk_1321A;
+    /* 0x1321B */ u8 unk_1321B;
+    /* 0x1321C */ u8 unk_1321C;
+    /* 0x1321D */ u8 pad_1321D[0x13224 - 0x1321D];
+    /* 0x13224 */ u16 unk_13224;
+    /* 0x13226 */ u8 unk_13226;
+    /* 0x13227 */ u8 pad_13227[0x1325C - 0x13227];
+
+    /* 0x1325C */ struct EwramData_unk1325C unk_1325C;
+    /* 0x13284 */ u8 pad_13284[0x13290 - 0x13284];
+    /* 0x13290 */ u32 unk_13290; // Type?
+    /* 0x13294 */ u8 unk_13294[0x18]; // Size?
+    /* 0x132AC */ u8 pad_132AC[0x132B1 - 0x132AC];
+    /* 0x132B1 */ u8 unk_132B1;
+    /* 0x132B2 */ u8 unk_132B2;
+    /* 0x132B3 */ u8 unk_132B3;
+    /* 0x132B4 */ u8 unk_132B4;
+    /* 0x132B5 */ u8 pad_132B5[0x132EF - 0x132B5];
+    /* 0x132EF */ u8 unk_132EF;
+    /* 0x132F0 */ u8 pad_132F0[0x133F2 - 0x132F0];
+    /* 0x133F2 */ u8 unk_133F2; // what's going on here?
+    /* 0x133F3 */ u8 unk_133F3;
+    /* 0x133F4 */ u8 unk_133F4[0x1000];
+    /* 0x143F4 */ u8 unk_143F4[0x80]; // Length?
+    /* 0x14474 */ u8 pad_14474[0x25484 - 0x14474];
+
+    /* 0x25484 */ struct EwramData_unk25484 unk_25484[2];
+    /* 0x254A4 */ u8 pad_254A4[0x254C4 - 0x254A4];
+    /* 0x254C4 */ u16 unk_254C4[4];
+    /* 0x254CC */ u16 unk_254CC;
+    /* 0x254CE */ u16 unk_254CE;
+    /* 0x254D0 */ u8 pad_254D0[0x25554 - 0x254D0];
+}; /* size = 0x25554 */
 
 extern struct EwramData *gEwramData;
 

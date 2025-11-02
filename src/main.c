@@ -352,7 +352,7 @@ void sub_08000658(void)
  */
 void sub_080006CC(void)
 {
-    DMA_FILL_32(3, 0, gEwramData, 0x25554);
+    DMA_FILL_32(3, 0, gEwramData, sizeof(struct EwramData));
     gUnk_03002CB0.unk_4 = (u16*)&gUnk_03002CB0.unk_8;
     gUnk_03002CB0.unk_808 = &gUnk_03002CB0.unk_80C;
 
