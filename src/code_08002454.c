@@ -2318,10 +2318,6 @@ void sub_080049C4(struct EwramData_unk4E4 *param_0)
     gEwramData->unk_60.unk_64 = gEwramData->unk_60.unk_65 = 0;
 }
 
-extern void sub_0800744C(struct EwramData_unk4E4 *param_0);
-extern void sub_08007820(struct EwramData_unk4E4 *param_0);
-extern void sub_08008290(struct EwramData_unk4E4 *param_0);
-
 typedef void (*Unk_084F0D34_Func_T)(struct EwramData_unk4E4 *);
 
 Unk_084F0D34_Func_T sUnk_084F0D34[3] = {
@@ -2329,10 +2325,6 @@ Unk_084F0D34_Func_T sUnk_084F0D34[3] = {
     sub_08007820,
     sub_08008290,
 };
-
-extern s32 sub_080074C0(struct EwramData_unk4E4 *param_0);
-extern s32 sub_08007914(struct EwramData_unk4E4 *param_0);
-extern s32 sub_08007B8C(struct EwramData_unk4E4 *param_0);
 
 typedef s32 (*Unk_084F0D40_Func_T)(struct EwramData_unk4E4 *);
 
@@ -2400,7 +2392,7 @@ static inline void GameModeMainMenuUpdate_inline(s32 param_0)
 }
 
 /**
- * @brief 2454 | Handle main menu game mode
+ * @brief 4A48 | Handle main menu game mode
  * 
  * @return s32 Game mode, -1 is no change, -2 is next game mode, else the specified game mode
  */
