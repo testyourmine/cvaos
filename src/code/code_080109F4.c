@@ -313,7 +313,7 @@ extern u16 sUnk_08116650[];
 
 extern u8 sUnk_084F1054[][2];
 
-static inline struct EwramData_unk13110* Get_unk_13110()
+static inline struct EwramData_unk4E4* Get_unk_13110()
 {
     return gEwramData->unk_13110;
 }
@@ -464,7 +464,7 @@ void sub_08010FF4(struct EwramData_unk60 *param_0)
 {
     s32 temp_r4_2;
     s32 temp_sb;
-    struct EwramData_unk13110 *temp_r7;
+    struct EwramData_unk4E4 *temp_r7;
     s32 temp_r0;
     s32 temp_r3;
     s32 var_0;
@@ -636,7 +636,7 @@ void sub_08011338(struct EwramData_unk60 *param_0)
  */
 void sub_08011430(struct EwramData_unk60 *param_0)
 {
-    struct EwramData_unk13110 *temp_r4;
+    struct EwramData_unk4E4 *temp_r4;
     s32 temp_r7;
     s32 temp_r8;
     s32 temp_r0;
@@ -644,7 +644,7 @@ void sub_08011430(struct EwramData_unk60 *param_0)
     s32 temp_r2;
 
     temp_r4 = gEwramData->unk_13110;
-    if (temp_r4->unk_13150.unk_0_0.unk[1] < 0xF0)
+    if ((s16)temp_r4->unk_524.unk_524_16.unk_526 < 0xF0)
     {
         temp_r7 = sub_08002188(temp_r4);
         temp_r8 = sub_080021A8(temp_r4);
@@ -879,7 +879,7 @@ s32 sub_080116A8(struct EwramData_unk60 *param_0)
  * @param param_0 To document
  * @return s32 To document
  */
-s32 sub_08011A44(struct EwramData_unk13110 *param_0)
+s32 sub_08011A44(struct EwramData_unk4E4 *param_0)
 {
     union EwramData_unkA078 *temp_r2;
     struct EwramData_unkA094_0 *temp_r6;
@@ -890,8 +890,8 @@ s32 sub_08011A44(struct EwramData_unk13110 *param_0)
 
     temp_r2 = &gEwramData->unk_A078[1];
     temp_r6 = temp_r2->unk_A094.unk_A094.unk_A094_0;
-    temp_r1 = param_0->unk_13150.unk_0_0.unk[1] + temp_r2->unk_A094.unk_A098.unk_0_0.unk[1];
-    var_0 = param_0->unk_13150.unk_0_0.unk[3] + temp_r2->unk_A094.unk_A098.unk_0_0.unk[3];
+    temp_r1 = (s16)param_0->unk_524.unk_524_16.unk_526 + temp_r2->unk_A094.unk_A098.unk_0_0.unk[1];
+    var_0 = param_0->unk_528.unk_528_16.unk_52A + temp_r2->unk_A094.unk_A098.unk_0_0.unk[3];
     if (gEwramData->unk_1325C.unk_1327A != 0)
     {
         if (temp_r6->unk_0 > 1)
@@ -966,10 +966,10 @@ s32 sub_08011B2C(struct EwramData_unk60 *param_0)
             DMA_FILL_32(3, 0, 0x0600E800, 0x800);
             DMA_FILL_32(3, 0, 0x0600F000, 0x800);
             DMA_FILL_32(3, 0, 0x0600F800, 0x800);
-            gEwramData->unk_13110->unk_13150.unk_0_0.unk[1] = gEwramData->unk_60.unk_400;
-            gEwramData->unk_13110->unk_13150.unk_0_0.unk[3] = gEwramData->unk_60.unk_402;
-            gEwramData->unk_13110->unk_13158 = 0;
-            gEwramData->unk_13110->unk_1315C = 0;
+            gEwramData->unk_13110->unk_524.unk_524_16.unk_526 = gEwramData->unk_60.unk_400;
+            gEwramData->unk_13110->unk_528.unk_528_16.unk_52A = gEwramData->unk_60.unk_402;
+            gEwramData->unk_13110->unk_52C.unk_52C_32 = 0;
+            gEwramData->unk_13110->unk_530.unk_530_32 = 0;
             gEwramData->unk_60.unk_88 = gEwramData->unk_60.unk_3F8;
             sub_0800ECA0(gEwramData->unk_60.unk_3FC, gEwramData->unk_60.unk_3FE);
             sub_0801083C(param_0);
@@ -1645,8 +1645,8 @@ void sub_08012688(struct EwramData_unk60 *param_0)
     param_0->unk_9E = sub_08001894(temp_r4, temp_r5);
     param_0->unk_9F = sub_080018D0(temp_r4, temp_r5);
 
-    param_0->unk_338 = gEwramData->unk_13110->unk_13150.unk_0_0.unk[1];
-    param_0->unk_33A = gEwramData->unk_13110->unk_13150.unk_0_0.unk[3];
+    param_0->unk_338 = gEwramData->unk_13110->unk_524.unk_524_16.unk_526;
+    param_0->unk_33A = gEwramData->unk_13110->unk_528.unk_528_16.unk_52A;
 
     temp_r2 = &gEwramData->unk_A078[1];
     param_0->unk_334 = temp_r2->unk_A094.unk_A098.unk_0_0.unk[1];
@@ -3334,7 +3334,7 @@ void sub_0801487C(s32 param_0)
 
     temp_r0 = sub_08000DA0(0, 0, (u32*) sUnk_084F10B4[gEwramData->unk_1325C.unk_13266]);
     sUnk_084F10AC[gEwramData->unk_1325C.unk_13266](temp_r0);
-    gEwramData->unk_13110 = (struct EwramData_unk13110 *) temp_r0;
+    gEwramData->unk_13110 = temp_r0;
     gEwramData->unk_13168 = temp_r0;
 
     sub_08021E50(7);

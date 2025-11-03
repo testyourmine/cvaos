@@ -10,7 +10,7 @@ void sub_08000470(void);
 void EmptyInterrupt(void);
 void VcountInterrupt(void);
 void GameModeUpdate(void);
-void SetGameMode(u8 param_0);
+void SetGameMode(s32 param_0);
 void IncrementGameMode(void);
 void sub_08000658(void);
 void sub_080006CC(void);

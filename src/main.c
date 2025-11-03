@@ -309,7 +309,7 @@ void GameModeUpdate(void)
  * 
  * @param gameMode The game mode to set to
  */
-void SetGameMode(u8 gameMode)
+void SetGameMode(s32 gameMode)
 {
     gEwramData->gameMode = gameMode;
     gEwramData->gameModeUpdateStage = gEwramData->unk_12 = 0;

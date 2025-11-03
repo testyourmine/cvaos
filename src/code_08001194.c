@@ -1278,12 +1278,12 @@ s16 sub_08001F3C(s32 arg0, s32 arg1)
  * @param param_2 To document
  * @return u8 To document
  */
-u8 sub_08001FE8(struct EwramData_unk13110 *param_0, s32 param_1, s32 param_2)
+u8 sub_08001FE8(struct EwramData_unk4E4 *param_0, s32 param_1, s32 param_2)
 {
     struct EwramData_unkA094_1 *temp_r4;
 
     temp_r4 = (struct EwramData_unkA094_1 *)&gEwramData->unk_A078[1].unk_A094.unk_A094.unk_A094_1;
-    return sub_08001A00(temp_r4->unk_6 + param_0->unk_13150.unk_0_0.unk[1] + param_1, temp_r4->unk_A + param_0->unk_13150.unk_0_0.unk[3] + param_2);
+    return sub_08001A00(temp_r4->unk_6 + (s16)param_0->unk_524.unk_524_16.unk_526 + param_1, temp_r4->unk_A + param_0->unk_528.unk_528_16.unk_52A + param_2);
 }
 
 /**
@@ -1414,9 +1414,9 @@ s16 sub_08002140(s32 param_0, s32 param_1, s32 param_2)
  * @param param_0 To document
  * @return s16 To document
  */
-s16 sub_08002188(struct EwramData_unk13110 *param_0)
+s16 sub_08002188(struct EwramData_unk4E4 *param_0)
 {
-    return gEwramData->unk_A078[1].unk_A094.unk_A098.unk_0_0.unk[1] + param_0->unk_13150.unk_0_0.unk[1];
+    return gEwramData->unk_A078[1].unk_A094.unk_A098.unk_0_0.unk[1] + (s16)param_0->unk_524.unk_524_16.unk_526;
 }
 
 /**
@@ -1425,9 +1425,9 @@ s16 sub_08002188(struct EwramData_unk13110 *param_0)
  * @param param_0 To document
  * @return s16 To document
  */
-s16 sub_080021A8(struct EwramData_unk13110 *param_0)
+s16 sub_080021A8(struct EwramData_unk4E4 *param_0)
 {
-    return gEwramData->unk_A078[1].unk_A094.unk_A098.unk_0_0.unk[3] + param_0->unk_13150.unk_0_0.unk[3];
+    return gEwramData->unk_A078[1].unk_A094.unk_A098.unk_0_0.unk[3] + param_0->unk_528.unk_528_16.unk_52A;
 }
 
 /**
@@ -1436,9 +1436,9 @@ s16 sub_080021A8(struct EwramData_unk13110 *param_0)
  * @param param_0 To document
  * @return u32 To document
  */
-u32 sub_080021C8(struct EwramData_unk13110 *param_0)
+u32 sub_080021C8(struct EwramData_unk4E4 *param_0)
 {
-    return gEwramData->unk_A078[1].unk_A094.unk_A098.unk_1_1.unk[0] + param_0->unk_13150.unk_1_1.unk[0];
+    return gEwramData->unk_A078[1].unk_A094.unk_A098.unk_1_1.unk[0] + param_0->unk_524.unk_524_32;
 }
 
 /**
@@ -1447,9 +1447,9 @@ u32 sub_080021C8(struct EwramData_unk13110 *param_0)
  * @param param_0 To document
  * @return u32 To document
  */
-u32 sub_080021E4(struct EwramData_unk13110 *param_0)
+u32 sub_080021E4(struct EwramData_unk4E4 *param_0)
 {
-    return gEwramData->unk_A078[1].unk_A094.unk_A098.unk_1_1.unk[1] + param_0->unk_13150.unk_1_1.unk[1];
+    return gEwramData->unk_A078[1].unk_A094.unk_A098.unk_1_1.unk[1] + param_0->unk_528.unk_528_32;
 }
 
 void sub_08002200(s32 arg0, s32 arg1)

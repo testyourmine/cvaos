@@ -14,7 +14,7 @@ extern void sub_08041304(s32 param_0);
 extern s32 sub_08041318(u8 *param_0, s32 param_1);
 extern u16 sub_0804136C(void);
 extern u8* sub_08041434(s32 param_0);
-extern s32 sub_08042030(u8 *param_0, u8 *param_1, struct EwramData_unk13110 *param_2); // param types?
+extern s32 sub_08042030(u8 *param_0, u8 *param_1, struct EwramData_unk4E4 *param_2); // param types?
 extern void sub_080426B0(struct EwramData_unk4E4 *param_0);
 extern void sub_08042754(void);
 extern s32 sub_0804277C(struct EwramData_unk4E4 *param_0, s32 param_1, void *param_2, s32 param_3);

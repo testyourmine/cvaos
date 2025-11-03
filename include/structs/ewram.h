@@ -361,21 +361,6 @@ union EwramData_unkA078 {
     struct EwramData_unkA094 unk_A094;
 };
 
-struct EwramData_unk13110 {
-    s32 unk_13110;
-    s32 unk_13114;
-    s32 unk_13118;
-    s32 unk_1311C; // Type?
-    u8 pad_13120[0x13150 - 0x13120];
-    union EwramData_unk_0 unk_13150;
-    s32 unk_13158; // Type?
-    s32 unk_1315C; // Type?
-    s32 unk_13160; // Type?
-    u8 pad_13164[0x13168 - 0x13164];
-    u8 unk_13164_0:5; // Length?
-    u8 unk_13164_5:1;
-};
-
 struct EwramData_unk68 {
     /* 0x00068 */ u16 unk_68;
     /* 0x0006A */ u16 unk_6A;
@@ -662,7 +647,8 @@ struct EwramData {
     /* 0x12FE0 */ s8 unk_12FE0_3:5; // Real/Length?
     /* 0x12FE1 */ u8 pad_12FE1[0x13110 - 0x12FE1];
 
-    /* 0x13110 */ struct EwramData_unk13110 *unk_13110;
+    // TODO: probably a struct, according to sub_0800C7A4
+    /* 0x13110 */ struct EwramData_unk4E4 *unk_13110;
     /* 0x13112 */ u8 pad_13112[0x1311C - 0x13114];
     /* 0x1311C */ u32 unk_1311C;
     /* 0x13120 */ struct EwramData_unk4E4 *unk_13120;

@@ -147,7 +147,7 @@ s32 GameModeBossRushMenuUpdate(void)
  */
 s32 GameModeUnk9Update(void)
 {
-    return -1;
+    return GAME_MODE_SAME_MODE;
 }
 
 // TODO: No inline?
