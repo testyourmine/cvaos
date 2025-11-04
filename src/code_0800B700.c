@@ -2077,7 +2077,7 @@ void sub_0800C7A4(struct EwramData_unk60 *param_0)
 
     DMA_FILL_32(3, 0, &gEwramData->unk_60, sizeof(gEwramData->unk_60));
     DMA_FILL_32(3, 0, &gEwramData->unk_13110, 0x14C);
-    DMA_FILL_32(3, 0, &gEwramData->pad_13227[0x35], 0x64 * 4);
+    DMA_FILL_32(3, 0, &gEwramData->unk_1325C, 0x190);
 
     sub_0804C3C8();
     sub_080137B8();

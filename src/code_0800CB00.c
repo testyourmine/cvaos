@@ -40,8 +40,8 @@ void sub_0800CB00(void)
     s32 var_r1;
 
     temp_r5 = gEwramData->unk_60.unk_4C8;
-    var_r4 = gEwramData->unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
-    sub_08001718(0, 0xA0, 2, (u32)REG_BG3HOFS);
+    var_r4 = gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
+    sub_08001718(0, 160, 2, REG_BG3HOFS);
 
     for (var_r1 = 0; var_r1 < 0x80; var_r1++)
     {
@@ -83,7 +83,7 @@ void sub_0800CB8C(s32 param_0, s32 param_1, s32 param_2, s32 param_3)
 
     sp4 = gEwramData->unk_0;
     var_sb = param_1 + param_2;
-    var_r6 = gEwramData->unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
+    var_r6 = gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
 
     temp_r7 = &gDisplayRegisters.bgOfs[param_0];
     sp8 = &gEwramData->unk_A078[param_0].unk_A078;
@@ -92,7 +92,7 @@ void sub_0800CB8C(s32 param_0, s32 param_1, s32 param_2, s32 param_3)
     {
         var_sb = 160;
     }
-    sub_08001718(0, 160, 2, (s32)((struct BgOffset *)REG_BG0HOFS + param_0));
+    sub_08001718(0, 160, 2, (struct BgOffset *)REG_BG0HOFS + param_0);
 
     for (var_r5_2 = 0; var_r5_2 < param_1; var_r5_2++)
     {
@@ -133,7 +133,7 @@ void sub_0800CC90(s32 param_0, s32 param_1, s32 param_2, s32 param_3)
 
     var_sl = gEwramData->unk_0;
     var_0 = param_2 - param_1; // Fake?
-    var_r5 = gEwramData->unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
+    var_r5 = gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
 
     var_r8 = &gDisplayRegisters.bgOfs[param_0];
     var_r9 = &gEwramData->unk_A078[param_0].unk_A078;
@@ -159,7 +159,7 @@ void sub_0800CC90(s32 param_0, s32 param_1, s32 param_2, s32 param_3)
     {
         param_2 = 160;
     }
-    sub_08001718(0, 160, 2, (s32)((struct BgOffset *)REG_BG0HOFS + param_0));
+    sub_08001718(0, 160, 2, (struct BgOffset *)REG_BG0HOFS + param_0);
 
     var_0 = var_sl << 9;
     for (var_r4_2 = 0; var_r4_2 < param_1; var_r4_2++)
@@ -199,7 +199,7 @@ void sub_0800CDAC(s32 param_0, s32 param_1, s32 param_2)
     struct EwramData_unkA078_0 *var_0;
 
     sp4 = gEwramData->unk_0;
-    var_r8 = gEwramData->unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
+    var_r8 = gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
     temp_r1 = &gDisplayRegisters.bgOfs[param_0];
     var_0 = &gEwramData->unk_A078[param_0].unk_A078;
     var_sb = param_2 - param_1;
@@ -217,7 +217,7 @@ void sub_0800CDAC(s32 param_0, s32 param_1, s32 param_2)
         var_sb = 160 - param_1;
     }
     param_2 = param_1 + var_sb;
-    sub_08001718(0, 160, 2, (s32)((struct BgOffset *)REG_BG0HOFS + param_0));
+    sub_08001718(0, 160, 2, (struct BgOffset *)REG_BG0HOFS + param_0);
     sp8 = sub_080009E4(sp4 << 0xC);
 
     for (var_r6 = 0; var_r6 < 160; var_r6++)
@@ -260,7 +260,7 @@ void sub_0800CED4(s32 param_0, s32 param_1, s32 param_2)
 
     sp0 = param_2;
     temp_r4 = gEwramData->unk_60.unk_4C8;
-    var_r8 = gEwramData->unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
+    var_r8 = gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
     temp_r1 = &gDisplayRegisters.bgOfs[param_0];
     var_0 = &gEwramData->unk_A078[param_0].unk_A078;
     var_sb = sp0 - param_1;
@@ -278,7 +278,7 @@ void sub_0800CED4(s32 param_0, s32 param_1, s32 param_2)
         var_sb = 160 - param_1;
     }
     sp0 = param_1 + var_sb;
-    sub_08001718(0, 160, 2, (param_0 * 4) + 0x04000010);
+    sub_08001718(0, 160, 2, (struct BgOffset *)REG_BG0HOFS + param_0);
     temp_r4_2 = temp_r4 << 9;
     sp4 = sub_080009E4(temp_r4_2);
 
@@ -320,9 +320,9 @@ void sub_0800D000(void)
     struct BgAffineSrcData src;
 
     temp_r8 = gEwramData->unk_60.unk_4C8;
-    var_r7 = (struct BgAffineDstData *)&gEwramData->unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
+    var_r7 = (struct BgAffineDstData *)&gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
     var_r6 = 0;
-    sub_08001718(0, 0xA0, 0x10, 0x04000020);
+    sub_08001718(0, 160, 0x10, REG_BG2PA);
 
     for (var_r5 = 0; var_r5 < 160; var_r5++)
     {
@@ -393,7 +393,7 @@ void sub_0800D154(void)
     unk_68->unk_6C = gDisplayRegisters.bldAlpha;
     unk_68->unk_6E_0 = gUnk_03002CB0.unk_2;
     unk_68->unk_6E_7 = gEwramData->unk_7864.unk_7864_0;
-    unk_68->unk_6F = gEwramData->unk_7864.unk_7865;
+    unk_68->unk_6F = gEwramData->unk_7864.vcountSetting;
 
     DMA_COPY_32(3, &gDisplayRegisters.bgCnt, &ewramData->unk_60.unk_68.unk_70, sizeof(gDisplayRegisters.bgCnt));
     DMA_COPY_32(3, &gDisplayRegisters.win0H, &ewramData->unk_60.unk_78, sizeof(ewramData->unk_60.unk_78));
@@ -415,7 +415,7 @@ void sub_0800D1F0(void)
     gDisplayRegisters.bldAlpha = unk_68->unk_6C;
     gUnk_03002CB0.unk_2 = unk_68->unk_6E_0;
     gEwramData->unk_7864.unk_7864_0 = unk_68->unk_6E_7;
-    gEwramData->unk_7864.unk_7865 = unk_68->unk_6F;
+    gEwramData->unk_7864.vcountSetting = unk_68->unk_6F;
     
     DMA_COPY_32(3, &ewramData->unk_60.unk_68.unk_70, &gDisplayRegisters.bgCnt, sizeof(ewramData->unk_60.unk_68.unk_70));
     DMA_COPY_32(3, &ewramData->unk_60.unk_78, &gDisplayRegisters.win0H, sizeof(ewramData->unk_60.unk_78));
@@ -563,8 +563,8 @@ void sub_0800D288(void)
 
             case 19:
                 temp_r6 = gEwramData->unk_60.unk_4C8;
-                var_r4 = (s16*)&gEwramData->unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
-                sub_08001718(0, 160, 2, 0x0400001C);
+                var_r4 = (s16*)&gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
+                sub_08001718(0, 160, 2, REG_BG3HOFS);
 
                 for (var_r1 = 0; var_r1 < 0x80; var_r1++)
                 {
@@ -629,7 +629,7 @@ void sub_0800D288(void)
                 temp_r5 = gEwramData->unk_60.unk_4C8;
                 src1.texX = 0x8000;
                 src1.texY = 0x8000;
-                src1.scrX = 0x100 - sp28->unk_A094.unk_A098.unk_0_0.unk[1];
+                src1.scrX = 0x100 - sp28->unk_A094.unk_A098.unk_0_0.unk_A09A;
                 src1.scrY = 0x100 - sp28->unk_A078.unk_A082;                
                 src1.sy = src1.sx = ((sub_080009E4(temp_r5 * 0x10) * 3) >> 0xD) + 0x58;
                 src1.alpha = -temp_r5 << 7;
@@ -648,8 +648,8 @@ void sub_0800D288(void)
                 sp34 = 1;
                 temp_sb = gEwramData->unk_60.unk_4C8;
                 sp38 = &gDisplayRegisters.bgOfs[var_r8].vOfs;
-                var_r4_2 = (s16*)&gEwramData->unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
-                sub_08001718(0, 160, 2, (s32)((struct BgOffset *)0x04000012 + var_r8));
+                var_r4_2 = (s16*)&gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
+                sub_08001718(0, 160, 2, (struct BgOffset *)REG_BG0VOFS + var_r8);
 
                 sp34 = 0xD;
                 temp_sb <<= 0xA;
@@ -661,14 +661,14 @@ void sub_0800D288(void)
 
                 gEwramData->unk_7864.unk_7864_0 = 1;
                 temp_r7_2->unk_A078.unk_A07C += sp2C;
-                temp_r3->hOfs = temp_r7_2->unk_A094.unk_A098.unk_0_0.unk[1];
+                temp_r3->hOfs = temp_r7_2->unk_A094.unk_A098.unk_0_0.unk_A09A;
                 break;
 
             case 30:
                 sub_0803FBBC(var_r8, sp2C, sp30);
-                var_r6_2 = (s16*)&gEwramData->unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
+                var_r6_2 = (s16*)&gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
                 var_0 = &gDisplayRegisters.bgOfs[var_r8].hOfs;
-                sub_08001718(0, 160, 2, (s32)((struct BgOffset *)0x04000010 + var_r8));
+                sub_08001718(0, 160, 2, (struct BgOffset *)REG_BG0HOFS + var_r8);
 
                 temp_r2_2 = sub_080009E4(gEwramData->unk_0 << 8) >> 0xF;
                 for (var_r1_6 = 0; var_r1_6 < 160; var_r1_6++)
@@ -729,8 +729,8 @@ void sub_0800D288(void)
                 sub_0803FBBC(var_r8, sp2C, sp30);
                 temp_sl = gEwramData->unk_60.unk_4C8;
                 var_1 = &gDisplayRegisters.bgOfs[var_r8].vOfs;
-                var_r4_2 = (s16*)&gEwramData->unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
-                sub_08001718(0, 160, 2, (s32)((struct BgOffset *)REG_BG0VOFS + var_r8));
+                var_r4_2 = (s16*)&gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
+                sub_08001718(0, 160, 2, (struct BgOffset *)REG_BG0VOFS + var_r8);
 
                 var_r2_3 = 0xE;
                 temp_sl <<= 0xA;
@@ -2164,7 +2164,7 @@ void sub_0800EBE0(void)
     }
 
     gEwramData->unk_7864.unk_7864_1 = 1;
-    DMA_FILL_32(3, 0, &gEwramData->unk_786C, sizeof(gEwramData->unk_786C[0]));
+    DMA_FILL_32(3, 0, &gEwramData->unk_7864.unk_786C, sizeof(gEwramData->unk_7864.unk_786C[0]));
 }
 
 /**

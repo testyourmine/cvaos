@@ -1067,7 +1067,7 @@ void sub_08007204(struct EwramData_unk4E4 *param_0, s32 param_1)
     if (param_0->unk_4EF == 0)
     {
         sub_0804066C(0, 1);
-        var_r3 = &gEwramData->unk_786C[1 - gEwramData->unk_7864.unk_7864_3][0x18];
+        var_r3 = &gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3][0x18];
         
         if (param_0->unk_4F4.unk_4F4_8.unk_4F4 != 0)
         {
@@ -1161,7 +1161,7 @@ void sub_0800737C(struct EwramData_unk4E4 *param_0, s32 param_1, s32 param_2)
         param_0->unk_4F4.unk_4F4_8.unk_4F4 = 1;
     }
 
-    var_r1 = &gEwramData->unk_786C[1 - gEwramData->unk_7864.unk_7864_3][0x18];
+    var_r1 = &gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3][0x18];
     if (param_0->unk_4F4.unk_4F4_8.unk_4F4 == 0)
     {
         var_r2 = 0x88;
@@ -1187,7 +1187,7 @@ void sub_0800744C(struct EwramData_unk4E4 *param_0)
 {
     sub_0803F8A8(1, (u32 *)0x080E7314, 0, 0);
     sub_0803F8A8(2, (u32 *)0x080E7044, 0, 0);
-    sub_08001718(0xA0, 0x68, 2, (u32)REG_BG1VOFS);
+    sub_08001718(160, 104, 2, REG_BG1VOFS);
 
     param_0->unk_4F8.unk_4F8_8.unk_4F9 = 0;
     if ((sub_08013700(1, 1) != 0) && (gEwramData->unk_20[1].unk_38 != 0))
@@ -1461,12 +1461,12 @@ void sub_08007820(struct EwramData_unk4E4 *param_0)
     param_0->unk_4F8.unk_4F8_8.unk_4F9 = param_0->unk_4F4.unk_4F4_8.unk_4F6;
     sub_0803F8A8(1, (u32*)&sUnk_080E7284, 0, 0);
     sub_0803F8A8(2, (u32*)&sUnk_080E6FB4, 0, 0);
-    sub_08001718(0xA0, 0x98, 2, (u32)REG_BG1VOFS);
+    sub_08001718(160, 152, 2, REG_BG1VOFS);
     sub_0800737C(param_0, param_0->unk_4F4.unk_4F4_8.unk_4F6, param_0->unk_4F4.unk_4F4_8.unk_4F7);
     sub_0804728C(0x358);
     param_0->unk_4EE = 4;
     param_0->unk_4F0 = 0;
-    var_r3 = &gEwramData->unk_786C[1 - gEwramData->unk_7864.unk_7864_3][0x18];
+    var_r3 = &gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3][0x18];
     if (param_0->unk_4F4.unk_4F4_8.unk_4F4 == 0)
     {
         var_r4 = 0x88;
@@ -1621,7 +1621,7 @@ s32 sub_08007914(struct EwramData_unk4E4 *param_0)
         }
         sub_0800737C(param_0, param_0->unk_4F4.unk_4F4_8.unk_4F6, param_0->unk_4F4.unk_4F4_8.unk_4F7);
     }
-    var_r1 = &gEwramData->unk_786C[1 - gEwramData->unk_7864.unk_7864_3][0x18];
+    var_r1 = &gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3][0x18];
     if (param_0->unk_4F4.unk_4F4_8.unk_4F4 == 0)
     {
         var_r2 = 0x88;
@@ -1747,7 +1747,7 @@ s32 sub_08007B8C(struct EwramData_unk4E4 *param_0)
             sub_08007204(param_0, param_0->unk_4F8.unk_4F8_8.unk_4F9);
         }
     }
-    var_r1 = &gEwramData->unk_786C[1 - gEwramData->unk_7864.unk_7864_3][0x18];
+    var_r1 = &gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3][0x18];
     if (param_0->unk_4F4.unk_4F4_8.unk_4F4 != 0)
     {
         var_r2 = 0x88;
@@ -1800,7 +1800,7 @@ void sub_08007D84(struct EwramData_unk4E4 *param_0, s32 param_1)
     if (param_0->unk_4EF == 0)
     {
         sub_0804066C(0, 1);
-        var_r1_2 = &gEwramData->unk_786C[1 - gEwramData->unk_7864.unk_7864_3][0x18];
+        var_r1_2 = &gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3][0x18];
         
         if (param_0->unk_4F4.unk_4F4_8.unk_4F4 != 0)
         {
@@ -1948,7 +1948,7 @@ void sub_08007FF0(struct EwramData_unk4E4 *param_0)
     sub_0803F8A8(1, (u32 *)0x080E7314, 0, 0);
     sub_08006BC0(param_0);
     sub_08007EE0(0);
-    sub_08001718(0xA0, 0x68, 2, 0x04000016);
+    sub_08001718(160, 104, 2, REG_BG1VOFS);
     param_0->unk_4F8.unk_4F8_8.unk_4F9 = 0;
     sub_08007D84(param_0, 0);
     param_0->unk_4EE = 7;
@@ -2063,7 +2063,7 @@ void sub_08008290(struct EwramData_unk4E4 *param_0)
     }
     sub_0803F8A8(1, (u32 *)&sUnk_080E71F4, 0, 0);
     sub_0803F8A8(2, (u32 *)&sUnk_080E6E04, 0, 0);
-    sub_08001718(0xA0, 0x98, 2, (u32)REG_BG1VOFS);
+    sub_08001718(160, 152, 2, REG_BG1VOFS);
     sub_08007204(param_0, param_0->unk_4F8.unk_4F8_8.unk_4F9);
     sub_0804728C(0x35A);
     param_0->unk_4EE = 5;
@@ -2104,8 +2104,8 @@ void sub_08008324(struct EwramData_unk4E4 *param_0)
 
     sub_0803F8A8(1, (u32 *)0x080E70D4, 0, 0);
     sub_0803F8A8(2, (u32 *)0x080E6E94, 0, 0);
-    sub_08001718(0xA0, 0x10, 2, (u32)REG_BG1VOFS);
-    var_r2 = &gEwramData->unk_786C[1 - gEwramData->unk_7864.unk_7864_3][0];
+    sub_08001718(160, 16, 2, REG_BG1VOFS);
+    var_r2 = &gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3][0];
     if (param_0->unk_4EF != 0)
     {
         var_r3 = 0xA0;

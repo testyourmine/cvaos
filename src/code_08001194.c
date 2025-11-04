@@ -396,26 +396,24 @@ s32 sub_080016D0(u32 arg0, u32 *arg1, u32 *arg2)
  * @brief 1718 | To document
  * 
  * @param arg0 To document
- * @param arg1 To document
- * @param arg2 To document
- * @param arg3 To document
+ * @param vcountSetting Target V-Counter value
+ * @param writeSize Amount of bytes to write to
+ * @param destReg The register to write to
  */
-void sub_08001718(u8 arg0, u8 arg1, u8 arg2, s32 arg3)
+void sub_08001718(u8 arg0, u8 vcountSetting, u8 writeSize, void *destReg)
 {
-    struct EwramData *var_1;
     struct EwramData_unk7864 *var_0;
 
-    var_1 = gEwramData;
-    var_0 = &var_1->unk_7864;
-    var_0->unk_7865 = arg1;
-    var_0->unk_7866 = arg2;
-    var_0->unk_7868 = arg3;
+    var_0 = &gEwramData->unk_7864;
+
+    var_0->vcountSetting = vcountSetting;
+    var_0->writeSize = writeSize;
+    var_0->destReg = destReg;
 
     if (arg0 != 0)
     {
-        // TODO: does struct EwramData_unk7864 have more members?
-        DMA_FILL_16(3, 0, &var_1->unk_786C[0], (arg0 * arg2));
-        DMA_FILL_16(3, 0, &var_1->unk_786C[1], (arg0 * arg2));
+        DMA_FILL_16(3, 0, &var_0->unk_786C[0], (arg0 * writeSize));
+        DMA_FILL_16(3, 0, &var_0->unk_786C[1], (arg0 * writeSize));
     }
 }
 
@@ -1416,7 +1414,7 @@ s16 sub_08002140(s32 param_0, s32 param_1, s32 param_2)
  */
 s16 sub_08002188(struct EwramData_unk4E4 *param_0)
 {
-    return gEwramData->unk_A078[1].unk_A094.unk_A098.unk_0_0.unk[1] + (s16)param_0->unk_524.unk_524_16.unk_526;
+    return gEwramData->unk_A078[1].unk_A094.unk_A098.unk_0_0.unk_A09A + (s16)param_0->unk_524.unk_524_16.unk_526;
 }
 
 /**
@@ -1427,7 +1425,7 @@ s16 sub_08002188(struct EwramData_unk4E4 *param_0)
  */
 s16 sub_080021A8(struct EwramData_unk4E4 *param_0)
 {
-    return gEwramData->unk_A078[1].unk_A094.unk_A098.unk_0_0.unk[3] + param_0->unk_528.unk_528_16.unk_52A;
+    return gEwramData->unk_A078[1].unk_A094.unk_A098.unk_0_0.unk_A09E + param_0->unk_528.unk_528_16.unk_52A;
 }
 
 /**
@@ -1438,7 +1436,7 @@ s16 sub_080021A8(struct EwramData_unk4E4 *param_0)
  */
 u32 sub_080021C8(struct EwramData_unk4E4 *param_0)
 {
-    return gEwramData->unk_A078[1].unk_A094.unk_A098.unk_1_1.unk[0] + param_0->unk_524.unk_524_32;
+    return gEwramData->unk_A078[1].unk_A094.unk_A098.unk_1_1.unk_A098 + param_0->unk_524.unk_524_32;
 }
 
 /**
@@ -1449,7 +1447,7 @@ u32 sub_080021C8(struct EwramData_unk4E4 *param_0)
  */
 u32 sub_080021E4(struct EwramData_unk4E4 *param_0)
 {
-    return gEwramData->unk_A078[1].unk_A094.unk_A098.unk_1_1.unk[1] + param_0->unk_528.unk_528_32;
+    return gEwramData->unk_A078[1].unk_A094.unk_A098.unk_1_1.unk_A09C + param_0->unk_528.unk_528_32;
 }
 
 void sub_08002200(s32 arg0, s32 arg1)
@@ -1562,7 +1560,7 @@ void sub_08002324(s16 param_0, s16 param_1, s16 param_2)
     u16 var_0;
     u16 var_1;
     
-    var_r5 = (s16*)&gEwramData->unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
+    var_r5 = (s16*)&gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
 
     var_r0 = param_1 - param_2;
     if (var_r0 < 0)
@@ -1610,7 +1608,7 @@ void sub_08002324(s16 param_0, s16 param_1, s16 param_2)
 void sub_08002400(void)
 {
     gUnk_03002CB0.dispCnt |= DCNT_WIN1;
-    sub_08001718(0xA0, 0x9F, 2, (u32)REG_WIN1H);
+    sub_08001718(160, 159, 2, REG_WIN1H);
 }
 
 /**

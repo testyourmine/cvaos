@@ -747,9 +747,9 @@ void sub_08002F44(s32 arg0)
     u16 var_r0;
     u16 var_r1;
 
-    var_r6 = gEwramData->unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
+    var_r6 = gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
     var_r4 = gEwramData->unk_0 << 0xA;
-    sub_08001718(0, 0x78, 2, (u32)REG_BG1HOFS);
+    sub_08001718(0, 120, 2, REG_BG1HOFS);
     
     for (var_r5 = 0; var_r5 < 0x78; var_r5++)
     {
@@ -2165,7 +2165,7 @@ void sub_08004750(void)
     s32 var_r7;
     u16 temp_r8;
 
-    var_r5 = (s16*)&gEwramData->unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
+    var_r5 = (s16*)&gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
     var_r4 = gEwramData->unk_0 << 0xA;
 
     // Fake
@@ -2173,7 +2173,7 @@ void sub_08004750(void)
     var_r4 <<= 0xA;
 
     temp_r8 = gDisplayRegisters.bgOfs[2].vOfs;
-    sub_08001718(0, 0xA0, 2, (u32)REG_BG2HOFS); 
+    sub_08001718(0, 160, 2, REG_BG2HOFS); 
 
     for (var_r6 = 0, var_r7 = 2; var_r6 < 0xA0; var_r6 += 1, var_r7 += 3)
     {

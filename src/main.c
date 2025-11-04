@@ -33,17 +33,12 @@ extern void _intr_main(void);
  */
 void AgbMain(void)
 {
-    u32 var_0;
-    u8 var_1;
-    u8 *var_2;
-    u8 var_3;
-    u32 var_4;
-    u8 var_5;
-    u8 var_6;
     struct EwramData_unk7864 *unk_7864;
 
     unk_7864 = &gEwramData->unk_7864;
+
     InitializeGame();
+
     for (;;)
     {
         sub_080006CC();
@@ -56,19 +51,19 @@ void AgbMain(void)
             {
                 if (gEwramData->unk_A074_1)
                 {
-                    gEwramData->unk_A074_0 = gEwramData->unk_A074_0 ^ 1;
+                    gEwramData->unk_A074_0 ^= 1;
                 }
             }
 
             GameModeUpdate();
             sub_0803DF70();
-            gEwramData->unk_0 = gEwramData->unk_0 + 1;
+            gEwramData->unk_0 += 1;
             sub_08000424();
             sub_0803CDDC();
 
             if (unk_7864->unk_7864_0)
             {
-                unk_7864->unk_7864_3 = unk_7864->unk_7864_3 ^ 1;
+                unk_7864->unk_7864_3 ^= 1;
                 unk_7864->unk_7864_2 = 1;
                 unk_7864->unk_7864_1 = 0;
                 unk_7864->unk_7864_0 = 0;
@@ -88,8 +83,7 @@ void AgbMain(void)
 
             if (unk_7864->unk_7864_2)
             {
-                // TODO: What is happening in source
-                DMA_COPY_16(3, ((unk_7864->unk_7864_3 * 0x140) + 1 + unk_7864), unk_7864->unk_7868, unk_7864->unk_7866);
+                DMA_COPY_16(3, &unk_7864->unk_786C[unk_7864->unk_7864_3], unk_7864->destReg, unk_7864->writeSize);
             }
 
             sub_080015E4();
@@ -118,10 +112,11 @@ void VblankInterrupt(void)
     if (unk_7864->unk_7864_2)
     {
         DMA_STOP(0);
-        // TODO: What is happening in source?
-        DMA_SET(0, ((unk_7864->unk_7864_3 * 0xA00) + 8 + (u8*)unk_7864 + ((unk_7864->unk_7866 >> 1) << 1)), unk_7864->unk_7868, C_32_2_16(DMA_ENABLE | DMA_START_HBLANK | DMA_REPEAT | DMA_DEST_FIXED | DMA_DEST_DEC, unk_7864->unk_7866 / sizeof(u16)));
+        DMA_SET(0, &unk_7864->unk_786C[unk_7864->unk_7864_3][unk_7864->writeSize >> 1], unk_7864->destReg,
+            C_32_2_16(DMA_ENABLE | DMA_START_HBLANK | DMA_16BIT | DMA_REPEAT | DMA_SRC_INC | DMA_DEST_RELOAD, unk_7864->writeSize / sizeof(u16)));
+
         gUnk_03002CB0.unk_2 = 2;
-        WRITE_16(REG_DISPSTAT, C_16_2_8(unk_7864->unk_7865, 0x28));
+        WRITE_16(REG_DISPSTAT, C_16_2_8(unk_7864->vcountSetting, DSTAT_IF_VCOUNT | DSTAT_IF_VBLANK));
     }
 
     INTR_CHECK |= IF_VBLANK;

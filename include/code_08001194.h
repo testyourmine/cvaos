@@ -13,7 +13,7 @@ u16* sub_08001580(u8 param_0, u8 param_1, u8* param_2, u32 param_3);
 void sub_080015E4(void);
 struct Unk_030034BC* sub_08001668(u16 arg0, s32 arg1, u32 *arg2);
 s32 sub_080016D0(u32 arg0, u32 *arg1, u32 *arg2);
-void sub_08001718(u8 arg0, u8 arg1, u8 arg2, s32 arg3);
+void sub_08001718(u8 arg0, u8 vcountSetting, u8 writeSize, void *destReg);
 s32 sub_08001780(s32 param_0, s32 param_1);
 s32 sub_08001800(struct EwramData_unkA094_0 *param_0, u16 param_1, u16 param_2);
 s32 sub_08001894(s32 param_0, s32 param_1);

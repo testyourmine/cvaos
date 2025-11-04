@@ -18,11 +18,12 @@ struct EwramData_unk7864 {
     /* 0x07864 */ u8 unk_7864_1:1;
     /* 0x07864 */ u8 unk_7864_2:1;
     /* 0x07864 */ u16 unk_7864_3:1;
-    /* 0x07865 */ u8 unk_7865;
-    /* 0x07866 */ u8 unk_7866;
-    /* 0x07867 */ u8 unk_7867;
-    /* 0x07868 */ u32 unk_7868;
-};
+    /* 0x07865 */ u8 vcountSetting;
+    /* 0x07866 */ u8 writeSize;
+    /* 0x07867 */ u8 pad_7867[0x07868 - 0x07867];
+    /* 0x07868 */ void *destReg;
+    /* 0x0786C */ s16 unk_786C[2][0x500];
+}; /* size = 0x1408 */
 
 struct EwramData_unk4F8_8 {
     s8 unk_4F8;
@@ -316,22 +317,33 @@ union EwramDataUnion_unkA094 {
     struct EwramData_unkA094_2 *unk_A094_2;
 };
 
-struct EwramData_unk_0_0 {
-    s16 unk[4];
+struct EwramData_unkA098_0 {
+    s16 unk_A098;
+    s16 unk_A09A;
+    s16 unk_A09C;
+    s16 unk_A09E;
 };
 
-struct EwramData_unk_0_1 {
-    s32 unk[2];
+struct EwramData_unkA098_1 {
+    s32 unk_A098;
+    s32 unk_A09C;
 };
 
-struct EwramData_unk_0_2 {
-    s8 unk[8];
+struct EwramData_unkA098_2 {
+    s8 unk_A098;
+    s8 unk_A099;
+    s8 unk_A09A;
+    s8 unk_A09B;
+    s8 unk_A09C;
+    s8 unk_A09D;
+    s8 unk_A09E;
+    s8 unk_A09F;
 };
 
-union EwramData_unk_0 {
-    struct EwramData_unk_0_0 unk_0_0;
-    struct EwramData_unk_0_1 unk_1_1;
-    struct EwramData_unk_0_2 unk_0_2;
+union EwramData_unkA098 {
+    struct EwramData_unkA098_0 unk_0_0;
+    struct EwramData_unkA098_1 unk_1_1;
+    struct EwramData_unkA098_2 unk_0_2;
 };
 
 struct EwramData_unkA078_0 {
@@ -349,7 +361,7 @@ struct EwramData_unkA078_0 {
 
 struct EwramData_unkA094 {
     union EwramDataUnion_unkA094 unk_A094;
-    union EwramData_unk_0 unk_A098;
+    union EwramData_unkA098 unk_A098; // TODO: make A098 and A09C their own unions
     u8 pad_A0A0[0xA0A8 - 0xA0A0];
     u16 unk_A0A8;
     u16 unk_A0AA;
@@ -607,9 +619,9 @@ struct EwramData {
     /* 0x004E2 */ u16 unk_4E2;
     /* 0x004E4 */ struct EwramData_unk4E4 unk_4E4[0xD0];
     /* 0x07024 */ struct EwramData_unk4E4 unk_7024[0x10];
+
     /* 0x07864 */ struct EwramData_unk7864 unk_7864;
-    /* 0x0786C */ s16 unk_786C[2][0x500]; // TODO: probably part of EwramData_unk7864
-    /* 0x08C6C */ u8 unk_8C6C[0x1408]; // TODO: probably a backup of EwramData_unk7864
+    /* 0x08C6C */ struct EwramData_unk7864 unk_8C6C; // TODO: probably a backup of unk_7864
 
     /* 0x0A074 */ u8 unk_A074_0:1;
     /* 0x0A074 */ u8 unk_A074_1:1;
