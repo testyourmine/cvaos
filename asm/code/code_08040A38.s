@@ -26491,7 +26491,7 @@ sub_0804D9DC: @ 0x0804D9DC
 	movs r1, #0x20
 _0804DA4A:
 	movs r0, #1
-	bl sub_080009A0
+	bl SetPlayerInput
 	b _0804DAA8
 	.align 2, 0
 _0804DA54: .4byte gEwramData
@@ -26695,7 +26695,7 @@ _0804DBC2:
 _0804DBD0:
 	movs r0, #1
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldr r1, [r5]
 	ldr r2, _0804DBFC @ =0x0000042C
 	adds r1, r1, r2
@@ -26717,7 +26717,7 @@ _0804DC04: .4byte 0x00000115
 _0804DC08:
 	movs r0, #1
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldr r0, [r7, #0x14]
 	movs r3, #0x80
 	lsls r3, r3, #1
@@ -26773,7 +26773,7 @@ _0804DC74:
 	movs r1, #0x10
 _0804DC82:
 	movs r0, #1
-	bl sub_080009A0
+	bl SetPlayerInput
 	b _0804DD6C
 _0804DC8A:
 	movs r0, #0
@@ -26787,7 +26787,7 @@ _0804DC8A:
 	movs r1, #0x20
 _0804DC9E:
 	movs r0, #1
-	bl sub_080009A0
+	bl SetPlayerInput
 	cmp r4, #0
 	bne _0804DD6C
 	movs r0, #0x8a
@@ -26802,7 +26802,7 @@ _0804DCB0:
 _0804DCB8:
 	movs r0, #1
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldr r0, [r7, #0x14]
 	ldr r3, _0804DD2C @ =0xFFFFFE60
 	adds r0, r0, r3
@@ -26862,7 +26862,7 @@ _0804DD3C: .4byte 0x0000A094
 _0804DD40:
 	movs r0, #1
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldr r0, _0804DD78 @ =gEwramData
 	ldr r1, [r0]
 	ldr r4, _0804DD7C @ =0x0000042C
@@ -27250,7 +27250,7 @@ _0804E018:
 	strb r0, [r6, #0xa]
 	movs r0, #1
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	bl sub_080235C8
 	ldr r0, [r4]
 	ldr r2, _0804E080 @ =0x00013110
@@ -27616,7 +27616,7 @@ _0804E360:
 	movs r1, #0x10
 _0804E36A:
 	movs r0, #1
-	bl sub_080009A0
+	bl SetPlayerInput
 	b _0804E488
 _0804E372:
 	ldrb r0, [r6, #0x1a]
@@ -27626,7 +27626,7 @@ _0804E372:
 	movs r1, #0x20
 _0804E37C:
 	movs r0, #1
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldr r4, _0804E3F0 @ =gEwramData
 	ldr r0, [r4]
 	ldr r1, _0804E3F4 @ =0x00013110
@@ -27685,7 +27685,7 @@ _0804E3F8: .4byte 0x0000A094
 _0804E3FC:
 	movs r0, #1
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldr r0, [r6, #0x14]
 	subs r0, #1
 	str r0, [r6, #0x14]
@@ -27923,7 +27923,7 @@ _0804E596:
 	movs r1, #0x20
 _0804E5CE:
 	movs r0, #1
-	bl sub_080009A0
+	bl SetPlayerInput
 _0804E5D4:
 	movs r7, #0
 	ldrsh r2, [r4, r7]
@@ -27995,7 +27995,7 @@ _0804E648:
 	movs r1, #0x20
 _0804E65C:
 	movs r0, #1
-	bl sub_080009A0
+	bl SetPlayerInput
 	movs r0, #1
 	strb r0, [r6, #0xa]
 	b _0804E762
@@ -28011,7 +28011,7 @@ _0804E670:
 	movs r1, #0x20
 _0804E67C:
 	movs r0, #1
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldrb r0, [r6, #0xd]
 	cmp r0, #0
 	beq _0804E68E
@@ -28040,7 +28040,7 @@ _0804E694:
 	movs r1, #0x20
 _0804E6B2:
 	movs r0, #1
-	bl sub_080009A0
+	bl SetPlayerInput
 _0804E6B8:
 	ldr r0, [r6, #0x14]
 	cmp r0, #0
@@ -28118,7 +28118,7 @@ _0804E750:
 	movs r1, #0x20
 _0804E75C:
 	movs r0, #1
-	bl sub_080009A0
+	bl SetPlayerInput
 _0804E762:
 	add sp, #4
 	pop {r3}
@@ -28217,7 +28217,7 @@ _0804E80E:
 	strb r0, [r6, #0xa]
 	movs r0, #1
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	bl sub_080235C8
 	ldr r0, _0804E848 @ =gEwramData
 	ldr r0, [r0]
@@ -28551,7 +28551,7 @@ _0804EAE8:
 	movs r1, #0x10
 _0804EAF2:
 	movs r0, #1
-	bl sub_080009A0
+	bl SetPlayerInput
 	b _0804EC24
 _0804EAFA:
 	ldrb r0, [r6, #0x1a]
@@ -28561,7 +28561,7 @@ _0804EAFA:
 	movs r1, #0x20
 _0804EB04:
 	movs r0, #1
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldrb r0, [r6, #0x1a]
 	cmp r0, #0
 	bne _0804EB38
@@ -28642,7 +28642,7 @@ _0804EBA4: .4byte 0x0000A094
 _0804EBA8:
 	movs r0, #1
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldr r0, [r6, #0x14]
 	subs r0, #1
 	str r0, [r6, #0x14]
@@ -28773,7 +28773,7 @@ _0804ECA8:
 	strb r0, [r6, #0xa]
 	movs r0, #1
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	b _0804ED28
 	.align 2, 0
 _0804ECBC: .4byte gDisplayRegisters
@@ -29070,7 +29070,7 @@ _0804EF14:
 	movs r1, #0x20
 _0804EF20:
 	movs r0, #1
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldrb r0, [r7, #0xd]
 	cmp r0, #0
 	beq _0804EF32
@@ -29099,7 +29099,7 @@ _0804EF38:
 	movs r1, #0x20
 _0804EF56:
 	movs r0, #1
-	bl sub_080009A0
+	bl SetPlayerInput
 _0804EF5C:
 	ldr r0, [r7, #0x14]
 	cmp r0, #0
@@ -29174,7 +29174,7 @@ _0804EFE8:
 	movs r1, #0x20
 _0804EFF4:
 	movs r0, #1
-	bl sub_080009A0
+	bl SetPlayerInput
 _0804EFFA:
 	add sp, #8
 	pop {r3, r4, r5}

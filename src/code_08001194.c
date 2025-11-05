@@ -112,17 +112,15 @@ u16* sub_0800125C(u16 param_0, u16 param_1, u8 param_2, u8 *param_3)
 
     var_r2 = param_2 << 0xC;
     var_r3 = (u16*)gEwramData->unk_133F4;
-    var_r4 = 0;
-    while (param_3[var_r4] != 0)
+    
+    for (var_r4 = 0; param_3[var_r4] != 0; var_r4++)
     {
         tmp4 = var_r2;
         if (!(param_2 & 0xF0))
         {
             tmp4 |= param_3[var_r4] + 0x300;
         }
-        *var_r3 = tmp4;
-        var_r3++;
-        var_r4++;
+        *var_r3++ = tmp4;
     }
 
     tmp = (u32)(VRAM_BASE + 0xE000) + (param_0 * 2) + ((gDisplayRegisters.bgCnt[0] & (BGCNT_SIZE_512x256 << BGCNT_SCREEN_SIZE_SHIFT)) ? (param_1 << 7) : (param_1 << 6));
@@ -243,17 +241,15 @@ u16* sub_0800148C(u16 param_0, u16 param_1, u8 param_2, u8 *param_3)
 
     var_r2 = param_2 << 0xC;
     var_r3 = (u16*)gEwramData->unk_133F4;
-    var_r4 = 0;
-    while (param_3[var_r4] != 0)
+
+    for (var_r4 = 0; param_3[var_r4] != 0; var_r4++)
     {
         tmp4 = var_r2;
         if (!(param_2 & 0xF0))
         {
             tmp4 |= param_3[var_r4] + 0x300;
         }
-        *var_r3 = tmp4;
-        var_r3++;
-        var_r4++;
+        *var_r3++ = tmp4;
     }
 
     tmp = (u32)(VRAM_BASE + 0xE000) + (param_0 * 2) + ((gDisplayRegisters.bgCnt[0] & (BGCNT_SIZE_512x256 << BGCNT_SCREEN_SIZE_SHIFT)) ? (param_1 << 7) : (param_1 << 6));
@@ -771,6 +767,7 @@ s16 sub_08001B40(u8 arg0, s16 arg1)
     s32 var_0;
 
     var_r1 = (arg0 & 0x30) >> 3;
+
     if (arg0 & 0xC0)
     {
         if (arg0 & 2)
@@ -886,11 +883,11 @@ u8 sub_08001BA0(u8 param_0, s16 param_1)
 /**
  * @brief 1C1C | To document
  * 
- * @param arg0 To document
- * @param arg1 To document
+ * @param param_0 To document
+ * @param param_1 To document
  * @return s16 To document
  */
-s16 sub_08001C1C(s32 arg0, s32 arg1)
+s16 sub_08001C1C(s32 param_0, s32 param_1)
 {
     s16 var_r1;
     s16 var_r5;
@@ -900,7 +897,7 @@ s16 sub_08001C1C(s32 arg0, s32 arg1)
 
     for (var_r5 = 0; var_r5 < 9;)
     {
-        temp_r2 = sub_08001A00(arg0, arg1);
+        temp_r2 = sub_08001A00(param_0, param_1);
 
         if (var_r5 == 0)
         {
@@ -912,9 +909,9 @@ s16 sub_08001C1C(s32 arg0, s32 arg1)
 
         if (temp_r2 == 0xFF)
         {
-            var_r1 = 0x10 - (arg1 & 0xF);
+            var_r1 = 0x10 - (param_1 & 0xF);
             var_r5 += var_r1;
-            arg1 += var_r1;
+            param_1 += var_r1;
             continue;
         }
 
@@ -936,7 +933,7 @@ s16 sub_08001C1C(s32 arg0, s32 arg1)
 
         if (var_r0_2 == 2)
         {
-            var_r5 += 1 - (arg1 & 7) + sub_08001B40(temp_r2, arg0);
+            var_r5 += 1 - (param_1 & 7) + sub_08001B40(temp_r2, param_0);
 
             if (var_r5 < 0)
             {
@@ -945,9 +942,9 @@ s16 sub_08001C1C(s32 arg0, s32 arg1)
             break;
         }
 
-        var_r1 = 8 - (arg1 & 7);
+        var_r1 = 8 - (param_1 & 7);
         var_r5 += var_r1;
-        arg1 += var_r1;
+        param_1 += var_r1;
     }
     return var_r5;
 }
@@ -960,7 +957,7 @@ s16 sub_08001C1C(s32 arg0, s32 arg1)
  * @param arg2 To document
  * @return s16 To document
  */
-s16 sub_08001CCC(s32 arg0, s32 arg1, u32 arg2)
+s16 sub_08001CCC(s32 param_0, s32 param_1, s32 param_2)
 {
     s16 var_r1;
     s16 var_r5;
@@ -971,22 +968,22 @@ s16 sub_08001CCC(s32 arg0, s32 arg1, u32 arg2)
 
     for (var_r5 = 0; var_r5 < 9;)
     {
-        temp_r2 = sub_08001A00(arg0, arg1);
+        temp_r2 = sub_08001A00(param_0, param_1);
 
         if (var_r5 == 0)
         {
             gUnk_03002CB0.unk_100D = temp_r2;
         }
 
-        temp_r2 = sub_08001BA0(temp_r2, arg2);
+        temp_r2 = sub_08001BA0(temp_r2, param_2);
         if ((temp_r2 & 2) == 0)
             break;
 
         if (temp_r2 == 0xFF)
         {
-            var_r1 = 0x10 - (arg1 & 0xF);
+            var_r1 = 0x10 - (param_1 & 0xF);
             var_r5 += var_r1;
-            arg1 += var_r1;
+            param_1 += var_r1;
             continue;
         }
 
@@ -1008,7 +1005,7 @@ s16 sub_08001CCC(s32 arg0, s32 arg1, u32 arg2)
 
         if (var_r0_2 == 2)
         {
-            var_r5 += 1 - (arg1 & 7) + sub_08001B40(temp_r2, arg0);
+            var_r5 += 1 - (param_1 & 7) + sub_08001B40(temp_r2, param_0);
 
             if (var_r5 < 0)
             {
@@ -1017,9 +1014,9 @@ s16 sub_08001CCC(s32 arg0, s32 arg1, u32 arg2)
             break;
         }
 
-        var_r1 = 8 - (arg1 & 7);
+        var_r1 = 8 - (param_1 & 7);
         var_r5 += var_r1;
-        arg1 += var_r1;
+        param_1 += var_r1;
     }
     return var_r5;
 }
@@ -1027,11 +1024,11 @@ s16 sub_08001CCC(s32 arg0, s32 arg1, u32 arg2)
 /**
  * @brief 1D94 | To document
  * 
- * @param arg0 To document
- * @param arg1 To document
+ * @param param_0 To document
+ * @param param_1 To document
  * @return s16 To document
  */
-s16 sub_08001D94(s32 arg0, s32 arg1)
+s16 sub_08001D94(s32 param_0, s32 param_1)
 {
     s16 var_r1;
     s16 var_r5;
@@ -1041,7 +1038,7 @@ s16 sub_08001D94(s32 arg0, s32 arg1)
 
     for (var_r5 = 0; var_r5 >= -8;)
     {
-        temp_r2 = sub_08001A00(arg0, arg1);
+        temp_r2 = sub_08001A00(param_0, param_1);
 
         if (var_r5 == 0)
         {
@@ -1053,9 +1050,9 @@ s16 sub_08001D94(s32 arg0, s32 arg1)
 
         if (temp_r2 == 0xFF)
         {
-            var_r1 = -(arg1 & 0xF) - 1;
+            var_r1 = -(param_1 & 0xF) - 1;
             var_r5 += var_r1;
-            arg1 += var_r1;
+            param_1 += var_r1;
             continue;
         }
 
@@ -1077,7 +1074,7 @@ s16 sub_08001D94(s32 arg0, s32 arg1)
 
         if (var_r0_2 == 1)
         {
-            var_r5 += -(arg1 & 7) - 1 + sub_08001B40(temp_r2, arg0);
+            var_r5 += -(param_1 & 7) - 1 + sub_08001B40(temp_r2, param_0);
 
             if (var_r5 > 0)
             {
@@ -1086,9 +1083,9 @@ s16 sub_08001D94(s32 arg0, s32 arg1)
             break;
         }
 
-        var_r1 = -(arg1 & 7) - 1;
+        var_r1 = -(param_1 & 7) - 1;
         var_r5 += var_r1;
-        arg1 += var_r1;
+        param_1 += var_r1;
     }
     return var_r5;
 }
@@ -1096,12 +1093,12 @@ s16 sub_08001D94(s32 arg0, s32 arg1)
 /**
  * @brief 1E58 | To document
  * 
- * @param arg0 To document
- * @param arg1 To document
- * @param arg2 To document
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
  * @return s16 To document
  */
-s16 sub_08001E58(s32 arg0, s32 arg1, u32 arg2)
+s16 sub_08001E58(s32 param_0, s32 param_1, s32 param_2)
 {
     s16 var_r1;
     s16 var_r5;
@@ -1112,22 +1109,22 @@ s16 sub_08001E58(s32 arg0, s32 arg1, u32 arg2)
 
     for (var_r5 = 0; var_r5 >= -8;)
     {
-        temp_r2 = sub_08001A00(arg0, arg1);
+        temp_r2 = sub_08001A00(param_0, param_1);
 
         if (var_r5 == 0)
         {
             gUnk_03002CB0.unk_100D = temp_r2;
         }
 
-        temp_r2 = sub_08001BA0(temp_r2, arg2);
+        temp_r2 = sub_08001BA0(temp_r2, param_2);
         if ((temp_r2 & 1) == 0)
             break;
 
         if (temp_r2 == 0xFF)
         {
-            var_r1 = ~(arg1 & 0xF);
+            var_r1 = ~(param_1 & 0xF);
             var_r5 += var_r1;
-            arg1 += var_r1;
+            param_1 += var_r1;
             continue;
         }
 
@@ -1149,7 +1146,7 @@ s16 sub_08001E58(s32 arg0, s32 arg1, u32 arg2)
 
         if (var_r0_2 == 1)
         {
-            var_r5 += -(arg1 & 7) - 1 + sub_08001B40(temp_r2, arg0);
+            var_r5 += -(param_1 & 7) - 1 + sub_08001B40(temp_r2, param_0);
 
             if (var_r5 > 0)
             {
@@ -1158,9 +1155,9 @@ s16 sub_08001E58(s32 arg0, s32 arg1, u32 arg2)
             break;
         }
 
-        var_r1 = -(arg1 & 7) - 1;
+        var_r1 = -(param_1 & 7) - 1;
         var_r5 += var_r1;
-        arg1 += var_r1;
+        param_1 += var_r1;
     }
     return var_r5;
 }
@@ -1168,11 +1165,11 @@ s16 sub_08001E58(s32 arg0, s32 arg1, u32 arg2)
 /**
  * @brief 1F3C | To document
  * 
- * @param arg0 To document
- * @param arg1 To document
+ * @param param_0 To document
+ * @param param_1 To document
  * @return s16 To document
  */
-s16 sub_08001F3C(s32 arg0, s32 arg1)
+s16 sub_08001F3C(s32 param_0, s32 param_1)
 {
     s16 var_r5;
     u32 var_r0_2;
@@ -1182,87 +1179,80 @@ s16 sub_08001F3C(s32 arg0, s32 arg1)
     u32 var_3;
     u32 var_4;
 
-    for (var_r5 = 0; ;)
+    var_r5 = 0;
+
+    temp_r2 = sub_08001A00(param_0, param_1);
+
+    if (temp_r2 & 0xC0)
     {
-        temp_r2 = sub_08001A00(arg0, arg1);
-    
-        if (temp_r2 & 0xC0)
+        if (temp_r2 & 2)
         {
-            if (temp_r2 & 2)
-            {
-                var_r0_2 = 2;
-            }
-            else
-            {
-                var_r0_2 = 1;
-            }
+            var_r0_2 = 2;
         }
         else
         {
-            var_r0_2 = 0;
+            var_r0_2 = 1;
         }
-        var_3 = var_r0_2;
-    
-        if (temp_r2 & 8)
+    }
+    else
+    {
+        var_r0_2 = 0;
+    }
+    var_3 = var_r0_2;
+
+    if (temp_r2 & 8)
+    {
+        if (temp_r2 & 1)
         {
-            if (temp_r2 & 1)
-            {
-                var_r0_2 = 2;
-            }
-            else
-            {
-                var_r0_2 = 1;
-            }
+            var_r0_2 = 2;
         }
         else
         {
-            var_r0_2 = 0;
+            var_r0_2 = 1;
         }
-        var_4 = var_r0_2;
-    
-        if (var_3 != 0)
+    }
+    else
+    {
+        var_r0_2 = 0;
+    }
+    var_4 = var_r0_2;
+
+    if (var_3 != 0 && var_4 != 0)
+    {
+        var_0 = sub_08001B40(temp_r2, param_0);
+        temp_r2 = param_1 & 7;
+        if (var_3 == 1)
         {
-            if (var_4 != 0)
-            {
-                var_0 = sub_08001B40(temp_r2, arg0);
-                temp_r2 = arg1 & 7;
-                if (var_3 == 1)
-                {
-                    var_0++,var_0--; // Fake
-                    var_1 = var_0 - temp_r2;
-                }
-                else
-                {
-                    
-                    var_1 = temp_r2 - var_0;
-                }
-                var_0 = var_1;
-    
-                switch (var_4)
-                {
-                    case 1:
-                        if ((var_0 << 0x10) <= 0)
-                        {
-                            var_r5 = 1;
-                        }
-                        break;
-                    case 2:
-                        if ((var_0 << 0x10) >= 0)
-                        {
-                            var_r5 = 1;
-                        }
-                        break;
-                }
-            }
+            var_0++,var_0--; // Fake
+            var_1 = var_0 - temp_r2;
         }
         else
         {
-            if (var_4 != 0)
-            {
-                var_r5 = 1;
-            }
+            var_1 = temp_r2 - var_0;
         }
-        break;
+        var_0 = var_1;
+
+        switch (var_4)
+        {
+            case 1:
+                if (var_0 <= 0)
+                {
+                    var_r5 = 1;
+                }
+                break;
+
+            case 2:
+                if (var_0 >= 0)
+                {
+                    var_r5 = 1;
+                }
+                break;
+        }
+    }
+
+    else if (var_4 != 0)
+    {
+        var_r5 = 1;
     }
 
     return var_r5;
@@ -1333,21 +1323,23 @@ s16 sub_0800207C(s32 param_0, s32 param_1)
 s16 sub_080020A0(s32 param_0, s32 param_1)
 {
     s16 var_r4;
-    u8 temp_r1;
+    s32 temp_r1;
 
     var_r4 = 0;
+
     temp_r1 = sub_08001A00(param_0, param_1);
     if (temp_r1 & 1)
     {
         if (temp_r1 == 0xFF)
         {
-            var_r4 = (param_1 & 0xF) ^ 0xFFFF;
+            var_r4 = ~MOD_AND(param_1, 16);
         }
         else
         {
-            var_r4 = (param_1 & 7) ^ 0xFFFF;
+            var_r4 = ~MOD_AND(param_1, 8);
         }
     }
+
     return var_r4;
 }
 
@@ -1388,21 +1380,23 @@ s16 sub_0800210C(s32 param_0, s32 param_1, s32 param_2)
 s16 sub_08002140(s32 param_0, s32 param_1, s32 param_2)
 {
     s16 var_r4;
-    u8 temp_r1;
+    s32 temp_r1;
 
     var_r4 = 0;
+
     temp_r1 = sub_08001BA0( sub_08001A00(param_0, param_1), param_2);
     if (temp_r1 & 1)
     {
         if (temp_r1 == 0xFF)
         {
-            var_r4 = (param_1 & 0xF) ^ 0xFFFF;
+            var_r4 = ~MOD_AND(param_1, 16);
         }
         else
         {
-            var_r4 = (param_1 & 7) ^ 0xFFFF;
+            var_r4 = ~MOD_AND(param_1, 8);
         }
     }
+
     return var_r4;
 }
 
@@ -1488,10 +1482,7 @@ void sub_08002278(void)
  */
 s16 sub_080022A8(s32 param_0, s32 param_1, u8 param_2)
 {
-    s32 var_r0;
-    s32 var_r3;
     s16 var_r4;
-    u8 temp_r2;
 
     var_r4 = 0;
 
@@ -1499,11 +1490,11 @@ s16 sub_080022A8(s32 param_0, s32 param_1, u8 param_2)
     {
         if (param_2 == 0xFF)
         {
-            var_r4 = 0x10 - (param_0 & 0xF);
+            var_r4 = 16 - MOD_AND(param_0, 16);
         }
         else if (!(param_2 & 0xC0))
         {
-            var_r4 = 8 - (param_0 & 7);
+            var_r4 = 8 - MOD_AND(param_0, 8);
         }
     }
 
@@ -1520,10 +1511,7 @@ s16 sub_080022A8(s32 param_0, s32 param_1, u8 param_2)
  */
 s16 sub_080022E8(s32 param_0, s32 param_1, u8 param_2)
 {
-    s32 var_r0;
-    s32 var_r3;
     s16 var_r4;
-    u8 temp_r2;
 
     var_r4 = 0;
 
@@ -1531,11 +1519,11 @@ s16 sub_080022E8(s32 param_0, s32 param_1, u8 param_2)
     {
         if (param_2 == 0xFF)
         {
-            var_r4 = (param_0 & 0xF) ^ -1;
+            var_r4 = ~MOD_AND(param_0, 16);
         }
         else if (!(param_2 & 0xC0))
         {
-            var_r4 = (param_0 & 7) ^ -1;
+            var_r4 = ~MOD_AND(param_0, 8);
         }
     }
 
@@ -1570,9 +1558,9 @@ void sub_08002324(s16 param_0, s16 param_1, s16 param_2)
     temp_r5 = var_r0;
 
     var_r0 = param_1 + param_2 + 1;
-    if (var_r0 > 0xA0)
+    if (var_r0 > SCREEN_SIZE_Y)
     {
-        var_r0 = 0xA0;
+        var_r0 = SCREEN_SIZE_Y;
     }
     temp_r7 = var_r0;
 
@@ -1580,7 +1568,7 @@ void sub_08002324(s16 param_0, s16 param_1, s16 param_2)
 
     for (var_r4 = temp_r5; var_r4 < temp_r7; var_r4 += 1)
     {
-        temp_r0_2 = Sqrt(((param_2 * param_2) - ((param_1 - var_r4) * (param_1 - var_r4))) << 8) >> 0x4;
+        temp_r0_2 = Sqrt(((param_2 * param_2) - ((param_1 - var_r4) * (param_1 - var_r4))) << 8) >> 4;
         var_r0 = param_0 - temp_r0_2;
         if (var_r0 < 0)
         {
@@ -1589,9 +1577,9 @@ void sub_08002324(s16 param_0, s16 param_1, s16 param_2)
         var_0 = var_r0;
 
         var_r0 = param_0 + temp_r0_2 + 1;
-        if (var_r0 > 0xF0)
+        if (var_r0 > SCREEN_SIZE_X)
         {
-            var_r0 = 0xF0;
+            var_r0 = SCREEN_SIZE_X;
         }
         var_1 = var_r0;
 

@@ -3893,7 +3893,7 @@ _080D2730: .4byte 0x0000A094
 _080D2734:
 	movs r0, #2
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldrb r0, [r4, #0xd]
 	subs r0, #1
 	strb r0, [r4, #0xd]
@@ -4964,7 +4964,7 @@ _080D2FB8: .4byte 0x0000042C
 _080D2FBC:
 	movs r0, #1
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldrb r6, [r7, #0xc]
 	cmp r6, #0
 	bne _080D3008
@@ -5184,7 +5184,7 @@ _080D3172:
 _080D318A:
 	movs r0, #1
 	adds r1, r4, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 _080D3192:
 	ldrb r0, [r7, #0xb]
 	cmp r0, #5

@@ -25,22 +25,22 @@
 #include "structs/main.h"
 
 /**
- * @brief 9A0 | To document
+ * @brief 9A0 | Set the player inputs based off the priority
  * 
- * @param param_0 To document
- * @param param_1 To document
- * @return u32 bool, To document
+ * @param priority Priority (higher number is higher priority)
+ * @param playerInputs Player inputs
+ * @return u32 bool, Player inputs were changed
  */
-u32 sub_080009A0(s32 param_0, u32 param_1)
+u32 SetPlayerInput(s32 priority, s32 playerInputs)
 {
     struct InputData *inputData;
 
     inputData = &gEwramData->inputData;
-    if (inputData->unk_1B == 0 || param_0 < inputData->unk_1B)
+    if (inputData->playerInputPriority == 0 || priority < inputData->playerInputPriority)
     {
-        inputData->unk_1B = param_0;
-        inputData->playerNewInput = ~inputData->playerHeldInput & param_1;
-        inputData->playerHeldInput = param_1;
+        inputData->playerInputPriority = priority;
+        inputData->playerNewInput = ~inputData->playerHeldInput & playerInputs;
+        inputData->playerHeldInput = playerInputs;
         return 1;
     }
     return 0;

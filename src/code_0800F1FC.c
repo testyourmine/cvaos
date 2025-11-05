@@ -1379,7 +1379,7 @@ s32 sub_080106DC(struct EwramData_unk60 *param_0)
 
     temp_r4 = gEwramData->unk_13110;
     temp_r6 = &gEwramData->unk_A078[1];
-    sub_080009A0(1, 0);
+    SetPlayerInput(1, 0);
 
     if (param_0->unk_65 == 0)
     {

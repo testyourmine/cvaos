@@ -420,14 +420,15 @@ void UpdateInput(void)
     inputData->newInput = keyInput & ~inputData->heldInput;
     inputData->heldInput = keyInput;
 
-    if (inputData->unk_1B == 0)
+    // Put normal input into player input if no override
+    if (inputData->playerInputPriority == 0)
     {
         inputData->playerHeldInput = keyInput;
         inputData->playerNewInput = inputData->newInput;
     }
     else
     {
-        inputData->unk_1B = 0;
+        inputData->playerInputPriority = 0;
     }
     inputData->repeatedInput = 0;
 
@@ -477,7 +478,3 @@ u32 SoftResetCheck(void)
 
     return result;
 }
-
-// NOTE: 080E0334 is the beginning of rodata
-// NOTE: 084F0B14 is the beginning of .data?
-// NOTE: 08651194 is the end of rom?

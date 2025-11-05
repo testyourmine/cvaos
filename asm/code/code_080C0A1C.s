@@ -8896,12 +8896,12 @@ _080C4E24:
 	beq _080C4E3C
 	movs r0, #1
 	movs r1, #2
-	bl sub_080009A0
+	bl SetPlayerInput
 	b _080C4E44
 _080C4E3C:
 	movs r0, #1
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 _080C4E44:
 	ldrh r2, [r5, #2]
 	cmp r2, #0
@@ -31646,7 +31646,7 @@ sub_080CFD0C: @ 0x080CFD0C
 	bhi _080CFD36
 	movs r0, #1
 	movs r1, #0x20
-	bl sub_080009A0
+	bl SetPlayerInput
 _080CFD36:
 	ldrb r0, [r4, #0xc]
 	cmp r0, #4

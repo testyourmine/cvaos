@@ -4857,7 +4857,7 @@ _08082F88:
 	movs r1, #0x10
 _08082F92:
 	movs r0, #2
-	bl sub_080009A0
+	bl SetPlayerInput
 	b _08082FF4
 	.align 2, 0
 _08082F9C: .4byte 0x00FFFFFF
@@ -4880,7 +4880,7 @@ _08082FA0:
 _08082FC0:
 	movs r0, #2
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	b _08082FF4
 _08082FCA:
 	ldr r2, [r5]

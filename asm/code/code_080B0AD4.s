@@ -12375,7 +12375,7 @@ _080B6AD0:
 _080B6AD6:
 	movs r0, #2
 	adds r1, r2, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 _080B6ADE:
 	add sp, #4
 	pop {r4, r5}
@@ -28107,7 +28107,7 @@ _080BE5B8:
 _080BE5E6:
 	movs r0, #2
 	adds r1, r2, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 _080BE5EE:
 	add sp, #8
 	pop {r3}

@@ -651,7 +651,7 @@ sub_08050F1C: @ 0x08050F1C
 	bne _08050F50
 	movs r0, #1
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 _08050F50:
 	adds r0, r7, #0
 	adds r0, #0x58
@@ -1012,7 +1012,7 @@ _0805123C: .4byte 0x0000042C
 _08051240:
 	movs r0, #1
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldrb r0, [r5, #0xd]
 	cmp r0, #0
 	beq _08051254
@@ -1059,7 +1059,7 @@ _080512A0: .4byte gEwramData
 _080512A4:
 	movs r0, #1
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldr r0, [r6]
 	adds r0, #0x64
 	movs r1, #0
@@ -4147,7 +4147,7 @@ _08052A8C:
 	bl sub_0800C5A8
 	movs r0, #1
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	b _08052C0E
 	.align 2, 0
 _08052AAC: .4byte gEwramData
@@ -4161,7 +4161,7 @@ _08052AB8:
 	ble _08052ACC
 	movs r0, #1
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	b _08052ADC
 _08052ACC:
 	ldr r0, _08052B24 @ =gEwramData
@@ -4170,7 +4170,7 @@ _08052ACC:
 	adds r0, r0, r1
 	ldrh r1, [r0]
 	movs r0, #1
-	bl sub_080009A0
+	bl SetPlayerInput
 _08052ADC:
 	ldrh r0, [r6, #0x18]
 	adds r0, #0x40
@@ -4220,7 +4220,7 @@ _08052B34:
 	adds r0, r0, r1
 	ldrh r1, [r0]
 	movs r0, #1
-	bl sub_080009A0
+	bl SetPlayerInput
 	movs r1, #0x30
 	ldrsh r0, [r6, r1]
 	cmp r0, #0
@@ -4297,7 +4297,7 @@ _08052BCC:
 _08052BE8:
 	movs r0, #1
 	adds r1, r2, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldr r0, [r4]
 	ldr r1, _08052C1C @ =0x00013110
 	adds r0, r0, r1
@@ -4479,7 +4479,7 @@ _08052D46:
 	bl sub_0800C5A8
 	movs r0, #1
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	strb r4, [r7, #0xa]
 	b _08052E96
 	.align 2, 0
@@ -4500,7 +4500,7 @@ _08052D64:
 _08052D7A:
 	movs r0, #1
 	adds r1, r2, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	movs r0, #0
 	bl sub_0800C5A8
 	ldr r0, [r4]
@@ -4531,7 +4531,7 @@ _08052DBC: .4byte 0x00013110
 _08052DC0:
 	movs r0, #1
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	bl sub_080235C8
 	bl sub_0802DFF0
 	movs r0, #3
@@ -4544,7 +4544,7 @@ _08052DDC: .4byte 0x00000157
 _08052DE0:
 	movs r0, #1
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldr r0, [r7, #0x14]
 	cmp r0, #0
 	ble _08052E50
@@ -4601,7 +4601,7 @@ _08052E50:
 _08052E56:
 	movs r0, #1
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldr r4, _08052F18 @ =gEwramData
 	ldr r2, [r4]
 	ldr r5, _08052F1C @ =0x0000042C
@@ -5261,7 +5261,7 @@ _0805338A:
 	movs r0, #0x20
 	strb r0, [r5, #0xd]
 	movs r0, #1
-	bl sub_080009A0
+	bl SetPlayerInput
 _080533B4:
 	ldr r0, _080533E4 @ =gEwramData
 	ldr r0, [r0]
@@ -5282,7 +5282,7 @@ _080533B4:
 	strb r0, [r5, #0xd]
 	movs r0, #1
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 _080533DE:
 	movs r0, #0
 	str r0, [r5, #0x4c]
@@ -5292,7 +5292,7 @@ _080533E4: .4byte gEwramData
 _080533E8:
 	movs r0, #1
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldrb r0, [r5, #0xd]
 	adds r4, r0, #0
 	cmp r4, #0
@@ -5309,7 +5309,7 @@ _080533FA:
 _0805340A:
 	movs r0, #1
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldr r0, [r5, #0x44]
 	ldr r1, [r5, #0x4c]
 	adds r0, r0, r1
@@ -8433,7 +8433,7 @@ _08054DB0:
 	beq _08054DBE
 	movs r0, #1
 	movs r1, #0x40
-	bl sub_080009A0
+	bl SetPlayerInput
 _08054DBE:
 	ldr r2, [r6, #0x1c]
 	movs r0, #0
@@ -10207,7 +10207,7 @@ _08055B96:
 	bhi _08055BAA
 	movs r0, #1
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 _08055BAA:
 	ldrb r0, [r7, #0xa]
 	cmp r0, #4
@@ -11111,7 +11111,7 @@ _0805629C:
 	str r1, [r0]
 	movs r0, #1
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldrb r1, [r4, #0xd]
 	movs r0, #0xd
 	ldrsb r0, [r4, r0]
@@ -21579,7 +21579,7 @@ _0805B4B8:
 	beq _0805B4F8
 	movs r0, #1
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 _0805B4F8:
 	bl sub_0806666C
 _0805B4FC:
@@ -21678,7 +21678,7 @@ _0805B596:
 	beq _0805B5DC
 	movs r0, #1
 	adds r1, r2, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	movs r0, #0
 	bl sub_0800C5A8
 	b _0805B5E2

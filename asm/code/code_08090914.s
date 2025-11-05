@@ -26573,7 +26573,7 @@ _0809DBB8:
 	strb r0, [r2]
 	strb r1, [r4, #0xd]
 	movs r0, #2
-	bl sub_080009A0
+	bl SetPlayerInput
 	b _0809DE78
 	.align 2, 0
 _0809DBE4: .4byte 0x00013110
@@ -26581,12 +26581,12 @@ _0809DBE8: .4byte 0x00FFFFFF
 _0809DBEC:
 	movs r0, #2
 	movs r1, #0x10
-	bl sub_080009A0
+	bl SetPlayerInput
 	b _0809DE5C
 _0809DBF6:
 	movs r0, #2
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldrb r0, [r4, #0xd]
 	adds r1, r0, #1
 	strb r1, [r4, #0xd]
@@ -26622,7 +26622,7 @@ _0809DC38:
 	bl sub_0800ED24
 	movs r0, #2
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldrb r2, [r4, #0xc]
 	cmp r2, #0
 	bne _0809DC64
@@ -26747,7 +26747,7 @@ _0809DD2C:
 	bl sub_0800ED24
 	movs r0, #2
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldrb r0, [r4, #0x19]
 	cmp r0, #0
 	bne _0809DD46
@@ -26772,7 +26772,7 @@ _0809DD5E:
 	bl sub_0800ED24
 	movs r0, #2
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldrb r0, [r4, #0xd]
 	adds r1, r0, #1
 	strb r1, [r4, #0xd]
@@ -26788,7 +26788,7 @@ _0809DD80:
 	bl sub_0800ED24
 	movs r0, #2
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldrb r0, [r4, #0x19]
 	cmp r0, #0
 	beq _0809DE5C
@@ -26819,7 +26819,7 @@ _0809DDC4:
 	bl sub_0800ED24
 	movs r0, #2
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldrb r0, [r4, #0xd]
 	adds r1, r0, #1
 	strb r1, [r4, #0xd]
@@ -26839,7 +26839,7 @@ _0809DDE4:
 _0809DDF4:
 	movs r0, #2
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldr r1, [r5, #8]
 	ldr r0, _0809DE3C @ =0x012FFFFF
 	cmp r1, r0

@@ -2850,7 +2850,7 @@ sub_080A20D0: @ 0x080A20D0
 	ldr r4, [r6, #0x20]
 	movs r0, #2
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldrb r7, [r6, #0xb]
 	cmp r7, #1
 	beq _080A214C
@@ -3078,7 +3078,7 @@ sub_080A22A0: @ 0x080A22A0
 	ldr r7, [r5, #0x20]
 	movs r0, #2
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldrb r4, [r5, #0xb]
 	cmp r4, #1
 	beq _080A2310
@@ -7664,7 +7664,7 @@ sub_080A4728: @ 0x080A4728
 	adds r7, r0, #0
 	movs r0, #2
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldrb r0, [r7, #0xb]
 	cmp r0, #0xa
 	bls _080A473E
@@ -7983,7 +7983,7 @@ sub_080A49E0: @ 0x080A49E0
 	adds r6, r0, #0
 	movs r0, #2
 	movs r1, #0
-	bl sub_080009A0
+	bl SetPlayerInput
 	ldrb r0, [r6, #0xb]
 	cmp r0, #1
 	beq _080A4A2C

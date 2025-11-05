@@ -8,7 +8,7 @@ struct InputData {
     /* 0x00016 */ u16 newInput;
     /* 0x00018 */ u16 repeatedInput;
     /* 0x0001A */ u16 repeatedInputTimer:10;
-    /* 0x0001B */ u8 unk_1B:6;
+    /* 0x0001B */ u8 playerInputPriority:6;
     /* 0x0001C */ u16 playerHeldInput;
     /* 0x0001E */ u16 playerNewInput;
 }; /* size = 0xC */

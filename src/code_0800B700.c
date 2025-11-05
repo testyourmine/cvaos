@@ -1557,7 +1557,7 @@ s32 GameModeInGameUpdate(void)
                     {
                         sub_0803D270();
                         sub_0803CED4();
-                        sub_080009A0(1, 0);
+                        SetPlayerInput(1, 0);
                         temp_r7->unk_65 += 1;
                     }
                     break;
@@ -1571,7 +1571,7 @@ s32 GameModeInGameUpdate(void)
                 case 3:
                     sub_0803D18C(0, 0, 0, 0, 0x10000, 8);
                     sub_0803CDF0(0, 0, 0, 0, 0x10000, 8);
-                    sub_080009A0(1, 0);
+                    SetPlayerInput(1, 0);
                     sub_08000B64();
                     temp_r7->unk_65 += 1;
                     break;
@@ -1671,7 +1671,7 @@ s32 GameModeInGameUpdate(void)
         case 3:
             if (gEwramData->unk_60.unk_4CC_6)
             {
-                sub_080009A0(1, 0);
+                SetPlayerInput(1, 0);
                 sub_0803407C();
                 sub_0803427C();
             }
@@ -1702,16 +1702,16 @@ s32 GameModeInGameUpdate(void)
             break;
 
         case 4:
-            sub_080009A0(1, 0);
+            SetPlayerInput(1, 0);
             if (sub_080110E4(temp_r7) != 0)
             {
-                sub_080009A0(1, 0);
+                SetPlayerInput(1, 0);
                 temp_r7->unk_64 = 1;
             }
             break;
 
         case 6:
-            sub_080009A0(1, 0);
+            SetPlayerInput(1, 0);
             if (sub_08047764(temp_r7) != 0)
             {
                 temp_r7->unk_64 = 1;
