@@ -186,7 +186,7 @@ struct EwramData_unk514_16 {
 union EwramData_unk514 {
     struct EwramData_unk514_8 unk_514_8;
     struct EwramData_unk514_16 unk_514_16;
-    struct EwramData_unk4E4 *unk_514_32;
+    struct EwramData_EntityData *unk_514_32;
 };
 
 struct EwramData_unk4F4_8 {
@@ -243,9 +243,9 @@ union EwramData_unk510 {
     struct EwramData_unk510_16 unk_510_16;
 };
 
-struct EwramData_unk4E4 {
-    /* 0x004E4 */ u32 *unk_4E4; // type unknown
-    /* 0x004E8 */ u32 *unk_4E8; // type unknown
+struct EwramData_EntityData {
+    /* 0x004E4 */ u32 *updateFunc; // TODO: function signature
+    /* 0x004E8 */ u32 *drawFunc; // TODO: function signature
     /* 0x004EC */ u8 unk_4EC;
     /* 0x004ED */ u8 unk_4ED;
     /* 0x004EE */ u8 unk_4EE;
@@ -650,8 +650,7 @@ struct EwramData {
     /* 0x004D4 */ u8 pad_4D4[0x4E1 - 0x4D4];
     /* 0x004E1 */ u8 unk_4E1;
     /* 0x004E2 */ u16 unk_4E2;
-    /* 0x004E4 */ struct EwramData_unk4E4 unk_4E4[0xD0];
-    /* 0x07024 */ struct EwramData_unk4E4 unk_7024[0x10];
+    /* 0x004E4 */ struct EwramData_EntityData entityData[0xE0];
 
     /* 0x07864 */ struct EwramData_unk7864 unk_7864;
     /* 0x08C6C */ struct EwramData_unk7864 unk_8C6C; // TODO: probably a backup of unk_7864
@@ -693,18 +692,18 @@ struct EwramData {
     /* 0x12FE1 */ u8 pad_12FE1[0x13110 - 0x12FE1];
 
     // TODO: probably a struct, according to sub_0800C7A4
-    /* 0x13110 */ struct EwramData_unk4E4 *unk_13110;
+    /* 0x13110 */ struct EwramData_EntityData *unk_13110;
     /* 0x13112 */ u8 pad_13112[0x1311C - 0x13114];
     /* 0x1311C */ u32 unk_1311C;
-    /* 0x13120 */ struct EwramData_unk4E4 *unk_13120;
+    /* 0x13120 */ struct EwramData_EntityData *unk_13120;
     /* 0x13124 */ u8 pad_13124[0x13144 - 0x13124];
     /* 0x13144 */ u32 unk_13144[8];
     /* 0x13164 */ u8 pad_13164[0x13168 - 0x13164];
-    /* 0x13168 */ struct EwramData_unk4E4 *unk_13168; // type?
+    /* 0x13168 */ struct EwramData_EntityData *unk_13168; // type?
     /* 0x1316C */ struct EwramData_unk1316C *unk_1316C; 
-    /* 0x13170 */ struct EwramData_unk4E4 *unk_13170[1]; //length?
+    /* 0x13170 */ struct EwramData_EntityData *unk_13170[1]; //length?
     /* 0x13174 */ u8 pad_13174[0x13190 - 0x13174];
-    /* 0x13190 */ struct EwramData_unk4E4 *unk_13190;
+    /* 0x13190 */ struct EwramData_EntityData *unk_13190;
     /* 0x13194 */ u8 pad_13194[0x131AC - 0x13194];
     /* 0x131AC */ u8 unk_131AC[1]; // length?
     /* 0x131AD */ u8 pad_131AD[0x131B4 - 0x131AD];

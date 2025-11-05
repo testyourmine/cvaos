@@ -192,89 +192,88 @@ u32 RandomNumberGenerator2(void)
 }
 
 /**
- * @brief B00 | To document
+ * @brief B00 | Create a new entity
  * 
- * @param param_0 To document
- * @return struct EwramData_unk4E4* To document
+ * @param updateFunc Pointer to entity update function
+ * @return struct EwramData_EntityData* Pointer to new entity
  */
-struct EwramData_unk4E4 *sub_08000B00(u32 *param_0)
+struct EwramData_EntityData* EntityCreate(u32 *updateFunc)
 {
-    struct EwramData_unk4E4 *var_r5;
-    s32 var_r3;
-    struct EwramData_unk4E4 *var_r2;
+    struct EwramData_EntityData *newEntity;
+    s32 slot;
+    struct EwramData_EntityData *entity;
 
-    var_r5 = NULL;
-    var_r3 = 0;
-    var_r2 = gEwramData->unk_4E4;
+    newEntity = NULL;
+    slot = 0;
+    entity = gEwramData->entityData;
 
-    for (; var_r3 < 0xD0; var_r3++, var_r2++) 
+    for (; slot < 0xD0; slot++, entity++) 
     {
-        if (var_r2->unk_4E4 != NULL)
+        if (entity->updateFunc != NULL)
         {
             continue;
         }
 
-        DMA_FILL_32(3, 0, var_r2, sizeof(struct EwramData_unk4E4));
-        var_r2->unk_548 = 0xFF;
-        var_r2->unk_4EC = 0xFE;
-        var_r2->unk_4ED = 0xFE;
-        var_r2->unk_4E4 = param_0;
-        var_r2->unk_4F4.unk_4F4_8.unk_4F4 = var_r3;
-        var_r5 = var_r2;
+        DMA_FILL_32(3, 0, entity, sizeof(struct EwramData_EntityData));
+        entity->unk_548 = 0xFF;
+        entity->unk_4EC = 0xFE;
+        entity->unk_4ED = 0xFE;
+        entity->updateFunc = updateFunc;
+        entity->unk_4F4.unk_4F4_8.unk_4F4 = slot;
+        newEntity = entity;
         break;
     }
 
-    return var_r5;
+    return newEntity;
 }
 
 /**
- * @brief B64 | To document
+ * @brief B64 | Update all entities
  * 
  */
 void sub_08000B64(void)
 {
-    struct EwramData_unk4E4 *var_0;
-    struct EwramData_unk4E4 *var_1;
-    s32 var_2;
+    struct EwramData_EntityData *entityData;
+    struct EwramData_EntityData *entity;
+    s32 slot;
 
-    var_0 = gEwramData->unk_4E4;
+    entityData = gEwramData->entityData;
     if (gEwramData->unk_A074_0 == 0)
     {
-        var_1 = var_0;
-        for (var_2 = 0; var_2 < 0xD0; var_2++, var_1++)
+        entity = &entityData[0];
+        for (slot = 0; slot < 0xD0; slot++, entity++)
         {
-            if (var_1->unk_4E4 != NULL)
+            if (entity->updateFunc != NULL)
             {
-                ((void (*)(struct EwramData_unk4E4 *))var_1->unk_4E4)(var_1);
-                sub_080426B0(var_1);
-                if (var_1->unk_53D_3)
+                ((void (*)(struct EwramData_EntityData *))entity->updateFunc)(entity);
+                sub_080426B0(entity);
+                if (entity->unk_53D_3)
                 {
-                    sub_0803AAEC(var_1, 0);
-                    sub_08042828(var_1);
-                    DMA_FILL_32(3, 0, var_1, sizeof(struct EwramData_unk4E4));
-                    var_1->unk_548 = 0xFF;
+                    sub_0803AAEC(entity, 0);
+                    sub_08042828(entity);
+                    DMA_FILL_32(3, 0, entity, sizeof(struct EwramData_EntityData));
+                    entity->unk_548 = 0xFF;
                 }
             }
         }
     }
-    
-    for (var_2 = gEwramData->unk_13; var_2 < 0xD0; var_2 = var_1->unk_4EC)
+
+    for (slot = gEwramData->unk_13; slot < 0xD0; slot = entity->unk_4EC)
     {
-        var_1 = &var_0[var_2];
-        if (var_1->unk_4E4 != NULL)
+        entity = &entityData[slot];
+        if (entity->updateFunc != NULL)
         {
-            if (var_1->unk_4E8 != NULL)
+            if (entity->drawFunc != NULL)
             {
-                ((void (*)(struct EwramData_unk4E4 *))var_1->unk_4E8)(var_1);
+                ((void (*)(struct EwramData_EntityData *))entity->drawFunc)(entity);
             }
         }
     }
 }
 
-// TODO: verify
-static inline u8 GetUnk4E4Index(struct EwramData_unk4E4 *param_0)
+static inline u8 EntityGetSlot_Inline(struct EwramData_EntityData *entity)
 {
-    return ((u8*)param_0 - (u8*)&gEwramData->unk_4E4[0]) / sizeof(struct EwramData_unk4E4);
+    return ((u8*)entity - (u8*)&gEwramData->entityData[0]) / sizeof(struct EwramData_EntityData);
 }
 
 /**
@@ -282,25 +281,25 @@ static inline u8 GetUnk4E4Index(struct EwramData_unk4E4 *param_0)
  * 
  * @param param_0 To document
  */
-void sub_08000C28(struct EwramData_unk4E4 *param_0)
+void sub_08000C28(struct EwramData_EntityData *param_0)
 {
-    u8 var_0;
-    struct EwramData_unk4E4 *var1;
-    struct EwramData_unk4E4 *var2;
+    u8 slot;
+    struct EwramData_EntityData *var1;
+    struct EwramData_EntityData *var2;
 
-    var_0 = GetUnk4E4Index(param_0);
-    if (var_0 == gEwramData->unk_13)
+    slot = EntityGetSlot_Inline(param_0);
+    if (slot == gEwramData->unk_13)
     {
         gEwramData->unk_13 = param_0->unk_4EC;
     }
     else
     {
-        var1 = &gEwramData->unk_4E4[param_0->unk_4ED];
+        var1 = &gEwramData->entityData[param_0->unk_4ED];
         var1->unk_4EC = param_0->unk_4EC;
 
         if (param_0->unk_4EC != 0xFF)
         {
-            var2 = &gEwramData->unk_4E4[param_0->unk_4EC];
+            var2 = &gEwramData->entityData[param_0->unk_4EC];
             var2->unk_4ED = param_0->unk_4ED;
         }
     }
@@ -310,134 +309,136 @@ void sub_08000C28(struct EwramData_unk4E4 *param_0)
 }
 
 /**
- * @brief C94 | To document
+ * @brief C94 | Update all entities
  * 
  */
 void sub_08000C94(void)
 {
-    struct EwramData_unk4E4 *var_0;
-    struct EwramData_unk4E4 *var_1;
-    s32 var_2;
+    struct EwramData_EntityData *entityData;
+    struct EwramData_EntityData *entity;
+    s32 slot;
 
-    var_0 = gEwramData->unk_4E4;
-    var_1 = gEwramData->unk_7024;
+    entityData = gEwramData->entityData;
+    entity = &entityData[0xD0];
 
-    for (var_2 = 0; var_2 < 0x10; var_2++, var_1++)
+    for (slot = 0; slot < 0xE0 - 0xD0; slot++, entity++)
     {
-        if (var_1->unk_4E4 != NULL)
+        if (entity->updateFunc != NULL)
         {
-            ((void (*)(struct EwramData_unk4E4 *))var_1->unk_4E4)(var_1);
-            if (var_1->unk_53D_3)
+            ((void (*)(struct EwramData_EntityData *))entity->updateFunc)(entity);
+            if (entity->unk_53D_3)
             {
-                sub_0803AAEC(var_1, 0);
-                sub_08042828(var_1);
-                DMA_FILL_32(3, 0, var_1, sizeof(struct EwramData_unk4E4));
-                var_1->unk_548 = 0xFF;
+                sub_0803AAEC(entity, 0);
+                sub_08042828(entity);
+                DMA_FILL_32(3, 0, entity, sizeof(struct EwramData_EntityData));
+                entity->unk_548 = 0xFF;
             }
         }
     }
 
-    for (var_2 = gEwramData->unk_13; var_2 < 0xD0 + 0x10; var_2 = var_1->unk_4EC)
+    for (slot = gEwramData->unk_13; slot < 0xE0; slot = entity->unk_4EC)
     {
-        var_1 = &var_0[var_2];
-        if (var_1->unk_4E4 != NULL)
+        entity = &entityData[slot];
+        if (entity->updateFunc != NULL)
         {
-            if (var_1->unk_4E8 != NULL && var_2 >= 0xD0)
+            if (entity->drawFunc != NULL && slot >= 0xD0)
             {
-                ((void (*)(struct EwramData_unk4E4 *))var_1->unk_4E8)(var_1);
+                ((void (*)(struct EwramData_EntityData *))entity->drawFunc)(entity);
             }
         }
     }
 }
 
 /**
- * @brief D44 | To document
+ * @brief D44 | Delete all entities
  * 
  */
-void sub_08000D44(void)
+void EntityDeleteAll(void)
 {
-    s32 var_r4;
-    struct EwramData_unk4E4 *var_r2;
+    struct EwramData_EntityData *entity;
+    s32 slot;
 
-    var_r2 = gEwramData->unk_4E4;
+    entity = gEwramData->entityData;
+
     gEwramData->unk_13 = 0xFF;
-    for (var_r4 = 0; var_r4 < 0xE0; var_r4++, var_r2++)
+
+    for (slot = 0; slot < 0xE0; slot++, entity++)
     {
-        DMA_FILL_32(3, 0, var_r2, sizeof(struct EwramData_unk4E4));
-        var_r2->unk_548 = 0xFF;
-        var_r2->unk_4EC = 0xFE;
-        var_r2->unk_4ED = 0xFE;
+        DMA_FILL_32(3, 0, entity, sizeof(struct EwramData_EntityData));
+        entity->unk_548 = 0xFF;
+        entity->unk_4EC = 0xFE;
+        entity->unk_4ED = 0xFE;
     }
 }
 
 /**
- * @brief DA0 | To document
+ * @brief DA0 | Create a new entity within the minimum and maximum slots
  * 
- * @param param_0 To document
- * @param param_1 To document
- * @param param_2 To document
- * @return struct EwramData_unk4E4* To document
+ * @param minSlot Minimum entity slot to check
+ * @param maxSlot Maximum entity slot to check
+ * @param updateFunc Pointer to entity update function
+ * @return struct EwramData_EntityData* Pointer to new entity
  */
-struct EwramData_unk4E4 *sub_08000DA0(s32 param_0, s32 param_1, u32 *param_2)
+struct EwramData_EntityData *EntityCreateInRange(s32 minSlot, s32 maxSlot, u32 *updateFunc)
 {
-    s32 var_r2;
-    struct EwramData_unk4E4 *var_r3;
-    struct EwramData_unk4E4 *var_r6;
+    struct EwramData_EntityData *newEntity;
+    s32 slot;
+    struct EwramData_EntityData *entity;
 
-    var_r6 = NULL;
-    var_r2 = param_0;
-    var_r3 = &gEwramData->unk_4E4[var_r2];
+    newEntity = NULL;
+    slot = minSlot;
+    entity = &gEwramData->entityData[slot];
 
-    for (; var_r2 <= param_1; var_r2++, var_r3++) 
+    for (; slot <= maxSlot; slot++, entity++) 
     {
-        if (var_r3->unk_4E4 != NULL) 
+        if (entity->updateFunc != NULL) 
         {
             continue;
         }
 
-        DMA_FILL_32(3, 0, var_r3, sizeof(struct EwramData_unk4E4));
-        var_r3->unk_548 = 0xFF;
-        var_r3->unk_4EC = 0xFE;
-        var_r3->unk_4ED = 0xFE;
-        var_r3->unk_4E4 = param_2;
-        var_r3->unk_4F4.unk_4F4_8.unk_4F4 = var_r2;
-        var_r6 = var_r3;
+        DMA_FILL_32(3, 0, entity, sizeof(struct EwramData_EntityData));
+        entity->unk_548 = 0xFF;
+        entity->unk_4EC = 0xFE;
+        entity->unk_4ED = 0xFE;
+        entity->updateFunc = updateFunc;
+        entity->unk_4F4.unk_4F4_8.unk_4F4 = slot;
+        newEntity = entity;
         break;
     }
 
-    return var_r6;
+    return newEntity;
 }
 
 /**
- * @brief E14 | To document
+ * @brief E14 | Delete the entity
  * 
- * @param param_0 To document
+ * @param entity Entity to delete
  */
-void sub_08000E14(struct EwramData_unk4E4 *param_0)
+void EntityDelete(struct EwramData_EntityData *entity)
 {
-    sub_0803AAEC(param_0, 0);
-    sub_08042828(param_0);
-    DMA_FILL_32(3, 0, param_0, sizeof(struct EwramData_unk4E4));
-    param_0->unk_548 = 0xFF;
+    sub_0803AAEC(entity, 0);
+    sub_08042828(entity);
+    DMA_FILL_32(3, 0, entity, sizeof(struct EwramData_EntityData));
+    entity->unk_548 = 0xFF;
 }
 
 /**
- * @brief E50 | To document
+ * @brief E50 | Delete all entities
  * 
  */
 void sub_08000E50(void) 
 {
-    s32 var_r6;
-    struct EwramData_unk4E4 *var_r4;
+    struct EwramData_EntityData *entity;
+    s32 slot;
 
-    var_r4 = gEwramData->unk_4E4;
-    var_r6 = 0;
-    for (; var_r6 < 0xE0; var_r6++, var_r4++)
+    entity = gEwramData->entityData;
+    slot = 0;
+    for (; slot < 0xE0; slot++, entity++)
     {
-        sub_0803AAEC(var_r4, 0);
-        sub_08042828(var_r4);
-        DMA_FILL_32(3, 0, var_r4, sizeof(struct EwramData_unk4E4));
-        var_r4->unk_548 = 0xFF;
+        sub_0803AAEC(entity, 0);
+        sub_08042828(entity);
+        DMA_FILL_32(3, 0, entity, sizeof(struct EwramData_EntityData));
+        entity->unk_548 = 0xFF;
     }
 }
 
@@ -449,22 +450,22 @@ void sub_08000E50(void)
  */
 s32 sub_08000EA8(u8 param_0)
 {
-    s32 var_r8;
     s32 var_sb;
-    struct EwramData_unk4E4 *temp_r4;
+    s32 slot;
+    struct EwramData_EntityData *entity;
 
     var_sb = 0;
     if (param_0 != 0) 
     {
-        for (var_r8 = 0xE0 - 1; var_r8 >= 0x0; var_r8--)
+        for (slot = 0xE0 - 1; slot >= 0x0; slot--)
         {
-            temp_r4 = &gEwramData->unk_4E4[var_r8];
-            if (temp_r4->unk_547 == param_0)
+            entity = &gEwramData->entityData[slot];
+            if (entity->unk_547 == param_0)
             {
-                sub_0803AAEC(temp_r4, 0);
-                sub_08042828(temp_r4);
-                DMA_FILL_32(3, 0, temp_r4, sizeof(struct EwramData_unk4E4));
-                temp_r4->unk_548 = 0xFF;
+                sub_0803AAEC(entity, 0);
+                sub_08042828(entity);
+                DMA_FILL_32(3, 0, entity, sizeof(struct EwramData_EntityData));
+                entity->unk_548 = 0xFF;
                 var_sb += 1;
             }
         }
@@ -476,21 +477,21 @@ s32 sub_08000EA8(u8 param_0)
  * @brief F38 | To document
  * 
  */
-void sub_08000F38(void)
+void EntityUpdateNothing(void)
 {
     return;
 }
 
 /**
- * @brief F3C | To document
+ * @brief F3C | Gets the slot of the entity
  * 
- * @param param_0 To document
- * @return u8 To document
+ * @param entity Entity
+ * @return u8 Entity slot
  */
-u8 sub_08000F3C(struct EwramData_unk4E4 *param_0)
+u8 EntityGetSlot(struct EwramData_EntityData *entity)
 {
-    // TODO: sub_08000F3C is the same as GetUnk4E4Index
-    return ((u8*)param_0 - (u8*)&gEwramData->unk_4E4[0]) / sizeof(struct EwramData_unk4E4);
+    // TODO: EntityGetSlot is the same as EntityGetSlot_Inline
+    return ((u8*)entity - (u8*)&gEwramData->entityData[0]) / sizeof(struct EwramData_EntityData);
 }
 
 /**
@@ -500,22 +501,22 @@ u8 sub_08000F3C(struct EwramData_unk4E4 *param_0)
  */
 void sub_08000F60(s32 param_0)
 {
-    s32 var_r3;
-    struct EwramData_unk4E4 *var_r2;
     s32 var_0;
     s32 var_1;
+    struct EwramData_EntityData *entity;
+    s32 slot;
 
     var_0 = -gEwramData->unk_A078[param_0].unk_A078.unk_A084;
     var_1 = -gEwramData->unk_A078[param_0].unk_A078.unk_A088;
 
-    var_r2 = gEwramData->unk_4E4;
-    var_r3 = 0;
-    for(; var_r3 < 0xD0; var_r3++, var_r2++)
+    entity = gEwramData->entityData;
+    slot = 0;
+    for(; slot < 0xD0; slot++, entity++)
     {
-        if (var_r2->unk_53D_1)
+        if (entity->unk_53D_1)
         {
-            var_r2->unk_524.unk_524_32 += var_0;
-            var_r2->unk_528.unk_528_32 += var_1;
+            entity->unk_524.unk_524_32 += var_0;
+            entity->unk_528.unk_528_32 += var_1;
         }
     }
 }
@@ -525,16 +526,16 @@ void sub_08000F60(s32 param_0)
  * 
  * @param param_0 To document
  */
-void sub_08000FBC(struct EwramData_unk4E4 *param_0)
+void sub_08000FBC(struct EwramData_EntityData *param_0)
 {
-    struct EwramData_unk4E4 *var_0;
+    struct EwramData_EntityData *var_0;
 
     param_0->unk_4EC = gEwramData->unk_13;
-    gEwramData->unk_13 = GetUnk4E4Index(param_0);
+    gEwramData->unk_13 = EntityGetSlot_Inline(param_0);
 
     if (param_0->unk_4EC != 0xFF)
     {
-        var_0 = &gEwramData->unk_4E4[param_0->unk_4EC];
+        var_0 = &gEwramData->entityData[param_0->unk_4EC];
         var_0->unk_4ED = gEwramData->unk_13;
     }
 }

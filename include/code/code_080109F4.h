@@ -16,7 +16,7 @@ extern void sub_08011430(struct EwramData_unk60 *param_0);
 extern void sub_080114FC(void);
 extern void sub_080115D4(struct EwramData_unk60 *param_0);
 extern s32 sub_080116A8(struct EwramData_unk60 *param_0);
-extern s32 sub_08011A44(struct EwramData_unk4E4 *param_0);
+extern s32 sub_08011A44(struct EwramData_EntityData *param_0);
 extern void sub_08011AD0(struct EwramData_unk60 *param_0);
 extern s32 sub_08011B2C(struct EwramData_unk60 *param_0);
 extern void sub_08011CD0(void);
@@ -36,10 +36,10 @@ extern void sub_080121E0(s32 param_0);
 extern void sub_08012210(void);
 extern void sub_08012294(void);
 extern s32 sub_0801232C(s32 param_0);
-extern void sub_080123EC(struct EwramData_unk4E4 *param_0);
+extern void sub_080123EC(struct EwramData_EntityData *param_0);
 extern void sub_080124A8(void);
-extern s32 sub_080124F4(struct EwramData_unk4E4 *param_0, u32 param_1, s32 param_2);
-extern void sub_08012534(struct EwramData_unk4E4 *param_0, s32 param_1);
+extern s32 sub_080124F4(struct EwramData_EntityData *param_0, u32 param_1, s32 param_2);
+extern void sub_08012534(struct EwramData_EntityData *param_0, s32 param_1);
 extern void sub_08012564(s32 param_0);
 extern s32 sub_0801257C(u32 param_0);
 extern void sub_080125B4(void);
@@ -80,11 +80,11 @@ extern void sub_08013EEC(s32 param_0);
 extern void sub_08013F38(void);
 extern void sub_08013F6C(s32 param_0);
 extern s32 GameModeGameOverUpdate(void);
-extern void sub_080142E8(struct EwramData_unk4E4 *param_0);
+extern void sub_080142E8(struct EwramData_EntityData *param_0);
 extern s32 GameModeCreditsUpdate(void);
 extern void sub_08014548(void);
-extern void sub_08014628(struct EwramData_unk4E4 *param_0);
-extern void sub_08014720(struct EwramData_unk4E4 *param_0);
+extern void sub_08014628(struct EwramData_EntityData *param_0);
+extern void sub_08014720(struct EwramData_EntityData *param_0);
 extern void sub_0801487C(s32 param_0); // param real or implicit call?
 
 #endif /* CODE_080109F4_H */

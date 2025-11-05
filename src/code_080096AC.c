@@ -205,7 +205,7 @@ static inline s32 sub_0800975C_inline_2(s32 cursor, u8 var_1)
 
 // nonmatch: https://decomp.me/scratch/q50mA
 #ifdef NON_MATCHING
-s32 sub_0800975C(struct EwramData_unk4E4 *param_0, s32 param_1)
+s32 sub_0800975C(struct EwramData_EntityData *param_0, s32 param_1)
 {
     s16 pos;
 
@@ -263,7 +263,7 @@ s32 sub_0800975C(struct EwramData_unk4E4 *param_0, s32 param_1)
 }
 #else
 NAKED_FUNCTION
-s32 sub_0800975C(struct EwramData_unk4E4 *param_0, s32 param_1)
+s32 sub_0800975C(struct EwramData_EntityData *param_0, s32 param_1)
 {
     asm(" .syntax unified \n\
     push {r4, r5, r6, r7, lr} \n\
@@ -601,7 +601,7 @@ static inline void GameModeSoulTradeMenu_inline_0(u8 param_0)
     sub_080D8088((u8*)&gEwramData->unk_25484[1], 4);
 }
 
-static inline void GameModeSoulTradeMenu_inline_1(struct EwramData_unk4E4 *temp_r6, s32 temp_r4_4)
+static inline void GameModeSoulTradeMenu_inline_1(struct EwramData_EntityData *temp_r6, s32 temp_r4_4)
 {
     s32 var_0;
     u8 *var_1;
@@ -645,7 +645,7 @@ static inline void GameModeSoulTradeMenu_inline_1(struct EwramData_unk4E4 *temp_
  * 
  * @param param_0 To document
  */
-void sub_0800997C(struct EwramData_unk4E4 *param_0)
+void sub_0800997C(struct EwramData_EntityData *param_0)
 {
     struct EwramData_unk25484* unk_25484;
     sub_080D7910(0xF0);
@@ -660,7 +660,7 @@ void sub_0800997C(struct EwramData_unk4E4 *param_0)
     param_0->unk_504.unk_504_8.unk_504 = 0;
     param_0->unk_504.unk_504_8.unk_505 = 0;
 
-    sub_08000E14(&gEwramData->unk_4E4[6]);
+    EntityDelete(&gEwramData->entityData[6]);
 }
 
 u32 sUnk_084F0DC0[3] = {
@@ -672,7 +672,7 @@ u32 sUnk_084F0DC0[3] = {
  * 
  * @param param_0 To document
  */
-void sub_080099E0(struct EwramData_unk4E4 *param_0)
+void sub_080099E0(struct EwramData_EntityData *param_0)
 {
     u32 temp_r4;
 
@@ -690,7 +690,7 @@ void sub_080099E0(struct EwramData_unk4E4 *param_0)
  * 
  * @param param_0 To document
  */
-void sub_08009A48(struct EwramData_unk4E4 *param_0)
+void sub_08009A48(struct EwramData_EntityData *param_0)
 {
     param_0->unk_524.unk_524_16.unk_526 = 0xF;
 
@@ -722,7 +722,7 @@ u32 sUnk_084F0DCC[] = {
  * 
  * @param param_0 To document
  */
-void sub_08009A9C(struct EwramData_unk4E4 *param_0)
+void sub_08009A9C(struct EwramData_EntityData *param_0)
 {
     s32 var_0;
     s32 var_1;
@@ -767,7 +767,7 @@ void sub_08009A9C(struct EwramData_unk4E4 *param_0)
  * 
  * @return s32 Return value ignored
  */
-s32 sub_08009BB0(struct EwramData_unk4E4 *param_0)
+s32 sub_08009BB0(struct EwramData_EntityData *param_0)
 {
     s32 var_r4;
 
@@ -828,7 +828,7 @@ static inline s32 sub_08009C8C_inline_0(s32 param_1)
  * @param param_0 To document
  * @return s32 To document
  */
-s32 sub_08009C8C(struct EwramData_unk4E4 *param_0)
+s32 sub_08009C8C(struct EwramData_EntityData *param_0)
 {
     s32 var_r0_2;
     s32 var_r2;
@@ -884,8 +884,8 @@ s32 sub_08009C8C(struct EwramData_unk4E4 *param_0)
     var_1 = gEwramData;
     var_2 = 0x7C;
     var_3 = (var_0 * 8) + 0x24;
-    var_1->unk_4E4[3].unk_524.unk_524_16.unk_526 = var_2;
-    var_1->unk_4E4[3].unk_528.unk_528_16.unk_52A = var_3;
+    var_1->entityData[3].unk_524.unk_524_16.unk_526 = var_2;
+    var_1->entityData[3].unk_528.unk_528_16.unk_52A = var_3;
 
     for (var_r5 = 0; var_r5 < 3; var_r5++)
     {
@@ -907,7 +907,7 @@ s32 sub_08009C8C(struct EwramData_unk4E4 *param_0)
  * 
  * @param param_0 To document
  */
-void sub_08009DD8(struct EwramData_unk4E4 *param_0)
+void sub_08009DD8(struct EwramData_EntityData *param_0)
 {
     s32 var_r4;
     s32 var_1;
@@ -1039,7 +1039,7 @@ void sub_0800A00C(s32 param_0)
  * @param param_0 To document
  * @return s32 To document
  */
-s32 sub_0800A108(struct EwramData_unk4E4 *param_0)
+s32 sub_0800A108(struct EwramData_EntityData *param_0)
 {
     s32 var_sl;
     s16 temp_r4;
@@ -1085,8 +1085,8 @@ s32 sub_0800A108(struct EwramData_unk4E4 *param_0)
     var_1 = gEwramData;
     var_2 = 0x7C;
     var_3 = (var_0_0 * 8) + 0x24;
-    var_1->unk_4E4[3].unk_524.unk_524_16.unk_526 = var_2;
-    var_1->unk_4E4[3].unk_528.unk_528_16.unk_52A = var_3;
+    var_1->entityData[3].unk_524.unk_524_16.unk_526 = var_2;
+    var_1->entityData[3].unk_528.unk_528_16.unk_52A = var_3;
     // gEwramData->unk_4E4[3].unk_524.unk_524_16.unk_526 = 0x7C;
     // gEwramData->unk_4E4[3].unk_528.unk_528_16.unk_52A = (param_0->unk_50C * 8) + 0x24;
 
@@ -1114,7 +1114,7 @@ s32 sub_0800A108(struct EwramData_unk4E4 *param_0)
  * @param param_0 To document
  * @return s32 To document
  */
-s32 sub_0800A2AC(struct EwramData_unk4E4 *param_0)
+s32 sub_0800A2AC(struct EwramData_EntityData *param_0)
 {
     s32 temp_r0;
     s32 temp_r0_3;
@@ -1190,8 +1190,8 @@ s32 GameModeSoulTradeMenu(void)
     s32 var_r4_2;
     s32 var_r4_6;
     s32 var_r4_7;
-    struct EwramData_unk4E4 *temp_r0;
-    struct EwramData_unk4E4 *temp_r6;
+    struct EwramData_EntityData *temp_r0;
+    struct EwramData_EntityData *temp_r6;
     u16 temp_r2_2;
     u16 temp_r3;
     u32 var_r4_10;
@@ -1202,7 +1202,7 @@ s32 GameModeSoulTradeMenu(void)
     u32 var_r5_4;
     u8 temp_r1_10;
     s32 var_16;
-    struct EwramData_unk4E4 *var_17;
+    struct EwramData_EntityData *var_17;
     s32 var_18;
     s32 var_19;
     s32 var_0;
@@ -1213,8 +1213,8 @@ s32 GameModeSoulTradeMenu(void)
     s32 var_5;
     s32 var_6;
 
-    temp_r0 = &gEwramData->unk_4E4[4];
-    temp_r6 = &gEwramData->unk_4E4[5];
+    temp_r0 = &gEwramData->entityData[4];
+    temp_r6 = &gEwramData->entityData[5];
     spC = -1;
     gEwramData->unk_12FE0_2 = 1;
     switch (gEwramData->gameModeUpdateStage)
@@ -1251,10 +1251,10 @@ s32 GameModeSoulTradeMenu(void)
             if (var_r4 == -1)
             {
                 sub_080D7910(0xF0U);
-                sub_08000E14(&gEwramData->unk_4E4[3]);
-                sub_08000E14(&gEwramData->unk_4E4[6]);
-                sub_08000E14(&gEwramData->unk_4E4[5]);
-                sub_08008314(&gEwramData->unk_4E4[4]);
+                EntityDelete(&gEwramData->entityData[3]);
+                EntityDelete(&gEwramData->entityData[6]);
+                EntityDelete(&gEwramData->entityData[5]);
+                sub_08008314(&gEwramData->entityData[4]);
                 gDisplayRegisters.bldCnt = 0xFF;
                 gDisplayRegisters.bldY = 0x10;
                 spC = 1;
@@ -1286,13 +1286,13 @@ s32 GameModeSoulTradeMenu(void)
             else
             {
                 gEwramData->unk_7864.unk_7864_1 = 1;
-                sub_08008314(&gEwramData->unk_4E4[4]);
+                sub_08008314(&gEwramData->entityData[4]);
                 gDisplayRegisters.bldCnt = 0x853;
                 gUnk_03002CB0.dispCnt &= 0xFBFF;
                 sub_0800A00C(0);
-                sub_08000E14(&gEwramData->unk_4E4[3]);
-                sub_08000E14(&gEwramData->unk_4E4[6]);
-                sub_08000E14(temp_r6);
+                EntityDelete(&gEwramData->entityData[3]);
+                EntityDelete(&gEwramData->entityData[6]);
+                EntityDelete(temp_r6);
                 switch (gEwramData->unk_60.unk_4D0)
                 {
                     default:
@@ -1307,9 +1307,9 @@ s32 GameModeSoulTradeMenu(void)
                 }
                 sub_0803C7B4((u8 *)0x080E5E24, 6U, 1U, 0xDU);
                 sub_0803B924(temp_r6, (u8 *)0x082571E0, temp_r4, 0xD);
-                temp_r6->unk_4E4 = (u32 *) sub_08009A48;
+                temp_r6->updateFunc = (u32 *) sub_08009A48;
                 DMA_FILL_32(3, 0, 0x0600E000, 0x800);
-                sub_08048C74(&gEwramData->unk_4E4[3], 0xEU);
+                sub_08048C74(&gEwramData->entityData[3], 0xEU);
                 sub_0803F8A8(1U, (u32 *)0x080E7164, 0U, 0U);
                 sub_0803F8A8(2U, (u32 *)0x080E6F24, 0U, 0U);
                 gDisplayRegisters.bgCnt[1] = 0x1D01;
@@ -1413,8 +1413,8 @@ s32 GameModeSoulTradeMenu(void)
             break;
 
         case 20:
-            sub_08000E14(&gEwramData->unk_4E4[3]);
-            sub_08000E14(&gEwramData->unk_4E4[6]);
+            EntityDelete(&gEwramData->entityData[3]);
+            EntityDelete(&gEwramData->entityData[6]);
             sub_08040970(0U, 8U, 0xEU, 8U);
             sub_08041204();
             for (var_r4_6 = 0; var_r4_6 < 8; var_r4_6++)
@@ -1456,8 +1456,8 @@ s32 GameModeSoulTradeMenu(void)
             {
                 gEwramData->unk_4 = 0;
                 sub_080D7910(0xF0U);
-                sub_08000E14(&gEwramData->unk_4E4[5]);
-                sub_08008314(&gEwramData->unk_4E4[4]);
+                EntityDelete(&gEwramData->entityData[5]);
+                sub_08008314(&gEwramData->entityData[4]);
                 gDisplayRegisters.bldCnt = 0xFF;
                 gDisplayRegisters.bldY = 0x10;
                 spC = 1;
@@ -1467,9 +1467,9 @@ s32 GameModeSoulTradeMenu(void)
         case 9:
             sub_080D7FD0();
             sub_080D7910(0xF0U);
-            sub_08000E14(&gEwramData->unk_4E4[3]);
-            sub_08000E14(&gEwramData->unk_4E4[6]);
-            sub_08000E14(&gEwramData->unk_4E4[5]);
+            EntityDelete(&gEwramData->entityData[3]);
+            EntityDelete(&gEwramData->entityData[6]);
+            EntityDelete(&gEwramData->entityData[5]);
             gDisplayRegisters.bldCnt = 0xFF;
             gDisplayRegisters.bldY = 0x10;
             spC = 1;
@@ -1525,7 +1525,7 @@ s32 GameModeSoulTradeMenu(void)
             }
             else if (var_r4 != 0)
             {
-                sub_08048C74(&gEwramData->unk_4E4[6], 0xEU);
+                sub_08048C74(&gEwramData->entityData[6], 0xEU);
                 gEwramData->gameModeUpdateStage = 0xC;
                 gEwramData->unk_12 = 0;
             }
@@ -1585,11 +1585,11 @@ s32 GameModeSoulTradeMenu(void)
     
             // TODO: what?
             var_16 = gEwramData->unk_12;
-            var_17 = &gEwramData->unk_4E4[6];
+            var_17 = &gEwramData->entityData[6];
             var_19 = (var_16 * 0x3C) + 0x50;
             var_18 = 0x8E;
-            gEwramData->unk_4E4[6].unk_524.unk_524_16.unk_526 = var_19;
-            gEwramData->unk_4E4[6].unk_528.unk_528_16.unk_52A = var_18;
+            gEwramData->entityData[6].unk_524.unk_524_16.unk_526 = var_19;
+            gEwramData->entityData[6].unk_528.unk_528_16.unk_52A = var_18;
             // gEwramData->unk_4E4[6].unk_524.unk_524_16.unk_526 = (gEwramData->unk_12 * 0x3C) + 0x50;
             // gEwramData->unk_4E4[6].unk_528.unk_528_16.unk_52A = 0x8E;
     
@@ -1597,7 +1597,7 @@ s32 GameModeSoulTradeMenu(void)
             {
                 if (gEwramData->unk_12 == 0)
                 {
-                    sub_08000E14(var_17);
+                    EntityDelete(var_17);
                     gEwramData->gameModeUpdateStage = 0xD;
                     gEwramData->unk_12 = 0;
                 }
@@ -1874,8 +1874,8 @@ s32 GameModeSoulTradeMenu(void)
             sub_0800997C_inline_0(0, 0);
             gDisplayRegisters.bldCnt = 0x3FFF;
             sub_08008300(temp_r0);
-            sub_08000E14(&gEwramData->unk_4E4[3]);
-            sub_08000E14(&gEwramData->unk_4E4[6]);
+            EntityDelete(&gEwramData->entityData[3]);
+            EntityDelete(&gEwramData->entityData[6]);
             gEwramData->unk_4 = 0;
             sub_080D7FD0();
             gEwramData->gameModeUpdateStage = 3;
@@ -2064,11 +2064,11 @@ _0800A534: \n\
 	movs r1, #0xce \n\
 	lsls r1, r1, #3 \n\
 	adds r0, r0, r1 \n\
-	bl sub_08000E14 \n\
+	bl EntityDelete \n\
 	ldr r0, [r4] \n\
 	ldr r2, _0800A568 @ =0x000007FC \n\
 	adds r0, r0, r2 \n\
-	bl sub_08000E14 \n\
+	bl EntityDelete \n\
 	b _0800AB52 \n\
 	.align 2, 0 \n\
 _0800A564: .4byte gEwramData \n\
@@ -2164,13 +2164,13 @@ _0800A5F4: \n\
 	movs r1, #0xce \n\
 	lsls r1, r1, #3 \n\
 	adds r0, r0, r1 \n\
-	bl sub_08000E14 \n\
+	bl EntityDelete \n\
 	ldr r0, [r7] \n\
 	ldr r2, _0800A66C @ =0x000007FC \n\
 	adds r0, r0, r2 \n\
-	bl sub_08000E14 \n\
+	bl EntityDelete \n\
 	adds r0, r6, #0 \n\
-	bl sub_08000E14 \n\
+	bl EntityDelete \n\
 	ldr r0, [r7] \n\
 	movs r3, #0x9a \n\
 	lsls r3, r3, #3 \n\
@@ -2577,11 +2577,11 @@ _0800A9BE: \n\
 	movs r3, #0xce \n\
 	lsls r3, r3, #3 \n\
 	adds r0, r0, r3 \n\
-	bl sub_08000E14 \n\
+	bl EntityDelete \n\
 	ldr r0, [r7] \n\
 	ldr r7, _0800AB00 @ =0x000007FC \n\
 	adds r0, r0, r7 \n\
-	bl sub_08000E14 \n\
+	bl EntityDelete \n\
 	movs r0, #0 \n\
 	movs r1, #8 \n\
 	movs r2, #0xe \n\
@@ -2758,7 +2758,7 @@ _0800AB52: \n\
 	movs r3, #0xef \n\
 	lsls r3, r3, #3 \n\
 	adds r0, r0, r3 \n\
-	bl sub_08000E14 \n\
+	bl EntityDelete \n\
 	ldr r0, [r4] \n\
 	ldr r7, _0800AB8C @ =0x000006F4 \n\
 	adds r0, r0, r7 \n\
@@ -2789,16 +2789,16 @@ _0800AB94: \n\
 	movs r1, #0xce \n\
 	lsls r1, r1, #3 \n\
 	adds r0, r0, r1 \n\
-	bl sub_08000E14 \n\
+	bl EntityDelete \n\
 	ldr r0, [r4] \n\
 	ldr r2, _0800ABE0 @ =0x000007FC \n\
 	adds r0, r0, r2 \n\
-	bl sub_08000E14 \n\
+	bl EntityDelete \n\
 	ldr r0, [r4] \n\
 	movs r3, #0xef \n\
 	lsls r3, r3, #3 \n\
 	adds r0, r0, r3 \n\
-	bl sub_08000E14 \n\
+	bl EntityDelete \n\
 	ldr r1, _0800ABE4 @ =gDisplayRegisters \n\
 	adds r2, r1, #0 \n\
 	adds r2, #0x48 \n\
@@ -3093,7 +3093,7 @@ _0800ADFE: \n\
 	cmp r0, #0 \n\
 	bne _0800AE56 \n\
 	adds r0, r5, #0 \n\
-	bl sub_08000E14 \n\
+	bl EntityDelete \n\
 	ldr r1, [r4] \n\
 	movs r0, #0xd \n\
 	strb r0, [r1, #0x11] \n\
@@ -4030,11 +4030,11 @@ _0800B568: \n\
 	movs r1, #0xce \n\
 	lsls r1, r1, #3 \n\
 	adds r0, r0, r1 \n\
-	bl sub_08000E14 \n\
+	bl EntityDelete \n\
 	ldr r0, [r7] \n\
 	ldr r2, _0800B5E4 @ =0x000007FC \n\
 	adds r0, r0, r2 \n\
-	bl sub_08000E14 \n\
+	bl EntityDelete \n\
 	ldr r0, [r7] \n\
 	strh r4, [r0, #4] \n\
 	bl sub_080D7FD0 \n\
@@ -4068,7 +4068,7 @@ _0800B5E4: .4byte 0x000007FC \n\
  * 
  * @param param_0 To document
  */
-void sub_0800B5E8(struct EwramData_unk4E4 *param_0)
+void sub_0800B5E8(struct EwramData_EntityData *param_0)
 {
     s32 var_r4;
     s32 var_r5;
@@ -4091,7 +4091,7 @@ void sub_0800B5E8(struct EwramData_unk4E4 *param_0)
  * @param param_0 To document
  * @param param_1 To document
  */
-void sub_0800B634(struct EwramData_unk4E4 *param_0, s32 param_1)
+void sub_0800B634(struct EwramData_EntityData *param_0, s32 param_1)
 {
     // TODO: sub_0800B634 is the same as GameModeSoulTradeMenu_inline_1
     s32 var_0;

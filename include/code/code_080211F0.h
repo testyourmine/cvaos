@@ -8,9 +8,9 @@
 extern void sub_080211F4(void); // Types?
 extern void sub_08021344(u8 param_0, u8 param_1, u8 param_2);
 extern void sub_080213BC(void);
-extern s32 sub_08021438(struct EwramData_unk4E4 *param_0, u8 param_1, u8 param_2);
-extern void sub_08021494(struct EwramData_unk4E4 *param_0);
-extern void sub_080214DC(struct EwramData_unk4E4 *param_0);
+extern s32 sub_08021438(struct EwramData_EntityData *param_0, u8 param_1, u8 param_2);
+extern void sub_08021494(struct EwramData_EntityData *param_0);
+extern void sub_080214DC(struct EwramData_EntityData *param_0);
 extern void sub_08021E50(s32 param_0);
 extern void sub_08021F18(void);
 extern s32 sub_080220CC(void);

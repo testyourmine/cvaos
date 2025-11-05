@@ -366,7 +366,7 @@ void sub_080006CC(void)
     WRITE_16(REG_DISPSTAT, DSTAT_IF_VBLANK);
     
 
-    sub_08000D44();
+    EntityDeleteAll();
     sub_0803D9A8();
     sub_0803E438();
     sub_08039DC0();

@@ -127,4 +127,8 @@ struct BgAffineDstData {
     s32 dy;
 };
 
+#if 0
+#define NON_MATCHING
+#endif
+
 #endif /* TYPES_H */

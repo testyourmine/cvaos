@@ -313,7 +313,7 @@ extern u16 sUnk_08116650[];
 
 extern u8 sUnk_084F1054[][2];
 
-static inline struct EwramData_unk4E4* Get_unk_13110()
+static inline struct EwramData_EntityData* Get_unk_13110()
 {
     return gEwramData->unk_13110;
 }
@@ -464,7 +464,7 @@ void sub_08010FF4(struct EwramData_unk60 *param_0)
 {
     s32 temp_r4_2;
     s32 temp_sb;
-    struct EwramData_unk4E4 *temp_r7;
+    struct EwramData_EntityData *temp_r7;
     s32 temp_r0;
     s32 temp_r3;
     s32 var_0;
@@ -636,7 +636,7 @@ void sub_08011338(struct EwramData_unk60 *param_0)
  */
 void sub_08011430(struct EwramData_unk60 *param_0)
 {
-    struct EwramData_unk4E4 *temp_r4;
+    struct EwramData_EntityData *temp_r4;
     s32 temp_r7;
     s32 temp_r8;
     s32 temp_r0;
@@ -879,7 +879,7 @@ s32 sub_080116A8(struct EwramData_unk60 *param_0)
  * @param param_0 To document
  * @return s32 To document
  */
-s32 sub_08011A44(struct EwramData_unk4E4 *param_0)
+s32 sub_08011A44(struct EwramData_EntityData *param_0)
 {
     union EwramData_unkA078 *temp_r2;
     struct EwramData_unkA094_0 *temp_r6;
@@ -1476,7 +1476,7 @@ extern struct Unk_080E10F0 sUnk_080E10F0[];
  * 
  * @param param_0 To document
  */
-void sub_080123EC(struct EwramData_unk4E4 *param_0)
+void sub_080123EC(struct EwramData_EntityData *param_0)
 {
     u32 temp_r0_2;
     s32 var_0;
@@ -1484,7 +1484,7 @@ void sub_080123EC(struct EwramData_unk4E4 *param_0)
     switch (param_0->unk_4EE)
     {
         case 0:
-            param_0->unk_4E8 = (u32 *) sub_0803B9D0;
+            param_0->drawFunc = (u32 *) sub_0803B9D0;
             param_0->unk_540 = 13;
             param_0->unk_4F8.unk_4F8_8.unk_4F9 = 6;
             /* fallthrough */
@@ -1529,7 +1529,7 @@ void sub_080124A8(void)
  * @param param_2 To document
  * @return s32 To document
  */
-s32 sub_080124F4(struct EwramData_unk4E4 *param_0, u32 param_1, s32 param_2)
+s32 sub_080124F4(struct EwramData_EntityData *param_0, u32 param_1, s32 param_2)
 {
     // TODO: inline for sub_080123EC?
     s32 temp_r0;
@@ -1549,7 +1549,7 @@ s32 sub_080124F4(struct EwramData_unk4E4 *param_0, u32 param_1, s32 param_2)
  * @param param_0 To document
  * @param param_1 To document
  */
-void sub_08012534(struct EwramData_unk4E4 *param_0, s32 param_1)
+void sub_08012534(struct EwramData_EntityData *param_0, s32 param_1)
 {
     // TODO: inline for sub_080123EC?
     if (param_1 != 0)
@@ -2926,11 +2926,11 @@ void sub_08013F6C(s32 param_0)
  */
 s32 GameModeGameOverUpdate(void)
 {
-    struct EwramData_unk4E4 *temp_r5;
+    struct EwramData_EntityData *temp_r5;
     s32 gameMode;
     s32 var_r4;
 
-    temp_r5 = gEwramData->unk_4E4;
+    temp_r5 = gEwramData->entityData;
     gameMode = GAME_MODE_SAME_MODE;
 
     switch (gEwramData->gameModeUpdateStage)
@@ -2980,7 +2980,7 @@ s32 GameModeGameOverUpdate(void)
             {
                 if (gEwramData->unk_12 == 1)
                 {
-                    sub_08000E14(temp_r5);
+                    EntityDelete(temp_r5);
 
                     switch (gEwramData->unk_60.unk_4D0)
                     {
@@ -3001,8 +3001,8 @@ s32 GameModeGameOverUpdate(void)
                             break;
                     }
 
-                    temp_r5->unk_4E8 = (u32 *) sub_080142E8;
-                    temp_r5->unk_4E4 = (u32 *) sub_08000F38;
+                    temp_r5->drawFunc = (u32 *) sub_080142E8;
+                    temp_r5->updateFunc = (u32 *) EntityUpdateNothing;
                 }
                 gEwramData->unk_12 -= 1;
             }
@@ -3061,7 +3061,7 @@ s32 GameModeGameOverUpdate(void)
  * 
  * @param param_0 To document
  */
-void sub_080142E8(struct EwramData_unk4E4 *param_0)
+void sub_080142E8(struct EwramData_EntityData *param_0)
 {
     param_0->unk_524.unk_524_16.unk_526 = 0x80;
     param_0->unk_528.unk_528_16.unk_52A = 0xE;
@@ -3227,7 +3227,7 @@ extern struct Unk_080E126C sUnk_080E126C;
  * 
  * @param param_0 To document
  */
-void sub_08014628(struct EwramData_unk4E4 *param_0)
+void sub_08014628(struct EwramData_EntityData *param_0)
 {
     s32 temp_r4;
     s32 temp_r1;
@@ -3252,7 +3252,7 @@ void sub_08014628(struct EwramData_unk4E4 *param_0)
         }
     }
     sub_0803F17C(param_0);
-    param_0->unk_4E8 = (u32 *) sub_08021494;
+    param_0->drawFunc = (u32 *) sub_08021494;
     sub_0804277C(param_0, 1, sub_080211F4, 0);
     sub_080428B4(param_0, &sUnk_080E12F8);
     param_0->unk_556 |= 2;
@@ -3264,7 +3264,7 @@ void sub_08014628(struct EwramData_unk4E4 *param_0)
  * 
  * @param param_0 To document
  */
-void sub_08014720(struct EwramData_unk4E4 *param_0)
+void sub_08014720(struct EwramData_EntityData *param_0)
 {
     s32 temp_r4;
     s32 var_r2;
@@ -3283,7 +3283,7 @@ void sub_08014720(struct EwramData_unk4E4 *param_0)
     sub_08021438(param_0, 0, 1);
     sub_0803F17C(param_0);
 
-    param_0->unk_4E8 = (u32 *) sub_080214DC;
+    param_0->drawFunc = (u32 *) sub_080214DC;
     sub_0804277C(param_0, 1, sub_080211F4, 0);
     sub_0806B1FC(param_0);
 
@@ -3304,18 +3304,18 @@ void sub_08014720(struct EwramData_unk4E4 *param_0)
     sub_0803B800((u8 *)0x081FA2B8, 0x10000);
     sub_0803C7B4((u8 *)0x0820C04C, 0, 1, 2);
     sub_0803C7B4((u8 *)0x0820C04C, 1, 1, 3);
-    sub_08000E14(&gEwramData->unk_4E4[0x11]);
+    EntityDelete(&gEwramData->entityData[0x11]);
 
-    sub_08000DA0(0x11, 0x11, (u32 *) sub_080344F0);
+    EntityCreateInRange(0x11, 0x11, (u32 *) sub_080344F0);
     param_0->unk_514.unk_514_32 = sub_080355D0();
     gEwramData->unk_13120 = sub_080354C8(0x01300000, 0, (u8 *)0x081FA2B8, param_0->unk_514.unk_514_32);
     sub_08035638(gEwramData->unk_13120);
 }
 
 // sub_08014628, sub_08014720
-extern void (*sUnk_084F10AC[])(struct EwramData_unk4E4 *);
+extern void (*sUnk_084F10AC[])(struct EwramData_EntityData *);
 // sub_0801B0D8, sub_0801FEF8
-extern void (*sUnk_084F10B4[])(struct EwramData_unk4E4 *);
+extern void (*sUnk_084F10B4[])(struct EwramData_EntityData *);
 
 /**
  * @brief 1487C | To document
@@ -3324,7 +3324,7 @@ extern void (*sUnk_084F10B4[])(struct EwramData_unk4E4 *);
  */
 void sub_0801487C(s32 param_0)
 {
-    struct EwramData_unk4E4 *temp_r0;
+    struct EwramData_EntityData *temp_r0;
 
     gEwramData->unk_131BE = 0;
     gEwramData->unk_131C8 = -1;
@@ -3338,7 +3338,7 @@ void sub_0801487C(s32 param_0)
     sub_080235C8();
     sub_0802DFF0();
 
-    temp_r0 = sub_08000DA0(0, 0, (u32*) sUnk_084F10B4[gEwramData->unk_1325C.unk_13266]);
+    temp_r0 = EntityCreateInRange(0, 0, (u32*) sUnk_084F10B4[gEwramData->unk_1325C.unk_13266]);
     sUnk_084F10AC[gEwramData->unk_1325C.unk_13266](temp_r0);
     gEwramData->unk_13110 = temp_r0;
     gEwramData->unk_13168 = temp_r0;
@@ -3371,12 +3371,12 @@ void sub_0801487C(s32 param_0)
 }
 
 
-static inline s32 Get_unk4F4_Bit20_inline(struct EwramData_unk4E4 *param_0)
+static inline s32 Get_unk4F4_Bit20_inline(struct EwramData_EntityData *param_0)
 {
     return param_0->unk_4F4.unk_4F4_32 & 0x100000;
 }
 
-static inline s32 Get_unk4F4_Bit12_inline(struct EwramData_unk4E4 *param_0)
+static inline s32 Get_unk4F4_Bit12_inline(struct EwramData_EntityData *param_0)
 {
     return param_0->unk_4F4.unk_4F4_32 & 0x1000;
 }
@@ -3392,7 +3392,7 @@ static inline s32 Get_unk100D_Bit6_7_inline()
 }
 
 // TODO: try to match https://decomp.me/scratch/DH3wT
-void sub_08014A04(struct EwramData_unk4E4 *param_0)
+void sub_08014A04(struct EwramData_EntityData *param_0)
 {
     struct Unk_08042030 sp0;
     struct Unk_08042030 sp4;
@@ -3558,18 +3558,18 @@ void sub_08014A04(struct EwramData_unk4E4 *param_0)
     struct EwramData_unk1316C *temp_r1_6;
     struct EwramData_unk1316C *temp_r1_8;
     struct EwramData_unk1316C *temp_r2_5;
-    struct EwramData_unk4E4 *temp_r2;
-    struct EwramData_unk4E4 *temp_r2_13;
-    struct EwramData_unk4E4 *temp_r2_17;
-    struct EwramData_unk4E4 *temp_r2_21;
-    struct EwramData_unk4E4 *temp_r2_31;
-    struct EwramData_unk4E4 *temp_r2_9;
-    struct EwramData_unk4E4 *temp_r5_12;
-    struct EwramData_unk4E4 *temp_r5_13;
-    struct EwramData_unk4E4 *temp_r5_14;
-    struct EwramData_unk4E4 *temp_r5_15;
-    struct EwramData_unk4E4 *temp_r5_17;
-    struct EwramData_unk4E4 *temp_r5_3;
+    struct EwramData_EntityData *temp_r2;
+    struct EwramData_EntityData *temp_r2_13;
+    struct EwramData_EntityData *temp_r2_17;
+    struct EwramData_EntityData *temp_r2_21;
+    struct EwramData_EntityData *temp_r2_31;
+    struct EwramData_EntityData *temp_r2_9;
+    struct EwramData_EntityData *temp_r5_12;
+    struct EwramData_EntityData *temp_r5_13;
+    struct EwramData_EntityData *temp_r5_14;
+    struct EwramData_EntityData *temp_r5_15;
+    struct EwramData_EntityData *temp_r5_17;
+    struct EwramData_EntityData *temp_r5_3;
     u16 temp_r0_10;
     u16 temp_r0_12;
     u16 temp_r0_13;

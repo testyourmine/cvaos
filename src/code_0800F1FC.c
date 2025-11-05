@@ -39,7 +39,7 @@ struct Unk_080E9644 {
 
 extern struct Unk_080E9644 sUnk_080E9644[];
 
-void (*sUnk_084F0DF8[56])(struct EwramData_unk4E4 *) = {
+void (*sUnk_084F0DF8[56])(struct EwramData_EntityData *) = {
     [0] = sub_0804D9DC,
     [1] = sub_08033C84,
     [2] = sub_0804DFAC,
@@ -98,7 +98,7 @@ void (*sUnk_084F0DF8[56])(struct EwramData_unk4E4 *) = {
     [55] = sub_0805A930,
 };
 
-void (*sUnk_084F0ED8[56])(struct EwramData_unk4E4 *) = {
+void (*sUnk_084F0ED8[56])(struct EwramData_EntityData *) = {
     [0] = sub_0804DAB4,
     [1] = sub_08033C90,
     [2] = sub_0804E0F8,
@@ -165,11 +165,11 @@ void (*sUnk_084F0ED8[56])(struct EwramData_unk4E4 *) = {
  */
 s32 sub_0800F1FC(struct EwramData_unk_3DC *param_0)
 {
-    struct EwramData_unk4E4 *temp_r0;
-    struct EwramData_unk4E4 *temp_r0_3;
-    struct EwramData_unk4E4 *temp_r1_4;
-    struct EwramData_unk4E4 *var_r0_2;
-    struct EwramData_unk4E4 *var_r8;
+    struct EwramData_EntityData *temp_r0;
+    struct EwramData_EntityData *temp_r0_3;
+    struct EwramData_EntityData *temp_r1_4;
+    struct EwramData_EntityData *var_r0_2;
+    struct EwramData_EntityData *var_r8;
     struct Unk_080E9644 *var_r0;
     union EwramData_unkA078 *temp_r1_2;
     s32 var_r1;
@@ -186,7 +186,7 @@ s32 sub_0800F1FC(struct EwramData_unk_3DC *param_0)
         return 0;
     }
 
-    temp_r0 = sub_08000DA0(0x1B, 0x48, (u32 *) sub_08000F38);
+    temp_r0 = EntityCreateInRange(0x1B, 0x48, (u32 *) EntityUpdateNothing);
     if (temp_r0 != 0)
     {
         var_0 = param_0->unk_0 << 0x10;
@@ -204,30 +204,30 @@ s32 sub_0800F1FC(struct EwramData_unk_3DC *param_0)
         temp_r0->unk_514.unk_514_16.unk_516 = param_0->unk_A;
         temp_r0->unk_51B = param_0->unk_4;
         temp_r0->unk_51A = param_0->unk_6;
-        temp_r0->unk_4E8 = (u32*)sub_0803B9D0;
+        temp_r0->drawFunc = (u32*)sub_0803B9D0;
         switch (param_0->unk_5)
         {
             case 1:
                 var_r0 = &sUnk_080E9644[param_0->unk_6];
                 temp_r0->unk_518 = var_r0->unk_C;
-                temp_r0->unk_4E4 = var_r0->unk_4;
-                ((void (*)(struct EwramData_unk4E4 *))var_r0->unk_0)(temp_r0);
+                temp_r0->updateFunc = var_r0->unk_4;
+                ((void (*)(struct EwramData_EntityData *))var_r0->unk_0)(temp_r0);
                 break;
 
             case 2:
-                temp_r0->unk_4E4 = (u32*)sUnk_084F0ED8[param_0->unk_6];
+                temp_r0->updateFunc = (u32*)sUnk_084F0ED8[param_0->unk_6];
                 sUnk_084F0DF8[param_0->unk_6](temp_r0);
                 break;
 
             case 3:
-                temp_r0->unk_4E4 = (u32*)sub_08045EE0;
-                sub_08046080((struct EwramData_unk4E4 *) temp_r0);
+                temp_r0->updateFunc = (u32*)sub_08045EE0;
+                sub_08046080((struct EwramData_EntityData *) temp_r0);
                 break;
 
             case 4:
                 if (gEwramData->unk_1325C.unk_13266 != 0)
                 {
-                    sub_08000E14((struct EwramData_unk4E4 *) temp_r0);
+                    EntityDelete((struct EwramData_EntityData *) temp_r0);
                     break;
                 }
 
@@ -246,7 +246,7 @@ s32 sub_0800F1FC(struct EwramData_unk_3DC *param_0)
                         var_r0_2->unk_514.unk_514_16.unk_514 = temp_r0->unk_514.unk_514_16.unk_514;
                     }
                 }
-                sub_08000E14((struct EwramData_unk4E4 *) temp_r0);
+                EntityDelete((struct EwramData_EntityData *) temp_r0);
                 break;
 
             case 5:
@@ -264,13 +264,13 @@ s32 sub_0800F1FC(struct EwramData_unk_3DC *param_0)
                         }
                     }
                 }
-                sub_08000E14((struct EwramData_unk4E4 *) temp_r0);
+                EntityDelete((struct EwramData_EntityData *) temp_r0);
                 break;
 
             case 6:
                 if (gEwramData->unk_1325C.unk_13266 != 0)
                 {
-                    sub_08000E14((struct EwramData_unk4E4 *) temp_r0);
+                    EntityDelete((struct EwramData_EntityData *) temp_r0);
                     break;
                 }
 
@@ -287,7 +287,7 @@ s32 sub_0800F1FC(struct EwramData_unk_3DC *param_0)
                         }
                     }
                 }
-                sub_08000E14((struct EwramData_unk4E4 *) temp_r0);
+                EntityDelete((struct EwramData_EntityData *) temp_r0);
                 break;
         }
         var_r7 = 1;
@@ -545,7 +545,7 @@ void sub_0800F92C(struct EwramData_unk_3DC *param_0)
 {
     s32 var_r7;
     s32 var_sb;
-    struct EwramData_unk4E4 *var_0;
+    struct EwramData_EntityData *var_0;
 
     for (var_sb = 0; param_0[var_sb].unk_0 < 0x7FFF; var_sb++)
     {
@@ -555,10 +555,10 @@ void sub_0800F92C(struct EwramData_unk_3DC *param_0)
         }
     }
 
-    var_0 = &gEwramData->unk_4E4[0x1B];
+    var_0 = &gEwramData->entityData[0x1B];
     for (var_r7 = 0; var_r7 < 0xB5; var_r7++)
     {
-        if (var_0->unk_4E4 != NULL)
+        if (var_0->updateFunc != NULL)
         {
             if (!(var_0->unk_53D_2))
             {
@@ -566,13 +566,13 @@ void sub_0800F92C(struct EwramData_unk_3DC *param_0)
                 {
                     sub_0803E6BC(var_0->unk_53C_0);
                 }
-                sub_08000E14(&gEwramData->unk_4E4[0x1B + var_r7]);
+                EntityDelete(&gEwramData->entityData[0x1B + var_r7]);
             }
             else
             {
                 var_0->unk_53D_2 = 0;
-                ((void (*)(struct EwramData_unk4E4 *)) var_0->unk_4E4)(var_0);
-                sub_08000E14(&gEwramData->unk_4E4[0x1B + var_r7]);
+                ((void (*)(struct EwramData_EntityData *)) var_0->updateFunc)(var_0);
+                EntityDelete(&gEwramData->entityData[0x1B + var_r7]);
             }
         }
         var_0++;
@@ -664,12 +664,12 @@ void sub_0800FBD8(void)
     s32 var_r4_2;
     s32 var_r6;
     s32 var_r6_2;
-    struct EwramData_unk4E4 *var_r4;
+    struct EwramData_EntityData *var_r4;
 
-    var_r4 = &gEwramData->unk_4E4[2];
+    var_r4 = &gEwramData->entityData[2];
     for (var_r6 = 2; var_r6 < 0xD0; var_r6++)
     {
-        if (var_r4->unk_4E4 != NULL)
+        if (var_r4->updateFunc != NULL)
         {
             if (!var_r4->unk_53D_2)
             {
@@ -677,15 +677,15 @@ void sub_0800FBD8(void)
                 {
                     sub_0803E6BC(var_r4->unk_53C_0);
                 }
-                sub_08000E14(&gEwramData->unk_4E4[var_r6]);
+                EntityDelete(&gEwramData->entityData[var_r6]);
             }
             else
             {
                 var_r4->unk_53D_2 = 0;
                 if (var_r6 > 0x1A)
                 {
-                    ((void (*)(struct EwramData_unk4E4 *)) var_r4->unk_4E4)(var_r4);
-                    sub_08000E14(var_r4);
+                    ((void (*)(struct EwramData_EntityData *)) var_r4->updateFunc)(var_r4);
+                    EntityDelete(var_r4);
                 }
             }
         }
@@ -1180,7 +1180,7 @@ void sub_08010244(struct EwramData_unk60 *param_0)
 void sub_08010350(struct EwramData_unk60 *param_0)
 {
     s32 var_r6;
-    struct EwramData_unk4E4 *temp_r5;
+    struct EwramData_EntityData *temp_r5;
     struct EwramData_unk88 *temp_sb;
     struct EwramData_unk88_18 *var_r4;
     struct EwramData_unkA094_0 *temp_r4_2;
@@ -1282,7 +1282,7 @@ void sub_08010350(struct EwramData_unk60 *param_0)
 s32 sub_080104EC(struct EwramData_unk60 *param_0)
 {
     s32 temp_r6;
-    struct EwramData_unk4E4 *temp_r2_2;
+    struct EwramData_EntityData *temp_r2_2;
     s32 var_r4;
     u8 temp_r4;
     u8 temp_r5_2;
@@ -1373,7 +1373,7 @@ s32 sub_080104EC(struct EwramData_unk60 *param_0)
  */
 s32 sub_080106DC(struct EwramData_unk60 *param_0)
 {
-    struct EwramData_unk4E4 *temp_r4;
+    struct EwramData_EntityData *temp_r4;
     union EwramData_unkA078 *temp_r6;
     s32 var_r4;
 

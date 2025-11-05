@@ -6869,7 +6869,7 @@ _0801410C:
 	cmp r3, #1
 	bne _080141A4
 	adds r0, r5, #0
-	bl sub_08000E14
+	bl EntityDelete
 	ldr r0, [r7]
 	movs r1, #0x9a
 	lsls r1, r1, #3
@@ -6928,7 +6928,7 @@ _08014190:
 	bl sub_0803B924
 	ldr r0, _080141BC @ =sub_080142E8
 	str r0, [r5, #4]
-	ldr r0, _080141C0 @ =sub_08000F38
+	ldr r0, _080141C0 @ =EntityUpdateNothing
 	str r0, [r5]
 	ldr r7, _080141C4 @ =gEwramData
 _080141A4:
@@ -6942,7 +6942,7 @@ _080141B0: .4byte 0x0826E85C
 _080141B4: .4byte 0x0825C368
 _080141B8: .4byte 0x0826F894
 _080141BC: .4byte sub_080142E8
-_080141C0: .4byte sub_08000F38
+_080141C0: .4byte EntityUpdateNothing
 _080141C4: .4byte gEwramData
 _080141C8:
 	ldr r0, [r7]
@@ -7674,11 +7674,11 @@ _080147A8:
 	ldr r0, [r4]
 	ldr r1, _08014870 @ =0x00000DA8
 	adds r0, r0, r1
-	bl sub_08000E14
+	bl EntityDelete
 	ldr r2, _08014874 @ =sub_080344F0
 	movs r0, #0x11
 	movs r1, #0x11
-	bl sub_08000DA0
+	bl EntityCreateInRange
 	bl sub_080355D0
 	adds r3, r0, #0
 	str r3, [r6, #0x30]
@@ -7760,7 +7760,7 @@ sub_0801487C: @ 0x0801487C
 	ldr r2, [r0]
 	movs r0, #0
 	movs r1, #0
-	bl sub_08000DA0
+	bl EntityCreateInRange
 	adds r7, r0, #0
 	ldr r1, _080149D8 @ =0x084F10AC
 	ldr r0, [r4]
@@ -17569,7 +17569,7 @@ _08019554:
 	ldr r2, [r7]
 	movs r0, #2
 	movs r1, #0x10
-	bl sub_08000DA0
+	bl EntityCreateInRange
 	adds r4, r0, #0
 	cmp r4, #0
 	bne _08019566
@@ -29531,7 +29531,7 @@ _0801F35C:
 	ldr r2, [r3]
 	movs r0, #2
 	movs r1, #0x10
-	bl sub_08000DA0
+	bl EntityCreateInRange
 	adds r4, r0, #0
 	cmp r4, #0
 	beq _0801F43C

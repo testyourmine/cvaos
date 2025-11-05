@@ -170,7 +170,7 @@ const struct Unk_080E0CC0 sUnk_080E0CC0[] = {
     },
 };
 
-static inline void sub_08005928_inline(struct EwramData_unk4E4 *param_0, s32 param_1, s32 param_2, u8 *param_3)
+static inline void sub_08005928_inline(struct EwramData_EntityData *param_0, s32 param_1, s32 param_2, u8 *param_3)
 {
     s32 var_r6;
 
@@ -189,7 +189,7 @@ static inline void sub_08005928_inline(struct EwramData_unk4E4 *param_0, s32 par
     }
 }
 
-static inline void sub_08005928_inline_2(struct EwramData_unk4E4 *param_0, s32 param_1)
+static inline void sub_08005928_inline_2(struct EwramData_EntityData *param_0, s32 param_1)
 {
     struct Unk_080E0CC0 var_0[18];
 
@@ -212,7 +212,7 @@ static inline void sub_08005928_inline_2(struct EwramData_unk4E4 *param_0, s32 p
  * 
  * @param param_0 To document
  */
-void sub_08005928(struct EwramData_unk4E4 *param_0)
+void sub_08005928(struct EwramData_EntityData *param_0)
 {
     struct EwramData_unk20 *unk_20;
     s32 var_r1;
@@ -433,7 +433,7 @@ void sub_08005928(struct EwramData_unk4E4 *param_0)
  * 
  * @param param_0 To document
  */
-void sub_08005E28(struct EwramData_unk4E4 *param_0)
+void sub_08005E28(struct EwramData_EntityData *param_0)
 {
     struct EwramData_unk20 unk_20_0;
     struct EwramData_unk20 *unk_20;
@@ -548,7 +548,7 @@ void sub_08005E28(struct EwramData_unk4E4 *param_0)
  * 
  * @param param_0 To document
  */
-void sub_08006318(struct EwramData_unk4E4 *param_0)
+void sub_08006318(struct EwramData_EntityData *param_0)
 {
     struct EwramData_unk20 *unk_20;
     s32 var_r4_2;
@@ -605,7 +605,7 @@ void sub_08006318(struct EwramData_unk4E4 *param_0)
  * 
  * @param param_0 To document
  */
-void sub_0800656C(struct EwramData_unk4E4 *param_0)
+void sub_0800656C(struct EwramData_EntityData *param_0)
 {
     struct EwramData_unk20 *unk_20;
     s32 var_r1;
@@ -700,7 +700,7 @@ void sub_0800656C(struct EwramData_unk4E4 *param_0)
  * 
  * @param param_0 To document
  */
-void sub_08006910(struct EwramData_unk4E4 *param_0, s16 param_1, s16 param_2)
+void sub_08006910(struct EwramData_EntityData *param_0, s16 param_1, s16 param_2)
 {
     sub_08005928_inline_2(param_0, 5);
     param_0->unk_549 = param_0->unk_500.unk_500_8.unk_500;
@@ -717,7 +717,7 @@ void sub_08006910(struct EwramData_unk4E4 *param_0, s16 param_1, s16 param_2)
  * 
  * @param param_0 To document
  */
-void sub_080069C4(struct EwramData_unk4E4 *param_0)
+void sub_080069C4(struct EwramData_EntityData *param_0)
 {
     s32 var_r6;
 
@@ -771,13 +771,13 @@ void sub_080069C4(struct EwramData_unk4E4 *param_0)
  * 
  * @param param_0 To document
  */
-void sub_08006BC0(struct EwramData_unk4E4 *param_0)
+void sub_08006BC0(struct EwramData_EntityData *param_0)
 {
     s32 temp_r4;
     s32 var_r4;
     struct EwramData_unk20 *temp_r6;
 
-    sub_08000E14(param_0);
+    EntityDelete(param_0);
     switch (gEwramData->unk_60.unk_4D0)
     {
         default:
@@ -821,7 +821,7 @@ void sub_08006BC0(struct EwramData_unk4E4 *param_0)
     sub_0803F2C8(param_0, 0, 0, 1);
     sub_0803F17C(param_0);
     param_0->unk_500.unk_500_8.unk_500 = param_0->unk_549;
-    param_0->unk_4E8 = (u32 *) sub_080069C4;
+    param_0->drawFunc = (u32 *) sub_080069C4;
     temp_r6 = gEwramData->unk_20;
 
     for (var_r4 = 0; var_r4 < 6; var_r4++)
@@ -832,7 +832,7 @@ void sub_08006BC0(struct EwramData_unk4E4 *param_0)
             param_0->unk_4F4.unk_4F4_8.unk_4F5 |= 1 << var_r4;
         }
     }
-    param_0->unk_4E4 = (u32 *) sub_08000F38;
+    param_0->updateFunc = (u32 *) EntityUpdateNothing;
     param_0->unk_4EE = 1;
 }
 
@@ -841,7 +841,7 @@ void sub_08006BC0(struct EwramData_unk4E4 *param_0)
  * 
  * @param param_0 To document
  */
-void sub_08006CFC(struct EwramData_unk4E4 *param_0)
+void sub_08006CFC(struct EwramData_EntityData *param_0)
 {
     switch (gEwramData->unk_60.unk_4D0)
     {
@@ -906,7 +906,7 @@ static inline s32 sub_08006D9C_inline_1(struct EwramData_unk20 *param_1)
  * @param param_3 To document
  * @param param_4 To document
  */
-void sub_08006D9C(struct EwramData_unk4E4 *param_0, struct EwramData_unk20 *param_1, s32 param_2, s32 param_3, s32 param_4)
+void sub_08006D9C(struct EwramData_EntityData *param_0, struct EwramData_unk20 *param_1, s32 param_2, s32 param_3, s32 param_4)
 {
     s32 temp_r0_2;
     s32 temp_r0_3;
@@ -1023,7 +1023,7 @@ void sub_08006D9C(struct EwramData_unk4E4 *param_0, struct EwramData_unk20 *para
  * @param param_0 To document
  * @param param_1 To document
  */
-void sub_08007204(struct EwramData_unk4E4 *param_0, s32 param_1)
+void sub_08007204(struct EwramData_EntityData *param_0, s32 param_1)
 {
     struct EwramData_unk20 *temp_r6;
     struct EwramData_unk60 *temp_r8;
@@ -1130,7 +1130,7 @@ void sub_08007204(struct EwramData_unk4E4 *param_0, s32 param_1)
  * @param param_1 To document
  * @param param_2 To document
  */
-void sub_0800737C(struct EwramData_unk4E4 *param_0, s32 param_1, s32 param_2)
+void sub_0800737C(struct EwramData_EntityData *param_0, s32 param_1, s32 param_2)
 {
     struct EwramData_unk20 *temp_r5;
     s16 *var_r1;
@@ -1183,7 +1183,7 @@ void sub_0800737C(struct EwramData_unk4E4 *param_0, s32 param_1, s32 param_2)
  * 
  * @param param_0 To document
  */
-void sub_0800744C(struct EwramData_unk4E4 *param_0)
+void sub_0800744C(struct EwramData_EntityData *param_0)
 {
     sub_0803F8A8(1, (u32 *)0x080E7314, 0, 0);
     sub_0803F8A8(2, (u32 *)0x080E7044, 0, 0);
@@ -1207,7 +1207,7 @@ void sub_0800744C(struct EwramData_unk4E4 *param_0)
  * @param param_0 To document
  * @return s32 To document
  */
-s32 sub_080074C0(struct EwramData_unk4E4 *param_0)
+s32 sub_080074C0(struct EwramData_EntityData *param_0)
 {
     s32 sp0;
     s32 repeatedInput;
@@ -1431,7 +1431,7 @@ extern u32 *sUnk_080E6FB4;
  * 
  * @param param_0 To document
  */
-void sub_08007820(struct EwramData_unk4E4 *param_0)
+void sub_08007820(struct EwramData_EntityData *param_0)
 {
     s16 *var_r3;
     s16 var_r4;
@@ -1488,7 +1488,7 @@ void sub_08007820(struct EwramData_unk4E4 *param_0)
  * @param param_0 To document
  * @return s32 To document
  */
-s32 sub_08007914(struct EwramData_unk4E4 *param_0)
+s32 sub_08007914(struct EwramData_EntityData *param_0)
 {
     s16 *var_r1;
     s16 var_r2;
@@ -1644,7 +1644,7 @@ s32 sub_08007914(struct EwramData_unk4E4 *param_0)
  * @param param_0 To document
  * @return s32 To document
  */
-s32 sub_08007B8C(struct EwramData_unk4E4 *param_0)
+s32 sub_08007B8C(struct EwramData_EntityData *param_0)
 {
     s16 *var_r1;
     s16 var_r2;
@@ -1770,7 +1770,7 @@ s32 sub_08007B8C(struct EwramData_unk4E4 *param_0)
  * @param param_0 To document
  * @param param_1 To document
  */
-void sub_08007D84(struct EwramData_unk4E4 *param_0, s32 param_1)
+void sub_08007D84(struct EwramData_EntityData *param_0, s32 param_1)
 {
     s16 *var_r1_2;
     s16 var_r2_2;
@@ -1896,7 +1896,7 @@ void sub_08007EE0(s32 param_0)
  * 
  * @param param_0 To document
  */
-void sub_08007FF0(struct EwramData_unk4E4 *param_0)
+void sub_08007FF0(struct EwramData_EntityData *param_0)
 {
     u32 temp_r0;
     u8 *temp_r1;
@@ -1960,7 +1960,7 @@ void sub_08007FF0(struct EwramData_unk4E4 *param_0)
  * @param param_0 To document
  * @return s32 To document
  */
-s32 sub_080081AC(struct EwramData_unk4E4 *param_0)
+s32 sub_080081AC(struct EwramData_EntityData *param_0)
 {
     s32 temp_r2;
     s32 var_r7;
@@ -2049,7 +2049,7 @@ extern u32 *sUnk_080E6E04;
  * 
  * @param param_0 To document
  */
-void sub_08008290(struct EwramData_unk4E4 *param_0)
+void sub_08008290(struct EwramData_EntityData *param_0)
 {
     s32 var_r2;
 
@@ -2074,7 +2074,7 @@ void sub_08008290(struct EwramData_unk4E4 *param_0)
  * 
  * @param param_0 To document
  */
-void sub_08008300(struct EwramData_unk4E4 *param_0)
+void sub_08008300(struct EwramData_EntityData *param_0)
 {
     sub_0800D154();
     sub_08007FF0(param_0);
@@ -2085,7 +2085,7 @@ void sub_08008300(struct EwramData_unk4E4 *param_0)
  * 
  * @param param_0 To document
  */
-void sub_08008314(struct EwramData_unk4E4 *param_0)
+void sub_08008314(struct EwramData_EntityData *param_0)
 {
     sub_08006CFC(param_0);
     sub_0800D1F0();
@@ -2096,7 +2096,7 @@ void sub_08008314(struct EwramData_unk4E4 *param_0)
  * 
  * @param param_0 To document
  */
-void sub_08008324(struct EwramData_unk4E4 *param_0)
+void sub_08008324(struct EwramData_EntityData *param_0)
 {
     s16 *var_r2;
     s16 var_r3;
@@ -2143,7 +2143,7 @@ const u8 sUnk_080E0DDC[8] = {
 
 // nonmatch: https://decomp.me/scratch/vf8yR
 #ifdef NON_MATCHING
-s32 sub_080083C8(struct EwramData_unk4E4 *param_0)
+s32 sub_080083C8(struct EwramData_EntityData *param_0)
 {
     s32 temp_r6;
     s32 var_r0_10;
@@ -2445,7 +2445,7 @@ s32 sub_080083C8(struct EwramData_unk4E4 *param_0)
 }
 #else
 NAKED_FUNCTION
-s32 sub_080083C8(struct EwramData_unk4E4 *param_0)
+s32 sub_080083C8(struct EwramData_EntityData *param_0)
 {
     asm(" .syntax unified \n\
     push {r4, r5, r6, r7, lr} \n\

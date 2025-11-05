@@ -40,7 +40,7 @@ _080D09BA:
 	cmp r0, #0
 	bne _080D09FC
 	adds r0, r4, #0
-	bl sub_08000E14
+	bl EntityDelete
 	b _080D0A92
 	.align 2, 0
 _080D09E8: .4byte 0x0820C04C
@@ -548,7 +548,7 @@ _080D0D8E:
 	ble _080D0DAA
 _080D0DA2:
 	adds r0, r5, #0
-	bl sub_08000E14
+	bl EntityDelete
 	b _080D0DBE
 _080D0DAA:
 	ldrb r0, [r5, #0xd]
@@ -559,7 +559,7 @@ _080D0DAA:
 	cmp r0, #0xff
 	bne _080D0DBE
 	adds r0, r5, #0
-	bl sub_08000E14
+	bl EntityDelete
 _080D0DBE:
 	pop {r4, r5, r6, r7}
 	pop {r0}
@@ -572,7 +572,7 @@ sub_080D0DC4: @ 0x080D0DC4
 	ldr r2, _080D0E4C @ =sub_080D0CF4
 	movs r0, #0x49
 	movs r1, #0xcf
-	bl sub_08000DA0
+	bl EntityCreateInRange
 	adds r6, r0, #0
 	cmp r6, #0
 	beq _080D0E42
@@ -1515,7 +1515,7 @@ sub_080D14F8: @ 0x080D14F8
 	ldr r2, _080D156C @ =sub_080D2394
 	movs r0, #0x49
 	movs r1, #0xcf
-	bl sub_08000DA0
+	bl EntityCreateInRange
 	adds r4, r0, #0
 	cmp r4, #0
 	beq _080D1562
@@ -2369,7 +2369,7 @@ _080D1B98: .4byte sub_080D2368
 _080D1B9C: .4byte sub_0806E1B8
 _080D1BA0:
 	adds r0, r4, #0
-	bl sub_08000E14
+	bl EntityDelete
 _080D1BA6:
 	movs r0, #0
 _080D1BA8:
@@ -2454,7 +2454,7 @@ _080D1C28:
 	cmp r0, #0
 	bne _080D1C48
 	adds r0, r5, #0
-	bl sub_08000E14
+	bl EntityDelete
 	movs r0, #0
 	b _080D1D0A
 _080D1C48:
@@ -2690,7 +2690,7 @@ _080D1DFA:
 	bl sub_0803E6BC
 _080D1E08:
 	adds r0, r5, #0
-	bl sub_08000E14
+	bl EntityDelete
 	b _080D1E54
 _080D1E10:
 	ldrh r0, [r5, #0x36]
@@ -2923,7 +2923,7 @@ _080D1FC0:
 	bl sub_0803E6BC
 _080D1FCE:
 	adds r0, r5, #0
-	bl sub_08000E14
+	bl EntityDelete
 	b _080D1FDC
 _080D1FD6:
 	adds r0, r5, #0
@@ -3006,7 +3006,7 @@ _080D2056:
 _080D2064: .4byte 0x08528D08
 _080D2068:
 	adds r0, r4, #0
-	bl sub_08000E14
+	bl EntityDelete
 	b _080D20DC
 _080D2070:
 	ldrb r0, [r4, #0xb]
@@ -3124,7 +3124,7 @@ _080D2136:
 	beq _080D215C
 _080D2150:
 	adds r0, r4, #0
-	bl sub_08000E14
+	bl EntityDelete
 	b _080D2174
 	.align 2, 0
 _080D2158: .4byte 0x08528D08
@@ -3267,7 +3267,7 @@ _080D2260:
 	movs r0, #0x49
 	movs r1, #0xcf
 	ldr r2, _080D2298 @ =sub_080D229C
-	bl sub_08000DA0
+	bl EntityCreateInRange
 	adds r7, r0, #0
 	cmp r7, #0
 	bne _080D2190
@@ -3433,7 +3433,7 @@ sub_080D2394: @ 0x080D2394
 	cmp r0, #0
 	beq _080D23AC
 	adds r0, r2, #0
-	bl sub_08000E14
+	bl EntityDelete
 	b _080D23B2
 _080D23AC:
 	adds r0, r2, #0
@@ -3653,7 +3653,7 @@ _080D253C:
 	cmp r0, #0
 	bne _080D2568
 	adds r0, r5, #0
-	bl sub_08000E14
+	bl EntityDelete
 	b _080D257E
 	.align 2, 0
 _080D2560: .4byte 0x0000037E
@@ -3697,10 +3697,10 @@ sub_080D2584: @ 0x080D2584
 	ands r0, r1
 	cmp r0, #0
 	bne _080D25C0
-	ldr r2, _080D25D0 @ =sub_08000F38
+	ldr r2, _080D25D0 @ =EntityUpdateNothing
 	movs r0, #0x1b
 	movs r1, #0x48
-	bl sub_08000DA0
+	bl EntityCreateInRange
 	mov ip, r0
 	cmp r0, #0
 	bne _080D25D4
@@ -3711,7 +3711,7 @@ _080D25C0:
 _080D25C4: .4byte 0x08528D5C
 _080D25C8: .4byte gEwramData
 _080D25CC: .4byte 0x0000042C
-_080D25D0: .4byte sub_08000F38
+_080D25D0: .4byte EntityUpdateNothing
 _080D25D4:
 	mov r2, ip
 	ldrb r0, [r2, #0x10]
@@ -4047,7 +4047,7 @@ sub_080D2850: @ 0x080D2850
 	ldr r2, _080D28D4 @ =sub_080D2998
 	movs r0, #0x49
 	movs r1, #0xcf
-	bl sub_08000DA0
+	bl EntityCreateInRange
 	adds r7, r0, #0
 	cmp r7, #0
 	bne _080D2876
@@ -5246,7 +5246,7 @@ _080D3204:
 	cmp r0, #0
 	bne _080D3222
 	adds r0, r4, #0
-	bl sub_08000E14
+	bl EntityDelete
 	movs r0, #0
 	b _080D32E6
 _080D3222:
@@ -5507,7 +5507,7 @@ _080D3408:
 	cmp r0, #0
 	bne _080D3426
 	adds r0, r5, #0
-	bl sub_08000E14
+	bl EntityDelete
 	movs r0, #0
 	b _080D34EE
 _080D3426:
@@ -5817,7 +5817,7 @@ _080D3670:
 	cmp r0, #0
 	bne _080D368C
 	adds r0, r4, #0
-	bl sub_08000E14
+	bl EntityDelete
 	b _080D373A
 _080D368C:
 	ldrb r0, [r5, #0x10]
@@ -6354,7 +6354,7 @@ _080D3A84:
 	cmp r0, #0
 	bne _080D3AA2
 	adds r0, r5, #0
-	bl sub_08000E14
+	bl EntityDelete
 	movs r0, #0
 	b _080D3B7A
 _080D3AA2:
@@ -6940,7 +6940,7 @@ _080D3ED4:
 	ldr r2, _080D3F8C @ =sub_080D6060
 	movs r0, #0x49
 	movs r1, #0xcf
-	bl sub_08000DA0
+	bl EntityCreateInRange
 	adds r4, r0, #0
 	cmp r4, #0
 	beq _080D3F44
@@ -7058,7 +7058,7 @@ _080D3FD0:
 	movs r0, #0x49
 	movs r1, #0xcf
 	ldr r2, _080D4068 @ =sub_080D6060
-	bl sub_08000DA0
+	bl EntityCreateInRange
 	adds r4, r0, #0
 	cmp r4, #0
 	beq _080D4032
@@ -7146,7 +7146,7 @@ _080D40A0:
 	cmp r0, #0
 	bne _080D40BE
 	adds r0, r5, #0
-	bl sub_08000E14
+	bl EntityDelete
 	movs r0, #0
 	b _080D4158
 _080D40BE:
@@ -7268,7 +7268,7 @@ _080D419C:
 	cmp r0, #0
 	bne _080D41BA
 	adds r0, r5, #0
-	bl sub_08000E14
+	bl EntityDelete
 	movs r0, #0
 	b _080D4292
 _080D41BA:
@@ -8230,7 +8230,7 @@ sub_080D48EC: @ 0x080D48EC
 	cmp r0, #0
 	bne _080D4930
 	adds r0, r7, #0
-	bl sub_08000E14
+	bl EntityDelete
 	b _080D4998
 	.align 2, 0
 _080D4920: .4byte 0x0820C158
@@ -8866,7 +8866,7 @@ _080D4E08:
 	ldr r0, [r4]
 	cmp r0, #0
 	beq _080D4E12
-	bl sub_08000E14
+	bl EntityDelete
 _080D4E12:
 	adds r4, #4
 	subs r6, #1
@@ -9221,7 +9221,7 @@ _080D50B4:
 	ldr r0, [r4]
 	cmp r0, #0
 	beq _080D50BE
-	bl sub_08000E14
+	bl EntityDelete
 _080D50BE:
 	adds r4, #4
 	subs r6, #1
@@ -9674,7 +9674,7 @@ _080D5424:
 	ldr r0, [r4]
 	cmp r0, #0
 	beq _080D542E
-	bl sub_08000E14
+	bl EntityDelete
 _080D542E:
 	adds r4, #4
 	adds r6, #1
@@ -10241,7 +10241,7 @@ _080D5890:
 	movs r0, #0x49
 	movs r1, #0xcf
 	ldr r2, _080D58C8 @ =sub_080D6178
-	bl sub_08000DA0
+	bl EntityCreateInRange
 	adds r3, r0, #0
 	cmp r3, #0
 	beq _080D590E
@@ -10359,7 +10359,7 @@ _080D5970:
 	movs r0, #0x49
 	movs r1, #0xcf
 	ldr r2, _080D599C @ =sub_080D6178
-	bl sub_08000DA0
+	bl EntityCreateInRange
 	adds r3, r0, #0
 	cmp r3, #0
 	beq _080D59CE
@@ -10431,7 +10431,7 @@ _080D59F0:
 	bne _080D5A02
 	bl sub_080D7124
 	adds r0, r5, #0
-	bl sub_08000E14
+	bl EntityDelete
 	b _080D5A18
 _080D5A02:
 	subs r0, #1
@@ -10505,7 +10505,7 @@ _080D5A66:
 	ldr r2, _080D5AD0 @ =sub_080D6178
 	movs r0, #0x49
 	movs r1, #0xcf
-	bl sub_08000DA0
+	bl EntityCreateInRange
 	adds r5, r0, #0
 	cmp r5, #0
 	beq _080D5B2E
@@ -10633,7 +10633,7 @@ _080D5B7E:
 _080D5B84:
 	bl sub_080D7124
 	adds r0, r4, #0
-	bl sub_08000E14
+	bl EntityDelete
 	b _080D5BA2
 _080D5B90:
 	adds r0, r4, #0
@@ -10740,7 +10740,7 @@ _080D5C4C:
 	cmp r0, #3
 	bne _080D5C66
 	adds r0, r4, #0
-	bl sub_08000E14
+	bl EntityDelete
 _080D5C66:
 	pop {r4}
 	pop {r0}
@@ -10856,7 +10856,7 @@ _080D5D3C:
 	movs r0, #0x49
 	movs r1, #0xcf
 	ldr r2, _080D5D68 @ =sub_080D5BAC
-	bl sub_08000DA0
+	bl EntityCreateInRange
 	adds r3, r0, #0
 	cmp r3, #0
 	beq _080D5D9A
@@ -10926,7 +10926,7 @@ _080D5DBC:
 	bne _080D5DCE
 	bl sub_080D7124
 	adds r0, r6, #0
-	bl sub_08000E14
+	bl EntityDelete
 	b _080D5DE4
 _080D5DCE:
 	subs r0, #1
@@ -11186,7 +11186,7 @@ sub_080D5F88: @ 0x080D5F88
 	ldr r2, _080D5FEC @ =sub_080D5C6C
 	movs r0, #0x49
 	movs r1, #0xcf
-	bl sub_08000DA0
+	bl EntityCreateInRange
 	adds r5, r0, #0
 	cmp r5, #0
 	beq _080D5FE2
@@ -11248,7 +11248,7 @@ sub_080D5FF0: @ 0x080D5FF0
 	ldr r2, _080D605C @ =sub_080D2A90
 	movs r0, #0x49
 	movs r1, #0xcf
-	bl sub_08000DA0
+	bl EntityCreateInRange
 	adds r2, r0, #0
 	cmp r2, #0
 	beq _080D604A
@@ -11334,7 +11334,7 @@ _080D60BC:
 	cmp r0, #3
 	bne _080D60CC
 	adds r0, r4, #0
-	bl sub_08000E14
+	bl EntityDelete
 _080D60CC:
 	pop {r4}
 	pop {r0}
@@ -11480,7 +11480,7 @@ _080D61C8:
 	cmp r0, #3
 	bne _080D61E2
 	adds r0, r4, #0
-	bl sub_08000E14
+	bl EntityDelete
 _080D61E2:
 	pop {r4}
 	pop {r0}
@@ -11539,7 +11539,7 @@ _080D6232:
 	ldr r2, _080D629C @ =sub_080D6178
 	movs r0, #0x49
 	movs r1, #0xcf
-	bl sub_08000DA0
+	bl EntityCreateInRange
 	adds r5, r0, #0
 	cmp r5, #0
 	beq _080D6302
@@ -11710,7 +11710,7 @@ _080D6358:
 	str r0, [r1]
 _080D63B0:
 	adds r0, r6, #0
-	bl sub_08000E14
+	bl EntityDelete
 	b _080D6432
 	.align 2, 0
 _080D63B8: .4byte gEwramData
@@ -11792,7 +11792,7 @@ sub_080D6450: @ 0x080D6450
 	ldr r2, _080D6528 @ =sub_080D61F4
 	movs r0, #0x49
 	movs r1, #0xcf
-	bl sub_08000DA0
+	bl EntityCreateInRange
 	adds r6, r0, #0
 	cmp r6, #0
 	beq _080D6518
@@ -11945,7 +11945,7 @@ _080D658C:
 	ldr r2, _080D6600 @ =sub_080D6178
 	movs r0, #0x49
 	movs r1, #0xcf
-	bl sub_08000DA0
+	bl EntityCreateInRange
 	adds r4, r0, #0
 	cmp r4, #0
 	beq _080D65F2
@@ -12062,7 +12062,7 @@ _080D6640:
 	str r0, [r1]
 _080D6694:
 	adds r0, r6, #0
-	bl sub_08000E14
+	bl EntityDelete
 	b _080D6712
 	.align 2, 0
 _080D669C: .4byte 0x0000042C
@@ -12178,7 +12178,7 @@ _080D677C:
 	cmp r0, #3
 	bne _080D6796
 	adds r0, r4, #0
-	bl sub_08000E14
+	bl EntityDelete
 _080D6796:
 	pop {r4}
 	pop {r0}
@@ -12241,7 +12241,7 @@ _080D67EE:
 	ldr r2, _080D6858 @ =sub_080D672C
 	movs r0, #0x49
 	movs r1, #0xcf
-	bl sub_08000DA0
+	bl EntityCreateInRange
 	adds r4, r0, #0
 	cmp r4, #0
 	beq _080D68B6
@@ -12404,7 +12404,7 @@ _080D6904:
 	str r0, [r1]
 _080D6958:
 	adds r0, r6, #0
-	bl sub_08000E14
+	bl EntityDelete
 	b _080D69D6
 	.align 2, 0
 _080D6960: .4byte 0x0000042C
@@ -12528,7 +12528,7 @@ _080D6A50:
 	cmp r1, #0
 	bgt _080D6A80
 	adds r0, r4, #0
-	bl sub_08000E14
+	bl EntityDelete
 	b _080D6B00
 	.align 2, 0
 _080D6A6C: .4byte 0x081C15F4
@@ -12681,7 +12681,7 @@ _080D6B82:
 	ldr r2, _080D6C1C @ =sub_080D69F4
 	movs r0, #0x49
 	movs r1, #0xcf
-	bl sub_08000DA0
+	bl EntityCreateInRange
 	adds r4, r0, #0
 	cmp r4, #0
 	beq _080D6BEC
@@ -13061,7 +13061,7 @@ _080D6EAA:
 	bl sub_0803E6BC
 _080D6EC2:
 	adds r0, r6, #0
-	bl sub_08000E14
+	bl EntityDelete
 	b _080D6EEE
 	.align 2, 0
 _080D6ECC: .4byte 0x0000101F
@@ -13163,7 +13163,7 @@ _080D6F88:
 	ldr r2, _080D6FB8 @ =sub_080D6B0C
 	movs r0, #0x49
 	movs r1, #0xcf
-	bl sub_08000DA0
+	bl EntityCreateInRange
 	adds r7, r0, #0
 	cmp r7, #0
 	beq _080D7076
@@ -13174,7 +13174,7 @@ _080D6F88:
 	cmp r0, #0
 	bge _080D6FBC
 	adds r0, r7, #0
-	bl sub_08000E14
+	bl EntityDelete
 	b _080D7076
 	.align 2, 0
 _080D6FB0: .4byte 0x0000037E
@@ -13411,7 +13411,7 @@ sub_080D7198: @ 0x080D7198
 	ldr r2, _080D7234 @ =sub_080D6544
 	movs r0, #0x49
 	movs r1, #0xcf
-	bl sub_08000DA0
+	bl EntityCreateInRange
 	adds r6, r0, #0
 	cmp r6, #0
 	beq _080D7226
@@ -13497,7 +13497,7 @@ sub_080D7250: @ 0x080D7250
 	ldr r2, _080D72EC @ =sub_080D67A8
 	movs r0, #0x49
 	movs r1, #0xcf
-	bl sub_08000DA0
+	bl EntityCreateInRange
 	adds r6, r0, #0
 	cmp r6, #0
 	beq _080D72DE
