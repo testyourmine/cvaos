@@ -1338,7 +1338,7 @@ static inline sub_08003A9C_inline_0(u8 *ptr0, u8 *ptr1, struct EwramData_unk4E4 
     }
     else
     {
-        param_0->unk_510 = var_0;
+        param_0->unk_510.unk_510_8.unk_510 = var_0;
         sub_0803B924(param_0, ptr1, temp_r0, var_0);
         param_0->unk_4E8 = (u32 *)sub_0803B9D0;
         var_r0 = param_0->unk_547 = 1;
@@ -1358,7 +1358,7 @@ static inline sub_08003A9C_inline_1(u8 *ptr0, u8 *ptr1, struct EwramData_unk4E4 
     }
     else
     {
-        param_0->unk_510 = var_0;
+        param_0->unk_510.unk_510_8.unk_510 = var_0;
         sub_0803B924(param_0, ptr1, temp_r0, var_0);
         param_0->unk_4E8 = (u32 *)sub_0803B9D0;
         var_r0 = param_0->unk_547 = 1;
@@ -1755,7 +1755,7 @@ void sub_08004160(struct EwramData_unk4E4 *param_0)
     sub_08068F48();
     sub_0806E028();
     sub_0803C7B4((u8 *)0x08209308, 3, 1, var_0 = 4);
-    param_0->unk_510 = var_0;
+    param_0->unk_510.unk_510_8.unk_510 = var_0;
 
     var_0 = sub_08003A9C_inline_0((u8*)&sUnk_08160488, (u8*)&sUnk_0820CB1C, param_0, 4);
     
