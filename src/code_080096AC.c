@@ -1005,7 +1005,7 @@ void sub_0800A00C(s32 param_0)
     sub_080412F0(1);
     sub_08041304(0);
 
-    switch (gEwramData->unk_60.unk_4D0)
+    switch (gEwramData->unk_60.language)
     {
         case 2:
             sub_0803FD9C((u8 *)0x08277984, 0x0600C000, 0);

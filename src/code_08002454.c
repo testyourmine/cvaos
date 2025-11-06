@@ -29,167 +29,167 @@
 
 // Note: sub_0800125C is implicitly called
 
-struct Unk_084F0B28 {
-    const u8 *unk_0;
-    u32 unk_4;
+struct DebugMenuOptions {
+    const u8 *text;
+    u32 gameMode;
 };
 
-struct Unk_084F0B28 sUnk_084F0B28[] = {
+struct DebugMenuOptions sDebugMenuOptions[] = {
     [0] = {
-        .unk_0 = "Exit",
-        .unk_4 = GAME_MODE_DEBUG_EXIT
+        .text = "Exit",
+        .gameMode = GAME_MODE_DEBUG_EXIT
     },
     [1] = {
-        .unk_0 = "Start",
-        .unk_4 = GAME_MODE_RESET
+        .text = "Start",
+        .gameMode = GAME_MODE_RESET
     },
     [2] = {
-        .unk_0 = "Trade",
-        .unk_4 = GAME_MODE_SOUL_TRADE_MENU
+        .text = "Trade",
+        .gameMode = GAME_MODE_SOUL_TRADE_MENU
     },
     [3] = {
-        .unk_0 = "1967",
-        .unk_4 = GAME_MODE_DEBUG_1967
+        .text = "1967",
+        .gameMode = GAME_MODE_DEBUG_1967
     },
     [4] = {
-        .unk_0 = "2229",
-        .unk_4 = GAME_MODE_DEBUG_2229
+        .text = "2229",
+        .gameMode = GAME_MODE_DEBUG_2229
     },
     [5] = {
-        .unk_0 = "2739",
-        .unk_4 = GAME_MODE_DEBUG_2739
+        .text = "2739",
+        .gameMode = GAME_MODE_DEBUG_2739
     },
     [6] = {
-        .unk_0 = "4531",
-        .unk_4 = GAME_MODE_DEBUG_4531
+        .text = "4531",
+        .gameMode = GAME_MODE_DEBUG_4531
     },
     [7] = {
-        .unk_0 = "Staff Roll",
-        .unk_4 = GAME_MODE_CREDITS
+        .text = "Staff Roll",
+        .gameMode = GAME_MODE_CREDITS
     },
     [8] = {
-        .unk_0 = NULL,
-        .unk_4 = 0
+        .text = NULL,
+        .gameMode = GAME_MODE_KONAMI_LOGO
     },
 };
 
-struct Unk_084F0B70 {
-    s32 unk_0;
+struct DebugExitOptions {
+    s32 gameMode;
     s32 unk_4;
     u32* unk_8; // Type?
-    const u8* unk_C;
+    const u8* text;
 };
 
-struct Unk_084F0B70 sUnk_084F0B70[0x11] = {
+struct DebugExitOptions sDebugExitOptions[] = {
     [0] = {
-        .unk_0 = GAME_MODE_IN_GAME,
+        .gameMode = GAME_MODE_IN_GAME,
         .unk_4 = 0,
-        .unk_8 = (u32*)0x850F15C,
-        .unk_C = "0.Entrance"
+        .unk_8 = (u32*)0x0850F15C,
+        .text = "0.Entrance"
     },
     [1] = {
-        .unk_0 = GAME_MODE_IN_GAME,
+        .gameMode = GAME_MODE_IN_GAME,
         .unk_4 = 0,
-        .unk_8 = (u32*)0x85122FC,
-        .unk_C = "1.Adoration Hall"
+        .unk_8 = (u32*)0x085122FC,
+        .text = "1.Adoration Hall"
     },
     [2] = {
-        .unk_0 = GAME_MODE_IN_GAME,
+        .gameMode = GAME_MODE_IN_GAME,
         .unk_4 = 0,
-        .unk_8 = (u32*)0x85132D4,
-        .unk_C = "2.Library"
+        .unk_8 = (u32*)0x085132D4,
+        .text = "2.Library"
     },
     [3] = {
-        .unk_0 = GAME_MODE_IN_GAME,
+        .gameMode = GAME_MODE_IN_GAME,
         .unk_4 = 0,
-        .unk_8 = (u32*)0x8514AB0,
-        .unk_C = "3.Dance Hall"
+        .unk_8 = (u32*)0x08514AB0,
+        .text = "3.Dance Hall"
     },
     [4] = {
-        .unk_0 = GAME_MODE_IN_GAME,
+        .gameMode = GAME_MODE_IN_GAME,
         .unk_4 = 0,
-        .unk_8 = (u32*)0x8516768,
-        .unk_C = "4.Harem"
+        .unk_8 = (u32*)0x08516768,
+        .text = "4.Harem"
     },
     [5] = {
-        .unk_0 = GAME_MODE_IN_GAME,
+        .gameMode = GAME_MODE_IN_GAME,
         .unk_4 = 0,
-        .unk_8 = (u32*)0x8517790,
-        .unk_C = "5.Babylon"
+        .unk_8 = (u32*)0x08517790,
+        .text = "5.Babylon"
     },
     [6] = {
-        .unk_0 = GAME_MODE_IN_GAME,
+        .gameMode = GAME_MODE_IN_GAME,
         .unk_4 = 0,
-        .unk_8 = (u32*)0x85196E0,
-        .unk_C = "6.Clock Tower"
+        .unk_8 = (u32*)0x085196E0,
+        .text = "6.Clock Tower"
     },
     [7] = {
-        .unk_0 = GAME_MODE_IN_GAME,
+        .gameMode = GAME_MODE_IN_GAME,
         .unk_4 = 0,
-        .unk_8 = (u32*)0x851ADD4,
-        .unk_C = "7.Water Vein"
+        .unk_8 = (u32*)0x0851ADD4,
+        .text = "7.Water Vein"
     },
     [8] = {
-        .unk_0 = GAME_MODE_IN_GAME,
+        .gameMode = GAME_MODE_IN_GAME,
         .unk_4 = 0,
-        .unk_8 = (u32*)0x851E7F8,
-        .unk_C = "8.Arena"
+        .unk_8 = (u32*)0x0851E7F8,
+        .text = "8.Arena"
     },
     [9] = {
-        .unk_0 = GAME_MODE_IN_GAME,
+        .gameMode = GAME_MODE_IN_GAME,
         .unk_4 = 0,
-        .unk_8 = (u32*)0x85209B8,
-        .unk_C = "9.Saijo-kai"
+        .unk_8 = (u32*)0x085209B8,
+        .text = "9.Saijo-kai"
     },
     [10] = {
-        .unk_0 = GAME_MODE_IN_GAME,
+        .gameMode = GAME_MODE_IN_GAME,
         .unk_4 = 0,
-        .unk_8 = (u32*)0x8523064,
-        .unk_C = " Chaos Start"
+        .unk_8 = (u32*)0x08523064,
+        .text = " Chaos Start"
     },
     [11] = {
-        .unk_0 = GAME_MODE_IN_GAME,
+        .gameMode = GAME_MODE_IN_GAME,
         .unk_4 = 0,
-        .unk_8 = (u32*)0x8522ABC,
-        .unk_C = " Chaos Boss"
+        .unk_8 = (u32*)0x08522ABC,
+        .text = " Chaos Boss"
     },
     [12] = {
-        .unk_0 = GAME_MODE_IN_GAME,
+        .gameMode = GAME_MODE_IN_GAME,
         .unk_4 = 0,
-        .unk_8 = (u32*)0x8524E5C,
-        .unk_C = " Boss Rush 1P"
+        .unk_8 = (u32*)0x08524E5C,
+        .text = " Boss Rush 1P"
     },
     [13] = {
-        .unk_0 = GAME_MODE_BOSS_RUSH_MENU,
+        .gameMode = GAME_MODE_BOSS_RUSH_MENU,
         .unk_4 = 0,
-        .unk_8 = (u32*)0x8524020,
-        .unk_C = " Boss Rush 2P"
+        .unk_8 = (u32*)0x08524020,
+        .text = " Boss Rush 2P"
     },
     [14] = {
-        .unk_0 = GAME_MODE_IN_GAME,
+        .gameMode = GAME_MODE_IN_GAME,
         .unk_4 = 0,
-        .unk_8 = (u32*)0x851BF1C,
-        .unk_C = "  VS Legion"
+        .unk_8 = (u32*)0x0851BF1C,
+        .text = "  VS Legion"
     },
     [15] = {
-        .unk_0 = GAME_MODE_IN_GAME,
+        .gameMode = GAME_MODE_IN_GAME,
         .unk_4 = 0,
-        .unk_8 = (u32*)0x851E490,
-        .unk_C = "  VS Balor"
+        .unk_8 = (u32*)0x0851E490,
+        .text = "  VS Balor"
     },
     [16] = {
-        .unk_0 = GAME_MODE_IN_GAME,
+        .gameMode = GAME_MODE_IN_GAME,
         .unk_4 = 0,
-        .unk_8 = (u32*)0x8515EF0,
-        .unk_C = "  VS Collector"
+        .unk_8 = (u32*)0x08515EF0,
+        .text = "  VS Collector"
     },
 };
 
-s32 sUnk_084F0C80 = ARRAY_SIZE(sUnk_084F0B70);
+s32 sDebugExitOptionsLength = ARRAY_SIZE(sDebugExitOptions);
 
-const u8 sUnk_080E0C94[] = "Please select.\n";
-const u8 sUnk_080E0CA4[] = " ";
-const u8 sUnk_080E0CA8[0x4] = ">";
+const u8 sDebugMenuSelectText[] = "Please select.\n";
+const u8 sDebugExitEmptyText[] = " ";
+const u8 sDebugExitCursorText[0x4] = ">";
 
 /**
  * @brief 2454 | Handle debug game mode
@@ -198,8 +198,8 @@ const u8 sUnk_080E0CA8[0x4] = ">";
  */
 s32 GameModeDebugUpdate(void)
 {
-    s32 var_r4;
-    s32 var_r6;
+    s32 option;
+    s32 optionEnd;
     s32 gameMode;
     u16 repeatedInput;
 
@@ -210,18 +210,20 @@ s32 GameModeDebugUpdate(void)
     {
         case 0:
             DMA_FILL_32(3, 0, VRAM_BASE + 0xE000, 0x800);
-            sub_0800125C(1, 1, 0, sUnk_080E0C94);
+            sub_0800125C(1, 1, 0, sDebugMenuSelectText);
             gEwramData->gameModeUpdateStage += 1;
-            gEwramData->unk_12 = 0;
+            gEwramData->unk_12 = 0; // unk_12 is used as the current option here
             break;
 
         case 1:
-            for (var_r6 = 0; sUnk_084F0B28[var_r6].unk_0 != NULL; var_r6++);
+            for (optionEnd = 0; sDebugMenuOptions[optionEnd].text != NULL; optionEnd++);
 
             if (gEwramData->inputData.newInput & (KEY_START | KEY_A))
             {
                 DMA_FILL_32(3, 0, 0x0600E000, 0x800);
-                gameMode = sUnk_084F0B28[gEwramData->unk_12].unk_4;
+                gameMode = sDebugMenuOptions[gEwramData->unk_12].gameMode;
+
+                // Only slot 8 has Konami Logo mode, which is not possible to reach
                 if ((gameMode == GAME_MODE_KONAMI_LOGO) && (repeatedInput & KEY_SELECT))
                 {
                     sub_08008ED0(0);
@@ -234,25 +236,27 @@ s32 GameModeDebugUpdate(void)
                 {
                     if (gEwramData->unk_12 != 0)
                     {
-                        gEwramData->unk_12 = gEwramData->unk_12 - 1;
+                        gEwramData->unk_12 -= 1;
                     }
                     else
                     {
-                        gEwramData->unk_12 = var_r6 - 1;
+                        // Wrap around
+                        gEwramData->unk_12 = optionEnd - 1;
                     }
                 }
                 else if (repeatedInput & KEY_DOWN)
                 {
                     gEwramData->unk_12 += 1;
-                    if (gEwramData->unk_12 >= var_r6)
+                    if (gEwramData->unk_12 >= optionEnd)
                     {
+                        // Wrap around
                         gEwramData->unk_12 = 0;
                     }
                 }
 
-                for (var_r4 = 0; var_r4 < var_r6; var_r4++)
+                for (option = 0; option < optionEnd; option++)
                 {
-                    sub_0800125C(4, var_r4 + 3, (var_r4 == gEwramData->unk_12) ? 1 : 3, sUnk_084F0B28[var_r4].unk_0);
+                    sub_0800125C(4, option + 3, (option == gEwramData->unk_12) ? 1 : 3, sDebugMenuOptions[option].text);
                 }
             }
             break;
@@ -270,7 +274,7 @@ extern u32* sub_08001980(s32 param_0, s32 param_1);
 s32 GameModeDebugExitUpdate(void)
 {
     s32 temp_r3_2;
-    s32 var_r4;
+    s32 option;
     s32 gameMode;
     u32 var_r5_2;
 
@@ -284,11 +288,11 @@ s32 GameModeDebugExitUpdate(void)
             DMA_COPY_32(3, &sUnk_080E5264, VRAM_BASE + 0x8000, sizeof(sUnk_080E5264));
             DMA_COPY_32(3, &sUnk_080E3464, PALRAM_BASE, sizeof(sUnk_080E3464));
             DMA_FILL_32(3, 0, VRAM_BASE + 0xE000, 0x800);
-            gEwramData->unk_12 = 0;
+            gEwramData->unk_12 = 0; // unk_12 is used as the current option here
 
-            for (var_r4 = 0; var_r4 < sUnk_084F0C80; var_r4++)
+            for (option = 0; option < sDebugExitOptionsLength; option++)
             {
-                sub_0800125C(5, var_r4 + 2, 0, sUnk_084F0B70[var_r4].unk_C);
+                sub_0800125C(5, option + 2, 0, sDebugExitOptions[option].text);
             }
 
             gEwramData->gameModeUpdateStage += 1;
@@ -303,24 +307,25 @@ s32 GameModeDebugExitUpdate(void)
         case 2:
             if (gEwramData->inputData.newInput & KEY_UP)
             {
-                sub_0800125C(4, gEwramData->unk_12 + 2, 2, (u8 *) sUnk_080E0CA4);
-                if (--gEwramData->unk_12 > sUnk_084F0C80)
+                sub_0800125C(4, gEwramData->unk_12 + 2, 2, (u8 *) sDebugExitEmptyText);
+                if (--gEwramData->unk_12 > sDebugExitOptionsLength)
                 {
-                    gEwramData->unk_12 = sUnk_084F0C80 - 1;
+                    gEwramData->unk_12 = sDebugExitOptionsLength - 1;
                 }
             }
             else if (gEwramData->inputData.newInput & KEY_DOWN)
             {
-                sub_0800125C(4, gEwramData->unk_12 + 2, 2, (u8 *) sUnk_080E0CA4);
-                if (++gEwramData->unk_12 >= sUnk_084F0C80)
+                sub_0800125C(4, gEwramData->unk_12 + 2, 2, (u8 *) sDebugExitEmptyText);
+                if (++gEwramData->unk_12 >= sDebugExitOptionsLength)
                 {
                     gEwramData->unk_12 = 0;
                 }
             }
 
-            sub_0800125C(4, gEwramData->unk_12 + 2, 2, (u8 *) sUnk_080E0CA8);
+            sub_0800125C(4, gEwramData->unk_12 + 2, 2, (u8 *) sDebugExitCursorText);
             if (gEwramData->inputData.newInput & KEY_A)
             {
+                // If entrance option picked
                 if (gEwramData->unk_12 == 0)
                 {
                     if (gEwramData->inputData.heldInput & KEY_LEFT)
@@ -344,7 +349,7 @@ s32 GameModeDebugExitUpdate(void)
                 }
                 else
                 {
-                    gEwramData->unk_60.unk_88 = (struct EwramData_unk88 *)sUnk_084F0B70[gEwramData->unk_12].unk_8;
+                    gEwramData->unk_60.unk_88 = (struct EwramData_unk88 *)sDebugExitOptions[gEwramData->unk_12].unk_8;
                     gEwramData->unk_60.unk_37C = -1;
                     sub_08014548();
                     sub_0804B26C(2, 0x3a);
@@ -358,11 +363,11 @@ s32 GameModeDebugExitUpdate(void)
                 if ((gEwramData->unk_60.unk_88 == 0) && (gEwramData->unk_60.unk_3CC == 0))
                 {
                     var_r5_2 = 0;
-                    gEwramData->unk_60.unk_428 = sUnk_084F0B70[gEwramData->unk_12].unk_4 * 2;
+                    gEwramData->unk_60.unk_428 = sDebugExitOptions[gEwramData->unk_12].unk_4 * 2;
                     temp_r3_2 = sub_08013700(gEwramData->unk_60.unk_428 + 1, 0);
                     if ((gEwramData->inputData.heldInput & KEY_RIGHT) && (temp_r3_2 != 0))
                     {
-                        var_r5_2 = (-gEwramData->unk_20[0].unk_38 | gEwramData->unk_20[0].unk_38) >> 0x1F;
+                        var_r5_2 = gEwramData->unk_20[0].unk_38 != var_r5_2;
                     }
 
                     if (sub_08012744(gEwramData->unk_60.unk_428 + var_r5_2) != 0)
@@ -383,12 +388,12 @@ s32 GameModeDebugExitUpdate(void)
             break;
 
         case 3:
-            gameMode = sUnk_084F0B70[gEwramData->unk_12].unk_0;
+            gameMode = sDebugExitOptions[gEwramData->unk_12].gameMode;
             gEwramData->unk_60.unk_4CC_6 = 0;
             gEwramData->unk_60.unk_4CC_0 = 0;
             gEwramData->unk_60.unk_378[0] = -1;
 
-            if (sUnk_084F0B70[gEwramData->unk_12].unk_8 != (u32*)0x0850F15C)
+            if (sDebugExitOptions[gEwramData->unk_12].unk_8 != (u32*)0x0850F15C)
             {
                 sub_08012048(0x20);
             }
@@ -398,7 +403,7 @@ s32 GameModeDebugExitUpdate(void)
     return gameMode;
 }
 
-const u16 sKonamiCodeInputs[10] = {
+const u16 sKonamiCodeInputs[] = {
     KEY_UP, KEY_UP, KEY_DOWN, KEY_DOWN, KEY_LEFT, KEY_RIGHT, KEY_LEFT, KEY_RIGHT, KEY_B, KEY_A
 };
 
@@ -408,16 +413,16 @@ const u16 sKonamiCodeInputs[10] = {
  */
 void KonamiCodeCheck(void)
 {
-    u16 new_input;
+    u16 newInput;
 
-    new_input = gEwramData->inputData.newInput;
+    newInput = gEwramData->inputData.newInput;
     if (gEwramData->konamiCodeInputsCounter >= 1 && gEwramData->konamiCodeInputsCounter <= ARRAY_SIZE(sKonamiCodeInputs))
     {
-        if (new_input == sKonamiCodeInputs[gEwramData->konamiCodeInputsCounter - 1])
+        if (newInput == sKonamiCodeInputs[gEwramData->konamiCodeInputsCounter - 1])
         {
             gEwramData->konamiCodeInputsCounter++;
         }
-        else if (new_input != 0)
+        else if (newInput != 0)
         {
             gEwramData->konamiCodeInputsCounter = 0;
         }
@@ -477,7 +482,7 @@ s32 GameModeKonamiLogoUpdate(void)
             else
             {
                 gDisplayRegisters.bldY = 0;
-                gEwramData->unk_4 = 0xF0;
+                gEwramData->unk_4 = 4 * 60; // Display for 4 seconds
                 gEwramData->gameModeUpdateStage += 1;
                 gEwramData->unk_12 = 0;
             }
@@ -551,7 +556,7 @@ s32 GameModeLicensedByNintendoUpdate(void)
             else
             {
                 gDisplayRegisters.bldY = 0;
-                gEwramData->unk_4 = 0x78;
+                gEwramData->unk_4 = 2 * 60; // Display for 2 seconds
                 gEwramData->gameModeUpdateStage += 1;
                 gEwramData->unk_12 = 0;
             }
@@ -612,9 +617,9 @@ s32 GameModeResetUpdate(void)
     switch (gEwramData->gameModeUpdateStage)
     {
         case 0:
-            if (unk_60->unk_4D0 != 1)
+            if (unk_60->language != 1)
             {
-                unk_60->unk_4D0 = 1;
+                unk_60->language = 1;
                 sub_080138E8();
             }
             gameMode = GAME_MODE_LICENSED_BY_NINTENDO;
@@ -625,8 +630,8 @@ s32 GameModeResetUpdate(void)
             gDisplayRegisters.bgCnt[0] = CREATE_BGCNT(0, 28, BGCNT_LOW_MID_PRIORITY, BGCNT_SIZE_256x256);
             gDisplayRegisters.bldCnt = BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_INCREASE_EFFECT;
             gDisplayRegisters.bldY = BLDY_MAX_VALUE;
-            DMA_FILL_32(3, 0, 0x0600E000, 0x800);
-            DMA_FILL_32(3, 0, 0x06000000, 0x2000);
+            DMA_FILL_32(3, 0, VRAM_BASE + 0xE000, 0x800);
+            DMA_FILL_32(3, 0, VRAM_BASE + 0x0000, 0x2000);
             gEwramData->gameModeUpdateStage += 1;
             gEwramData->unk_12 = 0;
             break;
@@ -642,17 +647,17 @@ s32 GameModeResetUpdate(void)
             sub_08040970(0, 0, 0x1E, 4);
             sub_08041204();
             sub_08040898(2, 1);
-            sub_08041338(sUnk_08506B38[0xB4C], 0);
+            sub_08041338(sUnk_08506B38[0xB4C], 0); // "English\n"
             sub_08040898(2, 2);
-            sub_08041338(sUnk_08506B38[0xB4D], 0);
+            sub_08041338(sUnk_08506B38[0xB4D], 0); // "Français\n"
             sub_08040898(2, 3);
-            sub_08041338(sUnk_08506B38[0xB4E], 0);
+            sub_08041338(sUnk_08506B38[0xB4E], 0); // "Deutsch\n"
 
-            if ((unk_60->unk_4D0 == 0) || (unk_60->unk_4D0 > var_1))
+            if ((unk_60->language == 0) || (unk_60->language > var_1))
             {
-                unk_60->unk_4D0 = var_0;
+                unk_60->language = var_0;
             }
-            sub_08040898(0, unk_60->unk_4D0);
+            sub_08040898(0, unk_60->language);
             sub_08040C60(0x3E);
             gEwramData->gameModeUpdateStage += 1;
             gEwramData->unk_12 = 0;
@@ -666,14 +671,14 @@ s32 GameModeResetUpdate(void)
             else
             {
                 gDisplayRegisters.bldY = 0;
-                gEwramData->unk_4 = 0x78;
+                gEwramData->unk_4 = 2 * 60; // 2 second timer? Seems unused
                 gEwramData->gameModeUpdateStage += 1;
                 gEwramData->unk_12 = 0;
             }
             break;
 
         case 4:
-            var_r4 = unk_60->unk_4D0;
+            var_r4 = unk_60->language;
             temp_r3 = var_r4;
             if (gEwramData->inputData.newInput & KEY_A)
             {
@@ -710,7 +715,7 @@ s32 GameModeResetUpdate(void)
 
             if (temp_r3 != var_r4)
             {
-                unk_60->unk_4D0 = var_r4;
+                unk_60->language = var_r4;
                 sub_08040898(0, temp_r3);
                 sub_08040C60(0x20);
                 sub_08040C60(0x20);
@@ -739,7 +744,7 @@ s32 GameModeResetUpdate(void)
  * 
  * @param arg0 To document
  */
-void sub_08002F44(s32 arg0)
+void TitleScreen_sub_08002F44(s32 arg0)
 {
     s16 *var_r6;
     s32 var_r4;
@@ -748,10 +753,10 @@ void sub_08002F44(s32 arg0)
     u16 var_r1;
 
     var_r6 = gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
-    var_r4 = gEwramData->unk_0 << 0xA;
+    var_r4 = gEwramData->unk_0 << 10;
     sub_08001718(0, 120, 2, REG_BG1HOFS);
     
-    for (var_r5 = 0; var_r5 < 0x78; var_r5++)
+    for (var_r5 = 0; var_r5 < 120; var_r5++)
     {
         if ((arg0 * (sub_080009E4(var_r4) >> 8)) < 0)
         {
@@ -761,6 +766,7 @@ void sub_08002F44(s32 arg0)
         {
             var_r0 = (arg0 * (sub_080009E4(var_r4) >> 8)) >> 0x10;
         }
+
         var_r1 = var_r0;
         if (var_r5 & 1)
         {
@@ -847,38 +853,35 @@ struct Unk_084F0C84 sUnk_084F0C84[12] = {
  * @brief 2FF8 | To document
  * 
  */
-void sub_08002FF8(void)
+void TitleScreen_sub_08002FF8(void)
 {
     struct EwramData_EntityData *unk_4E4;
-    u8 *temp_r5;
     struct Unk_084F0C84 *temp_r4;
 
     unk_4E4 = &gEwramData->entityData[0x12];
-    temp_r5 = &gEwramData->entityData[0x12].unk_508.unk_508_8.unk_508;
-    temp_r4 = &sUnk_084F0C84[*temp_r5];
+    temp_r4 = &sUnk_084F0C84[unk_4E4->unk_508.unk_508_8.unk_508];
 
     if (gEwramData->entityData[0x12].unk_4F8.unk_4F8_32++ > temp_r4->unk_6)
     {
         unk_4E4->unk_4F8.unk_4F8_32 = 0;
         sub_0803C918(temp_r4->unk_0, temp_r4->unk_4, 1, 0);
 
-        *temp_r5 += 1;
-        if (*temp_r5 > 11)
+        unk_4E4->unk_508.unk_508_8.unk_508 += 1;
+        if (unk_4E4->unk_508.unk_508_8.unk_508 >= ARRAY_SIZE(sUnk_084F0C84))
         {
-            *temp_r5 = 0;
+            unk_4E4->unk_508.unk_508_8.unk_508 = 0;
         }
-        temp_r4 = &sUnk_084F0C84[*temp_r5];
-        sub_0803D2D0(0, temp_r4->unk_0, temp_r4->unk_4, 0x10000, 0, (s32) temp_r4->unk_6);
+
+        temp_r4 = &sUnk_084F0C84[unk_4E4->unk_508.unk_508_8.unk_508];
+        sub_0803D2D0(0, temp_r4->unk_0, temp_r4->unk_4, 0x10000, 0, temp_r4->unk_6);
     }
 }
-
-void sub_0800466C(struct EwramData_EntityData *param_0);
 
 /**
  * @brief 3080 | To document
  * 
  */
-void sub_08003080(void)
+void TitleScreen_sub_08003080(void)
 {
     gEwramData->unk_7864.unk_7864_1 = 1;
     sub_0803D3A0(0);
@@ -890,8 +893,10 @@ void sub_08003080(void)
     sub_0803BEEC();
     sub_0804059C();
     sub_08042754();
+
     DMA_FILL_32(3, 0, VRAM_BASE + 0xE800, 0x800);
     DMA_FILL_32(3, 0, VRAM_BASE + 0xF000, 0x800);
+
     gDisplayRegisters.bgCnt[0] = CREATE_BGCNT(0, 28, BGCNT_LOW_MID_PRIORITY, BGCNT_SIZE_256x256);
     gDisplayRegisters.bgCnt[1] = CREATE_BGCNT(0, 29, BGCNT_LOW_MID_PRIORITY, BGCNT_SIZE_256x256);
     gDisplayRegisters.bgCnt[2] = CREATE_BGCNT(0, 30, BGCNT_LOW_MID_PRIORITY, BGCNT_SIZE_256x256);
@@ -906,16 +911,16 @@ u8 sTitleScreenNextGameMode[] = {
     GAME_MODE_SOUND_TEST_MENU,
 };
 
-static inline void sub_0800312C_inline_0(s16 param_0)
+static inline void TitleScreenSetAffine_inline(s16 scale)
 {
     struct BgAffineSrcData src;
 
     src.texX = 0x8000;
     src.texY = 0x8000;
-    src.scrX = 0x78;
-    src.scrY = 0x50;
-    src.sx = param_0;
-    src.sy = param_0;
+    src.scrX = SCREEN_SIZE_X / 2;
+    src.scrY = SCREEN_SIZE_Y / 2;
+    src.sx = scale;
+    src.sy = scale;
     src.alpha = gEwramData->unk_0 * 0x10;
     BgAffineSet(&src, (struct BgAffineDstData *) &gDisplayRegisters.bg2PA, 1);
 }
@@ -925,7 +930,6 @@ static inline void sub_0800312C_inline_0(s16 param_0)
 s32 GameModeTitleScreenUpdate(void)
 {
     s32 temp_r0_5;
-    s32 temp_r1_9;
     s32 temp_r4;
     s32 var_r0;
     s32 var_r0_2;
@@ -961,6 +965,7 @@ s32 GameModeTitleScreenUpdate(void)
             gDisplayRegisters.bldY = BLDY_MAX_VALUE;
             tmp = C_16_2_8(BLDALPHA_MAX_VALUE, 0);
             gDisplayRegisters.bldAlpha = tmp;
+
             gEwramData->unk_6 = 0;
             gEwramData->unk_4 = 0;
             gEwramData->unk_A074_1 = 0;
@@ -980,10 +985,12 @@ s32 GameModeTitleScreenUpdate(void)
             sub_08042754();
             sub_0803CED4();
             sub_0803D270();
+
             gUnk_03002CB0.dispCnt = DCNT_WINOBJ | DCNT_OBJ | DCNT_BG2 | DCNT_MODE_1;
             gDisplayRegisters.bgCnt[0] = CREATE_BGCNT(2, 28, BGCNT_HIGH_PRIORITY, BGCNT_SIZE_256x256);
             gDisplayRegisters.bgCnt[1] = CREATE_BGCNT(2, 29, BGCNT_HIGH_MID_PRIORITY, BGCNT_SIZE_256x256);
             gDisplayRegisters.bgCnt[2] = CREATE_BGCNT(0, 30, BGCNT_LOW_MID_PRIORITY, BGCNT_SIZE_512x256) | BGCNT_256_COLOR;
+
             sub_0803DD14(7, 0);
             sub_0803DD14(6, 1);
             sub_0803DD14(0x16, 2);
@@ -996,6 +1003,7 @@ s32 GameModeTitleScreenUpdate(void)
             sub_0803F8A8(2, (u32 *)0x080E8F94, 0, 0);
             sub_08004160(temp_r7);
             sub_08003DBC(temp_r8);
+
             temp_r7->unk_524.unk_524_32 = 0x980000;
             temp_r7->unk_528.unk_528_32 = 0x700000;
             var_r0 = temp_r7->unk_500.unk_500_32;
@@ -1003,13 +1011,15 @@ s32 GameModeTitleScreenUpdate(void)
             {
                 var_r0 += 0x7FFF;
             }
-            sub_0800312C_inline_0(0x108 - (var_r0 >> 0xF));
+            TitleScreenSetAffine_inline(0x108 - (var_r0 >> 0xF));
+
             gEwramData->gameModeUpdateStage = 2;
             gEwramData->unk_12 = 0;
             /* fallthrough */
         case 2:
             gEwramData += 0;
-            sub_08002FF8();
+            TitleScreen_sub_08002FF8();
+
             gDisplayRegisters.bldY = BLDY_MAX_VALUE - (gEwramData->unk_4 >> 1);
             #ifndef NON_MATCHING
             asm("":::"r0");
@@ -1028,61 +1038,70 @@ s32 GameModeTitleScreenUpdate(void)
     
         case 3:
             gEwramData += 0;
-            sub_08002FF8();
+            TitleScreen_sub_08002FF8();
+
             if (temp_r7->unk_500.unk_500_32 != 0)
             {
                 temp_r7->unk_500.unk_500_32 -= 0x2000;
                 temp_r7->unk_524.unk_524_32 -= 0x2000;
                 temp_r7->unk_528.unk_528_32 -= 0x2000;
+
                 if (temp_r7->unk_500.unk_500_32 == 0x40000)
                 {
                     gDisplayRegisters.bldY = BLDY_MAX_VALUE;
                     sub_08003F08(0, 0x18, 0xEF);
                     sub_08003F08(1, 0x20, 0x89);
                 }
+
                 if (temp_r7->unk_500.unk_500_32 < 0x30000)
                 {
                     temp_r7->unk_4FC.unk_4FC_16.unk_4FC |= 1;
                     gEwramData->gameModeUpdateStage = 4;
                     gEwramData->unk_12 = 0;
                 }
+
                 var_r0_2 = temp_r7->unk_500.unk_500_32;
                 if (var_r0_2 < 0)
                 {
                     var_r0_2 += 0x7FFF;
                 }
-                sub_0800312C_inline_0(0x108 - (var_r0_2 >> 0xF));
+                TitleScreenSetAffine_inline(0x108 - (var_r0_2 >> 0xF));
             }
             break;
     
         case 4:
             gEwramData += 0;
-            sub_08002FF8();
+            TitleScreen_sub_08002FF8();
+
             if (temp_r7->unk_500.unk_500_32 != 0)
             {
                 temp_r7->unk_500.unk_500_32 -= 0x2000;
                 temp_r7->unk_524.unk_524_32 -= 0x2000;
                 temp_r7->unk_528.unk_528_32 -= 0x2000;
+
                 var_r2 = temp_r7->unk_500.unk_500_32;
                 if (var_r2 < 0)
                 {
                     var_r2 += 0x7FFF;
                 }
-                sub_0800312C_inline_0(0x108 - (var_r2 >> 0xF));
+                TitleScreenSetAffine_inline(0x108 - (var_r2 >> 0xF));
             }
+
             if ((temp_r7->unk_4FC.unk_4FC_16.unk_4FC & 2))
             {
                 gEwramData->gameModeUpdateStage = 5;
                 gEwramData->unk_12 = 0;
+
             case 5:
                 gEwramData += 0;
-                sub_08002FF8();
-                sub_0800312C_inline_0(0x118 - temp_r7->unk_4FC.unk_4FC_16.unk_4FE[0]);
+                TitleScreen_sub_08002FF8();
+                TitleScreenSetAffine_inline(0x118 - temp_r7->unk_4FC.unk_4FC_16.unk_4FE[0]);
                 if (temp_r7->unk_4FC.unk_4FC_16.unk_4FC & 2)
                 {
                     temp_r7->unk_53E_1 = 2;
                 }
-                if (temp_r7->unk_4FC.unk_4FC_16.unk_4FE[0] <= 0x3F)
+
+                if (temp_r7->unk_4FC.unk_4FC_16.unk_4FE[0] < 0x40)
                 {
                     temp_r7->unk_4FC.unk_4FC_16.unk_4FE[0] += 1;
                 }
@@ -1099,14 +1118,16 @@ s32 GameModeTitleScreenUpdate(void)
     
         case 6:
             gEwramData += 0;
-            sub_08002FF8();
+            TitleScreen_sub_08002FF8();
+
             temp_r7->unk_508.unk_508_16.unk_50A += 0x40;
             var_r0_3 = sub_080009E4(temp_r7->unk_508.unk_508_16.unk_50A & 0x7FFF);
             if (var_r0_3 < 0)
             {
                 var_r0_3 += 0xFFF;
             }
-            sub_0800312C_inline_0((var_r0_3 >> 12) - (temp_r7->unk_4FC.unk_4FC_16.unk_4FE[0] - 0x118));
+            TitleScreenSetAffine_inline((var_r0_3 >> 12) - (temp_r7->unk_4FC.unk_4FC_16.unk_4FE[0] - 0x118));
+
             if (temp_r8->unk_4F8.unk_4F8_32 != 0)
             {
                 var_r0_4 = temp_r8->unk_4F8.unk_4F8_32 -= 1;
@@ -1129,20 +1150,23 @@ s32 GameModeTitleScreenUpdate(void)
     
         case 7:
             gEwramData += 0;
-            sub_08002FF8();
+            TitleScreen_sub_08002FF8();
+
             temp_r7->unk_508.unk_508_16.unk_50A += 0x40;
             var_r0_5 = sub_080009E4(temp_r7->unk_508.unk_508_16.unk_50A & 0x7FFF);
             if (var_r0_5 < 0)
             {
                 var_r0_5 += 0xFFF;
             }
-            sub_0800312C_inline_0((var_r0_5 >> 12) - (temp_r7->unk_4FC.unk_4FC_16.unk_4FE[0] - 0x118));
+            TitleScreenSetAffine_inline((var_r0_5 >> 12) - (temp_r7->unk_4FC.unk_4FC_16.unk_4FE[0] - 0x118));
+
             if (temp_r7->unk_504.unk_504_32 != 0)
             {
                 if (!(temp_r8->unk_4FC.unk_4FC_16.unk_4FC & 2) && (temp_r7->unk_504.unk_504_32 <= 0x37F))
                 {
                     temp_r8->unk_4FC.unk_4FC_16.unk_4FC |= 2;
                 }
+
                 var_r0_6 = temp_r7->unk_504.unk_504_32;
                 temp_r4 = var_r0_6 - 2;
                 if (var_r0_6 < 0)
@@ -1150,13 +1174,14 @@ s32 GameModeTitleScreenUpdate(void)
                     var_r0_6 += 0xFF;
                 }
                 temp_r7->unk_504.unk_504_32 = temp_r4 - (((var_r0_6 >> 8) << 8) / 80);
+
                 if (temp_r7->unk_504.unk_504_32 < 0xC0)
                 {
                     temp_r7->unk_504.unk_504_32 = 0;
                 }
                 temp_r0_5 = temp_r7->unk_504.unk_504_32 / 1280;
                 gDisplayRegisters.bldAlpha = C_16_2_8(temp_r0_5, BLDALPHA_MAX_VALUE - temp_r0_5);
-                sub_08002F44(temp_r7->unk_504.unk_504_32);
+                TitleScreen_sub_08002F44(temp_r7->unk_504.unk_504_32);
             }
             else
             {
@@ -1177,22 +1202,26 @@ s32 GameModeTitleScreenUpdate(void)
         case 8:
             gDisplayRegisters.bldY = BLDY_MAX_VALUE;
             gEwramData += 0;
-            sub_08002FF8();
+            TitleScreen_sub_08002FF8();
+
             temp_r7->unk_508.unk_508_16.unk_50A += 0x40;
             var_r0_7 = sub_080009E4(temp_r7->unk_508.unk_508_16.unk_50A & 0x7FFF);
             if (var_r0_7 < 0)
             {
                 var_r0_7 += 0xFFF;
             }
-            sub_0800312C_inline_0((var_r0_7 >> 12) - (temp_r7->unk_4FC.unk_4FC_16.unk_4FE[0] - 0x118));
+            TitleScreenSetAffine_inline((var_r0_7 >> 12) - (temp_r7->unk_4FC.unk_4FC_16.unk_4FE[0] - 0x118));
+
             if (gEwramData->inputData.repeatedInput & (KEY_DOWN | KEY_UP))
             {
-                gEwramData->unk_4 = 0x258;
+                gEwramData->unk_4 = 10 * 60; // 10 second timer
             }
+
             if (--gEwramData->unk_4 == 0)
             {
                 gEwramData->unk_6 = 1;
             }
+
             if (gEwramData->inputData.newInput & (KEY_START | KEY_A))
             {
                 if (sTitleScreenNextGameMode[temp_r6->unk_4FC.unk_4FC_8.unk_4FC + temp_r6->unk_500.unk_500_8.unk_500] == GAME_MODE_KONAMI_LOGO)
@@ -1206,7 +1235,6 @@ s32 GameModeTitleScreenUpdate(void)
                 sub_08004648(temp_r6);
                 break;
             }
-
 
             if ((temp_r6->unk_500.unk_500_8.unk_502 == 0) && ((gEwramData->unk_6 != 0) || (gEwramData->inputData.newInput & (KEY_START | KEY_A))))
             {
@@ -1222,12 +1250,13 @@ s32 GameModeTitleScreenUpdate(void)
     
         case 9:
             gEwramData += 0;
-            sub_08002FF8();
+            TitleScreen_sub_08002FF8();
+
             gDisplayRegisters.bldY = gEwramData->unk_4 >> 1;
             if (gDisplayRegisters.bldY == BLDY_MAX_VALUE)
             {
                 gameMode = sTitleScreenNextGameMode[temp_r6->unk_4FC.unk_4FC_8.unk_4FC + temp_r6->unk_500.unk_500_8.unk_500];
-                sub_08003080();
+                TitleScreen_sub_08003080();
                 gDisplayRegisters.bldY = BLDY_MAX_VALUE;
                 gEwramData->gameModeUpdateStage = 0;
                 if (gEwramData->unk_6 != 0)
@@ -1253,7 +1282,8 @@ s32 GameModeTitleScreenUpdate(void)
         temp_r7->unk_4FC.unk_4FC_16.unk_4FE[0] = 0x40;
         tmp2 = C_16_2_8(0, BLDALPHA_MAX_VALUE);
         gDisplayRegisters.bldAlpha = tmp2;
-        sub_08002F44(0);
+
+        TitleScreen_sub_08002F44(0);
         sub_08000EA8(1);
         temp_r7->unk_53C_5 = 1;
         temp_r7->unk_53E_1 = 0;
@@ -1261,7 +1291,7 @@ s32 GameModeTitleScreenUpdate(void)
         sub_0800459C();
         sub_0803D18C(0x1F, 0x1F, 0x1F, 0, 0x10000, 0x20);
         sub_0803CDF0(0x1F, 0x17, 0x17, 0x2000, 0x10000, 0x20);
-        gEwramData->unk_4 = 0x258;
+        gEwramData->unk_4 = 10 * 60; // 10 second timer
         gEwramData->gameModeUpdateStage = 8;
         gEwramData->unk_12 = 0;
     }
@@ -1978,14 +2008,16 @@ void sub_080043CC(void)
         temp_r5->unk_500.unk_500_8.unk_501 = 2;
     }
 
-    switch (gEwramData->unk_60.unk_4D0)
+    switch (gEwramData->unk_60.language)
     {
         case 2:
             var_0 = sub_08003A9C_inline_1((u8*)&sUnk_0826823C, (u8*)&sUnk_08268344, temp_r5, 0xB);
             break;
+
         case 3:
             var_0 = sub_08003A9C_inline_1((u8*)&sUnk_08268244, (u8*)&sUnk_08268440, temp_r5, 0xB);
             break;
+
         default:
             var_0 = sub_08003A9C_inline_1((u8*)&sUnk_0825EAD4, (u8*)&sUnk_0826693C, temp_r5, 0xB);
             break;
@@ -2039,8 +2071,8 @@ void sub_080044DC(struct EwramData_EntityData *param_0)
     }
     param_0->unk_524.unk_524_32 = temp_r0;
     param_0->unk_528.unk_528_32 = temp_r1;
-    param_0->unk_524.unk_524_16.unk_526 = 0x78;
-    param_0->unk_528.unk_528_16.unk_52A = 0xA0;
+    param_0->unk_524.unk_524_16.unk_526 = SCREEN_SIZE_X / 2;
+    param_0->unk_528.unk_528_16.unk_52A = SCREEN_SIZE_Y;
     param_0->unk_549 = 0xB;
     param_0->unk_53E_3 = 0xB;
     sub_0803AC40(param_0);
@@ -2152,6 +2184,8 @@ void sub_080046D0(struct EwramData_EntityData *param_0)
     param_0->unk_528.unk_528_32 = temp_r1;
 }
 
+// End of title screen functions
+
 /**
  * @brief 4750 | To document
  * 
@@ -2217,7 +2251,7 @@ void sub_0800480C(s32 param_0)
     sub_08041304(0);
     sub_0803C918((u8 *)0x080E5C20, 3, 1, 0xD);
 
-    switch (gEwramData->unk_60.unk_4D0)
+    switch (gEwramData->unk_60.language)
     {
         case 2:
             sub_0803FD9C((u8 *)0x08277984, (u32)(VRAM_BASE + 0xA000), 0);
@@ -2429,7 +2463,7 @@ s32 GameModeMainMenuUpdate(void)
             sub_0803FD9C((u8 *)0x080E5BB0, 0x06000000, 0);
             sub_0803FD9C((u8 *)0x080E5BB8, 0x06002000, 0);
     
-            switch (gEwramData->unk_60.unk_4D0)
+            switch (gEwramData->unk_60.language)
             {
                 case 2:
                     sub_0803FD9C((u8 *)0x08277994, 0x06004000, 0);

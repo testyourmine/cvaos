@@ -983,7 +983,7 @@ void sub_0800FE98(struct EwramData_unk60 *param_0, s32 param_1)
     }
 
     sub_0803C918((u8 *)0x08266520, 0, 1, 0xC);
-    switch (gEwramData->unk_60.unk_4D0)
+    switch (gEwramData->unk_60.language)
     {
         case 2:
             sub_0803FD9C(sUnk_084F1020[param_1], (u32)VRAM_BASE + 0x6000, 0);

@@ -47,7 +47,7 @@ void sub_0800B700(s32 param_0)
     sub_080412F0(1);
     sub_08041304(0);
 
-    switch (gEwramData->unk_60.unk_4D0)
+    switch (gEwramData->unk_60.language)
     {
         
         case 2:
@@ -1949,7 +1949,7 @@ void sub_0800C5D8(void)
         }
     }
 
-    switch (gEwramData->unk_60.unk_4D0)
+    switch (gEwramData->unk_60.language)
     {
         default:
             sub_0803B800((u8 *)0x081C15F4, 0x10000);
@@ -2013,7 +2013,7 @@ void sub_0800C6F8(void)
 void sub_0800C72C(void)
 {
     // inline for sub_0800C5D8?
-    switch (gEwramData->unk_60.unk_4D0)
+    switch (gEwramData->unk_60.language)
     {
         default:
             sub_0803B800((u8 *)0x081C15F4, 0x10000);

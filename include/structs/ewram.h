@@ -573,7 +573,7 @@ struct EwramData_unk60 {
     /* 0x004CC */ u8 unk_4CC_6:1;
     /* 0x004CD */ u8 unk_4CD;
     /* 0x004CE */ u8 pad_4CE[0x4D0 - 0x4CE];
-    /* 0x004D0 */ u32 unk_4D0; // Type?
+    /* 0x004D0 */ u32 language; // 1 = English, 2 = French, 3 = German
 }; /* size = 0x474 */
 
 struct EwramData_unk20 {

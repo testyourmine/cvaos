@@ -194,7 +194,7 @@ static inline void sub_08005928_inline_2(struct EwramData_EntityData *param_0, s
     struct Unk_080E0CC0 var_0[18];
 
     memcpy(var_0, sUnk_080E0CC0, sizeof(sUnk_080E0CC0));
-    switch (gEwramData->unk_60.unk_4D0)
+    switch (gEwramData->unk_60.language)
     {
         case 2:
             param_1 = param_1 + 6;
@@ -778,7 +778,7 @@ void sub_08006BC0(struct EwramData_EntityData *param_0)
     struct EwramData_unk20 *temp_r6;
 
     EntityDelete(param_0);
-    switch (gEwramData->unk_60.unk_4D0)
+    switch (gEwramData->unk_60.language)
     {
         default:
             sub_0803B800((u8 *)0x080E5BC0, 0);
@@ -790,7 +790,7 @@ void sub_08006BC0(struct EwramData_EntityData *param_0)
             sub_0803B800((u8 *)0x0826C850, 0);
             break;
     }
-    switch (gEwramData->unk_60.unk_4D0)
+    switch (gEwramData->unk_60.language)
     {
         default:
             sub_0803B800((u8 *)0x082052E0, 0);
@@ -802,7 +802,7 @@ void sub_08006BC0(struct EwramData_EntityData *param_0)
             sub_0803B800((u8 *)0x0827AA0C, 0);
             break;
     }
-    switch (gEwramData->unk_60.unk_4D0)
+    switch (gEwramData->unk_60.language)
     {
         default:
             temp_r4 = sub_0803B800((u8 *)0x082052D8, 0);
@@ -843,7 +843,7 @@ void sub_08006BC0(struct EwramData_EntityData *param_0)
  */
 void sub_08006CFC(struct EwramData_EntityData *param_0)
 {
-    switch (gEwramData->unk_60.unk_4D0)
+    switch (gEwramData->unk_60.language)
     {
         case 2:
             sub_0803B980(sub_0803AFB8((u8 *)0x0827798C));
@@ -936,7 +936,7 @@ void sub_08006D9C(struct EwramData_EntityData *param_0, struct EwramData_unk20 *
     sub_08046E5C(param_2 + 5, param_3 + 1, Div(temp_r0_3, 0x3C), 2, 0xD100, 1);
     sub_08046E5C(param_2 + 9, param_3 + 2, param_1->unk_34, 6, 0xD100, 0);
 
-    switch (gEwramData->unk_60.unk_4D0)
+    switch (gEwramData->unk_60.language)
     {
         case 2:
             sub_08046DD4(param_2, param_3 - 1, (param_4 << 0x5) + 0xC0C0, 0xC);
@@ -1868,7 +1868,7 @@ void sub_08007EE0(s32 param_0)
     sub_080412F0(8);
     sub_08041304(0);
     sub_0803C918((u8*)0x080E5C20, 3, 1, 0xD);
-    switch (gEwramData->unk_60.unk_4D0)
+    switch (gEwramData->unk_60.language)
     {
         case 2:
             sub_0803FD9C((u8 *)0x08277984, 0x0600A000, 0);
@@ -1929,7 +1929,7 @@ void sub_08007FF0(struct EwramData_EntityData *param_0)
     sub_0803FD9C((u8 *)0x080E5BB0, 0x06000000, 0);
     sub_0803FD9C((u8 *)0x080E5BB8, 0x06002000, 0);
 
-    switch (gEwramData->unk_60.unk_4D0)
+    switch (gEwramData->unk_60.language)
     {
         case 2:
             sub_0803FD9C((u8 *)0x08277994, 0x06004000, 0U);

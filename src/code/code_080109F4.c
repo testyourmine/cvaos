@@ -626,7 +626,7 @@ void sub_08011338(struct EwramData_unk60 *param_0)
     gEwramData->unk_7864.unk_7864_1 = 1;
     DMA_FILL_32(3, 0, &gEwramData->unk_7864.unk_786C, sizeof(gEwramData->unk_7864.unk_786C[0]));
     sub_08013BCC();
-    DMA_COPY_32(3, sUnk_080E3664, 0x06006000, sizeof(sUnk_080E3664));
+    DMA_COPY_32(3, sUnk_080E3664, VRAM_BASE + 0x6000, sizeof(sUnk_080E3664));
 }
 
 /**
@@ -2408,7 +2408,7 @@ u32 sub_080138E8(void)
 
     var_0 = (u8 *)(SRAM_BASE + 0x1AFC);
     sub_080010E4(6);
-    temp_r4 = WriteAndVerifySramFast((u8 *) &gEwramData->unk_60.unk_4D0, var_0, 4);
+    temp_r4 = WriteAndVerifySramFast((u8 *) &gEwramData->unk_60.language, var_0, 4);
     sub_08001124(6);
     return temp_r4;
 }
@@ -2432,7 +2432,7 @@ s32 sub_0801391C(void)
         var_r4 = sub_08001164(6);
         if (var_r4 != 0)
         {
-            gReadSramFast(var_0, (u8 *) &gEwramData->unk_60.unk_4D0, 4);
+            gReadSramFast(var_0, (u8 *) &gEwramData->unk_60.language, 4);
         }
     }
     return var_r4;
@@ -2982,7 +2982,7 @@ s32 GameModeGameOverUpdate(void)
                 {
                     EntityDelete(temp_r5);
 
-                    switch (gEwramData->unk_60.unk_4D0)
+                    switch (gEwramData->unk_60.language)
                     {
                         case 2:
                             var_r4 = sub_0803B800((u8 *)0x082799A0, 0);
@@ -3027,7 +3027,7 @@ s32 GameModeGameOverUpdate(void)
                 gDisplayRegisters.bldCnt = BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_INCREASE_EFFECT;
                 gDisplayRegisters.bldY = BLDY_MAX_VALUE;
 
-                switch (gEwramData->unk_60.unk_4D0)
+                switch (gEwramData->unk_60.language)
                 {
                     case 2:
                         sub_0803B980(sub_0803AFB8((u8 *)0x082799A0));
