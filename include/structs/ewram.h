@@ -33,7 +33,7 @@ struct EwramData_unk4F8_8 {
 };
 
 struct EwramData_unk4F8_16 {
-    s16 unk_4F8;
+    u16 unk_4F8;
     s16 unk_4FA;
 }; 
 

@@ -17,7 +17,7 @@ extern u8* sub_08041434(s32 param_0);
 
 struct Unk_08042030 {
     s8 unk_0;
-    u8 unk_1;
+    s8 unk_1;
     u8 unk_2;
     u8 unk_3;
 };

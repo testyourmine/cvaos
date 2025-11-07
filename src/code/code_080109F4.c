@@ -1040,6 +1040,8 @@ void sub_08011CD0(void)
     }
 }
 
+// File split?
+
 /**
  * @brief 11DD0 | To document
  * 
@@ -1048,6 +1050,7 @@ void sub_08011CD0(void)
  */
 s32 sub_08011DD0(struct EwramData_unk60 *param_0)
 {
+    // TODO: unused? looks like code in sub_08011E24 and sub_08011E88, but probably can't be an inline
     s32 var_r1;
     s32 var_r3;
     s32 var_r6;
@@ -1657,6 +1660,8 @@ void sub_08012688(struct EwramData_unk60 *param_0)
         param_0->unk_336 -= 0x30;
     }
 }
+
+// file split
 
 static inline void sub_080135C0_inline(struct EwramData_unk60 *param_0)
 {
@@ -2438,6 +2443,8 @@ s32 sub_0801391C(void)
     return var_r4;
 }
 
+// file split
+
 extern u16 sUnk_084F106C[];
 extern u16 sUnk_084F1086[];
 
@@ -3168,6 +3175,8 @@ s32 GameModeCreditsUpdate(void)
 
     return gameMode;
 }
+
+// file split
 
 /**
  * @brief 14548 | To document

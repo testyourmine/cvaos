@@ -5,7 +5,7 @@
 #include "structs/ewram.h"
 #include "structs/main.h"
 
-u32 SetPlayerInput(s32 param_0, s32 playerInputs);
+u32 SetPlayerInput(s32 priority, s32 playerInputs);
 s32 sub_080009E4(s32 param_0);
 u32 RandomNumberGenerator(void);
 u32 RandomNumberGenerator2(void);
