@@ -73,7 +73,11 @@ SECTIONS {
         src/code_0800B700.o(.text);
         src/code_0800CB00.o(.text);
         src/code_0800F1FC.o(.text);
-        asm/code/code_080109F4.o(.text);
+        src/code_080109F4.o(.text);
+        src/code_08011DD0.o(.text);
+        src/code_08012744.o(.text);
+        src/code_08013960.o(.text);
+        asm/code/code_08014548.o(.text);
         asm/code/code_080211F0.o(.text);
         asm/code/code_08030A24.o(.text);
         asm/code/code_08040A38.o(.text);
@@ -155,6 +159,10 @@ SECTIONS {
         src/code_0800B700.o(.rodata);
         src/code_0800CB00.o(.rodata);
         src/code_0800F1FC.o(.rodata);
+        src/code_080109F4.o(.rodata);
+        src/code_08011DD0.o(.rodata);
+        src/code_08012744.o(.rodata);
+        src/code_08013960.o(.rodata);
         asm/data/data_0E0B68.o(.rodata);
         src/data/data_0E3464.o(.rodata);
         asm/data/data_0E5364.o(.rodata);
@@ -215,6 +223,10 @@ SECTIONS {
         src/code_0800B700.o(.data);
         src/code_0800CB00.o(.data);
         src/code_0800F1FC.o(.data);
+        src/code_080109F4.o(.data);
+        src/code_08011DD0.o(.data);
+        src/code_08012744.o(.data);
+        src/code_08013960.o(.data);
         asm/data/data_4F0B18.o(.data);
         *libc.a:memcpy.o(.data);
         *libc.a:memset.o(.data);

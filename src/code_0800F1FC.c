@@ -8,7 +8,9 @@
 #include "code_080096AC.h"
 #include "code_0800B700.h"
 #include "code_0800CB00.h"
-#include "code/code_080109F4.h"
+#include "code_08011DD0.h"
+#include "code_08013960.h"
+#include "code/code_08014548.h"
 #include "code/code_080211F0.h"
 #include "code/code_08030A24.h"
 #include "code/code_08040A38.h"
@@ -29,7 +31,6 @@
 #include "structs/main.h"
 
 struct Unk_080E9644 {
-    // u8 pad_0[0x4 - 0x0];
     u32 *unk_0;
     u32 *unk_4; // TODO: function prototype
     u8 pad_8[0xC - 0x8];
