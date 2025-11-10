@@ -32,41 +32,41 @@ static inline void sub_080135C0_inline(struct EwramData_unk60 *param_0)
     param_0->unk_A5 = gEwramData->unk_1325C.unk_13267;
 }
 
-static inline s32 sub_08013620_inline(s32 param_0)
+static inline u32 sub_08013620_inline(s32 param_0)
 {
-    u8 *temp_r6;
-    s32 var_r4;
+    void *temp_r6;
+    u32 error_addr;
 
     if (gEwramData) {} // TODO: Why?
 
-    temp_r6 = (u8*)(SRAM_BASE + 0x10) + param_0 * 0x47C;
+    temp_r6 = SRAM_BASE + 0x10 + param_0 * 0x47C;
     sub_080010E4(param_0);
-    var_r4 = WriteAndVerifySramFast((u8 *) &gEwramData->unk_1325C.pad_1325C, temp_r6, 0x190);
-    if (var_r4 == 0)
+    error_addr = WriteAndVerifySramFast(&gEwramData->unk_1325C.pad_1325C, temp_r6, 0x190);
+    if (error_addr == 0)
     {
-        var_r4 = WriteAndVerifySramFast((u8 *) &gEwramData->unk_60.unk_94, temp_r6 + 0x190, 0x20);
-        if (var_r4 == 0)
+        error_addr = WriteAndVerifySramFast(&gEwramData->unk_60.unk_94, temp_r6 + 0x190, 0x20);
+        if (error_addr == 0)
         {
-            var_r4 = WriteAndVerifySramFast((u8 *) &gEwramData->unk_60.unk_B4, temp_r6 + 0x190 + 0x20, 0x2CC);
+            error_addr = WriteAndVerifySramFast(&gEwramData->unk_60.unk_B4, temp_r6 + 0x190 + 0x20, 0x2CC);
         }
     }
     sub_08001124(param_0);
-    return var_r4;
+    return error_addr;
 }
 
 static inline s32 sub_08013698_inline(s32 param_0)
 {
-    u32 temp_r4;
-    u8 *temp_r5;
-    u8 *var_0;
+    u32 error_addr;
+    void *temp_r5;
+    void *var_0;
 
     temp_r5 = gEwramData->unk_133F4;
     DMA_FILL_32(3, 0, temp_r5, 0x47C);
-    var_0 = (u8*)(SRAM_BASE + 0x10) + (param_0 * 0x47C);
+    var_0 = SRAM_BASE + 0x10 + param_0 * 0x47C;
     sub_080010E4(param_0);
-    temp_r4 = WriteAndVerifySramFast(temp_r5, var_0, 0x47C);
+    error_addr = WriteAndVerifySramFast(temp_r5, var_0, 0x47C);
     sub_08001124(param_0);
-    return temp_r4;
+    return error_addr;
 }
 
 static inline s32 sub_08013700_inline(s32 param_0, s32 param_1)
@@ -83,11 +83,11 @@ static inline s32 sub_08013700_inline(s32 param_0, s32 param_1)
         var_r5 = sub_08001164(param_0);
         if (var_r5 != 0)
         {
-            gReadSramFast((u8*)(SRAM_BASE + 0x1A0) + var_1, (u8*) &gEwramData->unk_20[param_1], 0x20);
+            gReadSramFast(SRAM_BASE + 0x10 + 0x190 + var_1, &gEwramData->unk_20[param_1], sizeof(gEwramData->unk_20[param_1]));
         }
         else
         {
-            DMA_FILL_32(3, 0, &gEwramData->unk_20[param_1], 0x20);
+            DMA_FILL_32(3, 0, &gEwramData->unk_20[param_1], sizeof(gEwramData->unk_20[param_1]));
         }
     }
     return var_r5;
@@ -102,20 +102,20 @@ static inline s32 sub_08013700_inline(s32 param_0, s32 param_1)
 s32 sub_08012744(s32 param_0)
 {
     s32 var_r6;
-    u8 *var_0;
+    void *var_0;
 
     if (gEwramData) {}
 
     var_r6 = sub_08001094();
     if (var_r6 != 0)
     {
-        var_0 = (u8*)(SRAM_BASE + 0x10) + (param_0 * 0x47C);
+        var_0 = SRAM_BASE + 0x10 + param_0 * 0x47C;
         var_r6 = sub_08001164(param_0);
         if (var_r6 != 0)
         {
-            gReadSramFast(var_0, (u8*) &gEwramData->unk_1325C.pad_1325C, 0x190);
-            gReadSramFast(var_0 + 0x190, (u8 *) &gEwramData->unk_60.unk_94, 0x20);
-            gReadSramFast(var_0 + 0x190 + 0x20, (u8 *) &gEwramData->unk_60.unk_B4, 0x2CC);
+            gReadSramFast(var_0, &gEwramData->unk_1325C.pad_1325C, 0x190);
+            gReadSramFast(var_0 + 0x190, &gEwramData->unk_60.unk_94, 0x20);
+            gReadSramFast(var_0 + 0x190 + 0x20, &gEwramData->unk_60.unk_B4, 0x2CC);
 
             if ((gEwramData->unk_60.unk_338 | gEwramData->unk_60.unk_33A) != 0)
                return var_r6;
@@ -126,7 +126,7 @@ s32 sub_08012744(s32 param_0)
 }
 
 const u32 sUnk_080E1170[] = {
-    44, 45, 0
+    (1 << 5) | 12, (1 << 5) | 13, 0
 };
 
 /**
@@ -142,6 +142,7 @@ s32 sub_080127F0(s32 param_0, s32 param_1)
     struct EwramData_unk60 *temp_r5;
     s32 temp_sl;
     s32 var_2;
+    u32 error_addr;
 
     temp_r5 = &gEwramData->unk_60;
     temp_sb = &gEwramData->unk_20[1];
@@ -167,7 +168,7 @@ s32 sub_080127F0(s32 param_0, s32 param_1)
     if (param_1 != 0)
     {
         temp_r5->unk_A1_0 = 1;
-        gEwramData->unk_60.unk_37E &= ~0x80u;
+        gEwramData->unk_60.unk_37E &= ~0x80;
 
         for (var_2 = 0; sUnk_080E1170[var_2] != 0; var_2++)
         {
@@ -176,12 +177,13 @@ s32 sub_080127F0(s32 param_0, s32 param_1)
     }
     else
     {
-        gEwramData->unk_60.unk_37E &= ~1u;
-        sub_080121E0(0x28);
+        gEwramData->unk_60.unk_37E &= ~1;
+        sub_080121E0((1 << 5) | 8);
     }
 
     sub_080135C0_inline(&gEwramData->unk_60);
-    return sub_08013620_inline(param_0);
+    error_addr = sub_08013620_inline(param_0);
+    return error_addr;
 }
 
 /**
@@ -193,13 +195,11 @@ s32 sub_080127F0(s32 param_0, s32 param_1)
 s32 sub_08012A08(s32 param_0)
 {
     s32 sp4;
-    u8 *sp8;
     s32 temp_r1_4;
-    s32 var_r0;
+    u32 error_addr;
     u32 var_r0_2;
     s32 var_r7;
     s32 temp_r1_2;
-    u8 *var_6;
     struct EwramData_unk20 *var_7;
     struct EwramData_unk20 *var_0;
     s32 var_1;
@@ -208,11 +208,7 @@ s32 sub_08012A08(s32 param_0)
 
     var_0 = &gEwramData->unk_20[0];
     var_r0_2 = sub_08013700_inline(param_0, 0);
-    var_1 = 0;
-    if (var_r0_2)
-    {
-        var_1 = var_0->unk_38 != var_1;
-    }
+    var_1 = var_r0_2 && var_0->unk_38;
     if (var_1 == 0)
     {
         return 0;
@@ -229,17 +225,13 @@ s32 sub_08012A08(s32 param_0)
         sub_08012744(temp_r1_4);
         sub_08032CD0();
 
-        for (var_r7 = 0, var_6 = (u8 *)0x0E0001A0; var_r7 < 6; var_r7 += 2)
+        for (var_r7 = 0; var_r7 < 6; var_r7 += 2)
         {
             if ((var_r7 != param_0) && (temp_r1_4 != var_r7))
             {
                 var_2 = &gEwramData->unk_20[1];
                 var_r0_2 = sub_08013700_inline(var_r7, 0);
-                var_1 = 0;
-                if (var_r0_2)
-                {
-                    var_1 = var_2->unk_38 != var_1;
-                }
+                var_1 = var_r0_2 && var_2->unk_38;
                 if (var_1 != 0)
                 {
                     var_7 = &gEwramData->unk_20[1];
@@ -249,36 +241,31 @@ s32 sub_08012A08(s32 param_0)
                     }
                 }
             }
-            var_6 += 0x8F8;
         }
 
-        var_r0 = sub_08013620_inline(temp_r1_4);
-        return var_r0;
+        error_addr = sub_08013620_inline(temp_r1_4);
+        return error_addr;
     }
 
     else
     {
         temp_r1_4 = var_7->unk_2F;
 
-        var_r0 = sub_08013698_inline(param_0);
+        error_addr = sub_08013698_inline(param_0);
         if (temp_r1_4 == 0)
         {
-            return var_r0;
+            return error_addr;
         }
-        temp_r1_4 = temp_r1_4 - 1;
+        temp_r1_4 -= 1;
         sp4 = -1;
 
-        for (var_r7 = 0, sp8 = (u8 *)0x0E0001A0; var_r7 < 6; var_r7 += 2)
+        for (var_r7 = 0; var_r7 < 6; var_r7 += 2)
         {
             if ((var_r7 != param_0) && (temp_r1_4 != var_r7))
             {
                 var_4 = &gEwramData->unk_20[0];
                 var_r0_2 = sub_08013700_inline(var_r7, 0);
-                var_1 = 0;
-                if (var_r0_2)
-                {
-                    var_1 = var_4->unk_38 != var_1;
-                }
+                var_1 = var_r0_2 && var_4->unk_38;
                 if (var_1 != 0)
                 {
                     var_7 = &gEwramData->unk_20[0];
@@ -288,7 +275,6 @@ s32 sub_08012A08(s32 param_0)
                     }
                 }
             }
-            sp8 += 0x8F8;
         }
 
         sub_08012744(temp_r1_4);
@@ -298,14 +284,14 @@ s32 sub_08012A08(s32 param_0)
             sub_08032CBC(1, sp4 + 1);
         }
 
-        var_r0 = sub_08013620_inline(temp_r1_4);
+        error_addr = sub_08013620_inline(temp_r1_4);
         if (sp4 >= 0)
         {
             sub_08012744(sp4);
             sub_08032CA8(temp_r1_4 + 1, 0);
-            var_r0 = sub_08013620_inline(sp4);
+            error_addr = sub_08013620_inline(sp4);
         }
-        return var_r0;
+        return error_addr;
     }
 }
 
@@ -318,10 +304,11 @@ s32 sub_08012A08(s32 param_0)
  */
 s32 sub_08012E30(s32 param_0, s32 param_1)
 {
-    u32 var_r0;
-    struct EwramData_unk20 *var_0;
-    s32 var_1;
     s32 var_2;
+    struct EwramData_unk20 *var_0;
+    u32 var_r0;
+    s32 var_1;
+    u32 error_addr;
 
     sub_08012A08(param_1);
     sub_08012744(param_0);
@@ -331,11 +318,7 @@ s32 sub_08012E30(s32 param_0, s32 param_1)
     var_2 = param_0 + 1;
     var_0 = &gEwramData->unk_20[0];
     var_r0 = sub_08013700_inline(var_2, 0);
-    var_1 = 0;
-    if (var_r0 != 0)
-    {
-        var_1 = var_0->unk_38 != var_1;
-    }
+    var_1 = var_r0 && var_0->unk_38;
     if (var_1)
     {
         sub_08012744(param_0 + 1);
@@ -345,7 +328,8 @@ s32 sub_08012E30(s32 param_0, s32 param_1)
 
     sub_08012744(param_0);
     sub_08032D18(param_0 + 1);
-    return sub_08013620_inline(param_1);
+    error_addr = sub_08013620_inline(param_1);
+    return error_addr;
 }
 
 /**
@@ -359,17 +343,13 @@ s32 sub_08012E30(s32 param_0, s32 param_1)
  */
 s32 sub_08013038(s32 param_0, s32 param_1, s32 param_2, s32 param_3)
 {
+    struct EwramData_unk20 *var_1;
     u32 var_r0;
     s32 var_0;
-    struct EwramData_unk20 *var_1;
 
     var_1 = &gEwramData->unk_20[0];
     var_r0 = sub_08013700_inline(param_0, 0);
-    var_0 = 0;
-    if (var_r0)
-    {
-        var_0 = var_1->unk_38 != var_0;
-    }
+    var_0 = var_r0 && var_1->unk_38;
     if (var_0 != 0)
     {
         sub_08012744(param_0);
@@ -395,7 +375,7 @@ s32 sub_08013164(s32 param_0, s32 param_1, s32 param_2)
     struct EwramData_unk20 *temp_r8;
     struct EwramData **temp_r8_2;
     u32 var_r0;
-    u32 var_r4;
+    u32 error_addr;
     s32 var_r7;
     s32 temp_r4_5;
     struct EwramData_unk20 *var_0;
@@ -407,8 +387,8 @@ s32 sub_08013164(s32 param_0, s32 param_1, s32 param_2)
     {
         sub_0803278C(param_1, param_2, -1);
         sub_08032D58(param_1, param_2);
-        var_r4 = sub_08013620_inline(param_0);
-        return var_r4;
+        error_addr = sub_08013620_inline(param_0);
+        return error_addr;
     }
 
     param_0 = param_0 + 1;
@@ -435,11 +415,7 @@ s32 sub_08013164(s32 param_0, s32 param_1, s32 param_2)
         {
             temp_r8 = &gEwramData->unk_20[0];
             var_r0 = sub_08013700_inline(var_r7, 0);
-            var_2 = 0;
-            if (var_r0)
-            {
-                var_2 = temp_r8->unk_38 != var_2;
-            }
+            var_2 = var_r0 && temp_r8->unk_38;
             if (var_2)
             {
                 var_0 = &gEwramData->unk_20[0];
@@ -573,27 +549,27 @@ void sub_080135C0(struct EwramData_unk60 *param_0)
  * @param param_0 To document
  * @return s32 To document
  */
-s32 sub_08013620(s32 param_0)
+u32 sub_08013620(s32 param_0)
 {
     // todo: sub_08013620 is the same as sub_08013620_inline
-    u8 *temp_r6;
-    s32 var_r4;
+    void *temp_r6;
+    u32 error_addr;
 
     if (gEwramData) {} // TODO: Why?
 
-    temp_r6 = (u8*)(SRAM_BASE + 0x10) + param_0 * 0x47C;
+    temp_r6 = SRAM_BASE + 0x10 + param_0 * 0x47C;
     sub_080010E4(param_0);
-    var_r4 = WriteAndVerifySramFast((u8 *) &gEwramData->unk_1325C.pad_1325C, temp_r6, 0x190);
-    if (var_r4 == 0)
+    error_addr = WriteAndVerifySramFast(&gEwramData->unk_1325C.pad_1325C, temp_r6, 0x190);
+    if (error_addr == 0)
     {
-        var_r4 = WriteAndVerifySramFast((u8 *) &gEwramData->unk_60.unk_94, temp_r6 + 0x190, 0x20);
-        if (var_r4 == 0)
+        error_addr = WriteAndVerifySramFast(&gEwramData->unk_60.unk_94, temp_r6 + 0x190, 0x20);
+        if (error_addr == 0)
         {
-            var_r4 = WriteAndVerifySramFast((u8 *) gEwramData->unk_60.unk_B4, temp_r6 + 0x190 + 0x20, 0x2CC);
+            error_addr = WriteAndVerifySramFast(&gEwramData->unk_60.unk_B4, temp_r6 + 0x190 + 0x20, 0x2CC);
         }
     }
     sub_08001124(param_0);
-    return var_r4;
+    return error_addr;
 }
 
 /**
@@ -605,17 +581,17 @@ s32 sub_08013620(s32 param_0)
 s32 sub_08013698(s32 param_0)
 {
     // todo: sub_08013698 is the same as sub_08013698_inline
-    u32 temp_r4;
-    u8 *temp_r5;
-    u8 *var_0;
+    u32 error_addr;
+    void *temp_r5;
+    void *var_0;
 
     temp_r5 = gEwramData->unk_133F4;
     DMA_FILL_32(3, 0, temp_r5, 0x47C);
-    var_0 = (u8*)(SRAM_BASE + 0x10) + (param_0 * 0x47C);
+    var_0 = SRAM_BASE + 0x10 + param_0 * 0x47C;
     sub_080010E4(param_0);
-    temp_r4 = WriteAndVerifySramFast(temp_r5, var_0, 0x47C);
+    error_addr = WriteAndVerifySramFast(temp_r5, var_0, 0x47C);
     sub_08001124(param_0);
-    return temp_r4;
+    return error_addr;
 }
 
 /**
@@ -640,11 +616,11 @@ s32 sub_08013700(s32 param_0, s32 param_1)
         var_r5 = sub_08001164(param_0);
         if (var_r5 != 0)
         {
-            gReadSramFast((u8*)(SRAM_BASE + 0x1A0) + var_1, (u8*) &gEwramData->unk_20[param_1], 0x20);
+            gReadSramFast(SRAM_BASE + 0x10 + 0x190 + var_1, &gEwramData->unk_20[param_1], sizeof(gEwramData->unk_20[param_1]));
         }
         else
         {
-            DMA_FILL_32(3, 0, &gEwramData->unk_20[param_1], 0x20);
+            DMA_FILL_32(3, 0, &gEwramData->unk_20[param_1], sizeof(gEwramData->unk_20[param_1]));
         }
     }
     return var_r5;
@@ -657,16 +633,16 @@ s32 sub_08013700(s32 param_0, s32 param_1)
  */
 u32 sub_08013788(void)
 {
-    u32 temp_r4;
-    u8 *var_0;
+    u32 error_addr;
+    void *var_0;
 
     if (gEwramData) {}
 
-    var_0 = (u8 *)(SRAM_BASE + 0x1AF8);
+    var_0 = SRAM_BASE + 0x10 + 0x47C * 6;
     sub_080010E4(6);
-    temp_r4 = WriteAndVerifySramFast((u8 *) &gEwramData->unk_60, var_0, 4);
+    error_addr = WriteAndVerifySramFast(&gEwramData->unk_60, var_0, 4);
     sub_08001124(6);
-    return temp_r4;
+    return error_addr;
 }
 
 /**
@@ -677,18 +653,18 @@ u32 sub_08013788(void)
 u32 sub_080137B8(void)
 {
     s32 var_r4;
-    u8 *var_0;
+    void *var_0;
 
     if (gEwramData) {}
 
     var_r4 = sub_08001094();
     if (var_r4 != 0)
     {
-        var_0 = (u8 *)(SRAM_BASE + 0x1AF8);
+        var_0 = SRAM_BASE + 0x10 + 0x47C * 6;
         var_r4 = sub_08001164(6);
         if (var_r4 != 0)
         {
-            gReadSramFast(var_0, (u8 *) &gEwramData->unk_60, 4);
+            gReadSramFast(var_0, &gEwramData->unk_60.unk_60, sizeof(gEwramData->unk_60.unk_60));
         }
     }
     return var_r4;
@@ -713,14 +689,14 @@ s32 sub_080137F8(struct EwramData_unk20 *param_0)
 s32 sub_080137FC(void)
 {
     s32 var_r0;
-    u32 temp_r4;
+    u32 error_addr;
 
     gEwramData->unk_60.unk_60 |= 3;
 
     sub_080010E4(6);
-    temp_r4 = WriteAndVerifySramFast((u8 *) &gEwramData->unk_60, (u8 *)(SRAM_BASE + 0x1AF8), 4);
+    error_addr = WriteAndVerifySramFast(&gEwramData->unk_60, SRAM_BASE + 0x1AF8, 4);
     sub_08001124(6);
-    if (temp_r4 != 0)
+    if (error_addr != 0)
     {
         return 0;
     }
@@ -755,11 +731,11 @@ s32 sub_08013854(s32 param_0, s32 param_1)
         temp_r0 = sub_08001164(param_0);
         if (temp_r0 != 0)
         {
-            gReadSramFast((u8*)(SRAM_BASE + 0x1A0) + var_0, (u8*) &gEwramData->unk_20[0], 0x20);
+            gReadSramFast(SRAM_BASE + 0x10 + 0x190 + var_0, &gEwramData->unk_20[0], sizeof(gEwramData->unk_20[0]));
         }
         else
         {
-            DMA_FILL_32(3, 0, &gEwramData->unk_20[0], 0x20);
+            DMA_FILL_32(3, 0, &gEwramData->unk_20[0], sizeof(gEwramData->unk_20[0]));
         }
 
         if ((temp_r0 != 0) && (temp_r8->unk_38 != 0))
@@ -777,16 +753,16 @@ s32 sub_08013854(s32 param_0, s32 param_1)
  */
 u32 sub_080138E8(void)
 {
-    u32 temp_r4;
-    u8 *var_0;
+    u32 error_addr;
+    void *var_0;
 
     if (gEwramData) {}
 
-    var_0 = (u8 *)(SRAM_BASE + 0x1AFC);
+    var_0 = SRAM_BASE + 0x10 + 0x47C * 6 + 4;
     sub_080010E4(6);
-    temp_r4 = WriteAndVerifySramFast((u8 *) &gEwramData->unk_60.language, var_0, 4);
+    error_addr = WriteAndVerifySramFast(&gEwramData->unk_60.language, var_0, sizeof(gEwramData->unk_60.language));
     sub_08001124(6);
-    return temp_r4;
+    return error_addr;
 }
 
 /**
@@ -797,18 +773,18 @@ u32 sub_080138E8(void)
 s32 sub_0801391C(void)
 {
     s32 var_r4;
-    u8 *var_0;
+    void *var_0;
 
     if (gEwramData) {}
 
     var_r4 = sub_08001094();
     if (var_r4 != 0)
     {
-        var_0 = (u8 *)(SRAM_BASE + 0x1AFC);
+        var_0 = SRAM_BASE + 0x10 + 0x47C * 6 + 4;
         var_r4 = sub_08001164(6);
         if (var_r4 != 0)
         {
-            gReadSramFast(var_0, (u8 *) &gEwramData->unk_60.language, 4);
+            gReadSramFast(var_0, &gEwramData->unk_60.language, sizeof(gEwramData->unk_60.language));
         }
     }
     return var_r4;

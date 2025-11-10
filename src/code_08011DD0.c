@@ -234,7 +234,7 @@ s32 sub_08012078(s32 param_0)
     else
     {
         temp_r2 = &gEwramData->unk_60.unk_33C[param_0 >> 5];
-        return *temp_r2 & (1 << (0x1F & param_0));
+        return *temp_r2 & (1 << (param_0 & 0x1F));
     }
 }
 
@@ -262,7 +262,7 @@ static inline s32 sub_080120AC_inline_1(s32 param_0)
     else
     {
         temp_r2 = &gEwramData->unk_60.unk_33C[param_0 >> 5];
-        return *temp_r2 & (1 << (0x1F & param_0));
+        return *temp_r2 & (1 << (param_0 & 0x1F));
     }
 }
 
@@ -365,7 +365,7 @@ void sub_080121E0(s32 param_0)
     if (param_0 >= 0)
     {
         temp_r2 = &gEwramData->unk_60.unk_33C[param_0 >> 5];
-        *temp_r2 &= ~(1 << (0x1F & param_0));
+        *temp_r2 &= ~(1 << (param_0 & 0x1F));
     }
 }
 

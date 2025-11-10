@@ -115,7 +115,7 @@ void SetSramFastFunc(void)
  * @param size Size in bytes
  * @return u32 0 if the SRAM verified, otherwise the address it failed at
  */
-u32 WriteAndVerifySramFast(const u8 *src, u8 *dst, u32 size)
+u32 WriteAndVerifySramFast(const void *src, void *dst, u32 size)
 {
     u8 i;
     u32 error_addr;

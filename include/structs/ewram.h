@@ -532,7 +532,7 @@ struct EwramData_unk60 {
     /* 0x00364 */ u8 pad_364[0x378 - 0x364];
     /* 0x00378 */ u32 unk_378[1]; // TODO: what is going on here?
     /* 0x0037C */ u16 unk_37C;
-    /* 0x0037E */ s16 unk_37E;
+    /* 0x0037E */ u16 unk_37E;
     /* 0x00380 */ u8 unk_380;
     /* 0x00381 */ u8 pad_381[0x3CC - 0x381];
     /* 0x003CC */ u32 *unk_3CC;

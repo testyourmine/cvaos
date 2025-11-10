@@ -71,7 +71,7 @@ s32 sub_08001094(void)
 
     var_r5 = 1;
     var_r4 = gEwramData->unk_133F4;
-    gReadSramFast(SRAM_BASE, var_r4, 0x10);
+    gReadSramFast(SRAM_BASE, &gEwramData->unk_133F4, 0x10);
 
     var_r2 = 0x10;
     var_r1 = sUnk_084F0B18;

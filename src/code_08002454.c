@@ -2768,7 +2768,7 @@ s32 GameModeMainMenuUpdate(void)
                     {
                         var_1 = temp_r5 * 0x47C;
                         sub_080010E4(temp_r5);
-                        WriteAndVerifySramFast((u8*)&gEwramData->unk_60.unk_94, (u8*) (SRAM_BASE + 0x1A0 + var_1), 8);
+                        WriteAndVerifySramFast(&gEwramData->unk_60.unk_94, SRAM_BASE + 0x10 + 0x190 + var_1, 8);
                         sub_08001124(temp_r5);
                     }
                 }
