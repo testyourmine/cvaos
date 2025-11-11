@@ -5,6 +5,7 @@
 #include "structs/ewram.h"
 #include "structs/main.h"
 
+extern void sub_080321C4(void);
 extern void sub_08032588(u8 param_0, s32 param_1, s32 param_2, s32 param_3);
 extern u8 sub_080326B8(s32 param_0, s32 param_1);
 extern void sub_0803278C(s32 param_0, s32 param_1, s32 param_2);

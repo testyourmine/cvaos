@@ -4,44 +4,44 @@
 #include "types.h"
 
 struct BgOffset {
-    u16 hOfs;
-    u16 vOfs;
-};
+    /* 0x0 */ u16 hOfs;
+    /* 0x2 */ u16 vOfs;
+}; /* size = 0x4 */
 
 struct DisplayRegisters {
-    u16 bgCnt[4];
-    struct BgOffset bgOfs[4];
-    u16 bg2PA;
-    u16 bg2PB;
-    u16 bg2PC;
-    u16 bg2PD;
-    u16 bg2X_L;
-    u16 bg2X_H;
-    u16 bg2Y_L;
-    u16 bg2Y_H;
-    u16 bg3PA;
-    u16 bg3PB;
-    u16 bg3PC;
-    u16 bg3PD;
-    u16 bg3X_L;
-    u16 bg3X_H;
-    u16 bg3Y_L;
-    u16 bg3Y_H;
-    u16 win0H; // TODO: struct from win0H to unk_4E?
-    u16 win1H;
-    u16 win0V;
-    u16 win1V;
-    u8 winIn_L;
-    u8 winIn_H;
-    u8 winOut_L;
-    u8 winOut_H;
-    u16 mosaic;
-    u16 unk_4e;
-    u16 bldCnt;
-    u16 bldAlpha;
-    u16 bldY;
-    u16 unk_56;
-};
+    /* 0x00 */ u16 bgCnt[4];
+    /* 0x08 */ struct BgOffset bgOfs[4];
+    /* 0x18 */ u16 bg2PA;
+    /* 0x1A */ u16 bg2PB;
+    /* 0x1C */ u16 bg2PC;
+    /* 0x1E */ u16 bg2PD;
+    /* 0x20 */ u16 bg2X_L;
+    /* 0x22 */ u16 bg2X_H;
+    /* 0x24 */ u16 bg2Y_L;
+    /* 0x26 */ u16 bg2Y_H;
+    /* 0x28 */ u16 bg3PA;
+    /* 0x2A */ u16 bg3PB;
+    /* 0x2C */ u16 bg3PC;
+    /* 0x2E */ u16 bg3PD;
+    /* 0x30 */ u16 bg3X_L;
+    /* 0x32 */ u16 bg3X_H;
+    /* 0x34 */ u16 bg3Y_L;
+    /* 0x36 */ u16 bg3Y_H;
+    /* 0x38 */ u16 win0H; // TODO: struct from win0H to unk_4E?
+    /* 0x3A */ u16 win1H;
+    /* 0x3C */ u16 win0V;
+    /* 0x3E */ u16 win1V;
+    /* 0x40 */ u8 winIn_L;
+    /* 0x41 */ u8 winIn_H;
+    /* 0x42 */ u8 winOut_L;
+    /* 0x43 */ u8 winOut_H;
+    /* 0x44 */ u16 mosaic;
+    /* 0x46 */ u16 unk_4e;
+    /* 0x48 */ u16 bldCnt;
+    /* 0x4A */ u16 bldAlpha;
+    /* 0x4C */ u16 bldY;
+    /* 0x4E */ u16 unk_56;
+}; /* size = 0x50 */
 
 struct Unk_030034BC {
     u32 *unk_80C; // 34BC

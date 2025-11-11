@@ -35,6 +35,8 @@ extern struct EwramData_EntityData* sub_08044054(s32 param_0, s32 param_1, s32 p
 extern struct EwramData_EntityData* sub_08044980(s32 param_0, s32 param_1, s32 param_2, s32 param_3);
 extern void sub_08044F80(s32 param_0);
 extern u8* sub_08044FA8(s32 param_0, s32 param_1);
+extern struct EwramData_EntityData* sub_08045CEC(s32 param_0, s32 param_1, s32 param_2, s32 param_3);
+extern struct EwramData_EntityData* sub_08045DC8(s32 param_0, s32 param_1, s32 param_2, s32 param_3);
 extern void sub_08045EE0(struct EwramData_EntityData* param_0);
 extern void sub_08046080(struct EwramData_EntityData* param_0);
 extern void sub_08046A18(void);

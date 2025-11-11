@@ -35,11 +35,38 @@ struct Unk_08021654 {
 };
 extern void sub_08021654(struct Unk_08021654 *param_0);
 
+extern s32 sub_08021924(s32 param_0);
+extern void sub_08021994(struct EwramData_EntityData *param_0);
+extern void sub_08021C44(void);
+extern void sub_08021CA8(struct EwramData_EntityData *param_0);
+extern s32 sub_08021DB0(void);
+extern void sub_08021DC4(void);
+extern void sub_08021E10(s32 param_0);
+extern void sub_08021E2C(void);
+extern void sub_08021E30(void);
+extern void sub_08021E34(void);
+extern s32 sub_08021E38(s32 param_0);
 extern void sub_08021E50(s32 param_0);
+extern void sub_08021EB4(s32 param_0, u16 param_1);
 extern void sub_08021F18(void);
+extern void sub_08021F44(u16 param_0, u16 param_1);
+extern s16 sub_08021F64(s16 param_0);
+extern s16 sub_08021F84(s16 param_0);
+extern void sub_08021FA4(void);
+extern void sub_08021FEC(s32 param_0);
 extern void sub_08022028(s32 param_0);
-extern void sub_080220F8(s32 param_0);
+extern void sub_08022060(s32 param_0);
+extern s32 sub_08022088(struct EwramData_unk1316C *param_0, struct EwramData_unk1316C_10 *param_1);
+extern void sub_080220B4(void);
 extern s32 sub_080220CC(void);
+extern s32 sub_080220F0(void);
+extern s32 sub_080220F4(void);
+extern void sub_080220F8(s32 param_0);
+extern void sub_08022134(u8 param_0);
+extern void sub_0802215C(void);
+extern void sub_08022184(void);
+extern void sub_080221B0(s32 param_0);
+extern void sub_080221C8(void);
 extern s32 sub_08023424(void); // Return type looks s16, but outputs s32. May be implicitly called?
 extern void sub_080235C8(void);
 

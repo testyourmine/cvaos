@@ -41,7 +41,7 @@ static inline u32 sub_08013620_inline(s32 param_0)
 
     temp_r6 = SRAM_BASE + 0x10 + param_0 * 0x47C;
     sub_080010E4(param_0);
-    error_addr = WriteAndVerifySramFast(&gEwramData->unk_1325C.pad_1325C, temp_r6, 0x190);
+    error_addr = WriteAndVerifySramFast(&gEwramData->unk_1325C, temp_r6, 0x190);
     if (error_addr == 0)
     {
         error_addr = WriteAndVerifySramFast(&gEwramData->unk_60.unk_94, temp_r6 + 0x190, 0x20);
@@ -113,7 +113,7 @@ s32 sub_08012744(s32 param_0)
         var_r6 = sub_08001164(param_0);
         if (var_r6 != 0)
         {
-            gReadSramFast(var_0, &gEwramData->unk_1325C.pad_1325C, 0x190);
+            gReadSramFast(var_0, &gEwramData->unk_1325C, 0x190);
             gReadSramFast(var_0 + 0x190, &gEwramData->unk_60.unk_94, 0x20);
             gReadSramFast(var_0 + 0x190 + 0x20, &gEwramData->unk_60.unk_B4, 0x2CC);
 
@@ -559,7 +559,7 @@ u32 sub_08013620(s32 param_0)
 
     temp_r6 = SRAM_BASE + 0x10 + param_0 * 0x47C;
     sub_080010E4(param_0);
-    error_addr = WriteAndVerifySramFast(&gEwramData->unk_1325C.pad_1325C, temp_r6, 0x190);
+    error_addr = WriteAndVerifySramFast(&gEwramData->unk_1325C, temp_r6, 0x190);
     if (error_addr == 0)
     {
         error_addr = WriteAndVerifySramFast(&gEwramData->unk_60.unk_94, temp_r6 + 0x190, 0x20);
