@@ -8,6 +8,7 @@
 extern void sub_08032588(u8 param_0, s32 param_1, s32 param_2, s32 param_3);
 extern u8 sub_080326B8(s32 param_0, s32 param_1);
 extern void sub_0803278C(s32 param_0, s32 param_1, s32 param_2);
+extern u8 sub_08032AB8(s32 param_0);
 extern void sub_08032ADC(s32 param_0, s32 param_1);
 extern u8 sub_08032B88(u8 param_0);
 extern void sub_08032C10(u8 param_0, s32 param_1, s32 param_2, u8 param_3);

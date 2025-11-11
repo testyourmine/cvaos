@@ -186,8 +186,8 @@ void sub_0801487C(s32 param_0)
     gEwramData->unk_131D0 = -1;
     gEwramData->unk_1311C = 0;
     gEwramData->unk_13120 = 0;
+    gEwramData->unk_131C0 = -1;
     gEwramData->unk_131C1 = -1;
-    gEwramData->unk_131C2 = -1;
 
     sub_080235C8();
     sub_0802DFF0();

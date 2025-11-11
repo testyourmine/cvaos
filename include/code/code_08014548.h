@@ -9,5 +9,6 @@ extern void sub_08014548(void);
 extern void sub_08014628(struct EwramData_EntityData *param_0);
 extern void sub_08014720(struct EwramData_EntityData *param_0);
 extern void sub_0801487C(s32 param_0); // param real or implicit call?
+extern s16 sub_0801CFB0(void);
 
 #endif /* CODE_08014548_H */
