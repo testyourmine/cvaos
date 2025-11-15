@@ -5,6 +5,7 @@
 #include "structs/ewram.h"
 #include "structs/main.h"
 
+extern void sub_08031EA4(struct EwramData_EntityData *param_0, struct EwramData_EntityData *param_1, s32 param_2, s32 param_3); // TODO: param_2/param_3 should be u16
 extern void sub_080321C4(void);
 extern void sub_08032588(u8 param_0, s32 param_1, s32 param_2, s32 param_3);
 extern u8 sub_080326B8(s32 param_0, s32 param_1);
@@ -46,6 +47,7 @@ extern s32 sub_0803AFB8(u8 *param_0);
 extern s32 sub_0803B800(u8* param_0, s32 param_1);
 extern s32 sub_0803B924(struct EwramData_EntityData *param_0, u8 *param_1, s32 param_2, s32 param_3);
 extern void sub_0803B980(s32 param_0);
+extern s32 sub_0803B998(struct EwramData_EntityData* param_0);
 extern void sub_0803B9D0(struct EwramData_EntityData* param_0);
 extern void sub_0803BEEC(void);
 extern void sub_0803BF60(void);
@@ -75,7 +77,7 @@ extern void sub_0803E438(void);
 extern void sub_0803E594(void);
 extern s32 sub_0803E654(s32 param_0);
 extern void sub_0803E6BC(s32 param_0);
-extern s16 sub_0803F17C(struct EwramData_EntityData* param_0);
+extern s32 sub_0803F17C(struct EwramData_EntityData* param_0); // TODO: return type?
 extern s32 sub_0803F2C8(struct EwramData_EntityData *param_0, u16 param_1, u8 param_2, u8 param_3);
 extern void sub_0803F8A8(u32 param_0, u32* param_1, u16 param_2, u16 param_3);
 extern void sub_0803FBBC(s32 param_0, s32 param_1, s32 param_2);

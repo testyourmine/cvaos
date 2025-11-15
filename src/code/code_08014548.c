@@ -184,9 +184,9 @@ void sub_0801487C(s32 param_0)
     gEwramData->unk_131C8 = -1;
     gEwramData->unk_131CC = -1;
     gEwramData->unk_131D0 = -1;
-    gEwramData->unk_1311C = 0;
+    gEwramData->unk_1311C[0] = 0;
     gEwramData->unk_13120 = 0;
-    gEwramData->unk_131C0 = -1;
+    gEwramData->unk_131C0[0] = -1;
     gEwramData->unk_131C1 = -1;
 
     sub_080235C8();
@@ -747,7 +747,7 @@ block_55:
             var_r1_3 = ((s32 (*)(struct EwramData_unk1316C *, s32, s32)) temp_r4_4)(gEwramData->unk_1316C, spDC >> 0x10, (s32) (spE0 + 0x10000) >> 0x10);
             if (var_r1_3 != 0)
             {
-                param_0->unk_534 = 0;
+                param_0->unk_534.unk_534_32 = 0;
                 param_0->unk_524.unk_524_32 += var_r1_3;
                 sp50 += var_r1_3;
             }
@@ -822,7 +822,7 @@ loop_76:
                 temp_r1_7 = param_0->unk_4F4.unk_4F4_32;
                 if (0x80 & temp_r1_7)
                 {
-                    param_0->unk_534 = 0;
+                    param_0->unk_534.unk_534_32 = 0;
                     param_0->unk_52C.unk_52C_32 = 0;
                 }
                 else
@@ -834,7 +834,7 @@ loop_76:
                         var_r0_4 += 3;
                     }
                     param_0->unk_52C.unk_52C_32 = var_r0_4 >> 2;
-                    param_0->unk_534 = 0 - param_0->unk_534;
+                    param_0->unk_534.unk_534_32 = 0 - param_0->unk_534.unk_534_32;
                 }
                 param_0->unk_4F4.unk_4F4_32 = temp_r1_7 | 0x40000;
             }
@@ -890,11 +890,11 @@ loop_93:
                         var_r0_6 += 3;
                     }
                     param_0->unk_52C.unk_52C_32 = var_r0_6 >> 2;
-                    param_0->unk_534 = 0 - param_0->unk_534;
+                    param_0->unk_534.unk_534_32 = 0 - param_0->unk_534.unk_534_32;
                 }
                 else
                 {
-                    param_0->unk_534 = 0;
+                    param_0->unk_534.unk_534_32 = 0;
                     param_0->unk_52C.unk_52C_32 = 0;
                 }
                 param_0->unk_4F4.unk_4F4_32 = temp_r1_9 | 0x40000;
@@ -1002,7 +1002,7 @@ block_119:
             if ((temp_r2_6 > 0) && (gEwramData->unk_1325C.unk_13260 & 0x8000))
             {
                 param_0->unk_530.unk_530_32 = temp_r2_6 >> 2;
-                param_0->unk_538 = temp_r5_11;
+                param_0->unk_538.unk_538_32 = temp_r5_11;
             }
         }
         param_0->unk_4F4.unk_4F4_32 |= 0x01000000;
@@ -2207,7 +2207,7 @@ block_552:
         if ((gEwramData->unk_131B8 & 8) || (4 & gEwramData->unk_1325C.unk_13270))
         {
             param_0->unk_530.unk_530_32 = 0;
-            param_0->unk_538 = 0;
+            param_0->unk_538.unk_538_32 = 0;
             return;
         }
         if (((s32) param_0->unk_530.unk_530_32 > 0x64000) || (param_0->unk_4F4.unk_4F4_32 & 0x80))
@@ -2262,7 +2262,7 @@ block_552:
             param_0->unk_4EE = 0;
         }
         param_0->unk_530.unk_530_32 = 0;
-        param_0->unk_538 = 0;
+        param_0->unk_538.unk_538_32 = 0;
     }
     else
     {

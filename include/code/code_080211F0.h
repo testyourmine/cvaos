@@ -6,7 +6,7 @@
 #include "structs/main.h"
 
 extern void sub_080211F0(void);
-extern void sub_080211F4(void);
+extern void sub_080211F4(void); // TODO: Unused param_0 and param_1, both struct EwramData_EntityData *
 extern void sub_08021214(s32 param_0, s32 param_1);
 extern void sub_08021248(s32 param_0, s32 param_1);
 extern void sub_08021278(struct EwramData_EntityData *param_0, u8 param_1);
@@ -67,8 +67,43 @@ extern void sub_0802215C(void);
 extern void sub_08022184(void);
 extern void sub_080221B0(s32 param_0);
 extern void sub_080221C8(void);
-extern s32 sub_08023424(void); // Return type looks s16, but outputs s32. May be implicitly called?
+extern void sub_080221CC(struct EwramData_EntityData *param_0);
+extern void sub_080224BC(struct EwramData_EntityData *param_0);
+extern void sub_080228F8(struct EwramData_EntityData *param_0);
+extern void sub_08022A54(struct EwramData_EntityData *param_0);
+extern void sub_08022DEC(struct EwramData_EntityData *param_0);
+extern struct EwramData_EntityData* sub_080230A8(struct EwramData_EntityData *param_0);
+extern void sub_08023144(struct EwramData_EntityData *param_0);
+extern struct EwramData_EntityData* sub_0802326C(struct EwramData_EntityData *param_0);
+
+struct Unk_08023368 {
+    u8 pad_0[0x8 - 0x0];
+    u8 unk_8;
+    u8 pad_9[0x10 - 0x9];
+    u16 unk_10;
+    u8 unk_12;
+    u8 unk_13;
+    u8 unk_14;
+    u8 unk_15;
+    u8 unk_16;
+    u8 unk_17;
+    u16 unk_18;
+    u8 pad_1A[0x1C - 0x1A];
+};
+extern struct Unk_08023368* sub_0802330C(u8 param_0);
+extern struct Unk_08023368* sub_08023334(void);
+extern struct Unk_08023368* sub_08023368(s32 param_0);
+
+extern u8 sub_080233BC(s32 param_0);
+extern s32 sub_08023424(void);
+extern void sub_0802346C(struct EwramData_EntityData *param_0, struct EwramData_EntityData *param_1); // TODO: param_0?
+extern void sub_080234B0(struct EwramData_EntityData *param_0, struct EwramData_EntityData *param_1);
+extern void sub_08023508(struct EwramData_EntityData *param_0);
+extern struct EwramData_EntityData* sub_08023530(struct EwramData_EntityData *param_0, u32 *param_1);
 extern void sub_080235C8(void);
+extern void sub_08023724(struct EwramData_EntityData *param_0);
+extern struct EwramData_EntityData* sub_0802383C(struct EwramData_EntityData *param_0, u8 param_1);
+extern s32 sub_0802393C(struct EwramData_EntityData *param_0);
 
 struct Unk_0802D244 {
     u8 pad_0[0xA - 0x0];

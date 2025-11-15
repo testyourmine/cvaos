@@ -1156,14 +1156,14 @@ void sub_08010244(struct EwramData_unk60 *param_0)
             if (gEwramData->unk_13110->unk_52C.unk_52C_32 > 0)
             {
                 gEwramData->unk_13110->unk_52C.unk_52C_32 = 0;
-                gEwramData->unk_13110->unk_534 = 0;
+                gEwramData->unk_13110->unk_534.unk_534_32 = 0;
             }
         }
 
         else if (gEwramData->unk_13110->unk_52C.unk_52C_32 < 0)
         {
             gEwramData->unk_13110->unk_52C.unk_52C_32 = 0;
-            gEwramData->unk_13110->unk_534 = 0;
+            gEwramData->unk_13110->unk_534.unk_534_32 = 0;
         }
 
         if (gEwramData->unk_13110->unk_530.unk_530_32 < -0x50000)
