@@ -2335,14 +2335,14 @@ s32 sub_0802393C(struct EwramData_EntityData *param_0)
  * 
  * @param param_0 To document
  */
-void sub_080239E4(struct EwramData_EntityData *arg0)
+void sub_080239E4(struct EwramData_EntityData *param_0)
 {
     struct EwramData_EntityData *temp_r4;
     struct EwramData_EntityData *temp_r1;
     s32 var_r5;
 
-    temp_r4 = arg0->unk_4F8.unk_4F8_entity;
-    temp_r1 = arg0->unk_504.unk_504_entity;
+    temp_r4 = param_0->unk_4F8.unk_4F8_entity;
+    temp_r1 = param_0->unk_504.unk_504_entity;
     
     if ((gEwramData->unk_131BE == 0) && (gEwramData->unk_13124[0] == NULL))
     {
@@ -2353,18 +2353,498 @@ void sub_080239E4(struct EwramData_EntityData *arg0)
         var_r5 = 0;
     }
 
-    if ((var_r5 != 0) || (temp_r4->updateFunc == NULL) || (temp_r4->unk_4F4.unk_4F4_8.unk_4F4 != arg0->unk_4F4.unk_4F4_8.unk_4F4))
+    if ((var_r5 != 0) || (temp_r4->updateFunc == NULL) || (temp_r4->unk_4F4.unk_4F4_8.unk_4F4 != param_0->unk_4F4.unk_4F4_8.unk_4F4))
     {
-        EntityDelete(arg0);
+        EntityDelete(param_0);
         return;
     }
 
     if ((s16) temp_r1->unk_518 <= 0)
     {
-        arg0->unk_508.unk_508_8.unk_508 = 1;
+        param_0->unk_508.unk_508_8.unk_508 = 1;
         return;
     }
-    temp_r4->unk_524.unk_524_16.unk_526 = temp_r1->unk_524.unk_524_16.unk_526 + arg0->unk_534.unk_534_16.unk_536;
-    temp_r4->unk_528.unk_528_16.unk_52A = temp_r1->unk_528.unk_528_16.unk_52A + arg0->unk_538.unk_538_16.unk_53A;
+    temp_r4->unk_524.unk_524_16.unk_526 = temp_r1->unk_524.unk_524_16.unk_526 + param_0->unk_534.unk_534_16.unk_536;
+    temp_r4->unk_528.unk_528_16.unk_52A = temp_r1->unk_528.unk_528_16.unk_52A + param_0->unk_538.unk_538_16.unk_53A;
+}
+
+struct Unk_084F128C {
+    void *unk_0;
+    void *unk_4;
+    void *unk_8;
+    u8 unk_C;
+    u8 unk_D;
+    u8 unk_E;
+    u8 unk_F;
+};
+extern struct Unk_084F128C sUnk_084F128C[];
+
+static inline void sub_08023A70_inline_0(struct EwramData_EntityData *param_0, u8 temp_r6, void *temp_r0_10, void *temp_r5, void *temp_r8)
+{
+    gEwramData->unk_131CC = sub_0803B800(temp_r0_10, 0x10000);
+    sub_0803C7B4(temp_r5, temp_r6, 1, 2);
+    sub_0803B924(param_0, temp_r8, gEwramData->unk_131CC, 2);
+}
+
+/**
+ * @brief 23A70 | To document
+ * 
+ * @param param_0 To document
+ */
+void sub_08023A70(struct EwramData_EntityData *param_0)
+{
+    s32 var_r0_2;
+    struct EwramData_EntityData *temp_r1_2;
+    struct EwramData_EntityData *temp_r3;
+    struct Unk_084F128C *temp_r0;
+    u16 temp_r0_3;
+    s16 temp_r3_2;
+    s16 temp_r4_2;
+    struct EwramData_EntityData *temp_r2_9;
+
+    temp_r0 = &sUnk_084F128C[(u16)param_0->unk_500.unk_500_16.unk_502];
+
+    switch (param_0->unk_4EE)
+    {
+        case 0:
+            sub_08023A70_inline_0(param_0, temp_r0->unk_E, temp_r0->unk_0, temp_r0->unk_4, temp_r0->unk_8);
+            param_0->unk_549 = temp_r0->unk_C;
+            if ((u16) param_0->unk_500.unk_500_16.unk_502 == 0)
+            {
+                sub_08042A54(1, 0xA);
+            }
+            else
+            {
+                sub_08042A54(1, 0x14);
+            }
+            temp_r0_3 = sub_0803E654(0);
+            if ((s32) (temp_r0_3 << 0x10) < 0)
+            {
+                gEwramData->unk_13124[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
+                EntityDelete(param_0);
+                return;
+            }
+            param_0->drawFunc = (u32 *) sub_0803B9D0;
+            param_0->unk_540 = 0xD;
+            param_0->unk_53C_0 = temp_r0_3;
+            param_0->unk_53D_4 = 1;
+            temp_r3 = param_0->unk_4F8.unk_4F8_entity;
+            param_0->unk_524.unk_524_16.unk_526 = temp_r3->unk_524.unk_524_16.unk_526;
+            param_0->unk_528.unk_528_16.unk_52A = (u16) temp_r3->unk_528.unk_528_16.unk_52A + 0xFFE6;
+            param_0->unk_53D_1 = 1;
+            param_0->unk_4EE += 1;
+            param_0->unk_53C_6 = temp_r3->unk_53C_6 == 1;
+            sub_0803E058(0, 0x10000, 0x10000, param_0->unk_53C_6, 0, param_0->unk_53C_0);
+            if (param_0->unk_53C_6)
+            {
+                param_0->unk_52C.unk_52C_32 = -0x60000;
+            }
+            else
+            {
+                param_0->unk_52C.unk_52C_32 = 0x60000;
+            }
+            sub_0804277C(param_0, 5, sub_0802D9BC, 0);
+            sub_08042884(param_0, (void *)0x0202FFFF);
+            param_0->unk_556 |= 4;
+            sub_080D7910(0xE6U);
+            gEwramData->unk_131BE += 1;
+            /* fallthrough */
+        case 1:
+            temp_r1_2 = param_0->unk_504.unk_504_entity;
+            if (temp_r1_2 != NULL)
+            {
+                if (temp_r1_2->unk_508.unk_508_8.unk_508 == 0)
+                {
+                    temp_r2_9 = temp_r1_2->unk_504.unk_504_entity;
+                    if (param_0->unk_508.unk_508_16.unk_50A++ > 20)
+                    {
+                        param_0->unk_4EE = 4;
+                    }
+                    else if ((temp_r2_9->unk_556 & 4) || ((u16) param_0->unk_500.unk_500_16.unk_502 == 0))
+                    {
+                        param_0->unk_4EE = 4;
+                    }
+                    else
+                    {
+                        param_0->unk_4F1 -= 1;
+                        if (param_0->unk_4F1 == 0)
+                        {
+                            param_0->unk_556 |= 2;
+                            param_0->unk_4EE = 3;
+                            param_0->unk_4F1 = 15;
+                        }
+                        goto block_33;
+                    }
+                }
+                else
+                {
+                    param_0->unk_4EE = 4;
+                    goto block_33;
+                }
+            }
+            else
+            {
+                param_0->unk_524.unk_524_32 += param_0->unk_52C.unk_52C_32;
+                temp_r4_2 = sub_08002188(param_0);
+                temp_r3_2 = sub_080021A8(param_0);
+                if (param_0->unk_53C_6)
+                {
+                    var_r0_2 = sub_0800207C(temp_r4_2 - 6, temp_r3_2);
+                }
+                else
+                {
+                    var_r0_2 = sub_08002058(temp_r4_2 + 6, temp_r3_2);
+                }
+                if (var_r0_2 != 0)
+                {
+                    param_0->unk_524.unk_524_32 += var_r0_2 << 0x10;
+                    param_0->unk_4F1 = 50;
+                    param_0->unk_556 |= 2;
+                    if (temp_r0->unk_F == 0)
+                    {
+                        sub_080D7910(0x138);
+                        param_0->unk_4EE = 2;
+                    }
+                    else
+                    {
+                        param_0->unk_4EE = 3;
+                    }
+                    if (param_0->unk_53C_6)
+                    {
+                        param_0->unk_52C.unk_52C_32 = 0x18000;
+                    }
+                    else
+                    {
+                        param_0->unk_52C.unk_52C_32 = -0x18000;
+                    }
+                    param_0->unk_530.unk_530_32 = -0x20000;
+                    param_0->unk_538.unk_538_32 = 0x2000;
+                }
+block_33:
+                if ((sub_0806D128(param_0, 4) != 0) || !(param_0->unk_53D_2))
+                {
+                    param_0->unk_53D_2 = 1;
+                    param_0->unk_53C_5 = 1;
+                    param_0->unk_4EE = 4;
+                }
+            }
+            break;
+
+        case 2:
+            param_0->unk_524.unk_524_32 += param_0->unk_52C.unk_52C_32;
+            param_0->unk_528.unk_528_32 += param_0->unk_530.unk_530_32;
+            param_0->unk_530.unk_530_32 += param_0->unk_538.unk_538_32;
+            sub_0803E058((param_0->unk_508.unk_508_16.unk_508 << 0x10) / 20, 0x10000, 0x10000, param_0->unk_53C_6, 0, param_0->unk_53C_0);
+            if (param_0->unk_53C_6)
+            {
+                param_0->unk_508.unk_508_16.unk_508 += 1;
+            }
+            else
+            {
+                param_0->unk_508.unk_508_16.unk_508 -= 1;
+            }
+            /* fallthrough */
+        case 3:
+            if (param_0->unk_4F1 > 10)
+            {
+                param_0->unk_4F3 = 1;
+            }
+            else
+            {
+                param_0->unk_4F3 = 2;
+            }
+            if (param_0->unk_4F1 != 0)
+            {
+                param_0->unk_4F1 -= 1;
+                break;
+            }
+            /* fallthrough */
+        case 4:
+            sub_0803E6BC(param_0->unk_53C_0);
+            gEwramData->unk_13124[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
+            gEwramData->unk_131BE -= 1;
+            EntityDelete(param_0);
+            return;
+    }
+
+    param_0->unk_53D_2 = 1;
+}
+
+struct Unk_080E13BC {
+    void *unk_0;
+    void *unk_4;
+    void *unk_8;
+};
+extern struct Unk_080E13BC sUnk_080E13BC;
+
+/**
+ * @brief 23E50 | To document
+ * 
+ * @param param_0 To document
+ */
+void sub_08023E50(struct EwramData_EntityData *param_0)
+{
+    struct EwramData_EntityData *temp_r4;
+    u16 temp_r0_2;
+
+    switch (param_0->unk_4EE)
+    {
+        case 0:
+            sub_08023A70_inline_0(param_0, 0, sUnk_080E13BC.unk_0, sUnk_080E13BC.unk_4, sUnk_080E13BC.unk_8);
+            sub_0803F2C8(param_0, (u16) param_0->unk_500.unk_500_16.unk_502, 0, 1);
+            if ((u16) param_0->unk_500.unk_500_16.unk_502 == 0)
+            {
+                sub_08042A54(1, 0xF);
+            }
+            else
+            {
+                sub_08042A54(1, 0x1E);
+            }
+            temp_r0_2 = sub_0803E654(0);
+            if ((temp_r0_2 << 0x10) < 0)
+            {
+                gEwramData->unk_13124[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
+                EntityDelete(param_0);
+                return;
+            }
+            param_0->drawFunc = (u32 *) sub_0803B9D0;
+            param_0->unk_53C_0 = temp_r0_2;
+            param_0->unk_53D_4 = 1;
+            temp_r4 = param_0->unk_4F8.unk_4F8_entity;
+            param_0->unk_524.unk_524_16.unk_526 = temp_r4->unk_524.unk_524_16.unk_526;
+            param_0->unk_528.unk_528_16.unk_52A = (u16) temp_r4->unk_528.unk_528_16.unk_52A + 0xFFE6;
+            param_0->unk_53D_1 = 1;
+            param_0->unk_50C.unk_50C_16.unk_50E = 0;
+            param_0->unk_540 = 0xD;
+            param_0->unk_4EE += 1;
+            if (temp_r4->unk_53C_6)
+            {
+                param_0->unk_52C.unk_52C_32 = -0x34000;
+                param_0->unk_534.unk_534_32 = 0x1000;
+                param_0->unk_508.unk_508_16.unk_508 = -1;
+            }
+            else
+            {
+                param_0->unk_52C.unk_52C_32 = 0x34000;
+                param_0->unk_534.unk_534_32 = -0x1000;
+                param_0->unk_508.unk_508_16.unk_508 = 1;
+            }
+            sub_0804277C(param_0, 5, NULL, 0);
+            sub_08042884(param_0, (void *)0x1414F6F6);
+            param_0->unk_556 |= 4;
+            gEwramData->unk_131BE += 1;
+            /* fallthrough */
+        case 1:
+            param_0->unk_524.unk_524_32 += param_0->unk_52C.unk_52C_32;
+            if ((param_0->unk_534.unk_534_32 < 0) && (param_0->unk_52C.unk_52C_32 > -0x80000))
+            {
+                param_0->unk_52C.unk_52C_32 += param_0->unk_534.unk_534_32;
+            }
+            else if ((param_0->unk_534.unk_534_32 > 0) && (param_0->unk_52C.unk_52C_32 < 0x80000))
+            {
+                param_0->unk_52C.unk_52C_32 += param_0->unk_534.unk_534_32;
+            }
+            sub_0803E058(param_0->unk_50C.unk_50C_16.unk_50E << 7, 0x10000, 0x10000, 0, 0, param_0->unk_53C_0);
+            param_0->unk_50C.unk_50C_16.unk_50E += param_0->unk_508.unk_508_16.unk_508;
+            if (sub_0806D128(param_0, 4) != 0)
+            {
+                param_0->unk_4EE = 2;
+            }
+            param_0->unk_53D_2 = 1;
+            break;
+
+        case 2:
+            sub_0803E6BC(param_0->unk_53C_0);
+            gEwramData->unk_13124[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
+            gEwramData->unk_131BE -= 1;
+            EntityDelete(param_0);
+            return;
+    }
+    sub_0803F17C(param_0);
+}
+
+/**
+ * @brief 240A0 | To document
+ * 
+ * @param param_0 To document
+ */
+void sub_080240A0(struct EwramData_EntityData *param_0)
+{
+    s32 var_r3;
+    struct EwramData_EntityData *temp_sb;
+    u16 *temp_r1;
+    u16 temp_r0;
+    union EwramData_unkA078 *temp_r2;
+    s32 var_0;
+
+    temp_sb = param_0->unk_4F8.unk_4F8_entity;
+    temp_r1 = &param_0->unk_504.unk_504_16.unk_504;
+
+    switch (param_0->unk_4EE)
+    {
+        case 0:
+            temp_r0 = sub_0803E654(0);
+            if ((temp_r0 << 0x10) < 0)
+            {
+                gEwramData->unk_13124[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
+                gEwramData->unk_131BE -= 1;
+                EntityDelete(param_0);
+                return;
+            }
+
+            sub_08023A70_inline_0(param_0, 0, sUnk_080E13BC.unk_0, sUnk_080E13BC.unk_4, sUnk_080E13BC.unk_8);
+            param_0->unk_549 = temp_sb->unk_500.unk_500_16.unk_502;
+            param_0->drawFunc = (u32 *) sub_0803B9D0;
+            param_0->unk_53C_0 = temp_r0;
+            param_0->unk_53D_4 = 1;
+            param_0->unk_53E_1 = 1;
+            param_0->unk_524.unk_524_16.unk_526 = sub_08002188(temp_sb);
+
+            for (var_r3 = 0; var_r3 < 10; var_r3++)
+            {
+                temp_r1[var_r3] = param_0->unk_524.unk_524_16.unk_526;
+            }
+            param_0->unk_4EE += 1;
+            /* fallthrough */
+        case 1:
+            if (temp_sb->unk_4EE == 2)
+            {
+                sub_0803E6BC(param_0->unk_53C_0);
+                gEwramData->unk_13124[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
+                gEwramData->unk_131BE -= 1;
+                EntityDelete(param_0);
+                return;
+            }
+
+            for (var_r3 = 9; var_r3 > 0; var_r3--)
+            {
+                temp_r1[var_r3 + 0] = temp_r1[var_r3 - 1];
+            }
+            temp_r1[0] = sub_08002188(temp_sb);
+
+            var_0 = temp_r1[param_0->unk_4EF];
+            temp_r2 = &gEwramData->unk_A078[1];
+            param_0->unk_524.unk_524_16.unk_526 = temp_r1[param_0->unk_4EF] - temp_r2->unk_A094.unk_A098.unk_0_0.unk_A09A;
+            param_0->unk_528.unk_528_16.unk_52A = temp_sb->unk_528.unk_528_16.unk_52A;
+
+            param_0->unk_52C.unk_52C_32 += param_0->unk_534.unk_534_32;
+            break;
+    }
+
+    param_0->unk_53D_2 = 1;
+    sub_0803E058(param_0->unk_52C.unk_52C_32, 0x10000, 0x10000, 0U, 0U, param_0->unk_53C_0);
+}
+
+/**
+ * @brief 24274 | To document
+ * 
+ * @param param_0 To document
+ */
+void sub_08024274(struct EwramData_EntityData *param_0)
+{
+    s32 var_r4;
+    struct EwramData_EntityData *temp_r0_4;
+    struct EwramData_EntityData *temp_r6_2;
+    u16 temp_r0_3;
+
+    switch (param_0->unk_4EE)
+    {
+        case 0:
+            sub_08023A70_inline_0(param_0, 0, sUnk_080E13BC.unk_0, sUnk_080E13BC.unk_4, sUnk_080E13BC.unk_8);
+            param_0->unk_549 = param_0->unk_500.unk_500_16.unk_502;
+            if ((u16) param_0->unk_500.unk_500_16.unk_502 == 0)
+            {
+                sub_08042A54(1, 0xF);
+            }
+            else
+            {
+                sub_08042A54(1, 0x1E);
+            }
+
+            temp_r0_3 = sub_0803E654(0);
+            if ((temp_r0_3 << 0x10) < 0)
+            {
+                gEwramData->unk_13124[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
+                EntityDelete(param_0);
+                return;
+            }
+
+            param_0->drawFunc = (u32 *) sub_0803B9D0;
+            param_0->unk_53C_0 = temp_r0_3;
+            param_0->unk_53D_4 = 1;
+            temp_r6_2 = param_0->unk_4F8.unk_4F8_entity;
+            param_0->unk_524.unk_524_16.unk_526 = temp_r6_2->unk_524.unk_524_16.unk_526;
+            param_0->unk_528.unk_528_16.unk_52A = (u16) temp_r6_2->unk_528.unk_528_16.unk_52A + 0xFFE6;
+            param_0->unk_53D_1 = 1;
+            param_0->unk_50C.unk_50C_16.unk_50E = 0;
+            param_0->unk_540 = 0xD;
+            param_0->unk_4EE += 1;
+            if (temp_r6_2->unk_53C_6)
+            {
+                param_0->unk_52C.unk_52C_32 = -0x34000;
+                param_0->unk_534.unk_534_32 = 0x1000;
+                param_0->unk_508.unk_508_16.unk_508 = -1;
+            }
+            else
+            {
+                param_0->unk_52C.unk_52C_32 = 0x34000;
+                param_0->unk_534.unk_534_32 = -0x1000;
+                param_0->unk_508.unk_508_16.unk_508 = 1;
+            }
+
+            sub_0804277C(param_0, 5, NULL, 0);
+            sub_08042884(param_0, (void *)0x1414F6F6);
+            param_0->unk_556 |= 4;
+            sub_080D7910(0xE3);
+            gEwramData->unk_131BE += 1;
+
+            for (var_r4 = 1; var_r4 < 3; var_r4++)
+            {
+                temp_r0_4 = sub_08023530(param_0, (u32 *) sub_080240A0);
+                if (temp_r0_4 != NULL)
+                {
+                    temp_r0_4->unk_524.unk_524_32 = param_0->unk_524.unk_524_32;
+                    temp_r0_4->unk_528.unk_528_32 = param_0->unk_528.unk_528_32;
+                    temp_r0_4->unk_534.unk_534_32 = 0x800;
+                    temp_r0_4->unk_4EF = var_r4 * 3;
+                    if (temp_r6_2->unk_53C_6)
+                    {
+                        temp_r0_4->unk_534.unk_534_32 = -temp_r0_4->unk_534.unk_534_32;
+                    }
+                    temp_r0_4->unk_52C.unk_52C_32 = -temp_r0_4->unk_534.unk_534_32 * temp_r0_4->unk_4EF;
+                    temp_r0_4->unk_540 = param_0->unk_540 + var_r4;
+                }
+            }
+            /* fallthrough */
+        case 1:
+            param_0->unk_524.unk_524_32 += param_0->unk_52C.unk_52C_32;
+            if ((param_0->unk_534.unk_534_32 < 0) && (param_0->unk_52C.unk_52C_32 > -0x80000))
+            {
+                param_0->unk_52C.unk_52C_32 = param_0->unk_52C.unk_52C_32 + param_0->unk_534.unk_534_32;
+            }
+            else if ((param_0->unk_534.unk_534_32 > 0) && (param_0->unk_52C.unk_52C_32 < 0x80000))
+            {
+                param_0->unk_52C.unk_52C_32 = param_0->unk_52C.unk_52C_32 + param_0->unk_534.unk_534_32;
+            }
+
+            sub_0803E058(param_0->unk_50C.unk_50C_16.unk_50E << 0xB, 0x10000, 0x10000, 0, 0, param_0->unk_53C_0);
+            param_0->unk_50C.unk_50C_16.unk_50E += param_0->unk_508.unk_508_16.unk_508;
+            if (sub_0806D128(param_0, 4) != 0)
+            {
+                param_0->unk_4EE = 2;
+            }
+            param_0->unk_53D_2 = 1;
+            break;
+
+        case 2:
+            if (param_0->unk_53C_0 || param_0->unk_53D_4)
+            {
+                sub_0803E6BC(param_0->unk_53C_0);
+            }
+            gEwramData->unk_13124[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
+            gEwramData->unk_131BE -= 1;
+            EntityDelete(param_0);
+            break;
+    }
 }
 

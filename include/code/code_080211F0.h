@@ -104,6 +104,11 @@ extern void sub_080235C8(void);
 extern void sub_08023724(struct EwramData_EntityData *param_0);
 extern struct EwramData_EntityData* sub_0802383C(struct EwramData_EntityData *param_0, u8 param_1);
 extern s32 sub_0802393C(struct EwramData_EntityData *param_0);
+extern void sub_080239E4(struct EwramData_EntityData *param_0);
+extern void sub_08023A70(struct EwramData_EntityData *param_0);
+extern void sub_08023E50(struct EwramData_EntityData *param_0);
+extern void sub_080240A0(struct EwramData_EntityData *param_0);
+extern void sub_08024274(struct EwramData_EntityData *param_0);
 
 struct Unk_0802D244 {
     u8 pad_0[0xA - 0x0];
@@ -112,6 +117,7 @@ struct Unk_0802D244 {
 extern struct Unk_0802D244 *sub_0802D244(void); // type?
 
 extern s32 sub_0802D5EC(s32 param_0);
+extern void sub_0802D9BC(struct EwramData_EntityData *param_0, struct EwramData_EntityData *param_1); // TODO: verify types
 extern void sub_0802DFF0(void);
 
 #endif /* CODE_080211F0_H */

@@ -28,7 +28,7 @@ extern void sub_08042754(void);
 extern s32 sub_0804277C(struct EwramData_EntityData *param_0, s32 param_1, void *param_2, s32 param_3);
 extern void sub_08042828(struct EwramData_EntityData *param_0);
 extern s32 sub_08042848(struct EwramData_EntityData *param_0, u8 *param_1);
-extern s32 sub_08042884(struct EwramData_EntityData *param_0, const void *param_1);
+extern s32 sub_08042884(struct EwramData_EntityData *param_0, const void *param_1); // TODO: is param_1 a pointer or value?
 extern s32 sub_080428B4(struct EwramData_EntityData *param_0, void *param_1);
 extern void sub_08042A54(s32 param_0, s32 param_1);
 extern void sub_08042A7C(s32 param_0, u8 param_1);
