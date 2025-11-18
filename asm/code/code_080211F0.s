@@ -5185,8 +5185,8 @@ _08023A68:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08023A70
-sub_08023A70: @ 0x08023A70
+	thumb_func_start Skill_EvilButcher_Ripper_Use
+Skill_EvilButcher_Ripper_Use: @ 0x08023A70
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -6195,8 +6195,8 @@ _0802425C:
 _0802426C: .4byte gEwramData
 _08024270: .4byte 0x0000A094
 
-	thumb_func_start sub_08024274
-sub_08024274: @ 0x08024274
+	thumb_func_start SkillAxeArmorUse
+SkillAxeArmorUse: @ 0x08024274
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -7066,8 +7066,8 @@ _08024940:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08024950
-sub_08024950: @ 0x08024950
+	thumb_func_start SkillChronomageUse
+SkillChronomageUse: @ 0x08024950
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -7494,8 +7494,8 @@ _08024CB6:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_08024CBC
-sub_08024CBC: @ 0x08024CBC
+	thumb_func_start SkillValkyrieUse
+SkillValkyrieUse: @ 0x08024CBC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -7805,8 +7805,8 @@ _08024F28:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08024F38
-sub_08024F38: @ 0x08024F38
+	thumb_func_start SkillKillerDollUse
+SkillKillerDollUse: @ 0x08024F38
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -8147,8 +8147,8 @@ _080251E2:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080251F0
-sub_080251F0: @ 0x080251F0
+	thumb_func_start SkillNemesisUse
+SkillNemesisUse: @ 0x080251F0
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -8326,8 +8326,8 @@ _08025352:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08025360
-sub_08025360: @ 0x08025360
+	thumb_func_start SkillStudentWitchUse
+SkillStudentWitchUse: @ 0x08025360
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -8836,8 +8836,8 @@ _08025778: .4byte gEwramData
 _0802577C: .4byte 0x000131CC
 _08025780: .4byte sub_0803B9D0
 
-	thumb_func_start sub_08025784
-sub_08025784: @ 0x08025784
+	thumb_func_start Skill_Skeleton_ZombieSoldier_RockArmor_WaiterSkeleton_GiantSkeleton_BomberArmor_Use
+Skill_Skeleton_ZombieSoldier_RockArmor_WaiterSkeleton_GiantSkeleton_BomberArmor_Use: @ 0x08025784
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -9890,8 +9890,8 @@ _08025FFC:
 	.align 2, 0
 _08026004: .4byte 0x1010F8F8
 
-	thumb_func_start sub_08026008
-sub_08026008: @ 0x08026008
+	thumb_func_start SkillWingedSkeletonUse
+SkillWingedSkeletonUse: @ 0x08026008
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -10319,8 +10319,8 @@ _08026358:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08026368
-sub_08026368: @ 0x08026368
+	thumb_func_start SkillSirenUse
+SkillSirenUse: @ 0x08026368
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -10603,8 +10603,8 @@ _080265B4:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080265C0
-sub_080265C0: @ 0x080265C0
+	thumb_func_start SkillUneUse
+SkillUneUse: @ 0x080265C0
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0
 	ldr r5, [r7, #0x14]
@@ -11107,8 +11107,8 @@ _080269B6:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080269BC
-sub_080269BC: @ 0x080269BC
+	thumb_func_start SkillRedMinotaurUse
+SkillRedMinotaurUse: @ 0x080269BC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -11428,8 +11428,8 @@ _08026C44:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08026C54
-sub_08026C54: @ 0x08026C54
+	thumb_func_start SkillBatUse
+SkillBatUse: @ 0x08026C54
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0
 	ldr r5, [r7, #0x14]
@@ -11812,8 +11812,8 @@ _08026F68:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08026F74
-sub_08026F74: @ 0x08026F74
+	thumb_func_start SkillMermanUse
+SkillMermanUse: @ 0x08026F74
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -12288,8 +12288,8 @@ _08027330:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08027340
-sub_08027340: @ 0x08027340
+	thumb_func_start SkillDiscArmorUse
+SkillDiscArmorUse: @ 0x08027340
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -12633,8 +12633,8 @@ _080275F6:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08027608
-sub_08027608: @ 0x08027608
+	thumb_func_start Skill_Werejaguar_Weretiger_Use
+Skill_Werejaguar_Weretiger_Use: @ 0x08027608
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -12839,8 +12839,8 @@ _080277A0:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080277B0
-sub_080277B0: @ 0x080277B0
+	thumb_func_start SkillLightningDollUse
+SkillLightningDollUse: @ 0x080277B0
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -13121,8 +13121,8 @@ _080279F8: .4byte gEwramData
 _080279FC: .4byte 0x00013124
 _08027A00: .4byte 0x000131BE
 
-	thumb_func_start sub_08027A04
-sub_08027A04: @ 0x08027A04
+	thumb_func_start SkillAltairUse
+SkillAltairUse: @ 0x08027A04
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -13411,8 +13411,8 @@ _08027C4A:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08027C58
-sub_08027C58: @ 0x08027C58
+	thumb_func_start SkillKillerFishUse
+SkillKillerFishUse: @ 0x08027C58
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -13952,8 +13952,8 @@ _080280A0:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080280B0
-sub_080280B0: @ 0x080280B0
+	thumb_func_start SkillNeedlesUse
+SkillNeedlesUse: @ 0x080280B0
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -14216,8 +14216,8 @@ _080282D0: .4byte gEwramData
 _080282D4: .4byte 0x00013124
 _080282D8: .4byte 0x000131BE
 
-	thumb_func_start sub_080282DC
-sub_080282DC: @ 0x080282DC
+	thumb_func_start SkillDryadUse
+SkillDryadUse: @ 0x080282DC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -14476,8 +14476,8 @@ _080284EE:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080284FC
-sub_080284FC: @ 0x080284FC
+	thumb_func_start SkillWerewolfUse
+SkillWerewolfUse: @ 0x080284FC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -14839,8 +14839,8 @@ _080287F4:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08028800
-sub_08028800: @ 0x08028800
+	thumb_func_start SkillBiphronUse
+SkillBiphronUse: @ 0x08028800
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -15048,8 +15048,8 @@ _080289A8: .4byte gEwramData
 _080289AC: .4byte 0x00013124
 _080289B0: .4byte 0x000131BE
 
-	thumb_func_start sub_080289B4
-sub_080289B4: @ 0x080289B4
+	thumb_func_start SkillBeamSkeletonUse
+SkillBeamSkeletonUse: @ 0x080289B4
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -15506,8 +15506,8 @@ _08028D5C: .4byte gEwramData
 _08028D60: .4byte 0x00013124
 _08028D64: .4byte 0x000131BE
 
-	thumb_func_start sub_08028D68
-sub_08028D68: @ 0x08028D68
+	thumb_func_start SkillSkullArcherUse
+SkillSkullArcherUse: @ 0x08028D68
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -15669,8 +15669,8 @@ _08028EB6:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08028EC0
-sub_08028EC0: @ 0x08028EC0
+	thumb_func_start SkillArachneUse
+SkillArachneUse: @ 0x08028EC0
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -16278,8 +16278,8 @@ _080293B8: .4byte gEwramData
 _080293BC: .4byte 0x00013124
 _080293C0: .4byte 0x000131BE
 
-	thumb_func_start sub_080293C4
-sub_080293C4: @ 0x080293C4
+	thumb_func_start SkillFlameDemonUse
+SkillFlameDemonUse: @ 0x080293C4
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -16618,8 +16618,8 @@ _08029680: .4byte gEwramData
 _08029684: .4byte 0x00013124
 _08029688: .4byte 0x000131BE
 
-	thumb_func_start sub_0802968C
-sub_0802968C: @ 0x0802968C
+	thumb_func_start SkillCockatriceUse
+SkillCockatriceUse: @ 0x0802968C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -16994,8 +16994,8 @@ _08029994: .4byte gEwramData
 _08029998: .4byte 0x00013124
 _0802999C: .4byte 0x000131BE
 
-	thumb_func_start sub_080299A0
-sub_080299A0: @ 0x080299A0
+	thumb_func_start SkillFleamanUse
+SkillFleamanUse: @ 0x080299A0
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -17341,8 +17341,8 @@ _08029C5C:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08029C68
-sub_08029C68: @ 0x08029C68
+	thumb_func_start SkillTinyDevilUpdate
+SkillTinyDevilUpdate: @ 0x08029C68
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0
 	ldrb r0, [r7, #0xa]
@@ -17754,8 +17754,8 @@ _08029FA4:
 	.align 2, 0
 _08029FAC: .4byte 0x00004FFF
 
-	thumb_func_start sub_08029FB0
-sub_08029FB0: @ 0x08029FB0
+	thumb_func_start SkillTinyDevilUse
+SkillTinyDevilUse: @ 0x08029FB0
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -17855,7 +17855,7 @@ _0802A07C:
 	cmp r5, #2
 	bgt _0802A08E
 	adds r0, r7, #0
-	ldr r1, _0802A09C @ =sub_08029C68
+	ldr r1, _0802A09C @ =SkillTinyDevilUpdate
 	bl sub_08023530
 	adds r2, r0, #0
 	cmp r2, #0
@@ -17867,7 +17867,7 @@ _0802A08E:
 	.align 2, 0
 _0802A094: .4byte 0xFFFFE800
 _0802A098: .4byte 0xFFFF8000
-_0802A09C: .4byte sub_08029C68
+_0802A09C: .4byte SkillTinyDevilUpdate
 _0802A0A0:
 	ldr r0, _0802A0D0 @ =gEwramData
 	ldr r2, [r0]
@@ -17897,8 +17897,8 @@ _0802A0D0: .4byte gEwramData
 _0802A0D4: .4byte 0x00013124
 _0802A0D8: .4byte 0x000131BE
 
-	thumb_func_start sub_0802A0DC
-sub_0802A0DC: @ 0x0802A0DC
+	thumb_func_start SkillUkobackUse
+SkillUkobackUse: @ 0x0802A0DC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -18888,8 +18888,8 @@ _0802A8C8: .4byte gEwramData
 _0802A8CC: .4byte 0x00013124
 _0802A8D0: .4byte 0x000131BE
 
-	thumb_func_start sub_0802A8D4
-sub_0802A8D4: @ 0x0802A8D4
+	thumb_func_start SkillGhostUse
+SkillGhostUse: @ 0x0802A8D4
 	push {r4, r5, r6, r7, lr}
 	adds r5, r0, #0
 	ldr r2, [r5, #0x14]
@@ -19016,8 +19016,8 @@ _0802A9D0: .4byte gEwramData
 _0802A9D4: .4byte 0x00013124
 _0802A9D8: .4byte 0x000131BE
 
-	thumb_func_start sub_0802A9DC
-sub_0802A9DC: @ 0x0802A9DC
+	thumb_func_start SkillNightmareUse
+SkillNightmareUse: @ 0x0802A9DC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -19457,8 +19457,8 @@ _0802AD6C: .4byte gEwramData
 _0802AD70: .4byte 0x00013124
 _0802AD74: .4byte 0x000131BE
 
-	thumb_func_start sub_0802AD78
-sub_0802AD78: @ 0x0802AD78
+	thumb_func_start SkillMandragoraUse
+SkillMandragoraUse: @ 0x0802AD78
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -19976,8 +19976,8 @@ _0802B1AC: .4byte gEwramData
 _0802B1B0: .4byte 0x00013124
 _0802B1B4: .4byte 0x000131BE
 
-	thumb_func_start sub_0802B1B8
-sub_0802B1B8: @ 0x0802B1B8
+	thumb_func_start SkillSkullMillioneUse
+SkillSkullMillioneUse: @ 0x0802B1B8
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -20172,8 +20172,8 @@ _0802B344: .4byte gEwramData
 _0802B348: .4byte 0x00013124
 _0802B34C: .4byte 0x000131BE
 
-	thumb_func_start sub_0802B350
-sub_0802B350: @ 0x0802B350
+	thumb_func_start SkillFishHeadUse
+SkillFishHeadUse: @ 0x0802B350
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -20351,8 +20351,8 @@ _0802B4BC: .4byte gEwramData
 _0802B4C0: .4byte 0x00013124
 _0802B4C4: .4byte 0x000131BE
 
-	thumb_func_start sub_0802B4C8
-sub_0802B4C8: @ 0x0802B4C8
+	thumb_func_start SkillGladiatorUse
+SkillGladiatorUse: @ 0x0802B4C8
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -20757,8 +20757,8 @@ _0802B7F6:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0802B808
-sub_0802B808: @ 0x0802B808
+	thumb_func_start SkillDurgaUse
+SkillDurgaUse: @ 0x0802B808
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -20958,8 +20958,8 @@ _0802B99C: .4byte gEwramData
 _0802B9A0: .4byte 0x000131BE
 _0802B9A4: .4byte 0x00013124
 
-	thumb_func_start sub_0802B9A8
-sub_0802B9A8: @ 0x0802B9A8
+	thumb_func_start SkillKillerMantleUse
+SkillKillerMantleUse: @ 0x0802B9A8
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -21157,8 +21157,8 @@ _0802BB3A:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0802BB44
-sub_0802BB44: @ 0x0802BB44
+	thumb_func_start SkillKyomaDemonUse
+SkillKyomaDemonUse: @ 0x0802BB44
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -21384,8 +21384,8 @@ _0802BD10: .4byte gEwramData
 _0802BD14: .4byte 0x00013124
 _0802BD18: .4byte 0x000131BE
 
-	thumb_func_start sub_0802BD1C
-sub_0802BD1C: @ 0x0802BD1C
+	thumb_func_start SkillFlameDemonUpdate
+SkillFlameDemonUpdate: @ 0x0802BD1C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -21663,8 +21663,8 @@ _0802BF5C: .4byte gEwramData
 _0802BF60: .4byte 0x00013124
 _0802BF64: .4byte 0x000131BE
 
-	thumb_func_start sub_0802BF68
-sub_0802BF68: @ 0x0802BF68
+	thumb_func_start SkillDemonLordUse
+SkillDemonLordUse: @ 0x0802BF68
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -21756,7 +21756,7 @@ _0802C01A:
 	lsrs r0, r0, #0x18
 	cmp r0, #0x1d
 	bne _0802C06E
-	ldr r1, _0802C0B4 @ =sub_0802BD1C
+	ldr r1, _0802C0B4 @ =SkillFlameDemonUpdate
 	adds r0, r7, #0
 	bl sub_08023530
 	adds r4, r0, #0
@@ -21817,7 +21817,7 @@ _0802C0A4: .4byte gEwramData
 _0802C0A8: .4byte 0x000131CC
 _0802C0AC: .4byte sub_0803B9D0
 _0802C0B0: .4byte 0x000131BE
-_0802C0B4: .4byte sub_0802BD1C
+_0802C0B4: .4byte SkillFlameDemonUpdate
 _0802C0B8: .4byte 0x00013124
 _0802C0BC:
 	adds r0, r4, #0
@@ -21834,8 +21834,8 @@ _0802C0C8:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0802C0D4
-sub_0802C0D4: @ 0x0802C0D4
+	thumb_func_start SkillLegionUse
+SkillLegionUse: @ 0x0802C0D4
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -22068,8 +22068,8 @@ _0802C2B4:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0802C2C4
-sub_0802C2C4: @ 0x0802C2C4
+	thumb_func_start SkillBaloreUse
+SkillBaloreUse: @ 0x0802C2C4
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -22285,8 +22285,8 @@ _0802C478:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0802C488
-sub_0802C488: @ 0x0802C488
+	thumb_func_start sub_SkillBlueCrowUse
+sub_SkillBlueCrowUse: @ 0xSkillBlueCrowUse
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -22578,8 +22578,8 @@ _0802C6E0:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0802C6EC
-sub_0802C6EC: @ 0x0802C6EC
+	thumb_func_start SkillManEaterUse
+SkillManEaterUse: @ 0x0802C6EC
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -23268,8 +23268,8 @@ _0802CC7E:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0802CC84
-sub_0802CC84: @ 0x0802CC84
+	thumb_func_start SkillHarpyUse
+SkillHarpyUse: @ 0x0802CC84
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	ldr r5, [r4, #0x14]
@@ -23698,8 +23698,8 @@ _0802CFBA:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0802CFC4
-sub_0802CFC4: @ 0x0802CFC4
+	thumb_func_start SkillSlimeUse
+SkillSlimeUse: @ 0x0802CFC4
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -26118,8 +26118,8 @@ _0802E234:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0802E23C
-sub_0802E23C: @ 0x0802E23C
+	thumb_func_start SkillFlyingArmorUse
+SkillFlyingArmorUse: @ 0x0802E23C
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -26314,8 +26314,8 @@ _0802E3D0: .4byte 0xFFE60000
 _0802E3D4: .4byte 0xFFFF0000
 _0802E3D8: .4byte 0x00013260
 
-	thumb_func_start sub_0802E3DC
-sub_0802E3DC: @ 0x0802E3DC
+	thumb_func_start SkillBlackPantherUse
+SkillBlackPantherUse: @ 0x0802E3DC
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	ldr r5, [r4, #0x14]
@@ -26449,8 +26449,8 @@ _0802E4DC:
 _0802E4E4: .4byte gEwramData
 _0802E4E8: .4byte 0x00013260
 
-	thumb_func_start sub_0802E4EC
-sub_0802E4EC: @ 0x0802E4EC
+	thumb_func_start SkillCagnazzoUse
+SkillCagnazzoUse: @ 0x0802E4EC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -26722,8 +26722,8 @@ _0802E72A:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0802E730
-sub_0802E730: @ 0x0802E730
+	thumb_func_start SkillBonePillarUse
+SkillBonePillarUse: @ 0x0802E730
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -26995,8 +26995,8 @@ _0802E94E:
 _0802E958: .4byte 0x080E1A64
 _0802E95C: .4byte 0xFFFFE800
 
-	thumb_func_start sub_0802E960
-sub_0802E960: @ 0x0802E960
+	thumb_func_start SkillAluraUneUse
+SkillAluraUneUse: @ 0x0802E960
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -27254,8 +27254,8 @@ _0802EB78: .4byte gEwramData
 _0802EB7C: .4byte 0x0001327A
 _0802EB80: .4byte 0x0001327E
 
-	thumb_func_start sub_0802EB84
-sub_0802EB84: @ 0x0802EB84
+	thumb_func_start SkillGiantBatUse
+SkillGiantBatUse: @ 0x0802EB84
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -27539,8 +27539,8 @@ _0802EDC8: .4byte sub_0803B9D0
 _0802EDCC: .4byte 0x0000101F
 _0802EDD0: .4byte 0x00013144
 
-	thumb_func_start sub_0802EDD4
-sub_0802EDD4: @ 0x0802EDD4
+	thumb_func_start SkillDevilManticoreSparksUpdate
+SkillDevilManticoreSparksUpdate: @ 0x0802EDD4
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldr r5, [r4, #0x14]
@@ -27775,8 +27775,8 @@ _0802EF9C:
 _0802EFA8: .4byte gEwramData
 _0802EFAC: .4byte 0x00013110
 
-	thumb_func_start sub_0802EFB0
-sub_0802EFB0: @ 0x0802EFB0
+	thumb_func_start Skill_Devil_Manticore_Curly_Use
+Skill_Devil_Manticore_Curly_Use: @ 0x0802EFB0
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -28014,8 +28014,8 @@ _0802F198: .4byte gEwramData
 _0802F19C: .4byte 0x00013110
 _0802F1A0: .4byte 0x00013260
 
-	thumb_func_start sub_0802F1A4
-sub_0802F1A4: @ 0x0802F1A4
+	thumb_func_start SkillSkyFishUse
+SkillSkyFishUse: @ 0x0802F1A4
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -28457,8 +28457,8 @@ _0802F52E:
 _0802F540: .4byte gEwramData
 _0802F544: .4byte 0x000131F8
 
-	thumb_func_start sub_0802F548
-sub_0802F548: @ 0x0802F548
+	thumb_func_start SkillShadowKnightUse
+SkillShadowKnightUse: @ 0x0802F548
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -28975,8 +28975,8 @@ _0802F94C:
 	.align 2, 0
 _0802F968: .4byte sub_0802F7E8
 
-	thumb_func_start sub_0802F96C
-sub_0802F96C: @ 0x0802F96C
+	thumb_func_start Skill_Witch_GiantGhost_Use
+Skill_Witch_GiantGhost_Use: @ 0x0802F96C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -29332,8 +29332,8 @@ _0802FC48:
 	.align 2, 0
 _0802FC58: .4byte 0xFFFFE000
 
-	thumb_func_start sub_0802FC5C
-sub_0802FC5C: @ 0x0802FC5C
+	thumb_func_start SkillFinalGuardUse
+SkillFinalGuardUse: @ 0x0802FC5C
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -29677,8 +29677,8 @@ _0802FF34: .4byte 0x1414F6F6
 _0802FF38: .4byte 0xFFFF0000
 _0802FF3C: .4byte 0xFFFC0000
 
-	thumb_func_start sub_0802FF40
-sub_0802FF40: @ 0x0802FF40
+	thumb_func_start SkillBuerUse
+SkillBuerUse: @ 0x0802FF40
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -29855,8 +29855,8 @@ _08030098:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080300A4
-sub_080300A4: @ 0x080300A4
+	thumb_func_start SkillPersephoneUse
+SkillPersephoneUse: @ 0x080300A4
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -30400,8 +30400,8 @@ _0803050C:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08030518
-sub_08030518: @ 0x08030518
+	thumb_func_start SkillDeathUse
+SkillDeathUse: @ 0x08030518
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}

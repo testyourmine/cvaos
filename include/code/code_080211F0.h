@@ -105,10 +105,10 @@ extern void sub_08023724(struct EwramData_EntityData *param_0);
 extern struct EwramData_EntityData* sub_0802383C(struct EwramData_EntityData *param_0, u8 param_1);
 extern s32 sub_0802393C(struct EwramData_EntityData *param_0);
 extern void sub_080239E4(struct EwramData_EntityData *param_0);
-extern void sub_08023A70(struct EwramData_EntityData *param_0);
+extern void Skill_EvilButcher_Ripper_Use(struct EwramData_EntityData *param_0);
 extern void sub_08023E50(struct EwramData_EntityData *param_0);
 extern void sub_080240A0(struct EwramData_EntityData *param_0);
-extern void sub_08024274(struct EwramData_EntityData *param_0);
+extern void SkillAxeArmorUse(struct EwramData_EntityData *param_0);
 
 struct Unk_0802D244 {
     u8 pad_0[0xA - 0x0];

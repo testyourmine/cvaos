@@ -2379,7 +2379,7 @@ struct Unk_084F128C {
 };
 extern struct Unk_084F128C sUnk_084F128C[];
 
-static inline void sub_08023A70_inline_0(struct EwramData_EntityData *param_0, u8 temp_r6, void *temp_r0_10, void *temp_r5, void *temp_r8)
+static inline void SkillLoadGraphicsInline(struct EwramData_EntityData *param_0, u8 temp_r6, void *temp_r0_10, void *temp_r5, void *temp_r8)
 {
     gEwramData->unk_131CC = sub_0803B800(temp_r0_10, 0x10000);
     sub_0803C7B4(temp_r5, temp_r6, 1, 2);
@@ -2391,7 +2391,7 @@ static inline void sub_08023A70_inline_0(struct EwramData_EntityData *param_0, u
  * 
  * @param param_0 To document
  */
-void sub_08023A70(struct EwramData_EntityData *param_0)
+void Skill_EvilButcher_Ripper_Use(struct EwramData_EntityData *param_0)
 {
     s32 var_r0_2;
     struct EwramData_EntityData *temp_r1_2;
@@ -2407,7 +2407,7 @@ void sub_08023A70(struct EwramData_EntityData *param_0)
     switch (param_0->unk_4EE)
     {
         case 0:
-            sub_08023A70_inline_0(param_0, temp_r0->unk_E, temp_r0->unk_0, temp_r0->unk_4, temp_r0->unk_8);
+            SkillLoadGraphicsInline(param_0, temp_r0->unk_E, temp_r0->unk_0, temp_r0->unk_4, temp_r0->unk_8);
             param_0->unk_549 = temp_r0->unk_C;
             if ((u16) param_0->unk_500.unk_500_16.unk_502 == 0)
             {
@@ -2590,7 +2590,7 @@ void sub_08023E50(struct EwramData_EntityData *param_0)
     switch (param_0->unk_4EE)
     {
         case 0:
-            sub_08023A70_inline_0(param_0, 0, sUnk_080E13BC.unk_0, sUnk_080E13BC.unk_4, sUnk_080E13BC.unk_8);
+            SkillLoadGraphicsInline(param_0, 0, sUnk_080E13BC.unk_0, sUnk_080E13BC.unk_4, sUnk_080E13BC.unk_8);
             sub_0803F2C8(param_0, (u16) param_0->unk_500.unk_500_16.unk_502, 0, 1);
             if ((u16) param_0->unk_500.unk_500_16.unk_502 == 0)
             {
@@ -2692,7 +2692,7 @@ void sub_080240A0(struct EwramData_EntityData *param_0)
                 return;
             }
 
-            sub_08023A70_inline_0(param_0, 0, sUnk_080E13BC.unk_0, sUnk_080E13BC.unk_4, sUnk_080E13BC.unk_8);
+            SkillLoadGraphicsInline(param_0, 0, sUnk_080E13BC.unk_0, sUnk_080E13BC.unk_4, sUnk_080E13BC.unk_8);
             param_0->unk_549 = temp_sb->unk_500.unk_500_16.unk_502;
             param_0->drawFunc = (u32 *) sub_0803B9D0;
             param_0->unk_53C_0 = temp_r0;
@@ -2740,7 +2740,7 @@ void sub_080240A0(struct EwramData_EntityData *param_0)
  * 
  * @param param_0 To document
  */
-void sub_08024274(struct EwramData_EntityData *param_0)
+void SkillAxeArmorUse(struct EwramData_EntityData *param_0)
 {
     s32 var_r4;
     struct EwramData_EntityData *temp_r0_4;
@@ -2750,7 +2750,7 @@ void sub_08024274(struct EwramData_EntityData *param_0)
     switch (param_0->unk_4EE)
     {
         case 0:
-            sub_08023A70_inline_0(param_0, 0, sUnk_080E13BC.unk_0, sUnk_080E13BC.unk_4, sUnk_080E13BC.unk_8);
+            SkillLoadGraphicsInline(param_0, 0, sUnk_080E13BC.unk_0, sUnk_080E13BC.unk_4, sUnk_080E13BC.unk_8);
             param_0->unk_549 = param_0->unk_500.unk_500_16.unk_502;
             if ((u16) param_0->unk_500.unk_500_16.unk_502 == 0)
             {
