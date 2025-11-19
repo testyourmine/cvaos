@@ -3791,10 +3791,10 @@ _080D2632:
 	ldr r0, _080D26A0 @ =sub_0803B9D0
 	mov r2, ip
 	str r0, [r2, #4]
-	ldr r0, _080D26A4 @ =sub_0805B510
+	ldr r0, _080D26A4 @ =Object20Update
 	str r0, [r2]
 	mov r0, ip
-	bl sub_0805B42C
+	bl Object20Create
 	ldr r2, [r4]
 	asrs r0, r5, #5
 	lsls r0, r0, #2
@@ -3818,7 +3818,7 @@ _080D2692:
 _080D2698: .4byte gEwramData
 _080D269C: .4byte 0x00013110
 _080D26A0: .4byte sub_0803B9D0
-_080D26A4: .4byte sub_0805B510
+_080D26A4: .4byte Object20Update
 
 	thumb_func_start sub_080D26A8
 sub_080D26A8: @ 0x080D26A8

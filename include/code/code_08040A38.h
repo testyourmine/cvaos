@@ -54,20 +54,20 @@ extern s32 sub_08048C74(struct EwramData_EntityData *param_0, u16 param_1);
 extern void sub_0804AD9C(void);
 extern void sub_0804B26C(s32 param_0, s32 param_1);
 extern void sub_0804C3C8(void);
-extern void sub_0804D9DC(struct EwramData_EntityData *param_0);
-extern void sub_0804DAB4(struct EwramData_EntityData *param_0);
-extern void sub_0804DFAC(struct EwramData_EntityData *param_0);
-extern void sub_0804E0F8(struct EwramData_EntityData *param_0);
-extern void sub_0804E4A0(struct EwramData_EntityData *param_0);
-extern void sub_0804E52C(struct EwramData_EntityData *param_0);
-extern void sub_0804E770(struct EwramData_EntityData *param_0);
-extern void sub_0804E8C4(struct EwramData_EntityData *param_0);
-extern void sub_0804EC3C(struct EwramData_EntityData *param_0);
-extern void sub_0804ED30(struct EwramData_EntityData *param_0);
-extern void sub_0804F00C(struct EwramData_EntityData *param_0);
-extern void sub_0804F084(struct EwramData_EntityData *param_0);
-extern void sub_0804F6E4(struct EwramData_EntityData *param_0);
-extern void sub_0804F770(struct EwramData_EntityData *param_0);
+extern void Object00Create(struct EwramData_EntityData *param_0);
+extern void Object00Update(struct EwramData_EntityData *param_0);
+extern void Object02Create(struct EwramData_EntityData *param_0);
+extern void Object02Update(struct EwramData_EntityData *param_0);
+extern void Object03Create(struct EwramData_EntityData *param_0);
+extern void Object03Update(struct EwramData_EntityData *param_0);
+extern void Object04Create(struct EwramData_EntityData *param_0);
+extern void Object04Update(struct EwramData_EntityData *param_0);
+extern void Object06Create(struct EwramData_EntityData *param_0);
+extern void Object06Update(struct EwramData_EntityData *param_0);
+extern void Object05Create(struct EwramData_EntityData *param_0);
+extern void Object05Update(struct EwramData_EntityData *param_0);
+extern void Object07Create(struct EwramData_EntityData *param_0);
+extern void Object07Update(struct EwramData_EntityData *param_0);
 extern void sub_0804F7A4(void);
 
 struct Unk_08525FBC {
@@ -78,17 +78,17 @@ struct Unk_08525FBC {
 extern struct Unk_08525FBC *sub_0804F84C(u8 param_0);
 
 extern s32 sub_0804F85C(u16 param_0, u16 param_1); // return s32 or s8?
-extern void sub_0804FFA0(struct EwramData_EntityData *param_0);
-extern void sub_0805008C(struct EwramData_EntityData *param_0);
-extern void sub_080501D0(struct EwramData_EntityData *param_0);
-extern void sub_08050270(struct EwramData_EntityData *param_0);
-extern void sub_0805045C(struct EwramData_EntityData *param_0);
-extern void sub_080504BC(struct EwramData_EntityData *param_0);
-extern void sub_080504C0(struct EwramData_EntityData *param_0);
-extern void sub_0805050C(struct EwramData_EntityData *param_0);
-extern void sub_080505CC(struct EwramData_EntityData *param_0);
-extern void sub_080506F0(struct EwramData_EntityData *param_0);
-extern void sub_08050710(struct EwramData_EntityData *param_0);
-extern void sub_080507BC(struct EwramData_EntityData *param_0);
+extern void Object08Create(struct EwramData_EntityData *param_0);
+extern void Object08Update(struct EwramData_EntityData *param_0);
+extern void Object09Create(struct EwramData_EntityData *param_0);
+extern void Object09Update(struct EwramData_EntityData *param_0);
+extern void Object0ACreate(struct EwramData_EntityData *param_0);
+extern void Object0AUpdate(struct EwramData_EntityData *param_0);
+extern void Object0BCreate(struct EwramData_EntityData *param_0);
+extern void Object0BUpdate(struct EwramData_EntityData *param_0);
+extern void Object0CUpdate(struct EwramData_EntityData *param_0);
+extern void Object0CCreate(struct EwramData_EntityData *param_0);
+extern void Object0DCreate(struct EwramData_EntityData *param_0);
+extern void Object0DUpdate(struct EwramData_EntityData *param_0);
 
 #endif /* CODE_08040A38_H */

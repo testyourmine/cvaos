@@ -31597,10 +31597,10 @@ _080CFC96:
 	strb r0, [r1]
 	ldr r0, _080CFD04 @ =sub_0803B9D0
 	str r0, [r3, #4]
-	ldr r0, _080CFD08 @ =sub_0805B510
+	ldr r0, _080CFD08 @ =Object20Update
 	str r0, [r3]
 	mov r0, ip
-	bl sub_0805B42C
+	bl Object20Create
 	ldr r2, [r4]
 	ldrb r1, [r6, #4]
 	lsrs r0, r1, #5
@@ -31624,7 +31624,7 @@ _080CFCF6:
 _080CFCFC: .4byte gEwramData
 _080CFD00: .4byte 0x00013110
 _080CFD04: .4byte sub_0803B9D0
-_080CFD08: .4byte sub_0805B510
+_080CFD08: .4byte Object20Update
 
 	thumb_func_start sub_080CFD0C
 sub_080CFD0C: @ 0x080CFD0C

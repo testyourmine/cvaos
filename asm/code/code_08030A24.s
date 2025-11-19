@@ -6607,16 +6607,16 @@ _08033C78: .4byte 0x080E1DA8
 _08033C7C: .4byte gEwramData
 _08033C80: .4byte 0x000004E4
 
-	thumb_func_start sub_08033C84
-sub_08033C84: @ 0x08033C84
+	thumb_func_start Object01Create
+Object01Create: @ 0x08033C84
 	push {lr}
 	bl sub_08033254
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08033C90
-sub_08033C90: @ 0x08033C90
+	thumb_func_start Object01Update
+Object01Update: @ 0x08033C90
 	push {lr}
 	adds r2, r0, #0
 	adds r0, #0x59

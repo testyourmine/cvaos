@@ -26435,8 +26435,8 @@ _0804D996:
 _0804D9D4: .4byte 0x08525574
 _0804D9D8: .4byte sub_0804D794
 
-	thumb_func_start sub_0804D9DC
-sub_0804D9DC: @ 0x0804D9DC
+	thumb_func_start Object00Create
+Object00Create: @ 0x0804D9DC
 	push {r4, r5, r6, r7, lr}
 	sub sp, #4
 	adds r6, r0, #0
@@ -26538,8 +26538,8 @@ _0804DAA8:
 	.align 2, 0
 _0804DAB0: .4byte 0x0000A094
 
-	thumb_func_start sub_0804DAB4
-sub_0804DAB4: @ 0x0804DAB4
+	thumb_func_start Object00Update
+Object00Update: @ 0x0804DAB4
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -27168,8 +27168,8 @@ _0804DFA0: .4byte 0x0820ED60
 _0804DFA4: .4byte gUnk_03002CB0
 _0804DFA8: .4byte sub_0804DEA0
 
-	thumb_func_start sub_0804DFAC
-sub_0804DFAC: @ 0x0804DFAC
+	thumb_func_start Object02Create
+Object02Create: @ 0x0804DFAC
 	push {r4, r5, r6, r7, lr}
 	sub sp, #4
 	adds r6, r0, #0
@@ -27333,8 +27333,8 @@ _0804E0F0:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0804E0F8
-sub_0804E0F8: @ 0x0804E0F8
+	thumb_func_start Object02Update
+Object02Update: @ 0x0804E0F8
 	push {r4, r5, r6, lr}
 	sub sp, #4
 	adds r6, r0, #0
@@ -27762,8 +27762,8 @@ _0804E494: .4byte 0x0000037E
 _0804E498: .4byte 0x0000042C
 _0804E49C: .4byte 0x00000113
 
-	thumb_func_start sub_0804E4A0
-sub_0804E4A0: @ 0x0804E4A0
+	thumb_func_start Object03Create
+Object03Create: @ 0x0804E4A0
 	push {r4, r5, r6, r7, lr}
 	adds r6, r0, #0
 	bl sub_0804DF3C
@@ -27832,8 +27832,8 @@ _0804E524:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0804E52C
-sub_0804E52C: @ 0x0804E52C
+	thumb_func_start Object03Update
+Object03Update: @ 0x0804E52C
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -28128,8 +28128,8 @@ _0804E762:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0804E770
-sub_0804E770: @ 0x0804E770
+	thumb_func_start Object04Create
+Object04Create: @ 0x0804E770
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	movs r1, #0x30
@@ -28299,8 +28299,8 @@ _0804E8BC:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0804E8C4
-sub_0804E8C4: @ 0x0804E8C4
+	thumb_func_start Object04Update
+Object04Update: @ 0x0804E8C4
 	push {r4, r5, r6, lr}
 	sub sp, #4
 	adds r6, r0, #0
@@ -28712,8 +28712,8 @@ _0804EC30: .4byte 0x0000037E
 _0804EC34: .4byte 0x0000042C
 _0804EC38: .4byte 0x00000113
 
-	thumb_func_start sub_0804EC3C
-sub_0804EC3C: @ 0x0804EC3C
+	thumb_func_start Object06Create
+Object06Create: @ 0x0804EC3C
 	push {r4, r5, r6, r7, lr}
 	sub sp, #4
 	adds r6, r0, #0
@@ -28833,8 +28833,8 @@ _0804ED28:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0804ED30
-sub_0804ED30: @ 0x0804ED30
+	thumb_func_start Object06Update
+Object06Update: @ 0x0804ED30
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -29186,8 +29186,8 @@ _0804EFFA:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0804F00C
-sub_0804F00C: @ 0x0804F00C
+	thumb_func_start Object05Create
+Object05Create: @ 0x0804F00C
 	push {r4, lr}
 	sub sp, #4
 	adds r4, r0, #0
@@ -29245,8 +29245,8 @@ _0804F078: .4byte gDisplayRegisters
 _0804F07C: .4byte gEwramData
 _0804F080: .4byte 0x00013110
 
-	thumb_func_start sub_0804F084
-sub_0804F084: @ 0x0804F084
+	thumb_func_start Object05Update
+Object05Update: @ 0x0804F084
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r4, r0, #0
@@ -30051,8 +30051,8 @@ _0804F6DA:
 	.align 2, 0
 _0804F6E0: .4byte 0x08525D9C
 
-	thumb_func_start sub_0804F6E4
-sub_0804F6E4: @ 0x0804F6E4
+	thumb_func_start Object07Create
+Object07Create: @ 0x0804F6E4
 	push {r4, lr}
 	adds r4, r0, #0
 	movs r1, #0x30
@@ -30118,8 +30118,8 @@ _0804F768:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0804F770
-sub_0804F770: @ 0x0804F770
+	thumb_func_start Object07Update
+Object07Update: @ 0x0804F770
 	push {lr}
 	movs r2, #0x30
 	ldrsh r1, [r0, r2]
@@ -31181,8 +31181,8 @@ _0804FF8A:
 _0804FF98: .4byte gEwramData
 _0804FF9C: .4byte 0x0000A094
 
-	thumb_func_start sub_0804FFA0
-sub_0804FFA0: @ 0x0804FFA0
+	thumb_func_start Object08Create
+Object08Create: @ 0x0804FFA0
 	push {r4, r5, r6, r7, lr}
 	sub sp, #4
 	adds r7, r0, #0
@@ -31299,8 +31299,8 @@ _08050084:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0805008C
-sub_0805008C: @ 0x0805008C
+	thumb_func_start Object08Update
+Object08Update: @ 0x0805008C
 	push {r4, r5, lr}
 	sub sp, #0x10
 	adds r5, r0, #0
@@ -31454,8 +31454,8 @@ _080501C2:
 	.align 2, 0
 _080501CC: .4byte gEwramData
 
-	thumb_func_start sub_080501D0
-sub_080501D0: @ 0x080501D0
+	thumb_func_start Object09Create
+Object09Create: @ 0x080501D0
 	push {r4, r5, r6, lr}
 	sub sp, #4
 	adds r5, r0, #0
@@ -31535,8 +31535,8 @@ _08050266:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08050270
-sub_08050270: @ 0x08050270
+	thumb_func_start Object09Update
+Object09Update: @ 0x08050270
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -31783,8 +31783,8 @@ _08050452:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0805045C
-sub_0805045C: @ 0x0805045C
+	thumb_func_start Object0ACreate
+Object0ACreate: @ 0x0805045C
 	push {lr}
 	adds r3, r0, #0
 	ldr r0, _08050480 @ =gEwramData
@@ -31832,13 +31832,13 @@ _080504B2:
 	.align 2, 0
 _080504B8: .4byte 0x080E9644
 
-	thumb_func_start sub_080504BC
-sub_080504BC: @ 0x080504BC
+	thumb_func_start Object0AUpdate
+Object0AUpdate: @ 0x080504BC
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_080504C0
-sub_080504C0: @ 0x080504C0
+	thumb_func_start Object0BCreate
+Object0BCreate: @ 0x080504C0
 	push {r4, lr}
 	adds r4, r0, #0
 	movs r1, #0x32
@@ -31877,8 +31877,8 @@ _08050502:
 	.align 2, 0
 _08050508: .4byte 0x080E9644
 
-	thumb_func_start sub_0805050C
-sub_0805050C: @ 0x0805050C
+	thumb_func_start Object0BUpdate
+Object0BUpdate: @ 0x0805050C
 	bx lr
 	.align 2, 0
 
@@ -31975,8 +31975,8 @@ _080505C2:
 	.align 2, 0
 _080505C8: .4byte 0xFFFD0000
 
-	thumb_func_start sub_080505CC
-sub_080505CC: @ 0x080505CC
+	thumb_func_start Object0CUpdate
+Object0CUpdate: @ 0x080505CC
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -32130,8 +32130,8 @@ sub_080506EC: @ 0x080506EC
 	ldr r0, [r0, #0x48]
 	bx lr
 
-	thumb_func_start sub_080506F0
-sub_080506F0: @ 0x080506F0
+	thumb_func_start Object0CCreate
+Object0CCreate: @ 0x080506F0
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r1, _0805070C @ =0x08118520
@@ -32147,8 +32147,8 @@ sub_080506F0: @ 0x080506F0
 	.align 2, 0
 _0805070C: .4byte 0x08118520
 
-	thumb_func_start sub_08050710
-sub_08050710: @ 0x08050710
+	thumb_func_start Object0DCreate
+Object0DCreate: @ 0x08050710
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r4, r0, #0
@@ -32230,8 +32230,8 @@ _080507B0:
 	.align 2, 0
 _080507B8: .4byte 0x122006F0
 
-	thumb_func_start sub_080507BC
-sub_080507BC: @ 0x080507BC
+	thumb_func_start Object0DUpdate
+Object0DUpdate: @ 0x080507BC
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0x18
 	adds r4, r0, #0
