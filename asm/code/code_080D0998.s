@@ -3502,8 +3502,8 @@ _080D2418: .4byte gEwramData
 _080D241C: .4byte 0x00013110
 _080D2420: .4byte 0x00018FFF
 
-	thumb_func_start sub_080D2424
-sub_080D2424: @ 0x080D2424
+	thumb_func_start EnemyGrahamCreate
+EnemyGrahamCreate: @ 0x080D2424
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r2, _080D244C @ =gEwramData
@@ -3939,7 +3939,7 @@ _080D278C:
 	bne _080D279A
 	strh r5, [r4, #0x30]
 	adds r0, r4, #0
-	bl sub_080D2424
+	bl EnemyGrahamCreate
 	b _080D27B8
 _080D279A:
 	ldrb r0, [r5, #0xa]
@@ -3955,7 +3955,7 @@ _080D279A:
 	ands r0, r2
 	str r0, [r1]
 	adds r0, r4, #0
-	bl sub_080D2424
+	bl EnemyGrahamCreate
 _080D27B8:
 	pop {r4, r5, r6, r7}
 	pop {r0}
@@ -10950,8 +10950,8 @@ _080D5DE4:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080D5DF4
-sub_080D5DF4: @ 0x080D5DF4
+	thumb_func_start EnemyGrahamUpdate
+EnemyGrahamUpdate: @ 0x080D5DF4
 	push {lr}
 	adds r1, r0, #0
 	ldrb r0, [r1, #0xa]

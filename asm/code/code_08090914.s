@@ -3018,56 +3018,56 @@ _08092124:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0809212C
-sub_0809212C: @ 0x0809212C
+	thumb_func_start EnemyFlameDemonUpdate
+EnemyFlameDemonUpdate: @ 0x0809212C
 	push {lr}
-	bl sub_0808F964
+	bl EnemyDevilUpdate
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08092138
-sub_08092138: @ 0x08092138
+	thumb_func_start EnemyFlameDemonCreate
+EnemyFlameDemonCreate: @ 0x08092138
 	push {lr}
-	bl sub_0808FA30
+	bl EnemyDevilCreate
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08092144
-sub_08092144: @ 0x08092144
+	thumb_func_start EnemyArcDemonUpdate
+EnemyArcDemonUpdate: @ 0x08092144
 	push {lr}
-	bl sub_0808F964
+	bl EnemyDevilUpdate
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08092150
-sub_08092150: @ 0x08092150
+	thumb_func_start EnemyArcDemonCreate
+EnemyArcDemonCreate: @ 0x08092150
 	push {lr}
-	bl sub_0808FA30
+	bl EnemyDevilCreate
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0809215C
-sub_0809215C: @ 0x0809215C
+	thumb_func_start EnemyDemonLordUpdate
+EnemyDemonLordUpdate: @ 0x0809215C
 	push {lr}
-	bl sub_0808F964
+	bl EnemyDevilUpdate
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08092168
-sub_08092168: @ 0x08092168
+	thumb_func_start EnemyDemonLordCreate
+EnemyDemonLordCreate: @ 0x08092168
 	push {lr}
-	bl sub_0808FA30
+	bl EnemyDevilCreate
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08092174
-sub_08092174: @ 0x08092174
+	thumb_func_start EnemyZombieOfficerUpdate
+EnemyZombieOfficerUpdate: @ 0x08092174
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -3284,8 +3284,8 @@ _08092344:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08092350
-sub_08092350: @ 0x08092350
+	thumb_func_start EnemyZombieOfficerCreate
+EnemyZombieOfficerCreate: @ 0x08092350
 	push {r4, lr}
 	adds r4, r0, #0
 	bl sub_08092680
@@ -3759,8 +3759,8 @@ sub_080926CC: @ 0x080926CC
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080926F8
-sub_080926F8: @ 0x080926F8
+	thumb_func_start EnemyZombieSoldierUpdate
+EnemyZombieSoldierUpdate: @ 0x080926F8
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -3926,8 +3926,8 @@ _0809285C:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08092868
-sub_08092868: @ 0x08092868
+	thumb_func_start EnemyZombieSoldierCreate
+EnemyZombieSoldierCreate: @ 0x08092868
 	push {r4, lr}
 	adds r4, r0, #0
 	bl sub_08093100
@@ -5063,8 +5063,8 @@ sub_0809314C: @ 0x0809314C
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08093178
-sub_08093178: @ 0x08093178
+	thumb_func_start EnemyCurlyCreate
+EnemyCurlyCreate: @ 0x08093178
 	push {r4, lr}
 	adds r4, r0, #0
 	bl sub_08093540
@@ -5731,8 +5731,8 @@ sub_08093674: @ 0x08093674
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080936A0
-sub_080936A0: @ 0x080936A0
+	thumb_func_start EnemyCurlyUpdate
+EnemyCurlyUpdate: @ 0x080936A0
 	push {r4, lr}
 	sub sp, #0x10
 	adds r4, r0, #0
@@ -5780,24 +5780,24 @@ _080936F4:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080936FC
-sub_080936FC: @ 0x080936FC
+	thumb_func_start EnemyDurgaUpdate
+EnemyDurgaUpdate: @ 0x080936FC
 	push {lr}
-	bl sub_080936A0
+	bl EnemyCurlyUpdate
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08093708
-sub_08093708: @ 0x08093708
+	thumb_func_start EnemyDurgaCreate
+EnemyDurgaCreate: @ 0x08093708
 	push {lr}
-	bl sub_08093178
+	bl EnemyCurlyCreate
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08093714
-sub_08093714: @ 0x08093714
+	thumb_func_start EnemyMedusaHeadUpdate
+EnemyMedusaHeadUpdate: @ 0x08093714
 	push {r4, r5, lr}
 	sub sp, #0x14
 	adds r5, r0, #0
@@ -6004,7 +6004,7 @@ _08093856:
 	ldr r0, [r5]
 	str r0, [r4]
 	adds r0, r4, #0
-	bl sub_080938E8
+	bl EnemyMedusaHeadCreate
 	str r5, [r4, #0x1c]
 	b _080938E0
 	.align 2, 0
@@ -6026,8 +6026,8 @@ _080938E0:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080938E8
-sub_080938E8: @ 0x080938E8
+	thumb_func_start EnemyMedusaHeadCreate
+EnemyMedusaHeadCreate: @ 0x080938E8
 	push {r4, r5, r6, lr}
 	sub sp, #4
 	adds r4, r0, #0
@@ -6451,8 +6451,8 @@ _08093C16:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08093C34
-sub_08093C34: @ 0x08093C34
+	thumb_func_start EnemySuccubusUpdate
+EnemySuccubusUpdate: @ 0x08093C34
 	push {r4, r5, lr}
 	sub sp, #0x14
 	adds r4, r0, #0
@@ -6573,8 +6573,8 @@ _08093D1A:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08093D24
-sub_08093D24: @ 0x08093D24
+	thumb_func_start EnemySuccubusCreate
+EnemySuccubusCreate: @ 0x08093D24
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	bl sub_080946C4
@@ -7844,8 +7844,8 @@ _08094748:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08094750
-sub_08094750: @ 0x08094750
+	thumb_func_start EnemyLilithUpdate
+EnemyLilithUpdate: @ 0x08094750
 	push {r4, r5, r6, lr}
 	sub sp, #0x34
 	adds r5, r0, #0
@@ -7945,8 +7945,8 @@ _08094810:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08094818
-sub_08094818: @ 0x08094818
+	thumb_func_start EnemyLilithCreate
+EnemyLilithCreate: @ 0x08094818
 	push {r4, lr}
 	adds r4, r0, #0
 	bl sub_080952A0
@@ -9323,8 +9323,8 @@ sub_080952EC: @ 0x080952EC
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08095320
-sub_08095320: @ 0x08095320
+	thumb_func_start EnemyCreakingSkullUpdate
+EnemyCreakingSkullUpdate: @ 0x08095320
 	push {r4, r5, lr}
 	sub sp, #0x38
 	adds r4, r0, #0
@@ -9519,8 +9519,8 @@ _08095490: .4byte 0xFFFF00FF
 _08095494: .4byte 0xFF00FFFF
 _08095498: .4byte 0x00FFFFFF
 
-	thumb_func_start sub_0809549C
-sub_0809549C: @ 0x0809549C
+	thumb_func_start EnemyCreakingSkullCreate
+EnemyCreakingSkullCreate: @ 0x0809549C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -16761,24 +16761,24 @@ sub_08098EA4: @ 0x08098EA4
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08098EEC
-sub_08098EEC: @ 0x08098EEC
+	thumb_func_start EnemyGiantSkeletonUpdate
+EnemyGiantSkeletonUpdate: @ 0x08098EEC
 	push {lr}
-	bl sub_08095320
+	bl EnemyCreakingSkullUpdate
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08098EF8
-sub_08098EF8: @ 0x08098EF8
+	thumb_func_start EnemyGiantSkeletonCreate
+EnemyGiantSkeletonCreate: @ 0x08098EF8
 	push {lr}
-	bl sub_0809549C
+	bl EnemyCreakingSkullCreate
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08098F04
-sub_08098F04: @ 0x08098F04
+	thumb_func_start EnemyMimicUpdate
+EnemyMimicUpdate: @ 0x08098F04
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0x18
 	adds r5, r0, #0
@@ -16870,8 +16870,8 @@ _08098FB2:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08098FBC
-sub_08098FBC: @ 0x08098FBC
+	thumb_func_start EnemyMimicCreate
+EnemyMimicCreate: @ 0x08098FBC
 	push {r4, r5, r6, lr}
 	sub sp, #4
 	adds r6, r0, #0
@@ -17521,8 +17521,8 @@ sub_080994B0: @ 0x080994B0
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080994E0
-sub_080994E0: @ 0x080994E0
+	thumb_func_start EnemyEctoplasmUpdate
+EnemyEctoplasmUpdate: @ 0x080994E0
 	push {r4, lr}
 	sub sp, #0x14
 	adds r4, r0, #0
@@ -17629,8 +17629,8 @@ _080995AE:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080995B8
-sub_080995B8: @ 0x080995B8
+	thumb_func_start EnemyEctoplasmCreate
+EnemyEctoplasmCreate: @ 0x080995B8
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	ldr r6, _080995D8 @ =gEwramData
@@ -18461,8 +18461,8 @@ _08099C56:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08099C5C
-sub_08099C5C: @ 0x08099C5C
+	thumb_func_start EnemyBiphronCreate
+EnemyBiphronCreate: @ 0x08099C5C
 	push {r4, lr}
 	adds r4, r0, #0
 	bl sub_0809A3D8
@@ -19456,8 +19456,8 @@ sub_0809A424: @ 0x0809A424
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0809A450
-sub_0809A450: @ 0x0809A450
+	thumb_func_start EnemyBiphronUpdate
+EnemyBiphronUpdate: @ 0x0809A450
 	push {r4, lr}
 	sub sp, #0x30
 	adds r4, r0, #0
@@ -19505,8 +19505,8 @@ _0809A4A4:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0809A4AC
-sub_0809A4AC: @ 0x0809A4AC
+	thumb_func_start EnemyStolasUpdate
+EnemyStolasUpdate: @ 0x0809A4AC
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0x40
 	adds r7, r0, #0
@@ -19765,8 +19765,8 @@ _0809A6B8:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0809A6C0
-sub_0809A6C0: @ 0x0809A6C0
+	thumb_func_start EnemyStolasCreate
+EnemyStolasCreate: @ 0x0809A6C0
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -23773,8 +23773,8 @@ sub_0809C5AC: @ 0x0809C5AC
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0809C5E8
-sub_0809C5E8: @ 0x0809C5E8
+	thumb_func_start EnemyLegionUpdate
+EnemyLegionUpdate: @ 0x0809C5E8
 	push {r4, lr}
 	sub sp, #0x34
 	adds r4, r0, #0
@@ -23879,8 +23879,8 @@ _0809C6B2:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0809C6BC
-sub_0809C6BC: @ 0x0809C6BC
+	thumb_func_start EnemyLegionCreate
+EnemyLegionCreate: @ 0x0809C6BC
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -31267,8 +31267,8 @@ sub_080A00AC: @ 0x080A00AC
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080A00DC
-sub_080A00DC: @ 0x080A00DC
+	thumb_func_start EnemyKyomaDemonUpdate
+EnemyKyomaDemonUpdate: @ 0x080A00DC
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0x14
 	adds r5, r0, #0
@@ -31379,8 +31379,8 @@ _080A01B0:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080A01B8
-sub_080A01B8: @ 0x080A01B8
+	thumb_func_start EnemyKyomaDemonCreate
+EnemyKyomaDemonCreate: @ 0x080A01B8
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	ldr r5, _080A01D8 @ =gEwramData
@@ -32186,8 +32186,8 @@ sub_080A07D0: @ 0x080A07D0
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080A07FC
-sub_080A07FC: @ 0x080A07FC
+	thumb_func_start EnemyGladiatorCreate
+EnemyGladiatorCreate: @ 0x080A07FC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8

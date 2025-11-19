@@ -28424,8 +28424,8 @@ _0806E708:
 	.align 2, 0
 _0806E710: .4byte sub_0806B5DC
 
-	thumb_func_start sub_0806E714
-sub_0806E714: @ 0x0806E714
+	thumb_func_start EnemyValkyrieCreate
+EnemyValkyrieCreate: @ 0x0806E714
 	push {r4, lr}
 	adds r4, r0, #0
 	bl sub_0806EB34
@@ -29171,8 +29171,8 @@ _0806ECE0:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0806ED00
-sub_0806ED00: @ 0x0806ED00
+	thumb_func_start EnemyValkyrieUpdate
+EnemyValkyrieUpdate: @ 0x0806ED00
 	push {r4, lr}
 	sub sp, #0x14
 	adds r4, r0, #0
@@ -29257,8 +29257,8 @@ _0806EDAE:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0806EDB8
-sub_0806EDB8: @ 0x0806EDB8
+	thumb_func_start EnemyWerewolfUpdate
+EnemyWerewolfUpdate: @ 0x0806EDB8
 	push {r4, lr}
 	sub sp, #0x14
 	adds r4, r0, #0
@@ -30533,8 +30533,8 @@ _0806F78A:
 _0806F79C: .4byte 0xFFFE0000
 _0806F7A0: .4byte 0xFFFB0000
 
-	thumb_func_start sub_0806F7A4
-sub_0806F7A4: @ 0x0806F7A4
+	thumb_func_start EnemyWerewolfCreate
+EnemyWerewolfCreate: @ 0x0806F7A4
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	bl sub_0806F818
@@ -30625,8 +30625,8 @@ _0806F85E:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_0806F864
-sub_0806F864: @ 0x0806F864
+	thumb_func_start EnemyKillerFishUpdate
+EnemyKillerFishUpdate: @ 0x0806F864
 	push {r4, r5, r6, lr}
 	sub sp, #0x14
 	adds r4, r0, #0
@@ -30770,8 +30770,8 @@ _0806F97E:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0806F988
-sub_0806F988: @ 0x0806F988
+	thumb_func_start EnemyKillerFishCreate
+EnemyKillerFishCreate: @ 0x0806F988
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
 	ldr r4, _0806F9A8 @ =gEwramData

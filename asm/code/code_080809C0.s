@@ -2225,56 +2225,56 @@ sub_08081A9C: @ 0x08081A9C
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08081AC8
-sub_08081AC8: @ 0x08081AC8
+	thumb_func_start EnemyIronGolemUpdate
+EnemyIronGolemUpdate: @ 0x08081AC8
 	push {lr}
-	bl sub_0807E35C
+	bl EnemyGolemUpdate
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08081AD4
-sub_08081AD4: @ 0x08081AD4
+	thumb_func_start EnemyIronGolemCreate
+EnemyIronGolemCreate: @ 0x08081AD4
 	push {lr}
-	bl sub_0807E508
+	bl EnemyGolemCreate
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08081AE0
-sub_08081AE0: @ 0x08081AE0
+	thumb_func_start EnemyWoodenGolemUpdate
+EnemyWoodenGolemUpdate: @ 0x08081AE0
 	push {lr}
-	bl sub_0807E35C
+	bl EnemyGolemUpdate
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08081AEC
-sub_08081AEC: @ 0x08081AEC
+	thumb_func_start EnemyWoodenGolemCreate
+EnemyWoodenGolemCreate: @ 0x08081AEC
 	push {lr}
-	bl sub_0807E508
+	bl EnemyGolemCreate
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08081AF8
-sub_08081AF8: @ 0x08081AF8
+	thumb_func_start EnemyFleshGolemUpdate
+EnemyFleshGolemUpdate: @ 0x08081AF8
 	push {lr}
-	bl sub_0807E35C
+	bl EnemyGolemUpdate
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08081B04
-sub_08081B04: @ 0x08081B04
+	thumb_func_start EnemyFleshGolemCreate
+EnemyFleshGolemCreate: @ 0x08081B04
 	push {lr}
-	bl sub_0807E508
+	bl EnemyGolemCreate
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08081B10
-sub_08081B10: @ 0x08081B10
+	thumb_func_start EnemyHeadhunterUpdate
+EnemyHeadhunterUpdate: @ 0x08081B10
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0x3c
 	adds r5, r0, #0
@@ -2403,8 +2403,8 @@ _08081C08:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08081C10
-sub_08081C10: @ 0x08081C10
+	thumb_func_start EnemyHeadhunterCreate
+EnemyHeadhunterCreate: @ 0x08081C10
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -11596,8 +11596,8 @@ sub_08086458: @ 0x08086458
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080864A0
-sub_080864A0: @ 0x080864A0
+	thumb_func_start EnemyGargoyleCreate
+EnemyGargoyleCreate: @ 0x080864A0
 	push {r4, lr}
 	adds r4, r0, #0
 	bl sub_08086900
@@ -12228,8 +12228,8 @@ sub_08086964: @ 0x08086964
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08086990
-sub_08086990: @ 0x08086990
+	thumb_func_start EnemyGargoyleUpdate
+EnemyGargoyleUpdate: @ 0x08086990
 	push {r4, lr}
 	sub sp, #0x10
 	adds r4, r0, #0
@@ -12279,8 +12279,8 @@ _080869EA:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080869F4
-sub_080869F4: @ 0x080869F4
+	thumb_func_start EnemyTritonUpdate
+EnemyTritonUpdate: @ 0x080869F4
 	push {r4, lr}
 	sub sp, #0x10
 	adds r4, r0, #0
@@ -12390,8 +12390,8 @@ _08086ACA:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08086AD4
-sub_08086AD4: @ 0x08086AD4
+	thumb_func_start EnemyTritonCreate
+EnemyTritonCreate: @ 0x08086AD4
 	push {r4, lr}
 	adds r4, r0, #0
 	bl sub_08087D24
@@ -14750,8 +14750,8 @@ _08087DB8:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08087DC0
-sub_08087DC0: @ 0x08087DC0
+	thumb_func_start EnemyPeepingEyeUpdate
+EnemyPeepingEyeUpdate: @ 0x08087DC0
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0x3c
 	adds r5, r0, #0
@@ -14985,8 +14985,8 @@ _08087F90:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08087F98
-sub_08087F98: @ 0x08087F98
+	thumb_func_start EnemyPeepingEyeCreate
+EnemyPeepingEyeCreate: @ 0x08087F98
 	push {r4, r5, r6, r7, lr}
 	sub sp, #4
 	adds r6, r0, #0
@@ -15020,7 +15020,7 @@ _08087FB0:
 	strb r0, [r1]
 _08087FDC:
 	adds r0, r6, #0
-	bl sub_08088D98
+	bl EnemyPeepingEyeCreateEyeball
 	cmp r0, #0
 	beq _080880C0
 	adds r0, r6, #0
@@ -16792,8 +16792,8 @@ _08088D8C: .4byte 0x081CBFEC
 _08088D90: .4byte 0x0821D7B4
 _08088D94: .4byte sub_0803B9D0
 
-	thumb_func_start sub_08088D98
-sub_08088D98: @ 0x08088D98
+	thumb_func_start EnemyPeepingEyeCreateEyeball
+EnemyPeepingEyeCreateEyeball: @ 0x08088D98
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r0, _08088DF8 @ =sub_080888D4
@@ -16927,8 +16927,8 @@ sub_08088E78: @ 0x08088E78
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08088EA4
-sub_08088EA4: @ 0x08088EA4
+	thumb_func_start EnemyGorgonUpdate
+EnemyGorgonUpdate: @ 0x08088EA4
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0x1c
 	adds r5, r0, #0
@@ -17138,8 +17138,8 @@ _08089044:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0808904C
-sub_0808904C: @ 0x0808904C
+	thumb_func_start EnemyGorgonCreate
+EnemyGorgonCreate: @ 0x0808904C
 	push {r4, lr}
 	adds r4, r0, #0
 	bl sub_08089A50
@@ -18493,24 +18493,24 @@ sub_08089AB4: @ 0x08089AB4
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08089AE0
-sub_08089AE0: @ 0x08089AE0
+	thumb_func_start EnemyCatoblepasUpdate
+EnemyCatoblepasUpdate: @ 0x08089AE0
 	push {lr}
-	bl sub_08088EA4
+	bl EnemyGorgonUpdate
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08089AEC
-sub_08089AEC: @ 0x08089AEC
+	thumb_func_start EnemyCatoblepasCreate
+EnemyCatoblepasCreate: @ 0x08089AEC
 	push {lr}
-	bl sub_0808904C
+	bl EnemyGorgonCreate
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08089AF8
-sub_08089AF8: @ 0x08089AF8
+	thumb_func_start EnemyGhostUpdate
+EnemyGhostUpdate: @ 0x08089AF8
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -18790,7 +18790,7 @@ _08089CD4:
 	ldr r0, [r5]
 	str r0, [r4]
 	adds r0, r4, #0
-	bl sub_08089D54
+	bl EnemyGhostCreate
 	str r5, [r4, #0x14]
 	b _08089D44
 	.align 2, 0
@@ -18814,8 +18814,8 @@ _08089D44:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08089D54
-sub_08089D54: @ 0x08089D54
+	thumb_func_start EnemyGhostCreate
+EnemyGhostCreate: @ 0x08089D54
 	push {r4, lr}
 	sub sp, #4
 	adds r4, r0, #0
@@ -19420,8 +19420,8 @@ _0808A21E:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0808A224
-sub_0808A224: @ 0x0808A224
+	thumb_func_start EnemyGreatArmorUpdate
+EnemyGreatArmorUpdate: @ 0x0808A224
 	push {r4, r5, lr}
 	sub sp, #0x38
 	adds r5, r0, #0
@@ -19696,8 +19696,8 @@ _0808A434:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0808A43C
-sub_0808A43C: @ 0x0808A43C
+	thumb_func_start EnemyGreatArmorCreate
+EnemyGreatArmorCreate: @ 0x0808A43C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -28588,40 +28588,40 @@ sub_0808EC08: @ 0x0808EC08
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0808EC34
-sub_0808EC34: @ 0x0808EC34
+	thumb_func_start EnemyFinalGuardUpdate
+EnemyFinalGuardUpdate: @ 0x0808EC34
 	push {lr}
-	bl sub_0808A224
+	bl EnemyGreatArmorUpdate
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0808EC40
-sub_0808EC40: @ 0x0808EC40
+	thumb_func_start EnemyFinalGuardCreate
+EnemyFinalGuardCreate: @ 0x0808EC40
 	push {lr}
-	bl sub_0808A43C
+	bl EnemyGreatArmorCreate
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0808EC4C
-sub_0808EC4C: @ 0x0808EC4C
+	thumb_func_start EnemyShadowKnightUpdate
+EnemyShadowKnightUpdate: @ 0x0808EC4C
 	push {lr}
-	bl sub_0808A224
+	bl EnemyGreatArmorUpdate
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0808EC58
-sub_0808EC58: @ 0x0808EC58
+	thumb_func_start EnemyShadowKnightCreate
+EnemyShadowKnightCreate: @ 0x0808EC58
 	push {lr}
-	bl sub_0808A43C
+	bl EnemyGreatArmorCreate
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0808EC64
-sub_0808EC64: @ 0x0808EC64
+	thumb_func_start EnemySkeletonKnightCreate
+EnemySkeletonKnightCreate: @ 0x0808EC64
 	push {r4, lr}
 	adds r4, r0, #0
 	bl sub_0808F120
@@ -29292,8 +29292,8 @@ sub_0808F16C: @ 0x0808F16C
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0808F198
-sub_0808F198: @ 0x0808F198
+	thumb_func_start EnemySkeletonKnightUpdate
+EnemySkeletonKnightUpdate: @ 0x0808F198
 	push {r4, lr}
 	sub sp, #0x10
 	adds r4, r0, #0
@@ -29341,8 +29341,8 @@ _0808F1EC:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0808F1F4
-sub_0808F1F4: @ 0x0808F1F4
+	thumb_func_start EnemyDeadCrusaderUpdate
+EnemyDeadCrusaderUpdate: @ 0x0808F1F4
 	push {r4, lr}
 	sub sp, #0x14
 	adds r4, r0, #0
@@ -29453,8 +29453,8 @@ _0808F2C6:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0808F2D0
-sub_0808F2D0: @ 0x0808F2D0
+	thumb_func_start EnemyDeadCrusaderCreate
+EnemyDeadCrusaderCreate: @ 0x0808F2D0
 	push {r4, lr}
 	adds r4, r0, #0
 	bl sub_0808F8EC
@@ -30295,8 +30295,8 @@ sub_0808F938: @ 0x0808F938
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0808F964
-sub_0808F964: @ 0x0808F964
+	thumb_func_start EnemyDevilUpdate
+EnemyDevilUpdate: @ 0x0808F964
 	push {r4, r5, lr}
 	sub sp, #0x14
 	adds r4, r0, #0
@@ -30398,8 +30398,8 @@ _0808FA28:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0808FA30
-sub_0808FA30: @ 0x0808FA30
+	thumb_func_start EnemyDevilCreate
+EnemyDevilCreate: @ 0x0808FA30
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb

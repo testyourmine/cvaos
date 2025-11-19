@@ -2407,8 +2407,8 @@ sub_080A1CF8: @ 0x080A1CF8
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080A1D64
-sub_080A1D64: @ 0x080A1D64
+	thumb_func_start EnemyGladiatorUpdate
+EnemyGladiatorUpdate: @ 0x080A1D64
 	push {r4, lr}
 	sub sp, #0x34
 	adds r4, r0, #0
@@ -2516,8 +2516,8 @@ _080A1E32:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080A1E38
-sub_080A1E38: @ 0x080A1E38
+	thumb_func_start EnemyChaosCreate
+EnemyChaosCreate: @ 0x080A1E38
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -7188,8 +7188,8 @@ _080A4336:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_080A4340
-sub_080A4340: @ 0x080A4340
+	thumb_func_start EnemyChaosUpdate
+EnemyChaosUpdate: @ 0x080A4340
 	push {r4, lr}
 	sub sp, #0x34
 	adds r4, r0, #0
@@ -7296,7 +7296,7 @@ sub_080A4408: @ 0x080A4408
 	adds r5, r0, #0
 	ldr r0, _080A44DC @ =0x1010F8F8
 	str r0, [sp]
-	ldr r0, _080A44E0 @ =sub_080A6ED4
+	ldr r0, _080A44E0 @ =EnemyChaos2Update
 	str r0, [r5]
 	movs r0, #0xa
 	bl sub_0806C2CC
@@ -7305,7 +7305,7 @@ sub_080A4408: @ 0x080A4408
 	cmp r6, #0
 	beq _080A44FE
 	adds r0, r5, #0
-	bl sub_080A712C
+	bl EnemyChaos2Create
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080A44F8
@@ -7387,7 +7387,7 @@ sub_080A4408: @ 0x080A4408
 	b _080A4500
 	.align 2, 0
 _080A44DC: .4byte 0x1010F8F8
-_080A44E0: .4byte sub_080A6ED4
+_080A44E0: .4byte EnemyChaos2Update
 _080A44E4: .4byte sub_080A4C0C
 _080A44E8: .4byte 0x00000BB8
 _080A44EC: .4byte gEwramData
@@ -12676,8 +12676,8 @@ _080A6EC8: .4byte 0x000003FF
 _080A6ECC: .4byte 0xFFFFFE00
 _080A6ED0: .4byte sub_0803B9D0
 
-	thumb_func_start sub_080A6ED4
-sub_080A6ED4: @ 0x080A6ED4
+	thumb_func_start EnemyChaos2Update
+EnemyChaos2Update: @ 0x080A6ED4
 	push {r4, lr}
 	sub sp, #0x34
 	adds r4, r0, #0
@@ -12997,8 +12997,8 @@ _080A7124:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080A712C
-sub_080A712C: @ 0x080A712C
+	thumb_func_start EnemyChaos2Create
+EnemyChaos2Create: @ 0x080A712C
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -13063,24 +13063,24 @@ sub_080A71B0: @ 0x080A71B0
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_080A71B4
-sub_080A71B4: @ 0x080A71B4
+	thumb_func_start EnemyErinysUpdate
+EnemyErinysUpdate: @ 0x080A71B4
 	push {lr}
-	bl sub_0806ED00
+	bl EnemyValkyrieUpdate
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080A71C0
-sub_080A71C0: @ 0x080A71C0
+	thumb_func_start EnemyErinysCreate
+EnemyErinysCreate: @ 0x080A71C0
 	push {lr}
-	bl sub_0806E714
+	bl EnemyValkyrieCreate
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080A71CC
-sub_080A71CC: @ 0x080A71CC
+	thumb_func_start EnemyTsuchinokoCreate
+EnemyTsuchinokoCreate: @ 0x080A71CC
 	push {r4, lr}
 	adds r4, r0, #0
 	bl sub_080A7ADC
@@ -14268,8 +14268,8 @@ sub_080A7B28: @ 0x080A7B28
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080A7B54
-sub_080A7B54: @ 0x080A7B54
+	thumb_func_start EnemyTsuchinokoUpdate
+EnemyTsuchinokoUpdate: @ 0x080A7B54
 	push {r4, lr}
 	sub sp, #0x10
 	adds r4, r0, #0
@@ -14333,8 +14333,8 @@ _080A7BC6:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080A7BD0
-sub_080A7BD0: @ 0x080A7BD0
+	thumb_func_start EnemySkyFishUpdate
+EnemySkyFishUpdate: @ 0x080A7BD0
 	push {r4, r5, r6, lr}
 	sub sp, #0x34
 	adds r5, r0, #0
@@ -14423,8 +14423,8 @@ _080A7C78:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080A7C80
-sub_080A7C80: @ 0x080A7C80
+	thumb_func_start EnemySkyFishCreate
+EnemySkyFishCreate: @ 0x080A7C80
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	bl sub_080A8194
@@ -15110,24 +15110,24 @@ sub_080A81E0: @ 0x080A81E0
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080A820C
-sub_080A820C: @ 0x080A820C
+	thumb_func_start EnemyGremlinUpdate
+EnemyGremlinUpdate: @ 0x080A820C
 	push {lr}
-	bl sub_08086990
+	bl EnemyGargoyleUpdate
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080A8218
-sub_080A8218: @ 0x080A8218
+	thumb_func_start EnemyGremlinCreate
+EnemyGremlinCreate: @ 0x080A8218
 	push {lr}
-	bl sub_080864A0
+	bl EnemyGargoyleCreate
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080A8224
-sub_080A8224: @ 0x080A8224
+	thumb_func_start EnemyBigGolemUpdate
+EnemyBigGolemUpdate: @ 0x080A8224
 	push {r4, r5, lr}
 	sub sp, #0x34
 	adds r5, r0, #0
@@ -15257,8 +15257,8 @@ _080A8320:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080A8328
-sub_080A8328: @ 0x080A8328
+	thumb_func_start EnemyBigGolemCreate
+EnemyBigGolemCreate: @ 0x080A8328
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -24975,8 +24975,8 @@ sub_080AD260: @ 0x080AD260
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080AD2A8
-sub_080AD2A8: @ 0x080AD2A8
+	thumb_func_start EnemyBatCreate
+EnemyBatCreate: @ 0x080AD2A8
 	push {r4, r5, r6, r7, lr}
 	sub sp, #4
 	adds r5, r0, #0
@@ -25455,8 +25455,8 @@ _080AD63E:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080AD644
-sub_080AD644: @ 0x080AD644
+	thumb_func_start EnemyBatUpdate
+EnemyBatUpdate: @ 0x080AD644
 	push {r4, lr}
 	adds r4, r0, #0
 	ldrb r0, [r4, #0xa]
@@ -27158,32 +27158,32 @@ sub_080AE334: @ 0x080AE334
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080AE360
-sub_080AE360: @ 0x080AE360
+	thumb_func_start EnemyGiantWormCreate
+EnemyGiantWormCreate: @ 0x080AE360
 	push {lr}
 	movs r1, #0
 	bl sub_080AD7F0
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080AE36C
-sub_080AE36C: @ 0x080AE36C
+	thumb_func_start EnemyGiantWormUpdate
+EnemyGiantWormUpdate: @ 0x080AE36C
 	push {lr}
 	bl sub_080AE0E0
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080AE378
-sub_080AE378: @ 0x080AE378
+	thumb_func_start EnemyPoisonWormCreate
+EnemyPoisonWormCreate: @ 0x080AE378
 	push {lr}
 	movs r1, #1
 	bl sub_080AD7F0
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080AE384
-sub_080AE384: @ 0x080AE384
+	thumb_func_start EnemyPoisonWormUpdate
+EnemyPoisonWormUpdate: @ 0x080AE384
 	push {lr}
 	bl sub_080AE0E0
 	pop {r0}
@@ -28113,8 +28113,8 @@ _080AEA9A:
 	.align 2, 0
 _080AEAA8: .4byte 0xFFFE0000
 
-	thumb_func_start sub_080AEAAC
-sub_080AEAAC: @ 0x080AEAAC
+	thumb_func_start EnemyDryadCreate
+EnemyDryadCreate: @ 0x080AEAAC
 	push {r4, lr}
 	sub sp, #4
 	adds r4, r0, #0
@@ -28225,8 +28225,8 @@ sub_080AEB80: @ 0x080AEB80
 	strb r1, [r0]
 	bx lr
 
-	thumb_func_start sub_080AEB8C
-sub_080AEB8C: @ 0x080AEB8C
+	thumb_func_start EnemyDryadUpdate
+EnemyDryadUpdate: @ 0x080AEB8C
 	push {r4, lr}
 	adds r4, r0, #0
 	bl sub_0806CC20
@@ -29481,8 +29481,8 @@ _080AF566:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_080AF574
-sub_080AF574: @ 0x080AF574
+	thumb_func_start EnemyWaiterSkeletonCreate
+EnemyWaiterSkeletonCreate: @ 0x080AF574
 	push {r4, lr}
 	sub sp, #4
 	adds r4, r0, #0
@@ -29583,8 +29583,8 @@ _080AF63E:
 _080AF648: .4byte sub_0806E1B8
 _080AF64C: .4byte sub_080AF6FC
 
-	thumb_func_start sub_080AF650
-sub_080AF650: @ 0x080AF650
+	thumb_func_start EnemyWaiterSkeletonUpdate
+EnemyWaiterSkeletonUpdate: @ 0x080AF650
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	bl sub_0806CC20
@@ -30371,8 +30371,8 @@ _080AFC70: .4byte 0x081E419C
 _080AFC74: .4byte 0x0823A52C
 _080AFC78: .4byte sub_0803B9D0
 
-	thumb_func_start sub_080AFC7C
-sub_080AFC7C: @ 0x080AFC7C
+	thumb_func_start EnemySkullArcherCreate
+EnemySkullArcherCreate: @ 0x080AFC7C
 	push {r4, lr}
 	sub sp, #4
 	adds r4, r0, #0
@@ -30512,8 +30512,8 @@ sub_080AFD8C: @ 0x080AFD8C
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_080AFD94
-sub_080AFD94: @ 0x080AFD94
+	thumb_func_start EnemySkullArcherUpdate
+EnemySkullArcherUpdate: @ 0x080AFD94
 	push {r4, lr}
 	adds r4, r0, #0
 	bl sub_0806CC20
