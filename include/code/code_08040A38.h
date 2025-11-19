@@ -27,8 +27,8 @@ extern void sub_080426B0(struct EwramData_EntityData *param_0);
 extern void sub_08042754(void);
 extern s32 sub_0804277C(struct EwramData_EntityData *param_0, s32 param_1, void *param_2, s32 param_3);
 extern void sub_08042828(struct EwramData_EntityData *param_0);
-extern s32 sub_08042848(struct EwramData_EntityData *param_0, u8 *param_1);
-extern s32 sub_08042884(struct EwramData_EntityData *param_0, const void *param_1); // TODO: is param_1 a pointer or value?
+extern s32 sub_08042848(struct EwramData_EntityData *param_0, void *param_1);
+extern s32 sub_08042884(struct EwramData_EntityData *param_0, s32 param_1); // TODO: is param_1 a pointer or value?
 extern s32 sub_080428B4(struct EwramData_EntityData *param_0, void *param_1);
 extern void sub_08042A54(s32 param_0, s32 param_1);
 extern void sub_08042A7C(s32 param_0, u8 param_1);
@@ -37,6 +37,7 @@ extern struct EwramData_EntityData* sub_08044054(s32 param_0, s32 param_1, s32 p
 extern struct EwramData_EntityData* sub_08044980(s32 param_0, s32 param_1, s32 param_2, s32 param_3);
 extern void sub_08044F80(s32 param_0);
 extern u8* sub_08044FA8(s32 param_0, s32 param_1);
+extern struct EwramData_EntityData* sub_08045B44(s32 param_0, s32 param_1, s32 param_2, s32 param_3, s32 param_4, u8 param_5); // TODO: verify param types
 extern struct EwramData_EntityData* sub_08045CEC(s32 param_0, s32 param_1, s32 param_2, s32 param_3);
 extern struct EwramData_EntityData* sub_08045DC8(s32 param_0, s32 param_1, s32 param_2, s32 param_3);
 extern void sub_08045EE0(struct EwramData_EntityData* param_0);

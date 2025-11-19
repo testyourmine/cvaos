@@ -35,7 +35,7 @@ struct Unk_08021654 {
 };
 extern void sub_08021654(struct Unk_08021654 *param_0);
 
-extern s32 sub_08021924(s32 param_0);
+extern s32 sub_08021924(struct EwramData_EntityData *param_0);
 extern void sub_08021994(struct EwramData_EntityData *param_0);
 extern void sub_08021C44(void);
 extern void sub_08021CA8(struct EwramData_EntityData *param_0);
@@ -109,6 +109,12 @@ extern void Skill_EvilButcher_Ripper_Use(struct EwramData_EntityData *param_0);
 extern void sub_08023E50(struct EwramData_EntityData *param_0);
 extern void sub_080240A0(struct EwramData_EntityData *param_0);
 extern void SkillAxeArmorUse(struct EwramData_EntityData *param_0);
+extern void sub_08024530(struct EwramData_EntityData *param_0);
+extern void SkillChronomageUse(struct EwramData_EntityData *param_0);
+extern s32 sub_08024C18(struct EwramData_EntityData *param_0, u32 *param_1, u32 *param_2);
+extern void SkillValkyrieUse(struct EwramData_EntityData *param_0);
+extern void SkillKillerDollUse(struct EwramData_EntityData *param_0);
+extern void SkillNemesisUse(struct EwramData_EntityData *param_0);
 
 struct Unk_0802D244 {
     u8 pad_0[0xA - 0x0];
@@ -118,6 +124,8 @@ extern struct Unk_0802D244 *sub_0802D244(void); // type?
 
 extern s32 sub_0802D5EC(s32 param_0);
 extern void sub_0802D9BC(struct EwramData_EntityData *param_0, struct EwramData_EntityData *param_1); // TODO: verify types
+extern void sub_0802DA14(struct EwramData_EntityData *param_0, struct EwramData_EntityData *param_1); // TODO: verify types
+extern void sub_0802DA1C(struct EwramData_EntityData *param_0);
 extern void sub_0802DFF0(void);
 
 #endif /* CODE_080211F0_H */
