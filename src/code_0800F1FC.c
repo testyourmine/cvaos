@@ -987,15 +987,15 @@ void sub_0800FE98(struct EwramData_unk60 *param_0, s32 param_1)
     switch (gEwramData->unk_60.language)
     {
         case 2:
-            sub_0803FD9C(sUnk_084F1020[param_1], (u32)VRAM_BASE + 0x6000, 0);
+            sub_0803FD9C(sUnk_084F1020[param_1], VRAM_BASE + 0x6000, 0);
             break;
 
         case 3:
-            sub_0803FD9C(sUnk_084F0FEC[param_1], (u32)VRAM_BASE + 0x6000, 0);
+            sub_0803FD9C(sUnk_084F0FEC[param_1], VRAM_BASE + 0x6000, 0);
             break;
 
         default:
-            sub_0803FD9C(sUnk_084F0FB8[param_1], (u32)VRAM_BASE + 0x6000, 0);
+            sub_0803FD9C(sUnk_084F0FB8[param_1], VRAM_BASE + 0x6000, 0);
             break;
     }
 

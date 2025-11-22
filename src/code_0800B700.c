@@ -33,7 +33,8 @@
 #include "structs/ewram.h"
 #include "structs/main.h"
 
-// TODO: sub_0800B700 should be in another file, due to implicit call of sub_08046DD4
+// NOTE: sub_08046DD4 is implicitly called
+
 /**
  * @brief B700 | To document
  * 
@@ -54,15 +55,15 @@ void sub_0800B700(s32 param_0)
     {
         
         case 2:
-            sub_0803FD9C((u8 *)0x08277984, 0x0600C000, 0U);
+            sub_0803FD9C((u8 *)0x08277984, VRAM_BASE + 0xC000, 0);
             break;
 
         case 3:
-            sub_0803FD9C((u8 *)0x0826C848, 0x0600C000, 0U);
+            sub_0803FD9C((u8 *)0x0826C848, VRAM_BASE + 0xC000, 0);
             break;
 
         default:
-            sub_0803FD9C((u8 *)0x0827B200, 0x0600C000, 0U);
+            sub_0803FD9C((u8 *)0x0827B200, VRAM_BASE + 0xC000, 0);
             break;
     }
 
@@ -551,17 +552,64 @@ static inline void GameModeSoundTestMenu_inline_0(struct EwramData_EntityData *t
     }
 }
 
-// sound test menu game mode
-// nonmatch: https://decomp.me/scratch/HEj6T
-#ifdef NON_MATCHING
+static inline void GameModeSoundTestMenu_inline_2(s32 var_5, s32 var_2, s16 *temp_r2, s32 var_1)
+{
+    if (var_5 > var_2)
+    {
+        *temp_r2 = var_1;
+    }
+    else if (var_5 < 0)
+    {
+        *temp_r2 = var_2;
+    }
+}
+
+static inline void GameModeSoundTestMenu_inline_1(struct Unk_080E0DEC var_3, s32 var_4, s16 *temp_r3_2)
+{
+    s32 var_6;
+    s32 temp_r5;
+
+    do {
+        var_6 = 0;
+    } while(0);
+    temp_r5 = var_3.unk_2;
+
+    if (gEwramData->inputData.repeatedInput & var_4) // KEY_RIGHT
+    {
+        *temp_r3_2 += 1;
+    }
+    else if (gEwramData->inputData.repeatedInput & (var_4 << 1)) // KEY_LEFT
+    {
+        *temp_r3_2 -= 1;
+    }
+
+    if (gEwramData->inputData.repeatedInput & (var_4 << 4)) // KEY_R
+    {
+        *temp_r3_2 += 10;
+    }
+    if (gEwramData->inputData.repeatedInput & (var_4 << 5)) // KEY_L
+    {
+        *temp_r3_2 -= 10;
+    }
+
+    GameModeSoundTestMenu_inline_2(*temp_r3_2, temp_r5, temp_r3_2, var_6);
+}
+
+static inline void GameModeSoundTestMenu_inline_3(s32 param_0, s32 param_1)
+{
+    gEwramData->entityData[2].unk_504.unk_504_16.unk_506[param_1] = param_0;
+}
+
+/**
+ * @brief B8D0 | Handle sound test menu game mode
+ * 
+ * @return s32 Game mode, -1 is no change, -2 is next game mode, else the specified game mode
+ */
 s32 GameModeSoundTestMenu(void)
 {
     struct EwramData_EntityData *temp_r7;
     struct EwramData_EntityData *temp_sl;
-    s32 spC;
-    s16 *temp_r3_2;
-    s32 temp_r0_6;
-    s32 temp_r5;
+    s32 gameMode;
     s32 var_r4_3;
     u16 temp_r3;
     u16 var_r4;
@@ -569,65 +617,64 @@ s32 GameModeSoundTestMenu(void)
     s32 var_0;
     s32 var_1;
     s32 var_2;
-    struct Unk_080E0DEC var_3;
-    s32 var_4;
-    s32 var_5;
-    s32 var_6;
 
     temp_r7 = &gEwramData->entityData[3];
     temp_sl = &gEwramData->entityData[4];
-    spC = -1;
+    gameMode = GAME_MODE_SAME_MODE;
 
     switch (gEwramData->gameModeUpdateStage)
     {
         case 0:
-            gUnk_03002CB0.dispCnt = 0x1B00;
-            gDisplayRegisters.bldCnt = 0x3FFF;
-            gDisplayRegisters.bldY = 0x10;
+            gUnk_03002CB0.dispCnt = DCNT_OBJ | DCNT_BG3 | DCNT_BG1 | DCNT_BG0;
+            gDisplayRegisters.bldCnt = BLDCNT_SCREEN_SECOND_TARGET | BLDCNT_BRIGHTNESS_DECREASE_EFFECT | BLDCNT_SCREEN_FIRST_TARGET;
+            gDisplayRegisters.bldY = BLDY_MAX_VALUE;
+
             gEwramData->gameModeUpdateStage = 1;
             gEwramData->unk_12 = 0;
-            sub_080D7910(0x1000U);
+            sub_080D7910(0x1000);
             EntityDelete(&gEwramData->entityData[3]);
             EntityDelete(&gEwramData->entityData[2]);
             EntityDelete(&gEwramData->entityData[4]);
             break;
     
         case 1:
-            DMA_FILL_32(3, 0, 0x0600E800, 0x800);
-            DMA_FILL_32(3, 0, 0x0600F000, 0x800);
-            DMA_FILL_32(3, 0, 0x0600F800, 0x800);
-            gUnk_03002CB0.dispCnt &= 0xFBFF;
-            gDisplayRegisters.bldCnt = 0x853;
-            gDisplayRegisters.bldAlpha = 0xA06;
+            DMA_FILL_32(3, 0, VRAM_BASE + 0xE800, 0x800);
+            DMA_FILL_32(3, 0, VRAM_BASE + 0xF000, 0x800);
+            DMA_FILL_32(3, 0, VRAM_BASE + 0xF800, 0x800);
+
+            gUnk_03002CB0.dispCnt &= ~DCNT_BG2;
+            gDisplayRegisters.bldCnt = BLDCNT_BG3_SECOND_TARGET_PIXEL | BLDCNT_ALPHA_BLENDING_EFFECT | BLDCNT_OBJ_FIRST_TARGET_PIXEL | BLDCNT_BG1_FIRST_TARGET_PIXEL | BLDCNT_BG0_FIRST_TARGET_PIXEL;
+            gDisplayRegisters.bldAlpha = C_16_2_8(10, 6);
             gDisplayRegisters.bldY = 0;
-            gDisplayRegisters.bgCnt[1] = 0x1D01;
-            gDisplayRegisters.bgCnt[2] = 0x1E02;
-            gDisplayRegisters.bgCnt[3] = 0x1F03;
-            sub_0803FD9C((u8 *)0x080E5BB0, 0x06000000, 0U);
-            sub_0803FD9C((u8 *)0x080E5BB8, 0x06002000, 0U);
+            gDisplayRegisters.bgCnt[1] = CREATE_BGCNT(0, 29, BGCNT_HIGH_MID_PRIORITY, BGCNT_SIZE_256x256);
+            gDisplayRegisters.bgCnt[2] = CREATE_BGCNT(0, 30, BGCNT_LOW_MID_PRIORITY, BGCNT_SIZE_256x256);
+            gDisplayRegisters.bgCnt[3] = CREATE_BGCNT(0, 31, BGCNT_LOW_PRIORITY, BGCNT_SIZE_256x256);
+
+            sub_0803FD9C((u8 *)0x080E5BB0, VRAM_BASE, 0);
+            sub_0803FD9C((u8 *)0x080E5BB8, VRAM_BASE + 0x2000, 0);
     
-            switch (gEwramData->unk_60.unk_4D0)
+            switch (gEwramData->unk_60.language)
             {
                 case 2:
-                    sub_0803FD9C((u8 *)0x08277994, 0x06004000, 0U);
+                    sub_0803FD9C((u8 *)0x08277994, VRAM_BASE + 0x4000, 0);
                     break;
                 case 3:
-                    sub_0803FD9C((u8 *)0x0826C850, 0x06004000, 0U);
+                    sub_0803FD9C((u8 *)0x0826C850, VRAM_BASE + 0x4000, 0);
                     break;
                 default:
-                    sub_0803FD9C((u8 *)0x080E5BC0, 0x06004000, 0U);
+                    sub_0803FD9C((u8 *)0x080E5BC0, VRAM_BASE + 0x4000, 0);
                     break;
             }
             
             sub_0803C8B0((u8 *)0x080E5E24);
-            sub_0803F8A8(3U, (u32 *)0x080E74C4, 0U, 0U);
-            sub_0803F8A8(2U, (u32 *)0x080E6CE4, 0U, 0U);
-            sub_0803F8A8(1U, (u32 *)0x080E6D74, 0U, 0U);
+            sub_0803F8A8(3, (u32 *)0x080E74C4, 0, 0);
+            sub_0803F8A8(2, (u32 *)0x080E6CE4, 0, 0);
+            sub_0803F8A8(1, (u32 *)0x080E6D74, 0, 0);
             sub_0800B700(0x3AC);
-            gEwramData->unk_4 = 0x10;
+            gEwramData->unk_4 = BLDALPHA_MAX_VALUE;
             gEwramData->gameModeUpdateStage = 2;
             gEwramData->unk_12 = 0;
-            sub_08048C74(temp_r7, 0xEU);
+            sub_08048C74(temp_r7, 0xE);
             temp_r7->unk_524.unk_524_16.unk_526 = 0x52;
             temp_r7->unk_528.unk_528_16.unk_52A = 0x34;
             break;
@@ -637,13 +684,13 @@ s32 GameModeSoundTestMenu(void)
             {
                 gEwramData->unk_4 -= 2;
                 temp_r3 = gEwramData->unk_4;
-                gDisplayRegisters.bldAlpha = (temp_r3 << 8) | (0x10 - temp_r3);
+                gDisplayRegisters.bldAlpha = (temp_r3 << 8) | (BLDALPHA_MAX_VALUE - temp_r3);
             }
             else
             {
-                gUnk_03002CB0.dispCnt |= 0xF00;
-                gDisplayRegisters.bldCnt = 0x844;
-                gDisplayRegisters.bldAlpha = 0xA06;
+                gUnk_03002CB0.dispCnt |= DCNT_BG3 | DCNT_BG2 | DCNT_BG1 | DCNT_BG0;
+                gDisplayRegisters.bldCnt = BLDCNT_BG3_SECOND_TARGET_PIXEL | BLDCNT_ALPHA_BLENDING_EFFECT | BLDCNT_BG2_FIRST_TARGET_PIXEL;
+                gDisplayRegisters.bldAlpha = C_16_2_8(10, 6);
                 gEwramData->gameModeUpdateStage = 3;
                 gEwramData->unk_12 = 0;
             }
@@ -661,59 +708,23 @@ s32 GameModeSoundTestMenu(void)
             temp_r2 = &gEwramData->entityData[2].unk_4FC.unk_4FC_16.unk_4FC;
             do{var_1 = 0;}while(0);
             var_2 = 2;
-            if (gEwramData->inputData.repeatedInput & var_0)
+            if (gEwramData->inputData.repeatedInput & var_0) // KEY_DOWN
             {
                 *temp_r2 += 1;
             }
-            else if (gEwramData->inputData.repeatedInput & 0x40)
+            else if (gEwramData->inputData.repeatedInput & 0x40) // KEY_UP
             {
                 *temp_r2 -= 1;
             }
-            var_5 = *temp_r2;
-            if (var_5 > var_2)
-            {
-                *temp_r2 = var_1;
-            }
-            else if (var_5 < 0)
-            {
-                *temp_r2 = var_2;
-            }
+
+            GameModeSoundTestMenu_inline_2(*temp_r2, var_2, temp_r2, var_1);
 
             if (gEwramData->entityData[2].unk_4FC.unk_4FC_16.unk_4FC < 2)
             {
-                var_3 = sUnk_080E0DEC[gEwramData->entityData[2].unk_4FC.unk_4FC_16.unk_4FC];
-                var_4 = 0x10;
-                temp_r3_2 = &gEwramData->entityData[2].unk_4FC.unk_4FC_16.unk_4FE[gEwramData->entityData[2].unk_4FC.unk_4FC_16.unk_4FC];
-                do {var_6 = 0;}while(0);
-                temp_r5 = var_3.unk_2;
-                if (gEwramData->inputData.repeatedInput & var_4)
-                {
-                    *temp_r3_2 += 1;
-                }
-                else if (gEwramData->inputData.repeatedInput & 0x20)
-                {
-                    *temp_r3_2 -= 1;
-                }
-                if (gEwramData->inputData.repeatedInput & 0x100)
-                {
-                    *temp_r3_2 += 0xA;
-                }
-                if (gEwramData->inputData.repeatedInput & 0x200)
-                {
-                    *temp_r3_2 -= 0xA;
-                }
-                temp_r0_6 = *temp_r3_2;
-                if (temp_r0_6 > temp_r5)
-                {
-                    *temp_r3_2 = var_6;
-                }
-                else if (temp_r0_6 < 0)
-                {
-                    *temp_r3_2 = temp_r5;
-                }
+                GameModeSoundTestMenu_inline_1(sUnk_080E0DEC[gEwramData->entityData[2].unk_4FC.unk_4FC_16.unk_4FC], 0x10, &gEwramData->entityData[2].unk_4FC.unk_4FC_16.unk_4FE[gEwramData->entityData[2].unk_4FC.unk_4FC_16.unk_4FC]);
             }
-
             temp_r7->unk_528.unk_528_16.unk_52A = (gEwramData->entityData[2].unk_4FC.unk_4FC_16.unk_4FC * 0x10) + 0x34;
+
             if (gEwramData->inputData.newInput & 1)
             {
                 switch (gEwramData->entityData[2].unk_4FC.unk_4FC_16.unk_4FC)
@@ -728,11 +739,13 @@ s32 GameModeSoundTestMenu(void)
                         {
                             var_r4 = sUnk_080E0DEC[gEwramData->entityData[2].unk_4FC.unk_4FC_16.unk_4FC].unk_0 + gEwramData->entityData[2].unk_4FC.unk_4FC_16.unk_4FE[gEwramData->entityData[2].unk_4FC.unk_4FC_16.unk_4FC];
                         }
+
                         if (gEwramData->entityData[2].unk_504.unk_504_16.unk_506[gEwramData->entityData[2].unk_4FC.unk_4FC_16.unk_4FC] != 0)
                         {
-                            sub_080D7910(-0x8000 | gEwramData->entityData[2].unk_504.unk_504_16.unk_506[gEwramData->entityData[2].unk_4FC.unk_4FC_16.unk_4FC]);
+                            sub_080D7910(gEwramData->entityData[2].unk_504.unk_504_16.unk_506[gEwramData->entityData[2].unk_4FC.unk_4FC_16.unk_4FC] | -0x8000);
                         }
-                        gEwramData->entityData[2].unk_504.unk_504_16.unk_506[gEwramData->entityData[2].unk_4FC.unk_4FC_16.unk_4FC] = var_r4;
+
+                        GameModeSoundTestMenu_inline_3(var_r4, gEwramData->entityData[2].unk_4FC.unk_4FC_16.unk_4FC);
                         sub_080D7910(var_r4);
                         break;
                     
@@ -753,9 +766,9 @@ s32 GameModeSoundTestMenu(void)
             {
                 for (var_r4_3 = 0; var_r4_3 < 3; var_r4_3++)
                 {
-                    gEwramData->entityData[2].unk_504.unk_504_16.unk_506[var_r4_3] = 0;
+                    GameModeSoundTestMenu_inline_3(0, var_r4_3);
                 }
-                sub_080D7910(0x1000U);
+                sub_080D7910(0x1000);
             }
 
             for (var_r4_3 = 0; var_r4_3 < 2; var_r4_3++)
@@ -767,31 +780,31 @@ s32 GameModeSoundTestMenu(void)
         case 4:
             gEwramData->gameModeUpdateStage = 5;
             gEwramData->unk_12 = 0;
-            gUnk_03002CB0.dispCnt &= 0xFBFF;
-            gDisplayRegisters.bldCnt = 0x3FFF;
-            gDisplayRegisters.bldY = 0x10;
+            gUnk_03002CB0.dispCnt &= ~DCNT_BG2;
+            gDisplayRegisters.bldCnt = BLDCNT_SCREEN_SECOND_TARGET | BLDCNT_BRIGHTNESS_DECREASE_EFFECT | BLDCNT_SCREEN_FIRST_TARGET;
+            gDisplayRegisters.bldY = BLDY_MAX_VALUE;
             gEwramData->unk_4 = 0;
             gEwramData->gameModeUpdateStage = 5;
             gEwramData->unk_12 = 0;
             break;
 
         case 5:
-            if (gEwramData->unk_4 != 0x10)
+            if (gEwramData->unk_4 != BLDALPHA_MAX_VALUE)
             {
                 gEwramData->unk_4 += 2;
                 temp_r3 = gEwramData->unk_4;
-                gDisplayRegisters.bldAlpha = (temp_r3 << 8) | (0x10 - temp_r3);
+                gDisplayRegisters.bldAlpha = (temp_r3 << 8) | (BLDALPHA_MAX_VALUE - temp_r3);
             }
             else
             {
-                gUnk_03002CB0.dispCnt |= 0xF00;
-                spC = 1;
+                gUnk_03002CB0.dispCnt |= DCNT_BG3 | DCNT_BG2 | DCNT_BG1 | DCNT_BG0;
+                gameMode = GAME_MODE_TITLE_SCREEN;
             }
             break;
     }
 
     sub_08000B64();
-    if (spC != -1)
+    if (gameMode != GAME_MODE_SAME_MODE)
     {
         EntityDeleteAll();
         sub_0803D9A8();
@@ -801,722 +814,9 @@ s32 GameModeSoundTestMenu(void)
         sub_0804059C();
         sub_08042754();
     }
-    return spC;
+
+    return gameMode;
 }
-#else
-NAKED_FUNCTION
-s32 GameModeSoundTestMenu(void)
-{
-    asm(" .syntax unified \n\
-	push {r4, r5, r6, r7, lr} \n\
-	mov r7, sl \n\
-	mov r6, sb \n\
-	mov r5, r8 \n\
-	push {r5, r6, r7} \n\
-	sub sp, #0x10 \n\
-	ldr r1, _0800B908 @ =gEwramData \n\
-	ldr r0, [r1] \n\
-	movs r2, #0xce \n\
-	lsls r2, r2, #3 \n\
-	adds r7, r0, r2 \n\
-	ldr r3, _0800B90C @ =0x000006F4 \n\
-	adds r3, r3, r0 \n\
-	mov sl, r3 \n\
-	movs r4, #1 \n\
-	rsbs r4, r4, #0 \n\
-	str r4, [sp, #0xc] \n\
-	ldrb r0, [r0, #0x11] \n\
-	adds r6, r1, #0 \n\
-	cmp r0, #5 \n\
-	bls _0800B8FC \n\
-	b _0800BE7E \n\
-_0800B8FC: \n\
-	lsls r0, r0, #2 \n\
-	ldr r1, _0800B910 @ =_0800B914 \n\
-	adds r0, r0, r1 \n\
-	ldr r0, [r0] \n\
-	mov pc, r0 \n\
-	.align 2, 0 \n\
-_0800B908: .4byte gEwramData \n\
-_0800B90C: .4byte 0x000006F4 \n\
-_0800B910: .4byte _0800B914 \n\
-_0800B914: @ jump table \n\
-	.4byte _0800B92C @ case 0 \n\
-	.4byte _0800B990 @ case 1 \n\
-	.4byte _0800BAEC @ case 2 \n\
-	.4byte _0800BB34 @ case 3 \n\
-	.4byte _0800BE04 @ case 4 \n\
-	.4byte _0800BE48 @ case 5 \n\
-_0800B92C: \n\
-	ldr r1, _0800B97C @ =gUnk_03002CB0 \n\
-	movs r3, #0 \n\
-	movs r0, #0xd8 \n\
-	lsls r0, r0, #5 \n\
-	strh r0, [r1] \n\
-	ldr r1, _0800B980 @ =gDisplayRegisters \n\
-	adds r2, r1, #0 \n\
-	adds r2, #0x48 \n\
-	ldr r0, _0800B984 @ =0x00003FFF \n\
-	strh r0, [r2] \n\
-	adds r1, #0x4c \n\
-	movs r0, #0x10 \n\
-	strh r0, [r1] \n\
-	ldr r1, [r6] \n\
-	movs r0, #1 \n\
-	strb r0, [r1, #0x11] \n\
-	ldr r0, [r6] \n\
-	strb r3, [r0, #0x12] \n\
-	movs r0, #0x80 \n\
-	lsls r0, r0, #5 \n\
-	bl sub_080D7910 \n\
-	ldr r0, [r6] \n\
-	movs r5, #0xce \n\
-	lsls r5, r5, #3 \n\
-	adds r0, r0, r5 \n\
-	bl EntityDelete \n\
-	ldr r0, [r6] \n\
-	ldr r1, _0800B988 @ =0x000005EC \n\
-	adds r0, r0, r1 \n\
-	bl EntityDelete \n\
-	ldr r0, [r6] \n\
-	ldr r2, _0800B98C @ =0x000006F4 \n\
-	adds r0, r0, r2 \n\
-	bl EntityDelete \n\
-	b _0800BE7E \n\
-	.align 2, 0 \n\
-_0800B97C: .4byte gUnk_03002CB0 \n\
-_0800B980: .4byte gDisplayRegisters \n\
-_0800B984: .4byte 0x00003FFF \n\
-_0800B988: .4byte 0x000005EC \n\
-_0800B98C: .4byte 0x000006F4 \n\
-_0800B990: \n\
-	movs r3, #0 \n\
-	str r3, [sp, #8] \n\
-	ldr r0, _0800BA18 @ =0x040000D4 \n\
-	add r4, sp, #8 \n\
-	str r4, [r0] \n\
-	ldr r1, _0800BA1C @ =0x0600E800 \n\
-	str r1, [r0, #4] \n\
-	ldr r2, _0800BA20 @ =0x85000200 \n\
-	str r2, [r0, #8] \n\
-	ldr r1, [r0, #8] \n\
-	str r3, [sp, #8] \n\
-	str r4, [r0] \n\
-	ldr r1, _0800BA24 @ =0x0600F000 \n\
-	str r1, [r0, #4] \n\
-	str r2, [r0, #8] \n\
-	ldr r1, [r0, #8] \n\
-	str r3, [sp, #8] \n\
-	str r4, [r0] \n\
-	ldr r1, _0800BA28 @ =0x0600F800 \n\
-	str r1, [r0, #4] \n\
-	str r2, [r0, #8] \n\
-	ldr r0, [r0, #8] \n\
-	ldr r2, _0800BA2C @ =gUnk_03002CB0 \n\
-	ldrh r1, [r2] \n\
-	ldr r0, _0800BA30 @ =0x0000FBFF \n\
-	ands r0, r1 \n\
-	strh r0, [r2] \n\
-	ldr r2, _0800BA34 @ =gDisplayRegisters \n\
-	adds r1, r2, #0 \n\
-	adds r1, #0x48 \n\
-	ldr r0, _0800BA38 @ =0x00000853 \n\
-	strh r0, [r1] \n\
-	adds r1, #2 \n\
-	ldr r0, _0800BA3C @ =0x00000A06 \n\
-	strh r0, [r1] \n\
-	adds r0, r2, #0 \n\
-	adds r0, #0x4c \n\
-	strh r3, [r0] \n\
-	ldr r0, _0800BA40 @ =0x00001D01 \n\
-	strh r0, [r2, #2] \n\
-	ldr r0, _0800BA44 @ =0x00001E02 \n\
-	strh r0, [r2, #4] \n\
-	ldr r0, _0800BA48 @ =0x00001F03 \n\
-	strh r0, [r2, #6] \n\
-	ldr r0, _0800BA4C @ =0x080E5BB0 \n\
-	movs r1, #0xc0 \n\
-	lsls r1, r1, #0x13 \n\
-	movs r2, #0 \n\
-	bl sub_0803FD9C \n\
-	ldr r0, _0800BA50 @ =0x080E5BB8 \n\
-	ldr r1, _0800BA54 @ =0x06002000 \n\
-	movs r2, #0 \n\
-	bl sub_0803FD9C \n\
-	ldr r0, _0800BA58 @ =gEwramData \n\
-	ldr r0, [r0] \n\
-	movs r5, #0x9a \n\
-	lsls r5, r5, #3 \n\
-	adds r0, r0, r5 \n\
-	ldr r0, [r0] \n\
-	cmp r0, #2 \n\
-	beq _0800BA60 \n\
-	cmp r0, #3 \n\
-	beq _0800BA68 \n\
-	ldr r0, _0800BA5C @ =0x080E5BC0 \n\
-	b _0800BA6A \n\
-	.align 2, 0 \n\
-_0800BA18: .4byte 0x040000D4 \n\
-_0800BA1C: .4byte 0x0600E800 \n\
-_0800BA20: .4byte 0x85000200 \n\
-_0800BA24: .4byte 0x0600F000 \n\
-_0800BA28: .4byte 0x0600F800 \n\
-_0800BA2C: .4byte gUnk_03002CB0 \n\
-_0800BA30: .4byte 0x0000FBFF \n\
-_0800BA34: .4byte gDisplayRegisters \n\
-_0800BA38: .4byte 0x00000853 \n\
-_0800BA3C: .4byte 0x00000A06 \n\
-_0800BA40: .4byte 0x00001D01 \n\
-_0800BA44: .4byte 0x00001E02 \n\
-_0800BA48: .4byte 0x00001F03 \n\
-_0800BA4C: .4byte 0x080E5BB0 \n\
-_0800BA50: .4byte 0x080E5BB8 \n\
-_0800BA54: .4byte 0x06002000 \n\
-_0800BA58: .4byte gEwramData \n\
-_0800BA5C: .4byte 0x080E5BC0 \n\
-_0800BA60: \n\
-	ldr r0, _0800BA64 @ =0x08277994 \n\
-	b _0800BA6A \n\
-	.align 2, 0 \n\
-_0800BA64: .4byte 0x08277994 \n\
-_0800BA68: \n\
-	ldr r0, _0800BAD0 @ =0x0826C850 \n\
-_0800BA6A: \n\
-	ldr r1, _0800BAD4 @ =0x06004000 \n\
-	movs r2, #0 \n\
-	bl sub_0803FD9C \n\
-	ldr r0, _0800BAD8 @ =0x080E5E24 \n\
-	bl sub_0803C8B0 \n\
-	ldr r1, _0800BADC @ =0x080E74C4 \n\
-	movs r0, #3 \n\
-	movs r2, #0 \n\
-	movs r3, #0 \n\
-	bl sub_0803F8A8 \n\
-	ldr r1, _0800BAE0 @ =0x080E6CE4 \n\
-	movs r0, #2 \n\
-	movs r2, #0 \n\
-	movs r3, #0 \n\
-	bl sub_0803F8A8 \n\
-	ldr r1, _0800BAE4 @ =0x080E6D74 \n\
-	movs r0, #1 \n\
-	movs r2, #0 \n\
-	movs r3, #0 \n\
-	bl sub_0803F8A8 \n\
-	movs r0, #0xeb \n\
-	lsls r0, r0, #2 \n\
-	bl sub_0800B700 \n\
-	ldr r2, _0800BAE8 @ =gEwramData \n\
-	ldr r1, [r2] \n\
-	movs r3, #0 \n\
-	movs r0, #0x10 \n\
-	strh r0, [r1, #4] \n\
-	movs r0, #2 \n\
-	strb r0, [r1, #0x11] \n\
-	ldr r0, [r2] \n\
-	strb r3, [r0, #0x12] \n\
-	adds r0, r7, #0 \n\
-	movs r1, #0xe \n\
-	bl sub_08048C74 \n\
-	adds r1, r7, #0 \n\
-	adds r1, #0x42 \n\
-	movs r0, #0x52 \n\
-	strh r0, [r1] \n\
-	adds r1, #4 \n\
-	movs r0, #0x34 \n\
-	strh r0, [r1] \n\
-	b _0800BE7E \n\
-	.align 2, 0 \n\
-_0800BAD0: .4byte 0x0826C850 \n\
-_0800BAD4: .4byte 0x06004000 \n\
-_0800BAD8: .4byte 0x080E5E24 \n\
-_0800BADC: .4byte 0x080E74C4 \n\
-_0800BAE0: .4byte 0x080E6CE4 \n\
-_0800BAE4: .4byte 0x080E6D74 \n\
-_0800BAE8: .4byte gEwramData \n\
-_0800BAEC: \n\
-	ldr r1, [r6] \n\
-	ldrh r0, [r1, #4] \n\
-	cmp r0, #0 \n\
-	beq _0800BAF8 \n\
-	subs r0, #2 \n\
-	b _0800BE52 \n\
-_0800BAF8: \n\
-	ldr r2, _0800BB24 @ =gUnk_03002CB0 \n\
-	ldrh r1, [r2] \n\
-	movs r3, #0xf0 \n\
-	lsls r3, r3, #4 \n\
-	adds r0, r3, #0 \n\
-	movs r3, #0 \n\
-	orrs r0, r1 \n\
-	strh r0, [r2] \n\
-	ldr r1, _0800BB28 @ =gDisplayRegisters \n\
-	adds r2, r1, #0 \n\
-	adds r2, #0x48 \n\
-	ldr r0, _0800BB2C @ =0x00000844 \n\
-	strh r0, [r2] \n\
-	adds r1, #0x4a \n\
-	ldr r0, _0800BB30 @ =0x00000A06 \n\
-	strh r0, [r1] \n\
-	ldr r1, [r6] \n\
-	movs r0, #3 \n\
-	strb r0, [r1, #0x11] \n\
-	ldr r0, [r6] \n\
-	strb r3, [r0, #0x12] \n\
-	b _0800BE7E \n\
-	.align 2, 0 \n\
-_0800BB24: .4byte gUnk_03002CB0 \n\
-_0800BB28: .4byte gDisplayRegisters \n\
-_0800BB2C: .4byte 0x00000844 \n\
-_0800BB30: .4byte 0x00000A06 \n\
-_0800BB34: \n\
-	ldr r3, [r6] \n\
-	ldrh r1, [r3, #0x16] \n\
-	movs r0, #8 \n\
-	ands r0, r1 \n\
-	cmp r0, #0 \n\
-	beq _0800BB4C \n\
-	movs r0, #0 \n\
-	movs r1, #4 \n\
-	strb r1, [r3, #0x11] \n\
-	ldr r1, [r6] \n\
-	strb r0, [r1, #0x12] \n\
-	b _0800BE7E \n\
-_0800BB4C: \n\
-	movs r0, #0x80 \n\
-	ldr r4, _0800BB64 @ =0x00000604 \n\
-	adds r2, r3, r4 \n\
-	movs r4, #0 \n\
-	movs r5, #2 \n\
-	ldrh r1, [r3, #0x18] \n\
-	ands r0, r1 \n\
-	cmp r0, #0 \n\
-	beq _0800BB68 \n\
-	ldrh r0, [r2] \n\
-	adds r0, #1 \n\
-	b _0800BB74 \n\
-	.align 2, 0 \n\
-_0800BB64: .4byte 0x00000604 \n\
-_0800BB68: \n\
-	movs r0, #0x40 \n\
-	ands r1, r0 \n\
-	cmp r1, #0 \n\
-	beq _0800BB76 \n\
-	ldrh r0, [r2] \n\
-	subs r0, #1 \n\
-_0800BB74: \n\
-	strh r0, [r2] \n\
-_0800BB76: \n\
-	movs r1, #0 \n\
-	ldrsh r0, [r2, r1] \n\
-	cmp r0, r5 \n\
-	ble _0800BB82 \n\
-	strh r4, [r2] \n\
-	b _0800BB88 \n\
-_0800BB82: \n\
-	cmp r0, #0 \n\
-	bge _0800BB88 \n\
-	strh r5, [r2] \n\
-_0800BB88: \n\
-	ldr r4, [r6] \n\
-	ldr r2, _0800BBBC @ =0x00000604 \n\
-	adds r1, r4, r2 \n\
-	movs r3, #0 \n\
-	ldrsh r0, [r1, r3] \n\
-	cmp r0, #1 \n\
-	bgt _0800BC12 \n\
-	ldr r2, _0800BBC0 @ =sUnk_080E0DEC \n\
-	lsls r1, r0, #2 \n\
-	adds r1, r1, r2 \n\
-	movs r2, #0x10 \n\
-	lsls r0, r0, #1 \n\
-	adds r3, r0, r4 \n\
-	ldr r0, _0800BBC4 @ =0x00000606 \n\
-	adds r3, r3, r0 \n\
-	movs r5, #0 \n\
-	mov r8, r5 \n\
-	movs r0, #2 \n\
-	ldrsh r5, [r1, r0] \n\
-	ldrh r1, [r4, #0x18] \n\
-	ands r2, r1 \n\
-	cmp r2, #0 \n\
-	beq _0800BBC8 \n\
-	ldrh r0, [r3] \n\
-	adds r0, #1 \n\
-	b _0800BBD4 \n\
-	.align 2, 0 \n\
-_0800BBBC: .4byte 0x00000604 \n\
-_0800BBC0: .4byte sUnk_080E0DEC \n\
-_0800BBC4: .4byte 0x00000606 \n\
-_0800BBC8: \n\
-	movs r0, #0x20 \n\
-	ands r1, r0 \n\
-	cmp r1, #0 \n\
-	beq _0800BBD6 \n\
-	ldrh r0, [r3] \n\
-	subs r0, #1 \n\
-_0800BBD4: \n\
-	strh r0, [r3] \n\
-_0800BBD6: \n\
-	ldr r0, [r6] \n\
-	ldrh r0, [r0, #0x18] \n\
-	movs r1, #0x80 \n\
-	lsls r1, r1, #1 \n\
-	ands r0, r1 \n\
-	cmp r0, #0 \n\
-	beq _0800BBEA \n\
-	ldrh r0, [r3] \n\
-	adds r0, #0xa \n\
-	strh r0, [r3] \n\
-_0800BBEA: \n\
-	ldr r0, [r6] \n\
-	ldrh r0, [r0, #0x18] \n\
-	movs r1, #0x80 \n\
-	lsls r1, r1, #2 \n\
-	ands r0, r1 \n\
-	cmp r0, #0 \n\
-	beq _0800BBFE \n\
-	ldrh r0, [r3] \n\
-	subs r0, #0xa \n\
-	strh r0, [r3] \n\
-_0800BBFE: \n\
-	movs r1, #0 \n\
-	ldrsh r0, [r3, r1] \n\
-	cmp r0, r5 \n\
-	ble _0800BC0C \n\
-	mov r2, r8 \n\
-	strh r2, [r3] \n\
-	b _0800BC12 \n\
-_0800BC0C: \n\
-	cmp r0, #0 \n\
-	bge _0800BC12 \n\
-	strh r5, [r3] \n\
-_0800BC12: \n\
-	ldr r4, [r6] \n\
-	ldr r3, _0800BC44 @ =0x00000604 \n\
-	adds r2, r4, r3 \n\
-	movs r5, #0 \n\
-	ldrsh r0, [r2, r5] \n\
-	lsls r0, r0, #4 \n\
-	adds r0, #0x34 \n\
-	adds r1, r7, #0 \n\
-	adds r1, #0x46 \n\
-	strh r0, [r1] \n\
-	ldrh r1, [r4, #0x16] \n\
-	movs r0, #1 \n\
-	ands r0, r1 \n\
-	cmp r0, #0 \n\
-	beq _0800BCFC \n\
-	movs r0, #0 \n\
-	ldrsh r3, [r2, r0] \n\
-	cmp r3, #0 \n\
-	blt _0800BCFC \n\
-	cmp r3, #1 \n\
-	ble _0800BC48 \n\
-	cmp r3, #2 \n\
-	beq _0800BCE8 \n\
-	b _0800BCFC \n\
-	.align 2, 0 \n\
-_0800BC44: .4byte 0x00000604 \n\
-_0800BC48: \n\
-	movs r1, #0 \n\
-	ldrsh r0, [r2, r1] \n\
-	cmp r0, #0 \n\
-	bne _0800BC70 \n\
-	ldr r2, _0800BC68 @ =0x080E0DF8 \n\
-	lsls r1, r3, #1 \n\
-	ldr r3, _0800BC6C @ =0x00000606 \n\
-	adds r0, r4, r3 \n\
-	adds r0, r0, r1 \n\
-	movs r4, #0 \n\
-	ldrsh r0, [r0, r4] \n\
-	lsls r0, r0, #2 \n\
-	adds r0, r0, r2 \n\
-	ldrh r4, [r0] \n\
-	b _0800BC88 \n\
-	.align 2, 0 \n\
-_0800BC68: .4byte 0x080E0DF8 \n\
-_0800BC6C: .4byte 0x00000606 \n\
-_0800BC70: \n\
-	ldr r0, _0800BCD0 @ =sUnk_080E0DEC \n\
-	lsls r1, r3, #2 \n\
-	adds r1, r1, r0 \n\
-	lsls r2, r3, #1 \n\
-	ldr r5, _0800BCD4 @ =0x00000606 \n\
-	adds r0, r4, r5 \n\
-	adds r0, r0, r2 \n\
-	ldrh r0, [r0] \n\
-	ldrh r1, [r1] \n\
-	adds r0, r0, r1 \n\
-	lsls r0, r0, #0x10 \n\
-	lsrs r4, r0, #0x10 \n\
-_0800BC88: \n\
-	ldr r6, _0800BCD8 @ =gEwramData \n\
-	ldr r0, [r6] \n\
-	ldr r5, _0800BCDC @ =0x00000604 \n\
-	adds r1, r0, r5 \n\
-	movs r2, #0 \n\
-	ldrsh r1, [r1, r2] \n\
-	lsls r1, r1, #1 \n\
-	ldr r3, _0800BCE0 @ =0x0000060E \n\
-	adds r0, r0, r3 \n\
-	adds r0, r0, r1 \n\
-	ldrh r1, [r0] \n\
-	movs r2, #0 \n\
-	ldrsh r0, [r0, r2] \n\
-	cmp r0, #0 \n\
-	beq _0800BCB4 \n\
-	ldr r3, _0800BCE4 @ =0xFFFF8000 \n\
-	adds r0, r3, #0 \n\
-	orrs r0, r1 \n\
-	lsls r0, r0, #0x10 \n\
-	lsrs r0, r0, #0x10 \n\
-	bl sub_080D7910 \n\
-_0800BCB4: \n\
-	ldr r0, [r6] \n\
-	adds r1, r0, r5 \n\
-	movs r5, #0 \n\
-	ldrsh r1, [r1, r5] \n\
-	lsls r1, r1, #1 \n\
-	ldr r2, _0800BCE0 @ =0x0000060E \n\
-	adds r0, r0, r2 \n\
-	adds r0, r0, r1 \n\
-	strh r4, [r0] \n\
-	adds r0, r4, #0 \n\
-	bl sub_080D7910 \n\
-	b _0800BCFC \n\
-	.align 2, 0 \n\
-_0800BCD0: .4byte sUnk_080E0DEC \n\
-_0800BCD4: .4byte 0x00000606 \n\
-_0800BCD8: .4byte gEwramData \n\
-_0800BCDC: .4byte 0x00000604 \n\
-_0800BCE0: .4byte 0x0000060E \n\
-_0800BCE4: .4byte 0xFFFF8000 \n\
-_0800BCE8: \n\
-	movs r0, #0x80 \n\
-	lsls r0, r0, #5 \n\
-	bl sub_080D7910 \n\
-	ldr r1, [r6] \n\
-	movs r0, #4 \n\
-	strb r0, [r1, #0x11] \n\
-	ldr r1, [r6] \n\
-	movs r0, #0 \n\
-	strb r0, [r1, #0x12] \n\
-_0800BCFC: \n\
-	ldr r0, _0800BDF0 @ =gEwramData \n\
-	ldr r3, [r0] \n\
-	ldr r4, _0800BDF4 @ =0x00000604 \n\
-	adds r1, r3, r4 \n\
-	movs r5, #0 \n\
-	ldrsh r0, [r1, r5] \n\
-	cmp r0, #0 \n\
-	bne _0800BD92 \n\
-	ldr r2, _0800BDF8 @ =0x080E0DF8 \n\
-	adds r1, r0, #0 \n\
-	lsls r1, r1, #1 \n\
-	adds r4, #2 \n\
-	adds r0, r3, r4 \n\
-	adds r0, r0, r1 \n\
-	movs r5, #0 \n\
-	ldrsh r0, [r0, r5] \n\
-	lsls r0, r0, #2 \n\
-	adds r0, r0, r2 \n\
-	ldrh r4, [r0, #2] \n\
-	adds r0, r4, #0 \n\
-	bl sub_08041434 \n\
-	adds r7, r0, #0 \n\
-	movs r0, #1 \n\
-	mov sb, r0 \n\
-	movs r5, #0 \n\
-	movs r6, #1 \n\
-	rsbs r6, r6, #0 \n\
-	mov r1, sl \n\
-	ldr r0, [r1, #0x18] \n\
-	cmp r0, r4 \n\
-	beq _0800BD92 \n\
-	str r4, [r1, #0x18] \n\
-	movs r0, #0 \n\
-	movs r1, #1 \n\
-	movs r2, #0x1e \n\
-	movs r3, #4 \n\
-	bl sub_08040748 \n\
-	bl sub_08040FE0 \n\
-	movs r0, #0 \n\
-	movs r1, #1 \n\
-	movs r2, #0x1c \n\
-	movs r3, #4 \n\
-	bl sub_08040748 \n\
-	movs r0, #0 \n\
-	movs r1, #1 \n\
-	bl sub_0804066C \n\
-	movs r2, #0 \n\
-	mov r8, r2 \n\
-	adds r4, r7, #2 \n\
-_0800BD68: \n\
-	mov r3, sb \n\
-	adds r1, r3, r5 \n\
-	lsls r1, r1, #0x10 \n\
-	lsrs r1, r1, #0x10 \n\
-	mov r2, r8 \n\
-	lsrs r0, r2, #0x10 \n\
-	bl sub_0804066C \n\
-	adds r1, r6, #1 \n\
-	adds r0, r7, #0 \n\
-	bl sub_08041318 \n\
-	adds r6, r0, #0 \n\
-	adds r0, r4, r6 \n\
-	ldrb r0, [r0] \n\
-	adds r5, #1 \n\
-	cmp r0, #6 \n\
-	beq _0800BD8E \n\
-	movs r5, #0 \n\
-_0800BD8E: \n\
-	cmp r5, #0 \n\
-	bne _0800BD68 \n\
-_0800BD92: \n\
-	ldr r2, _0800BDF0 @ =gEwramData \n\
-	ldr r0, [r2] \n\
-	ldrh r1, [r0, #0x16] \n\
-	movs r0, #2 \n\
-	ands r0, r1 \n\
-	cmp r0, #0 \n\
-	beq _0800BDBE \n\
-	movs r4, #0 \n\
-	movs r3, #0 \n\
-_0800BDA4: \n\
-	ldr r0, [r2] \n\
-	lsls r1, r4, #1 \n\
-	ldr r5, _0800BDFC @ =0x0000060E \n\
-	adds r0, r0, r5 \n\
-	adds r0, r0, r1 \n\
-	strh r3, [r0] \n\
-	adds r4, #1 \n\
-	cmp r4, #2 \n\
-	ble _0800BDA4 \n\
-	movs r0, #0x80 \n\
-	lsls r0, r0, #5 \n\
-	bl sub_080D7910 \n\
-_0800BDBE: \n\
-	movs r4, #0 \n\
-	movs r5, #6 \n\
-_0800BDC2: \n\
-	lsls r1, r4, #1 \n\
-	ldr r0, _0800BDF0 @ =gEwramData \n\
-	ldr r0, [r0] \n\
-	ldr r2, _0800BE00 @ =0x00000606 \n\
-	adds r0, r0, r2 \n\
-	adds r0, r0, r1 \n\
-	movs r3, #0 \n\
-	ldrsh r2, [r0, r3] \n\
-	movs r0, #0xf2 \n\
-	lsls r0, r0, #8 \n\
-	str r0, [sp] \n\
-	movs r0, #1 \n\
-	str r0, [sp, #4] \n\
-	movs r0, #0x12 \n\
-	adds r1, r5, #0 \n\
-	movs r3, #2 \n\
-	bl sub_08046E5C \n\
-	adds r5, #2 \n\
-	adds r4, #1 \n\
-	cmp r4, #1 \n\
-	ble _0800BDC2 \n\
-	b _0800BE7E \n\
-	.align 2, 0 \n\
-_0800BDF0: .4byte gEwramData \n\
-_0800BDF4: .4byte 0x00000604 \n\
-_0800BDF8: .4byte 0x080E0DF8 \n\
-_0800BDFC: .4byte 0x0000060E \n\
-_0800BE00: .4byte 0x00000606 \n\
-_0800BE04: \n\
-	ldr r0, [r6] \n\
-	movs r3, #0 \n\
-	movs r4, #5 \n\
-	strb r4, [r0, #0x11] \n\
-	ldr r0, [r6] \n\
-	strb r3, [r0, #0x12] \n\
-	ldr r2, _0800BE38 @ =gUnk_03002CB0 \n\
-	ldrh r1, [r2] \n\
-	ldr r0, _0800BE3C @ =0x0000FBFF \n\
-	ands r0, r1 \n\
-	movs r5, #0 \n\
-	strh r0, [r2] \n\
-	ldr r1, _0800BE40 @ =gDisplayRegisters \n\
-	adds r2, r1, #0 \n\
-	adds r2, #0x48 \n\
-	ldr r0, _0800BE44 @ =0x00003FFF \n\
-	strh r0, [r2] \n\
-	adds r1, #0x4c \n\
-	movs r0, #0x10 \n\
-	strh r0, [r1] \n\
-	ldr r0, [r6] \n\
-	strh r3, [r0, #4] \n\
-	strb r4, [r0, #0x11] \n\
-	ldr r0, [r6] \n\
-	strb r5, [r0, #0x12] \n\
-	b _0800BE7E \n\
-	.align 2, 0 \n\
-_0800BE38: .4byte gUnk_03002CB0 \n\
-_0800BE3C: .4byte 0x0000FBFF \n\
-_0800BE40: .4byte gDisplayRegisters \n\
-_0800BE44: .4byte 0x00003FFF \n\
-_0800BE48: \n\
-	ldr r1, [r6] \n\
-	ldrh r0, [r1, #4] \n\
-	cmp r0, #0x10 \n\
-	beq _0800BE6C \n\
-	adds r0, #2 \n\
-_0800BE52: \n\
-	strh r0, [r1, #4] \n\
-	ldrh r3, [r1, #4] \n\
-	ldr r2, _0800BE68 @ =gDisplayRegisters \n\
-	lsls r1, r3, #8 \n\
-	movs r0, #0x10 \n\
-	subs r0, r0, r3 \n\
-	orrs r1, r0 \n\
-	adds r2, #0x4a \n\
-	strh r1, [r2] \n\
-	b _0800BE7E \n\
-	.align 2, 0 \n\
-_0800BE68: .4byte gDisplayRegisters \n\
-_0800BE6C: \n\
-	ldr r2, _0800BEBC @ =gUnk_03002CB0 \n\
-	ldrh r1, [r2] \n\
-	movs r4, #0xf0 \n\
-	lsls r4, r4, #4 \n\
-	adds r0, r4, #0 \n\
-	orrs r0, r1 \n\
-	strh r0, [r2] \n\
-	movs r5, #1 \n\
-	str r5, [sp, #0xc] \n\
-_0800BE7E: \n\
-	bl sub_08000B64 \n\
-	movs r0, #1 \n\
-	rsbs r0, r0, #0 \n\
-	ldr r1, [sp, #0xc] \n\
-	cmp r1, r0 \n\
-	beq _0800BEA8 \n\
-	bl EntityDeleteAll \n\
-	bl sub_0803D9A8 \n\
-	bl sub_0803E438 \n\
-	bl sub_08039DC0 \n\
-	bl sub_0803BEEC \n\
-	bl sub_0804059C \n\
-	bl sub_08042754 \n\
-_0800BEA8: \n\
-	ldr r0, [sp, #0xc] \n\
-	add sp, #0x10 \n\
-	pop {r3, r4, r5} \n\
-	mov r8, r3 \n\
-	mov sb, r4 \n\
-	mov sl, r5 \n\
-	pop {r4, r5, r6, r7} \n\
-	pop {r1} \n\
-	bx r1 \n\
-	.align 2, 0 \n\
-_0800BEBC: .4byte gUnk_03002CB0 \n\
-    .syntax divided ");
-}
-#endif
 
 static inline void GameModeInGameUpdate_inline_0(s32 param_0)
 {

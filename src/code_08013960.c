@@ -528,8 +528,8 @@ s32 GameModeGameOverUpdate(void)
             DMA_FILL_32(3, 0, VRAM_BASE + 0xE000, 0x800);
             gUnk_03002CB0.dispCnt = DCNT_OBJ | DCNT_BG1;
             gDisplayRegisters.bgCnt[1] = CREATE_BGCNT(0, 29, BGCNT_HIGH_MID_PRIORITY, BGCNT_SIZE_256x256) | BGCNT_256_COLOR;
-            sub_0803FD9C((u8 *)0x080E5C08, (u32)VRAM_BASE, 0);
-            sub_0803FD9C((u8 *)0x080E5C10, (u32)VRAM_BASE + 0x4000, 0);
+            sub_0803FD9C((u8 *)0x080E5C08, VRAM_BASE, 0);
+            sub_0803FD9C((u8 *)0x080E5C10, VRAM_BASE + 0x4000, 0);
             sub_0803C8B0((u8 *)0x080E6A3C);
             sub_0803F8A8(1, (u32 *)0x080E9584, 0, 0);
             sub_0803D18C(0, 0, 0, 0, 0x10000, 0x20);
@@ -694,9 +694,9 @@ s32 GameModeCreditsUpdate(void)
 
         case 1:
             sub_080D7910(0x1A);
-            sub_0803FD9C((u8 *)0x080E5BC8, (u32)VRAM_BASE, 0);
-            sub_0803FD9C((u8 *)0x080E5BD0, (u32)VRAM_BASE + 0x2000, 0);
-            sub_0803FD9C((u8 *)0x080E5BD8, (u32)VRAM_BASE + 0x4000, 0);
+            sub_0803FD9C((u8 *)0x080E5BC8, VRAM_BASE, 0);
+            sub_0803FD9C((u8 *)0x080E5BD0, VRAM_BASE + 0x2000, 0);
+            sub_0803FD9C((u8 *)0x080E5BD8, VRAM_BASE + 0x4000, 0);
             sub_0803C918((u8 *)0x080E6028, 0, 8, 0);
             sub_0803F8A8(1, (u32 *)0x080E8F04, 0, 0x50);
 

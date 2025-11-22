@@ -767,7 +767,7 @@ void sub_0800DA50(void)
     sub_08040970(0, 0, 0x1A, 1);
     sub_080412F0(0xF);
     sub_08041304(1);
-    sub_0803FD9C((u8 *)0x0827B208, 0x06004000, 0);
+    sub_0803FD9C((u8 *)0x0827B208, VRAM_BASE + 0x4000, 0);
 
     DMA_FILL_32(3, 0, 0x06005800, 0x1954);
     DMA_FILL_32(3, 0, 0x06005000, 0x2000);
@@ -2476,7 +2476,7 @@ void sub_0800F038(void)
     gDisplayRegisters.bgOfs[0].hOfs = 0;
     gDisplayRegisters.bgOfs[0].vOfs = 6;
     sub_080412DC(0x06005000);
-    sub_0803FD9C((u8 *)0x0827B208, 0x06004000, 0);
+    sub_0803FD9C((u8 *)0x0827B208, VRAM_BASE + 0x4000, 0);
     gEwramData->unk_60.unk_42C &= ~0x200;
 }
 

@@ -468,7 +468,7 @@ s32 GameModeKonamiLogoUpdate(void)
             break;
 
         case 1:
-            sub_0803FD9C((u8 *)0x080E5C18, 0x06000000, 0);
+            sub_0803FD9C((u8 *)0x080E5C18, VRAM_BASE, 0);
             sub_0803C918((u8 *)0x080E6C40, 0, 1, 0);
             sub_0803F8A8(0, (u32 *)0x080E9614, 0, 0);
             gEwramData->gameModeUpdateStage += 1;
@@ -542,7 +542,7 @@ s32 GameModeLicensedByNintendoUpdate(void)
             break;
 
         case 1:
-            sub_0803FD9C((u8 *)0x080E5C00, 0x06000000, 0);
+            sub_0803FD9C((u8 *)0x080E5C00, VRAM_BASE, 0);
             sub_0803C8B0((u8 *)0x080E6838);
             sub_0803F8A8(0, (u32 *)0x080E94F4, 0, 0);
             gEwramData->gameModeUpdateStage += 1;
@@ -996,8 +996,8 @@ s32 GameModeTitleScreenUpdate(void)
             sub_0803DD14(6, 1);
             sub_0803DD14(0x16, 2);
             sub_0803FD60();
-            sub_0803FD9C((u8 *)0x080E5BE0, 0x06000000, 0);
-            sub_0803FD9C((u8 *)0x080E5BE8, 0x06008000, 0);
+            sub_0803FD9C((u8 *)0x080E5BE0, VRAM_BASE, 0);
+            sub_0803FD9C((u8 *)0x080E5BE8, VRAM_BASE + 0x8000, 0);
             sub_0803C8B0((u8 *)0x080E6430);
             sub_0803F8A8(0, (u32 *)0x080E9024, 0, 0);
             sub_0803F8A8(1, (u32 *)0x080E90B4, 0, 0);
@@ -2255,15 +2255,15 @@ void sub_0800480C(s32 param_0)
     switch (gEwramData->unk_60.language)
     {
         case 2:
-            sub_0803FD9C((u8 *)0x08277984, (u32)(VRAM_BASE + 0xA000), 0);
+            sub_0803FD9C((u8 *)0x08277984, VRAM_BASE + 0xA000, 0);
             break;
 
         case 3:
-            sub_0803FD9C((u8 *)0x0826C848, (u32)(VRAM_BASE + 0xA000), 0);
+            sub_0803FD9C((u8 *)0x0826C848, VRAM_BASE + 0xA000, 0);
             break;
 
         default:
-            sub_0803FD9C((u8 *)0x0827B200, (u32)(VRAM_BASE + 0xA000), 0);
+            sub_0803FD9C((u8 *)0x0827B200, VRAM_BASE + 0xA000, 0);
             break;
     }
 
@@ -2461,19 +2461,19 @@ s32 GameModeMainMenuUpdate(void)
     
         case 0x1:
             DMA_FILL_32(3, 0, 0x0600F000, 0x800);
-            sub_0803FD9C((u8 *)0x080E5BB0, 0x06000000, 0);
-            sub_0803FD9C((u8 *)0x080E5BB8, 0x06002000, 0);
+            sub_0803FD9C((u8 *)0x080E5BB0, VRAM_BASE, 0);
+            sub_0803FD9C((u8 *)0x080E5BB8, VRAM_BASE + 0x2000, 0);
     
             switch (gEwramData->unk_60.language)
             {
                 case 2:
-                    sub_0803FD9C((u8 *)0x08277994, 0x06004000, 0);
+                    sub_0803FD9C((u8 *)0x08277994, VRAM_BASE + 0x4000, 0);
                     break;
                 case 3:
-                    sub_0803FD9C((u8 *)0x0826C850, 0x06004000, 0);
+                    sub_0803FD9C((u8 *)0x0826C850, VRAM_BASE + 0x4000, 0);
                     break;
                 default:
-                    sub_0803FD9C((u8 *)0x080E5BC0, 0x06004000, 0);
+                    sub_0803FD9C((u8 *)0x080E5BC0, VRAM_BASE + 0x4000, 0);
                     break;
             }
 

@@ -1872,13 +1872,13 @@ void sub_08007EE0(s32 param_0)
     switch (gEwramData->unk_60.language)
     {
         case 2:
-            sub_0803FD9C((u8 *)0x08277984, 0x0600A000, 0);
+            sub_0803FD9C((u8 *)0x08277984, VRAM_BASE + 0xA000, 0);
             break;
         case 3:
-            sub_0803FD9C((u8 *)0x0826C848, 0x0600A000, 0);
+            sub_0803FD9C((u8 *)0x0826C848, VRAM_BASE + 0xA000, 0);
             break;
         default:
-            sub_0803FD9C((u8 *)0x0827B200, 0x0600A000, 0);
+            sub_0803FD9C((u8 *)0x0827B200, VRAM_BASE + 0xA000, 0);
             break;
     }
     sub_08040748(0, 0, 0x29, 3);
@@ -1927,19 +1927,19 @@ void sub_08007FF0(struct EwramData_EntityData *param_0)
     gDisplayRegisters.bldY = 0;
     gEwramData->unk_60.unk_4CC_0 = 0;
 
-    sub_0803FD9C((u8 *)0x080E5BB0, 0x06000000, 0);
-    sub_0803FD9C((u8 *)0x080E5BB8, 0x06002000, 0);
+    sub_0803FD9C((u8 *)0x080E5BB0, VRAM_BASE, 0);
+    sub_0803FD9C((u8 *)0x080E5BB8, VRAM_BASE + 0x2000, 0);
 
     switch (gEwramData->unk_60.language)
     {
         case 2:
-            sub_0803FD9C((u8 *)0x08277994, 0x06004000, 0U);
+            sub_0803FD9C((u8 *)0x08277994, VRAM_BASE + 0x4000, 0);
             break;
         case 3:
-            sub_0803FD9C((u8 *)0x0826C850, 0x06004000, 0U);
+            sub_0803FD9C((u8 *)0x0826C850, VRAM_BASE + 0x4000, 0);
             break;
         default:
-            sub_0803FD9C((u8 *)0x080E5BC0, 0x06004000, 0U);
+            sub_0803FD9C((u8 *)0x080E5BC0, VRAM_BASE + 0x4000, 0);
             break;
     }
 

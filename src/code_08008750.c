@@ -192,8 +192,8 @@ s32 GameModeIntroCutsceneUpdate(void)
             DMA_COPY_32(3, &gDisplayRegisters.bgCnt[1], temp_r5->unk_70, sizeof(temp_r5->unk_70));
             gUnk_03002CB0.dispCnt = DCNT_OBJ | DCNT_BG3 | DCNT_BG2 | DCNT_BG1 | DCNT_BG0;
             sub_0803C8B0((u8 *)0x080E6634);
-            sub_0803FD9C((u8 *)0x080E5BF0, 0x06008000, 0);
-            sub_0803FD9C((u8 *)0x080E5BF8, 0x0600A000, 0);
+            sub_0803FD9C((u8 *)0x080E5BF0, VRAM_BASE + 0x8000, 0);
+            sub_0803FD9C((u8 *)0x080E5BF8, VRAM_BASE + 0xA000, 0);
             sub_0803F8A8(1, (u32 *)0x080E9464, 0, 0x160);
             sub_0803F8A8(2, (u32 *)0x080E9244, 0, 0x260);
             sub_0803F8A8(3, (u32 *)0x080E9354, 0, 0xC9);

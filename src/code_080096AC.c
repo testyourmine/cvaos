@@ -1009,15 +1009,15 @@ void sub_0800A00C(s32 param_0)
     switch (gEwramData->unk_60.language)
     {
         case 2:
-            sub_0803FD9C((u8 *)0x08277984, 0x0600C000, 0);
+            sub_0803FD9C((u8 *)0x08277984, VRAM_BASE + 0xC000, 0);
             break;
 
         case 3:
-            sub_0803FD9C((u8 *)0x0826C848, 0x0600C000, 0);
+            sub_0803FD9C((u8 *)0x0826C848, VRAM_BASE + 0xC000, 0);
             break;
 
         default:
-            sub_0803FD9C((u8 *)0x0827B200, 0x0600C000, 0);
+            sub_0803FD9C((u8 *)0x0827B200, VRAM_BASE + 0xC000, 0);
             break;
     }
 
