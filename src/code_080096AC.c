@@ -1002,7 +1002,7 @@ void sub_0800A00C(s32 param_0)
     gDisplayRegisters.bgCnt[0] = CREATE_BGCNT(2, 28, BGCNT_HIGH_PRIORITY, BGCNT_SIZE_256x256);
     sub_0803C918((u8 *)0x080E5C20, 4, 2, 0xD);
     sub_0803C918((u8 *)0x080E5C20, 3, 1, 0xF);
-    sub_080412DC(0x06008000);
+    sub_080412DC(VRAM_BASE + 0x8000);
     sub_080412F0(1);
     sub_08041304(0);
 

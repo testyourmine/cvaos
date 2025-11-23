@@ -1,6 +1,7 @@
 #include "code_08013960.h"
 #include "code_08009A0.h"
 #include "code_08001004.h"
+#include "code_08001194.h"
 #include "code_08008750.h"
 #include "code_0800CB00.h"
 #include "code_0800F1FC.h"

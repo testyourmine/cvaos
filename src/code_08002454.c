@@ -587,14 +587,7 @@ s32 GameModeLicensedByNintendoUpdate(void)
     return gameMode;
 }
 
-struct unk_08506B38 {
-    u16 unk_0;
-    u8* unk_2;
-    u8 pad_6[0x8 - 0x6];
-};
 extern struct unk_08506B38 *sUnk_08506B38[0xB4F];
-
-extern s32 sub_08041338(struct unk_08506B38* param_0, s32 param_1);
 
 /**
  * @brief 2C88 | Handle reset game mode
@@ -2247,7 +2240,7 @@ void sub_0800480C(s32 param_0)
     gDisplayRegisters.bgCnt[0] = CREATE_BGCNT(2, 28, BGCNT_HIGH_PRIORITY, BGCNT_SIZE_256x256);
     sub_0803C8B0((u8 *)0x080E5E24);
     sub_0803C918((u8 *)0x081183F4, 0, 1, 0xC);
-    sub_080412DC((u32)(VRAM_BASE + 0x8000));
+    sub_080412DC(VRAM_BASE + 0x8000);
     sub_080412F0(8);
     sub_08041304(0);
     sub_0803C918((u8 *)0x080E5C20, 3, 1, 0xD);

@@ -209,7 +209,7 @@ s32 GameModeIntroCutsceneUpdate(void)
                 var_r2 += 1;
                 var_r1 += 1;
             }
-            sub_080412DC(0x06000000);
+            sub_080412DC(VRAM_BASE);
             sub_08040748(0, 0, 0x29, 0x15);
             DMA_FILL_32(3, 0, 0x06000000, 0x8000);
             sub_0803C918((u8 *)0x081183F4, 0, 1, 0xF);

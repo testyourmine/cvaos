@@ -838,7 +838,7 @@ struct EwramData {
     /* 0x1321D */ u8 pad_1321D[0x13220 - 0x1321D];
     /* 0x13220 */ struct EwramData_EntityData *unk_13220; // type?
     /* 0x13224 */ u16 unk_13224;
-    /* 0x13226 */ u8 unk_13226;
+    /* 0x13226 */ s8 unk_13226;
     /* 0x13227 */ u8 pad_13227[0x1325C - 0x13227];
 
     /* 0x1325C */ struct EwramData_unk1325C unk_1325C;

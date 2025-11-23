@@ -8,11 +8,19 @@
 extern s32 sub_08040C60(u16 param_0);
 extern void sub_08040FE0(void);
 extern void sub_08041204(void);
-extern void sub_080412DC(s32 param_0);
+extern void sub_080412DC(void *param_0);
 extern void sub_080412F0(s32 param_0);
 extern void sub_08041304(s32 param_0);
 extern s32 sub_08041318(u8 *param_0, s32 param_1);
 extern u16 sub_0804136C(void);
+
+struct unk_08506B38 {
+    u16 unk_0;
+    u8* unk_2;
+    u8 pad_6[0x8 - 0x6];
+};
+extern s32 sub_08041338(struct unk_08506B38* param_0, s32 param_1);
+
 extern u8* sub_08041434(s32 param_0);
 
 struct Unk_08042030 {

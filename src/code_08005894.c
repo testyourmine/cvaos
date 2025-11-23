@@ -1865,7 +1865,7 @@ void sub_08007EE0(s32 param_0)
     DMA_FILL_32(3, 0, 0x06008000, 0x2000);
     gDisplayRegisters.bgCnt[0] = CREATE_BGCNT(2, 28, BGCNT_HIGH_PRIORITY, BGCNT_SIZE_256x256);
     sub_0803C918((u8*)0x081183F4, 0, 1, 0xC);
-    sub_080412DC(0x06008000);
+    sub_080412DC(VRAM_BASE + 0x8000);
     sub_080412F0(8);
     sub_08041304(0);
     sub_0803C918((u8*)0x080E5C20, 3, 1, 0xD);

@@ -45,15 +45,14 @@ void sub_0800B700(s32 param_0)
     s32 var_r4;
 
     gDisplayRegisters.bgCnt[0] = CREATE_BGCNT(2, 28, BGCNT_HIGH_PRIORITY, BGCNT_SIZE_256x256);
-    sub_0803C918((u8 *)0x080E5C20, 4U, 2U, 0xDU);
-    sub_0803C918((u8 *)0x080E5C20, 3U, 1U, 0xFU);
-    sub_080412DC(0x06008000);
+    sub_0803C918((u8 *)0x080E5C20, 4, 2, 0xD);
+    sub_0803C918((u8 *)0x080E5C20, 3, 1, 0xF);
+    sub_080412DC(VRAM_BASE + 0x8000);
     sub_080412F0(1);
     sub_08041304(0);
 
     switch (gEwramData->unk_60.language)
     {
-        
         case 2:
             sub_0803FD9C((u8 *)0x08277984, VRAM_BASE + 0xC000, 0);
             break;
@@ -67,11 +66,11 @@ void sub_0800B700(s32 param_0)
             break;
     }
 
-    DMA_FILL_32(3, 0, 0x0600E000, 0x800);
-    DMA_FILL_32(3, 0, 0x06008000, 0x800);
-    sub_08040748(0U, 1U, 0x1EU, 4U);
+    DMA_FILL_32(3, 0, VRAM_BASE + 0xE000, 0x800);
+    DMA_FILL_32(3, 0, VRAM_BASE + 0x8000, 0x800);
+    sub_08040748(0, 1, 0x1E, 4);
     sub_08040FE0();
-    sub_08040748(0U, 1U, 0x1CU, 4U);
+    sub_08040748(0, 1, 0x1C, 4);
     sub_08046E04(0, 0x11, 0x40);
 
     for (var_r4 = 0; var_r4 < 4; var_r4++)
@@ -86,31 +85,26 @@ void sub_0800B700(s32 param_0)
         sub_08046E5C(0x12, var_r4 * 2 + 6, gEwramData->entityData[2].unk_4FC.unk_4FC_16.unk_4FE[var_r4], 2, 0xF200, 1);
     }
 
-    sub_08040970(0U, 8U, 8U, 1U);
+    sub_08040970(0, 8, 8, 1);
     sub_08041204();
     sub_08041338((struct unk_08506B38 *) sub_08041434(0x390), 0);
 
-    sub_08040970(0U, 9U, 8U, 1U);
+    sub_08040970(0, 9, 8, 1);
     sub_08041204();
     sub_08041338((struct unk_08506B38 *) sub_08041434(0x391), 0);
 
-    sub_08040970(0U, 0xAU, 8U, 1U);
+    sub_08040970(0, 10, 8, 1);
     sub_08041204();
     sub_08041338((struct unk_08506B38 *) sub_08041434(0x392), 0);
 
-    sub_08046DD4(0xB, 6, 0xF100U, 6);
-    sub_08046DD4(0xB, 8, 0xF120U, 6);
-    sub_08046DD4(0xB, 0xA, 0xF140U, 6);
+    sub_08046DD4(0xB, 6, 0xF100, 6);
+    sub_08046DD4(0xB, 8, 0xF120, 6);
+    sub_08046DD4(0xB, 0xA, 0xF140, 6);
 }
 
 struct Unk_080E0DEC {
     s16 unk_0;
     s16 unk_2;
-};
-
-struct Unk_080E0DF8 {
-    u16 unk_0;
-    u16 unk_2;
 };
 
 const struct Unk_080E0DEC sUnk_080E0DEC[3] = {
@@ -126,6 +120,11 @@ const struct Unk_080E0DEC sUnk_080E0DEC[3] = {
         .unk_0 = 0,
         .unk_2 = 0x1
     }
+};
+
+struct Unk_080E0DF8 {
+    u16 unk_0;
+    u16 unk_2;
 };
 
 // TODO: determine if all of this data is sUnk_080E0DF8
@@ -531,9 +530,9 @@ static inline void GameModeSoundTestMenu_inline_0(struct EwramData_EntityData *t
     if (temp_r6->unk_4FC.unk_4FC_32 != temp_r4_4)
     {
         temp_r6->unk_4FC.unk_4FC_32 = temp_r4_4;
-        sub_08040748(0U, 1U, 0x1EU, 4U);
+        sub_08040748(0, 1, 0x1E, 4);
         sub_08040FE0();
-        sub_08040748(0U, 1U, 0x1CU, 4U);
+        sub_08040748(0, 1, 0x1C, 4);
         sub_0804066C(0, 1);
         
         do
@@ -830,7 +829,6 @@ static inline void GameModeInGameUpdate_inline_0(s32 param_0)
  */
 s32 GameModeInGameUpdate(void)
 {
-    s32 temp_r0_5;
     s32 gameMode;
     struct EwramData_unk60 *temp_r7;
     u32 var_r4;
@@ -891,9 +889,8 @@ s32 GameModeInGameUpdate(void)
 
                     sub_08000B64();
                     gEwramData->unk_A074_0 = 0;
-                    temp_r0_5 = sub_0803D06C();
 
-                    if (temp_r0_5 == 0)
+                    if (sub_0803D06C() == 0)
                     {
                         sub_0803D270();
                         sub_0803CED4();
@@ -1084,12 +1081,7 @@ s32 GameModeInGameUpdate(void)
             gEwramData->unk_A074_1 = 0;
             sub_08000B64();
 
-            var_r4 = 0;
-            if (sub_080D7F28() != 0)
-            {
-                var_r4 = var_r4 != sub_080D7F48();
-            }
-
+            var_r4 = sub_080D7F28() && sub_080D7F48();
             if (var_r4 == 0)
             {
                 if (++temp_r7->unk_66 > 4)
@@ -1165,7 +1157,7 @@ s32 GameModeInGameUpdate(void)
 
             if (var_r4 == 0)
             {
-                if ((s8)++gEwramData->unk_13226 > 0)
+                if (++gEwramData->unk_13226 > 0)
                 {
                     sub_080D7FD0();
                     gEwramData->unk_60.unk_64 = 2;
@@ -1244,7 +1236,7 @@ void sub_0800C5D8(void)
     }
     sub_0806C354();
 
-    for (var_r5 = 0; var_r5 < 0x10; var_r5++)
+    for (var_r5 = 0; var_r5 < ARRAY_SIZE(sUnk_084F0DD8); var_r5++)
     {
         if (sUnk_084F0DD8[var_r5] >= 0)
         {
@@ -1300,7 +1292,7 @@ void sub_0800C6F8(void)
     // inline for sub_0800C5D8?
     s32 var_r5;
 
-    for (var_r5 = 0; var_r5 < 0x10; var_r5++)
+    for (var_r5 = 0; var_r5 < ARRAY_SIZE(sUnk_084F0DD8); var_r5++)
     {
         if (sUnk_084F0DD8[var_r5] >= 0)
         {
@@ -1400,7 +1392,6 @@ void sub_0800C7A4(struct EwramData_unk60 *param_0)
 s32 sub_0800C8C8(void)
 {
     s32 gameMode;
-    struct EwramData *temp_r4;
     struct EwramData_unk60 *temp_r5;
     struct EwramData_unk60 *temp_r6;
 
@@ -1410,16 +1401,15 @@ s32 sub_0800C8C8(void)
     gEwramData->unk_A074_0 ^= 1;
     sub_08000B64();
 
-    temp_r4 = gEwramData;
     temp_r5 = &gEwramData->unk_60;
     sub_0800CADC();
-    temp_r4->unk_60.unk_4C8 += 1;
+    temp_r5->unk_4C8 += 1;
 
     if (!(gEwramData->unk_60.unk_42C & 0x20))
     {
         sub_0800EFD4(temp_r5);
         sub_0800DC70(temp_r5);
-        gEwramData->unk_60.unk_42C &= 0xFDFFFFFF;
+        gEwramData->unk_60.unk_42C &= ~0x2000000;
     }
 
     switch (temp_r6->unk_65)
@@ -1480,7 +1470,7 @@ s32 sub_0800CA40(void)
     {
         sub_0800EFD4(temp_r5);
         sub_0800DC70(temp_r5);
-        gEwramData->unk_60.unk_42C &= 0xFDFFFFFF;
+        gEwramData->unk_60.unk_42C &= ~0x2000000;
     }
 
     return 1;
