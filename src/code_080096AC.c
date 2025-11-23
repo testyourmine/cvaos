@@ -15,7 +15,7 @@
 #include "code/code_08030A24.h"
 #include "code/code_08040A38.h"
 #include "code/code_08050A3C.h"
-#include "code/code_080D0998.h"
+#include "code_080D73B8.h"
 #include "agb_multi_sio_sync.h"
 #include "gba.h"
 #include "macros.h"

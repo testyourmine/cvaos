@@ -29,4 +29,4 @@ gUnk_0850E968: @ 0x0850E968
 gUnk_0850EF08: @ 0x0850EF08
     .incbin "cvaos_us_baserom.gba", 0x50EF08, 0x30
 
-    .incbin "cvaos_us_baserom.gba", 0x50EF38, 0x141B14
+    .incbin "cvaos_us_baserom.gba", 0x50EF38, 0x141AE4

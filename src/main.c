@@ -14,7 +14,7 @@
 #include "code/code_080211F0.h"
 #include "code/code_08030A24.h"
 #include "code/code_08040A38.h"
-#include "code/code_080D0998.h"
+#include "code_080D73B8.h"
 #include "agb_sram.h"
 #include "agb_multi_sio_sync.h"
 #include "m4a.h"

@@ -12,6 +12,8 @@ SECTIONS {
     } >ewram
 
     iwram (NOLOAD) : ALIGN(4) {
+        . = 0x000020D8; src/code_080D73B8.o(.bss);
+
         . = 0x00002140; src/agb_sram.o(.bss);
 
         . = 0x00002260; gMPlayTrack_0 = .;
@@ -90,6 +92,7 @@ SECTIONS {
         asm/code/code_080B0AD4.o(.text);
         asm/code/code_080C0A1C.o(.text);
         asm/code/code_080D0998.o(.text);
+        src/code_080D73B8.o(.text);
         src/agb_multi_sio_sync.o(.text);
         asm/libagbsyscall.o(.text);
         src/agb_sram.o(.text);
@@ -228,6 +231,7 @@ SECTIONS {
         src/code_08012744.o(.data);
         src/code_08013960.o(.data);
         asm/data/data_4F0B18.o(.data);
+        src/code_080D73B8.o(.data);
         *libc.a:memcpy.o(.data);
         *libc.a:memset.o(.data);
         *libc.a:sprintf.o(.data);
