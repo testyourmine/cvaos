@@ -74,12 +74,12 @@ s32 GameModeBossRushMenuUpdate(void)
             temp_r0_3 = sub_080081AC(temp_r3);
             if (temp_r0_3 == -1)
             {
-                sub_080D7910(0xF0);
+                PlaySong(0xF0);
                 gameMode = GAME_MODE_TITLE_SCREEN;
             }
             else if (temp_r0_3 != 0)
             {
-                sub_080D7910(0xF4);
+                PlaySong(0xF4);
                 gEwramData->gameModeUpdateStage = 4;
                 gEwramData->unk_12 = 0;
             }
@@ -87,7 +87,7 @@ s32 GameModeBossRushMenuUpdate(void)
     
         case 4:
             EntityDelete(&gEwramData->entityData[4]);
-            sub_080D7910(0x1000);
+            PlaySong(0x1000);
             EntityDeleteAll();
             sub_0803D9A8();
             sub_0803E438();
@@ -231,7 +231,7 @@ s32 GameModeIntroCutsceneUpdate(void)
             {
                 if (gEwramData->unk_4 == 0)
                 {
-                    sub_080D7910(0x15);
+                    PlaySong(0x15);
                 }
                 gEwramData->unk_4 += 1;
             }
@@ -288,7 +288,7 @@ s32 GameModeIntroCutsceneUpdate(void)
             {
                 sub_0803D18C(0, 0, 0, 0x10000, 0, 0x78);
                 sub_0803CDF0(0, 0, 0, 0x10000, 0, 0x78);
-                sub_080D7910(0x1010);
+                PlaySong(0x1010);
                 gEwramData->gameModeUpdateStage += 1;
                 gEwramData->unk_12 = 0;
             }
@@ -311,7 +311,7 @@ s32 GameModeIntroCutsceneUpdate(void)
                 sub_0804059C();
                 sub_08042754();
                 DMA_COPY_32(3, &temp_r5_3->unk_60.unk_68.unk_70, &gDisplayRegisters.bgCnt[1], sizeof(temp_r5_3->unk_60.unk_68.unk_70));
-                sub_080D7910(0x1010);
+                PlaySong(0x1010);
                 gEwramData->gameModeUpdateStage += 1;
                 gEwramData->unk_12 = 0;
                 if (gEwramData->unk_6 == 0)
@@ -344,7 +344,7 @@ s32 GameModeIntroCutsceneUpdate(void)
         sub_0804059C();
         sub_08042754();
         DMA_COPY_32(3, &temp_r5_2->unk_60.unk_68.unk_70, &gDisplayRegisters.bgCnt[1], sizeof(temp_r5_2->unk_60.unk_68.unk_70));
-        sub_080D7910(0x1010);
+        PlaySong(0x1010);
         if (gEwramData->unk_6 == 0)
         {
             gameMode = GAME_MODE_IN_GAME;
@@ -588,7 +588,7 @@ void sub_08009178(struct EwramData_EntityData *param_0)
             if (temp_r5->unk_8 > 0x1E0000)
                 break;
 
-            sub_080D7910(0x13E);
+            PlaySong(0x13E);
             param_0->drawFunc = (u32 *) sub_0803B9D0;
             param_0->unk_4EE += 1;
             /* fallthrough */

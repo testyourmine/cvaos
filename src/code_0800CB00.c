@@ -2156,7 +2156,7 @@ void sub_0800EBE0(void)
         {
             sub_08013C5C();
             sub_08013CF0(0);
-            sub_080D7910(0x1000U);
+            PlaySong(0x1000U);
         }
     }
     else

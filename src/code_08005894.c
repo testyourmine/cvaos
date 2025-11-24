@@ -1232,7 +1232,7 @@ s32 sub_080074C0(struct EwramData_EntityData *param_0)
             {
                 var_r4 -= 6;
             }
-            sub_080D7910(0xF0);
+            PlaySong(0xF0);
             sub_08007204(param_0, var_r4);
             param_0->unk_4FC.unk_4FC_8.unk_4FD = 0;
             param_0->unk_4FC.unk_4FC_8.unk_4FE = 0;
@@ -1271,7 +1271,7 @@ s32 sub_080074C0(struct EwramData_EntityData *param_0)
         if (param_0->unk_4FC.unk_4FC_8.unk_4FE != var_r5)
         {
             param_0->unk_4FC.unk_4FC_8.unk_4FE = var_r5;
-            sub_080D7910(0xF1);
+            PlaySong(0xF1);
         }
     }
     else
@@ -1392,7 +1392,7 @@ s32 sub_080074C0(struct EwramData_EntityData *param_0)
             {
                 var_r4_2 -= 6;
             }
-            sub_080D7910(0xF1);
+            PlaySong(0xF1);
             sub_08007204(param_0, var_r4_2);
             param_0->unk_504.unk_504_8.unk_505 = 1;
             param_0->unk_504.unk_504_8.unk_504 = 0;
@@ -1401,7 +1401,7 @@ s32 sub_080074C0(struct EwramData_EntityData *param_0)
         {
             sub_0804066C(0, 1);
             sub_0804728C(0x385);
-            sub_080D7910(0xF3);
+            PlaySong(0xF3);
         }
         if ((gEwramData->unk_60.unk_60 & 1) && (param_0->unk_4F4.unk_4F4_8.unk_4F4 != 0) && (param_0->unk_4F8.unk_4F8_8.unk_4F9 < 6))
         {
@@ -1508,7 +1508,7 @@ s32 sub_08007914(struct EwramData_EntityData *param_0)
         case 0:
             if (repeatedInput & KEY_A)
             {
-                sub_080D7910(0xF3);
+                PlaySong(0xF3);
                 sub_0804728C(0x359);
                 if (var_r6 == param_0->unk_4F4.unk_4F4_8.unk_4F7)
                 {
@@ -1542,7 +1542,7 @@ s32 sub_08007914(struct EwramData_EntityData *param_0)
         case 1:
             if (repeatedInput & KEY_A)
             {
-                sub_080D7910(0xF3);
+                PlaySong(0xF3);
                 sub_08005908(-1);
                 param_0->unk_4F8.unk_4F8_8.unk_4F9 = 1;
                 var_r6 = 1;
@@ -1558,7 +1558,7 @@ s32 sub_08007914(struct EwramData_EntityData *param_0)
             }
             else if (repeatedInput & KEY_B)
             {
-                sub_080D7910(0xF0);
+                PlaySong(0xF0);
                 sub_08005908(0x358);
                 var_r6 = param_0->unk_4F8.unk_4F8_8.unk_4F9 = param_0->unk_4F4.unk_4F4_8.unk_4F6;
                 param_0->unk_4F0 -= 1;
@@ -1584,7 +1584,7 @@ s32 sub_08007914(struct EwramData_EntityData *param_0)
         case 2:
             if ((repeatedInput & KEY_A) && (var_r6 == 0))
             {
-                sub_080D7910(0xF4);
+                PlaySong(0xF4);
                 sub_08012E30(param_0->unk_4F4.unk_4F4_8.unk_4F6, param_0->unk_4F4.unk_4F4_8.unk_4F7);
                 param_0->unk_4F4.unk_4F4_8.unk_4F5 |= 1 << param_0->unk_4F4.unk_4F4_8.unk_4F7;
                 sub_08005908(0x358);
@@ -1596,7 +1596,7 @@ s32 sub_08007914(struct EwramData_EntityData *param_0)
             }
             else if (repeatedInput & (KEY_A | KEY_B))
             {
-                sub_080D7910(0xF0);
+                PlaySong(0xF0);
                 sub_08005908(0x359);
                 var_r6 = param_0->unk_4F8.unk_4F8_8.unk_4F9 = param_0->unk_4F4.unk_4F4_8.unk_4F7;
                 param_0->unk_4F0 -= 1;
@@ -1611,7 +1611,7 @@ s32 sub_08007914(struct EwramData_EntityData *param_0)
     if (param_0->unk_4F8.unk_4F8_8.unk_4F9 != var_r6)
     {
         param_0->unk_4F8.unk_4F8_8.unk_4F9 = var_r6;
-        sub_080D7910(0xF1);
+        PlaySong(0xF1);
         if (param_0->unk_4F0 == 0)
         {
             param_0->unk_4F4.unk_4F4_8.unk_4F6 = var_r6;
@@ -1669,11 +1669,11 @@ s32 sub_08007B8C(struct EwramData_EntityData *param_0)
             {
                 if (param_0->unk_4F4.unk_4F4_8.unk_4F4 != 0)
                 {
-                    sub_080D7910(0xEF);
+                    PlaySong(0xEF);
                 }
                 else
                 {
-                    sub_080D7910(0xF3);
+                    PlaySong(0xF3);
                     sub_08005908(-1);
                     param_0->unk_4F4.unk_4F4_8.unk_4F6 = param_0->unk_4F8.unk_4F8_8.unk_4F9;
                     param_0->unk_4F8.unk_4F8_8.unk_4F9 = 1;
@@ -1706,7 +1706,7 @@ s32 sub_08007B8C(struct EwramData_EntityData *param_0)
         case 1:
             if ((repeatedInput & KEY_A) && (var_r6 == 0))
             {
-                sub_080D7910(0xF4);
+                PlaySong(0xF4);
                 if (!(param_0->unk_4F4.unk_4F4_8.unk_4F6 & 1))
                 {
                     sub_08012A08(param_0->unk_4F4.unk_4F4_8.unk_4F6);
@@ -1728,7 +1728,7 @@ s32 sub_08007B8C(struct EwramData_EntityData *param_0)
             }
             else if (repeatedInput & (KEY_A | KEY_B))
             {
-                sub_080D7910(0xF0);
+                PlaySong(0xF0);
                 sub_0804728C(0x35A);
                 var_r6 = param_0->unk_4F8.unk_4F8_8.unk_4F9 = param_0->unk_4F4.unk_4F4_8.unk_4F6;
                 param_0->unk_4F0 -= 1;
@@ -1742,7 +1742,7 @@ s32 sub_08007B8C(struct EwramData_EntityData *param_0)
     if (param_0->unk_4F8.unk_4F8_8.unk_4F9 != var_r6)
     {
         param_0->unk_4F8.unk_4F8_8.unk_4F9 = var_r6;
-        sub_080D7910(0xF1);
+        PlaySong(0xF1);
         if (param_0->unk_4F0 == 0)
         {
             sub_08007204(param_0, param_0->unk_4F8.unk_4F8_8.unk_4F9);
@@ -2009,7 +2009,7 @@ s32 sub_080081AC(struct EwramData_EntityData *param_0)
 
         if (var_0 == 0)
         {
-            sub_080D7910(0xEF);
+            PlaySong(0xEF);
         }
         else
         {
@@ -2019,7 +2019,7 @@ s32 sub_080081AC(struct EwramData_EntityData *param_0)
             }
             gEwramData->unk_60.unk_428 = var_r4;
             gEwramData->unk_60.unk_3CC = NULL;
-            sub_080D7910(0xF3);
+            PlaySong(0xF3);
             var_r7 = 1;
         }
     }
@@ -2035,7 +2035,7 @@ s32 sub_080081AC(struct EwramData_EntityData *param_0)
     if (param_0->unk_4F8.unk_4F8_8.unk_4F9 != var_r4)
     {
         param_0->unk_4F8.unk_4F8_8.unk_4F9 = var_r4;
-        sub_080D7910(0xF1);
+        PlaySong(0xF1);
         sub_08007D84(param_0, param_0->unk_4F8.unk_4F8_8.unk_4F9);
     }
     sub_08000B64();
@@ -2194,7 +2194,7 @@ s32 sub_080083C8(struct EwramData_EntityData *param_0)
     {
         if (var_sb < 0x22)
         {
-            sub_080D7910(0xF3);
+            PlaySong(0xF3);
             temp_r5->unk_20[param_0->unk_4F8.unk_4F8_8.unk_4FB] = var_sb + 2;
             param_0->unk_4F8.unk_4F8_8.unk_4FB += 1;
             if (param_0->unk_4F8.unk_4F8_8.unk_4FB > 7)
@@ -2218,7 +2218,7 @@ s32 sub_080083C8(struct EwramData_EntityData *param_0)
     }
     else if (temp_r4 & 0x300)
     {
-        sub_080D7910(0xF2);
+        PlaySong(0xF2);
         temp_r1 = param_0->unk_4F8.unk_4F8_8.unk_4FB;
         param_0->unk_4F8.unk_4F8_8.unk_4FB = (temp_r4 & 0x100) ? (temp_r1 + 1) : (temp_r1 - 1);
     }
@@ -2353,7 +2353,7 @@ s32 sub_080083C8(struct EwramData_EntityData *param_0)
                     }
                 }
             }
-            sub_080D7910(var_r8_2);
+            PlaySong(var_r8_2);
             var_sl = 1;
             break;
 
@@ -2383,7 +2383,7 @@ s32 sub_080083C8(struct EwramData_EntityData *param_0)
             }
             if (var_r0_6 == 0)
             {
-                sub_080D7910(0xF0);
+                PlaySong(0xF0);
                 var_r2_2 = param_0->unk_4F8.unk_4F8_8.unk_4FB + 1;
                 for (; var_r2_2 < 8; var_r2_2++)
                 {
@@ -2425,7 +2425,7 @@ s32 sub_080083C8(struct EwramData_EntityData *param_0)
             }
             else
             {
-                sub_080D7910(0xF0);
+                PlaySong(0xF0);
                 var_r2_4 = param_0->unk_4F8.unk_4F8_8.unk_4FB + 1;
                 for (; var_r2_4 < 8; var_r2_4++)
                 {
@@ -2440,7 +2440,7 @@ s32 sub_080083C8(struct EwramData_EntityData *param_0)
     if (param_0->unk_4F8.unk_4F8_8.unk_4F9 != var_sb)
     {
         param_0->unk_4F8.unk_4F8_8.unk_4F9 = var_sb;
-        sub_080D7910(0xF1);
+        PlaySong(0xF1);
     }
     return var_sl;
 }
@@ -2483,7 +2483,7 @@ _080083FC: \n\
 	cmp r0, #0x21 \n\
 	bgt _0800842E \n\
 	movs r0, #0xf3 \n\
-	bl sub_080D7910 \n\
+	bl PlaySong \n\
 	ldrb r0, [r7, #0x17] \n\
 	adds r0, r5, r0 \n\
 	mov r1, sb \n\
@@ -2523,7 +2523,7 @@ _0800844C: \n\
 	cmp r0, #0 \n\
 	beq _08008472 \n\
 	movs r0, #0xf2 \n\
-	bl sub_080D7910 \n\
+	bl PlaySong \n\
 	ldrb r1, [r7, #0x17] \n\
 	movs r0, #0x80 \n\
 	lsls r0, r0, #1 \n\
@@ -2788,7 +2788,7 @@ _08008636: \n\
 	str r1, [r0] \n\
 _0800863A: \n\
 	mov r0, r8 \n\
-	bl sub_080D7910 \n\
+	bl PlaySong \n\
 	movs r3, #1 \n\
 	mov sl, r3 \n\
 	b _080086F6 \n\
@@ -2826,7 +2826,7 @@ _0800867A: \n\
 	cmp r0, #0 \n\
 	bne _080086F6 \n\
 	movs r0, #0xf0 \n\
-	bl sub_080D7910 \n\
+	bl PlaySong \n\
 	ldrb r0, [r7, #0x17] \n\
 	adds r2, r0, #1 \n\
 	cmp r2, #7 \n\
@@ -2877,7 +2877,7 @@ _080086CA: \n\
 	b _080086F6 \n\
 _080086D6: \n\
 	movs r0, #0xf0 \n\
-	bl sub_080D7910 \n\
+	bl PlaySong \n\
 	ldrb r0, [r7, #0x17] \n\
 	adds r2, r0, #1 \n\
 	cmp r2, #7 \n\
@@ -2904,7 +2904,7 @@ _080086F6: \n\
 	mov r1, sb \n\
 	strb r1, [r7, #0x15] \n\
 	movs r0, #0xf1 \n\
-	bl sub_080D7910 \n\
+	bl PlaySong \n\
 _0800870E: \n\
 	mov r0, sl \n\
 	pop {r3, r4, r5} \n\

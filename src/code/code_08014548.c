@@ -2202,7 +2202,7 @@ block_552:
             param_0->unk_4F4.unk_4F4_32 &= ~0x20017E;
         }
         param_0->unk_4F1 = 0;
-        sub_080D7910(0xBBU);
+        PlaySong(0xBBU);
         param_0->unk_528.unk_528_16.unk_528 = 0;
         if ((gEwramData->unk_131B8 & 8) || (4 & gEwramData->unk_1325C.unk_13270))
         {
@@ -2217,7 +2217,7 @@ block_552:
             {
                 param_0->unk_4F4.unk_4F4_32 &= ~0x160;
             }
-            sub_080D7910(0xBBU);
+            PlaySong(0xBBU);
             sp30 = *(s32 *)0x080E1300;
             if (!(gEwramData->unk_131B8 & 0x800) && (param_0->unk_551 != 0x13))
             {

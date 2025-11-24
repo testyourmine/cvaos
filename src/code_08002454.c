@@ -508,7 +508,7 @@ s32 GameModeKonamiLogoUpdate(void)
             {
                 if (gEwramData->konamiCodeInputsCounter == (ARRAY_SIZE(sKonamiCodeInputs) + 1))
                 {
-                    sub_080D7910(0x1AC);
+                    PlaySong(0x1AC);
                     gEwramData->konamiCodeInputsCounter = UCHAR_MAX;
                 }
                 gameMode = GAME_MODE_TITLE_SCREEN;
@@ -969,7 +969,7 @@ s32 GameModeTitleScreenUpdate(void)
             break;
     
         case 1:
-            sub_080D7910(0x1B);
+            PlaySong(0x1B);
             EntityDeleteAll();
             sub_0803D9A8();
             sub_0803E438();
@@ -1232,7 +1232,7 @@ s32 GameModeTitleScreenUpdate(void)
 
             if ((temp_r6->unk_500.unk_500_8.unk_502 == 0) && ((gEwramData->unk_6 != 0) || (gEwramData->inputData.newInput & (KEY_START | KEY_A))))
             {
-                sub_080D7910(0x1010);
+                PlaySong(0x1010);
                 temp_r6->unk_4FC.unk_4FC_8.unk_4FE = 1;
                 gEwramData->gameModeUpdateStage = 9;
                 gEwramData->unk_12 = 0;
@@ -2290,12 +2290,12 @@ s32 sub_08004928(struct EwramData_EntityData *param_0)
 
     if (repeatedInput & (KEY_START | KEY_A))
     {
-        sub_080D7910(0xF3);
+        PlaySong(0xF3);
         var_r6 = 1;
     }
     else if (repeatedInput & KEY_B)
     {
-        sub_080D7910(0xF0);
+        PlaySong(0xF0);
         var_r6 = -1;
     }
 
@@ -2320,7 +2320,7 @@ s32 sub_08004928(struct EwramData_EntityData *param_0)
             {
                 param_0->unk_4EF = 2;
             }
-            sub_080D7910(0xF1);
+            PlaySong(0xF1);
             sub_08040FE0();
             sub_08041318(sub_08041434(param_0->unk_4EF + 0x354), 0);
         }
@@ -2342,7 +2342,7 @@ void sub_080049C4(struct EwramData_EntityData *param_0)
     DMA_FILL_32(3, 0, 0x0600F000, 0x800);
     DMA_FILL_32(3, 0, 0x0600F800, 0x800);
     sub_08006CFC(param_0);
-    sub_080D7910(0x800E);
+    PlaySong(0x800E);
     gEwramData->unk_60.unk_64 = gEwramData->unk_60.unk_65 = 0;
 }
 
@@ -2446,7 +2446,7 @@ s32 GameModeMainMenuUpdate(void)
             gUnk_03002CB0.dispCnt = DCNT_OBJ | DCNT_BG3 | DCNT_BG2 | DCNT_BG1 | DCNT_BG0;
             gDisplayRegisters.bldCnt = BLDCNT_SCREEN_SECOND_TARGET | BLDCNT_BRIGHTNESS_DECREASE_EFFECT | BLDCNT_SCREEN_FIRST_TARGET;
             gDisplayRegisters.bldY = BLDY_MAX_VALUE;
-            sub_080D7910(0xE);
+            PlaySong(0xE);
             gEwramData->unk_60.unk_4CC_0 = 0;
             gEwramData->gameModeUpdateStage += 1;
             gEwramData->unk_12 = 0;
@@ -2498,7 +2498,7 @@ s32 GameModeMainMenuUpdate(void)
             temp_r0_3 = sub_08004928(temp_r7);
             if (temp_r0_3 < 0)
             {
-                sub_080D7910(0x1010);
+                PlaySong(0x1010);
                 gUnk_03002CB0.dispCnt &= ~(DCNT_WIN1 | DCNT_WIN0);
                 gDisplayRegisters.bldY = BLDY_MAX_VALUE;
                 sub_0803D18C(0, 0, 0, 0x10000, 0, 0x20);
@@ -2668,13 +2668,13 @@ s32 GameModeMainMenuUpdate(void)
     
             if (temp_r0_7 == -1)
             {
-                sub_080D7910(0xF0);
+                PlaySong(0xF0);
                 gEwramData->gameModeUpdateStage = 0x46;
                 gEwramData->unk_12 = 0;
             }
             else if (temp_r0_7 == 1)
             {
-                sub_080D7910(0xF4);
+                PlaySong(0xF4);
                 gUnk_03002CB0.dispCnt &= ~DCNT_BG2;
                 gDisplayRegisters.bldCnt |= (BLDCNT_OBJ_FIRST_TARGET_PIXEL | BLDCNT_BG1_FIRST_TARGET_PIXEL | BLDCNT_BG0_FIRST_TARGET_PIXEL);
                 gEwramData->gameModeUpdateStage += 1;
@@ -2682,7 +2682,7 @@ s32 GameModeMainMenuUpdate(void)
             }
             else if (temp_r0_7 == -2)
             {
-                sub_080D7910(0xF4);
+                PlaySong(0xF4);
                 gUnk_03002CB0.dispCnt &= ~DCNT_BG2;
                 gDisplayRegisters.bldCnt = BLDCNT_SCREEN_SECOND_TARGET | BLDCNT_BRIGHTNESS_DECREASE_EFFECT | BLDCNT_SCREEN_FIRST_TARGET;
                 gEwramData->gameModeUpdateStage = 0x14;
@@ -2690,7 +2690,7 @@ s32 GameModeMainMenuUpdate(void)
             }
             else if (temp_r0_7 == -3)
             {
-                sub_080D7910(0xF4);
+                PlaySong(0xF4);
                 gDisplayRegisters.bldCnt = BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_DECREASE_EFFECT;
                 gDisplayRegisters.winIn_H = (WIN1_ALL >> 8) & ~WIN0_BG1;
                 gDisplayRegisters.winIn_L = WIN0_ALL & ~WIN0_BG1;
@@ -2745,7 +2745,7 @@ s32 GameModeMainMenuUpdate(void)
             temp_r0_10 = sub_080083C8(temp_r7);
             if (temp_r0_10 < 0)
             {
-                sub_080D7910(0xF0);
+                PlaySong(0xF0);
                 gEwramData->gameModeUpdateStage += 1;
                 gEwramData->unk_12 = 0;
             }

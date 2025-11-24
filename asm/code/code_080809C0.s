@@ -1091,7 +1091,7 @@ sub_080811CC: @ 0x080811CC
 	adds r0, r6, #0
 	bl sub_080683BC
 	movs r0, #0x71
-	bl sub_080D7910
+	bl PlaySong
 	adds r1, r6, #0
 	adds r1, #0x2c
 	adds r3, r6, #0
@@ -3230,7 +3230,7 @@ _080822FA:
 	movs r0, #0x5a
 	strb r0, [r7, #0xd]
 	ldr r0, _0808230C @ =0x000001CF
-	bl sub_080D7910
+	bl PlaySong
 	bl _08082E92
 	.align 2, 0
 _0808230C: .4byte 0x000001CF
@@ -3772,7 +3772,7 @@ _08082732:
 	strb r0, [r7, #0xb]
 	strb r1, [r7, #0xd]
 	movs r0, #0x72
-	bl sub_080D7910
+	bl PlaySong
 _08082744:
 	adds r0, r7, #0
 	bl sub_0806CF2C
@@ -4513,7 +4513,7 @@ _08082CD8:
 	movs r0, #0x45
 	strb r0, [r7, #0x1b]
 	adds r0, #0xea
-	bl sub_080D7910
+	bl PlaySong
 	b _08082E92
 	.align 2, 0
 _08082D08: .4byte 0x0068FFFF
@@ -4540,7 +4540,7 @@ _08082D16:
 	strb r0, [r7, #0x1b]
 _08082D32:
 	ldr r0, _08082D3C @ =0x0000012F
-	bl sub_080D7910
+	bl PlaySong
 	b _08082E92
 	.align 2, 0
 _08082D3C: .4byte 0x0000012F
@@ -4876,7 +4876,7 @@ _08082FA0:
 	strb r1, [r2, #0xd]
 	movs r0, #0xe7
 	lsls r0, r0, #1
-	bl sub_080D7910
+	bl PlaySong
 _08082FC0:
 	movs r0, #2
 	movs r1, #0
@@ -5033,7 +5033,7 @@ _08083146:
 _08083148:
 	str r0, [r6, #0x48]
 	movs r0, #0x85
-	bl sub_080D7910
+	bl PlaySong
 _08083150:
 	ldrh r0, [r4]
 	cmp r0, #4
@@ -5148,7 +5148,7 @@ _080831FE:
 	strb r0, [r6, #0xb]
 	strb r1, [r6, #0xd]
 	ldr r0, _08083248 @ =0x000001D1
-	bl sub_080D7910
+	bl PlaySong
 	b _0808384E
 	.align 2, 0
 _08083248: .4byte 0x000001D1
@@ -5200,7 +5200,7 @@ _08083272:
 	strb r1, [r6, #0xd]
 	movs r0, #0xe8
 	lsls r0, r0, #1
-	bl sub_080D7910
+	bl PlaySong
 	b _0808384E
 _080832BE:
 	ldrb r0, [r6, #0xd]
@@ -5308,7 +5308,7 @@ _08083360:
 	mov r3, r8
 	bl sub_080858B8
 	movs r0, #0x67
-	bl sub_080D7910
+	bl PlaySong
 _0808338E:
 	ldrb r0, [r6, #0xd]
 	adds r1, r0, #1
@@ -5536,7 +5536,7 @@ _080834F2:
 	mov r3, r8
 	bl sub_080858B8
 	movs r0, #0x67
-	bl sub_080D7910
+	bl PlaySong
 _08083558:
 	ldrb r0, [r6, #0xd]
 	adds r1, r0, #1
@@ -5801,7 +5801,7 @@ _080836FE:
 	mov r3, r8
 	bl sub_080858B8
 	movs r0, #0x67
-	bl sub_080D7910
+	bl PlaySong
 _08083764:
 	ldrb r0, [r6, #0xd]
 	adds r1, r0, #1
@@ -5910,7 +5910,7 @@ _08083828:
 	bl sub_08085A48
 	movs r0, #0x98
 	lsls r0, r0, #1
-	bl sub_080D7910
+	bl PlaySong
 	ldrb r0, [r6, #0xb]
 	adds r0, #1
 	strb r0, [r6, #0xb]
@@ -6101,7 +6101,7 @@ _080839AC:
 	cmp r0, #0
 	bne _080839BE
 	movs r0, #0x76
-	bl sub_080D7910
+	bl PlaySong
 _080839BE:
 	ldrb r0, [r4, #0xd]
 	adds r1, r0, #0
@@ -6250,7 +6250,7 @@ sub_08083AC4: @ 0x08083AC4
 	adds r0, r4, #0
 	bl sub_0806B04C
 	ldr r0, _08083B4C @ =0x000001C5
-	bl sub_080D7910
+	bl PlaySong
 	ldr r0, _08083B50 @ =gEwramData
 	ldr r0, [r0]
 	ldr r1, _08083B54 @ =0x000004CC
@@ -6304,7 +6304,7 @@ _08083B60:
 	adds r0, r4, #0
 	bl sub_0806B04C
 	ldr r0, _08083B94 @ =0x000001D3
-	bl sub_080D7910
+	bl PlaySong
 	ldr r0, _08083B98 @ =gEwramData
 	ldr r0, [r0]
 	ldr r1, _08083B9C @ =0x000004CC
@@ -6333,7 +6333,7 @@ _08083BA0:
 	bl sub_080683BC
 	movs r0, #0xe0
 	lsls r0, r0, #1
-	bl sub_080D7910
+	bl PlaySong
 	adds r1, r4, #0
 	adds r1, #0x2c
 	adds r3, r4, #0
@@ -6365,7 +6365,7 @@ _08083BD4:
 	bhi _08083BF4
 	movs r0, #0xe2
 	lsls r0, r0, #1
-	bl sub_080D7910
+	bl PlaySong
 	strb r5, [r4, #0x19]
 	b _08083BF6
 _08083BF4:
@@ -6384,7 +6384,7 @@ _08083BFC:
 	bhi _08083C14
 	movs r0, #0xe9
 	lsls r0, r0, #1
-	bl sub_080D7910
+	bl PlaySong
 _08083C14:
 	pop {r4, r5, r6}
 	pop {r0}
@@ -7666,7 +7666,7 @@ _0808456E:
 	strb r0, [r3]
 _0808458A:
 	ldr r0, _080845A8 @ =0x0000011D
-	bl sub_080D7910
+	bl PlaySong
 	adds r0, r5, #0
 	adds r0, #0x20
 	ldrb r0, [r0]
@@ -8619,7 +8619,7 @@ _08084CB4:
 	movs r3, #1
 	bl sub_08085120
 	movs r0, #0x7a
-	bl sub_080D7910
+	bl PlaySong
 	b _08084D06
 	.align 2, 0
 _08084CEC: .4byte 0xFFEC0000
@@ -9611,7 +9611,7 @@ _08085492:
 	adds r1, r7, #0
 	bl sub_0808550C
 	movs r0, #0x75
-	bl sub_080D7910
+	bl PlaySong
 _080854B0:
 	mov r4, sp
 	adds r0, r5, #0
@@ -9766,7 +9766,7 @@ sub_080855C8: @ 0x080855C8
 	adds r0, #1
 	strb r0, [r5, #0x1b]
 	ldr r0, _08085640 @ =0x00000131
-	bl sub_080D7910
+	bl PlaySong
 _080855F4:
 	ldrb r0, [r5, #0xd]
 	cmp r0, #8
@@ -10571,7 +10571,7 @@ _08085C6C:
 	strb r0, [r5, #0xb]
 	strb r2, [r5, #0xd]
 	movs r0, #0x85
-	bl sub_080D7910
+	bl PlaySong
 	b _08085DFE
 _08085C7A:
 	cmp r2, #1
@@ -11912,7 +11912,7 @@ _08086714:
 	lsls r0, r0, #5
 	str r0, [r4, #0x54]
 	movs r0, #0x87
-	bl sub_080D7910
+	bl PlaySong
 	b _08086870
 	.align 2, 0
 _08086724: .4byte 0xFFFFF400
@@ -12121,7 +12121,7 @@ sub_08086878: @ 0x08086878
 	adds r0, r6, #0
 	bl sub_080683BC
 	movs r0, #0x6e
-	bl sub_080D7910
+	bl PlaySong
 	adds r1, r6, #0
 	adds r1, #0x2c
 	adds r3, r6, #0
@@ -13029,7 +13029,7 @@ _08087006:
 	adds r0, #1
 	strb r0, [r4, #0xb]
 	movs r0, #0x8a
-	bl sub_080D7910
+	bl PlaySong
 	b _08087130
 _08087024:
 	adds r0, r4, #0
@@ -13083,7 +13083,7 @@ _08087060:
 	cmp r0, #0
 	bne _080870C2
 	movs r0, #0x8a
-	bl sub_080D7910
+	bl PlaySong
 	adds r0, r4, #0
 	adds r0, #0x58
 	ldrb r1, [r0]
@@ -13198,7 +13198,7 @@ sub_08087138: @ 0x08087138
 	adds r0, r6, #0
 	bl sub_080683BC
 	movs r0, #0x6d
-	bl sub_080D7910
+	bl PlaySong
 	adds r0, r6, #0
 	movs r1, #0
 	movs r2, #0
@@ -13561,7 +13561,7 @@ _08087454:
 	strb r0, [r6, #0xb]
 	strb r2, [r6, #0xd]
 	movs r0, #0x86
-	bl sub_080D7910
+	bl PlaySong
 	b _08087744
 	.align 2, 0
 _08087464: .4byte 0xFFFE8000
@@ -13593,7 +13593,7 @@ _08087476:
 	b _08087744
 _0808749A:
 	movs r0, #0x86
-	bl sub_080D7910
+	bl PlaySong
 	ldr r0, [r6, #0x20]
 	movs r2, #0x80
 	lsls r2, r2, #9
@@ -13666,7 +13666,7 @@ _08087514:
 	b _08087744
 _08087526:
 	movs r0, #0x86
-	bl sub_080D7910
+	bl PlaySong
 	ldr r0, [r6, #0x20]
 	ldr r2, _0808757C @ =0xFFFF0000
 	adds r0, r0, r2
@@ -13836,7 +13836,7 @@ _08087646:
 	bl sub_0803E86C
 	str r0, [r6, #0x4c]
 	movs r0, #0x85
-	bl sub_080D7910
+	bl PlaySong
 	b _08087744
 _08087688:
 	mov r0, r8
@@ -15910,7 +15910,7 @@ _080886A6:
 	adds r0, r7, #0
 	bl sub_080683BC
 	movs r0, #0x6e
-	bl sub_080D7910
+	bl PlaySong
 	adds r1, r7, #0
 	adds r1, #0x2c
 	adds r3, r7, #0
@@ -17874,7 +17874,7 @@ _080895D8:
 	bne _080895F0
 _080895EA:
 	movs r0, #0x67
-	bl sub_080D7910
+	bl PlaySong
 _080895F0:
 	ldrb r1, [r6, #0xd]
 	adds r0, r1, #0
@@ -18029,7 +18029,7 @@ sub_080896D8: @ 0x080896D8
 	adds r0, r6, #0
 	bl sub_080683BC
 	movs r0, #0x71
-	bl sub_080D7910
+	bl PlaySong
 	adds r1, r6, #0
 	adds r1, #0x2c
 	adds r3, r6, #0
@@ -19332,7 +19332,7 @@ _0808A132:
 	adds r0, r7, #0
 	bl sub_080683BC
 	movs r0, #0x6e
-	bl sub_080D7910
+	bl PlaySong
 	adds r1, r7, #0
 	adds r1, #0x2c
 	adds r3, r7, #0
@@ -22519,7 +22519,7 @@ _0808BB56:
 	adds r3, r4, #0
 	bl sub_0808DDB4
 	movs r0, #0x64
-	bl sub_080D7910
+	bl PlaySong
 	bl _0808C3EC
 	.align 2, 0
 _0808BBB0: .4byte 0xFFFFCD00
@@ -23347,7 +23347,7 @@ _0808C1C4:
 	bl sub_0808DDB4
 _0808C242:
 	movs r0, #0x7c
-	bl sub_080D7910
+	bl PlaySong
 	b _0808C3EC
 	.align 2, 0
 _0808C24C: .4byte 0xFFF80000
@@ -24248,7 +24248,7 @@ _0808C94E:
 	movs r2, #2
 	bl sub_08011F7C
 	movs r0, #0x7f
-	bl sub_080D7910
+	bl PlaySong
 	movs r0, #0
 	mov sb, r0
 _0808CA3A:
@@ -24791,7 +24791,7 @@ _0808CDD6:
 	movs r2, #2
 	bl sub_08011F7C
 	movs r0, #0x7f
-	bl sub_080D7910
+	bl PlaySong
 	movs r0, #0
 	mov sb, r0
 	mov sl, r5
@@ -25280,7 +25280,7 @@ _0808D288:
 	bl sub_0808DEEC
 _0808D2C6:
 	movs r0, #0x86
-	bl sub_080D7910
+	bl PlaySong
 	bl _0808DAEC
 _0808D2D0:
 	adds r0, r7, #0
@@ -25830,7 +25830,7 @@ _0808D6BC:
 	adds r3, r4, #0
 	bl sub_0808DDB4
 	movs r0, #0x75
-	bl sub_080D7910
+	bl PlaySong
 	b _0808DAEC
 	.align 2, 0
 _0808D718: .4byte 0xFFFFFE00
@@ -26050,7 +26050,7 @@ _0808D898:
 	adds r3, r4, #0
 	bl sub_0808DEEC
 	movs r0, #0x85
-	bl sub_080D7910
+	bl PlaySong
 	b _0808DAEC
 _0808D8DE:
 	adds r0, r7, #0
@@ -26134,7 +26134,7 @@ _0808D95E:
 	adds r0, r7, #0
 	bl sub_0808EA98
 	movs r0, #0x7f
-	bl sub_080D7910
+	bl PlaySong
 	b _0808DAEC
 	.align 2, 0
 _0808D990: .4byte 0xFFD60000
@@ -27827,7 +27827,7 @@ _0808E5DC:
 	cmp r1, #7
 	beq _0808E656
 	movs r0, #0x7f
-	bl sub_080D7910
+	bl PlaySong
 _0808E656:
 	ldrb r0, [r6, #0xb]
 	cmp r0, #2
@@ -27922,7 +27922,7 @@ _0808E700:
 	cmp r0, #4
 	bne _0808E710
 	movs r0, #0x6e
-	bl sub_080D7910
+	bl PlaySong
 _0808E710:
 	adds r0, r6, #0
 	bl EntityDelete
@@ -28161,7 +28161,7 @@ _0808E8AC:
 	adds r3, r5, #0
 	bl sub_0806DCC4
 	movs r0, #0x80
-	bl sub_080D7910
+	bl PlaySong
 _0808E902:
 	ldrb r1, [r4, #0xd]
 	movs r0, #3
@@ -28559,7 +28559,7 @@ sub_0808EBD8: @ 0x0808EBD8
 	movs r2, #0
 	bl sub_08042B8C
 	movs r0, #0x69
-	bl sub_080D7910
+	bl PlaySong
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
@@ -29120,7 +29120,7 @@ _0808F03C:
 	cmp r0, #0xb
 	bne _0808F048
 	movs r0, #0x85
-	bl sub_080D7910
+	bl PlaySong
 _0808F048:
 	ldrb r0, [r4, #0xd]
 	adds r1, r0, #1
@@ -29205,7 +29205,7 @@ sub_0808F0A4: @ 0x0808F0A4
 	adds r0, r6, #0
 	bl sub_080683BC
 	movs r0, #0x72
-	bl sub_080D7910
+	bl PlaySong
 	adds r1, r6, #0
 	adds r1, #0x2c
 	adds r3, r6, #0
@@ -30050,7 +30050,7 @@ _0808F77A:
 	cmp r0, #0xb
 	bne _0808F786
 	movs r0, #0x85
-	bl sub_080D7910
+	bl PlaySong
 _0808F786:
 	ldrb r0, [r4, #0xd]
 	adds r1, r0, #1
@@ -30085,7 +30085,7 @@ _0808F7BC:
 	cmp r0, #0xb
 	bne _0808F7C8
 	movs r0, #0x85
-	bl sub_080D7910
+	bl PlaySong
 _0808F7C8:
 	ldrb r0, [r4, #0xd]
 	adds r1, r0, #1
@@ -30177,7 +30177,7 @@ sub_0808F848: @ 0x0808F848
 	bl sub_0806B7D8
 	movs r5, #0
 	movs r0, #0x69
-	bl sub_080D7910
+	bl PlaySong
 	b _0808F890
 _0808F87E:
 	lsls r3, r5, #0x10
@@ -30208,7 +30208,7 @@ _0808F890:
 	adds r0, r4, #0
 	bl sub_080683BC
 	movs r0, #0x72
-	bl sub_080D7910
+	bl PlaySong
 	adds r1, r4, #0
 	adds r1, #0x2c
 	adds r3, r4, #0
@@ -31787,7 +31787,7 @@ _08090590:
 	movs r0, #0x28
 	strb r0, [r7, #0xd]
 	movs r0, #0x6e
-	bl sub_080D7910
+	bl PlaySong
 	b _080908FA
 _080905A2:
 	ldrb r0, [r7, #0xd]

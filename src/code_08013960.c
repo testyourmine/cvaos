@@ -42,10 +42,10 @@ static inline s32 sub_08013960_inline_0(s32 param_0)
     }
     if (temp_r5->unk_90 != 0)
     {
-        sub_080D7910(temp_r5->unk_90 | 0x8000);
+        PlaySong(temp_r5->unk_90 | 0x8000);
     }
     temp_r5->unk_90 = param_0;
-    sub_080D7910(param_0);
+    PlaySong(param_0);
     return 0;
 }
 
@@ -77,7 +77,7 @@ s32 sub_08013960(struct EwramData_unk60 *param_0)
 
     if ((sub_0800190C(temp_r4, temp_r5) != 0) || (sub_08001944(temp_r4, temp_r5) != 0))
     {
-        sub_080D7910(0x1012);
+        PlaySong(0x1012);
         return 0;
     }
 
@@ -88,7 +88,7 @@ s32 sub_08013960(struct EwramData_unk60 *param_0)
         return 0;
     }
 
-    sub_080D7910(0x1011);
+    PlaySong(0x1011);
     temp_r6 = sub_08001894(temp_r4, temp_r5);
     temp_r3 = sub_080018D0(temp_r4, temp_r5);
 
@@ -137,7 +137,7 @@ s32 sub_08013960(struct EwramData_unk60 *param_0)
     {
         if (gEwramData->unk_60.unk_4BE != 0)
         {
-            sub_080D7910(0x1030);
+            PlaySong(0x1030);
         }
     }
     return var_r4;
@@ -165,7 +165,7 @@ void sub_08013B44(void)
     {
         if (var_r4[var_r5] != 0)
         {
-            sub_080D7910(var_r4[var_r5]);
+            PlaySong(var_r4[var_r5]);
         }
         var_r5 -= 1;
     }
@@ -174,7 +174,7 @@ void sub_08013B44(void)
     {
         if (!(gEwramData->unk_60.unk_42C & 0x40000))
         {
-            sub_080D7910(0x1011);
+            PlaySong(0x1011);
         }
     }
 }
@@ -201,7 +201,7 @@ void sub_08013BCC(void)
     {
         if (var_r4[var_r5] != 0)
         {
-            sub_080D7910(var_r4[var_r5] | 0x8000);
+            PlaySong(var_r4[var_r5] | 0x8000);
         }
         var_r5 -= 1;
     }
@@ -210,7 +210,7 @@ void sub_08013BCC(void)
     {
         if (!(gEwramData->unk_60.unk_42C & 0x40000))
         {
-            sub_080D7910(0x1012);
+            PlaySong(0x1012);
         }
     }
 }
@@ -240,7 +240,7 @@ s32 sub_08013C5C(void)
     }
 
     var_r4 = sub_08013960_inline_0(temp_r4);
-    sub_080D7910(0x1012);
+    PlaySong(0x1012);
     return var_r4;
 }
 
@@ -262,10 +262,10 @@ s32 sub_08013CF0(s32 param_0)
     }
     if (temp_r5->unk_90 != 0)
     {
-        sub_080D7910(temp_r5->unk_90 | 0x8000);
+        PlaySong(temp_r5->unk_90 | 0x8000);
     }
     temp_r5->unk_90 = param_0;
-    sub_080D7910(param_0);
+    PlaySong(param_0);
     return 0;
 }
 
@@ -321,7 +321,7 @@ s32 sub_08013D60(s32 param_0)
         var_r4 -= 1;
     }
 
-    sub_080D7910(param_0);
+    PlaySong(param_0);
     return var_r5;
 }
 
@@ -372,7 +372,7 @@ s32 sub_08013DA8(s32 param_0)
             }
             var_r3 -= 1;
         }
-        sub_080D7910(param_0);
+        PlaySong(param_0);
     }
 
     // BUG: No return
@@ -392,9 +392,8 @@ s32 sub_08013E18(s32 param_0)
 
     temp_r1 = &gEwramData->unk_254C4[0];
     var_r4 = 0;
-    var_r2 = 3;
 
-    for (; var_r2 >= 0;)
+    for (var_r2 = 3; var_r2 >= 0; var_r2 -= 1)
     {
         if (temp_r1[var_r2] == param_0)
         {
@@ -402,10 +401,9 @@ s32 sub_08013E18(s32 param_0)
             var_r4 = 1;
             break;
         }
-        var_r2 -= 1;
     }
 
-    sub_080D7910(param_0 | 0x8000);
+    PlaySong(param_0 | 0x8000);
     return var_r4;
 }
 
@@ -420,17 +418,16 @@ void sub_08013E74(void)
     u16 *var_r4;
 
     temp_r4 = gEwramData; // TODO: Fake?
-    sub_080D7910(0x1003);
-    var_r5 = 3;
+    PlaySong(0x1003);
+
     var_r4 = &temp_r4->unk_254C4[0];
-    do
+    for (var_r5 = 3; var_r5 >= 0; var_r5--)
     {
         if (var_r4[var_r5] != 0)
         {
-            sub_080D7910(var_r4[var_r5]);
+            PlaySong(var_r4[var_r5]);
         }
-        var_r5 -= 1;
-    } while (var_r5 >= 0);
+    } 
 }
 
 /**
@@ -444,17 +441,16 @@ void sub_08013EAC(void)
     u16 *var_r4;
 
     temp_r4 = gEwramData; // TODO: Fake?
-    sub_080D7910(0x1002);
-    var_r5 = 3;
+    PlaySong(0x1002);
+
     var_r4 = &temp_r4->unk_254C4[0];
-    do
+    for (var_r5 = 3; var_r5 >= 0; var_r5--)
     {
         if (var_r4[var_r5] != 0)
         {
-            sub_080D7910(var_r4[var_r5] | 0x8000);
+            PlaySong(var_r4[var_r5] | 0x8000);
         }
-        var_r5 -= 1;
-    } while (var_r5 >= 0);
+    } 
 }
 
 /**
@@ -464,22 +460,23 @@ void sub_08013EAC(void)
  */
 void sub_08013EEC(s32 param_0)
 {
-    struct EwramData_unk60 *temp_r4;
-    s32 var_0;
+    // struct EwramData_unk60 *temp_r4;
+    // s32 var_0;
 
-    temp_r4 = &gEwramData->unk_60;
-    var_0 = temp_r4->unk_90;
-    if (var_0 != 0)
-    {
-        if (temp_r4->unk_90 != 0)
-        {
-            sub_080D7910(temp_r4->unk_90 | 0x8000);
-        }
-        temp_r4->unk_90 = 0;
-        sub_080D7910(0);
-    }
+    // temp_r4 = &gEwramData->unk_60;
+    // var_0 = temp_r4->unk_90;
+    // if (var_0 != 0)
+    // {
+    //     if (temp_r4->unk_90 != 0)
+    //     {
+    //         PlaySong(temp_r4->unk_90 | 0x8000);
+    //     }
+    //     temp_r4->unk_90 = 0;
+    //     PlaySong(0);
+    // }
+    sub_08013960_inline_0(0);
     gEwramData->unk_254CC = param_0;
-    sub_080D7910(param_0);
+    PlaySong(param_0);
 }
 
 /**
@@ -490,7 +487,7 @@ void sub_08013F38(void)
 {
     if (gEwramData->unk_254CC != 0)
     {
-        sub_080D7910(gEwramData->unk_254CC | 0x8000);
+        PlaySong(gEwramData->unk_254CC | 0x8000);
         gEwramData->unk_254CC = 0;
     }
 }
@@ -505,7 +502,7 @@ void sub_08013F6C(s32 param_0)
     if (!(gEwramData->unk_60.unk_42C & 0x40000))
     {
         gEwramData->unk_60.unk_42C |= 0x40000;
-        sub_080D7910(param_0);
+        PlaySong(param_0);
     }
 }
 
@@ -539,7 +536,7 @@ s32 GameModeGameOverUpdate(void)
             gEwramData->unk_4 = 0x20;
             gEwramData->gameModeUpdateStage += 1;
             gEwramData->unk_12 = 0;
-            sub_080D7910(0xF);
+            PlaySong(0xF);
             break;
 
         case 1:
@@ -605,7 +602,7 @@ s32 GameModeGameOverUpdate(void)
                 sub_0803CDF0(0x1F, 0x1F, 0x1F, 0x10000, 0, 0x20);
                 gEwramData->gameModeUpdateStage += 1;
                 gEwramData->unk_12 = 0;
-                sub_080D7910(0x1010);
+                PlaySong(0x1010);
             }
             break;
 
@@ -694,7 +691,7 @@ s32 GameModeCreditsUpdate(void)
             break;
 
         case 1:
-            sub_080D7910(0x1A);
+            PlaySong(0x1A);
             sub_0803FD9C((u8 *)0x080E5BC8, VRAM_BASE, 0);
             sub_0803FD9C((u8 *)0x080E5BD0, VRAM_BASE + 0x2000, 0);
             sub_0803FD9C((u8 *)0x080E5BD8, VRAM_BASE + 0x4000, 0);
@@ -732,7 +729,7 @@ s32 GameModeCreditsUpdate(void)
 
             if ((temp_r6->unk_A078.unk_A088 == 0) && (gEwramData->inputData.newInput & (KEY_A | KEY_START)))
             {
-                sub_080D7910(0x1010);
+                PlaySong(0x1010);
                 gDisplayRegisters.bldCnt = BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_INCREASE_EFFECT;
                 gEwramData->unk_4 = 0;
                 gEwramData->gameModeUpdateStage += 1;

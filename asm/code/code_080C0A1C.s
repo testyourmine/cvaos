@@ -743,7 +743,7 @@ _080C0FB6:
 _080C0FC6:
 	movs r0, #0xb2
 	lsls r0, r0, #1
-	bl sub_080D7910
+	bl PlaySong
 	movs r0, #0x80
 	lsls r0, r0, #6
 	str r0, [r4, #0x54]
@@ -811,7 +811,7 @@ _080C1050: .4byte 0xFFFF0000
 _080C1054: .4byte 0xFFFE8000
 _080C1058:
 	ldr r0, _080C10B4 @ =0x00000163
-	bl sub_080D7910
+	bl PlaySong
 	ldr r1, _080C10B8 @ =0x08528922
 	ldrb r0, [r4, #0xc]
 	lsls r0, r0, #1
@@ -875,7 +875,7 @@ sub_080C10BC: @ 0x080C10BC
 	b _080C11B8
 _080C10D6:
 	movs r0, #0x70
-	bl sub_080D7910
+	bl PlaySong
 	adds r0, r6, #0
 	movs r1, #0
 	movs r2, #0
@@ -967,7 +967,7 @@ _080C1188:
 	cmp r0, #0
 	bne _080C1198
 	ldr r0, _080C11AC @ =0x00000165
-	bl sub_080D7910
+	bl PlaySong
 _080C1198:
 	ldr r0, [r6, #0x1c]
 	ldr r1, _080C11B0 @ =0xFFFFFC00
@@ -1936,7 +1936,7 @@ _080C18EE:
 	cmp r6, #0
 	bge _080C18C6
 	movs r0, #0x72
-	bl sub_080D7910
+	bl PlaySong
 	adds r0, r5, #0
 	movs r1, #3
 	movs r2, #0
@@ -3308,7 +3308,7 @@ sub_080C2388: @ 0x080C2388
 	cmp r5, #0
 	bne _080C240E
 	movs r0, #0x72
-	bl sub_080D7910
+	bl PlaySong
 	adds r0, r4, #0
 	bl sub_080683BC
 	adds r0, r4, #0
@@ -4159,7 +4159,7 @@ sub_080C2A18: @ 0x080C2A18
 	cmp r5, #0
 	bne _080C2A9E
 	movs r0, #0x72
-	bl sub_080D7910
+	bl PlaySong
 	adds r0, r4, #0
 	bl sub_080683BC
 	adds r0, r4, #0
@@ -4441,7 +4441,7 @@ _080C2C4C:
 	str r0, [r4, #0x50]
 _080C2C66:
 	movs r0, #0x89
-	bl sub_080D7910
+	bl PlaySong
 	ldrb r0, [r4, #0xa]
 	adds r0, #1
 	strb r0, [r4, #0xa]
@@ -4632,7 +4632,7 @@ sub_080C2DC4: @ 0x080C2DC4
 	strb r0, [r1]
 	movs r0, #0x9d
 	lsls r0, r0, #1
-	bl sub_080D7910
+	bl PlaySong
 	adds r2, r5, #0
 	adds r2, #0x72
 	ldrb r0, [r2]
@@ -5355,7 +5355,7 @@ sub_080C32EC: @ 0x080C32EC
 	movs r0, #0
 	strb r0, [r6, #0xb]
 	movs r0, #0x6d
-	bl sub_080D7910
+	bl PlaySong
 	adds r0, r6, #0
 	bl sub_080C327C
 _080C3364:
@@ -6428,7 +6428,7 @@ sub_080C3B2C: @ 0x080C3B2C
 	lsls r0, r0, #6
 	str r0, [r4, #0x54]
 	ldr r0, _080C3B70 @ =0x00000151
-	bl sub_080D7910
+	bl PlaySong
 	b _080C3BAE
 	.align 2, 0
 _080C3B70: .4byte 0x00000151
@@ -6463,7 +6463,7 @@ _080C3BA0:
 	rsbs r0, r0, #0
 	str r0, [r4, #0x4c]
 	ldr r0, _080C3BD4 @ =0x0000015D
-	bl sub_080D7910
+	bl PlaySong
 _080C3BAE:
 	adds r1, r4, #0
 	adds r1, #0x2c
@@ -6650,7 +6650,7 @@ _080C3D2E:
 	cmp r0, #0
 	bne _080C3D48
 	movs r0, #0x88
-	bl sub_080D7910
+	bl PlaySong
 	adds r1, r6, #0
 	adds r1, #0x65
 	movs r0, #0x12
@@ -6659,7 +6659,7 @@ _080C3D2E:
 _080C3D44: .4byte 0xFFFF7556
 _080C3D48:
 	movs r0, #0x89
-	bl sub_080D7910
+	bl PlaySong
 	adds r1, r6, #0
 	adds r1, #0x65
 	movs r0, #0x1b
@@ -7854,7 +7854,7 @@ sub_080C4624: @ 0x080C4624
 	cmp r0, #0
 	bgt _080C4676
 	movs r0, #0x6b
-	bl sub_080D7910
+	bl PlaySong
 	movs r0, #0
 	strb r0, [r6, #0xb]
 	adds r0, r6, #0
@@ -9006,7 +9006,7 @@ _080C4EF8: .4byte gEwramData
 _080C4EFC: .4byte 0x000004E4
 _080C4F00:
 	movs r0, #0x72
-	bl sub_080D7910
+	bl PlaySong
 	adds r0, r4, #0
 	bl sub_080683BC
 	adds r1, r4, #0
@@ -10198,7 +10198,7 @@ sub_080C580C: @ 0x080C580C
 	b _080C5880
 _080C581C:
 	movs r0, #0x72
-	bl sub_080D7910
+	bl PlaySong
 	adds r0, r4, #0
 	bl sub_080683BC
 	adds r1, r4, #0
@@ -10514,7 +10514,7 @@ _080C5A6A:
 	adds r0, #1
 	strb r0, [r5, #0xa]
 	movs r0, #0x89
-	bl sub_080D7910
+	bl PlaySong
 	b _080C5B06
 _080C5AB4:
 	adds r0, r5, #0
@@ -11099,7 +11099,7 @@ sub_080C5F10: @ 0x080C5F10
 	b _080C5F8A
 _080C5F20:
 	movs r0, #0x72
-	bl sub_080D7910
+	bl PlaySong
 	adds r0, r4, #0
 	bl sub_080683BC
 	adds r1, r4, #0
@@ -11316,7 +11316,7 @@ _080C60D8:
 	cmp r0, #0
 	beq _080C60FA
 	movs r0, #0x78
-	bl sub_080D7910
+	bl PlaySong
 _080C60FA:
 	ldr r0, [sp, #8]
 	add sp, #0xc
@@ -13262,7 +13262,7 @@ _080C6FF6:
 	adds r0, #1
 	strb r0, [r5, #0xb]
 	movs r0, #0x85
-	bl sub_080D7910
+	bl PlaySong
 	b _080C70E8
 _080C7016:
 	ldr r0, [r5, #0x48]
@@ -13415,7 +13415,7 @@ _080C712A:
 	strb r0, [r4, #0x13]
 	mov r6, r8
 	movs r0, #0x85
-	bl sub_080D7910
+	bl PlaySong
 	ldrb r0, [r4, #0xb]
 	adds r0, #1
 	strb r0, [r4, #0xb]
@@ -13515,7 +13515,7 @@ _080C71EE:
 	movs r0, #0
 	strb r0, [r4, #0xd]
 	movs r0, #0x85
-	bl sub_080D7910
+	bl PlaySong
 	b _080C721E
 _080C71FC:
 	ldrb r0, [r4, #0xd]
@@ -13634,7 +13634,7 @@ _080C72DE:
 	cmp r0, #0
 	bne _080C72EE
 	movs r0, #0x85
-	bl sub_080D7910
+	bl PlaySong
 _080C72EE:
 	ldrb r0, [r6, #0xd]
 	adds r1, r0, #1
@@ -13700,7 +13700,7 @@ _080C7376:
 	adds r0, #1
 	strb r0, [r6, #0xb]
 	movs r0, #0x85
-	bl sub_080D7910
+	bl PlaySong
 	b _080C73AC
 _080C7386:
 	ldrb r0, [r6, #0xd]
@@ -13926,7 +13926,7 @@ sub_080C750C: @ 0x080C750C
 	b _080C75BC
 _080C7522:
 	movs r0, #0x72
-	bl sub_080D7910
+	bl PlaySong
 	adds r1, r5, #0
 	adds r1, #0x2c
 	adds r3, r5, #0
@@ -14086,7 +14086,7 @@ _080C765E:
 	adds r0, r6, #0
 	bl sub_080683BC
 	ldr r0, _080C76C8 @ =0x000001C3
-	bl sub_080D7910
+	bl PlaySong
 _080C766A:
 	ldrb r1, [r6, #0x12]
 	ldr r4, _080C76CC @ =gEwramData
@@ -15581,7 +15581,7 @@ sub_080C81AC: @ 0x080C81AC
 	movs r0, #0
 	strb r0, [r6, #0xb]
 	movs r0, #0x6e
-	bl sub_080D7910
+	bl PlaySong
 	adds r0, r6, #0
 	bl sub_080C8968
 	adds r0, r6, #0
@@ -15997,7 +15997,7 @@ _080C8514:
 	cmp r5, #0
 	beq _080C85BE
 	ldr r0, _080C8584 @ =0x00000153
-	bl sub_080D7910
+	bl PlaySong
 	ldrh r0, [r7]
 	adds r0, r0, r5
 	movs r2, #0
@@ -16455,7 +16455,7 @@ sub_080C88B4: @ 0x080C88B4
 	b _080C890E
 _080C88C4:
 	movs r0, #0x6e
-	bl sub_080D7910
+	bl PlaySong
 	adds r0, r4, #0
 	bl sub_080C8968
 	adds r0, r4, #0
@@ -17389,7 +17389,7 @@ sub_080C8FBC: @ 0x080C8FBC
 	movs r0, #0x75
 	bl sub_08013E18
 	movs r0, #0x6e
-	bl sub_080D7910
+	bl PlaySong
 	adds r0, r6, #0
 	bl sub_080C9A24
 	adds r0, r6, #0
@@ -17968,7 +17968,7 @@ _080C947A:
 	cmp r5, #0
 	beq _080C9522
 	ldr r0, _080C94E8 @ =0x00000153
-	bl sub_080D7910
+	bl PlaySong
 	ldrh r0, [r7]
 	adds r0, r0, r5
 	movs r2, #0
@@ -18611,7 +18611,7 @@ _080C998C:
 	movs r0, #0x75
 	bl sub_08013E18
 	movs r0, #0x6e
-	bl sub_080D7910
+	bl PlaySong
 	adds r0, r4, #0
 	bl sub_080C9A24
 	adds r0, r4, #0
@@ -18866,7 +18866,7 @@ _080C9B82:
 	strb r0, [r5, #0xb]
 	strb r1, [r5, #0xc]
 	movs r0, #0x8b
-	bl sub_080D7910
+	bl PlaySong
 	b _080C9D36
 _080C9B92:
 	ldrb r0, [r5, #0xc]
@@ -19124,7 +19124,7 @@ sub_080C9D68: @ 0x080C9D68
 	b _080C9E26
 _080C9D78:
 	movs r0, #0x72
-	bl sub_080D7910
+	bl PlaySong
 	adds r0, r4, #0
 	bl sub_080C9E2C
 	adds r0, r4, #0
@@ -19673,7 +19673,7 @@ _080CA1A2:
 	adds r0, #1
 	strb r0, [r4, #0xc]
 	movs r0, #0x8b
-	bl sub_080D7910
+	bl PlaySong
 _080CA1B2:
 	ldrb r0, [r4, #0xd]
 	subs r0, #1
@@ -19869,7 +19869,7 @@ sub_080CA308: @ 0x080CA308
 	b _080CA3C6
 _080CA318:
 	movs r0, #0x72
-	bl sub_080D7910
+	bl PlaySong
 	adds r0, r4, #0
 	bl sub_080CA3CC
 	adds r0, r4, #0
@@ -22222,7 +22222,7 @@ sub_080CB4F0: @ 0x080CB4F0
 	adds r0, r4, #0
 	bl sub_080CB144
 	movs r0, #0x6b
-	bl sub_080D7910
+	bl PlaySong
 _080CB512:
 	pop {r4}
 	pop {r0}
@@ -22688,7 +22688,7 @@ sub_080CB894: @ 0x080CB894
 	b _080CB8F6
 _080CB8A4:
 	movs r0, #0x70
-	bl sub_080D7910
+	bl PlaySong
 	adds r2, r4, #0
 	adds r2, #0x58
 	ldrb r0, [r2]
@@ -23341,7 +23341,7 @@ _080CBD60:
 	cmp r0, #0
 	bne _080CBDAA
 	movs r0, #0x84
-	bl sub_080D7910
+	bl PlaySong
 _080CBDAA:
 	adds r6, r4, #0
 	adds r6, #0x42
@@ -23520,7 +23520,7 @@ _080CBEF2:
 	orrs r0, r1
 	strb r0, [r2]
 	movs r0, #0x6e
-	bl sub_080D7910
+	bl PlaySong
 	movs r0, #1
 	strb r0, [r6, #0xf]
 	adds r0, r6, #0
@@ -23751,7 +23751,7 @@ _080CC098:
 	cmp r4, #0x1c
 	bls _080CC0D4
 	movs r0, #0x6e
-	bl sub_080D7910
+	bl PlaySong
 _080CC0D4:
 	adds r0, r5, #0
 	movs r1, #1
@@ -23810,7 +23810,7 @@ _080CC118:
 	cmp r6, #0
 	bge _080CC118
 	movs r0, #0x6e
-	bl sub_080D7910
+	bl PlaySong
 	mov r1, sl
 	ldrb r0, [r1]
 	lsls r0, r0, #0x1b
@@ -25317,7 +25317,7 @@ _080CCC64:
 	cmp r0, #0
 	bne _080CCCAE
 	movs r0, #0x84
-	bl sub_080D7910
+	bl PlaySong
 _080CCCAE:
 	adds r6, r5, #0
 	adds r6, #0x42
@@ -25521,7 +25521,7 @@ _080CCE2A:
 	orrs r0, r1
 	strb r0, [r2]
 	movs r0, #0x6e
-	bl sub_080D7910
+	bl PlaySong
 	movs r0, #1
 	strb r0, [r6, #0xf]
 	adds r0, r6, #0
@@ -25752,7 +25752,7 @@ _080CCFD0:
 	cmp r4, #0x1c
 	bls _080CD00C
 	movs r0, #0x6e
-	bl sub_080D7910
+	bl PlaySong
 _080CD00C:
 	adds r0, r5, #0
 	movs r1, #1
@@ -25811,7 +25811,7 @@ _080CD050:
 	cmp r6, #0
 	bge _080CD050
 	movs r0, #0x6e
-	bl sub_080D7910
+	bl PlaySong
 	mov r1, sl
 	ldrb r0, [r1]
 	lsls r0, r0, #0x1b
@@ -27734,7 +27734,7 @@ _080CDF0A:
 _080CDF20:
 	strb r0, [r5, #0xd]
 	movs r0, #0x86
-	bl sub_080D7910
+	bl PlaySong
 	b _080CE132
 _080CDF2A:
 	ldr r0, [r5, #0x40]
@@ -27943,7 +27943,7 @@ _080CE090:
 	cmp r0, #0xf
 	bne _080CE0C4
 	movs r0, #0x86
-	bl sub_080D7910
+	bl PlaySong
 _080CE0C4:
 	ldrb r2, [r5, #0xd]
 	cmp r2, #0xe
@@ -28047,7 +28047,7 @@ _080CE172:
 	adds r0, #1
 	strb r0, [r5, #0xb]
 	movs r0, #0x86
-	bl sub_080D7910
+	bl PlaySong
 _080CE182:
 	ldrh r0, [r6, #6]
 	strb r0, [r5, #0xd]
@@ -28270,7 +28270,7 @@ _080CE332:
 	cmp r0, #0
 	bne _080CE342
 	movs r0, #0x85
-	bl sub_080D7910
+	bl PlaySong
 _080CE342:
 	ldrb r0, [r6, #0xd]
 	adds r1, r0, #1
@@ -28336,7 +28336,7 @@ _080CE3CA:
 	adds r0, #1
 	strb r0, [r6, #0xb]
 	movs r0, #0x86
-	bl sub_080D7910
+	bl PlaySong
 	b _080CE402
 _080CE3DA:
 	ldrb r0, [r6, #0xd]
@@ -28613,9 +28613,9 @@ _080CE5BA:
 	strh r0, [r5, #0x1e]
 _080CE5EE:
 	ldr r0, _080CE678 @ =0x000001BB
-	bl sub_080D7910
+	bl PlaySong
 	movs r0, #0x86
-	bl sub_080D7910
+	bl PlaySong
 _080CE5FA:
 	adds r0, r5, #0
 	movs r1, #5
@@ -28710,7 +28710,7 @@ _080CE6A6:
 	cmp r0, #0xa
 	bne _080CE6BA
 	movs r0, #0x86
-	bl sub_080D7910
+	bl PlaySong
 _080CE6BA:
 	ldrb r0, [r5, #0xd]
 	adds r1, r0, #1
@@ -28956,7 +28956,7 @@ _080CE878:
 	b _080CE9D0
 _080CE87E:
 	movs r0, #0x6e
-	bl sub_080D7910
+	bl PlaySong
 	adds r1, r6, #0
 	adds r1, #0x2c
 	adds r3, r6, #0
@@ -29187,7 +29187,7 @@ _080CEA42:
 	bl sub_080683BC
 	movs r0, #0xdf
 	lsls r0, r0, #1
-	bl sub_080D7910
+	bl PlaySong
 _080CEA50:
 	ldrb r1, [r6, #0x12]
 	ldr r3, _080CEA9C @ =gEwramData
@@ -30130,7 +30130,7 @@ _080CF182:
 	ands r0, r1
 	strb r0, [r2]
 	movs r0, #0x83
-	bl sub_080D7910
+	bl PlaySong
 _080CF1A0:
 	ldrb r1, [r4, #0xb]
 	cmp r1, #0
@@ -30161,7 +30161,7 @@ _080CF1BA:
 	b _080CF28E
 _080CF1D4:
 	movs r0, #0x70
-	bl sub_080D7910
+	bl PlaySong
 	adds r0, r5, #0
 	bl sub_080683BC
 	movs r1, #0
@@ -30774,7 +30774,7 @@ _080CF67C:
 	cmp r0, #1
 	bne _080CF688
 	ldr r0, _080CF6AC @ =0x00000119
-	bl sub_080D7910
+	bl PlaySong
 _080CF688:
 	ldrb r0, [r4, #0xd]
 	cmp r0, #0
@@ -30937,7 +30937,7 @@ _080CF774:
 	cmp r0, #0
 	bne _080CF7D8
 	movs r0, #0x6b
-	bl sub_080D7910
+	bl PlaySong
 _080CF7BC:
 	adds r2, r4, #0
 	adds r2, #0x20
@@ -32462,13 +32462,13 @@ _080D038A:
 	lsls r1, r1, #1
 	adds r1, r1, r4
 	ldrh r0, [r1]
-	bl sub_080D7910
+	bl PlaySong
 _080D03A8:
 	ldrb r0, [r6]
 	cmp r0, #8
 	bne _080D03B4
 	movs r0, #0xfc
-	bl sub_080D7910
+	bl PlaySong
 _080D03B4:
 	ldrb r0, [r6]
 	cmp r0, #7
@@ -32533,7 +32533,7 @@ _080D0414: @ jump table
 	.4byte _080D07D0 @ case 6
 _080D0430:
 	ldr r0, _080D0488 @ =0x00000125
-	bl sub_080D7910
+	bl PlaySong
 	movs r2, #0
 	str r2, [r5, #0x50]
 	str r2, [r5, #0x54]
@@ -32709,7 +32709,7 @@ _080D0568:
 _080D0584:
 	movs r0, #0xf6
 	lsls r0, r0, #1
-	bl sub_080D7910
+	bl PlaySong
 	adds r0, r5, #0
 	bl sub_0803F17C
 	adds r0, r5, #0
@@ -32830,7 +32830,7 @@ _080D066C:
 _080D0672:
 	movs r0, #0x93
 	lsls r0, r0, #1
-	bl sub_080D7910
+	bl PlaySong
 	ldrb r0, [r5, #0xc]
 	adds r0, #1
 	strb r0, [r5, #0xc]
@@ -32895,7 +32895,7 @@ _080D06EE:
 	cmp r4, #0
 	bne _080D0742
 	ldr r0, _080D07C4 @ =0x00000125
-	bl sub_080D7910
+	bl PlaySong
 	str r4, [r5, #0x50]
 	str r4, [r5, #0x54]
 	str r4, [r5, #0x4c]
@@ -33092,14 +33092,14 @@ _080D0866:
 	cmp r0, #8
 	bne _080D088A
 	movs r0, #0xfc
-	bl sub_080D7910
+	bl PlaySong
 	bl RandomNumberGenerator
 	movs r1, #3
 	bl __umodsi3
 	cmp r0, #0
 	bne _080D088A
 	ldr r0, _080D08AC @ =0x000001DF
-	bl sub_080D7910
+	bl PlaySong
 _080D088A:
 	adds r0, r5, #0
 	adds r0, #0x59

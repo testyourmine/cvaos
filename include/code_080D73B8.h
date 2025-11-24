@@ -3,14 +3,14 @@
 
 #include "types.h"
 
-void sub_080D73B8(u16 param_0);
-void sub_080D744C(u16 param_0);
-void sub_080D773C(u16 param_0, u16 param_1, u16 param_2);
-void sub_080D77B0(void);
+void StartSong(u16 song);
+void AudioCommand(u16 command);
+void MPlayVolumeSet(u16 player, u16 step, u16 volume);
+void MPlayVolumeUpdate(void);
 void InitializeAudio(void);
-void sub_080D7900(void);
-void sub_080D7910(u16 param_0);
-void sub_080D7984(void);
-u16 sub_080D79CC(u16 param_0);
+void AudioVSync(void);
+void PlaySong(u16 song);
+void ResetAudio(void);
+u16 GetPlayerUpdatedVolume(u16 player);
 
 #endif /* CODE_080D73B8_H */

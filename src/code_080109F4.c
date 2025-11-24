@@ -700,7 +700,7 @@ void sub_080114FC(void)
 
     if (repeatedInput & (KEY_UP | KEY_LEFT))
     {
-        sub_080D7910(0xF1);
+        PlaySong(0xF1);
         do
         {
             if (--gEwramData->unk_60.unk_3F4 < 0)
@@ -713,7 +713,7 @@ void sub_080114FC(void)
 
     if (repeatedInput & (KEY_DOWN | KEY_RIGHT))
     {
-        sub_080D7910(0xF1);
+        PlaySong(0xF1);
         do
         {
             if (++gEwramData->unk_60.unk_3F4 > 7)
@@ -824,7 +824,7 @@ s32 sub_080116A8(struct EwramData_unk60 *param_0)
             sub_08002324(temp_r0_4, temp_r1_4, var_0);
             if (temp_r8 & (KEY_B | KEY_SELECT))
             {
-                sub_080D7910(0xF0);
+                PlaySong(0xF0);
                 gDisplayRegisters.bldCnt = BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_DECREASE_EFFECT;
                 gDisplayRegisters.winIn_H = 0;
                 gDisplayRegisters.bldY = 0;
@@ -834,7 +834,7 @@ s32 sub_080116A8(struct EwramData_unk60 *param_0)
             }
             else if (temp_r8 & KEY_A)
             {
-                sub_080D7910(0xF4);
+                PlaySong(0xF4);
                 sub_08011F44(temp_r7->var_4, 0, 0, 0x78, 0x80);
                 gDisplayRegisters.bldCnt = BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_DECREASE_EFFECT;
                 gDisplayRegisters.winIn_H = 0;

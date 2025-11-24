@@ -649,7 +649,7 @@ static inline void GameModeSoulTradeMenu_inline_1(struct EwramData_EntityData *t
 void sub_0800997C(struct EwramData_EntityData *param_0)
 {
     struct EwramData_unk25484* unk_25484;
-    sub_080D7910(0xF0);
+    PlaySong(0xF0);
     gEwramData->gameModeUpdateStage = 0xA;
     gEwramData->unk_12 = 0;
 
@@ -842,7 +842,7 @@ s32 sub_08009C8C(struct EwramData_EntityData *param_0)
 
     if (gEwramData->inputData.repeatedInput & KEY_DOWN)
     {
-        sub_080D7910(0xF1);
+        PlaySong(0xF1);
         param_0->unk_4F8.unk_4F8_8.unk_4F8 += 1;
         if (param_0->unk_4F8.unk_4F8_8.unk_4F8 > 2)
         {
@@ -851,7 +851,7 @@ s32 sub_08009C8C(struct EwramData_EntityData *param_0)
     }
     else if (gEwramData->inputData.repeatedInput & KEY_UP)
     {
-        sub_080D7910(0xF1);
+        PlaySong(0xF1);
         param_0->unk_4F8.unk_4F8_8.unk_4F8 -= 1;
         if (param_0->unk_4F8.unk_4F8_8.unk_4F8 < 0)
         {
@@ -870,13 +870,13 @@ s32 sub_08009C8C(struct EwramData_EntityData *param_0)
             
             sub_0800B5E8(param_0);
             sub_08009DD8(param_0);
-            sub_080D7910(0xF3);
+            PlaySong(0xF3);
             return 1;
         }
     }
     else if (gEwramData->inputData.repeatedInput & KEY_B)
     {
-        sub_080D7910(0xF0);
+        PlaySong(0xF0);
         return -1;
     }
 
@@ -1073,7 +1073,7 @@ s32 sub_0800A108(struct EwramData_EntityData *param_0)
 
     if (temp_r4 != param_0->unk_4FC.unk_4FC_16.unk_4FC)
     {
-        sub_080D7910(0xF1);
+        PlaySong(0xF1);
         GameModeSoulTradeMenu_inline_1(param_0, temp_r6 + param_0->unk_4FC.unk_4FC_16.unk_4FC);
     }
     if (var_sl != 0)
@@ -1099,7 +1099,7 @@ s32 sub_0800A108(struct EwramData_EntityData *param_0)
     else if (gEwramData->inputData.repeatedInput & KEY_B)
     {
         sub_08009BB0(param_0);
-        sub_080D7910(0xF0);
+        PlaySong(0xF0);
         return -1;
     }
     else if ((param_0->unk_504.unk_504_8.unk_504 != 0) && (gEwramData->inputData.repeatedInput & KEY_SELECT))
@@ -1161,7 +1161,7 @@ s32 sub_0800A2AC(struct EwramData_EntityData *param_0)
         case 3:
             sub_0800997C_inline_0(param_0->unk_504.unk_504_8.unk_504, param_0->unk_504.unk_504_8.unk_505);
             sub_0800997C_inline_1(param_0->unk_504.unk_504_8.unk_506, param_0->unk_504.unk_504_8.unk_507);
-            sub_080D7910(0xF3);
+            PlaySong(0xF3);
             sub_08009A9C(param_0);
             return 1;
     }
@@ -1251,7 +1251,7 @@ s32 GameModeSoulTradeMenu(void)
             var_r4 = sub_080081AC(temp_r0);
             if (var_r4 == -1)
             {
-                sub_080D7910(0xF0U);
+                PlaySong(0xF0U);
                 EntityDelete(&gEwramData->entityData[3]);
                 EntityDelete(&gEwramData->entityData[6]);
                 EntityDelete(&gEwramData->entityData[5]);
@@ -1262,7 +1262,7 @@ s32 GameModeSoulTradeMenu(void)
             }
             else if (var_r4 != 0)
             {
-                sub_080D7910(0xF4U);
+                PlaySong(0xF4U);
                 gUnk_03002CB0.dispCnt &= 0xFBFF;
                 gDisplayRegisters.bldCnt = 0x853;
                 gDisplayRegisters.bldAlpha = 0x10;
@@ -1456,7 +1456,7 @@ s32 GameModeSoulTradeMenu(void)
             if (gEwramData->inputData.repeatedInput & 3)
             {
                 gEwramData->unk_4 = 0;
-                sub_080D7910(0xF0U);
+                PlaySong(0xF0U);
                 EntityDelete(&gEwramData->entityData[5]);
                 sub_08008314(&gEwramData->entityData[4]);
                 gDisplayRegisters.bldCnt = 0xFF;
@@ -1467,7 +1467,7 @@ s32 GameModeSoulTradeMenu(void)
 
         case 9:
             sub_080D7FD0();
-            sub_080D7910(0xF0U);
+            PlaySong(0xF0U);
             EntityDelete(&gEwramData->entityData[3]);
             EntityDelete(&gEwramData->entityData[6]);
             EntityDelete(&gEwramData->entityData[5]);
@@ -1580,7 +1580,7 @@ s32 GameModeSoulTradeMenu(void)
             sub_08000B64();
             if (gEwramData->inputData.repeatedInput & 0x30)
             {
-                sub_080D7910(0xF1U);
+                PlaySong(0xF1U);
                 gEwramData->unk_12 ^= 1;
             }
     
@@ -2059,7 +2059,7 @@ _0800A534: \n\
 	cmp r4, r0 \n\
 	bne _0800A56C \n\
 	movs r0, #0xf0 \n\
-	bl sub_080D7910 \n\
+	bl PlaySong \n\
 	ldr r4, _0800A564 @ =gEwramData \n\
 	ldr r0, [r4] \n\
 	movs r1, #0xce \n\
@@ -2080,7 +2080,7 @@ _0800A56C: \n\
 	bl _0800B5C4 \n\
 _0800A574: \n\
 	movs r0, #0xf4 \n\
-	bl sub_080D7910 \n\
+	bl PlaySong \n\
 	ldr r2, _0800A5A4 @ =gUnk_03002CB0 \n\
 	ldrh r1, [r2] \n\
 	ldr r0, _0800A5A8 @ =0x0000FBFF \n\
@@ -2753,7 +2753,7 @@ _0800AB48: \n\
 	movs r0, #0 \n\
 	strh r0, [r2, #4] \n\
 	movs r0, #0xf0 \n\
-	bl sub_080D7910 \n\
+	bl PlaySong \n\
 _0800AB52: \n\
 	ldr r0, [r4] \n\
 	movs r3, #0xef \n\
@@ -2784,7 +2784,7 @@ _0800AB90: .4byte gDisplayRegisters \n\
 _0800AB94: \n\
 	bl sub_080D7FD0 \n\
 	movs r0, #0xf0 \n\
-	bl sub_080D7910 \n\
+	bl PlaySong \n\
 	ldr r4, _0800ABDC @ =gEwramData \n\
 	ldr r0, [r4] \n\
 	movs r1, #0xce \n\
@@ -3063,7 +3063,7 @@ _0800ADDC: \n\
 	cmp r0, #0 \n\
 	beq _0800ADFE \n\
 	movs r0, #0xf1 \n\
-	bl sub_080D7910 \n\
+	bl PlaySong \n\
 	ldr r0, [r4] \n\
 	ldrb r1, [r0, #0x12] \n\
 	movs r2, #1 \n\

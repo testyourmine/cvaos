@@ -124,7 +124,7 @@ void VblankInterrupt(void)
     }
 
     INTR_CHECK |= IF_VBLANK;
-    sub_080D7900();
+    AudioVSync();
 }
 
 /**

@@ -630,7 +630,7 @@ s32 GameModeSoundTestMenu(void)
 
             gEwramData->gameModeUpdateStage = 1;
             gEwramData->unk_12 = 0;
-            sub_080D7910(0x1000);
+            PlaySong(0x1000);
             EntityDelete(&gEwramData->entityData[3]);
             EntityDelete(&gEwramData->entityData[2]);
             EntityDelete(&gEwramData->entityData[4]);
@@ -741,15 +741,15 @@ s32 GameModeSoundTestMenu(void)
 
                         if (gEwramData->entityData[2].unk_504.unk_504_16.unk_506[gEwramData->entityData[2].unk_4FC.unk_4FC_16.unk_4FC] != 0)
                         {
-                            sub_080D7910(gEwramData->entityData[2].unk_504.unk_504_16.unk_506[gEwramData->entityData[2].unk_4FC.unk_4FC_16.unk_4FC] | -0x8000);
+                            PlaySong(gEwramData->entityData[2].unk_504.unk_504_16.unk_506[gEwramData->entityData[2].unk_4FC.unk_4FC_16.unk_4FC] | -0x8000);
                         }
 
                         GameModeSoundTestMenu_inline_3(var_r4, gEwramData->entityData[2].unk_4FC.unk_4FC_16.unk_4FC);
-                        sub_080D7910(var_r4);
+                        PlaySong(var_r4);
                         break;
                     
                     case 2:
-                        sub_080D7910(0x1000U);
+                        PlaySong(0x1000U);
                         gEwramData->gameModeUpdateStage = 4;
                         gEwramData->unk_12 = 0;
                         break;
@@ -767,7 +767,7 @@ s32 GameModeSoundTestMenu(void)
                 {
                     GameModeSoundTestMenu_inline_3(0, var_r4_3);
                 }
-                sub_080D7910(0x1000);
+                PlaySong(0x1000);
             }
 
             for (var_r4_3 = 0; var_r4_3 < 2; var_r4_3++)
@@ -1377,7 +1377,7 @@ void sub_0800C7A4(struct EwramData_unk60 *param_0)
     sub_0804C3C8();
     sub_080137B8();
     sub_0801391C();
-    sub_080D7910(0x1000);
+    PlaySong(0x1000);
 
     gEwramData->unk_7864.unk_7864_1 = 1;
     gEwramData->unk_A074_2 = gEwramData->unk_A074_4 = 0;
@@ -1419,7 +1419,7 @@ s32 sub_0800C8C8(void)
             sub_080235C8();
             sub_0802DFF0();
             gEwramData->unk_13168 = 0;
-            sub_080D7910(0x1010);
+            PlaySong(0x1010);
             temp_r6->unk_AC = 0;
             temp_r6->unk_65 += 1;
             sub_0803D18C(0, 0, 0, 0x10000, 0, 0x40);

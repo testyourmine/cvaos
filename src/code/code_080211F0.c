@@ -404,7 +404,7 @@ void sub_08021654(struct Unk_08021654 *param_0)
 
     if ((gEwramData->unk_1325C.unk_13260 & 0x2000))
     {
-        sub_080D7910(0x13B);
+        PlaySong(0x13B);
         sub_08042A7C(0, 0);
         return;
     }
@@ -414,7 +414,7 @@ void sub_08021654(struct Unk_08021654 *param_0)
     }
     if (var_sb != 0)
     {
-        sub_080D7910(0x13B);
+        PlaySong(0x13B);
         sub_08042A7C(0, 0);
         return;
     }
@@ -445,7 +445,7 @@ void sub_08021654(struct Unk_08021654 *param_0)
         gEwramData->unk_131D4 = 1;
     }
     sub_08042A7C(var_r4, 0);
-    sub_080D7910(0xB3);
+    PlaySong(0xB3);
     if ((gEwramData->unk_1325C.unk_13266 == 0) && (gEwramData->unk_1325C.unk_13276 == 0))
     {
         temp_r6_2 = (param_0->unk_2 & (7 << 6)) >> 6;
@@ -456,10 +456,10 @@ void sub_08021654(struct Unk_08021654 *param_0)
             {
                 if ((temp_r6_2 >> var_r4_2) & 1)
                 {
-                    sub_080D7910(0x198);
+                    PlaySong(0x198);
                     sub_080220F8(var_r4_2);
                     gEwramData->unk_1325C.unk_13272[var_r4_2] = sUnk_080E1338[var_r4_2].unk_0;
-                    sub_080D7910(sUnk_080E1338[var_r4_2].unk_1);
+                    PlaySong(sUnk_080E1338[var_r4_2].unk_1);
                 }
             }
             param_0->unk_8++,param_0->unk_8--; // Fake
@@ -537,7 +537,7 @@ void sub_08021994(struct EwramData_EntityData *param_0)
             }
             if (gEwramData->unk_1325C.unk_13276 & 1)
             {
-                sub_080D7910(0xB0);
+                PlaySong(0xB0);
             }
         }
         gEwramData->unk_1325C.unk_13276 -= temp_r5;
@@ -545,7 +545,7 @@ void sub_08021994(struct EwramData_EntityData *param_0)
         {
             gEwramData->unk_1325C.unk_13276 = 0;
             gEwramData->unk_1325C.unk_13270 &= ~0x4;
-            sub_080D7910(0xAF);
+            PlaySong(0xAF);
 
             for (var_r7 = 0; var_r7 < 4; var_r7++)
             {
@@ -1166,10 +1166,10 @@ void sub_080221CC(struct EwramData_EntityData *param_0)
             param_0->unk_556 |= 4;
             sub_08042A54(var_r4_2, temp_r6_2->unk_17);
             temp_r4_3 = &param_0->unk_4F8.unk_4F8_entity->unk_50C;
-            sub_080D7910(sub_08023368(temp_r4_3->unk_50C_8.unk_50C)->unk_18);
+            PlaySong(sub_08023368(temp_r4_3->unk_50C_8.unk_50C)->unk_18);
             if ((temp_r4_3->unk_50C_8.unk_50C == 0) && (1 & RandomNumberGenerator()))
             {
-                sub_080D7910(sUnk_084F1264[RandomNumberGenerator() & 3]);
+                PlaySong(sUnk_084F1264[RandomNumberGenerator() & 3]);
             }
             param_0->drawFunc = (u32 *) sub_0803B9D0;
             param_0->unk_4F1 = 0;
@@ -1310,10 +1310,10 @@ void sub_080224BC(struct EwramData_EntityData *param_0)
             param_0->unk_556 |= 4;
             sub_08042A54(var_r4_2, temp_r7->unk_17);
             temp_r4_3 = &param_0->unk_4F8.unk_4F8_entity->unk_50C;
-            sub_080D7910(sub_08023368(temp_r4_3->unk_50C_8.unk_50C)->unk_18);
+            PlaySong(sub_08023368(temp_r4_3->unk_50C_8.unk_50C)->unk_18);
             if ((temp_r4_3->unk_50C_8.unk_50C == 0) && (RandomNumberGenerator() & 1))
             {
-                sub_080D7910(sUnk_084F1264[RandomNumberGenerator() & 3]);
+                PlaySong(sUnk_084F1264[RandomNumberGenerator() & 3]);
             }
             param_0->drawFunc = (u32 *) sub_0803B9D0;
             param_0->unk_500.unk_500_32 = -0x3000;
@@ -1466,7 +1466,7 @@ void sub_080228F8(struct EwramData_EntityData *param_0)
             temp_r2_2 = &gEwramData->unk_A078[1];
             if (sub_080020A0(var_1 + temp_r2_2->unk_A094.unk_A098.unk_0_0.unk_A09A, param_0->unk_528.unk_528_16.unk_52A + (s16) temp_r2_2->unk_A078.unk_A082 + 2) != 0)
             {
-                sub_080D7910(0x14F);
+                PlaySong(0x14F);
                 param_0->unk_530.unk_530_32 = -(param_0->unk_530.unk_530_32 / 2);
                 param_0->unk_52C.unk_52C_32 += sub_0802D5EC(0x4000);
                 param_0->unk_4EE = 2;
@@ -1518,7 +1518,7 @@ void sub_08022A54(struct EwramData_EntityData *param_0)
         case 0:
             if (temp_r0->unk_50C.unk_50C_8.unk_50C == 0)
             {
-                sub_080D7910(temp_r1->unk_18);
+                PlaySong(temp_r1->unk_18);
             }
             temp_r1_4 = param_0->unk_4F8.unk_4F8_entity;
             temp_r5 = sub_08023368(temp_r1_4->unk_50C.unk_50C_8.unk_50C);
@@ -1646,7 +1646,7 @@ void sub_08022A54(struct EwramData_EntityData *param_0)
                 {
                     sub_08045CEC(param_0->unk_524.unk_524_32 + (var_r0 << 0x10), param_0->unk_528.unk_528_32, 7, 8);
                     param_0->unk_500.unk_500_32 = 1;
-                    sub_080D7910(0x14E);
+                    PlaySong(0x14E);
                 }
             }
             else
@@ -1743,10 +1743,10 @@ void sub_08022DEC(struct EwramData_EntityData *param_0)
             sub_08042A54(var_r4_2, temp_r6->unk_17);
 
             temp_r4_2 = &param_0->unk_4F8.unk_4F8_entity->unk_50C;
-            sub_080D7910(sub_08023368(temp_r4_2->unk_50C_8.unk_50C)->unk_18);
+            PlaySong(sub_08023368(temp_r4_2->unk_50C_8.unk_50C)->unk_18);
             if ((temp_r4_2->unk_50C_8.unk_50C == 0) && (1 & RandomNumberGenerator()))
             {
-                sub_080D7910(sUnk_084F1264[3 & RandomNumberGenerator()]);
+                PlaySong(sUnk_084F1264[3 & RandomNumberGenerator()]);
             }
 
             param_0->drawFunc = (u32 *) sub_0803B9D0;
@@ -1851,7 +1851,7 @@ void sub_08023144(struct EwramData_EntityData *param_0)
                 param_0->unk_4F1 -= 1;
                 if (param_0->unk_4F1 == 0)
                 {
-                    sub_080D7910(sUnk_084F1264[RandomNumberGenerator() & 1]);
+                    PlaySong(sUnk_084F1264[RandomNumberGenerator() & 1]);
                 }
             }
 
@@ -2142,18 +2142,18 @@ void sub_080235C8(void)
         gEwramData->unk_60.unk_4BE = 0;
         if (!(gEwramData->unk_60.unk_42C & 0x40000))
         {
-            sub_080D7910(0x1038);
+            PlaySong(0x1038);
         }
         sub_08013E74();
 
         if (gEwramData->unk_254CC != 0)
         {
-            sub_080D7910(gEwramData->unk_254CC);
+            PlaySong(gEwramData->unk_254CC);
         }
 
         if (gEwramData->unk_254CE != 0)
         {
-            sub_080D7910(gEwramData->unk_254CE);
+            PlaySong(gEwramData->unk_254CE);
         }
         sub_08013E18(0x16E);
     }
@@ -2452,7 +2452,7 @@ void Skill_EvilButcher_Ripper_Use(struct EwramData_EntityData *param_0)
             sub_0804277C(param_0, 5, sub_0802D9BC, 0);
             sub_08042884(param_0, 0x0202FFFF);
             param_0->unk_556 |= 4;
-            sub_080D7910(0xE6U);
+            PlaySong(0xE6U);
             gEwramData->unk_131BE += 1;
             /* fallthrough */
         case 1:
@@ -2508,7 +2508,7 @@ void Skill_EvilButcher_Ripper_Use(struct EwramData_EntityData *param_0)
                     param_0->unk_556 |= 2;
                     if (temp_r0->unk_F == 0)
                     {
-                        sub_080D7910(0x138);
+                        PlaySong(0x138);
                         param_0->unk_4EE = 2;
                     }
                     else
@@ -2801,7 +2801,7 @@ void SkillAxeArmorUse(struct EwramData_EntityData *param_0)
             sub_0804277C(param_0, 5, NULL, 0);
             sub_08042884(param_0, 0x1414F6F6);
             param_0->unk_556 |= 4;
-            sub_080D7910(0xE3);
+            PlaySong(0xE3);
             gEwramData->unk_131BE += 1;
 
             for (var_r4 = 1; var_r4 < 3; var_r4++)
@@ -3105,9 +3105,9 @@ void SkillChronomageUse(struct EwramData_EntityData *param_0)
 
             gEwramData->unk_60.unk_4BE = param_0->unk_500.unk_500_16.unk_502;
             gEwramData->unk_131BE += 1;
-            sub_080D7910(0x1030);
-            sub_080D7910(0x19D);
-            sub_080D7910(0xEC);
+            PlaySong(0x1030);
+            PlaySong(0x19D);
+            PlaySong(0xEC);
             param_0->unk_4EE += 1;
             /* fallthorugh */
         case 1:
@@ -3137,18 +3137,18 @@ void SkillChronomageUse(struct EwramData_EntityData *param_0)
 
             if (!(gEwramData->unk_60.unk_42C & 0x40000))
             {
-                sub_080D7910(0x1038);
+                PlaySong(0x1038);
             }
             sub_08013E74();
 
             if (gEwramData->unk_254CC != 0)
             {
-                sub_080D7910(gEwramData->unk_254CC);
+                PlaySong(gEwramData->unk_254CC);
             }
 
             if (gEwramData->unk_254CE != 0)
             {
-                sub_080D7910(gEwramData->unk_254CE);
+                PlaySong(gEwramData->unk_254CE);
             }
             sub_08013E18(0x16E);
 
@@ -3265,7 +3265,7 @@ void SkillValkyrieUse(struct EwramData_EntityData *param_0)
             sub_0804277C(param_0, 5, NULL, 0);
             param_0->unk_556 |= 4;
             param_0->unk_556 &= ~2;
-            sub_080D7910(0x1AF);
+            PlaySong(0x1AF);
             param_0->unk_4EE += 1;
             /* fallthrough */
         case 1:
@@ -3364,7 +3364,7 @@ void SkillKillerDollUse(struct EwramData_EntityData *param_0)
             param_0->unk_540 = 0xD;
             param_0->unk_53D_1 = 1;
 
-            sub_080D7910(0xE5);
+            PlaySong(0xE5);
             gEwramData->unk_131BE += 1;
             gEwramData->unk_13168 = param_0;
             sub_08031EA4(param_0, temp_r8, 8, -0x10);
@@ -3504,7 +3504,7 @@ void SkillNemesisUse(struct EwramData_EntityData *param_0)
             param_0->unk_53D_1 = 1;
 
             gEwramData->unk_131BE += 1;
-            sub_080D7910(0x97);
+            PlaySong(0x97);
             gEwramData->unk_13168 = 0;
             param_0->unk_508.unk_508_16.unk_508 = 0x12C;
             param_0->unk_4EE += 1;
