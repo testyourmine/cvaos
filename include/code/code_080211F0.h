@@ -127,5 +127,7 @@ extern void sub_0802D9BC(struct EwramData_EntityData *param_0, struct EwramData_
 extern void sub_0802DA14(struct EwramData_EntityData *param_0, struct EwramData_EntityData *param_1); // TODO: verify types
 extern void sub_0802DA1C(struct EwramData_EntityData *param_0);
 extern void sub_0802DFF0(void);
+extern void sub_08031EA4(struct EwramData_EntityData *param_0, struct EwramData_EntityData *param_1, s32 param_2, s32 param_3); // TODO: param_2/param_3 should be u16
+extern void sub_080321C4(void);
 
 #endif /* CODE_080211F0_H */

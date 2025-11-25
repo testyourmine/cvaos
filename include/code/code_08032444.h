@@ -1,12 +1,10 @@
-#ifndef CODE_08030A24_H
-#define CODE_08030A24_H
+#ifndef CODE_08032444_H
+#define CODE_08032444_H
 
 #include "types.h"
 #include "structs/ewram.h"
 #include "structs/main.h"
 
-extern void sub_08031EA4(struct EwramData_EntityData *param_0, struct EwramData_EntityData *param_1, s32 param_2, s32 param_3); // TODO: param_2/param_3 should be u16
-extern void sub_080321C4(void);
 extern void sub_08032588(u8 param_0, s32 param_1, s32 param_2, s32 param_3);
 extern u8 sub_080326B8(s32 param_0, s32 param_1);
 extern void sub_0803278C(s32 param_0, s32 param_1, s32 param_2);
@@ -92,4 +90,4 @@ extern void sub_08040898(s32 param_0, u16 param_1);
 extern void sub_0804090C(u16 param_0, u16 param_1);
 extern void sub_08040970(u16 param_0, u16 param_1, u16 param_2, u16 param_3);
 
-#endif /* CODE_08030A24_H */
+#endif /* CODE_08032444_H */
