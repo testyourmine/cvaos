@@ -14,18 +14,11 @@ SECTIONS {
     iwram (NOLOAD) : ALIGN(4) {
         . = 0x000020D8; src/code_080D73B8.o(.bss);
 
-        . = 0x00002140; src/agb_sram.o(.bss);
+        src/agb_sram.o(.bss);
 
-        . = 0x00002260; gMPlayTrack_0 = .;
-        . = 0x00002490; gMPlayTrack_1 = .;
-        . = 0x00002620; gMPlayTrack_2 = .;
-        . = 0x00002670; gMPlayTrack_3 = .;
-        . = 0x000026C0; gMPlayTrack_4 = .;
-        . = 0x00002710; gMPlayTrack_5 = .;
-        . = 0x00002760; gMPlayTrack_6 = .;
-        . = 0x000027B0; gMPlayTrack_7 = .;
+        asm/sound_data.o(.bss);
 
-        . = 0x00002800; *libgcc.a:*.o(.bss);
+        *libgcc.a:*.o(.bss);
         *libc.a:*.o(.bss);
 
         . = 0x000028D8; SoundMainRAM_Buffer = .;

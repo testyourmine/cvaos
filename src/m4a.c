@@ -6,14 +6,14 @@
 
 #define SOUND_INFO_PTR (*(struct SoundMixerState **)0x3007FF0)
 
-EWRAM_DATA struct MP2KTrack gMPlayTrack_0[7] = {}; // 0x03002260
-EWRAM_DATA struct MP2KTrack gMPlayTrack_1[5] = {}; // 0x03002490
-EWRAM_DATA struct MP2KTrack gMPlayTrack_2[1] = {}; // 0x03002620
-EWRAM_DATA struct MP2KTrack gMPlayTrack_3[1] = {}; // 0x03002670
-EWRAM_DATA struct MP2KTrack gMPlayTrack_4[1] = {}; // 0x030026C0
-EWRAM_DATA struct MP2KTrack gMPlayTrack_5[1] = {}; // 0x03002710
-EWRAM_DATA struct MP2KTrack gMPlayTrack_6[1] = {}; // 0x03002760
-EWRAM_DATA struct MP2KTrack gMPlayTrack_7[1] = {}; // 0x030027B0
+// EWRAM_DATA struct MP2KTrack gMPlayTrack_0[7] = {}; // 0x03002260
+// EWRAM_DATA struct MP2KTrack gMPlayTrack_1[5] = {}; // 0x03002490
+// EWRAM_DATA struct MP2KTrack gMPlayTrack_2[1] = {}; // 0x03002620
+// EWRAM_DATA struct MP2KTrack gMPlayTrack_3[1] = {}; // 0x03002670
+// EWRAM_DATA struct MP2KTrack gMPlayTrack_4[1] = {}; // 0x030026C0
+// EWRAM_DATA struct MP2KTrack gMPlayTrack_5[1] = {}; // 0x03002710
+// EWRAM_DATA struct MP2KTrack gMPlayTrack_6[1] = {}; // 0x03002760
+// EWRAM_DATA struct MP2KTrack gMPlayTrack_7[1] = {}; // 0x030027B0
 
 BSS_CODE ALIGNED(4) char SoundMainRAM_Buffer[0x380] = { 0 };  // 0x030028D8
 
