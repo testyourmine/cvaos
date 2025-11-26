@@ -660,7 +660,7 @@ struct EwramData_unk25484 {
 struct EwramData_unk1325C {
     /* 0x1325C */ u32 unk_1325C;
     /* 0x13260 */ u32 unk_13260;
-    /* 0x13264 */ u8 pad_13264[0x13266 - 0x13264];
+    /* 0x13264 */ u16 unk_13264;
     /* 0x13266 */ u8 unk_13266;
     /* 0x13267 */ u8 unk_13267;
     /* 0x13268 */ u8 unk_13268;
@@ -680,8 +680,27 @@ struct EwramData_unk1325C {
     /* 0x1327E */ u16 unk_1327E;
     /* 0x13280 */ u16 unk_13280;
     /* 0x13282 */ u16 unk_13282[4];
-    /* 0x1328A */ u8 pad_1328A[0x1328C - 0x1328A];
-}; /* size = 0x30 */
+    /* 0x1328A */ u8 pad_1328A[0x13290 - 0x1328A];
+    /* 0x13290 */ u32 unk_13290; // Type?
+    /* 0x13294 */ u8 unk_13294[0x18]; // Size?
+    /* 0x132AC */ u8 pad_132AC[0x132B1 - 0x132AC];
+    /* 0x132B1 */ u8 unk_132B1;
+    /* 0x132B2 */ u8 unk_132B2;
+    /* 0x132B3 */ u8 unk_132B3;
+    /* 0x132B4 */ u8 unk_132B4;
+    /* 0x132B5 */ u8 pad_132B5[0x132EF - 0x132B5];
+    /* 0x132EF */ u8 unk_132EF;
+    /* 0x132F0 */ u8 pad_132F0[0x1331C - 0x132F0];
+    /* 0x1331C */ u8 unk_1331C[2][0x1C]; // TODO: type
+    /* 0x13354 */ u8 unk_13354[2][0xD]; // TODO: type
+    /* 0x1336E */ u8 unk_1336E[2][0x12]; // TODO: type
+    /* 0x13392 */ u8 unk_13392[2][0x3]; // TODO: type
+    /* 0x13398 */ u16 unk_13398;
+    /* 0x1339A */ u16 unk_1339A;
+    /* 0x1339C */ u16 unk_1339C;
+    /* 0x1339E */ u16 unk_1339E;
+    /* 0x133A0 */ u8 pad_133A0[0x133EC - 0x133A0];
+}; /* size = 0x190 */
 
 struct EwramData_unkFEC8 {
     /* 0x0FEC8 */ s32 unk_FEC8;
@@ -842,22 +861,8 @@ struct EwramData {
     /* 0x13227 */ u8 pad_13227[0x1325C - 0x13227];
 
     /* 0x1325C */ struct EwramData_unk1325C unk_1325C;
-    /* 0x1328C */ u8 pad_1328C[0x13290 - 0x1328C];
-    /* 0x13290 */ u32 unk_13290; // Type?
-    /* 0x13294 */ u8 unk_13294[0x18]; // Size?
-    /* 0x132AC */ u8 pad_132AC[0x132B1 - 0x132AC];
-    /* 0x132B1 */ u8 unk_132B1;
-    /* 0x132B2 */ u8 unk_132B2;
-    /* 0x132B3 */ u8 unk_132B3;
-    /* 0x132B4 */ u8 unk_132B4;
-    /* 0x132B5 */ u8 pad_132B5[0x132EF - 0x132B5];
-    /* 0x132EF */ u8 unk_132EF;
-    /* 0x132F0 */ u8 pad_132F0[0x13398 - 0x132F0];
-    /* 0x13398 */ u16 unk_13398;
-    /* 0x1339A */ u16 unk_1339A;
-    /* 0x1339C */ u16 unk_1339C;
-    /* 0x1339E */ u16 unk_1339E;
-    /* 0x133A0 */ u8 pad_133A0[0x133EE - 0x133A0];
+
+    /* 0x133EC */ u8 pad_133EC[0x133EE - 0x133EC];
     /* 0x133EE */ s16 unk_133EE;
     /* 0x133F0 */ s16 unk_133F0;
     /* 0x133F2 */ u8 unk_133F2; // what's going on here?

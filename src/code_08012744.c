@@ -25,7 +25,7 @@
 
 static inline void sub_080135C0_inline(struct EwramData_unk60 *param_0)
 {
-    param_0->unk_A8 = gEwramData->unk_13290;
+    param_0->unk_A8 = gEwramData->unk_1325C.unk_13290;
     param_0->unk_A0 = gEwramData->unk_1325C.unk_13279;
     param_0->unk_A6 = sub_08011E24(param_0, 2);
     param_0->unk_A4 = gEwramData->unk_1325C.unk_13266;
@@ -536,7 +536,7 @@ s32 sub_0801352C(void)
 void sub_080135C0(struct EwramData_unk60 *param_0)
 {
     // TODO: sub_080135C0 is the same as sub_080135C0_inline
-    param_0->unk_A8 = gEwramData->unk_13290;
+    param_0->unk_A8 = gEwramData->unk_1325C.unk_13290;
     param_0->unk_A0 = gEwramData->unk_1325C.unk_13279;
     param_0->unk_A6 = sub_08011E24(param_0, 2);
     param_0->unk_A4 = gEwramData->unk_1325C.unk_13266;

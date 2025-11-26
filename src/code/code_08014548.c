@@ -40,8 +40,8 @@ void sub_08014548(void)
         sub_0804B26C(2, 0);
         sub_0804B26C(0, 0);
         sub_0804B26C(1, 0xFF);
-        gEwramData->unk_132B4 = 1;
-        gEwramData->unk_132EF = 1;
+        gEwramData->unk_1325C.unk_132B4 = 1;
+        gEwramData->unk_1325C.unk_132EF = 1;
         sub_08033DA4();
         sub_0804C3C8();
 
@@ -2236,7 +2236,7 @@ block_552:
         }
         else if (!(param_0->unk_4F4.unk_4F4_32 & 0x20) || (sub_08023424() == 0))
         {
-            if (!(gEwramData->inputData.playerHeldInput & 0xF0) && !((gEwramData->unk_1339A | gEwramData->unk_13398 | gEwramData->unk_1339C | gEwramData->unk_1339E) & gEwramData->inputData.playerNewInput))
+            if (!(gEwramData->inputData.playerHeldInput & 0xF0) && !((gEwramData->unk_1325C.unk_1339A | gEwramData->unk_1325C.unk_13398 | gEwramData->unk_1325C.unk_1339C | gEwramData->unk_1325C.unk_1339E) & gEwramData->inputData.playerNewInput))
             {
                 sp34 = *(s32 *)0x080E12FC;
                 param_0->unk_504.unk_504_16.unk_504 = 0xD;

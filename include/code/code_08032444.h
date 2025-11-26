@@ -5,11 +5,19 @@
 #include "structs/ewram.h"
 #include "structs/main.h"
 
+extern u8 sub_08032444(s32 param_0, s32 param_1);
+extern void sub_080324D0(s32 param_0, s32 param_1, s32 param_2);
 extern void sub_08032588(u8 param_0, s32 param_1, s32 param_2, s32 param_3);
 extern u8 sub_080326B8(s32 param_0, s32 param_1);
 extern void sub_0803278C(s32 param_0, s32 param_1, s32 param_2);
+extern void sub_08032844(s32 param_0, s32 param_1);
+extern void sub_08032938(s32 param_0, s32 param_1);
+extern u32 sub_08032A2C(s32 param_0, s32 param_1);
+extern u8* sub_08032A5C(s32 param_0);
+extern void sub_08032A6C(s32 param_0, s32 param_1, s8 param_2);
 extern u8 sub_08032AB8(s32 param_0);
 extern void sub_08032ADC(s32 param_0, s32 param_1);
+extern u8* sub_08032B20(u8 param_0, s32 param_1); // TODO: return type
 extern u8 sub_08032B88(u8 param_0);
 extern void sub_08032C10(u8 param_0, s32 param_1, s32 param_2, u8 param_3);
 extern void sub_08032CA8(u8 param_0, u8 param_1);

@@ -407,7 +407,7 @@ void sub_08010D60(struct EwramData_unk60 *param_0)
             }
             else
             {
-                if ((gEwramData->unk_132B1 != 0) && (temp_r4_2 == 0 || temp_r4_2 == 1))
+                if ((gEwramData->unk_1325C.unk_132B1 != 0) && (temp_r4_2 == 0 || temp_r4_2 == 1))
                 {
                     if (sub_08010D60_inline_0(param_0, var_r5, var_r7))
                     {
@@ -416,7 +416,7 @@ void sub_08010D60(struct EwramData_unk60 *param_0)
                     }
                 }
 
-                if ((gEwramData->unk_132B2 != 0) && (temp_r4_2 == 3))
+                if ((gEwramData->unk_1325C.unk_132B2 != 0) && (temp_r4_2 == 3))
                 {
                     if (sub_08010D60_inline_0(param_0, var_r5, var_r7))
                     {
@@ -425,7 +425,7 @@ void sub_08010D60(struct EwramData_unk60 *param_0)
                     }
                 }
 
-                if ((gEwramData->unk_132B3 != 0) && (temp_r4_2 == 5))
+                if ((gEwramData->unk_1325C.unk_132B3 != 0) && (temp_r4_2 == 5))
                 {
                     if (sub_08010D60_inline_0(param_0, var_r5, var_r7))
                     {

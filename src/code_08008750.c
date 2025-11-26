@@ -104,12 +104,12 @@ s32 GameModeBossRushMenuUpdate(void)
             gEwramData->unk_60.unk_A1_4 = 1;
             gEwramData->unk_60.unk_37C = -1;
             gEwramData->unk_60.unk_33C[3] &= ~0x40000;
-            DMA_FILL_32(3, 0, gEwramData->unk_13294, 0x8 * 4);
+            DMA_FILL_32(3, 0, gEwramData->unk_1325C.unk_13294, 0x8 * 4);
             if (gEwramData->unk_1325C.unk_13266 == 0)
             {
                 for (var_0 = 0; sUnk_080E0DE4[var_0] != 0xFF; var_0++)
                 {
-                    gEwramData->unk_13294[sUnk_080E0DE4[var_0]] = 1;
+                    gEwramData->unk_1325C.unk_13294[sUnk_080E0DE4[var_0]] = 1;
                 }
                 sub_08033E38(0x28);
             }
