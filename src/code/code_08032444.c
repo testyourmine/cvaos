@@ -685,3 +685,389 @@ void sub_08032A6C(s32 param_0, s32 param_1, s8 param_2)
     }
 }
 
+/**
+ * @brief 32AB8 | To document
+ * 
+ * @param param_0 To document
+ * @return u8 To document
+ */
+u8 sub_08032AB8(s32 param_0)
+{
+    // TODO: better match
+    struct EwramData_unk1325C *temp_r1;
+    s32 temp_r2;
+    u8 *temp_r1_2;
+
+    temp_r1 = &gEwramData->unk_1325C;
+    temp_r2 = param_0 & 7;
+    param_0 = param_0 >> 3;
+    temp_r1_2 = &temp_r1->unk_13392[1][1];
+    return temp_r1_2[param_0] & (1 << temp_r2);
+    // return (&gEwramData->unk_1325C.unk_13392[1][1])[param_0 >> 3] & (1 << (param_0 & 7));
+}
+
+/**
+ * @brief 32ADC | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ */
+void sub_08032ADC(s32 param_0, s32 param_1)
+{
+    struct EwramData_unk1325C *temp_r1;
+    s32 temp_r3;
+    u8 *temp_r2;
+
+    temp_r1 = &gEwramData->unk_1325C;
+    temp_r2 = &temp_r1->unk_13392[1][1 + (param_0 >> 3)];
+    temp_r3 = param_0 & 7;
+    if (param_1 != 0)
+    {
+        *temp_r2 |= (1 << temp_r3);
+    }
+    else
+    {
+        *temp_r2 &= ~(1 << temp_r3);
+    }
+}
+
+extern u8 sUnk_080E1CD0[];
+
+/**
+ * @brief 32B14 | To document
+ * 
+ * @param param_0 To document
+ * @return u8 To document
+ */
+u8 sub_08032B14(s32 param_0)
+{
+    return sUnk_080E1CD0[param_0];
+}
+
+/**
+ * @brief 32B20 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @return u8* To document
+ */
+u8* sub_08032B20(u8 param_0, s32 param_1)
+{
+    // TODO: inline? looks similar to several functions above
+    struct EwramData_unk1325C *temp_r3;
+    u8 *var_r0;
+
+    temp_r3 = &gEwramData->unk_1325C;
+    var_r0 = NULL;
+
+    switch (param_1)
+    {
+        case 0:
+            var_r0 = temp_r3->unk_1331C[param_0];
+            break;
+
+        case 1:
+            var_r0 = temp_r3->unk_13354[param_0];
+            break;
+
+        case 2:
+            var_r0 = temp_r3->unk_1336E[param_0];
+            break;
+
+        case 3:
+            var_r0 = temp_r3->unk_13392[0];
+            break;
+    }
+
+    return var_r0;
+}
+
+/**
+ * @brief 32B88 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @return u8 To document
+ */
+u8 sub_08032B88(u8 param_0, s32 param_1, s32 param_2)
+{
+    // TODO: inline? looks similar to several functions above
+    struct EwramData_unk1325C *temp_r2;
+    u32 var_r1;
+    u8 *var_r4;
+    u8 temp_r1;
+
+    temp_r2 = &gEwramData->unk_1325C;
+    var_r4 = NULL;
+
+    switch (param_1)
+    {
+        case 0:
+            var_r4 = temp_r2->unk_1331C[param_0];
+            break;
+
+        case 1:
+            var_r4 = temp_r2->unk_13354[param_0];
+            break;
+
+        case 2:
+            var_r4 = temp_r2->unk_1336E[param_0];
+            break;
+
+        case 3:
+            var_r4 = temp_r2->unk_13392[0];
+            break;
+    }
+
+    if (var_r4 == NULL)
+    {
+        return 0;
+    }
+
+    var_r1 = var_r4[param_2 >> 1];
+    if (param_2 & 1)
+    {
+        var_r1 = var_r1 >> 4;
+    }
+    else
+    {
+        var_r1 = var_r1 & 0xF;
+    }
+    return var_r1;
+}
+
+/**
+ * @brief 32C10 | To document
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @param param_3 To document
+ */
+void sub_08032C10(u8 param_0, s32 param_1, s32 param_2, s8 param_3)
+{
+    // TODO: inline? looks similar to several functions above
+    struct EwramData_unk1325C *temp_r4;
+    u8 *var_r3;
+
+    temp_r4 = &gEwramData->unk_1325C;
+    var_r3 = NULL;
+
+    switch (param_1)
+    {
+        case 0:
+            var_r3 = temp_r4->unk_1331C[param_0];
+            break;
+
+        case 1:
+            var_r3 = temp_r4->unk_13354[param_0];
+            break;
+
+        case 2:
+            var_r3 = temp_r4->unk_1336E[param_0];
+            break;
+
+        case 3:
+            var_r3 = temp_r4->unk_13392[0];
+            break;
+    }
+
+    if (var_r3 != NULL)
+    {
+        if (param_2 & 1)
+        {
+            var_r3[param_2 >> 1] = (var_r3[param_2 >> 1] & 0xF) | (param_3 << 4);
+        }
+        else
+        {
+            var_r3[param_2 >> 1] = (var_r3[param_2 >> 1] & 0xF0) | param_3;
+        }
+    }
+}
+
+/**
+ * @brief 32CA8 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ */
+void sub_08032CA8(u8 param_0, u8 param_1)
+{
+    struct EwramData_unk60 *var_0;
+
+    var_0 = &gEwramData->unk_60;
+    var_0->unk_A2[0] = param_0;
+    var_0->unk_A2[1] = param_1;
+}
+
+/**
+ * @brief 32CBC | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ */
+void sub_08032CBC(u8 param_0, u8 param_1)
+{
+    struct EwramData_unk60 *var_0;
+
+    var_0 = &gEwramData->unk_60;
+    var_0->unk_A2[param_0] = param_1;
+}
+
+/**
+ * @brief 32CD0 | To document
+ * 
+ */
+void sub_08032CD0(void)
+{
+    gEwramData->unk_60.unk_A2[1] = 0;
+}
+
+extern u8 sUnk_080E1CD4[];
+
+/**
+ * @brief 32CE0 | To document
+ * 
+ */
+void sub_08032CE0(void)
+{
+    struct EwramData_unk60 *var_0;
+    s32 var_r5;
+    s32 var_r4;
+
+    var_0 = &gEwramData->unk_60;
+    var_0->unk_A2[0] = 0;
+
+    for (var_r5 = 0; var_r5 < 3; var_r5++)
+    {
+        var_r4 = sUnk_080E1CD4[var_r5];
+        do
+        {
+            var_r4 -= 1;
+            sub_08032938(var_r5, var_r4);
+        }
+        while (var_r4 != 0);
+    }
+}
+
+/**
+ * @brief 32D18 | To document
+ * 
+ * @param param_0 To document
+ */
+void sub_08032D18(u8 param_0)
+{
+    struct EwramData_unk60 *var_0;
+    s32 var_r5;
+    s32 var_r4;
+
+    var_0 = &gEwramData->unk_60;
+    var_0->unk_A2[0] = param_0;
+    var_0->unk_A2[1] = 0;
+
+    for (var_r5 = 0; var_r5 < 3; var_r5++)
+    {
+        var_r4 = sUnk_080E1CD4[var_r5];
+        do
+        {
+            var_r4 -= 1;
+            sub_08032844(var_r5, var_r4);
+        }
+        while (var_r4 != 0);
+    }
+}
+
+/**
+ * @brief 32D58 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ */
+void sub_08032D58(s32 param_0, s32 param_1)
+{
+    struct EwramData_unk1325C *temp_r5;
+    u8 temp_r2;
+
+    temp_r5 = &gEwramData->unk_1325C;
+
+    temp_r2 = sub_080326B8(param_0, param_1);
+    if (temp_r2 != 0)
+        return;
+
+    switch (param_0)
+    {
+        case 0:
+            if (temp_r5->unk_13269 == (param_1 + 1))
+            {
+                temp_r5->unk_13269 = 0;
+            }
+            break;
+
+        case 1:
+            if (temp_r5->unk_1326A == (param_1 + 1))
+            {
+                temp_r5->unk_1326A = 0;
+            }
+            break;
+
+        case 2:
+            if (temp_r5->unk_1326B == (param_1 + 1))
+            {
+                temp_r5->unk_1326B = 0;
+            }
+            break;
+    }
+}
+
+/**
+ * @brief 32DBC | To document
+ * 
+ * @param param_0 To document
+ */
+void sub_08032DBC(s32 param_0)
+{
+    if (param_0 > 0)
+    {
+        gEwramData->unk_1325C.unk_13264 += param_0;
+        if (gEwramData->unk_1325C.unk_13264 > 0x3E7)
+        {
+            gEwramData->unk_1325C.unk_13264 = 0x3E7;
+        }
+    }
+}
+
+/**
+ * @brief 32DF0 | To document
+ * 
+ * @return s32 To document
+ */
+s32 sub_08032DF0(void)
+{
+    s32 var_r4;
+    s32 var_r5;
+    s32 var_r6;
+    s32 var_r7;
+
+    var_r7 = 0;
+    for (var_r5 = 0; var_r5 < 3; var_r5++)
+    {
+        var_r6 = sUnk_080E1CD4[var_r5];
+        for (var_r4 = 0; var_r4 < var_r6; var_r4++)
+        {
+            if (sub_080326B8(var_r5, var_r4) != 0)
+            {
+                var_r7 += 1;
+            }
+        }
+    }
+
+    var_r6 = 0;
+    for (var_r5 = 0; var_r5 < 3; var_r5++)
+    {
+        var_r6 += sUnk_080E1CD4[var_r5];
+    }
+
+    var_r7 *= 0x3E8;
+    return Div(var_r7, var_r6);
+}
+

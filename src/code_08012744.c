@@ -371,7 +371,7 @@ s32 sub_08013038(s32 param_0, s32 param_1, s32 param_2, s32 param_3)
  */
 s32 sub_08013164(s32 param_0, s32 param_1, s32 param_2)
 {
-    struct EwramData *temp_r4;
+    struct EwramData_unk60 *temp_r4;
     struct EwramData_unk20 *temp_r8;
     struct EwramData **temp_r8_2;
     u32 var_r0;
@@ -382,8 +382,8 @@ s32 sub_08013164(s32 param_0, s32 param_1, s32 param_2)
     s32 var_1;
     s32 var_2;
 
-    temp_r4 = gEwramData;
-    if ((sub_08032B88(0) != 0) && (temp_r4->unk_60.unk_A3 == 0))
+    temp_r4 = &gEwramData->unk_60;
+    if ((sub_08032B88(0, param_1, param_2) != 0) && (temp_r4->unk_A2[1] == 0))
     {
         sub_0803278C(param_1, param_2, -1);
         sub_08032D58(param_1, param_2);

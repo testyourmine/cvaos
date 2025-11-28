@@ -566,8 +566,7 @@ struct EwramData_unk60 {
     /* 0x000A0 */ u8 unk_A0;
     /* 0x000A1 */ u8 unk_A1_0:4;
     /* 0x000A1 */ u8 unk_A1_4:4;
-    /* 0x000A2 */ u8 pad_A2[0xA3 - 0xA2];
-    /* 0x000A3 */ u8 unk_A3;
+    /* 0x000A2 */ u8 unk_A2[2]; // TODO: length?
     /* 0x000A4 */ u8 unk_A4;
     /* 0x000A5 */ u8 unk_A5;
     /* 0x000A6 */ u16 unk_A6;
