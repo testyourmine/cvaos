@@ -245,6 +245,7 @@ static inline s32 Get_unk100D_Bit6_7_inline()
     return gUnk_03002CB0.unk_100D & 0xC0;
 }
 
+/*
 // TODO: try to match https://decomp.me/scratch/DH3wT
 void sub_08014A04(struct EwramData_EntityData *param_0)
 {
@@ -2269,4 +2270,4 @@ block_552:
         param_0->unk_4F4.unk_4F4_32 &= ~0x100000;
     }
 }
-
+*/

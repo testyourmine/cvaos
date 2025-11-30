@@ -5,6 +5,7 @@
 #include "structs/ewram.h"
 #include "structs/main.h"
 
+extern s8 sub_080681D8(void *param_0); // TODO: types?
 extern s32 sub_08068AD4(struct EwramData_EntityData *param_0, s32 param_1, s32 param_2, s32 param_3, s32 param_4);
 extern void sub_08068F48(void);
 extern void sub_0806B1FC(struct EwramData_EntityData *param_0);

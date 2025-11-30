@@ -56,7 +56,7 @@ extern void sub_08021FA4(void);
 extern void sub_08021FEC(s32 param_0);
 extern void sub_08022028(s32 param_0);
 extern void sub_08022060(s32 param_0);
-extern s32 sub_08022088(struct EwramData_unk1316C *param_0, struct EwramData_unk1316C_10 *param_1);
+extern s32 sub_08022088(struct EwramData_EntityData *param_0, void *param_1);
 extern void sub_080220B4(void);
 extern s32 sub_080220CC(void);
 extern s32 sub_080220F0(void);

@@ -962,12 +962,12 @@ void sub_08022060(s32 param_0)
  * @param param_1 To document
  * @return s32 To document
  */
-s32 sub_08022088(struct EwramData_unk1316C *param_0, struct EwramData_unk1316C_10 *param_1)
+s32 sub_08022088(struct EwramData_EntityData *param_0, void *param_1)
 {
     if (gEwramData->unk_1316C == NULL)
     {
         gEwramData->unk_1316C = param_0;
-        param_0->unk_10 = param_1;
+        param_0->unk_4F4.unk_4F4_entity = param_1;
         return 1;
     }
     return 0;
@@ -991,7 +991,7 @@ s32 sub_080220CC(void)
 {
     if (gEwramData->unk_1316C != NULL)
     {
-        return gEwramData->unk_1316C->unk_10->unk_0;
+        return *gEwramData->unk_1316C->unk_4F4.unk_4F4_p32; // TODO: investigate
     }
     return 0;
 }

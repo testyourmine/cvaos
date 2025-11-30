@@ -42,6 +42,7 @@ union EwramData_unk4F8 {
     s32 unk_4F8_32;
     struct EwramData_unk4F8_16 unk_4F8_16;
     struct EwramData_unk4F8_8 unk_4F8_8;
+    s8 unk_4F8_arr8[4];
 };
 
 struct EwramData_unk4FC_8 {
@@ -204,6 +205,8 @@ struct EwramData_unk4F4_16 {
 }; 
 
 union EwramData_unk4F4 {
+    struct EwramData_EntityData *unk_4F4_entity;
+    s32 *unk_4F4_p32; // TODO: investigate
     s32 unk_4F4_32;
     struct EwramData_unk4F4_16 unk_4F4_16;
     struct EwramData_unk4F4_8 unk_4F4_8;
@@ -809,7 +812,7 @@ struct EwramData {
     /* 0x13144 */ u32 unk_13144[8];
     /* 0x13164 */ u8 pad_13164[0x13168 - 0x13164];
     /* 0x13168 */ struct EwramData_EntityData *unk_13168; // type?
-    /* 0x1316C */ struct EwramData_unk1316C *unk_1316C; 
+    /* 0x1316C */ struct EwramData_EntityData *unk_1316C; 
     /* 0x13170 */ struct EwramData_EntityData *unk_13170[1]; //length?
     /* 0x13174 */ u8 pad_13174[0x13190 - 0x13174];
     /* 0x13190 */ struct EwramData_EntityData *unk_13190;
