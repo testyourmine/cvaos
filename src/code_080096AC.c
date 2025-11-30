@@ -1294,7 +1294,7 @@ s32 GameModeSoulTradeMenu(void)
                 EntityDelete(&gEwramData->entityData[3]);
                 EntityDelete(&gEwramData->entityData[6]);
                 EntityDelete(temp_r6);
-                switch (gEwramData->unk_60.unk_4D0)
+                switch (gEwramData->unk_60.language)
                 {
                     default:
                         temp_r4 = sub_0803B800((u8 *)0x082052D8, 0);
