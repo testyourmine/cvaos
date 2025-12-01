@@ -2049,3 +2049,106 @@ void Object01Update(struct EwramData_EntityData *param_0)
         sub_08033C18(param_0);
     }
 }
+
+extern u8 sUnk_080E1DCC[];
+extern u8 sUnk_080E1DE0[];
+extern u8 sUnk_080E1DF4[];
+extern u8 sUnk_080E1E08[];
+
+static inline s32 sub_08033CAC_inline_0(s32 param_0)
+{
+    // (3x + 8) * (x + 1) * (x)
+    // 3x^3 + 11x^2 + 8x
+    return param_0 * (param_0 + 1) * (param_0 * 2 + 8 + param_0);
+}
+
+/**
+ * @brief 33CAC | To document
+ * 
+ * @param param_0 To document
+ * @return s32 To document
+ */
+s32 sub_08033CAC(struct EwramData_unk1325C *param_0)
+{
+    s32 var_r8;
+
+    var_r8 = 0;
+    if (param_0->unk_13279 >= 99)
+    {
+        return 0;
+    }
+
+    for (var_r8 = 0; param_0->unk_13279 < 99; var_r8++)
+    {
+        // Equation is the following form: let x = param_0->unk_13279
+        // (3x + 11) * (x + 2) * (x + 1)
+        // 3x^3 + 20x^2 + 39x + 22
+        if (sub_08033CAC_inline_0(param_0->unk_13279 + 1) > param_0->unk_1328C)
+        {
+            break;
+        }
+
+        param_0->unk_1327E += 12;
+        param_0->unk_13280 += sUnk_080E1E08[param_0->unk_13279 / 5];
+        param_0->unk_13282[0] += sUnk_080E1DCC[param_0->unk_13279 / 5];
+        param_0->unk_13282[1] += sUnk_080E1DE0[param_0->unk_13279 / 5];
+        if (param_0->unk_13279 & 3)
+        {
+            param_0->unk_13282[2] += sUnk_080E1DF4[param_0->unk_13279 / 5];
+        }
+        else
+        {
+            param_0->unk_13282[2] += 1;
+        }
+        param_0->unk_13282[3] += 1;
+        param_0->unk_13279 += 1;
+    }
+    sub_0804AD9C();
+    return var_r8;
+}
+
+
+/**
+ * @brief 33DA4 | To document
+ * 
+ */
+void sub_08033DA4(void)
+{
+    struct EwramData_unk1325C *temp_r1;
+
+    temp_r1 = &gEwramData->unk_1325C;
+    temp_r1->unk_13279 = 1;
+    if (temp_r1->unk_13266 == 0)
+    {
+        temp_r1->unk_1327E = 320;
+        temp_r1->unk_13280 = 80;
+        temp_r1->unk_13282[0] = 10;
+        temp_r1->unk_13282[1] = 12;
+        temp_r1->unk_13282[2] = 11;
+        temp_r1->unk_13282[3] = 9;
+    }
+    else
+    {
+        temp_r1->unk_1327E = 800;
+        temp_r1->unk_13280 = 500;
+        temp_r1->unk_13282[0] = 15;
+        temp_r1->unk_13282[1] = 12;
+        temp_r1->unk_13282[2] = 10;
+        temp_r1->unk_13282[3] = 20;
+    }
+}
+
+/**
+ * @brief 33DFC | To document
+ * 
+ * @param param_0 To document
+ * @return s32 To document
+ */
+s32 sub_08033DFC(s32 param_0)
+{
+    // TODO: sub_08033DFC is the same as sub_08033CAC_inline_0
+
+    // (3x + 8) * (x + 1) * (x)
+    // 3x^3 + 11x^2 + 8x
+    return param_0 * (param_0 + 1) * (param_0 * 2 + 8 + param_0);
+}
