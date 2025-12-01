@@ -13,6 +13,7 @@
 #include "code/code_08014548.h"
 #include "code/code_080211F0.h"
 #include "code/code_08032444.h"
+#include "code/code_08039340.h"
 #include "code/code_08040A38.h"
 #include "code/code_08050A3C.h"
 #include "code/code_08060B98.h"
@@ -700,9 +701,9 @@ void sub_0800FBD8(void)
 
     for (var_r6 = 0; var_r6 < 0x10; var_r6++)
     {
-        if (gEwramData->unk_FEC8[var_r6].unk_FEC8 != -1 && gEwramData->unk_FEC8[var_r6].unk_FECD == 0)
+        if (gEwramData->unk_FEC4[var_r6].unk_FEC8 != -1 && gEwramData->unk_FEC4[var_r6].unk_FECD == 0)
         {
-            sub_0803B980(gEwramData->unk_FEC8[var_r6].unk_FEC8);
+            sub_0803B980(gEwramData->unk_FEC4[var_r6].unk_FEC8);
         }
     }
 }

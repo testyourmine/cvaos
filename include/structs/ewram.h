@@ -705,11 +705,13 @@ struct EwramData_unk1325C {
     /* 0x133A0 */ u8 pad_133A0[0x133EC - 0x133A0];
 }; /* size = 0x190 */
 
-struct EwramData_unkFEC8 {
+struct EwramData_unkFEC4 {
+    /* 0x0FEC4 */ s16 unk_FEC4;
+    /* 0x0FEC6 */ s16 unk_FEC6;
     /* 0x0FEC8 */ s32 unk_FEC8;
     /* 0x0FECC */ u8 unk_FECC;
     /* 0x0FECD */ u8 unk_FECD;
-    /* 0x0FEC8 */ u8 pad_FECE[0xFEDC - 0xFECE];
+    /* 0x0FECE */ u8 pad_FECE[0xFED8 - 0xFECE];
 }; /* size = 0x14 */
 
 struct EwramData_unk10170_C_4_8 {
@@ -737,6 +739,10 @@ struct EwramData_unk10170 {
     u8 pad_0[0xC - 0x0];
     struct EwramData_unk10170_C *unk_C;
 };
+
+struct EwramData_unk19404 {
+    u8 pad_19404[0x1B414 - 0x19404];
+}; /* size = 0x2010 */
 
 struct EwramData {
     /* 0x00000 */ u32 unk_0;
@@ -782,9 +788,9 @@ struct EwramData {
     /* 0x0F0C0 */ u32 unk_F0C0[0x380];
     /* 0x0FEC0 */ s8 unk_FEC0;
     /* 0x0FEC1 */ s8 unk_FEC1;
-    /* 0x0FEC2 */ u8 pad_FEC2[0xFEC8 - 0xFEC2];
-    /* 0x0FEC8 */ struct EwramData_unkFEC8 unk_FEC8[0x10];
-    /* 0x0FEDC */ u8 pad_FEDC[0x10170 - 0x10008];
+    /* 0x0FEC2 */ u8 pad_FEC2[0xFEC4 - 0xFEC2];
+    /* 0x0FEC4 */ struct EwramData_unkFEC4 unk_FEC4[0x10];
+    /* 0x10004 */ u8 pad_10004[0x10170 - 0x10004];
     /* 0x10170 */struct EwramData_unk10170 unk_10170[1]; // todo: length?
     /* 0x10180 */u8 pad_10180[0x115C8 - 0x10180];
 
@@ -872,7 +878,14 @@ struct EwramData {
     /* 0x133F3 */ u8 unk_133F3;
     /* 0x133F4 */ u8 unk_133F4[0x1000];
     /* 0x143F4 */ u8 unk_143F4[0x80]; // Length?
-    /* 0x14474 */ u8 pad_14474[0x25484 - 0x14474];
+    /* 0x14474 */ u8 pad_14474[0x19404 - 0x14474];
+
+    /* 0x19404 */ struct EwramData_unk19404 unk_19404[6]; // TODO: figure out struct
+
+    /* 0x25464 */ s32 unk_25464; // type?
+    /* 0x25468 */ u8 unk_25468;
+    /* 0x25469 */ u8 pad_25469[0x2546C - 0x25469];
+    /* 0x2546C */ void *unk_2546C[6]; // TODO: list of pointers to unk_19404 entries?
 
     /* 0x25484 */ struct EwramData_unk25484 unk_25484[2];
     /* 0x254A4 */ u8 pad_254A4[0x254C4 - 0x254A4];

@@ -75,6 +75,7 @@ SECTIONS {
         asm/code/code_08014548.o(.text);
         asm/code/code_080211F0.o(.text);
         asm/code/code_08032444.o(.text);
+        asm/code/code_08039340.o(.text);
         asm/code/code_08040A38.o(.text);
         asm/code/code_08050A3C.o(.text);
         asm/code/code_08060B98.o(.text);
