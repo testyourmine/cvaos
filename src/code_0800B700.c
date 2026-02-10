@@ -1097,9 +1097,9 @@ s32 GameModeInGameUpdate(void)
                 temp_r7->unk_66 = 0;
                 gEwramData->unk_13226 = 0;
 
-                if (gEwramData->unk_13224 >= 0xB && (gEwramData->unk_4E1 & 0x10))
+                if (gEwramData->unk_13224 >= 0xB && (gEwramData->unk_4DC.unk_4E1 & 0x10))
                 {
-                    if (gEwramData->unk_13224 <= gEwramData->unk_4E2)
+                    if (gEwramData->unk_13224 <= gEwramData->unk_4DC.unk_4E2)
                     {
                         sub_080D7FD0();
                         gEwramData->unk_60.unk_64 = 2;
@@ -1107,7 +1107,7 @@ s32 GameModeInGameUpdate(void)
                     }
                     else
                     {
-                        temp_r7->unk_66 = gEwramData->unk_13224 - gEwramData->unk_4E2;
+                        temp_r7->unk_66 = gEwramData->unk_13224 - gEwramData->unk_4DC.unk_4E2;
                         gEwramData->unk_13226 = 0;
                         temp_r7->unk_64 = 0xD;
                     }
@@ -1180,7 +1180,7 @@ s32 GameModeInGameUpdate(void)
             if (sub_08011A44(gEwramData->unk_13110) == 0)
             {
                 sub_08010244(temp_r7);
-                sub_08034498(0);
+                sub_08034498(NULL);
             }
             else
             {

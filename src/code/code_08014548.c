@@ -110,7 +110,7 @@ void sub_08014628(struct EwramData_EntityData *param_0)
     param_0->drawFunc = (u32 *) sub_08021494;
     sub_0804277C(param_0, 1, sub_080211F4, 0);
     sub_080428B4(param_0, &sUnk_080E12F8);
-    param_0->unk_556 |= 2;
+    param_0->unk_554.unk_556 |= 2;
     gEwramData->unk_1325C.unk_13260 = 0;
 }
 

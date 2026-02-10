@@ -47,14 +47,44 @@ extern void Object01Update(struct EwramData_EntityData *param_0);
 extern s32 sub_08033CAC(struct EwramData_unk1325C *param_0);
 extern void sub_08033DA4(void);
 extern s32 sub_08033DFC(s32 param_0);
+extern s32 sub_08033E10(struct EwramData_unk1325C *param_0);
 extern void sub_08033E38(s32 param_0);
 extern void sub_08033E6C(void);
 extern void sub_08033EA0(void);
+extern void sub_08033F58(struct EwramData_EntityData *param_0);
 extern void sub_0803407C(void);
+
+struct Unk_080340F0_1 {
+    s8 unk_0;
+    s8 unk_1;
+    u8 unk_2;
+    u8 unk_3;
+};
+extern void sub_080340F0(struct EwramData_EntityData *param_0, struct Unk_080340F0_1 *param_1);
+
 extern void sub_080341D0(void);
 extern void sub_0803427C(void);
-extern void sub_08034498(s32 param_0);
+extern void sub_08034498(struct EwramData_EntityData *param_0);
+extern void sub_080344AC(void);
+extern void sub_080344E0(void);
+extern void sub_080344E4(struct EwramData_EntityData *param_0);
 extern void sub_080344F0(struct EwramData_EntityData *param_0);
+extern void sub_08034624(struct EwramData_EntityData *param_0);
+extern void sub_080347AC(struct EwramData_EntityData *param_0);
+extern void sub_08034A48(struct EwramData_EntityData *param_0);
+extern void sub_08034B18(struct EwramData_EntityData *param_0);
+extern void sub_08034CC4(struct EwramData_EntityData *param_0);
+extern void sub_08034E5C(struct EwramData_EntityData *param_0);
+extern void sub_08034F48(struct EwramData_EntityData *param_0);
+
+// TODO: figure out struct
+struct Unk_080E1ED8 {
+    u8 pad_0[0x10 - 0x0];
+};
+extern struct Unk_080E1ED8* sub_08035218(u8 param_0);
+
+extern void sub_08035228(struct EwramData_EntityData *param_0, s32 param_1);
+extern void sub_0803526C(struct EwramData_EntityData *param_0);
 extern struct EwramData_EntityData *sub_080354C8(s32 param_0, s32 param_1, u8 *param_2, struct EwramData_EntityData *param_3); // Types?
 extern struct EwramData_EntityData *sub_080355D0(void);
 extern void sub_08035638(struct EwramData_EntityData *param_0);

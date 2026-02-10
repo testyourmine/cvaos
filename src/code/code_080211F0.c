@@ -1163,8 +1163,8 @@ void sub_080221CC(struct EwramData_EntityData *param_0)
                 var_r4_2 = 1;
             }
             sub_0804277C(param_0, var_r1_2, sub_0802346C, 0);
-            param_0->unk_556 |= 2;
-            param_0->unk_556 |= 4;
+            param_0->unk_554.unk_556 |= 2;
+            param_0->unk_554.unk_556 |= 4;
             sub_08042A54(var_r4_2, temp_r6_2->unk_17);
             temp_r4_3 = &param_0->unk_4F8.unk_4F8_entity->unk_50C;
             PlaySong(sub_08023368(temp_r4_3->unk_50C_8.unk_50C)->unk_18);
@@ -1198,7 +1198,7 @@ void sub_080221CC(struct EwramData_EntityData *param_0)
             {
                 if (!(gEwramData->unk_60.unk_4CC_6) && ((u8) param_0->unk_4FC.unk_4FC_8.unk_4FC != gEwramData->unk_1325C.unk_13268))
                 {
-                    param_0->unk_556 |= 2;
+                    param_0->unk_554.unk_556 |= 2;
                 }
                 else if (temp_r6 != param_0->unk_549)
                 {
@@ -1206,11 +1206,11 @@ void sub_080221CC(struct EwramData_EntityData *param_0)
                     if (gEwramData->unk_10170[param_0->unk_548].unk_C->var_4[param_0->unk_549].unk_4)
                     {
                         sub_08042848(param_0, gEwramData->unk_10170[param_0->unk_548].unk_C->var_4[param_0->unk_549].unk_8);
-                        param_0->unk_556 &= ~2;
+                        param_0->unk_554.unk_556 &= ~2;
                     }
                     else
                     {
-                        param_0->unk_556 |= 2;
+                        param_0->unk_554.unk_556 |= 2;
                     }
                 }
             }
@@ -1307,8 +1307,8 @@ void sub_080224BC(struct EwramData_EntityData *param_0)
                 var_r4_2 = 1;
             }
             sub_0804277C(param_0, var_r1_2, sub_0802346C, 0);
-            param_0->unk_556 |= 2;
-            param_0->unk_556 |= 4;
+            param_0->unk_554.unk_556 |= 2;
+            param_0->unk_554.unk_556 |= 4;
             sub_08042A54(var_r4_2, temp_r7->unk_17);
             temp_r4_3 = &param_0->unk_4F8.unk_4F8_entity->unk_50C;
             PlaySong(sub_08023368(temp_r4_3->unk_50C_8.unk_50C)->unk_18);
@@ -1377,7 +1377,7 @@ void sub_080224BC(struct EwramData_EntityData *param_0)
             sub_0803F17C(param_0);
             if (!(gEwramData->unk_60.unk_4CC_6) && ((u8) param_0->unk_4FC.unk_4FC_8.unk_4FC != gEwramData->unk_1325C.unk_13268))
             {
-                param_0->unk_556 |= 2;
+                param_0->unk_554.unk_556 |= 2;
                 break;
             }
             if (param_0->unk_4F1 != param_0->unk_4FC.unk_4FC_8.unk_4FD)
@@ -1388,11 +1388,11 @@ void sub_080224BC(struct EwramData_EntityData *param_0)
                     if (gEwramData->unk_10170[param_0->unk_548].unk_C->var_4[param_0->unk_549].unk_4)
                     {
                         sub_08042848(param_0, gEwramData->unk_10170[param_0->unk_548].unk_C->var_4[param_0->unk_549].unk_8);
-                        param_0->unk_556 &= ~2;
+                        param_0->unk_554.unk_556 &= ~2;
                     }
                     else
                     {
-                        param_0->unk_556 |= 2;
+                        param_0->unk_554.unk_556 |= 2;
                     }
                 }
                 break;
@@ -1572,8 +1572,8 @@ void sub_08022A54(struct EwramData_EntityData *param_0)
             }
             sub_0804277C(param_0, var_r1_2, sub_080234B0, 0);
             sub_08022A54_inline_0(param_0, 0x0810FCF8);
-            param_0->unk_556 |= 2;
-            param_0->unk_556 |= 4;
+            param_0->unk_554.unk_556 |= 2;
+            param_0->unk_554.unk_556 |= 4;
             sub_08042A54(var_r4_2, (s32) temp_r5->unk_17);
 
             param_0->drawFunc = (u32 *) sub_08023508;
@@ -1622,7 +1622,7 @@ void sub_08022A54(struct EwramData_EntityData *param_0)
             param_0->unk_4F1 += 1;
             if ((param_0->unk_500.unk_500_32 == 0) && (param_0->unk_4F1 == 3))
             {
-                param_0->unk_556 &= ~2;
+                param_0->unk_554.unk_556 &= ~2;
             }
             if (param_0->unk_4F1 > 3)
             {
@@ -1652,7 +1652,7 @@ void sub_08022A54(struct EwramData_EntityData *param_0)
             }
             else
             {
-                param_0->unk_556 |= 2;
+                param_0->unk_554.unk_556 |= 2;
             }
             /* fallthrough */
         default:
@@ -1739,8 +1739,8 @@ void sub_08022DEC(struct EwramData_EntityData *param_0)
                 var_r4_2 = 1;
             }
             sub_0804277C(param_0, var_r1_2, sub_0802346C, 0);
-            param_0->unk_556 |= 2;
-            param_0->unk_556 |= 4;
+            param_0->unk_554.unk_556 |= 2;
+            param_0->unk_554.unk_556 |= 4;
             sub_08042A54(var_r4_2, temp_r6->unk_17);
 
             temp_r4_2 = &param_0->unk_4F8.unk_4F8_entity->unk_50C;
@@ -1773,7 +1773,7 @@ void sub_08022DEC(struct EwramData_EntityData *param_0)
     {
         if (!(gEwramData->unk_60.unk_4CC_6) && ((u8) param_0->unk_4FC.unk_4FC_8.unk_4FC != gEwramData->unk_1325C.unk_13268))
         {
-            param_0->unk_556 |= 2;
+            param_0->unk_554.unk_556 |= 2;
         }
         else if (temp_r6_2 != param_0->unk_549)
         {
@@ -1781,11 +1781,11 @@ void sub_08022DEC(struct EwramData_EntityData *param_0)
             if (gEwramData->unk_10170[param_0->unk_548].unk_C->var_4[param_0->unk_549].unk_4)
             {
                 sub_08042848(param_0, gEwramData->unk_10170[param_0->unk_548].unk_C->var_4[param_0->unk_549].unk_8);
-                param_0->unk_556 &= ~2;
+                param_0->unk_554.unk_556 &= ~2;
             }
             else
             {
-                param_0->unk_556 |= 2;
+                param_0->unk_554.unk_556 |= 2;
             }
         }
     }
@@ -1840,8 +1840,8 @@ void sub_08023144(struct EwramData_EntityData *param_0)
     {
         case 0:
             sub_0804277C(param_0, 3, sub_080211F4, 0);
-            param_0->unk_556 |= 2;
-            param_0->unk_556 |= 4;
+            param_0->unk_554.unk_556 |= 2;
+            param_0->unk_554.unk_556 |= 4;
             sub_08042A54(0, 0x14);
             param_0->unk_4F1 = 0xA;
             param_0->unk_4EE += 1;
@@ -1872,11 +1872,11 @@ void sub_08023144(struct EwramData_EntityData *param_0)
             if (gEwramData->unk_10170[temp_r6->unk_548].unk_C->var_4[temp_r6->unk_549].unk_4 == 2)
             {
                 sub_08042848(param_0, gEwramData->unk_10170[temp_r6->unk_548].unk_C->var_4[temp_r6->unk_549].unk_8 + 4);
-                param_0->unk_556 &= ~2;
+                param_0->unk_554.unk_556 &= ~2;
             }
             else
             {
-                param_0->unk_556 |= 2;
+                param_0->unk_554.unk_556 |= 2;
             }
             break;
     }
@@ -2027,7 +2027,7 @@ void sub_0802346C(struct EwramData_EntityData *param_0, struct EwramData_EntityD
  */
 void sub_080234B0(struct EwramData_EntityData *param_0, struct EwramData_EntityData *param_1)
 {
-    param_0->unk_556 |= 2;
+    param_0->unk_554.unk_556 |= 2;
     param_0->unk_500.unk_500_32 = 1;
 
     if (!(gEwramData->unk_60.unk_4CC_6) || (param_1 == gEwramData->unk_13220))
@@ -2452,7 +2452,7 @@ void Skill_EvilButcher_Ripper_Use(struct EwramData_EntityData *param_0)
             }
             sub_0804277C(param_0, 5, sub_0802D9BC, 0);
             sub_08042884(param_0, 0x0202FFFF);
-            param_0->unk_556 |= 4;
+            param_0->unk_554.unk_556 |= 4;
             PlaySong(0xE6U);
             gEwramData->unk_131BE += 1;
             /* fallthrough */
@@ -2467,7 +2467,7 @@ void Skill_EvilButcher_Ripper_Use(struct EwramData_EntityData *param_0)
                     {
                         param_0->unk_4EE = 4;
                     }
-                    else if ((temp_r2_9->unk_556 & 4) || ((u16) param_0->unk_500.unk_500_16.unk_502 == 0))
+                    else if ((temp_r2_9->unk_554.unk_556 & 4) || ((u16) param_0->unk_500.unk_500_16.unk_502 == 0))
                     {
                         param_0->unk_4EE = 4;
                     }
@@ -2476,7 +2476,7 @@ void Skill_EvilButcher_Ripper_Use(struct EwramData_EntityData *param_0)
                         param_0->unk_4F1 -= 1;
                         if (param_0->unk_4F1 == 0)
                         {
-                            param_0->unk_556 |= 2;
+                            param_0->unk_554.unk_556 |= 2;
                             param_0->unk_4EE = 3;
                             param_0->unk_4F1 = 15;
                         }
@@ -2506,7 +2506,7 @@ void Skill_EvilButcher_Ripper_Use(struct EwramData_EntityData *param_0)
                 {
                     param_0->unk_524.unk_524_32 += var_r0_2 << 0x10;
                     param_0->unk_4F1 = 50;
-                    param_0->unk_556 |= 2;
+                    param_0->unk_554.unk_556 |= 2;
                     if (temp_r0->unk_F == 0)
                     {
                         PlaySong(0x138);
@@ -2638,7 +2638,7 @@ void sub_08023E50(struct EwramData_EntityData *param_0)
             }
             sub_0804277C(param_0, 5, NULL, 0);
             sub_08042884(param_0, 0x1414F6F6);
-            param_0->unk_556 |= 4;
+            param_0->unk_554.unk_556 |= 4;
             gEwramData->unk_131BE += 1;
             /* fallthrough */
         case 1:
@@ -2801,7 +2801,7 @@ void SkillAxeArmorUse(struct EwramData_EntityData *param_0)
 
             sub_0804277C(param_0, 5, NULL, 0);
             sub_08042884(param_0, 0x1414F6F6);
-            param_0->unk_556 |= 4;
+            param_0->unk_554.unk_556 |= 4;
             PlaySong(0xE3);
             gEwramData->unk_131BE += 1;
 
@@ -2938,8 +2938,8 @@ void sub_08024530(struct EwramData_EntityData *param_0)
             sub_08042A54(1, 0x1E);
             sub_0804277C(param_0, 5, sub_0802DA14, 0);
             sub_08042884(param_0, 0x1414F6F6);
-            var_7 = param_0->unk_556; // Fake?
-            param_0->unk_556 = var_7 | 4;
+            var_7 = param_0->unk_554.unk_556; // Fake?
+            param_0->unk_554.unk_556 = var_7 | 4;
             gEwramData->unk_131BE += 1;
             param_0->unk_4EE += 1;
             sp8 = -1;
@@ -3264,8 +3264,8 @@ void SkillValkyrieUse(struct EwramData_EntityData *param_0)
             sub_08042A54(1, 0x3C);
             gEwramData->unk_131BE += 1;
             sub_0804277C(param_0, 5, NULL, 0);
-            param_0->unk_556 |= 4;
-            param_0->unk_556 &= ~2;
+            param_0->unk_554.unk_556 |= 4;
+            param_0->unk_554.unk_556 &= ~2;
             PlaySong(0x1AF);
             param_0->unk_4EE += 1;
             /* fallthrough */
@@ -3324,12 +3324,12 @@ void SkillValkyrieUse(struct EwramData_EntityData *param_0)
     temp_r3_2 = gEwramData->unk_10170[param_0->unk_548].unk_C->var_4[param_0->unk_549].unk_8;
     if (temp_r3_2 != NULL)
     {
-        param_0->unk_556 &= ~2;
+        param_0->unk_554.unk_556 &= ~2;
         sub_08042848(param_0, temp_r3_2);
     }
     else
     {
-        param_0->unk_556 |= 2;
+        param_0->unk_554.unk_556 |= 2;
     }
 }
 

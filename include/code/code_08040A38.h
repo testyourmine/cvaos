@@ -39,6 +39,7 @@ extern s32 sub_08042848(struct EwramData_EntityData *param_0, void *param_1);
 extern s32 sub_08042884(struct EwramData_EntityData *param_0, s32 param_1); // TODO: is param_1 a pointer or value?
 extern s32 sub_080428B4(struct EwramData_EntityData *param_0, void *param_1);
 extern void sub_08042A54(s32 param_0, s32 param_1);
+extern struct Unk_080340F0_1* sub_08042A6C(struct EwramData_EntityData *param_0);
 extern void sub_08042A7C(s32 param_0, u8 param_1);
 extern void sub_080430B0(void);
 extern void sub_0804311C(void); // TODO: arm code, figure out types

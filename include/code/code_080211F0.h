@@ -115,6 +115,7 @@ extern s32 sub_08024C18(struct EwramData_EntityData *param_0, u32 *param_1, u32 
 extern void SkillValkyrieUse(struct EwramData_EntityData *param_0);
 extern void SkillKillerDollUse(struct EwramData_EntityData *param_0);
 extern void SkillNemesisUse(struct EwramData_EntityData *param_0);
+extern u8 sub_0802D208(void);
 
 struct Unk_0802D244 {
     u8 pad_0[0xA - 0x0];
@@ -122,7 +123,20 @@ struct Unk_0802D244 {
 };
 extern struct Unk_0802D244 *sub_0802D244(void); // type?
 
+struct Unk_0802D284 {
+    void *unk_0; // TODO: function signature
+    u16 unk_4;
+    s16 unk_6;
+    u8 pad_8[0xE - 0x8];
+    u16 unk_E;
+};
+extern struct Unk_0802D284* sub_0802D284(u8 param_0);
+
+extern u8 sub_0802D2BC(void);
+extern s32 sub_0802D55C(struct EwramData_EntityData *param_0, s32 param_1);
+extern void sub_0802D590(struct EwramData_EntityData *param_0);
 extern s32 sub_0802D5EC(s32 param_0);
+extern void sub_0802D724(struct EwramData_EntityData *param_0);
 extern void sub_0802D9BC(struct EwramData_EntityData *param_0, struct EwramData_EntityData *param_1); // TODO: verify types
 extern void sub_0802DA14(struct EwramData_EntityData *param_0, struct EwramData_EntityData *param_1); // TODO: verify types
 extern void sub_0802DA1C(struct EwramData_EntityData *param_0);
