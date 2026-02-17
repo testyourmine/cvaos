@@ -173,7 +173,7 @@ s32 GameModeIntroCutsceneUpdate(void)
     struct EwramData_EntityData *temp_r7;
     s32 temp_r2_3;
     struct EwramData_unk68 *temp_r5;
-    struct EwramData_unkA094_0 *temp_r4;
+    struct EwramData_unkA078 *temp_r4;
 
     temp_r5 = &gEwramData->unk_60.unk_68;
     temp_r7 = gEwramData->entityData;
@@ -251,12 +251,12 @@ s32 GameModeIntroCutsceneUpdate(void)
             break;
     
         case 3:
-            temp_r4 = (struct EwramData_unkA094_0 *)&gEwramData->unk_A078[1].unk_A094.unk_A094.unk_A094_0;
+            temp_r4 = &gEwramData->unk_A078[1];
             gDisplayRegisters.bgOfs[1].hOfs = 0;
             sub_0803FC6C(1, 0, -0x1C00);
             sub_0803FC6C(2, 0, -0x3200);
             sub_0803FC6C(3, 0, -0x1000);
-            if (temp_r4->unk_10 == 0)
+            if (temp_r4->yVel.whole == 0)
             {
                 gDisplayRegisters.bldCnt = BLDCNT_SCREEN_SECOND_TARGET | BLDCNT_ALPHA_BLENDING_EFFECT;
                 gEwramData->unk_4 = 0;
@@ -424,10 +424,9 @@ void sub_08008ED0(s32 arg0)
  */
 void sub_08008F40(struct EwramData_EntityData *param_0)
 {
-    struct EwramData_unkA094_2 *temp_r5;
+    struct EwramData_unkA078 *temp_r5;
 
-    temp_r5 = (struct EwramData_unkA094_2 *)&gEwramData->unk_A078[1].unk_A094.unk_A094.unk_A094_2;
-
+    temp_r5 = &gEwramData->unk_A078[1];
     switch (param_0->unk_4EE)
     {
         case 0:
@@ -439,7 +438,7 @@ void sub_08008F40(struct EwramData_EntityData *param_0)
             param_0->unk_4EE += 1;
             /* fallthrough */
         case 1:
-            if (temp_r5->unk_8 < 0x200000)
+            if ((u32)temp_r5->yPos.whole < 0x200000)
             {
                 param_0->unk_53D_3 = 1;
             }
@@ -454,7 +453,7 @@ void sub_08008F40(struct EwramData_EntityData *param_0)
                     param_0->unk_530.unk_530_32 = -0x2E00;
                     break;
             }
-            param_0->unk_528.unk_528_32 += (param_0->unk_530.unk_530_32 - temp_r5->unk_10);
+            param_0->unk_528.unk_528_32 += (param_0->unk_530.unk_530_32 - temp_r5->yVel.whole);
             sub_0803F17C(param_0);
             break;
     }
@@ -494,11 +493,11 @@ void sub_08008FEC(struct EwramData_EntityData *param_0)
  */
 void sub_08009054(struct EwramData_EntityData *param_0)
 {
-    struct EwramData_unkA094_2 *temp_r3;
+    struct EwramData_unkA078 *temp_r3;
     s32 temp_r1_2;
     s32 temp_r1_3;
 
-    temp_r3 = (struct EwramData_unkA094_2 *)&gEwramData->unk_A078[1].unk_A094.unk_A094.unk_A094_2;
+    temp_r3 = &gEwramData->unk_A078[1];
 
     switch (param_0->unk_4EE)
     {
@@ -524,12 +523,13 @@ void sub_08009054(struct EwramData_EntityData *param_0)
             /* fallthrough */
         case 1:
             param_0->unk_524.unk_524_32 += param_0->unk_52C.unk_52C_32;
-            if (temp_r3->unk_8 < 0x200000)
+            if ((u32)temp_r3->yPos.whole < 0x200000)
             {
                 param_0->unk_4F8.unk_4F8_32 = 0x120;
                 param_0->unk_4EE += 1;
             }
             break;
+
         case 2:
             param_0->unk_524.unk_524_32 += param_0->unk_52C.unk_52C_32;
             if (param_0->unk_4F8.unk_4F8_32 != 0)
@@ -548,9 +548,8 @@ void sub_08009054(struct EwramData_EntityData *param_0)
             break;
     }
 
-    // TODO: Fix this to use the proper struct
-    temp_r3 = (struct EwramData_unkA094_2 *)&gEwramData->unk_A078[3].unk_A094.unk_A094.unk_A094_2;
-    param_0->unk_528.unk_528_32 = 0x5A0000 - temp_r3->unk_8;
+    temp_r3 = &gEwramData->unk_A078[3];
+    param_0->unk_528.unk_528_32 = 0x5A0000 - temp_r3->yPos.whole;
 }
 
 /**
@@ -560,10 +559,10 @@ void sub_08009054(struct EwramData_EntityData *param_0)
  */
 void sub_08009178(struct EwramData_EntityData *param_0)
 {
-    struct EwramData_unkA094_2 *temp_r5;
+    struct EwramData_unkA078 *temp_r5;
     s16 temp_r0_2;
 
-    temp_r5 = (struct EwramData_unkA094_2 *)&gEwramData->unk_A078[1].unk_A094.unk_A094.unk_A094_2;
+    temp_r5 = &gEwramData->unk_A078[1];
 
     switch (param_0->unk_4EE)
     {
@@ -586,7 +585,7 @@ void sub_08009178(struct EwramData_EntityData *param_0)
             param_0->unk_4EE += 1;
             /* fallthrough */
         case 1:
-            if (temp_r5->unk_8 > 0x1E0000)
+            if ((u32)temp_r5->yPos.whole > 0x1E0000)
                 break;
 
             PlaySong(0x13E);
@@ -618,12 +617,12 @@ void sub_08009178(struct EwramData_EntityData *param_0)
  */
 void sub_080092A0(struct EwramData_EntityData *param_0)
 {
-    struct EwramData_unkA094_2 *temp_r5;
+    struct EwramData_unkA078 *temp_r5;
     s32 var_r0;
     s32 var_r1;
     s16 temp_r0_2;
 
-    temp_r5 = (struct EwramData_unkA094_2 *)&gEwramData->unk_A078[1].unk_A094.unk_A094.unk_A094_2;
+    temp_r5 = &gEwramData->unk_A078[1];
 
     switch (param_0->unk_4EE)
     {
@@ -659,7 +658,7 @@ void sub_080092A0(struct EwramData_EntityData *param_0)
                 var_r1 += 0xFF;
             }
             param_0->unk_530.unk_530_32 = var_r1 >> 8;
-            param_0->unk_528.unk_528_32 -= 0x1400 - (param_0->unk_530.unk_530_32 - temp_r5->unk_10);
+            param_0->unk_528.unk_528_32 -= 0x1400 - (param_0->unk_530.unk_530_32 - temp_r5->yVel.whole);
             param_0->unk_524.unk_524_32 += param_0->unk_52C.unk_52C_32;
             sub_0803F17C(param_0);
             sub_0803E058(0, param_0->unk_500.unk_500_32, param_0->unk_500.unk_500_32, 0, 0, param_0->unk_53C_0);

@@ -76,7 +76,7 @@ void sub_0800CB00(void)
 void sub_0800CB8C(s32 param_0, s32 param_1, s32 param_2, s32 param_3)
 {
     u32 sp4;
-    struct EwramData_unkA078_0 *sp8;
+    struct EwramData_unkA078 *sp8;
     s32 temp_r0;
     s32 var_r5_2;
     s32 var_sb;
@@ -88,7 +88,7 @@ void sub_0800CB8C(s32 param_0, s32 param_1, s32 param_2, s32 param_3)
     var_r6 = gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
 
     temp_r7 = &gDisplayRegisters.bgOfs[param_0];
-    sp8 = &gEwramData->unk_A078[param_0].unk_A078;
+    sp8 = &gEwramData->unk_A078[param_0];
 
     if (var_sb > 160)
     {
@@ -104,7 +104,7 @@ void sub_0800CB8C(s32 param_0, s32 param_1, s32 param_2, s32 param_3)
     for (var_r5_2 = param_1; var_r5_2 < var_sb; var_r5_2++)
     {
         temp_r0 = (param_3 * (var_r5_2 - param_1)) / param_2;
-        *var_r6++ = (sub_080009E4(((sp8->unk_A082 + var_r5_2) << 0xD) + (sp4 << (0xA - temp_r0))) >> ((temp_r0 >> 1) + 0xF)) + temp_r7->hOfs;
+        *var_r6++ = (sub_080009E4(((sp8->yPos.part16.integer + var_r5_2) << 0xD) + (sp4 << (0xA - temp_r0))) >> ((temp_r0 >> 1) + 0xF)) + temp_r7->hOfs;
     }
 
     for (var_r5_2; var_r5_2 < 160; var_r5_2++)
@@ -130,7 +130,7 @@ void sub_0800CC90(s32 param_0, s32 param_1, s32 param_2, s32 param_3)
     struct BgOffset *var_r8;
     u16 *var_r5;
     s32 var_sl;
-    struct EwramData_unkA078_0 *var_r9;
+    struct EwramData_unkA078 *var_r9;
     s32 var_0;
 
     var_sl = gEwramData->unk_0;
@@ -138,10 +138,10 @@ void sub_0800CC90(s32 param_0, s32 param_1, s32 param_2, s32 param_3)
     var_r5 = gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
 
     var_r8 = &gDisplayRegisters.bgOfs[param_0];
-    var_r9 = &gEwramData->unk_A078[param_0].unk_A078;
+    var_r9 = &gEwramData->unk_A078[param_0];
 
     var_r2 = param_2 - param_1;
-    param_1 = param_1 - var_r9->unk_A082;
+    param_1 = param_1 - var_r9->yPos.part16.integer;
     if (param_1 < 0)
     {
         param_1 = 0;
@@ -172,7 +172,7 @@ void sub_0800CC90(s32 param_0, s32 param_1, s32 param_2, s32 param_3)
 
     for (var_r4_2 = param_1; var_r4_2 < param_2; var_r4_2++)
     {
-        *var_r5++ = ((param_3 * sub_080009E4(((var_r9->unk_A082 + var_r4_2) << 0xC) + (var_sl))) >> 0x10) + var_r8->hOfs;
+        *var_r5++ = ((param_3 * sub_080009E4(((var_r9->yPos.part16.integer + var_r4_2) << 0xC) + (var_sl))) >> 0x10) + var_r8->hOfs;
     }
 
     for (var_r4_2; var_r4_2 < 160; var_r4_2++)
@@ -198,14 +198,14 @@ void sub_0800CDAC(s32 param_0, s32 param_1, s32 param_2)
     s32 var_r6;
     s32 var_sb;
     struct BgOffset *temp_r1;
-    struct EwramData_unkA078_0 *var_0;
+    struct EwramData_unkA078 *var_0;
 
     sp4 = gEwramData->unk_0;
     var_r8 = gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
     temp_r1 = &gDisplayRegisters.bgOfs[param_0];
-    var_0 = &gEwramData->unk_A078[param_0].unk_A078;
+    var_0 = &gEwramData->unk_A078[param_0];
     var_sb = param_2 - param_1;
-    param_1 = param_1 - var_0->unk_A082;
+    param_1 = param_1 - var_0->yPos.part16.integer;
     if (param_1 < 0)
     {
         param_1 = 0;
@@ -258,15 +258,15 @@ void sub_0800CED4(s32 param_0, s32 param_1, s32 param_2)
     struct BgOffset *temp_r1;
     u32 temp_r4;
     u8 *temp_r1_2;
-    struct EwramData_unkA078_0 *var_0;
+    struct EwramData_unkA078 *var_0;
 
     sp0 = param_2;
     temp_r4 = gEwramData->unk_60.unk_4C8;
     var_r8 = gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
     temp_r1 = &gDisplayRegisters.bgOfs[param_0];
-    var_0 = &gEwramData->unk_A078[param_0].unk_A078;
+    var_0 = &gEwramData->unk_A078[param_0];
     var_sb = sp0 - param_1;
-    param_1 = param_1 - var_0->unk_A082;
+    param_1 = param_1 - var_0->yPos.part16.integer;
     if (param_1 < 0)
     {
         param_1 = 0;
@@ -434,7 +434,7 @@ static inline s32 sub_0800D288_inline_0(s32 param_0, s32 param_1, s32 param_2, s
  */
 void sub_0800D288(void)
 {
-    union EwramData_unkA078 *sp28;
+    struct EwramData_unkA078 *sp28;
     s32 sp2C;
     s32 sp30;
     s32 sp34;
@@ -461,16 +461,16 @@ void sub_0800D288(void)
     s32 temp_r6;
     u32 temp_sb;
     u32 temp_sl;
-    union EwramData_unkA078 *temp_r7_2;
+    struct EwramData_unkA078 *temp_r7_2;
     struct BgAffineSrcData src;
     struct BgAffineSrcData src1;
     u16 *var_0;
     u16 *var_1;
 
     temp_r7_2 = sp28 = &gEwramData->unk_A078[1];
-    sp2C = sp28->unk_A078.unk_A084;
-    sp30 = sp28->unk_A078.unk_A088;
-    if (sp28->unk_A078.unk_A090 == 0x1A)
+    sp2C = sp28->xVel.whole;
+    sp30 = sp28->yVel.whole;
+    if (sp28->unk_18 == 0x1A)
     {
         sub_0800CDAC(1, 0x450, 0x4A0);
     }
@@ -480,82 +480,82 @@ void sub_0800D288(void)
         temp_r7_2 = &gEwramData->unk_A078[var_r8];
         temp_r3 = &gDisplayRegisters.bgOfs[var_r8];
         temp_r4 = &gDisplayRegisters.bgOfs[var_r8].vOfs;
-        switch (temp_r7_2->unk_A078.unk_A090 - 1)
+        switch (temp_r7_2->unk_18)
         {
-            case 0:
+            case 1:
                 sub_0803FBBC(var_r8, sp2C, sp30);
                 break;
 
-            case 4:
+            case 5:
                 sub_0803FBBC(var_r8, sp2C * 2, sp30);
                 break;
 
-            case 5:
+            case 6:
                 sub_0803FBBC(var_r8, sp2C, sp30 * 2);
                 break;
 
-            case 6:
+            case 7:
                 sub_0803FBBC(var_r8, sp2C * 2, sp30 * 2);
                 break;
 
-            case 1:
+            case 2:
                 sub_0803FBBC(var_r8, sp2C >> 1, sp30);
                 break;
 
-            case 2:
+            case 3:
                 sub_0803FBBC(var_r8, sp2C, sp30 >> 1);
                 break;
 
-            case 3:
+            case 4:
                 sub_0803FBBC(var_r8, sp2C >> 1, sp30 >> 1);
                 break;
 
-            case 7:
+            case 8:
                 temp_r3->hOfs += 1;
                 break;
 
-            case 8:
+            case 9:
                 temp_r3->hOfs += ~sp2C;
                 break;
 
-            case 9:
+            case 10:
                 if ((gEwramData->unk_60.unk_33C[3] & 0x02000000) != 0)
                 {
                     *temp_r4 -= 2;
                 }
                 break;
 
-            case 10:
-                sub_0803FBBC(var_r8, sub_0800D288_inline_0(temp_r7_2->unk_A078.unk_A08C, sp28->unk_A078.unk_A08C, sp2C, 0xF0, 0xF0), sp30);
-                break;
-
             case 11:
-                sub_0803FBBC(var_r8, sp2C, sub_0800D288_inline_0(temp_r7_2->unk_A078.unk_A08E, sp28->unk_A078.unk_A08E, sp30, 0xD0, 0xD0));
+                sub_0803FBBC(var_r8, sub_0800D288_inline_0(temp_r7_2->unk_14, sp28->unk_14, sp2C, 0xF0, 0xF0), sp30);
                 break;
 
             case 12:
-                sub_0803FBBC(var_r8, sub_0800D288_inline_0(temp_r7_2->unk_A078.unk_A08C, sp28->unk_A078.unk_A08C, sp2C, 0xF0, 0xF0), sub_0800D288_inline_0(temp_r7_2->unk_A078.unk_A08E, sp28->unk_A078.unk_A08E, sp30, 0xD0, 0xD0));
+                sub_0803FBBC(var_r8, sp2C, sub_0800D288_inline_0(temp_r7_2->unk_16, sp28->unk_16, sp30, 0xD0, 0xD0));
                 break;
 
             case 13:
-                sub_0800CB00();
+                sub_0803FBBC(var_r8, sub_0800D288_inline_0(temp_r7_2->unk_14, sp28->unk_14, sp2C, 0xF0, 0xF0), sub_0800D288_inline_0(temp_r7_2->unk_16, sp28->unk_16, sp30, 0xD0, 0xD0));
                 break;
 
             case 14:
-                sub_0803FBBC(var_r8, sub_0800D288_inline_0(temp_r7_2->unk_A078.unk_A08C, sp28->unk_A078.unk_A08C, sp2C, 0xF0, 0xF0), sub_0800D288_inline_0(temp_r7_2->unk_A078.unk_A08E, sp28->unk_A078.unk_A08E, sp30, 0xD0, 0xD0));
-                sub_0800CB8C(var_r8, 0, 160, 1);
+                sub_0800CB00();
                 break;
 
             case 15:
-                sub_0803FBBC(var_r8, sub_0800D288_inline_0(temp_r7_2->unk_A078.unk_A08C, sp28->unk_A078.unk_A08C, sp2C, 0xF0, 0xF0), sub_0800D288_inline_0(temp_r7_2->unk_A078.unk_A08E, sp28->unk_A078.unk_A08E, sp30, 0xD0, 0xD0));
+                sub_0803FBBC(var_r8, sub_0800D288_inline_0(temp_r7_2->unk_14, sp28->unk_14, sp2C, 0xF0, 0xF0), sub_0800D288_inline_0(temp_r7_2->unk_16, sp28->unk_16, sp30, 0xD0, 0xD0));
+                sub_0800CB8C(var_r8, 0, 160, 1);
+                break;
+
+            case 16:
+                sub_0803FBBC(var_r8, sub_0800D288_inline_0(temp_r7_2->unk_14, sp28->unk_14, sp2C, 0xF0, 0xF0), sub_0800D288_inline_0(temp_r7_2->unk_16, sp28->unk_16, sp30, 0xD0, 0xD0));
                 sub_0800CC90(var_r8, 0, 160, 2);
                 break;
 
-            case 17:
+            case 18:
                 sub_0800D000();
                 break;
 
-            case 18:
+            case 19:
                 if (!(gEwramData->unk_60.unk_4CC_0) && (gEwramData->unk_60.unk_33C[3] & 0x40000))
                 {
                     gUnk_03002CB0.dispCnt &= ~DCNT_BG2;
@@ -563,7 +563,7 @@ void sub_0800D288(void)
                 sub_0803FBBC(var_r8, sp2C, sp30);
                 break;
 
-            case 19:
+            case 20:
                 temp_r6 = gEwramData->unk_60.unk_4C8;
                 var_r4 = (s16*)&gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
                 sub_08001718(0, 160, 2, REG_BG3HOFS);
@@ -591,7 +591,7 @@ void sub_0800D288(void)
                 gEwramData->unk_7864.unk_7864_0 = 1;
                 break;
 
-            case 20:
+            case 21:
                 if (gEwramData->unk_60.unk_33C[3] & 0x02000000)
                 {
                     src.texX = 0x8000;
@@ -609,44 +609,44 @@ void sub_0800D288(void)
                 }
                 break;
 
-            case 22:
-                sub_0803FBBC(var_r8, sub_0800D288_inline_0(temp_r7_2->unk_A078.unk_A08C, sp28->unk_A078.unk_A08C, sp2C, 0xF0, 0xF0), sp30);
+            case 23:
+                sub_0803FBBC(var_r8, sub_0800D288_inline_0(temp_r7_2->unk_14, sp28->unk_14, sp2C, 0xF0, 0xF0), sp30);
                 sub_0800CB8C(var_r8, 0x70, 0x30, 3);
                 break;
 
-            case 23:
+            case 24:
                 sub_0803FBBC(var_r8, sp2C, sp30);
                 sub_0800CC90(var_r8, 0xB0, 0x200, 1);
                 break;
 
-            case 24:
+            case 25:
                 sub_0800CC90(var_r8, 0x70, 0x100, 1);
                 break;
 
-            case 25:
+            case 26:
                 sub_0803FBBC(var_r8, sp2C, sp30);
                 break;
 
-            case 26:
+            case 27:
                 temp_r5 = gEwramData->unk_60.unk_4C8;
                 src1.texX = 0x8000;
                 src1.texY = 0x8000;
-                src1.scrX = 0x100 - sp28->unk_A094.unk_A098.unk_0_0.unk_A09A;
-                src1.scrY = 0x100 - sp28->unk_A078.unk_A082;                
+                src1.scrX = 0x100 - sp28->xPos.part16.integer;
+                src1.scrY = 0x100 - sp28->yPos.part16.integer;
                 src1.sy = src1.sx = ((sub_080009E4(temp_r5 * 0x10) * 3) >> 0xD) + 0x58;
                 src1.alpha = -temp_r5 << 7;
                 BgAffineSet(&src1, (struct BgAffineDstData *) &gDisplayRegisters.bg2PA, 1);
                 break;
 
-            case 27:
+            case 28:
                 sub_0800CED4(var_r8, 0x38, 0x90);
                 break;
 
-            case 28:
+            case 29:
                 sub_0800CED4(var_r8, 0x70, 0xCC);
                 break;
 
-            case 29:
+            case 30:
                 sp34 = 1;
                 temp_sb = gEwramData->unk_60.unk_4C8;
                 sp38 = &gDisplayRegisters.bgOfs[var_r8].vOfs;
@@ -662,11 +662,11 @@ void sub_0800D288(void)
                 }
 
                 gEwramData->unk_7864.unk_7864_0 = 1;
-                temp_r7_2->unk_A078.unk_A07C += sp2C;
-                temp_r3->hOfs = temp_r7_2->unk_A094.unk_A098.unk_0_0.unk_A09A;
+                temp_r7_2->xPos.whole += sp2C;
+                temp_r3->hOfs = temp_r7_2->xPos.part16.integer;
                 break;
 
-            case 30:
+            case 31:
                 sub_0803FBBC(var_r8, sp2C, sp30);
                 var_r6_2 = (s16*)&gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
                 var_0 = &gDisplayRegisters.bgOfs[var_r8].hOfs;
@@ -681,7 +681,7 @@ void sub_0800D288(void)
                 gEwramData->unk_7864.unk_7864_0 = 1;
                 break;
 
-            case 31:
+            case 32:
                 var_r7 = 0x78;
                 var_r6_3 = 0x50;
                 var_r2_2 = 1;
@@ -727,7 +727,7 @@ void sub_0800D288(void)
                 sub_0800D0F8(var_r7, var_r6_3, var_r2_2);
                 break;
 
-            case 35:
+            case 36:
                 sub_0803FBBC(var_r8, sp2C, sp30);
                 temp_sl = gEwramData->unk_60.unk_4C8;
                 var_1 = &gDisplayRegisters.bgOfs[var_r8].vOfs;
@@ -2230,12 +2230,12 @@ s32 sub_0800ED24(s32 param_0, s32 param_1, s32 param_2)
  */
 u16 sub_0800ED5C(u16 param_0, u8 param_1, u8 param_2, u16 param_3)
 {
-    struct EwramData_unkA094 *var_0;
+    struct EwramData_unkA078 *var_0;
     s32 var_1;
     u16 var_2;
 
     var_2 = param_0;
-    var_0 = &gEwramData->unk_A078[1].unk_A094;
+    var_0 = &gEwramData->unk_A078[1];
 
     switch (param_1)
     {
@@ -2284,7 +2284,7 @@ u16 sub_0800ED5C(u16 param_0, u8 param_1, u8 param_2, u16 param_3)
         case 31:
             if (param_2 > 1)
             {
-                var_1 = var_0->unk_A0A8;
+                var_1 = var_0->unk_14;
                 var_2 = (var_2 * (param_3 - 0xF0)) / (var_1 - 0xF0);
             }
             else
@@ -2310,12 +2310,12 @@ u16 sub_0800ED5C(u16 param_0, u8 param_1, u8 param_2, u16 param_3)
  */
 u16 sub_0800EE54(u16 param_0, u8 param_1, u8 param_2, u16 param_3)
 {
-    struct EwramData_unkA094 *var_0;
+    struct EwramData_unkA078 *var_0;
     s32 var_1;
     u16 var_2;
 
     var_2 = param_0;
-    var_0 = &gEwramData->unk_A078[1].unk_A094;
+    var_0 = &gEwramData->unk_A078[1];
 
     switch (param_1)
     {
@@ -2367,14 +2367,14 @@ u16 sub_0800EE54(u16 param_0, u8 param_1, u8 param_2, u16 param_3)
             }
             else
             {
-                var_1 = var_0->unk_A0AA;
+                var_1 = var_0->unk_16;
                 var_2 = (var_2 * (param_3 - 0xD0)) / (var_1 - 0xD0);
             }
             break;
 
         case 15:
         case 16:
-            var_1 = var_0->unk_A0AA;
+            var_1 = var_0->unk_16;
             var_2 = (var_2 * (param_3 - 0xD0)) / (var_1 - 0xD0);
             break;
 

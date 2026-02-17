@@ -366,91 +366,43 @@ struct EwramData_EntityData {
     /* 0x00554 */ struct EwramData_unk554 unk_554;
 }; /* size = 0x84 */
 
-struct EwramData_unkA094_0 {
+struct EwramData_unkA078_0 {
     u8 unk_0;
     u8 unk_1;
     u16 unk_2;
-    u16* unk_4;
-    u8* unk_8;
+    u16 *unk_4;
+    u8 *unk_8;
     u16 *unk_C;
-    u32 unk_10; // Which unk_10 is real?
 };
 
-struct EwramData_unkA094_1 {
-    u8 pad_0[0x6 - 0x0];
-    s16 unk_6;
-    s16 unk_8;
-    s16 unk_A;
-    u32 unk_10; // Which unk_10 is real?
+struct CameraFrac8 {
+    u8 fraction0;
+    u8 fraction1;
+    u8 integer0;
+    u8 integer1;
 };
 
-struct EwramData_unkA094_2 {
-    u8 pad_0[0x8 - 0x0];
-    u32 unk_8;
-    u8 pad_C[0x10 - 0xC];
-    u32 unk_10;
+struct CameraFrac16 {
+    u16 fraction;
+    u16 integer;
 };
 
-union EwramDataUnion_unkA094 {
-    struct EwramData_unkA094_0 *unk_A094_0;
-    struct EwramData_unkA094_1 *unk_A094_1;
-    struct EwramData_unkA094_2 *unk_A094_2;
+union CameraPart {
+    struct CameraFrac8 part8;
+    struct CameraFrac16 part16;
+    s32 whole;
 };
 
-struct EwramData_unkA098_0 {
-    s16 unk_A098;
-    s16 unk_A09A;
-    s16 unk_A09C;
-    s16 unk_A09E;
-};
-
-struct EwramData_unkA098_1 {
-    s32 unk_A098;
-    s32 unk_A09C;
-};
-
-struct EwramData_unkA098_2 {
-    s8 unk_A098;
-    s8 unk_A099;
-    s8 unk_A09A;
-    s8 unk_A09B;
-    s8 unk_A09C;
-    s8 unk_A09D;
-    s8 unk_A09E;
-    s8 unk_A09F;
-};
-
-union EwramData_unkA098 {
-    struct EwramData_unkA098_0 unk_0_0;
-    struct EwramData_unkA098_1 unk_1_1;
-    struct EwramData_unkA098_2 unk_0_2;
-};
-
-struct EwramData_unkA078_0 {
-    u8 pad_A078[0xA07C - 0xA078];
-    u32 unk_A07C;
-    u16 unk_A080;
-    u16 unk_A082;
-    u32 unk_A084;
-    u32 unk_A088;
-    u16 unk_A08C;
-    u16 unk_A08E;
-    u8 unk_A090;
-    u8 pad_A091[0xA094 - 0xA091];
-};
-
-struct EwramData_unkA094 {
-    union EwramDataUnion_unkA094 unk_A094;
-    union EwramData_unkA098 unk_A098; // TODO: make A098 and A09C their own unions
-    u8 pad_A0A0[0xA0A8 - 0xA0A0];
-    u16 unk_A0A8;
-    u16 unk_A0AA;
-    u8 pad_A0AC[0xA0B0 - 0xA0AC];
-};
-
-union EwramData_unkA078 {
-    struct EwramData_unkA078_0 unk_A078;
-    struct EwramData_unkA094 unk_A094;
+struct EwramData_unkA078 {
+    /* 0x00 */ struct EwramData_unkA078_0 *pBgMetadata;
+    /* 0x04 */ union CameraPart xPos;
+    /* 0x08 */ union CameraPart yPos;
+    /* 0x0C */ union CameraPart xVel;
+    /* 0x10 */ union CameraPart yVel;
+    /* 0x14 */ u16 unk_14;
+    /* 0x16 */ u16 unk_16;
+    /* 0x18 */ u8 unk_18;
+    /* 0x19 */ u8 pad_19[0x1C - 0x19];
 };
 
 struct EwramData_unk1316C_10 {
@@ -721,7 +673,6 @@ struct EwramData_unkFEC4 {
     /* 0x0FED0 */ u8 unk_FED0[1]; // TODO: length?
     /* 0x0FED1 */ u8 pad_FED1[0xFED4 - 0xFED1];
     /* 0x0FED4 */ void *unk_FED4; // TODO: type
-    // /* 0x0FED5 */ u8 pad_FED5[0xFED8 - 0xFED1];
 }; /* size = 0x14 */
 
 struct EwramData_unk10170_C_4_8 {
@@ -838,7 +789,7 @@ struct EwramData {
 
     /* 0x0A075 */ u8 konamiCodeInputsCounter;
     /* 0x0A076 */ u8 pad_A076[0xA078 - 0xA076];
-    /* 0x0A078 */ union EwramData_unkA078 unk_A078[4];
+    /* 0x0A078 */ struct EwramData_unkA078 unk_A078[4];
     /* 0x0A0E8 */ u8 pad_A0E8[0xA108 - 0xA0E8];
     /* 0x0A108 */ u16 unk_A108[1]; // Length?
     /* 0x0A10A */ u8 pad_A10A[0xC0EC - 0xA10A];

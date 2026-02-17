@@ -507,8 +507,8 @@ void sub_08000F60(s32 param_0)
     struct EwramData_EntityData *entity;
     s32 slot;
 
-    var_0 = -gEwramData->unk_A078[param_0].unk_A078.unk_A084;
-    var_1 = -gEwramData->unk_A078[param_0].unk_A078.unk_A088;
+    var_0 = -gEwramData->unk_A078[param_0].xVel.whole;
+    var_1 = -gEwramData->unk_A078[param_0].yVel.whole;
 
     entity = gEwramData->entityData;
     slot = 0;

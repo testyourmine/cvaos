@@ -524,7 +524,7 @@ s32 sub_080110E4(struct EwramData_unk60 *param_0)
     struct EwramData_unk88 *temp_r6;
     s32 new_input;
     s32 var_r7;
-    union EwramData_unkA078 *temp_r0_4;
+    struct EwramData_unkA078 *temp_r0_4;
 
     temp_r6 = param_0->unk_88;
     new_input = gEwramData->inputData.newInput;
@@ -587,7 +587,7 @@ s32 sub_080110E4(struct EwramData_unk60 *param_0)
             sub_0800DA50();
             temp_r0_4 = &gEwramData->unk_A078[1];
             // TODO: A094 types
-            sub_0803F8A8(1, (u32 *) temp_r0_4->unk_A094.unk_A094.unk_A094_0, temp_r0_4->unk_A094.unk_A098.unk_0_0.unk_A09A, temp_r0_4->unk_A078.unk_A082);
+            sub_0803F8A8(1, (u32 *) temp_r0_4->pBgMetadata, temp_r0_4->xPos.part16.integer, temp_r0_4->yPos.part16.integer);
             gUnk_03002CB0.dispCnt = 0;
             sub_080108DC(temp_r6);
             sub_080108FC(temp_r6);
@@ -764,7 +764,7 @@ s32 sub_080116A8(struct EwramData_unk60 *param_0)
     u16 temp_r8;
     struct EwramData_unk88 *temp_r4;
     struct Unk_08525FBC *temp_r7;
-    union EwramData_unkA078 *temp_r0_6;
+    struct EwramData_unkA078 *temp_r0_6;
     s32 var_0;
 
     temp_r4 = param_0->unk_88;
@@ -857,7 +857,7 @@ s32 sub_080116A8(struct EwramData_unk60 *param_0)
             sub_0803C3E0();
             sub_0800DA50();
             temp_r0_6 = &gEwramData->unk_A078[1];
-            sub_0803F8A8(1, (u32 *) temp_r0_6->unk_A094.unk_A094.unk_A094_0, (u16) temp_r0_6->unk_A094.unk_A098.unk_0_0.unk_A09A, temp_r0_6->unk_A078.unk_A082);
+            sub_0803F8A8(1, (u32 *) temp_r0_6->pBgMetadata, temp_r0_6->xPos.part16.integer, temp_r0_6->yPos.part16.integer);
             gUnk_03002CB0.dispCnt = 0;
             sub_080108DC(temp_r4);
             sub_080108FC(temp_r4);
@@ -902,17 +902,17 @@ s32 sub_080116A8(struct EwramData_unk60 *param_0)
  */
 s32 sub_08011A44(struct EwramData_EntityData *param_0)
 {
-    union EwramData_unkA078 *temp_r2;
-    struct EwramData_unkA094_0 *temp_r6;
+    struct EwramData_unkA078 *temp_r2;
+    struct EwramData_unkA078_0 *temp_r6;
     u32 temp_r1;
     u32 var_0;
     u32 var_r0;
     u32 var_r2;
 
     temp_r2 = &gEwramData->unk_A078[1];
-    temp_r6 = temp_r2->unk_A094.unk_A094.unk_A094_0;
-    temp_r1 = (s16)param_0->unk_524.unk_524_16.unk_526 + temp_r2->unk_A094.unk_A098.unk_0_0.unk_A09A;
-    var_0 = param_0->unk_528.unk_528_16.unk_52A + temp_r2->unk_A094.unk_A098.unk_0_0.unk_A09E;
+    temp_r6 = temp_r2->pBgMetadata;
+    temp_r1 = (s16)param_0->unk_524.unk_524_16.unk_526 + (s16)temp_r2->xPos.part16.integer;
+    var_0 = (s16)param_0->unk_528.unk_528_16.unk_52A + (s16)temp_r2->yPos.part16.integer;
     if (gEwramData->unk_1325C.unk_1327A != 0)
     {
         if (temp_r6->unk_0 > 1)

@@ -650,12 +650,12 @@ void sub_0801266C(void)
  */
 void sub_08012688(struct EwramData_unk60 *param_0)
 {
-    struct EwramData_unkA094_0 *temp_sl;
+    struct EwramData_unkA078_0 *temp_sl;
     s16 temp_r4;
     s16 temp_r5;
-    union EwramData_unkA078 *temp_r2;
+    struct EwramData_unkA078 *temp_r2;
 
-    temp_sl = gEwramData->unk_A078[1].unk_A094.unk_A094.unk_A094_0;
+    temp_sl = gEwramData->unk_A078[1].pBgMetadata;
 
     temp_r4 = sub_08002188(gEwramData->unk_13110);
     temp_r5 = sub_080021A8(gEwramData->unk_13110);
@@ -666,8 +666,8 @@ void sub_08012688(struct EwramData_unk60 *param_0)
     param_0->unk_33A = gEwramData->unk_13110->unk_528.unk_528_16.unk_52A;
 
     temp_r2 = &gEwramData->unk_A078[1];
-    param_0->unk_334 = temp_r2->unk_A094.unk_A098.unk_0_0.unk_A09A;
-    param_0->unk_336 = temp_r2->unk_A078.unk_A082;
+    param_0->unk_334 = temp_r2->xPos.part16.integer;
+    param_0->unk_336 = temp_r2->yPos.part16.integer;
 
     if (temp_sl->unk_1 < 2)
     {

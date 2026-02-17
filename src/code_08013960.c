@@ -58,7 +58,7 @@ static inline s32 sub_08013960_inline_0(s32 param_0)
  */
 s32 sub_08013960(struct EwramData_unk60 *param_0)
 {
-    union EwramData_unkA078 *temp_r0;
+    struct EwramData_unkA078 *temp_r0;
     u8 temp_r4;
     u8 temp_r5;
     s32 temp_r6;
@@ -67,8 +67,8 @@ s32 sub_08013960(struct EwramData_unk60 *param_0)
     s32 var_r5;
 
     temp_r0 = &gEwramData->unk_A078[1];
-    temp_r4 = temp_r0->unk_A094.unk_A098.unk_0_2.unk_A09B;
-    temp_r5 = temp_r0->unk_A094.unk_A098.unk_0_2.unk_A09F;
+    temp_r4 = temp_r0->xPos.part8.integer1;
+    temp_r5 = temp_r0->yPos.part8.integer1;
 
     if (gEwramData->unk_60.unk_4CC_0)
     {
@@ -154,11 +154,11 @@ void sub_08013B44(void)
     u16 *var_r4;
     u8 temp_r6;
     u8 temp_r7;
-    union EwramData_unkA078 *temp_r0;
+    struct EwramData_unkA078 *temp_r0;
 
     temp_r0 = &gEwramData->unk_A078[1];
-    temp_r7 = temp_r0->unk_A094.unk_A098.unk_0_2.unk_A09B;
-    temp_r6 = temp_r0->unk_A094.unk_A098.unk_0_2.unk_A09F;
+    temp_r7 = temp_r0->xPos.part8.integer1;
+    temp_r6 = temp_r0->yPos.part8.integer1;
 
     var_r4 = &gEwramData->unk_254C4[0];
     var_r5 = 3;
@@ -190,11 +190,11 @@ void sub_08013BCC(void)
     u16 *var_r4;
     u8 temp_r6;
     u8 temp_r7;
-    union EwramData_unkA078 *temp_r0;
+    struct EwramData_unkA078 *temp_r0;
 
     temp_r0 = &gEwramData->unk_A078[1];
-    temp_r7 = temp_r0->unk_A094.unk_A098.unk_0_2.unk_A09B;
-    temp_r6 = temp_r0->unk_A094.unk_A098.unk_0_2.unk_A09F;
+    temp_r7 = temp_r0->xPos.part8.integer1;
+    temp_r6 = temp_r0->yPos.part8.integer1;
 
     var_r5 = 3;
     var_r4 = &gEwramData->unk_254C4[0];
@@ -223,13 +223,13 @@ void sub_08013BCC(void)
  */
 s32 sub_08013C5C(void)
 {
-    union EwramData_unkA078 *temp_r1;
+    struct EwramData_unkA078 *temp_r1;
     s32 temp_r2;
     s32 temp_r4;
     s32 var_r4;
 
     temp_r1 = &gEwramData->unk_A078[1];
-    temp_r2 = sub_08001894((u8) temp_r1->unk_A094.unk_A098.unk_0_2.unk_A09B, (u8) temp_r1->unk_A094.unk_A098.unk_0_2.unk_A09F);
+    temp_r2 = sub_08001894((u8) temp_r1->xPos.part8.integer1, (u8) temp_r1->yPos.part8.integer1);
 
     if ((gEwramData->unk_1325C.unk_13266 == 0) || !(gEwramData->unk_60.unk_60 & 2))
     {
@@ -664,7 +664,7 @@ void sub_080142E8(struct EwramData_EntityData *param_0)
  */
 s32 GameModeCreditsUpdate(void)
 {
-    union EwramData_unkA078 *temp_r6;
+    struct EwramData_unkA078 *temp_r6;
     s32 gameMode;
 
     temp_r6 = &gEwramData->unk_A078[1];
@@ -728,7 +728,7 @@ s32 GameModeCreditsUpdate(void)
                 sub_0803FC6C(3, 0, 0x8400);
             }
 
-            if ((temp_r6->unk_A078.unk_A088 == 0) && (gEwramData->inputData.newInput & (KEY_A | KEY_START)))
+            if ((temp_r6->yVel.whole == 0) && (gEwramData->inputData.newInput & (KEY_A | KEY_START)))
             {
                 PlaySong(0x1010);
                 gDisplayRegisters.bldCnt = BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_INCREASE_EFFECT;
