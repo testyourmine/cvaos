@@ -26,282 +26,312 @@
 #include "structs/main.h"
 
 /**
- * @brief 1194 | To document
+ * @brief 1194 | Transfer data from BG Command Buffer to VRAM
  * 
  */
-void sub_08001194(void)
+void BgCmdBuffer_TransferToVram(void)
 {
-    u16 var_0;
-    u16 var_1;
-    u16 var_6;
-    u16 *var_7;
-    u16 *var_8;
-    u16 var_9;
-    u16 var_10;
-    u16 *var_13;
-    u32 var_16;
-    u32 var_17;
-    s32 var_18;
-    u16 var_19;
-    s32 var_20;
-    s32 var_21;
-    u16 *var_22;
+    u16 bgCmd;
+    u16 bgCnt;
+    u16 tilesPerRow;
+    u16 *vramAddr;
+    u16 *buf;
+    u16 bgNum;
+    u16 length;
+    u16 *dst;
+    u32 modBitmask;
+    u32 nextEntry;
+    s32 i;
+    u16 tilesPerCol;
+    s32 newDst;
+    u16 *src;
 
-    var_8 = gUnk_03002CB0.unk_8;
-    while (var_8 < gUnk_03002CB0.unk_4)
+    buf = gUnk_03002CB0.bgCmdBuffer;
+    while (buf < gUnk_03002CB0.pBgCmdBuffer)
     {
-        var_0 = (*var_8 >> 8) & 0xFF;
-        var_10 = (u8)(*var_8);
-        var_9 = var_0 & 3;
-        var_1 = gDisplayRegisters.bgCnt[var_9];
-        var_8++;
-        var_7 = (VRAM_BASE + *var_8);
-        var_8++;
-        if (var_9 == 0 || var_9 == 1)
+        bgCmd = (*buf >> 8) & 0xFF;
+        length = (u8)(*buf);
+        bgNum = bgCmd & 3;
+        bgCnt = gDisplayRegisters.bgCnt[bgNum];
+        buf++;
+        vramAddr = (VRAM_BASE + *buf);
+        buf++;
+        if (bgNum == 0 || bgNum == 1)
         {
-            var_13 = var_7;
-            var_22 = var_8;
-            var_6 = (var_1 & (BGCNT_SIZE_512x256 << BGCNT_SCREEN_SIZE_SHIFT)) ? 0x40 : 0x20;
-            var_19 = (var_1 & (BGCNT_SIZE_256x512 << BGCNT_SCREEN_SIZE_SHIFT)) ? 0x40 : 0x20;
+            dst = vramAddr;
+            src = buf;
+            tilesPerRow = (bgCnt & (BGCNT_SIZE_512x256 << BGCNT_SCREEN_SIZE_SHIFT)) ? 64 : 32;
+            tilesPerCol = (bgCnt & (BGCNT_SIZE_256x512 << BGCNT_SCREEN_SIZE_SHIFT)) ? 64 : 32;
 
-            if (var_0 & 0x80)
+            if (bgCmd & 0x80)
             {
-                var_16 = var_6 * (var_19 - 1) * 2;
-                var_17 = var_6 * 2;
+                // Vertical
+                modBitmask = tilesPerRow * (tilesPerCol - 1) * sizeof(u16);
+                nextEntry = tilesPerRow * sizeof(u16);
             }
             else
             {
-                var_16 = (var_6 * 2) - 1;
-                var_17 = 2;
+                // Horizontal
+                modBitmask = (tilesPerRow * sizeof(u16)) - 1;
+                nextEntry = sizeof(u16);
             }
 
-            for (var_18 = 0; var_18 < var_10; var_18++)
+            for (i = 0; i < length; i++)
             {
-                *var_13 = *var_22;
-                var_20 = ((u32)var_13 & ~var_16);
-                var_21 = (((u32)var_13 + var_17) & var_16);
-                var_21 |= var_20;
-                var_13 = (u16*)(var_21);
-                var_22 += 1;
+                *dst = *src;
+                newDst = (((u32)dst & ~modBitmask)) | ((((u32)dst + nextEntry) & modBitmask)); // Next entry, wrap row/col
+                dst = (u16*)newDst;
+                src += 1;
             }
-            var_8 = var_22;
-            var_7 = VRAM_BASE;
+            buf = src;
         }
     }
-    gUnk_03002CB0.unk_4 = gUnk_03002CB0.unk_8;
+    gUnk_03002CB0.pBgCmdBuffer = gUnk_03002CB0.bgCmdBuffer;
 }
 
 /**
- * @brief 125C | To document
+ * @brief 125C | Add string of characters to BG Command Buffer
  * 
- * @param param_0 To document
- * @param param_1 To document
- * @param param_2 To document
- * @param param_3 To document
- * @return u16* To document
+ * @param tileIndex Tile index into VRAM
+ * @param rowOffset Row offset from base
+ * @param tileInfo Low nybble is palette number, high nybble is tile index flag
+ * @param string Pointer to string
+ * @return u16* Pointer to next data
  */
-u16* sub_0800125C(u16 param_0, u16 param_1, u8 param_2, u8 *param_3)
+u16* BgCmdBuffer_WriteString(u16 tileIndex, u16 rowOffset, u8 tileInfo, u8 *string)
 {
-    u16 *temp_r2;
-    u16 var_r2;
-    u16 *var_r3;
-    u8 var_r4;
-    u32 tmp;
-    u8 *tmp2;
-    u16 *tmp3;
-    u32 tmp4;
+    u16 *end;
+    u16 palNum;
+    u16 *strDst;
+    u8 length;
+    u32 vramAddr;
+    u8 *src;
+    u16 *dst;
+    u32 tile;
+    u32 vramTileBase;
 
-    var_r2 = param_2 << 0xC;
-    var_r3 = (u16*)gEwramData->unk_133F4;
+    palNum = tileInfo << 12;
+    strDst = (u16*)gEwramData->unk_133F4;
     
-    for (var_r4 = 0; param_3[var_r4] != 0; var_r4++)
+    for (length = 0; string[length] != 0; length++)
     {
-        tmp4 = var_r2;
-        if (!(param_2 & 0xF0))
+        tile = palNum;
+        if (!(tileInfo & 0xF0))
         {
-            tmp4 |= param_3[var_r4] + 0x300;
+            tile |= string[length] + 0x300;
         }
-        *var_r3++ = tmp4;
+        *strDst++ = tile;
     }
 
-    tmp = (u32)(VRAM_BASE + 0xE000) + (param_0 * 2) + ((gDisplayRegisters.bgCnt[0] & (BGCNT_SIZE_512x256 << BGCNT_SCREEN_SIZE_SHIFT)) ? (param_1 << 7) : (param_1 << 6));
-    tmp2 = gEwramData->unk_133F4;
-    tmp3 = gUnk_03002CB0.unk_4;
-
-    if ((u32) (&tmp3[var_r4] + 2) >= (u32) &gUnk_03002CB0.unk_808)
+    vramTileBase = (u32)(VRAM_BASE + 0xE000) + (tileIndex * sizeof(u16));
+    if (gDisplayRegisters.bgCnt[0] & (BGCNT_SIZE_512x256 << BGCNT_SCREEN_SIZE_SHIFT))
     {
-        temp_r2 = NULL;
+        vramAddr = vramTileBase + (rowOffset << 7);
+    }
+    else
+    {
+        vramAddr = vramTileBase + (rowOffset << 6);
+    }
+    src = gEwramData->unk_133F4;
+    dst = gUnk_03002CB0.pBgCmdBuffer;
+
+    if ((u32) (&dst[length] + 2) >= (u32) &gUnk_03002CB0.bgCmdBuffer[sizeof(gUnk_03002CB0.bgCmdBuffer)/sizeof(u16)])
+    {
+        end = NULL;
     }
     else 
     {
-        *tmp3++ = var_r4;
-        *tmp3++ = tmp;
-        DMA_SET(3, tmp2, tmp3, C_32_2_16(DMA_ENABLE, var_r4));
-        tmp3 = tmp3 + var_r4;
-        gUnk_03002CB0.unk_4 = tmp3;
-        temp_r2 = tmp3;
+        *dst++ = length;
+        *dst++ = vramAddr;
+        DMA_SET(3, src, dst, C_32_2_16(DMA_ENABLE, length));
+        dst += length;
+        gUnk_03002CB0.pBgCmdBuffer = dst;
+        end = dst;
     }
-    return temp_r2;
+    return end;
 }
 
 /**
- * @brief 1350 | To document
+ * @brief 1350 | Add signed integer to BG Command Buffer
  * 
- * @param param_0 To document
- * @param param_1 To document
- * @param param_2 To document
- * @param param_4 To document
- * @return u16* To document
+ * @param tileIndex Tile index into VRAM
+ * @param rowOffset Row offset from base
+ * @param palNum Palette number
+ * @param numChars Number of characters
+ * @param value Signed integer to write
+ * @return u16* Pointer to next data
  */
-u16* sub_08001350(u16 param_0, u16 param_1, u8 param_2, s32 param_3, s32 param_4)
+u16* BgCmdBuffer_WriteNumber(u16 tileIndex, u16 rowOffset, u8 palNum, s32 numChars, s32 value)
 {
-    s32 sp4;
-    u8 sp8;
-    u16 *var_r5;
-    s32 temp_r4;
-    s32 var_r6;
-    u16 *temp_r2;
-    u16 temp_r0;
-    u32 tmp;
-    u8 *tmp2;
-    u16 *tmp3;
+    s32 isNegative;
+    u8 length;
+    u16 *valDst;
+    s32 digit;
+    s32 charPos;
+    u16 *end;
+    u16 baseTile;
+    u32 vramAddr;
+    u8 *src;
+    u16 *dst;
+    u32 vramTileBase;
 
-    sp4 = 0;
-    if (param_4 < 0)
+    isNegative = FALSE;
+    if (value < 0)
     {
-        sp4 = 1;
-        param_4 = -param_4;
+        isNegative = TRUE;
+        value = -value;
     }
 
-    temp_r0 = (param_2 << 0xC) | 0x300;
-    var_r5 = (u16*)&gEwramData->unk_133F2 + param_3;
-    var_r6 = 0;
+    baseTile = (palNum << 0xC) | 0x300;
+    valDst = (u16*)&gEwramData->unk_133F2 + numChars;
+    charPos = 0;
 
+    // Write digits
     do
     {
-        temp_r4 = Mod(param_4, 10);
-        param_4 = Div(param_4, 10);
-        *var_r5 = (temp_r4 + 0x30) | temp_r0;
-        var_r5 -= 1;
-        var_r6 += 1;
-    } while (var_r6 < param_3 && param_4 != 0);
+        digit = Mod(value, 10);
+        value = Div(value, 10);
+        *valDst = (digit + 0x30) | baseTile;
+        valDst -= 1;
+        charPos += 1;
+    } while (charPos < numChars && value != 0);
 
-    if (var_r6 < param_3 && sp4 != 0)
+    // Write negative sign if negative
+    if (charPos < numChars && isNegative)
     {
-        *var_r5 = temp_r0 | 0x2D;
-        var_r5 -= 1;
-        var_r6 += 1;
-    }
-    while (var_r6 < param_3)
-    {
-        *var_r5 = 0x20;
-        var_r6 += 1;
-        var_r5 -= 1;
+        *valDst = baseTile | 0x2D;
+        valDst -= 1;
+        charPos += 1;
     }
 
-    tmp = (u32)(VRAM_BASE + 0xE000) + (param_0 * 2) + ((gDisplayRegisters.bgCnt[0] & (BGCNT_SIZE_512x256 << BGCNT_SCREEN_SIZE_SHIFT)) ? (param_1 << 7) : (param_1 << 6));
-    sp8 = param_3;
-    tmp2 = gEwramData->unk_133F4;
-    tmp3 = gUnk_03002CB0.unk_4;
-
-    if ((u8*)(tmp3 + sp8 + 2) >= (u8*)&gUnk_03002CB0.unk_808)
+    // Write spaces for remaining places
+    while (charPos < numChars)
     {
-        temp_r2 = NULL;
+        *valDst = 0x20; // spaces
+        charPos += 1;
+        valDst -= 1;
+    }
+
+    vramTileBase = (u32)(VRAM_BASE + 0xE000) + (tileIndex * sizeof(u16));
+    if (gDisplayRegisters.bgCnt[0] & (BGCNT_SIZE_512x256 << BGCNT_SCREEN_SIZE_SHIFT))
+    {
+        vramAddr = vramTileBase + (rowOffset << 7);
     }
     else
     {
-        *tmp3++ = sp8;
-        *tmp3++ = tmp;
-        DMA_SET(3, tmp2, tmp3, C_32_2_16(DMA_ENABLE, sp8));
-        tmp3 = tmp3 + sp8;
-        gUnk_03002CB0.unk_4 = tmp3;
-        temp_r2 = tmp3;
+        vramAddr = vramTileBase + (rowOffset << 6);
     }
-    return temp_r2;
+    length = numChars;
+    src = gEwramData->unk_133F4;
+    dst = gUnk_03002CB0.pBgCmdBuffer;
+
+    if ((u32) (&dst[length] + 2) >= (u32) &gUnk_03002CB0.bgCmdBuffer[sizeof(gUnk_03002CB0.bgCmdBuffer)/sizeof(u16)])
+    {
+        end = NULL;
+    }
+    else
+    {
+        *dst++ = length;
+        *dst++ = vramAddr;
+        DMA_SET(3, src, dst, C_32_2_16(DMA_ENABLE, length));
+        dst += length;
+        gUnk_03002CB0.pBgCmdBuffer = dst;
+        end = dst;
+    }
+    return end;
 }
 
 /**
- * @brief 148C | (Duplicate of sub_0800125C) To document
+ * @brief 148C | (Duplicate of BgCmdBuffer_WriteString) Add string of characters to BG Command Buffer
  * 
- * @param param_0 To document
- * @param param_1 To document
- * @param param_2 To document
- * @param param_3 To document
- * @return u16* To document
+ * @param tileIndex Tile index into VRAM
+ * @param rowOffset Row offset from base
+ * @param tileInfo Low nybble is palette number, high nybble is tile index flag
+ * @param string Pointer to string
+ * @return u16* Pointer to next data
  */
-u16* sub_0800148C(u16 param_0, u16 param_1, u8 param_2, u8 *param_3)
+u16* BgCmdBuffer_WriteString_Duplicate(u16 tileIndex, u16 rowOffset, u8 tileInfo, u8 *string)
 {
-    u16 *temp_r2;
-    u16 var_r2;
-    u16 *var_r3;
-    u8 var_r4;
-    u32 tmp;
-    u8 *tmp2;
-    u16 *tmp3;
-    u32 tmp4;
+    u16 *end;
+    u16 palNum;
+    u16 *strDst;
+    u8 length;
+    u32 vramAddr;
+    u8 *src;
+    u16 *dst;
+    u32 tile;
+    u32 vramTileBase;
 
-    var_r2 = param_2 << 0xC;
-    var_r3 = (u16*)gEwramData->unk_133F4;
-
-    for (var_r4 = 0; param_3[var_r4] != 0; var_r4++)
+    palNum = tileInfo << 12;
+    strDst = (u16*)gEwramData->unk_133F4;
+    
+    for (length = 0; string[length] != 0; length++)
     {
-        tmp4 = var_r2;
-        if (!(param_2 & 0xF0))
+        tile = palNum;
+        if (!(tileInfo & 0xF0))
         {
-            tmp4 |= param_3[var_r4] + 0x300;
+            tile |= string[length] + 0x300;
         }
-        *var_r3++ = tmp4;
+        *strDst++ = tile;
     }
 
-    tmp = (u32)(VRAM_BASE + 0xE000) + (param_0 * 2) + ((gDisplayRegisters.bgCnt[0] & (BGCNT_SIZE_512x256 << BGCNT_SCREEN_SIZE_SHIFT)) ? (param_1 << 7) : (param_1 << 6));
-    tmp2 = gEwramData->unk_133F4;
-    tmp3 = gUnk_03002CB0.unk_4;
-
-    if ((u32) (&tmp3[var_r4] + 2) >= (u32) &gUnk_03002CB0.unk_808)
+    vramTileBase = (u32)(VRAM_BASE + 0xE000) + (tileIndex * sizeof(u16));
+    if (gDisplayRegisters.bgCnt[0] & (BGCNT_SIZE_512x256 << BGCNT_SCREEN_SIZE_SHIFT))
     {
-        temp_r2 = NULL;
+        vramAddr = vramTileBase + (rowOffset << 7);
+    }
+    else
+    {
+        vramAddr = vramTileBase + (rowOffset << 6);
+    }
+    src = gEwramData->unk_133F4;
+    dst = gUnk_03002CB0.pBgCmdBuffer;
+
+    if ((u32) (&dst[length] + 2) >= (u32) &gUnk_03002CB0.bgCmdBuffer[sizeof(gUnk_03002CB0.bgCmdBuffer)/sizeof(u16)])
+    {
+        end = NULL;
     }
     else 
     {
-        *tmp3++ = var_r4;
-        *tmp3++ = tmp;
-        DMA_SET(3, tmp2, tmp3, C_32_2_16(DMA_ENABLE, var_r4));
-        tmp3 = tmp3 + var_r4;
-        gUnk_03002CB0.unk_4 = tmp3;
-        temp_r2 = tmp3;
+        *dst++ = length;
+        *dst++ = vramAddr;
+        DMA_SET(3, src, dst, C_32_2_16(DMA_ENABLE, length));
+        dst += length;
+        gUnk_03002CB0.pBgCmdBuffer = dst;
+        end = dst;
     }
-    return temp_r2;
+    return end;
 }
 
 /**
- * @brief 1580 | To document
+ * @brief 1580 | Write data to BG Command Buffer
  * 
- * @param param_0 To document
- * @param param_1 To document
- * @param param_2 To document
- * @param param_3 To document
- * @return u16* To document
+ * @param bgCmd Low nybble is background number, high nybble is vertical flag
+ * @param length Length of data in bytes
+ * @param src Pointer to source data
+ * @param vramAddr VRAM address that will be written to
+ * @return u16* Pointer to next data
  */
-u16* sub_08001580(u8 param_0, u8 param_1, u8* param_2, u32 param_3)
+u16* BgCmdBuffer_WriteData(u8 bgCmd, u8 length, u8* src, u32 vramAddr)
 {
-    u16 *tmp0;
-    u16 *tmp1;
+    u16 *dst;
+    u16 *end;
 
-    tmp0 = gUnk_03002CB0.unk_4;
-    if ((u32) (&tmp0[param_1] + 2) < (u32) &gUnk_03002CB0.unk_808)
+    dst = gUnk_03002CB0.pBgCmdBuffer;
+    if ((u32) (&dst[length] + 2) < (u32) &gUnk_03002CB0.bgCmdBuffer[sizeof(gUnk_03002CB0.bgCmdBuffer)/sizeof(u16)])
     {
-        *tmp0++ = (param_0 << 8) | param_1;
-        *tmp0++ = param_3;
-        DMA_SET(3, param_2, tmp0, C_32_2_16(DMA_ENABLE, param_1));
-        tmp0 = &tmp0[param_1];
-        gUnk_03002CB0.unk_4 = tmp0;
-        tmp1 = tmp0;
+        *dst++ = (bgCmd << 8) | length;
+        *dst++ = vramAddr;
+        DMA_SET(3, src, dst, C_32_2_16(DMA_ENABLE, length));
+        dst = &dst[length];
+        gUnk_03002CB0.pBgCmdBuffer = dst;
+        end = dst;
     }
     else
     {
-        tmp1 = NULL;
+        end = NULL;
     }
-    return tmp1;
+    return end;
 }
 
 /**
@@ -347,14 +377,14 @@ struct Unk_030034BC* sub_08001668(u16 arg0, s32 arg1, u32 *arg2)
     tmp1 = gUnk_03002CB0.unk_808;
     if (((s32) ((u8*)tmp1 + (arg0 + 0xC)) >= (s32) (&gUnk_03002CB0.unk_100C)) || (arg0 == 0))
     {
-        return 0;
+        return NULL;
     }
 
     tmp1->unk_80C = (u32*)&tmp1->unk_818;
     tmp1->unk_810 = arg2;
     tmp1->unk_814 = arg0;
 
-    DMA_SET(3, arg1, tmp1->unk_80C, C_32_2_16(DMA_ENABLE, (u32) (arg0) >> 0x1))
+    DMA_COPY_16(3, arg1, tmp1->unk_80C, arg0);
     temp_r0 = (struct Unk_030034BC*)(((u32)((u8*)tmp1 + arg0 + 0xF)) & ~3);
     gUnk_03002CB0.unk_808 = temp_r0;
     return temp_r0;
@@ -414,8 +444,8 @@ void sub_08001718(u8 arg0, u8 vcountSetting, u8 writeSize, void *destReg)
     }
 }
 
-extern u32 *gUnk_0850E968[];
-extern u16 gUnk_08116650[];
+extern u32 *sUnk_0850E968[];
+extern u16 sUnk_08116650[];
 
 /**
  * @brief 1780 | To document
@@ -434,16 +464,16 @@ s32 sub_08001780(s32 param_0, s32 param_1)
 
     var_4 = 0;
 
-    var_1 = gUnk_08116650[(gEwramData->unk_60.unk_8C_0 + (param_0 >> 8)) + ((gEwramData->unk_60.unk_8C_7 + (param_1 >> 8)) << 6)];
+    var_1 = sUnk_08116650[(gEwramData->unk_60.unk_8C_0 + (param_0 >> 8)) + ((gEwramData->unk_60.unk_8C_7 + (param_1 >> 8)) << 6)];
     var_1 = (var_1 >> 6) & 0xF;
 
-    var_0 = gUnk_08116650[(gEwramData->unk_60.unk_8C_0 + (param_0 >> 8)) + ((gEwramData->unk_60.unk_8C_7 + (param_1 >> 8)) << 6)];
+    var_0 = sUnk_08116650[(gEwramData->unk_60.unk_8C_0 + (param_0 >> 8)) + ((gEwramData->unk_60.unk_8C_7 + (param_1 >> 8)) << 6)];
     var_0 = var_0 & 0x3F;
 
     var_2 = sub_08001980(var_1, var_0);
-    for (var_3 = 0; gUnk_0850E968[var_3] != 0; var_3++)
+    for (var_3 = 0; sUnk_0850E968[var_3] != 0; var_3++)
     {
-        if (gUnk_0850E968[var_3] == var_2)
+        if (sUnk_0850E968[var_3] == var_2)
         {
             var_4 = 1;
             break;
@@ -511,7 +541,7 @@ s32 sub_08001894(s32 param_0, s32 param_1)
 {
     u16 tmp;
 
-    tmp = gUnk_08116650[gEwramData->unk_60.unk_8C_0 + (param_0 >> 8) + ((gEwramData->unk_60.unk_8C_7 + (param_1 >> 8)) << 6)];
+    tmp = sUnk_08116650[gEwramData->unk_60.unk_8C_0 + (param_0 >> 8) + ((gEwramData->unk_60.unk_8C_7 + (param_1 >> 8)) << 6)];
     return (tmp >> 6) & 0xF;
 }
 
@@ -526,7 +556,7 @@ s32 sub_080018D0(s32 param_0, s32 param_1)
 {
     u16 tmp;
 
-    tmp = gUnk_08116650[gEwramData->unk_60.unk_8C_0 + (param_0 >> 8) + ((gEwramData->unk_60.unk_8C_7 + (param_1 >> 8)) << 6)];
+    tmp = sUnk_08116650[gEwramData->unk_60.unk_8C_0 + (param_0 >> 8) + ((gEwramData->unk_60.unk_8C_7 + (param_1 >> 8)) << 6)];
     return tmp & 0x3F;
 }
 
@@ -541,7 +571,7 @@ s32 sub_0800190C(s32 param_0, s32 param_1)
 {
     u16 tmp;
 
-    tmp = gUnk_08116650[gEwramData->unk_60.unk_8C_0 + (param_0 >> 8) + ((gEwramData->unk_60.unk_8C_7 + (param_1 >> 8)) << 6)];
+    tmp = sUnk_08116650[gEwramData->unk_60.unk_8C_0 + (param_0 >> 8) + ((gEwramData->unk_60.unk_8C_7 + (param_1 >> 8)) << 6)];
     return tmp >> 0xF;
 }
 
@@ -556,11 +586,11 @@ s32 sub_08001944(s32 param_0, s32 param_1)
 {
     u16 tmp;
 
-    tmp = gUnk_08116650[gEwramData->unk_60.unk_8C_0 + (param_0 >> 8) + ((gEwramData->unk_60.unk_8C_7 + (param_1 >> 8)) << 6)];
+    tmp = sUnk_08116650[gEwramData->unk_60.unk_8C_0 + (param_0 >> 8) + ((gEwramData->unk_60.unk_8C_7 + (param_1 >> 8)) << 6)];
     return (tmp >> 0xE) & 1;
 }
 
-extern u32 **gUnk_0850EF08[];
+extern u32 **sUnk_0850EF08[];
 
 /**
  * @brief 1980 | To document
@@ -571,7 +601,7 @@ extern u32 **gUnk_0850EF08[];
  */
 u32* sub_08001980(s32 param_0, s32 param_1)
 {
-    return gUnk_0850EF08[param_0][param_1];
+    return sUnk_0850EF08[param_0][param_1];
 }
 
 /**

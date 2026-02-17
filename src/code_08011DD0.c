@@ -23,7 +23,7 @@
 #include "structs/ewram.h"
 #include "structs/main.h"
 
-// Note: sub_0800125C is implicitly called
+// Note: BgCmdBuffer_WriteString is implicitly called
 
 /**
  * @brief 11DD0 | To document
@@ -130,9 +130,9 @@ void sub_08011E88(struct EwramData_unk60 *param_0, s32 param_1, s32 param_2, s32
     }
 
     temp_r4 = Div(var_r6 * 1000, 0x350);
-    sub_0800125C(param_2 + 3, param_3, 0, sUnk_080E100C);
-    sub_08001350(param_2, param_3, 0, 3, Div(temp_r4, 10));
-    sub_08001350(param_2 + 4, param_3, 0, 1, Mod(temp_r4, 10));
+    BgCmdBuffer_WriteString(param_2 + 3, param_3, 0, sUnk_080E100C);
+    BgCmdBuffer_WriteNumber(param_2, param_3, 0, 3, Div(temp_r4, 10));
+    BgCmdBuffer_WriteNumber(param_2 + 4, param_3, 0, 1, Mod(temp_r4, 10));
 }
 
 /**

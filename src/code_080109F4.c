@@ -26,7 +26,7 @@
 #include "structs/ewram.h"
 #include "structs/main.h"
 
-extern u16 gUnk_08116650[];
+extern u16 sUnk_08116650[];
 
 static inline u16* sub_080109F4_inline_0(s32 var_3, s32 param_0, s32 param_1)
 {
@@ -49,7 +49,7 @@ void sub_080109F4(s32 param_0, s32 param_1, s32 param_2, s32 param_3, s32 param_
     u16 *temp_r2;
     s32 var_3;
 
-    if (gUnk_08116650[(param_1 << 6) + param_0] == 0xFFFF)
+    if (sUnk_08116650[(param_1 << 6) + param_0] == 0xFFFF)
     {
         param_2 = 0;
     }
@@ -121,7 +121,7 @@ void sub_08010B04(s32 param_0, s32 param_1, s32 param_2, s32 param_3, s32 param_
     s32 var_0;
     s32 var_1;
 
-    if (gUnk_08116650[(param_1 << 6) + param_0] == 0xFFFF)
+    if (sUnk_08116650[(param_1 << 6) + param_0] == 0xFFFF)
     {
         param_2 = 0;
     }
@@ -395,7 +395,7 @@ void sub_08010D60(struct EwramData_unk60 *param_0)
     {
         for (var_r5 = 0; var_r5 < 0x40; var_r5++)
         {
-            temp_r4_2 = gUnk_08116650[var_r5 + (var_r7 << 6)];
+            temp_r4_2 = sUnk_08116650[var_r5 + (var_r7 << 6)];
             if (temp_r4_2 == 0xFFFF)
             {
                 continue;
@@ -443,7 +443,7 @@ void sub_08010D60(struct EwramData_unk60 *param_0)
     {
         for (var_r5 = 0; var_r5 < 0x40; var_r5++)
         {
-            temp_r4_4 = gUnk_08116650[(var_r7 << 6) + var_r5];
+            temp_r4_4 = sUnk_08116650[(var_r7 << 6) + var_r5];
             if (temp_r4_4 == 0xFFFF)
                 continue;
 

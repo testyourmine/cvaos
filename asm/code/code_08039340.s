@@ -12732,7 +12732,7 @@ _0803F47A:
 	movs r1, #0x15
 	ldr r2, [sp]
 	mov r3, sl
-	bl sub_08001580
+	bl BgCmdBuffer_WriteData
 _0803F4A0:
 	ldr r0, [r7, #4]
 	add r0, r8
@@ -12826,7 +12826,7 @@ _0803F534:
 	movs r1, #0x15
 	ldr r2, [sp]
 	mov r3, sl
-	bl sub_08001580
+	bl BgCmdBuffer_WriteData
 _0803F55A:
 	ldr r0, [r6, #4]
 	add r0, r8
@@ -12931,7 +12931,7 @@ _0803F602:
 	movs r1, #0x1f
 	ldr r2, [sp]
 	mov r3, sl
-	bl sub_08001580
+	bl BgCmdBuffer_WriteData
 _0803F628:
 	ldr r0, [r7, #8]
 	add r0, r8
@@ -13026,7 +13026,7 @@ _0803F6BE:
 	movs r1, #0x1f
 	ldr r2, [sp]
 	mov r3, sl
-	bl sub_08001580
+	bl BgCmdBuffer_WriteData
 _0803F6E4:
 	ldr r0, [r7, #8]
 	add r0, r8
@@ -13514,7 +13514,7 @@ _0803FA92:
 	movs r1, #0x1f
 	ldr r2, [sp]
 	mov r3, sl
-	bl sub_08001580
+	bl BgCmdBuffer_WriteData
 _0803FAB8:
 	ldr r0, [r7, #8]
 	add r0, r8
@@ -13608,7 +13608,7 @@ _0803FB4C:
 	movs r1, #0x1f
 	ldr r2, [sp]
 	mov r3, sl
-	bl sub_08001580
+	bl BgCmdBuffer_WriteData
 _0803FB72:
 	ldr r0, [r6, #8]
 	add r0, r8

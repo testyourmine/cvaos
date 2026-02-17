@@ -29,7 +29,7 @@
 #include "structs/ewram.h"
 #include "structs/main.h"
 
-// Note: sub_0800125C is implicitly called
+// Note: BgCmdBuffer_WriteString is implicitly called
 
 struct DebugMenuOptions {
     const u8 *text;
@@ -212,7 +212,7 @@ s32 GameModeDebugUpdate(void)
     {
         case 0:
             DMA_FILL_32(3, 0, VRAM_BASE + 0xE000, 0x800);
-            sub_0800125C(1, 1, 0, sDebugMenuSelectText);
+            BgCmdBuffer_WriteString(1, 1, 0, sDebugMenuSelectText);
             gEwramData->gameModeUpdateStage += 1;
             gEwramData->unk_12 = 0; // unk_12 is used as the current option here
             break;
@@ -258,7 +258,7 @@ s32 GameModeDebugUpdate(void)
 
                 for (option = 0; option < optionEnd; option++)
                 {
-                    sub_0800125C(4, option + 3, (option == gEwramData->unk_12) ? 1 : 3, sDebugMenuOptions[option].text);
+                    BgCmdBuffer_WriteString(4, option + 3, (option == gEwramData->unk_12) ? 1 : 3, sDebugMenuOptions[option].text);
                 }
             }
             break;
@@ -294,7 +294,7 @@ s32 GameModeDebugExitUpdate(void)
 
             for (option = 0; option < sDebugExitOptionsLength; option++)
             {
-                sub_0800125C(5, option + 2, 0, sDebugExitOptions[option].text);
+                BgCmdBuffer_WriteString(5, option + 2, 0, sDebugExitOptions[option].text);
             }
 
             gEwramData->gameModeUpdateStage += 1;
@@ -309,7 +309,7 @@ s32 GameModeDebugExitUpdate(void)
         case 2:
             if (gEwramData->inputData.newInput & KEY_UP)
             {
-                sub_0800125C(4, gEwramData->unk_12 + 2, 2, (u8 *) sDebugExitEmptyText);
+                BgCmdBuffer_WriteString(4, gEwramData->unk_12 + 2, 2, (u8 *) sDebugExitEmptyText);
                 if (--gEwramData->unk_12 > sDebugExitOptionsLength)
                 {
                     gEwramData->unk_12 = sDebugExitOptionsLength - 1;
@@ -317,14 +317,14 @@ s32 GameModeDebugExitUpdate(void)
             }
             else if (gEwramData->inputData.newInput & KEY_DOWN)
             {
-                sub_0800125C(4, gEwramData->unk_12 + 2, 2, (u8 *) sDebugExitEmptyText);
+                BgCmdBuffer_WriteString(4, gEwramData->unk_12 + 2, 2, (u8 *) sDebugExitEmptyText);
                 if (++gEwramData->unk_12 >= sDebugExitOptionsLength)
                 {
                     gEwramData->unk_12 = 0;
                 }
             }
 
-            sub_0800125C(4, gEwramData->unk_12 + 2, 2, (u8 *) sDebugExitCursorText);
+            BgCmdBuffer_WriteString(4, gEwramData->unk_12 + 2, 2, (u8 *) sDebugExitCursorText);
             if (gEwramData->inputData.newInput & KEY_A)
             {
                 // If entrance option picked

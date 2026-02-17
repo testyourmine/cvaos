@@ -57,17 +57,16 @@ struct Unk_030034BC {
 };
 
 struct Unk_03002CB0 {
-    u16 dispCnt;
-    u8 unk_2;
-    u8 unk_3;
-    u16 *unk_4;
-    u16 unk_8[1]; // TODO: length/verify
-    u8 pad_C[0x808 - 0xA];
-    struct Unk_030034BC *unk_808;
-    struct Unk_030034BC unk_80C;
-    u8 unk_100C;
-    u8 unk_100D;
-    u8 unk_100E;
+    /* 0x0000 */ u16 dispCnt;
+    /* 0x0002 */ u8 unk_2;
+    /* 0x0003 */ u8 unk_3;
+    /* 0x0004 */ u16 *pBgCmdBuffer;
+    /* 0x0008 */ u16 bgCmdBuffer[0x400]; // TODO: verify length
+    /* 0x0808 */ struct Unk_030034BC *unk_808;
+    /* 0x080C */ struct Unk_030034BC unk_80C;
+    /* 0x100C */ u8 unk_100C;
+    /* 0x100D */ u8 unk_100D;
+    /* 0x100E */ u8 unk_100E;
 };
 
 extern struct DisplayRegisters gDisplayRegisters;

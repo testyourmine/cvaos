@@ -5,11 +5,11 @@
 #include "structs/ewram.h"
 #include "structs/main.h"
 
-void sub_08001194(void);
-u16* sub_0800125C(u16 param_0, u16 param_1, u8 param_2, u8 *param_3);
-u16* sub_08001350(u16 param_0, u16 param_1, u8 param_2, s32 param_3, s32 param_4);
-u16* sub_0800148C(u16 param_0, u16 param_1, u8 param_2, u8 *param_3);
-u16* sub_08001580(u8 param_0, u8 param_1, u8* param_2, u32 param_3);
+void BgCmdBuffer_TransferToVram(void);
+u16* BgCmdBuffer_WriteString(u16 tileIndex, u16 rowOffset, u8 tileInfo, u8 *string);
+u16* BgCmdBuffer_WriteNumber(u16 tileIndex, u16 rowOffset, u8 palNum, s32 numChars, s32 value);
+u16* BgCmdBuffer_WriteString_Duplicate(u16 tileIndex, u16 rowOffset, u8 tileInfo, u8 *string);
+u16* BgCmdBuffer_WriteData(u8 bgCmd, u8 length, u8* src, u32 vramAddr);
 void sub_080015E4(void);
 struct Unk_030034BC* sub_08001668(u16 arg0, s32 arg1, u32 *arg2);
 s32 sub_080016D0(u32 arg0, u32 *arg1, u32 *arg2);

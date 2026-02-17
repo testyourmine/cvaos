@@ -7009,7 +7009,7 @@ _08035982:
 	ldr r3, [r6]
 	movs r0, #8
 	movs r2, #1
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	adds r6, #8
 	movs r0, #0x80
 	lsls r0, r0, #0xa
@@ -7057,7 +7057,7 @@ _080359E4:
 	movs r0, #6
 	movs r2, #1
 	ldr r3, _08035A54 @ =0x080E1F8C
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	movs r1, #0x80
 	lsls r1, r1, #0xa
 	adds r5, r5, r1
@@ -7075,7 +7075,7 @@ _080359E4:
 	ldr r3, _08035A5C @ =0x080E1F90
 	movs r0, #6
 	movs r2, #1
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldr r3, [r4]
 	ldrh r1, [r3, #0x16]
 	movs r0, #1
@@ -9154,7 +9154,7 @@ _08036A98:
 	lsrs r1, r4, #0x10
 	ldr r3, [r5]
 	mov r0, sl
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	adds r5, #0xc
 	movs r0, #0x80
 	lsls r0, r0, #9
@@ -9281,7 +9281,7 @@ _08036B6E:
 	movs r0, #2
 	movs r1, #0x13
 	movs r2, #0xf
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldr r1, [r6, #4]
 	adds r0, r5, #0
 	bl _call_via_r1
@@ -9743,7 +9743,7 @@ _08036F0A:
 	movs r1, #2
 	movs r2, #0xf
 	mov r3, sp
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldr r1, _08037058 @ =0x080E22A0
 	mov r0, sp
 	adds r2, r5, #0
@@ -9753,7 +9753,7 @@ _08036F0A:
 	movs r1, #2
 	movs r2, #0xf
 	mov r3, sp
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldr r6, _0803705C @ =0x080E22B4
 	adds r0, r5, #0
 	adds r1, r4, #0
@@ -9769,7 +9769,7 @@ _08036F0A:
 	movs r1, #3
 	movs r2, #0xf
 	mov r3, sp
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldr r6, _08037060 @ =0x080E22C0
 	adds r0, r5, #0
 	adds r1, r4, #0
@@ -9785,7 +9785,7 @@ _08036F0A:
 	movs r1, #4
 	movs r2, #0xf
 	mov r3, sp
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldr r6, _08037064 @ =0x080E22CC
 	adds r0, r5, #0
 	adds r1, r4, #0
@@ -9801,7 +9801,7 @@ _08036F0A:
 	movs r1, #5
 	movs r2, #0xf
 	mov r3, sp
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldr r6, _08037068 @ =0x080E22D8
 	adds r0, r5, #0
 	adds r1, r4, #0
@@ -9817,7 +9817,7 @@ _08036F0A:
 	movs r1, #6
 	movs r2, #0xf
 	mov r3, sp
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldr r6, _0803706C @ =0x080E22E4
 	subs r4, #8
 	adds r0, r5, #0
@@ -9831,7 +9831,7 @@ _08036F0A:
 	movs r1, #7
 	movs r2, #0xf
 	mov r3, sp
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	add sp, #0x10
 	pop {r3}
 	mov r8, r3
@@ -10019,7 +10019,7 @@ sub_080370F0: @ 0x080370F0
 	movs r1, #2
 	movs r2, #0xf
 	add r3, sp, #4
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldr r1, _08037230 @ =0x080E22E8
 	add r0, sp, #4
 	adds r2, r4, #0
@@ -10029,12 +10029,12 @@ sub_080370F0: @ 0x080370F0
 	movs r1, #3
 	movs r2, #0xf
 	add r3, sp, #4
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	movs r0, #3
 	movs r1, #4
 	movs r2, #0xf
 	add r3, sp, #4
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	movs r2, #0
 	movs r0, #2
 	ands r0, r6
@@ -10103,7 +10103,7 @@ _08037266:
 	movs r1, #4
 	movs r2, #0xf
 	add r3, sp, #4
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldrb r6, [r7, #0xa]
 	cmp r6, #0
 	beq _08037298
@@ -10800,7 +10800,7 @@ sub_08037738: @ 0x08037738
 	movs r1, #2
 	movs r2, #0xf
 	add r3, sp, #4
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldr r1, _08037860 @ =0x080E22E8
 	add r0, sp, #4
 	adds r2, r4, #0
@@ -10810,7 +10810,7 @@ sub_08037738: @ 0x08037738
 	movs r1, #3
 	movs r2, #0xf
 	add r3, sp, #4
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	movs r2, #0
 	movs r0, #2
 	ands r0, r6
@@ -10879,7 +10879,7 @@ _08037896:
 	movs r1, #4
 	movs r2, #0xf
 	add r3, sp, #4
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldrb r6, [r7, #0xa]
 	cmp r6, #0
 	beq _080378C0
@@ -11668,7 +11668,7 @@ _08037ECE:
 	movs r0, #2
 	movs r1, #0x13
 	movs r2, #1
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldr r1, [r5, #4]
 	adds r0, r4, #0
 	bl _call_via_r1
@@ -11803,7 +11803,7 @@ _08038010:
 	movs r0, #2
 	movs r1, #2
 	movs r2, #1
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	b _080380EC
 	.align 2, 0
 _08038024: .4byte 0x080E2318
@@ -11812,7 +11812,7 @@ _08038028:
 	movs r0, #2
 	movs r1, #2
 	movs r2, #1
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	b _0803810A
 	.align 2, 0
 _08038038: .4byte 0x080E2328
@@ -11929,7 +11929,7 @@ _08038128:
 	movs r0, #0
 	movs r1, #0
 	movs r2, #1
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldrb r0, [r4, #2]
 	cmp r0, #6
 	bhi _08038218
@@ -12090,73 +12090,73 @@ _0803823A:
 	movs r0, #4
 	movs r1, #1
 	movs r2, #0
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldr r3, _08038344 @ =0x080E2358
 	movs r0, #4
 	movs r1, #2
 	movs r2, #0
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldr r3, _08038348 @ =0x080E2370
 	movs r0, #4
 	movs r1, #3
 	movs r2, #0
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldr r3, _0803834C @ =0x080E2388
 	movs r0, #4
 	movs r1, #4
 	movs r2, #0
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldr r3, _08038350 @ =0x080E23A0
 	movs r0, #4
 	movs r1, #5
 	movs r2, #0
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldr r3, _08038354 @ =0x080E23B8
 	movs r0, #4
 	movs r1, #6
 	movs r2, #0
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldr r3, _08038358 @ =0x080E23D0
 	movs r0, #4
 	movs r1, #7
 	movs r2, #0
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldr r3, _0803835C @ =0x080E23E8
 	movs r0, #4
 	movs r1, #8
 	movs r2, #0
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldr r4, _08038360 @ =0x080E2400
 	movs r0, #4
 	movs r1, #9
 	movs r2, #0
 	adds r3, r4, #0
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldr r3, _08038364 @ =0x080E2418
 	movs r0, #4
 	movs r1, #0xa
 	movs r2, #0
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	movs r0, #4
 	movs r1, #0xb
 	movs r2, #0
 	adds r3, r4, #0
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldr r3, _08038368 @ =0x080E2430
 	movs r0, #0xc
 	movs r1, #0xe
 	movs r2, #1
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldr r3, _0803836C @ =0x080E2438
 	movs r0, #0xc
 	movs r1, #0xf
 	movs r2, #1
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldr r3, _08038370 @ =0x080E2440
 	movs r0, #0xb
 	movs r1, #0xe
 	movs r2, #2
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	strb r6, [r5, #4]
 	movs r0, #1
 	strb r0, [r5, #3]
@@ -12201,7 +12201,7 @@ _08038392:
 	ldr r3, _080383D8 @ =0x080E2440
 	movs r0, #0xb
 	movs r2, #2
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldrb r0, [r5, #4]
 	movs r1, #0xf
 	cmp r0, #1
@@ -12211,7 +12211,7 @@ _080383A6:
 	ldr r3, _080383DC @ =0x080E2444
 	movs r0, #0xb
 	movs r2, #2
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 _080383B0:
 	ldr r0, _080383D4 @ =gEwramData
 	ldr r0, [r0]
@@ -12261,7 +12261,7 @@ _08038400:
 	movs r0, #4
 	movs r1, #4
 	movs r2, #1
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldr r3, _08038418 @ =0x080E2458
 	movs r0, #4
 	movs r1, #7
@@ -12285,7 +12285,7 @@ _08038430:
 	movs r0, #4
 	movs r1, #4
 	movs r2, #1
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	strh r6, [r4]
 	movs r0, #2
 	strb r0, [r4, #3]
@@ -12309,7 +12309,7 @@ _08038460:
 	movs r1, #4
 _0803846A:
 	movs r2, #1
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	movs r0, #1
 	strb r0, [r4, #3]
 	b _08038496
@@ -12384,12 +12384,12 @@ _08038500:
 	movs r0, #1
 	movs r1, #1
 	movs r2, #0
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldr r3, _08038530 @ =0x080E24A0
 	movs r0, #2
 	movs r1, #0x13
 	movs r2, #1
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	movs r1, #0
 	movs r0, #0
 	strh r0, [r6]
@@ -12471,7 +12471,7 @@ _080385A2:
 	movs r0, #2
 	movs r1, #4
 	movs r2, #1
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	movs r1, #0
 	movs r0, #2
 	strb r0, [r6, #3]
@@ -12486,7 +12486,7 @@ _080385C4:
 	movs r0, #2
 	movs r1, #4
 	movs r2, #1
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	movs r0, #3
 	strb r0, [r6, #3]
 	movs r0, #5
@@ -12518,7 +12518,7 @@ _080385FC:
 	movs r0, #2
 	movs r2, #2
 	mov r3, sp
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	adds r5, #1
 _0803861A:
 	movs r0, #0
@@ -12536,7 +12536,7 @@ _0803862C:
 	movs r0, #2
 	movs r2, #2
 	ldr r3, _08038668 @ =0x080E24F0
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	adds r5, #1
 	cmp r5, #5
 	ble _0803862C
@@ -12553,7 +12553,7 @@ _08038642:
 	movs r0, #0xa
 	movs r2, #3
 	mov r3, sp
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	adds r5, #1
 	cmp r5, #5
 	ble _08038642
@@ -12573,7 +12573,7 @@ _0803866C:
 	movs r0, #2
 	movs r1, #4
 	movs r2, #1
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	b _080387CA
 	.align 2, 0
 _08038688: .4byte gEwramData
@@ -12601,7 +12601,7 @@ _080386A4:
 	movs r0, #2
 	movs r1, #4
 	movs r2, #1
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	movs r0, #4
 	strb r0, [r6, #3]
 	b _080387D4
@@ -12620,7 +12620,7 @@ _080386D8:
 	movs r0, #2
 	movs r1, #4
 	movs r2, #1
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	movs r0, #1
 	strb r0, [r6, #3]
 	b _080387D4
@@ -12652,7 +12652,7 @@ _08038718:
 	movs r0, #2
 	movs r1, #4
 	movs r2, #1
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldrh r0, [r6]
 	adds r1, r0, #1
 	strh r1, [r6]
@@ -12684,7 +12684,7 @@ _08038756:
 	movs r0, #0xf
 	movs r1, #4
 	movs r2, #1
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	b _08038774
 	.align 2, 0
 _08038764: .4byte 0x080E255C
@@ -12693,7 +12693,7 @@ _08038768:
 	movs r0, #0xf
 	movs r1, #4
 	movs r2, #1
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 _08038774:
 	ldrh r0, [r6]
 	cmp r0, #0xb4
@@ -12702,7 +12702,7 @@ _08038774:
 	movs r0, #2
 	movs r1, #4
 	movs r2, #1
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	movs r0, #0
 	strh r0, [r6]
 	movs r0, #6
@@ -12723,7 +12723,7 @@ _08038798:
 	movs r0, #2
 	movs r1, #4
 	movs r2, #1
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	movs r0, #0
 	strb r0, [r6, #3]
 	b _080387D4
@@ -12766,7 +12766,7 @@ _080387F4:
 	movs r0, #4
 	movs r1, #9
 	movs r2, #1
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	strb r4, [r6, #5]
 	strh r4, [r6]
 	movs r0, #7
@@ -12891,7 +12891,7 @@ _080388CA:
 	movs r0, #2
 	movs r1, #0x13
 	movs r2, #1
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldr r1, [r5, #4]
 	adds r0, r4, #0
 	bl _call_via_r1
@@ -13432,7 +13432,7 @@ sub_08038D38: @ 0x08038D38
 	ldr r3, _08038E4C @ =0x080E28AC
 	movs r0, #1
 	movs r2, #1
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	mov r2, r8
 	ldr r0, [r2]
 	ldr r5, _08038E50 @ =0x000254D0
@@ -13665,7 +13665,7 @@ _08038F34:
 _08038F46:
 	ldr r3, [r5]
 	movs r0, #4
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	adds r5, #8
 	adds r4, #1
 	movs r0, #0x80
@@ -13952,7 +13952,7 @@ _08039132:
 	movs r1, #4
 	movs r2, #0xc
 	adds r3, r6, #0
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 	ldr r1, _08039244 @ =0x080E28D4
 	mov r0, sb
 	lsls r5, r0, #0x10
@@ -13967,7 +13967,7 @@ _08039132:
 	movs r1, #5
 	movs r2, #0xc
 	adds r3, r6, #0
-	bl sub_0800125C
+	bl BgCmdBuffer_WriteString
 _080391C4:
 	ldr r4, _08039248 @ =gEwramData
 	ldr r0, [r4]

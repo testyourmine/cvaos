@@ -43,8 +43,8 @@ sUnk_080EA628: @ 0x080EA628
 
     .incbin "cvaos_us_baserom.gba", 0x0EA629, 0x2C027
 
-    .global gUnk_08116650
-gUnk_08116650: @ 0x08116650
+    .global sUnk_08116650
+sUnk_08116650: @ 0x08116650
     .incbin "cvaos_us_baserom.gba", 0x116650, 0x1 @ TODO: size
 
     .incbin "cvaos_us_baserom.gba", 0x116651, 0x177F

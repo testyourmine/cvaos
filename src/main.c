@@ -92,7 +92,7 @@ void AgbMain(void)
             }
 
             sub_080015E4();
-            sub_08001194();
+            BgCmdBuffer_TransferToVram();
             sub_0803BF60();
             sub_0803E594();
             WRITE_16(REG_DISPCNT, gUnk_03002CB0.dispCnt);
@@ -353,7 +353,7 @@ void sub_08000658(void)
 void sub_080006CC(void)
 {
     DMA_FILL_32(3, 0, gEwramData, sizeof(struct EwramData));
-    gUnk_03002CB0.unk_4 = (u16*)&gUnk_03002CB0.unk_8;
+    gUnk_03002CB0.pBgCmdBuffer = (u16*)&gUnk_03002CB0.bgCmdBuffer;
     gUnk_03002CB0.unk_808 = &gUnk_03002CB0.unk_80C;
 
     DMA_COPY_32(3, &sUnk_080E3664, VRAM_BASE + 0x6000, sizeof(sUnk_080E3664));
@@ -369,7 +369,6 @@ void sub_080006CC(void)
     WRITE_16(REG_IME, TRUE);
     WRITE_16(REG_IE, IF_GAMEPAK | IF_VBLANK);
     WRITE_16(REG_DISPSTAT, DSTAT_IF_VBLANK);
-    
 
     EntityDeleteAll();
     sub_0803D9A8();
