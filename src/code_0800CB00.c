@@ -686,7 +686,7 @@ void sub_0800D288(void)
                 var_r6_3 = 0x50;
                 var_r2_2 = 1;
                 
-                switch (sub_080018D0(sub_08002188(gEwramData->unk_13110), sub_080021A8(gEwramData->unk_13110)))
+                switch (GetRoomFromMapPosition(GetEntityRoomXPositionInteger(gEwramData->unk_13110), GetEntityRoomYPositionInteger(gEwramData->unk_13110)))
                 {
                     case 0:
                         var_r7 = 0xD0;

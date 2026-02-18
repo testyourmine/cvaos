@@ -49,8 +49,8 @@ void sub_08014548(void)
         gEwramData->unk_1325C.unk_1327A = gEwramData->unk_1325C.unk_1327E;
         gEwramData->unk_1325C.unk_1327C = gEwramData->unk_1325C.unk_13280;
 
-        gEwramData->unk_60.unk_9E = 0;
-        gEwramData->unk_60.unk_9F = 0;
+        gEwramData->unk_60.currentArea = 0;
+        gEwramData->unk_60.currentRoom = 0;
 
         gEwramData->unk_60.unk_334 = 0x110;
         gEwramData->unk_60.unk_336 = 0x230;
@@ -577,8 +577,8 @@ void sub_08014A04(struct EwramData_EntityData *param_0)
     sp50 = param_0->unk_52C.unk_52C_32 + param_0->unk_510.unk_510_32;
     gUnk_03002CB0.unk_100E = sp44;
 
-    temp_r8 = (u16) sub_08002188(param_0);
-    temp_r0 = sub_080021A8(param_0);
+    temp_r8 = (u16) GetEntityRoomXPositionInteger(param_0);
+    temp_r0 = GetEntityRoomYPositionInteger(param_0);
     param_0->unk_4F4.unk_4F4_32 &= ~0x28000800;
 
     temp_r1 = temp_r0;
@@ -648,8 +648,8 @@ void sub_08014A04(struct EwramData_EntityData *param_0)
             }
 loop_24:
             temp_r5_3 = gEwramData->unk_13170[sp60];
-            temp_r4_3 = sub_08002188(temp_r5_3);
-            temp_sb = (u16) sub_080021A8(temp_r5_3);
+            temp_r4_3 = GetEntityRoomXPositionInteger(temp_r5_3);
+            temp_sb = (u16) GetEntityRoomYPositionInteger(temp_r5_3);
             if (sub_08042030(&sp0, &sp4, temp_r5_3) == 0)
             {
                 goto block_40;
@@ -915,7 +915,7 @@ block_106:
         sp48 = var_r3_2;
     }
 
-    temp_r0_12 = (u16) sub_08002188(param_0);
+    temp_r0_12 = (u16) GetEntityRoomXPositionInteger(param_0);
     temp_r6_5 = (s32) ((temp_r0_12 << 0x10) + 0xFFFB0000) >> 0x10;
     temp_r5_7 = (s32) (spE0 + 0xFFEC0000) >> 0x10;
     temp_r4_8 = (u16) sub_08001C1C(temp_r6_5, temp_r5_7);
@@ -1142,8 +1142,8 @@ block_165:
             }
 loop_183:
             temp_r5_12 = gEwramData->unk_13170[sp7C];
-            temp_r4_12 = (u16) sub_08002188(temp_r5_12);
-            temp_sb_2 = (u16) sub_080021A8(temp_r5_12);
+            temp_r4_12 = (u16) GetEntityRoomXPositionInteger(temp_r5_12);
+            temp_sb_2 = (u16) GetEntityRoomYPositionInteger(temp_r5_12);
             if (sub_08042030(&sp8, &spC, temp_r5_12) == 0)
             {
                 goto block_199;
@@ -1304,8 +1304,8 @@ block_227:
             }
 loop_241:
             temp_r5_13 = gEwramData->unk_13170[sp90];
-            temp_r4_13 = (u16) sub_08002188(temp_r5_13);
-            temp_sb_3 = (u16) sub_080021A8(temp_r5_13);
+            temp_r4_13 = (u16) GetEntityRoomXPositionInteger(temp_r5_13);
+            temp_sb_3 = (u16) GetEntityRoomYPositionInteger(temp_r5_13);
             if (sub_08042030(&sp10, &sp14, temp_r5_13) == 0)
             {
                 goto block_257;
@@ -1479,8 +1479,8 @@ block_270:
                 }
 loop_361:
                 temp_r5_14 = gEwramData->unk_13170[spA8];
-                temp_r4_14 = (u16) sub_08002188(temp_r5_14);
-                temp_sb_4 = (u16) sub_080021A8(temp_r5_14);
+                temp_r4_14 = (u16) GetEntityRoomXPositionInteger(temp_r5_14);
+                temp_sb_4 = (u16) GetEntityRoomYPositionInteger(temp_r5_14);
                 if (sub_08042030(&sp18, &sp1C, temp_r5_14) == 0)
                 {
                     goto block_377;
@@ -1646,8 +1646,8 @@ block_390:
                 }
 loop_422:
                 temp_r5_15 = gEwramData->unk_13170[spC0];
-                temp_r4_15 = (u16) sub_08002188(temp_r5_15);
-                temp_sb_5 = (u16) sub_080021A8(temp_r5_15);
+                temp_r4_15 = (u16) GetEntityRoomXPositionInteger(temp_r5_15);
+                temp_sb_5 = (u16) GetEntityRoomYPositionInteger(temp_r5_15);
                 if (sub_08042030(&sp20, &sp24, temp_r5_15) == 0)
                 {
                     goto block_438;
@@ -1989,8 +1989,8 @@ block_484:
             }
 loop_500:
             temp_r5_17 = gEwramData->unk_13170[spD4];
-            temp_r4_18 = (u16) sub_08002188(temp_r5_17);
-            temp_sb_6 = (u16) sub_080021A8(temp_r5_17);
+            temp_r4_18 = (u16) GetEntityRoomXPositionInteger(temp_r5_17);
+            temp_sb_6 = (u16) GetEntityRoomYPositionInteger(temp_r5_17);
             if (sub_08042030(&sp28, &sp2C, temp_r5_17) == 0)
             {
                 goto block_516;

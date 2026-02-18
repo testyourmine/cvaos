@@ -1546,8 +1546,8 @@ void sub_08033370(struct EwramData_EntityData *param_0)
     temp_r4 = param_0->unk_528.unk_528_32 - temp_r1->unk_528.unk_528_32;
     sp4 = temp_r2;
 
-    temp_r6 = sub_08002188(param_0);
-    temp_r1_2 = sub_080021A8(param_0);
+    temp_r6 = GetEntityRoomXPositionInteger(param_0);
+    temp_r1_2 = GetEntityRoomYPositionInteger(param_0);
     if (temp_r4 < 0x1E0000)
     {
         if (sub_08002058(temp_r6 + 0x1E, temp_r1_2 - 0x10) != 0)
@@ -1593,8 +1593,8 @@ void sub_08033370(struct EwramData_EntityData *param_0)
             param_0->unk_524.unk_524_32 += var_r7;
         }
 
-        temp_r6 = sub_08002188(param_0);
-        temp_r1_2 = sub_080021A8(param_0);
+        temp_r6 = GetEntityRoomXPositionInteger(param_0);
+        temp_r1_2 = GetEntityRoomYPositionInteger(param_0);
         if (var_r1_2 = sub_0800207C(temp_r6 - 0x11, temp_r1_2), var_r1_2 != 0)
         {
             param_0->unk_524.unk_524_16.unk_526 -= 1;
@@ -1614,8 +1614,8 @@ void sub_08033370(struct EwramData_EntityData *param_0)
             param_0->unk_524.unk_524_32 += var_r7;
         }
 
-        temp_r6 = sub_08002188(param_0);
-        temp_r1_2 = sub_080021A8(param_0);
+        temp_r6 = GetEntityRoomXPositionInteger(param_0);
+        temp_r1_2 = GetEntityRoomYPositionInteger(param_0);
         if (var_r1_4 = sub_08002058(temp_r6 + 0x11, temp_r1_2), var_r1_4 != 0)
         {
             param_0->unk_524.unk_524_16.unk_526 += 1;
@@ -1639,8 +1639,8 @@ void sub_08033370(struct EwramData_EntityData *param_0)
         sp0 = 0;
     }
 
-    temp_r6 = sub_08002188(param_0);
-    temp_r1_2 = sub_080021A8(param_0);
+    temp_r6 = GetEntityRoomXPositionInteger(param_0);
+    temp_r1_2 = GetEntityRoomYPositionInteger(param_0);
     if (var_r1_4 = sub_08001D94(temp_r6 + 0xF, temp_r1_2 + 1), var_r1_4 != 0)
     {
         param_0->unk_528.unk_528_32 += (var_r1_4 + 1) << 0x10;
@@ -2413,8 +2413,8 @@ void sub_0803427C(void)
     temp_r8 = &gEwramData->unk_4DC;
     temp_r4 = gEwramData->unk_13110;
 
-    temp_sl = sub_08002188(temp_r4);
-    temp_sb = sub_080021A8(temp_r4);
+    temp_sl = GetEntityRoomXPositionInteger(temp_r4);
+    temp_sb = GetEntityRoomYPositionInteger(temp_r4);
     temp_r5->unk_4D4 = temp_sl;
     temp_r5->unk_4D6 = temp_sb;
     temp_r5->unk_4D8 = temp_r4->unk_549;

@@ -155,8 +155,8 @@ s32 sub_080127F0(s32 param_0, s32 param_1)
     }
     else
     {
-        temp_r5->unk_9E = 0;
-        temp_r5->unk_9F = 0x24;
+        temp_r5->currentArea = 0;
+        temp_r5->currentRoom = 0x24;
         temp_r5->unk_334 = 0;
         temp_r5->unk_336 = 0x30;
         temp_r5->unk_338 = 0x78;

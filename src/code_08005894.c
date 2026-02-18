@@ -1255,7 +1255,7 @@ s32 sub_080074C0(struct EwramData_EntityData *param_0)
             }
             else
             {
-                gEwramData->unk_60.unk_3CC = sub_08001980(0, 0);
+                gEwramData->unk_60.unk_3CC = GetRoomPointer(0, 0);
                 sub_08013404();
                 sp0 = -3;
             }
@@ -1303,7 +1303,7 @@ s32 sub_080074C0(struct EwramData_EntityData *param_0)
                 }
                 else if ((param_0->unk_4F8.unk_4F8_8.unk_4F9 > 5) && (unk_60->unk_60 & 1))
                 {
-                    gEwramData->unk_60.unk_3CC = sub_08001980(0, 0);
+                    gEwramData->unk_60.unk_3CC = GetRoomPointer(0, 0);
                     sub_08013404();
                     sp0 = -3;
                 }
@@ -1320,12 +1320,12 @@ s32 sub_080074C0(struct EwramData_EntityData *param_0)
                     param_0->unk_4F4.unk_4F4_8.unk_4F5 &= ~(1 << var_r5);
                     gEwramData->unk_60.unk_428 = var_r5 - 1;
                 }
-                gEwramData->unk_60.unk_3CC = sub_08001980(gEwramData->unk_60.unk_9E, gEwramData->unk_60.unk_9F);
+                gEwramData->unk_60.unk_3CC = GetRoomPointer(gEwramData->unk_60.currentArea, gEwramData->unk_60.currentRoom);
                 sp0 = -2;
             }
             else
             {
-                gEwramData->unk_60.unk_3CC = sub_08001980(0, 0);
+                gEwramData->unk_60.unk_3CC = GetRoomPointer(0, 0);
                 sub_08013404();
                 param_0->unk_4FC.unk_4FC_8.unk_4FD = 1;
             }

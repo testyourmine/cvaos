@@ -381,7 +381,7 @@ void sub_08010D60(struct EwramData_unk60 *param_0)
 
     DMA_FILL_32(3, 0, 0x06000000, 0x6000);
     sub_08011E88(param_0, param_0->unk_8D_6, 0x18, 1);
-    if (sub_08001894(sub_08002188(Get_unk_13110()), sub_080021A8(Get_unk_13110())) == 0xB)
+    if (GetAreaFromMapPosition(GetEntityRoomXPositionInteger(Get_unk_13110()), GetEntityRoomYPositionInteger(Get_unk_13110())) == 11)
     {
         return;
     }
@@ -449,6 +449,7 @@ void sub_08010D60(struct EwramData_unk60 *param_0)
 
             if (param_0->unk_B4[((var_r7 * 8) + ((var_r5 >> 5) * 0x140)) >> 2] & (1 << (var_r5 & 0x1F)))
             {
+                // Is save room
                 if (temp_r4_4 & 0x4000)
                 {
                     var_r1_5 = 3;
@@ -457,7 +458,8 @@ void sub_08010D60(struct EwramData_unk60 *param_0)
                 {
                     var_r1_5 = 9;
                 }
-                
+
+                // Is warp room
                 if (!(temp_r4_4 & 0x8000))
                 {
                     var_r3_4 = var_r1_5;
@@ -491,13 +493,13 @@ void sub_08010FF4(struct EwramData_unk60 *param_0)
     s32 var_0;
 
     temp_r7 = Get_unk_13110();
-    if (sub_08001894(sub_08002188(gEwramData->unk_13110), sub_080021A8(Get_unk_13110())) != 11)
+    if (GetAreaFromMapPosition(GetEntityRoomXPositionInteger(gEwramData->unk_13110), GetEntityRoomYPositionInteger(Get_unk_13110())) != 11)
     {
         temp_r0 = gEwramData->unk_60.unk_4CC_0 != 0;
         if (!temp_r0)
         {
-            temp_sb = (param_0->unk_8C_0 + (sub_08002188(temp_r7) >> 8) + 4) * 4;
-            temp_r4_2 = ((param_0->unk_8C_7 + (sub_080021A8(temp_r7) >> 8) + 2) * 4) + 2;
+            temp_sb = (param_0->roomMapXPos + (GetEntityRoomXPositionInteger(temp_r7) >> 8) + 4) * 4;
+            temp_r4_2 = ((param_0->roomMapYPos + (GetEntityRoomYPositionInteger(temp_r7) >> 8) + 2) * 4) + 2;
             temp_r3 = gEwramData->unk_0 >> 2;
             var_0 = 0x10 - (temp_r3 & 0xF);
             if ((param_0->unk_8D_6 == 1 && param_0->unk_8E_0) || (param_0->unk_8D_6 == 3 && !param_0->unk_8E_0))
@@ -667,15 +669,15 @@ void sub_08011430(struct EwramData_unk60 *param_0)
     temp_r4 = gEwramData->unk_13110;
     if ((s16)temp_r4->unk_524.unk_524_16.unk_526 < 0xF0)
     {
-        temp_r7 = sub_08002188(temp_r4);
-        temp_r8 = sub_080021A8(temp_r4);
-        if ((sub_08001894(sub_08002188(gEwramData->unk_13110), sub_080021A8(gEwramData->unk_13110)) != 11))
+        temp_r7 = GetEntityRoomXPositionInteger(temp_r4);
+        temp_r8 = GetEntityRoomYPositionInteger(temp_r4);
+        if ((GetAreaFromMapPosition(GetEntityRoomXPositionInteger(gEwramData->unk_13110), GetEntityRoomYPositionInteger(gEwramData->unk_13110)) != 11))
         {
             temp_r0 = gEwramData->unk_60.unk_4CC_0 != 0;
             if (!temp_r0)
             {
-                temp_r1 = param_0->unk_8C_0 + (temp_r7 >> 8);
-                temp_r2 = (((param_0->unk_8C_7 + (temp_r8 >> 8)) * 8) + ((temp_r1 >> 5) * 0x140)) >> 2;
+                temp_r1 = param_0->roomMapXPos + (temp_r7 >> 8);
+                temp_r2 = (((param_0->roomMapYPos + (temp_r8 >> 8)) * 8) + ((temp_r1 >> 5) * 0x140)) >> 2;
                 param_0->unk_B4[temp_r2] |= 1 << (temp_r1 & 0x1F);
                 param_0->unk_B8[temp_r2] |= 1 << (temp_r1 & 0x1F);
             }
@@ -778,8 +780,8 @@ s32 sub_080116A8(struct EwramData_unk60 *param_0)
             gEwramData->unk_A074_2 = gEwramData->unk_A074_4 = 3;
             if (gDisplayRegisters.bldY == BLDY_MAX_VALUE)
             {
-                temp_r8 = gEwramData->unk_60.unk_8C_0 + (sub_08002188(gEwramData->unk_13110) >> 8);
-                temp_r1_4 = gEwramData->unk_60.unk_8C_7 + (sub_080021A8(gEwramData->unk_13110) >> 8);
+                temp_r8 = gEwramData->unk_60.roomMapXPos + (GetEntityRoomXPositionInteger(gEwramData->unk_13110) >> 8);
+                temp_r1_4 = gEwramData->unk_60.roomMapYPos + (GetEntityRoomYPositionInteger(gEwramData->unk_13110) >> 8);
                 sub_0803C8B0((u8 *)0x081183CC);
                 sub_08010D60(param_0);
                 param_0->unk_65 += 1;

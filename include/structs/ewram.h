@@ -510,8 +510,8 @@ struct EwramData_unk60 {
     /* 0x00068 */ struct EwramData_unk68 unk_68;
     /* 0x00078 */ u8 unk_78[0x10];
     /* 0x00088 */ struct EwramData_unk88* unk_88;
-    /* 0x0008C */ u16 unk_8C_0:7;
-    /* 0x0008C */ u16 unk_8C_7:7;
+    /* 0x0008C */ u16 roomMapXPos:7;
+    /* 0x0008C */ u16 roomMapYPos:7;
     /* 0x0008D */ u16 unk_8D_6:2; // Fake?
     /* 0x0008E */ u8 unk_8E_0:1; // Length? part of unk_8C/unk_8D?
     /* 0x0008E */ u8 unk_8E_1:3; // Length? part of unk_8C/unk_8D?
@@ -521,8 +521,8 @@ struct EwramData_unk60 {
     /* 0x00092 */ u8 pad_92[0x94 - 0x92];
     /* 0x00094 */ u8 *unk_94;
     /* 0x00098 */ u8 pad_98[0x9E - 0x98];
-    /* 0x0009E */ u8 unk_9E;
-    /* 0x0009F */ u8 unk_9F;
+    /* 0x0009E */ u8 currentArea;
+    /* 0x0009F */ u8 currentRoom;
     /* 0x000A0 */ u8 unk_A0;
     /* 0x000A1 */ u8 unk_A1_0:4;
     /* 0x000A1 */ u8 unk_A1_4:4;

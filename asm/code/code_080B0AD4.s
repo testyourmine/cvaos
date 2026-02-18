@@ -1836,11 +1836,11 @@ _080B190A:
 	adds r0, r0, r1
 	str r0, [r5, #0x44]
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r1, r4, #0x10
 	asrs r7, r1, #0x10
 	adds r1, r7, #0
@@ -1945,11 +1945,11 @@ _080B19EC:
 	adds r0, r0, r2
 	str r0, [r5, #0x44]
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	adds r1, r0, #0
 	lsls r1, r1, #0x10
 	lsls r0, r4, #0x10
@@ -2004,11 +2004,11 @@ _080B1A60:
 	adds r0, r0, r2
 	str r0, [r5, #0x44]
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	adds r1, r0, #0
 	lsls r1, r1, #0x10
 	lsls r0, r4, #0x10
@@ -15704,10 +15704,10 @@ EnemyNightmareUpdate: @ 0x080B84B4
 	sub sp, #0x14
 	adds r4, r0, #0
 	movs r5, #1
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	strh r0, [r4, #0x20]
 	adds r0, r4, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	strh r0, [r4, #0x22]
 	movs r1, #0x20
 	rsbs r1, r1, #0
@@ -32290,11 +32290,11 @@ sub_080C06A8: @ 0x080C06A8
 	movs r0, #0
 	str r0, [sp, #8]
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r7, r0, #0x10
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	str r0, [sp, #4]
@@ -32498,9 +32498,9 @@ _080C0860:
 	str r1, [sp, #8]
 _080C0864:
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	movs r2, #0x24
 	ldrsh r0, [r5, r2]
 	movs r2, #0x26
@@ -32543,9 +32543,9 @@ _080C08BC:
 	str r0, [sp, #8]
 _080C08C0:
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	movs r1, #0x24
 	ldrsh r0, [r5, r1]
 	movs r2, #0x26
@@ -32596,9 +32596,9 @@ _080C0926:
 	str r0, [sp, #8]
 _080C092A:
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	movs r1, #0x24
 	ldrsh r0, [r5, r1]
 	adds r0, #6
@@ -32641,9 +32641,9 @@ _080C0982:
 	str r0, [sp, #8]
 _080C0986:
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	movs r1, #0x24
 	ldrsh r0, [r5, r1]
 	subs r0, #6

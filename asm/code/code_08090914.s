@@ -5597,12 +5597,12 @@ _08093574:
 	adds r2, r4, #0
 	bl sub_0803B924
 	adds r0, r6, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	adds r4, r0, #0
 	lsls r4, r4, #0x10
 	lsrs r4, r4, #0x10
 	adds r0, r6, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	adds r5, r0, #0
 	lsls r4, r4, #0x10
 	asrs r4, r4, #0x10
@@ -5610,11 +5610,11 @@ _08093574:
 	asrs r5, r5, #0x10
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_080018D0
+	bl GetRoomFromMapPosition
 	adds r7, r0, #0
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08001894
+	bl GetAreaFromMapPosition
 	cmp r0, #4
 	bne _080935D8
 	adds r0, r7, #0

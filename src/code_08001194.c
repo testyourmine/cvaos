@@ -323,7 +323,7 @@ u16* BgCmdBuffer_WriteData(u8 bgCmd, u8 length, u8* src, u32 vramAddr)
         *dst++ = (bgCmd << 8) | length;
         *dst++ = vramAddr;
         DMA_SET(3, src, dst, C_32_2_16(DMA_ENABLE, length));
-        dst = &dst[length];
+        dst += length;
         gUnk_03002CB0.pBgCmdBuffer = dst;
         end = dst;
     }
@@ -371,7 +371,6 @@ void sub_080015E4(void)
  */
 struct Unk_030034BC* sub_08001668(u16 arg0, s32 arg1, u32 *arg2)
 {
-    struct Unk_030034BC *temp_r0;
     struct Unk_030034BC *tmp1;
 
     tmp1 = gUnk_03002CB0.unk_808;
@@ -385,9 +384,8 @@ struct Unk_030034BC* sub_08001668(u16 arg0, s32 arg1, u32 *arg2)
     tmp1->unk_814 = arg0;
 
     DMA_COPY_16(3, arg1, tmp1->unk_80C, arg0);
-    temp_r0 = (struct Unk_030034BC*)(((u32)((u8*)tmp1 + arg0 + 0xF)) & ~3);
-    gUnk_03002CB0.unk_808 = temp_r0;
-    return temp_r0;
+    gUnk_03002CB0.unk_808 = (struct Unk_030034BC*)(((u32)((u8*)tmp1 + arg0 + 0xC + 3)) & ~3);
+    return gUnk_03002CB0.unk_808;
 }
 
 /**
@@ -398,25 +396,23 @@ struct Unk_030034BC* sub_08001668(u16 arg0, s32 arg1, u32 *arg2)
  * @param arg2 To document
  * @return s32 To document
  */
-s32 sub_080016D0(u32 arg0, u32 *arg1, u32 *arg2)
+struct Unk_030034BC* sub_080016D0(u32 arg0, u32 *arg1, u32 *arg2)
 {
-    s32 temp_r0;
     struct Unk_030034BC *temp_r3;
 
     temp_r3 = gUnk_03002CB0.unk_808;
-    if ((u32) temp_r3->pad_81C >= (u32) (&gUnk_03002CB0.unk_100C))
+    if ((u32) ((u8*)temp_r3 + 0x10) >= (u32) (&gUnk_03002CB0.unk_100C))
     {
-        return 0;
+        return NULL;
     }
 
     temp_r3->unk_80C = arg1;
     temp_r3->unk_810 = arg2;
     temp_r3->unk_814 = 0;
     temp_r3->unk_818 = arg0;
-    temp_r0 = (s32)&temp_r3->unk_81F & ~3;
-    gUnk_03002CB0.unk_808 = (struct Unk_030034BC *)temp_r0;
-    
-    return temp_r0;
+
+    gUnk_03002CB0.unk_808 = (struct Unk_030034BC*)(((u32)((u8*)temp_r3 + 0x10 + 3)) & ~3);
+    return gUnk_03002CB0.unk_808;
 }
 
 /**
@@ -456,21 +452,21 @@ extern u16 sUnk_08116650[];
  */
 s32 sub_08001780(s32 param_0, s32 param_1)
 {
-    u16 var_0;
-    u16 var_1;
+    u16 room;
+    u16 area;
     u32 *var_2;
     u32 var_3;
     u32 var_4;
 
     var_4 = 0;
 
-    var_1 = sUnk_08116650[(gEwramData->unk_60.unk_8C_0 + (param_0 >> 8)) + ((gEwramData->unk_60.unk_8C_7 + (param_1 >> 8)) << 6)];
-    var_1 = (var_1 >> 6) & 0xF;
+    area = sUnk_08116650[(gEwramData->unk_60.roomMapXPos + (param_0 >> 8)) + ((gEwramData->unk_60.roomMapYPos + (param_1 >> 8)) << 6)];
+    area = (area >> 6) & 0xF;
 
-    var_0 = sUnk_08116650[(gEwramData->unk_60.unk_8C_0 + (param_0 >> 8)) + ((gEwramData->unk_60.unk_8C_7 + (param_1 >> 8)) << 6)];
-    var_0 = var_0 & 0x3F;
+    room = sUnk_08116650[(gEwramData->unk_60.roomMapXPos + (param_0 >> 8)) + ((gEwramData->unk_60.roomMapYPos + (param_1 >> 8)) << 6)];
+    room = room & 0x3F;
 
-    var_2 = sub_08001980(var_1, var_0);
+    var_2 = GetRoomPointer(area, room);
     for (var_3 = 0; sUnk_0850E968[var_3] != 0; var_3++)
     {
         if (sUnk_0850E968[var_3] == var_2)
@@ -531,77 +527,77 @@ s32 sub_08001800(struct EwramData_unkA078_0 *param_0, u16 param_1, u16 param_2)
 }
 
 /**
- * @brief 1894 | To document
+ * @brief 1894 | Get the area index from the current room on the map
  * 
- * @param param_0 To document
- * @param param_1 To document
- * @return s32 To document
+ * @param xOffset X offset
+ * @param yOffset Y offset
+ * @return s32 Area index
  */
-s32 sub_08001894(s32 param_0, s32 param_1)
+s32 GetAreaFromMapPosition(s32 xOffset, s32 yOffset)
 {
     u16 tmp;
 
-    tmp = sUnk_08116650[gEwramData->unk_60.unk_8C_0 + (param_0 >> 8) + ((gEwramData->unk_60.unk_8C_7 + (param_1 >> 8)) << 6)];
+    tmp = sUnk_08116650[gEwramData->unk_60.roomMapXPos + (xOffset >> 8) + ((gEwramData->unk_60.roomMapYPos + (yOffset >> 8)) << 6)];
     return (tmp >> 6) & 0xF;
 }
 
 /**
- * @brief 18D0 | To document
+ * @brief 18D0 | Get the room index from the current room on the map
  * 
- * @param param_0 To document
- * @param param_1 To document
- * @return s32 To document
+ * @param xOffset X offset
+ * @param yOffset Y offset
+ * @return s32 Room index
  */
-s32 sub_080018D0(s32 param_0, s32 param_1)
+s32 GetRoomFromMapPosition(s32 xOffset, s32 yOffset)
 {
     u16 tmp;
 
-    tmp = sUnk_08116650[gEwramData->unk_60.unk_8C_0 + (param_0 >> 8) + ((gEwramData->unk_60.unk_8C_7 + (param_1 >> 8)) << 6)];
+    tmp = sUnk_08116650[gEwramData->unk_60.roomMapXPos + (xOffset >> 8) + ((gEwramData->unk_60.roomMapYPos + (yOffset >> 8)) << 6)];
     return tmp & 0x3F;
 }
 
 /**
- * @brief 190C | To document
+ * @brief 190C | Get the save room flag from the current room on the map
  * 
- * @param param_0 To document
- * @param param_1 To document
- * @return s32 To document
+ * @param xOffset X offset
+ * @param yOffset Y offset
+ * @return s32 Is save room flag
  */
-s32 sub_0800190C(s32 param_0, s32 param_1)
+s32 GetSaveRoomFlagFromMapPosition(s32 xOffset, s32 yOffset)
 {
     u16 tmp;
 
-    tmp = sUnk_08116650[gEwramData->unk_60.unk_8C_0 + (param_0 >> 8) + ((gEwramData->unk_60.unk_8C_7 + (param_1 >> 8)) << 6)];
+    tmp = sUnk_08116650[gEwramData->unk_60.roomMapXPos + (xOffset >> 8) + ((gEwramData->unk_60.roomMapYPos + (yOffset >> 8)) << 6)];
     return tmp >> 0xF;
 }
 
 /**
- * @brief 1944 | To document
+ * @brief 1944 | Get the warp room flag from the current room on the map
  * 
- * @param param_0 To document
- * @param param_1 To document
- * @return s32 To document
+ * @param xOffset X offset
+ * @param yOffset Y offset
+ * @return s32 Is warp room flag
  */
-s32 sub_08001944(s32 param_0, s32 param_1)
+s32 GetWarpRoomFlagFromMapPosition(s32 xOffset, s32 yOffset)
 {
     u16 tmp;
 
-    tmp = sUnk_08116650[gEwramData->unk_60.unk_8C_0 + (param_0 >> 8) + ((gEwramData->unk_60.unk_8C_7 + (param_1 >> 8)) << 6)];
+    tmp = sUnk_08116650[gEwramData->unk_60.roomMapXPos + (xOffset >> 8) + ((gEwramData->unk_60.roomMapYPos + (yOffset >> 8)) << 6)];
     return (tmp >> 0xE) & 1;
 }
 
 extern u32 **sUnk_0850EF08[];
 
 /**
- * @brief 1980 | To document
+ * @brief 1980 | Get the pointer to the room
  * 
- * @param param_0 To document
- * @param param_1 To document
- * @return u32* To document
+ * @param area Area
+ * @param room Room
+ * @return u32* Pointer to room
  */
-u32* sub_08001980(s32 param_0, s32 param_1)
+u32* GetRoomPointer(s32 area, s32 room)
 {
-    return sUnk_0850EF08[param_0][param_1];
+    return sUnk_0850EF08[area][room];
 }
 
 /**
@@ -1432,47 +1428,47 @@ s16 sub_08002140(s32 param_0, s32 param_1, s32 param_2)
 }
 
 /**
- * @brief 2188 | To document
+ * @brief 2188 | Calculate the integer X position of the entity in the room
  * 
- * @param param_0 To document
- * @return s16 To document
+ * @param entity Entity
+ * @return s16 Integer X Position of entity in room
  */
-s16 sub_08002188(struct EwramData_EntityData *param_0)
+s16 GetEntityRoomXPositionInteger(struct EwramData_EntityData *entity)
 {
-    return gEwramData->unk_A078[1].xPos.part16.integer + param_0->unk_524.unk_524_16.unk_526;
+    return gEwramData->unk_A078[1].xPos.part16.integer + entity->unk_524.unk_524_16.unk_526;
 }
 
 /**
- * @brief 21A8 | To document
+ * @brief 21A8 | Calculate the integer Y position of the entity in the room
  * 
- * @param param_0 To document
- * @return s16 To document
+ * @param entity Entity
+ * @return s16 Integer Y Position of entity in room
  */
-s16 sub_080021A8(struct EwramData_EntityData *param_0)
+s16 GetEntityRoomYPositionInteger(struct EwramData_EntityData *entity)
 {
-    return gEwramData->unk_A078[1].yPos.part16.integer + param_0->unk_528.unk_528_16.unk_52A;
+    return gEwramData->unk_A078[1].yPos.part16.integer + entity->unk_528.unk_528_16.unk_52A;
 }
 
 /**
- * @brief 21C8 | To document
+ * @brief 21C8 | Calculate the whole X position of the entity in the room
  * 
- * @param param_0 To document
- * @return u32 To document
+ * @param entity Entity
+ * @return u32 Whole X Position of entity in room
  */
-u32 sub_080021C8(struct EwramData_EntityData *param_0)
+u32 GetEntityRoomXPositionWhole(struct EwramData_EntityData *entity)
 {
-    return gEwramData->unk_A078[1].xPos.whole + param_0->unk_524.unk_524_32;
+    return gEwramData->unk_A078[1].xPos.whole + entity->unk_524.unk_524_32;
 }
 
 /**
- * @brief 21E4 | To document
+ * @brief 21E4 | Calculate the whole Y position of the entity in the room
  * 
- * @param param_0 To document
- * @return u32 To document
+ * @param entity Entity
+ * @return u32 Whole Y Position of entity in room
  */
-u32 sub_080021E4(struct EwramData_EntityData *param_0)
+u32 GetEntityRoomYPositionWhole(struct EwramData_EntityData *entity)
 {
-    return gEwramData->unk_A078[1].yPos.whole + param_0->unk_528.unk_528_32;
+    return gEwramData->unk_A078[1].yPos.whole + entity->unk_528.unk_528_32;
 }
 
 void sub_08002200(s32 arg0, s32 arg1)

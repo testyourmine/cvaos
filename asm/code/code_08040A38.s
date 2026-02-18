@@ -9668,10 +9668,10 @@ _080457E8:
 	cmp r2, #0
 	bgt _080457E8
 	adds r0, r6, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	strh r0, [r7]
 	adds r0, r6, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	strh r0, [r7, #2]
 	mov r1, sb
 	ldrb r0, [r1]
@@ -9862,13 +9862,13 @@ _08045956:
 	subs r1, #9
 	strb r0, [r1]
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	adds r1, r4, #0
 	adds r1, #0x42
 	str r1, [sp, #8]
 	strh r0, [r1]
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	movs r2, #0x46
 	adds r2, r2, r4
 	mov sl, r2
@@ -30157,7 +30157,7 @@ sub_0804F7A4: @ 0x0804F7A4
 	ldr r6, _0804F7EC @ =0x00013110
 	adds r0, r0, r6
 	ldr r0, [r0]
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	ldr r2, [r5]
 	adds r1, r2, #0
 	adds r1, #0x8c
@@ -30170,7 +30170,7 @@ sub_0804F7A4: @ 0x0804F7A4
 	lsrs r4, r4, #0x10
 	adds r2, r2, r6
 	ldr r0, [r2]
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	ldr r1, [r5]
 	adds r1, #0x8c
 	ldrh r1, [r1]
@@ -31422,12 +31422,12 @@ _08050154:
 	orrs r0, r1
 	str r0, [r2]
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	adds r4, r0, #0
 	lsls r4, r4, #0x10
 	lsrs r4, r4, #0x10
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	adds r1, r0, #0
 	lsls r4, r4, #0x10
 	asrs r4, r4, #0x10
@@ -31682,12 +31682,12 @@ _08050388:
 	adds r0, r5, #0
 	bl sub_0804FE20
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	adds r4, r0, #0
 	lsls r4, r4, #0x10
 	lsrs r4, r4, #0x10
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	adds r1, r0, #0
 	lsls r4, r4, #0x10
 	asrs r4, r4, #0x10
@@ -31992,14 +31992,14 @@ Object0CUpdate: @ 0x080505CC
 	ldr r4, _0805068C @ =0x00013110
 	adds r0, r0, r4
 	ldr r0, [r0]
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	mov r8, r0
 	ldr r0, [r5]
 	adds r0, r0, r4
 	ldr r0, [r0]
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r1, r0, #0x10
 	movs r0, #0

@@ -408,13 +408,13 @@ u8 sUnk_084F0DA4[] = {
 void sub_08008ED0(s32 arg0)
 {
     sub_08014548();
-    gEwramData->unk_60.unk_9E =  sUnk_084F0D8C[arg0].unk_0;
-    gEwramData->unk_60.unk_9F =  sUnk_084F0D8C[arg0].unk_1;
+    gEwramData->unk_60.currentArea =  sUnk_084F0D8C[arg0].unk_0;
+    gEwramData->unk_60.currentRoom =  sUnk_084F0D8C[arg0].unk_1;
     gEwramData->unk_60.unk_334 = sUnk_084F0D8C[arg0].unk_2;
     gEwramData->unk_60.unk_336 = sUnk_084F0D8C[arg0].unk_4;
     gEwramData->unk_60.unk_338 = sUnk_084F0D8C[arg0].unk_6;
     gEwramData->unk_60.unk_33A = sUnk_084F0D8C[arg0].unk_8;
-    gEwramData->unk_60.unk_3CC = sub_08001980(gEwramData->unk_60.unk_9E, gEwramData->unk_60.unk_9F);
+    gEwramData->unk_60.unk_3CC = GetRoomPointer(gEwramData->unk_60.currentArea, gEwramData->unk_60.currentRoom);
 }
 
 /**

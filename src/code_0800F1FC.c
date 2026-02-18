@@ -644,8 +644,8 @@ void sub_0800F9EC(struct EwramData_unk88 *arg0, u16 arg1, u16 arg2)
     sub_0803DD14(0, 0);
     sub_0803FD60();
 
-    temp_r0->unk_8C_0 = arg0->unk_22_0;
-    temp_r0->unk_8C_7 = arg0->unk_22_7;
+    temp_r0->roomMapXPos = arg0->unk_22_0;
+    temp_r0->roomMapYPos = arg0->unk_22_7;
     temp_r0->unk_8E_0 = arg0->unk_23_0;
     gEwramData->unk_A074_6 = arg0->unk_23_1;
 
@@ -807,7 +807,7 @@ s32 sub_0800FCB8(struct EwramData_unk60 *param_0)
     temp_r0 = &gEwramData->unk_A078[1];
     temp_r7 = temp_r0->xPos.part8.integer1;
     temp_r6 = temp_r0->yPos.part8.integer1;
-    if ((sub_08001780(temp_r7, temp_r6) != 0) || (sub_0800190C(temp_r7, temp_r6) != 0) || (sub_08001944(temp_r7, temp_r6) != 0))
+    if ((sub_08001780(temp_r7, temp_r6) != 0) || (GetSaveRoomFlagFromMapPosition(temp_r7, temp_r6) != 0) || (GetWarpRoomFlagFromMapPosition(temp_r7, temp_r6) != 0))
     {
         return -1;
     }
@@ -817,29 +817,29 @@ s32 sub_0800FCB8(struct EwramData_unk60 *param_0)
         temp_r0_2 = &gEwramData->unk_A078[1];
         temp_r4 = temp_r0_2->xPos.part8.integer1;
         temp_r5 = temp_r0_2->yPos.part8.integer1;
-        temp_r8 = sub_08001894(temp_r4, temp_r5);
-        temp_r3 = sub_080018D0(temp_r4, temp_r5);
+        temp_r8 = GetAreaFromMapPosition(temp_r4, temp_r5);
+        temp_r3 = GetRoomFromMapPosition(temp_r4, temp_r5);
 
         if (sub_0800FCB8_inline_0(temp_r8, temp_r3, unk_080E0FA4))
         {
             return -1;
         }
 
-        var_r4 = sub_08001894(temp_r7, temp_r6);
+        var_r4 = GetAreaFromMapPosition(temp_r7, temp_r6);
 
-        if ((sub_080018D0(temp_r7, temp_r6) == 13) && (var_r4 == 7))
+        if ((GetRoomFromMapPosition(temp_r7, temp_r6) == 13) && (var_r4 == 7))
         {
             var_r4 = 12;
         }
-        else if ((sub_080018D0(temp_r7, temp_r6) == 9) && (var_r4 == 8))
+        else if ((GetRoomFromMapPosition(temp_r7, temp_r6) == 9) && (var_r4 == 8))
         {
             var_r4 = 13;
         }
-        else if ((sub_080018D0(temp_r7, temp_r6) == 10) && (var_r4 == 8))
+        else if ((GetRoomFromMapPosition(temp_r7, temp_r6) == 10) && (var_r4 == 8))
         {
             var_r4 = 14;
         }
-        else if ((sub_080018D0(temp_r7, temp_r6) == 11) && (var_r4 == 8))
+        else if ((GetRoomFromMapPosition(temp_r7, temp_r6) == 11) && (var_r4 == 8))
         {
             var_r4 = 15;
         }
@@ -1200,8 +1200,8 @@ void sub_08010350(struct EwramData_unk60 *param_0)
     temp_r4_2 = temp_r4->pBgMetadata;
 
     DMA_FILL_32(3, 0, 0x0600E800, 0x1800);
-    temp_r6 = sub_08002188(temp_r5);
-    temp_r7 = sub_080021A8(temp_r5);
+    temp_r6 = GetEntityRoomXPositionInteger(temp_r5);
+    temp_r7 = GetEntityRoomYPositionInteger(temp_r5);
     var_r1 = temp_r6 >> 8;
     if (temp_r4_2->unk_0 == 1 && (s16)temp_r5->unk_524.unk_524_16.unk_526 > 0xF0)
     {
@@ -1345,12 +1345,12 @@ s32 sub_080104EC(struct EwramData_unk60 *param_0)
             temp_r2_4 = &gEwramData->unk_A078[1];
             temp_r5_2 = temp_r2_4->xPos.part8.integer1;
             temp_r4 = temp_r2_4->yPos.part8.integer1;
-            temp_r6 = sub_08001894(temp_r5_2, temp_r4);
-            if ((sub_080018D0(temp_r5_2, temp_r4) == 5) && (temp_r6 == 5))
+            temp_r6 = GetAreaFromMapPosition(temp_r5_2, temp_r4);
+            if ((GetRoomFromMapPosition(temp_r5_2, temp_r4) == 5) && (temp_r6 == 5))
             {
                 sub_08012048(0x3D);
             }
-            else if ((sub_080018D0(temp_r5_2, temp_r4) == 1) && (temp_r6 == 5))
+            else if ((GetRoomFromMapPosition(temp_r5_2, temp_r4) == 1) && (temp_r6 == 5))
             {
                 sub_08012048(0x3C);
             }
@@ -1458,10 +1458,10 @@ void sub_0801083C(struct EwramData_unk60 *param_0)
     s32 var_0;
     u16 *var_1;
 
-    temp_r4 = sub_08002188(gEwramData->unk_13110);
-    temp_r5 = sub_080021A8(gEwramData->unk_13110);
-    param_0->unk_9E = sub_08001894(temp_r4, temp_r5);
-    param_0->unk_9F = sub_080018D0(temp_r4, temp_r5);
+    temp_r4 = GetEntityRoomXPositionInteger(gEwramData->unk_13110);
+    temp_r5 = GetEntityRoomYPositionInteger(gEwramData->unk_13110);
+    param_0->currentArea = GetAreaFromMapPosition(temp_r4, temp_r5);
+    param_0->currentRoom = GetRoomFromMapPosition(temp_r4, temp_r5);
 
     param_0->unk_338 = gEwramData->unk_13110->unk_524.unk_524_16.unk_526;
     param_0->unk_33A = gEwramData->unk_13110->unk_528.unk_528_16.unk_52A;

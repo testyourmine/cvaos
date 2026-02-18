@@ -266,7 +266,7 @@ s32 GameModeDebugUpdate(void)
     return gameMode;
 }
 
-extern u32* sub_08001980(s32 param_0, s32 param_1);
+extern u32* GetRoomPointer(s32 area, s32 room);
 
 /**
  * @brief 2588 | Handle exit debug game mode
@@ -340,13 +340,13 @@ s32 GameModeDebugExitUpdate(void)
                     }
                     
                     sub_08014548();
-                    gEwramData->unk_60.unk_9E = 0;
-                    gEwramData->unk_60.unk_9F = 0;
+                    gEwramData->unk_60.currentArea = 0;
+                    gEwramData->unk_60.currentRoom = 0;
                     gEwramData->unk_60.unk_334 = 0;
                     gEwramData->unk_60.unk_336 = 0x200;
                     gEwramData->unk_60.unk_338 = 0x78;
                     gEwramData->unk_60.unk_33A = 0x8D;
-                    gEwramData->unk_60.unk_3CC = sub_08001980(gEwramData->unk_60.unk_9E, gEwramData->unk_60.unk_9F);
+                    gEwramData->unk_60.unk_3CC = GetRoomPointer(gEwramData->unk_60.currentArea, gEwramData->unk_60.currentRoom);
                     gEwramData->unk_60.unk_88 = 0;
                 }
                 else
@@ -374,7 +374,7 @@ s32 GameModeDebugExitUpdate(void)
 
                     if (sub_08012744(gEwramData->unk_60.unk_428 + var_r5_2) != 0)
                     {
-                        gEwramData->unk_60.unk_3CC = sub_08001980(gEwramData->unk_60.unk_9E, gEwramData->unk_60.unk_9F);
+                        gEwramData->unk_60.unk_3CC = GetRoomPointer(gEwramData->unk_60.currentArea, gEwramData->unk_60.currentRoom);
                     }
                     else
                     {

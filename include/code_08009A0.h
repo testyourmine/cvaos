@@ -14,12 +14,12 @@ void sub_08000B64(void);
 void sub_08000C28(struct EwramData_EntityData *param_0);
 void sub_08000C94(void);
 void EntityDeleteAll(void);
-struct EwramData_EntityData *EntityCreateInRange(s32 param_0, s32 param_1, u32 *param_2);
-void EntityDelete(struct EwramData_EntityData *param_0);
+struct EwramData_EntityData *EntityCreateInRange(s32 minSlot, s32 maxSlot, u32 *updateFunc);
+void EntityDelete(struct EwramData_EntityData *entity);
 void sub_08000E50(void);
 s32 sub_08000EA8(u8 param_0);
 void EntityUpdateNothing(void);
-u8 EntityGetSlot(struct EwramData_EntityData *param_0);
+u8 EntityGetSlot(struct EwramData_EntityData *entity);
 void sub_08000F60(s32 param_0);
 void sub_08000FBC(struct EwramData_EntityData *param_0);
 

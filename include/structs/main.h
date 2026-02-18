@@ -49,11 +49,7 @@ struct Unk_030034BC {
     u16 unk_814; // 34C4
     u16 unk_816;
     u32 unk_818; // 34C8
-    u8 pad_81C[0x81F - 0x81C]; // TODO: verify
-    u8 unk_81F; // Type?
-    u8 pad_820[0x82F - 0x820];
-    u8 unk_82F;
-    u8 pad_830[0x100C - 0x830];
+    u8 pad_81C[0x100C - 0x81C]; // TODO: verify
 };
 
 struct Unk_03002CB0 {

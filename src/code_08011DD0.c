@@ -327,8 +327,8 @@ s32 sub_08012154(s32 param_0, s32 param_1, s32 param_2)
     struct EwramData_unk60 *unk_60;
 
     unk_60 = &gEwramData->unk_60;
-    var_r7 = unk_60->unk_8C_0 + (param_0 >> 8);
-    var_r2 = unk_60->unk_8C_7 + (param_1 >> 8);
+    var_r7 = unk_60->roomMapXPos + (param_0 >> 8);
+    var_r2 = unk_60->roomMapYPos + (param_1 >> 8);
 
     switch (param_2)
     {
@@ -657,10 +657,10 @@ void sub_08012688(struct EwramData_unk60 *param_0)
 
     temp_sl = gEwramData->unk_A078[1].pBgMetadata;
 
-    temp_r4 = sub_08002188(gEwramData->unk_13110);
-    temp_r5 = sub_080021A8(gEwramData->unk_13110);
-    param_0->unk_9E = sub_08001894(temp_r4, temp_r5);
-    param_0->unk_9F = sub_080018D0(temp_r4, temp_r5);
+    temp_r4 = GetEntityRoomXPositionInteger(gEwramData->unk_13110);
+    temp_r5 = GetEntityRoomYPositionInteger(gEwramData->unk_13110);
+    param_0->currentArea = GetAreaFromMapPosition(temp_r4, temp_r5);
+    param_0->currentRoom = GetRoomFromMapPosition(temp_r4, temp_r5);
 
     param_0->unk_338 = gEwramData->unk_13110->unk_524.unk_524_16.unk_526;
     param_0->unk_33A = gEwramData->unk_13110->unk_528.unk_528_16.unk_52A;

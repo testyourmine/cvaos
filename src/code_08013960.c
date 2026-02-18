@@ -76,7 +76,7 @@ s32 sub_08013960(struct EwramData_unk60 *param_0)
         return sub_08013960_inline_0(var_r5);
     }
 
-    if ((sub_0800190C(temp_r4, temp_r5) != 0) || (sub_08001944(temp_r4, temp_r5) != 0))
+    if ((GetSaveRoomFlagFromMapPosition(temp_r4, temp_r5) != 0) || (GetWarpRoomFlagFromMapPosition(temp_r4, temp_r5) != 0))
     {
         PlaySong(0x1012);
         return 0;
@@ -90,8 +90,8 @@ s32 sub_08013960(struct EwramData_unk60 *param_0)
     }
 
     PlaySong(0x1011);
-    temp_r6 = sub_08001894(temp_r4, temp_r5);
-    temp_r3 = sub_080018D0(temp_r4, temp_r5);
+    temp_r6 = GetAreaFromMapPosition(temp_r4, temp_r5);
+    temp_r3 = GetRoomFromMapPosition(temp_r4, temp_r5);
 
     if ((gEwramData->unk_1325C.unk_13266 == 0) || !(gEwramData->unk_60.unk_60 & 2))
     {
@@ -171,7 +171,7 @@ void sub_08013B44(void)
         var_r5 -= 1;
     }
 
-    if ((gEwramData->unk_60.unk_4CC_0 != 0) || ((sub_0800190C(temp_r7, temp_r6) == 0) && (sub_08001944(temp_r7, temp_r6) == 0)))
+    if ((gEwramData->unk_60.unk_4CC_0 != 0) || ((GetSaveRoomFlagFromMapPosition(temp_r7, temp_r6) == 0) && (GetWarpRoomFlagFromMapPosition(temp_r7, temp_r6) == 0)))
     {
         if (!(gEwramData->unk_60.unk_42C & 0x40000))
         {
@@ -207,7 +207,7 @@ void sub_08013BCC(void)
         var_r5 -= 1;
     }
 
-    if ((gEwramData->unk_60.unk_4CC_0 != 0) || ((sub_0800190C(temp_r7, temp_r6) == 0) && (sub_08001944(temp_r7, temp_r6) == 0)))
+    if ((gEwramData->unk_60.unk_4CC_0 != 0) || ((GetSaveRoomFlagFromMapPosition(temp_r7, temp_r6) == 0) && (GetWarpRoomFlagFromMapPosition(temp_r7, temp_r6) == 0)))
     {
         if (!(gEwramData->unk_60.unk_42C & 0x40000))
         {
@@ -229,7 +229,7 @@ s32 sub_08013C5C(void)
     s32 var_r4;
 
     temp_r1 = &gEwramData->unk_A078[1];
-    temp_r2 = sub_08001894((u8) temp_r1->xPos.part8.integer1, (u8) temp_r1->yPos.part8.integer1);
+    temp_r2 = GetAreaFromMapPosition((u8) temp_r1->xPos.part8.integer1, (u8) temp_r1->yPos.part8.integer1);
 
     if ((gEwramData->unk_1325C.unk_13266 == 0) || !(gEwramData->unk_60.unk_60 & 2))
     {

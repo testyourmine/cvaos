@@ -173,7 +173,7 @@ _08060CE0:
 	ldr r1, _08060D08 @ =0x00013110
 	adds r0, r0, r1
 	ldr r0, [r0]
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	cmp r0, #0xb6
 	ble _08060D14
 	movs r0, #0x20
@@ -2461,7 +2461,7 @@ _08061EDC:
 	movs r5, #0x1e
 _08061EDE:
 	adds r0, r4, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	cmp r0, #0
 	bge _08061EEA
 	adds r0, #7
@@ -24296,11 +24296,11 @@ sub_0806C828: @ 0x0806C828
 	str r3, [sp, #0xc]
 	mov sl, r3
 	adds r0, r7, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r6, r0, #0x10
 	adds r0, r7, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r2, r0, #0x10
 	movs r3, #0x80
@@ -24434,11 +24434,11 @@ _0806C950:
 	adds r0, r0, r1
 	str r0, [r7, #0x44]
 	adds r0, r7, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r6, r0, #0x10
 	adds r0, r7, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r2, r0, #0x10
 	movs r5, #0
@@ -27376,7 +27376,7 @@ sub_0806DF40: @ 0x0806DF40
 	adds r0, r0, r1
 	ldr r5, [r0]
 	adds r0, r6, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	asrs r0, r0, #0x10
 	lsls r4, r4, #0x10
@@ -27403,7 +27403,7 @@ _0806DF86:
 	cmp r1, r0
 	bge _0806DFBE
 	adds r0, r6, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	asrs r0, r0, #0x10
 	lsls r1, r7, #0x10
@@ -28983,12 +28983,12 @@ _0806EB68:
 	adds r2, r4, #0
 	bl sub_0803B924
 	adds r0, r6, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	adds r4, r0, #0
 	lsls r4, r4, #0x10
 	lsrs r4, r4, #0x10
 	adds r0, r6, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	adds r5, r0, #0
 	lsls r4, r4, #0x10
 	asrs r4, r4, #0x10
@@ -28996,11 +28996,11 @@ _0806EB68:
 	asrs r5, r5, #0x10
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_080018D0
+	bl GetRoomFromMapPosition
 	adds r7, r0, #0
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08001894
+	bl GetAreaFromMapPosition
 	cmp r0, #4
 	bne _0806EBCC
 	adds r0, r7, #0

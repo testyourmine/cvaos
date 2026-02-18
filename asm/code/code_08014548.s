@@ -554,12 +554,12 @@ sub_08014A04: @ 0x08014A04
 	ldrb r5, [r5]
 	strb r5, [r0]
 	adds r0, r7, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	mov r8, r0
 	adds r0, r7, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	ldr r1, [r7, #0x10]
 	ldr r2, _08014AA4 @ =0xD7FFF7FF
@@ -749,11 +749,11 @@ _08014BB0:
 	adds r0, r0, r1
 	ldr r5, [r0]
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	mov sb, r0
@@ -1310,7 +1310,7 @@ _0801500A:
 	str r3, [sp, #0x48]
 _0801500C:
 	adds r0, r7, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10
 	mov r8, r4
@@ -1792,11 +1792,11 @@ _080153AC:
 	adds r0, r0, r1
 	ldr r5, [r0]
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	mov sb, r0
@@ -2197,11 +2197,11 @@ _080156D0:
 	adds r0, r0, r1
 	ldr r5, [r0]
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	mov sb, r0
@@ -2919,11 +2919,11 @@ _08015C60:
 	adds r0, r0, r1
 	ldr r5, [r0]
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	mov sb, r0
@@ -3335,11 +3335,11 @@ _08015F98:
 	adds r0, r0, r1
 	ldr r5, [r0]
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	mov sb, r0
@@ -3840,11 +3840,11 @@ _08016378:
 	adds r0, r0, r1
 	ldr r5, [r0]
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	mov sb, r0
@@ -4534,12 +4534,12 @@ sub_080168F0: @ 0x080168F0
 	push {r5, r6, r7}
 	sub sp, #0x24
 	adds r7, r0, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	str r0, [sp, #8]
 	adds r0, r7, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	ldr r2, [sp, #8]
 	lsls r1, r2, #0x10
@@ -4640,11 +4640,11 @@ _080169BC:
 	adds r0, r0, r1
 	ldr r5, [r0]
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	mov sb, r0
@@ -4892,7 +4892,7 @@ _08016BBE:
 	movs r0, #0
 	str r0, [r7, #0x4c]
 	adds r0, r7, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	str r0, [sp, #0xc]
@@ -5206,12 +5206,12 @@ sub_08016DE4: @ 0x08016DE4
 	ldrb r3, [r3]
 	strb r3, [r2, #0x1c]
 	mov r0, sl
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	str r0, [sp, #0x1c]
 	mov r0, sl
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	adds r1, r0, #0
 	ldr r2, [sp, #0x1c]
 	lsls r0, r2, #0x10
@@ -5561,7 +5561,7 @@ _080170D6:
 	str r0, [r1, #0x48]
 _080170DC:
 	mov r0, sl
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r2, r0, #0x10
 	str r2, [sp, #0x1c]
@@ -5956,11 +5956,11 @@ _080173D0:
 	adds r0, r0, r1
 	ldr r6, [r0]
 	adds r0, r6, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r5, r0, #0x10
 	adds r0, r6, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	mov r8, r0
@@ -6341,11 +6341,11 @@ _080176CA:
 	adds r0, r0, r1
 	ldr r6, [r0]
 	adds r0, r6, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r5, r0, #0x10
 	adds r0, r6, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	mov r8, r0
@@ -6758,11 +6758,11 @@ _08017A02:
 	adds r0, r0, r1
 	ldr r6, [r0]
 	adds r0, r6, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r5, r0, #0x10
 	adds r0, r6, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	mov r8, r0
@@ -7530,12 +7530,12 @@ sub_08018020: @ 0x08018020
 	sub sp, #0x80
 	adds r6, r0, #0
 	movs r4, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	str r0, [sp, #0x30]
 	adds r0, r6, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	mov sl, r0
@@ -7972,11 +7972,11 @@ _0801839A:
 	adds r0, r0, r1
 	ldr r5, [r0]
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	mov sb, r0
@@ -8321,11 +8321,11 @@ _08018650:
 	adds r0, r0, r1
 	ldr r5, [r0]
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	mov sb, r0
@@ -8658,11 +8658,11 @@ _080188F6:
 	adds r0, r0, r1
 	ldr r5, [r0]
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	mov sb, r0
@@ -10737,12 +10737,12 @@ sub_080199A0: @ 0x080199A0
 	ands r0, r1
 	str r0, [r5, #0x10]
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	adds r4, r0, #0
 	lsls r4, r4, #0x10
 	lsrs r4, r4, #0x10
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	adds r1, r0, #0
 	movs r6, #0
 	lsls r4, r4, #0x10
@@ -10905,12 +10905,12 @@ sub_08019A94: @ 0x08019A94
 	bl sub_0803C7B4
 _08019B00:
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	adds r4, r0, #0
 	lsls r4, r4, #0x10
 	lsrs r4, r4, #0x10
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	adds r1, r0, #0
 	movs r6, #0
 	lsls r4, r4, #0x10
@@ -11018,12 +11018,12 @@ _08019BE4: .4byte 0xFFFEFF7F
 _08019BE8: .4byte 0xEFFFFE9F
 _08019BEC:
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	adds r4, r0, #0
 	lsls r4, r4, #0x10
 	lsrs r4, r4, #0x10
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	adds r1, r0, #0
 	lsls r4, r4, #0x10
 	asrs r4, r4, #0x10
@@ -11670,12 +11670,12 @@ _0801A112:
 	bl _0801A934
 _0801A136:
 	mov r0, sb
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	str r0, [sp, #0x20]
 	mov r0, sb
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	ldr r3, [sp, #0x20]
 	lsls r1, r3, #0x10
@@ -11775,11 +11775,11 @@ _0801A1F4:
 	adds r0, r0, r1
 	ldr r5, [r0]
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	mov r8, r0
@@ -12113,11 +12113,11 @@ _0801A498:
 	adds r0, r0, r1
 	ldr r5, [r0]
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	mov r8, r0
@@ -12447,11 +12447,11 @@ _0801A732:
 	adds r0, r0, r1
 	ldr r5, [r0]
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	mov r8, r0
@@ -13100,11 +13100,11 @@ _0801AC7C:
 	bl sub_08018020
 _0801AC86:
 	adds r0, r6, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r5, r0, #0x10
 	adds r0, r6, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r2, r0, #0x10
 	mov r8, r2
@@ -13727,11 +13727,11 @@ _0801B158:
 	cmp r1, #0xff
 	bne _0801B22A
 	adds r0, r6, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r5, r0, #0x10
 	adds r0, r6, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	subs r0, #4
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10
@@ -17804,12 +17804,12 @@ sub_0801D1C8: @ 0x0801D1C8
 	ldrb r5, [r5]
 	strb r5, [r0]
 	adds r0, r7, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	mov r8, r0
 	adds r0, r7, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	ldr r1, [r7, #0x10]
 	ldr r2, _0801D268 @ =0xD7FFF7FF
@@ -17999,11 +17999,11 @@ _0801D374:
 	adds r0, r0, r1
 	ldr r5, [r0]
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	mov sb, r0
@@ -18560,7 +18560,7 @@ _0801D7CE:
 	str r3, [sp, #0x3c]
 _0801D7D0:
 	adds r0, r7, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10
 	mov r8, r4
@@ -19042,11 +19042,11 @@ _0801DB70:
 	adds r0, r0, r1
 	ldr r5, [r0]
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	mov sb, r0
@@ -19447,11 +19447,11 @@ _0801DE94:
 	adds r0, r0, r1
 	ldr r5, [r0]
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	mov sb, r0
@@ -20169,11 +20169,11 @@ _0801E424:
 	adds r0, r0, r1
 	ldr r5, [r0]
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	mov sb, r0
@@ -20585,11 +20585,11 @@ _0801E75C:
 	adds r0, r0, r1
 	ldr r5, [r0]
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	mov sb, r0
@@ -21090,11 +21090,11 @@ _0801EB3C:
 	adds r0, r0, r1
 	ldr r5, [r0]
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	mov sb, r0
@@ -22469,11 +22469,11 @@ sub_0801F604: @ 0x0801F604
 	push {r6, r7}
 	adds r6, r0, #0
 	movs r7, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r5, r0, #0x10
 	adds r0, r6, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10
 	ldr r1, [r6, #0x10]
@@ -23043,12 +23043,12 @@ sub_0801FA94: @ 0x0801FA94
 	ands r0, r1
 	str r0, [r5, #0x10]
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	adds r4, r0, #0
 	lsls r4, r4, #0x10
 	lsrs r4, r4, #0x10
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	adds r1, r0, #0
 	lsls r4, r4, #0x10
 	asrs r4, r4, #0x10
@@ -23141,12 +23141,12 @@ sub_0801FB1C: @ 0x0801FB1C
 	str r0, [r5, #0x10]
 _0801FB5E:
 	adds r0, r5, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	adds r4, r0, #0
 	lsls r4, r4, #0x10
 	lsrs r4, r4, #0x10
 	adds r0, r5, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	adds r1, r0, #0
 	lsls r4, r4, #0x10
 	asrs r4, r4, #0x10
@@ -23693,12 +23693,12 @@ _0801FF72:
 	cmp r1, #0xff
 	bne _08020056
 	adds r0, r6, #0
-	bl sub_08002188
+	bl GetEntityRoomXPositionInteger
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	mov r8, r0
 	adds r0, r6, #0
-	bl sub_080021A8
+	bl GetEntityRoomYPositionInteger
 	subs r0, #4
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10

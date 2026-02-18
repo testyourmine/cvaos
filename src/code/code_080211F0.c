@@ -1633,8 +1633,8 @@ void sub_08022A54(struct EwramData_EntityData *param_0)
             param_0->unk_528.unk_528_32 = temp_r0->unk_528.unk_528_32 + param_0->unk_530.unk_530_32 - 0x1C0000;
             if (param_0->unk_500.unk_500_32 == 0)
             {
-                temp_r4_2 = sub_08002188(param_0);
-                temp_r1_3 = sub_080021A8(param_0);
+                temp_r4_2 = GetEntityRoomXPositionInteger(param_0);
+                temp_r1_3 = GetEntityRoomYPositionInteger(param_0);
                 if (param_0->unk_534.unk_534_32 > 0)
                 {
                     var_r0 = sub_080020D8(temp_r4_2, temp_r1_3, 0);
@@ -2233,8 +2233,8 @@ void sub_08023724(struct EwramData_EntityData *param_0)
         temp_r6[var_r3 * 2 + 1] = temp_r6[var_r3 * 2 - 1];
     }
 
-    temp_r6[0] = sub_08002188(temp_r5);
-    temp_r6[1] = sub_080021A8(temp_r5);
+    temp_r6[0] = GetEntityRoomXPositionInteger(temp_r5);
+    temp_r6[1] = GetEntityRoomYPositionInteger(temp_r5);
     temp_r7[0] = temp_r5->unk_549;
     param_0->unk_549 = temp_r7[param_0->unk_4EF];
 
@@ -2290,8 +2290,8 @@ struct EwramData_EntityData* sub_0802383C(struct EwramData_EntityData *param_0, 
     for (var_r5 = 7; var_r5 > 0; var_r5--)
     {
         var_0[var_r5] = param_0->unk_549;
-        ((u16*)&temp_r0->unk_4F8.unk_4F8_16.unk_4F8)[var_r5 * 2] = sub_08002188(param_0);
-        ((u16*)&temp_r0->unk_4F8.unk_4F8_16.unk_4FA)[var_r5 * 2] = sub_080021A8(param_0);
+        ((u16*)&temp_r0->unk_4F8.unk_4F8_16.unk_4F8)[var_r5 * 2] = GetEntityRoomXPositionInteger(param_0);
+        ((u16*)&temp_r0->unk_4F8.unk_4F8_16.unk_4FA)[var_r5 * 2] = GetEntityRoomYPositionInteger(param_0);
     }
 
     temp_r0->unk_53D_1 = 1;
@@ -2314,8 +2314,8 @@ s32 sub_0802393C(struct EwramData_EntityData *param_0)
     s16 var_r1;
 
     var_sl = 0;
-    temp_r4 = sub_08002188(param_0);
-    var_r1 = sub_080021A8(param_0);
+    temp_r4 = GetEntityRoomXPositionInteger(param_0);
+    var_r1 = GetEntityRoomYPositionInteger(param_0);
 
     for (var_r6 = 0; var_r6 < 5; var_r6++)
     {
@@ -2329,7 +2329,7 @@ s32 sub_0802393C(struct EwramData_EntityData *param_0)
         param_0->unk_528.unk_528_16.unk_52A += 8;
     }
 
-    temp_r1_2 = sub_080021A8(param_0);
+    temp_r1_2 = GetEntityRoomYPositionInteger(param_0);
     if ((var_sl == 0) || (sub_08001D94(temp_r4, temp_r1_2) != 0))
     {
         return 0;
@@ -2492,8 +2492,8 @@ void Skill_EvilButcher_Ripper_Use(struct EwramData_EntityData *param_0)
             else
             {
                 param_0->unk_524.unk_524_32 += param_0->unk_52C.unk_52C_32;
-                temp_r4_2 = sub_08002188(param_0);
-                temp_r3_2 = sub_080021A8(param_0);
+                temp_r4_2 = GetEntityRoomXPositionInteger(param_0);
+                temp_r3_2 = GetEntityRoomYPositionInteger(param_0);
                 if (param_0->unk_53C_6)
                 {
                     var_r0_2 = sub_0800207C(temp_r4_2 - 6, temp_r3_2);
@@ -2705,7 +2705,7 @@ void sub_080240A0(struct EwramData_EntityData *param_0)
             param_0->unk_53C_0 = temp_r0;
             param_0->unk_53D_4 = 1;
             param_0->unk_53E_1 = 1;
-            param_0->unk_524.unk_524_16.unk_526 = sub_08002188(temp_sb);
+            param_0->unk_524.unk_524_16.unk_526 = GetEntityRoomXPositionInteger(temp_sb);
 
             for (var_r3 = 0; var_r3 < 10; var_r3++)
             {
@@ -2727,7 +2727,7 @@ void sub_080240A0(struct EwramData_EntityData *param_0)
             {
                 temp_r1[var_r3 + 0] = temp_r1[var_r3 - 1];
             }
-            temp_r1[0] = sub_08002188(temp_sb);
+            temp_r1[0] = GetEntityRoomXPositionInteger(temp_sb);
 
             var_0 = temp_r1[param_0->unk_4EF];
             temp_r2 = &gEwramData->unk_A078[1];
@@ -3382,8 +3382,8 @@ void SkillKillerDollUse(struct EwramData_EntityData *param_0)
         case 1:
             param_0->unk_524.unk_524_32 += param_0->unk_52C.unk_52C_32;
             param_0->unk_528.unk_528_32 += param_0->unk_530.unk_530_32;
-            temp_r5_2 = sub_08002188(param_0);
-            temp_r4 = sub_080021A8(param_0);
+            temp_r5_2 = GetEntityRoomXPositionInteger(param_0);
+            temp_r4 = GetEntityRoomYPositionInteger(param_0);
             param_0->unk_530.unk_530_32 = param_0->unk_530.unk_530_32 + 0x2000;
             if (param_0->unk_530.unk_530_32 > 0x80000)
             {
