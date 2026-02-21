@@ -1096,7 +1096,10 @@ void sub_0803BD5C(struct Unk_0803B9DC *param_0)
     }
 }
 
-
+/**
+ * @brief 3BE04 | To document
+ * 
+ */
 void sub_0803BE04(void)
 {
     s32 temp_r4;

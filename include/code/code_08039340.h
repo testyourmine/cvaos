@@ -68,6 +68,7 @@ extern void sub_0803BA88(struct Unk_0803B9DC *param_0);
 extern void sub_0803BBA4(struct Unk_0803B9DC *param_0);
 extern void sub_0803BD5C(struct Unk_0803B9DC *param_0);
 
+extern void sub_0803BE04(void);
 extern void sub_0803B9D0(struct EwramData_EntityData* param_0);
 extern void sub_0803BEEC(void);
 extern void sub_0803BF60(void);
