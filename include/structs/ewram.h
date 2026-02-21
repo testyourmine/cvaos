@@ -827,7 +827,13 @@ struct EwramData {
     /* 0x119D8 */ u8 unk_119D8[0x400]; // Struct or array?
     /* 0x11DD8 */ u8 unk_11DD8;
     /* 0x11DD9 */ u8 unk_11DD9;
-    /* 0x11DDA */ u8 pad_11DDA[0x12FE0 - 0x11DDA];
+    /* 0x11DDA */ u8 pad_11DDA[0x12428 - 0x11DDA];
+
+    /* 0x12428 */ s32 unk_12428;
+    /* 0x1242C */ u8 pad_1242C[0x12C68 - 0x1242C];
+
+    /* 0x12C68 */ s32 unk_12C68;
+    /* 0x12C6C */ u8 pad_12C6C[0x12FE0 - 0x12C6C];
 
     /* 0x12FE0 */ s8 unk_12FE0_0:2; // Length?
     /* 0x12FE0 */ s8 unk_12FE0_2:1; // Length?

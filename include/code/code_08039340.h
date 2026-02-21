@@ -18,12 +18,56 @@ extern void sub_0803AAEC(struct EwramData_EntityData *param_0, u32 param_1);
 extern s32 sub_0803AC40(struct EwramData_EntityData *param_0);
 extern s32 sub_0803AEFC(struct EwramData_EntityData *param_0);
 extern s32 sub_0803AFB8(u8 *param_0);
-extern s32 sub_0803B66C(s32 param_0, s32 param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_5); // TODO: param types
-extern s32 sub_0803B800(u8* param_0, s32 param_1);
-extern s32 sub_0803B924(struct EwramData_EntityData *param_0, u8 *param_1, s32 param_2, s32 param_3);
+extern s32 sub_0803B04C(void);
+extern s32 sub_0803B184(void);
+
+struct Unk_0803B66C {
+    u8 unk_0;
+    u8 pad_1[0x4 - 0x1];
+    void *unk_4;
+};
+extern s32 sub_0803B66C(s32 param_0, struct Unk_0803B66C *param_1, u32 param_2, s32 param_3, u32 param_4, s32 param_5);
+
+extern s32 sub_0803B800(u8 *param_0, s32 param_1);
+extern s32 sub_0803B840(s32 param_0, s32 param_1);
+extern s32 sub_0803B8C4(struct EwramData_EntityData *param_0, s32 param_1, s32 param_2);
+extern s32 sub_0803B924(struct EwramData_EntityData *param_0, void *param_1, s32 param_2, u32 param_3);
 extern void sub_0803B980(s32 param_0);
-extern s32 sub_0803B998(struct EwramData_EntityData* param_0);
+extern s32 sub_0803B998(struct EwramData_EntityData *param_0);
 extern void sub_0803B9B4(void *param_0); // TODO: param type
+
+struct Unk_0803B9DC_608 {
+    u16 *unk_0[1];
+    u8 pad_4[0x40 - 0x4];
+    u8 unk_40;
+    u8 unk_41;
+    u8 unk_42;
+    u8 unk_43;
+    s32 unk_44;
+    s32 unk_48;
+    s32 unk_4C;
+    s32 unk_50[1];
+    u8 pad_54[0x3C];
+    s32 unk_90;
+    s32 unk_94[1];
+    u8 pad_98[0xD8 - 0x98];
+    s32 unk_D8[1];
+};
+struct Unk_0803B9DC {
+    u8 pad_0[0x44 - 0x0];
+    s32 unk_44;
+    u8 pad_48[0x602 - 0x48];
+    u16 unk_602;
+    u8 unk_604;
+    u8 unk_605;
+    u8 pad_606[0x608 - 0x606];
+    struct Unk_0803B9DC_608 unk_608;
+};
+extern s32 sub_0803B9DC(struct Unk_0803B9DC *param_0);
+extern void sub_0803BA88(struct Unk_0803B9DC *param_0);
+extern void sub_0803BBA4(struct Unk_0803B9DC *param_0);
+extern void sub_0803BD5C(struct Unk_0803B9DC *param_0);
+
 extern void sub_0803B9D0(struct EwramData_EntityData* param_0);
 extern void sub_0803BEEC(void);
 extern void sub_0803BF60(void);

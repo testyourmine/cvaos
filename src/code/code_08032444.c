@@ -2275,7 +2275,7 @@ void sub_08033F58(struct EwramData_EntityData *param_0)
         tmp2 = gEwramData->unk_FEC4[gEwramData->unk_10170[param_0->unk_548].unk_4].unk_FED4 + 4;
         param_0->unk_549 = var_ip;
         tmp3 = var_ip >> 2;
-        sub_0803B66C(gEwramData->unk_131D0, ((u32*)tmp2)[tmp3], param_0->unk_549, 0, 1, 1);
+        sub_0803B66C(gEwramData->unk_131D0, (void*)((u32*)tmp2)[tmp3], param_0->unk_549, 0, 1, 1);
     }
 }
 

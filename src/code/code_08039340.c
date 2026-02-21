@@ -600,3 +600,542 @@ s32 sub_0803B04C(void)
     return 0;
 }
 
+// sub_0803B184: https://decomp.me/scratch/loij9
+
+// nonmatch: https://decomp.me/scratch/lR4Su
+s32 sub_0803B66C(s32 param_0, struct Unk_0803B66C *param_1, u32 param_2, s32 param_3, u32 param_4, s32 param_5)
+{
+    u8 *sp4;
+    s32 sp8;
+    s32 var_r5_2;
+    s32 temp_r7;
+    u16 var_r4;
+    u32 var_r5;
+    u8 *var_r6;
+    s32 var_0;
+    s32 var_1;
+    s32 var_2;
+    s32 var_3;
+    u8 *var_4;
+    s32 var_5;
+    s32 var_6;
+
+    var_0 = 1;
+    var_4 = &gEwramData->unk_12FF1[(s16)param_0 << 3];
+    if ((u32) (param_3 + param_4) > (u32) *var_4)
+    {
+        return 0;
+    }
+
+    sp8 = 0x200;
+    if ((((u16) gEwramData->unk_12FEC >> 1) & var_0) == 1)
+    {
+        sp8 *= 2;
+    }
+    sp8 *= 4;
+
+    if (param_1->unk_0 == 1)
+    {
+        u8 *tmp = &gEwramData->pad_14474[0xF80];
+        LZ77UnCompWram(param_1->unk_4, tmp);
+        sp4 = gEwramData->unk_153F8;
+    }
+    else
+    {
+        sp4 = (u8*)&param_1->unk_4;
+    }
+    sp4 += (((param_2 >> 1) & 1) << 0xC) + ((param_2 & 1) << 8);
+
+    for (var_r5 = 0; var_r5 < param_4; var_r5++)
+    {
+        var_6 = 0x80;
+        var_5 = 4;
+        var_1 = 0x100;
+
+        var_2 = sp8 * var_r5;
+        var_3 = param_0 + var_r5;
+        var_r6 = sp4 + var_2;
+        var_r4 = sub_0803D8B4(var_3) << 5;
+
+        temp_r7 = var_r4;
+        for (var_r5_2 = 0; var_r5_2 < var_5; var_r5_2++)
+        {
+            if (param_5 != 0)
+            {
+                sub_080016D0(var_1, (u32 *) var_r6, (void*)0x06010000 + var_r4);
+            }
+            else
+            {
+                DMA_COPY_16(3, var_r6, (void*)0x06010000 + var_r4, var_6 * 2);
+            }
+            var_r6 += 0x200;
+            var_r4 += 0x400;
+        }
+        // sub_0803B66C_inline_0(var_r6, var_r4, var_5, param_5, var_1);
+
+        var_r4 = temp_r7 + var_1;
+        for (var_r5_2 = 0; var_r5_2 < var_5; var_r5_2++)
+        {
+            if (param_5 != 0)
+            {
+                sub_080016D0(var_1, (u32 *) var_r6, (void*)0x06010000 + var_r4);
+            }
+            else
+            {
+                DMA_COPY_16(3, var_r6, (void*)0x06010000 + var_r4, var_6 * 2);
+            }
+            var_r6 += 0x200;
+            var_r4 += 0x400;
+        }
+        // sub_0803B66C_inline_0(var_r6, var_r4 + var_1, var_5, param_5, var_1);
+
+        // sub_0803B66C_inline_1(param_0 + var_r5, param_5, sp4 + (sp8 * var_r5), var_5, var_1);
+    }
+    return 1;
+}
+
+/**
+ * @brief 3B800 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @return s32 To document
+ */
+s32 sub_0803B800(u8 *param_0, s32 param_1)
+{
+    s32 var_r2;
+
+    var_r2 = -1;
+
+    switch (param_0[0])
+    {
+        case 0:
+        case 1:
+            var_r2 = sub_08039E90(param_0, param_1);
+            break;
+        case 2:
+            var_r2 = sub_0803A1E8(param_0, param_0[2], param_0[3], param_1);
+            break;
+        case 3:
+            var_r2 = sub_0803A544(param_0, param_0[2], param_0[3], param_1);
+            break;
+    }
+
+    return var_r2;
+}
+
+/**
+ * @brief 3B840 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @return s32 To document
+ */
+s32 sub_0803B840(s32 param_0, s32 param_1)
+{
+    s32 var_r2;
+    s32 var_r3;
+    struct EwramData_unkFEC4 *temp_r1;
+
+    var_r2 = sub_08039614_inline_0(param_0);
+
+    temp_r1 = &gEwramData->unk_FEC4[var_r2];
+    if (temp_r1->unk_FECC == 0)
+    {
+        return 0;
+    }
+    return temp_r1->unk_FED0[param_1];
+}
+
+// nonmatch: https://decomp.me/scratch/TcA0v
+s32 sub_0803B8C4(struct EwramData_EntityData *param_0, s32 param_1, s32 param_2)
+{
+    s32 var_r5;
+    u8 temp_r0;
+
+    temp_r0 = gEwramData->unk_12FF1[(s16)param_1 << 3];
+    switch (temp_r0)
+    {
+        case 4:
+            var_r5 = sub_0803B924(param_0, (void *)0x080E2990, param_1, param_2);
+            break;
+
+        case 2:
+            var_r5 = sub_0803B924(param_0, (void *)0x080E2980, param_1, param_2);
+            break;
+
+        case 1:
+            var_r5 = sub_0803B924(param_0, (void *)0x080E2970, param_1, param_2);
+            break;
+    }
+
+    // BUG: returns uninitialized value if none of the cases are met
+    return var_r5;
+}
+
+/**
+ * @brief 3B924 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @param param_3 To document
+ * @return s32 To document
+ */
+s32 sub_0803B924(struct EwramData_EntityData *param_0, void *param_1, s32 param_2, u32 param_3)
+{
+    s32 temp_r0;
+
+    if (param_0->unk_548 != 0xFF)
+    {
+        return 0;
+    }
+
+    temp_r0 = sub_08039614(param_1, param_2);
+    if (temp_r0 != 0xFF)
+    {
+        param_0->unk_548 = temp_r0;
+        param_0->unk_53E_3 = param_3 & 0xFF;
+        param_0->unk_549 = 0;
+        sub_08000FBC(param_0);
+        return 1;
+    }
+
+    return 0;
+}
+
+/**
+ * @brief 3B980 | To document
+ * 
+ * @param param_0 To document
+ */
+void sub_0803B980(s32 param_0)
+{
+    sub_0803943C(param_0);
+    sub_0803D924(param_0);
+}
+
+/**
+ * @brief 3B998 | To document
+ * 
+ * @param param_0 To document
+ * @return s32 To document
+ */
+s32 sub_0803B998(struct EwramData_EntityData *param_0)
+{
+    return gEwramData->unk_10170[param_0->unk_548].unk_8;
+}
+
+/**
+ * @brief 3B9B4 | To documen
+ * 
+ * @param param_0 To document
+ */
+void sub_0803B9B4(void *param_0)
+{
+    void *var_0;
+
+    var_0 = &gEwramData->pad_14474[0xF80];
+    LZ77UnCompWram((void*)READ_32(param_0 + 4), var_0);
+}
+
+/**
+ * @brief 3B9D0 | To document
+ * 
+ * @param param_0 To document
+ */
+void sub_0803B9D0(struct EwramData_EntityData *param_0)
+{
+    sub_0803AC40(param_0);
+}
+
+/**
+ * @brief 3B9DC | To document
+ * 
+ * @param param_0 To document
+ * @return s32 To document
+ */
+s32 sub_0803B9DC(struct Unk_0803B9DC *param_0)
+{
+    s32 var_r5;
+    s32 var_0;
+    s32 var_1;
+
+    if (param_0->unk_602 == 0xFFFF)
+    {
+        DMA_COPY_16(3, (void *)param_0 + 0x200, param_0, 0x200);
+        param_0->unk_602 = 0;
+        param_0->unk_605 = 0;
+        return 1;
+    }
+
+    if (param_0->unk_602 != 0)
+    {
+        var_0 = param_0->unk_602;
+        var_1 = 1;
+        for (var_r5 = 0; var_r5 < 0x10; var_r5++)
+        {
+            if (var_0 & var_1)
+            {
+                DMA_COPY_16(3, (void*)param_0 + 0x200 + var_r5 * 0x20, (void*)param_0 + var_r5 * 0x20, 0x20);
+            }
+            var_1 <<= 1;
+        }
+        param_0->unk_602 = 0;
+        param_0->unk_605 = 0;
+        return 1;
+    }
+
+    return 0;
+}
+
+/**
+ * @brief 3BA88 | To document
+ * 
+ * @param param_0 To document
+ */
+void sub_0803BA88(struct Unk_0803B9DC *param_0)
+{
+    s32 sp4;
+    struct Unk_0803B9DC_608 *sp8;
+    s32 spC;
+    s16 *temp_r4;
+    s32 temp_r0;
+    u32 temp_r0_2;
+    u32 temp_r1_3;
+    s32 var_r3;
+    struct Unk_0803B9DC_608 *temp_r1;
+    u16 *temp_r5;
+    s32 var_0;
+    s32 var_1;
+    s32 var_2;
+    s32 var_3;
+    s32 var_4;
+    s32 var_5;
+    s32 var_6;
+    s32 var_7;
+    s32 var_8;
+    u16 *var_9;
+
+    temp_r1 = &param_0->unk_608;
+    sp8 = temp_r1;
+    spC = temp_r1->unk_44;
+
+    for (var_r3 = 0; var_r3 < 0x10; var_r3++)
+    {
+        temp_r0 = var_r3 << 4;
+        temp_r5 = (u16*)param_0 + temp_r0;
+        temp_r4 = (u16*)param_0 + (temp_r0 + 0x200);
+        if ((spC >> var_r3) & 1)
+        {
+            var_9 = sp8->unk_0[var_r3];
+            temp_r0_2 = sp8->unk_50[var_r3];
+            temp_r1_3 = 0x10000 - temp_r0_2;
+            param_0->unk_605 = 0;
+
+            for (sp4 = 0; sp4 < 0x10; sp4++)
+            {
+                var_3 = temp_r5[sp4] & 0x1F;
+                var_4 = temp_r5[sp4] & (0x1F << 5);
+                var_5 = temp_r5[sp4] & (0x1F << 10);
+
+                var_6 = var_9[sp4] & 0x1F;
+                var_7 = var_9[sp4] & (0x1F << 5);
+                var_8 = var_9[sp4] & (0x1F << 10);
+                
+                var_0 = ((var_3 * temp_r0_2) + (var_6 * temp_r1_3)) >> 0x10;
+                var_1 = ((var_4 * temp_r0_2) + (var_7 * temp_r1_3)) >> 0x10;
+                var_2 = ((var_5 * temp_r0_2) + (var_8 * temp_r1_3)) >> 0x10;
+                temp_r4[sp4] = (var_0 & 0x1F) | (var_1 & (0x1F << 5)) | (var_2 & (0x1F << 10));
+            }
+        }
+        else
+        {
+            DMA_COPY_16(3, temp_r5, temp_r4, 0x20);
+        }
+    }
+}
+
+/**
+ * @brief 3BBA4 | To document
+ * 
+ * @param param_0 To document
+ */
+void sub_0803BBA4(struct Unk_0803B9DC *param_0)
+{
+    struct Unk_0803B9DC_608 *sp4;
+    s32 sp8;
+    s32 spC;
+    s32 sp10;
+    s32 sp14;
+    s32 sp18;
+    s16 *temp_r4;
+    u32 temp_r0;
+    s32 temp_r0_2;
+    s32 temp_r1;
+    s32 var_r3;
+    u16 *temp_r6;
+    u16 *var_r8;
+    u32 temp_r7;
+    s32 var_0;
+    s32 var_1;
+    s32 var_2;
+    s32 var_3;
+    s32 var_4;
+    s32 var_5;
+    s32 var_6;
+    s32 var_7;
+    s32 var_8;
+    s32 var_10;
+    s32 var_11;
+    s32 var_12;
+    s32 var_13;
+    s32 var_14;
+    s32 var_15;
+
+    sp4 = &param_0->unk_608;
+    temp_r0 = sp4->unk_90;
+    temp_r1 = 0x10000 - temp_r0;
+    sp8 = param_0->unk_608.unk_40 * temp_r1;
+    spC = (param_0->unk_608.unk_41 * temp_r1) << 5;
+    sp10 = (param_0->unk_608.unk_42 * temp_r1) << 10;
+    param_0->unk_605 = 0;
+
+    for (var_r3 = 0; var_r3 < 0x10; var_r3++)
+    {
+        temp_r0_2 = var_r3 << 4;
+        temp_r6 = (u16*)param_0 + temp_r0_2;
+        temp_r4 = (u16*)param_0 + (temp_r0_2 + 0x200);
+        if ((u32)sp4->unk_44 & (1 << var_r3))
+        {
+            var_r8 = sp4->unk_0[var_r3];
+            temp_r7 = sp4->unk_50[var_r3];
+            sp18 = 0x10000 - temp_r7;
+
+            for (sp14 = 0; sp14 < 0x10; sp14++)
+            {
+                var_3 = temp_r6[sp14] & 0x1F;
+                var_4 = temp_r6[sp14] & (0x1F << 5);
+                var_5 = temp_r6[sp14] & (0x1F << 10);
+
+                var_6 = var_r8[sp14] & 0x1F;
+                var_7 = var_r8[sp14] & (0x1F << 5);
+                var_8 = var_r8[sp14] & (0x1F << 10);
+                
+                var_0 = ((var_3 * temp_r7) + (var_6 * sp18)) >> 0x10;
+                var_0 = ((var_0 * temp_r0) + sp8) >> 0x10;
+
+                var_1 = ((var_4 * temp_r7) + (var_7 * sp18)) >> 0x10;
+                var_1 = ((var_1 * temp_r0) + spC) >> 0x10;
+
+                var_2 = ((var_5 * temp_r7) + (var_8 * sp18)) >> 0x10;
+                var_2 = ((var_2 * temp_r0) + sp10) >> 0x10;
+
+                temp_r4[sp14] = (var_0 & 0x1F) | (var_1 & (0x1F << 5)) | (var_2 & (0x1F << 10));
+            }
+        }
+        else
+        {
+            for (sp14 = 0; sp14 < 0x10; sp14++)
+            {
+                var_13 = temp_r6[sp14] & 0x1F;
+                var_14 = temp_r6[sp14] & (0x1F << 5);
+                var_15 = temp_r6[sp14] & (0x1F << 10);
+                
+                var_10 = ((var_13 * temp_r0) + (sp8)) >> 0x10;
+                var_11 = ((var_14 * temp_r0) + (spC)) >> 0x10;
+                var_12 = ((var_15 * temp_r0) + (sp10)) >> 0x10;
+
+                temp_r4[sp14] = (var_10 & 0x1F) | (var_11 & (0x1F << 5)) | (var_12 & (0x1F << 10));
+            }
+        }
+    }
+}
+
+/**
+ * @brief 3BD5C | To doucment
+ * 
+ * @param param_0 To document
+ */
+void sub_0803BD5C(struct Unk_0803B9DC *param_0)
+{
+    s32 temp_r5;
+    s32 var_r6;
+    struct Unk_0803B9DC_608 *temp_r0;
+    s32 var_0;
+
+    if (gEwramData->unk_A074_0)
+        return;
+
+    temp_r0 = &param_0->unk_608;
+    var_0 = temp_r0->unk_44 & temp_r0->unk_48 & temp_r0->unk_4C;
+
+    for (var_r6 = 0; var_r6 < 0x11; var_r6++)
+    {
+        temp_r5 = 1 << var_r6;
+        if (var_0 & temp_r5)
+        {
+            temp_r0->unk_50[var_r6] += temp_r0->unk_D8[var_r6];
+            if (temp_r0->unk_D8[var_r6] > 0)
+            {
+                if (temp_r0->unk_50[var_r6] > temp_r0->unk_94[var_r6])
+                {
+                    temp_r0->unk_50[var_r6] = temp_r0->unk_94[var_r6];
+                    temp_r0->unk_4C &= ~temp_r5;
+                }
+            }
+            else
+            {
+                if (temp_r0->unk_50[var_r6] < temp_r0->unk_94[var_r6])
+                {
+                    temp_r0->unk_50[var_r6] = temp_r0->unk_94[var_r6];
+                    temp_r0->unk_4C &= ~temp_r5;
+                }
+            }
+        }
+    }
+}
+
+
+void sub_0803BE04(void)
+{
+    s32 temp_r4;
+    s32 temp_r4_2;
+
+    temp_r4 = gEwramData->unk_12428;
+    if (temp_r4 == 0)
+    {
+        DMA_COPY_16(3, &gEwramData->pad_11DDA[2], &gEwramData->pad_11DDA[0x402], 0x200);
+    }
+    else
+    {
+        sub_0803BD5C((struct Unk_0803B9DC *) &gEwramData->pad_11DDA[2]);
+        if (temp_r4 & 0x10000)
+        {
+            sub_0803BBA4((struct Unk_0803B9DC *) &gEwramData->pad_11DDA[2]);
+        }
+        else
+        {
+            sub_0803BA88((struct Unk_0803B9DC *) &gEwramData->pad_11DDA[2]);
+        }
+    }
+
+    temp_r4_2 = gEwramData->unk_12C68;
+    if (temp_r4_2 == 0)
+    {
+        DMA_COPY_16(3, &gEwramData->pad_11DDA[0x842], &gEwramData->pad_11DDA[0xC42], 0x200);
+    }
+    else
+    {
+        sub_0803BD5C((struct Unk_0803B9DC *) &gEwramData->pad_11DDA[0x842]);
+        if (temp_r4_2 & 0x10000)
+        {
+            sub_0803BBA4((struct Unk_0803B9DC *) &gEwramData->pad_11DDA[0x842]);
+        }
+        else
+        {
+            sub_0803BA88((struct Unk_0803B9DC *) &gEwramData->pad_11DDA[0x842]);
+        }
+    }
+}
+
