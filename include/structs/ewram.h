@@ -350,7 +350,7 @@ struct EwramData_EntityData {
     /* 0x0053D */ u8 unk_53D_6:2;
     /* 0x0053E */ u8 unk_53E_0:1;
     /* 0x0053E */ u8 unk_53E_1:2;
-    /* 0x0053E */ u8 unk_53E_3:4;
+    /* 0x0053E */ u16 unk_53E_3:4;
     /* 0x0053E */ u8 unk_53E_7:1; // Real?
     /* 0x0053F */ u8 unk_53F; // Type?
     /* 0x00540 */ u8 unk_540;

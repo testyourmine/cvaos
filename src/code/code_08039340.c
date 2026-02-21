@@ -128,7 +128,25 @@ void sub_0803943C(s16 param_0)
     gEwramData->unk_FEC4[var_r4].unk_FEC8 = -1;
 }
 
-// nonmatch: https://decomp.me/scratch/E2CUp
+static inline s32 sub_08039614_inline_0(s32 param_1)
+{
+    s32 var_r2;
+
+    for (var_r2 = gEwramData->unk_11072; var_r2 != -1; var_r2 = gEwramData->unk_FEC4[var_r2].unk_FEC6)
+    {
+        if (gEwramData->unk_FEC4[var_r2].unk_FEC8 == param_1)
+            return var_r2;
+    }
+    return -1;
+}
+
+/**
+ * @brief 39614 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @return u8 To document
+ */
 u8 sub_08039614(void *param_0, s32 param_1)
 {
     s32 sp4;
@@ -136,23 +154,7 @@ u8 sub_08039614(void *param_0, s32 param_1)
     s16 temp_r0;
     s16 temp_r5;
 
-    var_r2 = gEwramData->unk_11072;
-    if (var_r2 != -1)
-    {
-        while (gEwramData->unk_FEC4[var_r2].unk_FEC8 != param_1)
-        {
-            var_r2 = gEwramData->unk_FEC4[var_r2].unk_FEC6;
-            if (var_r2 == -1)
-            {
-                break;
-            }
-        }
-        sp4 = var_r2;
-    }
-    else
-    {
-        sp4 = -1;
-    }
+    sp4 = sub_08039614_inline_0(param_1);
 
     if (gEwramData->unk_11074 != -1)
     {
@@ -278,7 +280,42 @@ void sub_08039DC0(void)
 
 // sub_0803A8C8: https://decomp.me/scratch/zE6Pr
 
-// sub_0803AA20: https://decomp.me/scratch/RTP58
+/**
+ * @brief 3AA20 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @param param_3 To document
+ * @return s32 To document
+ */
+s32 sub_0803AA20(s32 param_0, s32 param_1, s32 param_2, s32 param_3)
+{
+    s32 var_r2;
+    struct EwramData_unkFEC4 *temp_r4;
+    u8 **var_r1;
+
+    var_r2 = sub_08039614_inline_0(param_0);
+    temp_r4 = &gEwramData->unk_FEC4[var_r2];
+    if (temp_r4->unk_FECC == 0)
+    {
+        return 0;
+    }
+
+    if (temp_r4->unk_FECC == 1)
+    {
+        var_r1 = temp_r4->unk_FED4;
+    }
+    else
+    {
+        var_r1 = (u8**)&gEwramData->unk_25468;
+    }
+    var_r1++;
+
+    sub_0803A8C8(param_0, var_r1[param_2], param_1 * temp_r4->unk_FECE, 0, temp_r4->unk_FECE, param_3);
+    temp_r4->unk_FED0[param_1] = param_2;
+    return 1;
+}
 
 
 // TODO: is this inline necessary?

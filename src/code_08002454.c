@@ -2046,7 +2046,6 @@ void sub_080044DC(struct EwramData_EntityData *param_0)
     s32 temp_r1;
     s32 var_r2;
     struct Unk_084F0CEC *var_r5;
-    u16 tmp;
 
     sp0 = param_0->unk_524.unk_524_32;
     sp4 = param_0->unk_528.unk_528_32;
@@ -2060,7 +2059,7 @@ void sub_080044DC(struct EwramData_EntityData *param_0)
         param_0->unk_524.unk_524_32 = (var_r5->unk_2 << 0x10) + temp_r0;
         param_0->unk_528.unk_528_32 = (var_r5->unk_4 << 0x10) + temp_r1;
         param_0->unk_549 = var_r5->unk_0;
-        param_0->unk_53E_3 = tmp = var_r5->unk_1;
+        param_0->unk_53E_3 = var_r5->unk_1;
         sub_0803AC40(param_0);
         var_r5 += 1;
     }
@@ -2159,7 +2158,6 @@ void sub_080046D0(struct EwramData_EntityData *param_0)
     s32 temp_r1;
     s32 var_r2;
     struct Unk_084F0CEC *var_r5;
-    u16 tmp;
 
     temp_r0 = param_0->unk_524.unk_524_32;
     temp_r1 = param_0->unk_528.unk_528_32;
@@ -2171,7 +2169,7 @@ void sub_080046D0(struct EwramData_EntityData *param_0)
         param_0->unk_524.unk_524_32 = (var_r5->unk_2 << 0x10) + temp_r0;
         param_0->unk_528.unk_528_32 = (var_r5->unk_4 << 0x10) + temp_r1;
         param_0->unk_549 = var_r5->unk_0;
-        param_0->unk_53E_3 = tmp = var_r5->unk_1;
+        param_0->unk_53E_3 = var_r5->unk_1;
         sub_0803AC40(param_0);
         var_r5 += 1;
     }

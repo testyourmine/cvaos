@@ -2535,7 +2535,11 @@ struct Unk_080E1F18 {
 };
 extern const struct Unk_080E1F18 sUnk_080E1F18[];
 
-// nonmatch: https://decomp.me/scratch/xxRmd
+/**
+ * @brief 344F0 | To document
+ * 
+ * @param param_0 To document
+ */
 void sub_080344F0(struct EwramData_EntityData *param_0)
 {
     switch (param_0->unk_4EE)

@@ -43,6 +43,8 @@ struct DisplayRegisters {
     /* 0x4E */ u16 unk_56;
 }; /* size = 0x50 */
 
+extern struct DisplayRegisters gDisplayRegisters;
+
 struct Unk_030034BC {
     u32 *unk_80C; // 34BC
     u32 *unk_810; // 34C0
@@ -65,8 +67,8 @@ struct Unk_03002CB0 {
     /* 0x100E */ u8 unk_100E;
 };
 
-extern struct DisplayRegisters gDisplayRegisters;
 extern struct Unk_03002CB0 gUnk_03002CB0;
+
 extern u8 gIntrMainBuffer[0x880];
 
 #endif /* MAIN_STRUCT_H */
