@@ -776,69 +776,69 @@ void TitleScreen_sub_08002F44(s32 arg0)
 }
 
 struct Unk_084F0C84 {
-    u8* unk_0; // Type?
+    u16* unk_0; // Type?
     u16 unk_4;
     u16 unk_6;
 };
 
 struct Unk_084F0C84 sUnk_084F0C84[12] = {
     [0] = {
-        .unk_0 = (u8*)0x80E622C,
+        .unk_0 = (void*)0x80E622C,
         .unk_4 = 0x0,
         .unk_6 = 0x30
     },
     [1] = {
-        .unk_0 = (u8*)0x80E622C,
+        .unk_0 = (void*)0x80E622C,
         .unk_4 = 0x5,
         .unk_6 = 0x30
     },
     [2] = {
-        .unk_0 = (u8*)0x80E622C,
+        .unk_0 = (void*)0x80E622C,
         .unk_4 = 0x6,
         .unk_6 = 0x30
     },
     [3] = {
-        .unk_0 = (u8*)0x80E622C,
+        .unk_0 = (void*)0x80E622C,
         .unk_4 = 0x7,
         .unk_6 = 0x30
     },
     [4] = {
-        .unk_0 = (u8*)0x80E622C,
+        .unk_0 = (void*)0x80E622C,
         .unk_4 = 0x8,
         .unk_6 = 0x30
     },
     [5] = {
-        .unk_0 = (u8*)0x80E622C,
+        .unk_0 = (void*)0x80E622C,
         .unk_4 = 0x9,
         .unk_6 = 0x30
     },
     [6] = {
-        .unk_0 = (u8*)0x80E622C,
+        .unk_0 = (void*)0x80E622C,
         .unk_4 = 0xA,
         .unk_6 = 0x30
     },
     [7] = {
-        .unk_0 = (u8*)0x80E622C,
+        .unk_0 = (void*)0x80E622C,
         .unk_4 = 0xB,
         .unk_6 = 0x30
     },
     [8] = {
-        .unk_0 = (u8*)0x80E622C,
+        .unk_0 = (void*)0x80E622C,
         .unk_4 = 0xC,
         .unk_6 = 0x30
     },
     [9] = {
-        .unk_0 = (u8*)0x80E622C,
+        .unk_0 = (void*)0x80E622C,
         .unk_4 = 0xD,
         .unk_6 = 0x30
     },
     [10] = {
-        .unk_0 = (u8*)0x80E622C,
+        .unk_0 = (void*)0x80E622C,
         .unk_4 = 0xE,
         .unk_6 = 0x30
     },
     [11] = {
-        .unk_0 = (u8*)0x80E622C,
+        .unk_0 = (void*)0x80E622C,
         .unk_4 = 0xF,
         .unk_6 = 0x30
     },
@@ -859,7 +859,7 @@ void TitleScreen_sub_08002FF8(void)
     if (gEwramData->entityData[0x12].unk_4F8.unk_4F8_32++ > temp_r4->unk_6)
     {
         unk_4E4->unk_4F8.unk_4F8_32 = 0;
-        sub_0803C918(temp_r4->unk_0, temp_r4->unk_4, 1, 0);
+        sub_0803C918((void*)temp_r4->unk_0, temp_r4->unk_4, 1, 0);
 
         unk_4E4->unk_508.unk_508_8.unk_508 += 1;
         if (unk_4E4->unk_508.unk_508_8.unk_508 >= ARRAY_SIZE(sUnk_084F0C84))
@@ -868,7 +868,7 @@ void TitleScreen_sub_08002FF8(void)
         }
 
         temp_r4 = &sUnk_084F0C84[unk_4E4->unk_508.unk_508_8.unk_508];
-        sub_0803D2D0(0, temp_r4->unk_0, temp_r4->unk_4, 0x10000, 0, temp_r4->unk_6);
+        sub_0803D2D0(0, (void*)temp_r4->unk_0, temp_r4->unk_4, 0x10000, 0, temp_r4->unk_6);
     }
 }
 

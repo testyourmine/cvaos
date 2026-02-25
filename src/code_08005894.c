@@ -817,7 +817,7 @@ void sub_08006BC0(struct EwramData_EntityData *param_0)
             break;
     }
     param_0->unk_546 = 0xFF;
-    sub_0803C74C((u32 *)0x080E5E24);
+    sub_0803C74C((u8 *)0x080E5E24);
     sub_0803B924(param_0, (u8 *)0x082571E0, temp_r4, 0);
     param_0->unk_549 = 0;
     sub_0803F2C8(param_0, 0, 0, 1);
