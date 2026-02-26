@@ -801,6 +801,16 @@ struct EwramData_unk11DDC {
     /* 0x724 */ /* 0x12500 */ struct EwramData_unk11DDC_608 unk_12500;
 }; /* size = 0x840 */
 
+struct EwramData_unk12FF0 {
+    u8 unk_12FF0_0:1;
+    u8 unk_12FF1;
+    u8 unk_12FF2;
+    u8 unk_12FF3;
+    u16 unk_12FF4;
+    u8 unk_12FF6;
+    u8 unk_12FF7;
+};
+
 struct EwramData {
     /* 0x00000 */ u32 unk_0;
     /* 0x00004 */ u16 unk_4;
@@ -884,11 +894,13 @@ struct EwramData {
     /* 0x12FE0 */ s8 unk_12FE0_3:5; // Real/Length?
     /* 0x12FE1 */ u8 pad_12FE1[0x12FE4 - 0x12FE1];
     /* 0x12FE4 */ u32 unk_12FE4;
-    /* 0x12FE8 */ u8 pad_12FE8[0x12FEC - 0x12FE8];
-    /* 0x12FEC */ u16 unk_12FEC;
-    /* 0x12FEE */ u8 pad_12FEE[0x12FF1 - 0x12FEE];
-    /* 0x12FF1 */ u8 unk_12FF1[1]; // Length?
-    /* 0x12FF2 */ u8 pad_12FF2[0x13074 - 0x12FF2];
+    /* 0x12FE8 */ u32 unk_12FE8;
+    /* 0x12FEC */ u16 unk_12FEC; // TODO: bitfield
+    /* 0x12FEE */ u8 pad_12FEE[0x12FF0 - 0x12FEE];
+    /* 0x12FF0 */ struct EwramData_unk12FF0 unk_12FF0[1]; // length?
+    /* 0x12FF8 */ u8 pad_12FF2[0x13070 - 0x12FF8];
+    /* 0x13070 */ s16 unk_13070;
+    /* 0x13072 */ u8 pad_13072[0x13074 - 0x13072];
     /* 0x13074 */ u16 unk_13074;
     /* 0x13076 */ u16 unk_13076;
     /* 0x13078 */ u16 unk_13078;
