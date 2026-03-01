@@ -451,6 +451,9 @@ s32 sub_0803AC40(struct EwramData_EntityData *param_0)
     return ret;
 }
 
+extern struct Unk_03000058* sub_0803E4C0(void);
+extern void sub_0803E528(struct Unk_03000058 *param_0, u32 param_1);
+
 // sub_0803ACE0: https://decomp.me/scratch/elCYt
 
 struct Unk_0803AEFC {
@@ -490,7 +493,7 @@ s32 sub_0803AEFC(struct EwramData_EntityData *param_0)
         return 0;
     }
 
-    temp_r0 = sub_0803E4C0();
+    temp_r0 = (void*)sub_0803E4C0();
     if (temp_r0 == NULL)
     {
         return 0;
@@ -521,7 +524,7 @@ s32 sub_0803AEFC(struct EwramData_EntityData *param_0)
     }
     var_0->unk_2 = (var_0->unk_2 & ~0x1FF) | var_r3;
 
-    sub_0803E528(temp_r0, param_0->unk_540);
+    sub_0803E528((void*)temp_r0, param_0->unk_540);
     return 1;
 }
 
@@ -2854,5 +2857,915 @@ s32 sub_0803DAE0(s32 param_0, s32 param_1, s32 param_2)
     }
 
     return 1;
+}
+
+struct Unk_03000058 {
+    u8 unk_0;
+    u8 pad_1[0x5 - 0x1];
+    u8 unk_5_0:2;
+    u8 unk_5_2:2;
+    u8 pad_6[0x8 - 0x6];
+    s16 unk_8;
+    u16 unk_A;
+}; /* size = 0xC */
+extern struct Unk_03000058 gUnk_03000058[0x100];
+
+struct Unk_03000C58 {
+    u8 unk_0;
+    u8 pad_1[0x2 - 0x1];
+    u16 unk_2_0:9;
+    u8 pad_2[0x6 - 0x4];
+    u16 unk_6;
+}; /* size = 0x8 */
+extern struct Unk_03000C58 gUnk_03000C58[0x100];
+
+struct Unk_03001458_10 {
+    s32 unk_0;
+    s32 unk_4; // TODO: type?
+    s32 unk_8; // TODO: type?
+    s32 unk_C;
+}; /* size = 0x10 */
+
+struct Unk_03001458 {
+    s32 unk_0;
+    s32 unk_4;
+    s32 unk_8;
+    s16 unk_C;
+    s16 unk_E;
+    struct Unk_03001458_10 unk_10;
+    u16 unk_20;
+    u16 unk_22;
+    u16 unk_24;
+    u16 unk_26;
+}; /* size = 0x28 */
+extern struct Unk_03001458 gUnk_03001458[0x20];
+
+struct Unk_03001958 {
+    s16 unk_0;
+    s16 unk_2;
+}; /* size = 0x4 */
+extern struct Unk_03001958 gUnk_03001958[0x20];
+
+struct Unk_030019D8 {
+    s16 unk_0;
+    s16 unk_2;
+    u16 unk_4;
+    s8 unk_6[4];
+    s8 unk_A[4];
+    u8 unk_E[0x20];
+    u16 unk_2E;
+    u16 unk_30;
+    u8 pad_32[0x34 - 0x32];
+    s32 unk_34;
+    s32 unk_38;
+};
+extern struct Unk_030019D8 gUnk_030019D8;
+
+typedef void (*Unk_03004F70)(struct Unk_03000058 *, struct Unk_03000C58 *, struct Unk_03001958 *, struct Unk_030019D8 *);
+extern u8 gUnk_03004F70[];
+
+/**
+ * @brief 3DB6C | To document
+ * 
+ */
+void sub_0803DB6C(void)
+{
+    s32 var_r4;
+
+    DMA_FILL_32(3, 0, &gUnk_03000C58, 0x800);
+    DMA_FILL_32(3, 0, &gUnk_03000058, 0xC00);
+
+    for (var_r4 = 0; var_r4 < 0x100; var_r4++)
+    {
+        gUnk_03000C58[var_r4].unk_2_0 = 0x1E0;
+        gUnk_03000058[var_r4].unk_8 = -1;
+        gUnk_03000058[var_r4].unk_A = var_r4;
+    }
+
+    for (var_r4 = 0; var_r4 < 0x20; var_r4++)
+    {
+        gUnk_03001958[var_r4].unk_0 = -1;
+        gUnk_03001958[var_r4].unk_2 = -1;
+    }
+
+    gUnk_030019D8.unk_0 = 0;
+    gUnk_030019D8.unk_2 = 0;
+}
+
+/**
+ * @brief 3DC18 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @param param_3 To document
+ */
+void sub_0803DC18(s32 param_0, s32 param_1, s32 param_2, s32 param_3)
+{
+    s32 var_r2;
+    s32 var_r3;
+    s32 var_r4;
+    s32 var_r0;
+    s32 var_r0_2;
+    s32 var_r0_3;
+    s32 var_r0_4;
+    u8 var_0;
+    u8 var_1;
+    u8 var_2;
+    u8 var_3;
+    s32 subroutine_arg0[0x5];
+
+    gUnk_030019D8.unk_6[0] = param_0;
+    gUnk_030019D8.unk_6[1] = param_1;
+    gUnk_030019D8.unk_6[2] = param_2;
+    gUnk_030019D8.unk_6[3] = param_3;
+
+    var_0 = gUnk_030019D8.unk_6[0];
+    var_1 = gUnk_030019D8.unk_6[1];
+    var_2 = gUnk_030019D8.unk_6[2];
+    var_3 = gUnk_030019D8.unk_6[3];
+
+    var_r0 = 0;
+    if (var_0 >= var_1)
+    {
+        var_r0 = 1;
+    }
+    if (var_0 >= var_2)
+    {
+        var_r0 += 1;
+    }
+    if (var_0 >= var_3)
+    {
+        var_r0 += 1;
+    }
+    gUnk_030019D8.unk_A[0] = var_r0;
+
+    var_r0_2 = 0;
+    if (var_1 >= var_0)
+    {
+        var_r0_2 = 1;
+    }
+    if (var_1 >= var_2)
+    {
+        var_r0_2 += 1;
+    }
+    if (var_1 >= var_3)
+    {
+        var_r0_2 += 1;
+    }
+    gUnk_030019D8.unk_A[1] = var_r0_2;
+
+    var_r0_3 = 0;
+    if (var_2 >= var_0)
+    {
+        var_r0_3 = 1;
+    }
+    if (var_2 >= var_1)
+    {
+        var_r0_3 += 1;
+    }
+    if (var_2 >= var_3)
+    {
+        var_r0_3 += 1;
+    }
+    gUnk_030019D8.unk_A[2] = var_r0_3;
+
+    var_r0_4 = 0;
+    if (var_3 >= var_0)
+    {
+        var_r0_4 = 1;
+    }
+    if (var_3 >= var_1)
+    {
+        var_r0_4 += 1;
+    }
+    if (var_3 >= var_2)
+    {
+        var_r0_4 += 1;
+    }
+    gUnk_030019D8.unk_A[3] = var_r0_4;
+
+    subroutine_arg0[4] = 0x1F;
+    for (var_r3 = 3; var_r3 >= 0; var_r3--)
+    {
+        subroutine_arg0[var_r3] = subroutine_arg0[var_r3 + 1];
+
+        for (var_r2 = 0; var_r2 < 4; var_r2++)
+        {
+            if (gUnk_030019D8.unk_A[var_r2] == var_r3)
+            {
+                subroutine_arg0[var_r3] = gUnk_030019D8.unk_6[var_r2];
+            }
+        }
+    }
+
+    for (var_r3 = 0, var_r4 = 0; var_r3 < 0x20; var_r3++)
+    {
+        for (; var_r3 > subroutine_arg0[var_r4] && var_r4 < 3; var_r4++)
+        {}
+        gUnk_030019D8.unk_E[var_r3] = var_r4;
+    }
+}
+
+/**
+ * @brief 3DD14 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ */
+void sub_0803DD14(s32 param_0, s16 param_1)
+{
+    s32 var_r2;
+    s32 var_r3;
+    s32 var_r4;
+    s32 var_r0;
+    s32 var_r0_2;
+    s32 var_r0_3;
+    s32 var_r0_4;
+    u8 var_0;
+    u8 var_1;
+    u8 var_2;
+    u8 var_3;
+    s32 subroutine_arg0[0x5];
+
+    gUnk_030019D8.unk_6[param_1] = param_0;
+
+    var_0 = gUnk_030019D8.unk_6[0];
+    var_1 = gUnk_030019D8.unk_6[1];
+    var_2 = gUnk_030019D8.unk_6[2];
+    var_3 = gUnk_030019D8.unk_6[3];
+
+    var_r0 = 0;
+    if (var_0 >= var_1)
+    {
+        var_r0 = 1;
+    }
+    if (var_0 >= var_2)
+    {
+        var_r0 += 1;
+    }
+    if (var_0 >= var_3)
+    {
+        var_r0 += 1;
+    }
+    gUnk_030019D8.unk_A[0] = var_r0;
+
+    var_r0_2 = 0;
+    if (var_1 >= var_0)
+    {
+        var_r0_2 = 1;
+    }
+    if (var_1 >= var_2)
+    {
+        var_r0_2 += 1;
+    }
+    if (var_1 >= var_3)
+    {
+        var_r0_2 += 1;
+    }
+    gUnk_030019D8.unk_A[1] = var_r0_2;
+
+    var_r0_3 = 0;
+    if (var_2 >= var_0)
+    {
+        var_r0_3 = 1;
+    }
+    if (var_2 >= var_1)
+    {
+        var_r0_3 += 1;
+    }
+    if (var_2 >= var_3)
+    {
+        var_r0_3 += 1;
+    }
+    gUnk_030019D8.unk_A[2] = var_r0_3;
+
+    var_r0_4 = 0;
+    if (var_3 >= var_0)
+    {
+        var_r0_4 = 1;
+    }
+    if (var_3 >= var_1)
+    {
+        var_r0_4 += 1;
+    }
+    if (var_3 >= var_2)
+    {
+        var_r0_4 += 1;
+    }
+    gUnk_030019D8.unk_A[3] = var_r0_4;
+
+    subroutine_arg0[4] = 0x1F;
+    for (var_r3 = 3; var_r3 >= 0; var_r3--)
+    {
+        subroutine_arg0[var_r3] = subroutine_arg0[var_r3 + 1];
+
+        for (var_r2 = 0; var_r2 < 4; var_r2++)
+        {
+            if (gUnk_030019D8.unk_A[var_r2] == var_r3)
+            {
+                subroutine_arg0[var_r3] = gUnk_030019D8.unk_6[var_r2];
+            }
+        }
+    }
+
+    for (var_r3 = 0, var_r4 = 0; var_r3 < 0x20; var_r3++)
+    {
+        for (; var_r3 > subroutine_arg0[var_r4] && var_r4 < 3; var_r4++)
+        {}
+        gUnk_030019D8.unk_E[var_r3] = var_r4;
+    }
+}
+
+// nonmatching: https://decomp.me/scratch/n8LsF
+void sub_0803DE10(void)
+{
+    s32 sp0;
+    s32 sp4;
+    s32 var_r4;
+    s32 var_ip;
+    s32 var_r6;
+    struct Unk_03000058 *temp_r2;
+    struct Unk_03000058 *temp_r3;
+    struct Unk_03000C58 *var_r5;
+
+    var_r5 = gUnk_03000C58;
+    var_ip = 0;
+
+    var_r4 = gUnk_03001958[0].unk_0;
+    while (var_r4 != -1)
+    {
+        // temp_r2 = &gUnk_03000058[var_r4];
+        // temp_r2->unk5 = (u8) ((-0xD & temp_r2->unk5) | ((gUnk_030019D8.unk_E[0] & 3) * 4));
+        gUnk_03000058[var_r4].unk_5_2 = gUnk_030019D8.unk_E[0];
+        // var_r5->unk0 = (s32) temp_r2->unk0;
+        // var_r5->unk4 = (s32) temp_r2->unk4;
+        // var_r5 += 8;
+        WRITE_64(var_r5, READ_64(&gUnk_03000058[var_r4]));
+        var_r5++;
+        var_r4 = gUnk_03000058[var_r4].unk_8;
+        var_ip += 1;
+    }
+    gUnk_03001958[0].unk_2 = -1;
+    gUnk_03001958[0].unk_0 = -1;
+
+    // var_ip = sub_0803DE10_inline_0(0, var_ip, var_r5, 0, 0);
+    sp0 = gEwramData->unk_FEC0;
+    sp4 = gEwramData->unk_FEC1;
+
+    for (var_r6 = 1; var_r6 < 0x20; var_r6++)
+    {
+        var_r4 = gUnk_03001958[var_r6].unk_0;
+        while (var_r4 != -1)
+        {
+            // temp_r3 = &gUnk_03000058[var_r4];
+            // temp_r3->unk5 = (u8) ((-0xD & temp_r3->unk5) | ((gUnk_030019D8.unk_E[var_r6] & 3) * 4));
+            gUnk_03000058[var_r4].unk_5_2 = gUnk_030019D8.unk_E[var_r6];
+            // var_r5->unk0 = (s32) temp_r3->unk0;
+            // var_r5->unk4 = (s32) temp_r3->unk4;
+            WRITE_64(var_r5, READ_64(&gUnk_03000058[var_r4]));
+            var_r5->unk_2_0 -= sp0;
+            var_r5->unk_0 -= sp4;
+            var_r5++;
+            var_r4 = gUnk_03000058[var_r4].unk_8;
+            var_ip += 1;
+        }
+        gUnk_03001958[var_r6].unk_2 = -1;
+        gUnk_03001958[var_r6].unk_0 = -1;
+
+        // var_ip = sub_0803DE10_inline_0(var_r6, var_ip, var_r5, sp0, sp4);
+    }
+
+    gUnk_030019D8.unk_38 = var_ip;
+}
+
+/**
+ * @brief 3DF70 | To document
+ * 
+ */
+void sub_0803DF70(void)
+{
+    s32 var_r3;
+    s32 var_r6;
+    struct Unk_03000C58 *var_r1;
+    struct Unk_03001458 *var_r2;
+    Unk_03004F70 ptr;
+
+    var_r6 = 0;
+    ptr = (void*)gUnk_03004F70;
+    ptr(gUnk_03000058, gUnk_03000C58, gUnk_03001958, &gUnk_030019D8);
+    if ((gUnk_030019D8.unk_2 > 0x80) && (gUnk_030019D8.unk_4 & 2))
+    {
+        var_r6 = gUnk_030019D8.unk_2 - 0x80;
+    }
+    var_r1 = &gUnk_03000C58[var_r6];
+    var_r2 = gUnk_03001458;
+
+    for (var_r3 = 0; var_r3 < 0x20; var_r3++)
+    {
+        var_r1->unk_6 = var_r2->unk_20;
+        var_r1++;
+        var_r1->unk_6 = var_r2->unk_22;
+        var_r1++;
+        var_r1->unk_6 = var_r2->unk_24;
+        var_r1++;
+        var_r1->unk_6 = var_r2->unk_26;
+        var_r1++;
+        var_r2++;
+    }
+}
+
+extern void sub_0803E958(struct Unk_03001458_10 *param_0);
+
+/**
+ * @brief 3DFE8 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @param param_3 To document
+ * @param param_4 To document
+ */
+void sub_0803DFE8(u16 param_0, u16 param_1, u16 param_2, u16 param_3, u16 param_4)
+{
+    if (param_4 < 0x20)
+    {
+        gUnk_03001458[param_4].unk_0 = 0;
+        gUnk_03001458[param_4].unk_4 = 0x10000;
+        gUnk_03001458[param_4].unk_8 = 0x10000;
+        gUnk_03001458[param_4].unk_C = 0;
+        gUnk_03001458[param_4].unk_E = 0;
+        sub_0803E958(&gUnk_03001458[param_4].unk_10);
+        gUnk_03001458[param_4].unk_20 = param_0;
+        gUnk_03001458[param_4].unk_22 = param_1;
+        gUnk_03001458[param_4].unk_24 = param_2;
+        gUnk_03001458[param_4].unk_26 = param_3;
+    }
+}
+
+extern void sub_0803E968(struct Unk_03001458_10 * param_0, s32 param_1, s32 param_2, s32 param_3);
+
+/**
+ * @brief 3E058 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @param param_3 To document
+ * @param param_4 To document
+ * @param param_5 To document
+ */
+void sub_0803E058(s32 param_0, s32 param_1, s32 param_2, u16 param_3, u16 param_4, u16 param_5)
+{
+    s32 sp4;
+    s32 temp_sb;
+    s32 var_r4;
+    s32 var_r5;
+
+    sp4 = sub_080009E4(param_0);
+    temp_sb = sub_080009E4(param_0 + 0x4000);
+    if (param_5 >= 0x20)
+    {
+        return;
+    }
+
+    gUnk_03001458[param_5].unk_0 = param_0;
+    gUnk_03001458[param_5].unk_4 = param_1;
+    gUnk_03001458[param_5].unk_8 = param_2;
+    gUnk_03001458[param_5].unk_C = param_3;
+    gUnk_03001458[param_5].unk_E = param_4;
+    sub_0803E968(&gUnk_03001458[param_5].unk_10, param_0, param_1, param_2);
+
+    if (param_1 > 0x400)
+    {
+        var_r4 = sub_0803E8FC(param_1);
+    }
+    else
+    {
+        var_r4 = 0x7FFFFF;
+    }
+
+    if (param_2 > 0x400)
+    {
+        var_r5 = sub_0803E8FC(param_2);
+    }
+    else
+    {
+        var_r5 = 0x7FFFFF;
+    }
+
+    gUnk_03001458[param_5].unk_20 = (sub_0803E86C(temp_sb, var_r4) < 0) ? (-(-sub_0803E86C(temp_sb, var_r4) >> 8)) : (sub_0803E86C(temp_sb, var_r4) >> 8);
+
+    gUnk_03001458[param_5].unk_22 = (sub_0803E86C(sp4, var_r4) < 0) ? (-(-sub_0803E86C(sp4, var_r4) >> 8)) : (sub_0803E86C(sp4, var_r4) >> 8);
+
+    gUnk_03001458[param_5].unk_24 = (sub_0803E86C(-sp4, var_r5) < 0) ? (-(-sub_0803E86C(-sp4, var_r5) >> 8)) : (sub_0803E86C(-sp4, var_r5) >> 8);
+
+    gUnk_03001458[param_5].unk_26 = (sub_0803E86C(temp_sb, var_r5) < 0) ? (-(-sub_0803E86C(temp_sb, var_r5) >> 8)) : (sub_0803E86C(temp_sb, var_r5) >> 8);
+
+    if (gUnk_03001458[param_5].unk_C != 0)
+    {
+        gUnk_03001458[param_5].unk_20 = -gUnk_03001458[param_5].unk_20;
+        gUnk_03001458[param_5].unk_22 = -gUnk_03001458[param_5].unk_22;
+    }
+    if (gUnk_03001458[param_5].unk_E != 0)
+    {
+        gUnk_03001458[param_5].unk_24 = -gUnk_03001458[param_5].unk_24;
+        gUnk_03001458[param_5].unk_26 = -gUnk_03001458[param_5].unk_26;
+    }
+}
+
+/**
+ * @brief 3E238 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @param param_3 To document
+ * @param param_4 To document
+ * @param param_5 To document
+ */
+void sub_0803E238(s32 param_0, s32 param_1, s32 param_2, u16 param_3, u16 param_4, u16 param_5)
+{
+    s32 temp_sb;
+    s32 temp_sl;
+    s32 var_r5;
+    s32 var_r6;
+
+    temp_sl = sub_080009E4(param_0);
+    temp_sb = sub_080009E4(param_0 + 0x4000);
+    if (param_5 >= 0x20)
+    {
+        return;
+    }
+
+    gUnk_03001458[param_5].unk_0 = param_0;
+    gUnk_03001458[param_5].unk_4 = param_1;
+    gUnk_03001458[param_5].unk_8 = param_2;
+    gUnk_03001458[param_5].unk_C = param_3;
+    gUnk_03001458[param_5].unk_E = param_4;
+    sub_0803E968(&gUnk_03001458[param_5].unk_10, param_0, param_1, param_2);
+
+    if (param_1 > 0x400)
+    {
+        var_r5 = sub_0803E8FC(param_1);
+    }
+    else
+    {
+        var_r5 = 0x7FFFFF;
+    }
+
+    if (param_2 > 0x400)
+    {
+        var_r6 = sub_0803E8FC(param_2);
+    }
+    else
+    {
+        var_r6 = 0x7FFFFF;
+    }
+
+    gUnk_03001458[param_5].unk_20 = (sub_0803E86C(temp_sb, var_r5 - 0x800) < 0) ? (-((-sub_0803E86C(temp_sb, var_r5 - 0x800)) >> 8)) : (sub_0803E86C(temp_sb, var_r5 - 0x800) >> 8);
+
+    gUnk_03001458[param_5].unk_22 = (sub_0803E86C(temp_sl, var_r5 - 0x800) < 0) ? (-((-sub_0803E86C(temp_sl, var_r5 - 0x800)) >> 8)) : (sub_0803E86C(temp_sl, var_r5 - 0x800) >> 8);
+
+    gUnk_03001458[param_5].unk_24 = (sub_0803E86C(-temp_sl, var_r6 - 0x800) < 0) ? (-((-sub_0803E86C(-temp_sl, var_r6 - 0x800)) >> 8)) : (sub_0803E86C(-temp_sl, var_r6 - 0x800) >> 8);
+
+    gUnk_03001458[param_5].unk_26 = (sub_0803E86C(temp_sb, var_r6 - 0x800) < 0) ? (-((-sub_0803E86C(temp_sb, var_r6 - 0x800)) >> 8)) : (sub_0803E86C(temp_sb, var_r6 - 0x800) >> 8);
+
+    if (gUnk_03001458[param_5].unk_C != 0)
+    {
+        gUnk_03001458[param_5].unk_20 = -gUnk_03001458[param_5].unk_20;
+        gUnk_03001458[param_5].unk_22 = -gUnk_03001458[param_5].unk_22;
+    }
+    if (gUnk_03001458[param_5].unk_E != 0)
+    {
+        gUnk_03001458[param_5].unk_24 = -gUnk_03001458[param_5].unk_24;
+        gUnk_03001458[param_5].unk_26 = -gUnk_03001458[param_5].unk_26;
+    }
+}
+
+extern void sub_080439A8; // TODO: function signature
+
+/**
+ * @brief 3E438 | To document
+ * 
+ */
+void sub_0803E438(void)
+{
+    gUnk_030019D8.unk_4 = 0;
+    sub_0803DB6C();
+    sub_0803E480();
+    sub_0803E5F4();
+    sub_0803DC18(0x1F, 0x1F, 0x1F, 0x1F);
+    sub_0803E618(8, 0x18);
+    CPU_COPY_32(&sub_080439A8, gUnk_03004F70, 0x200);
+}
+
+/**
+ * @brief 3E480 | To document
+ * 
+ */
+void sub_0803E480(void)
+{
+    s32 var_r4;
+
+    DMA_FILL_32(3, 0, &gUnk_03001458, 0x500);
+
+    for (var_r4 = 0; var_r4 < 0x20; var_r4++)
+    {
+        sub_0803E958(&gUnk_03001458[var_r4].unk_10);
+    }
+}
+
+/**
+ * @brief 3E4C0 | To document
+ * 
+ * @return struct Unk_03000058* To document
+ */
+struct Unk_03000058* sub_0803E4C0(void)
+{
+    if (gUnk_030019D8.unk_0 < 0x100)
+    {
+        return &gUnk_03000058[gUnk_030019D8.unk_0++];
+    }
+    return NULL;
+}
+
+/**
+ * @brief 3E4F0 | To document
+ * 
+ * @param param_0 To document
+ */
+struct Unk_03000058* sub_0803E4F0(u32 param_0)
+{
+    struct Unk_03000058 *temp_r0;
+
+    if ((gUnk_030019D8.unk_0 + param_0) <= 0x100)
+    {
+        temp_r0 = &gUnk_03000058[gUnk_030019D8.unk_0];
+        gUnk_030019D8.unk_0 += param_0;
+        return temp_r0;
+    }
+    return NULL;
+}
+
+/**
+ * @brief 3E528 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ */
+void sub_0803E528(struct Unk_03000058 *param_0, u32 param_1)
+{
+    s32 temp_r2;
+
+    if (param_1 < 0x20)
+    {
+        temp_r2 = gUnk_03001958[param_1].unk_2;
+        if (temp_r2 != -1)
+        {
+            gUnk_03000058[temp_r2].unk_8 = param_0->unk_A;
+            gUnk_03001958[param_1].unk_2 = param_0->unk_A;
+        }
+        else
+        {
+            gUnk_03001958[param_1].unk_2 = param_0->unk_A;
+            gUnk_03001958[param_1].unk_0 = param_0->unk_A;
+        }
+        gUnk_030019D8.unk_2 += 1;
+    }
+}
+
+/**
+ * @brief 3E57C | To document
+ * 
+ * @param param_0 To document
+ * @return s32 To document
+ */
+s32 sub_0803E57C(s16 param_0)
+{
+    return gUnk_030019D8.unk_A[param_0];
+}
+
+/**
+ * @brief 3E594 | To document
+ * 
+ */
+void sub_0803E594(void)
+{
+    s32 var_r1;
+    struct Unk_03000C58 *var_0;
+
+    if (gUnk_030019D8.unk_4 & 1)
+    {
+        var_r1 = 0;
+        if ((gUnk_030019D8.unk_2 > 0x80) && (gUnk_030019D8.unk_4 & 2))
+        {
+            var_r1 = gUnk_030019D8.unk_2 - 0x80;
+        }
+
+        var_0 = &gUnk_03000C58[var_r1];
+        DMA_COPY_32(3, var_0, OAM_BASE, OAM_SIZE);
+    }
+
+    gUnk_030019D8.unk_4 ^= 2;
+}
+
+/**
+ * @brief 3E5F4 | To document
+ * 
+ */
+void sub_0803E5F4(void)
+{
+    gUnk_030019D8.unk_4 |= 1;
+}
+
+/**
+ * @brief 3E604 | To document
+ * 
+ */
+void sub_0803E604(void)
+{
+    gUnk_030019D8.unk_4 &= ~1;
+}
+
+/**
+ * @brief 3E618 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ */
+void sub_0803E618(s32 param_0, s32 param_1)
+{
+    gUnk_030019D8.unk_2E = param_0;
+    gUnk_030019D8.unk_30 = param_1;
+    gUnk_030019D8.unk_34 = 0;
+    DMA_FILL_32(3, 0, &gEwramData->unk_11080, 0x508);
+}
+
+/**
+ * @brief 3E654 | To document
+ * 
+ * @param param_0 To document
+ * @return s32 To document
+ */
+s32 sub_0803E654(u32 param_0)
+{
+    s32 var_r1;
+    s32 var_r1_2;
+    s32 var_r2;
+    s32 var_r4;
+
+    switch (param_0)
+    {
+        case 0:
+            var_r1 = 0;
+            var_r4 = gUnk_030019D8.unk_2E;
+            break;
+        case 1:
+            var_r1 = gUnk_030019D8.unk_2E;
+            var_r4 = gUnk_030019D8.unk_30 + var_r1;
+            break;
+        case 2:
+            var_r1 = gUnk_030019D8.unk_30;
+            var_r4 = 0x20;
+            break;
+    }
+
+    for (var_r2 = var_r1; var_r2 < var_r4; var_r2++)
+    {
+        if (&gUnk_030019D8) {} // required to match
+        var_r1_2 = 1 << var_r2;
+        if (!(gUnk_030019D8.unk_34 & var_r1_2))
+        {
+            gUnk_030019D8.unk_34 |= var_r1_2;
+            return var_r2;
+        }
+    }
+    return -1;
+}
+
+/**
+ * @brief 3E6BC | To document
+ * 
+ * @param param_0 To document
+ */
+void sub_0803E6BC(s32 param_0)
+{
+    gUnk_030019D8.unk_34 &= ~(1 << param_0);
+}
+
+/**
+ * @brief 3E6D0 | To document
+ * 
+ * @param param_0 To document
+ * @return s32 To document
+ */
+s32 sub_0803E6D0(s32 param_0)
+{
+    return gUnk_03001458[param_0].unk_0;
+}
+
+/**
+ * @brief 3E6E4 | To document
+ * 
+ * @param param_0 To document
+ * @return s32 To document
+ */
+s32 sub_0803E6E4(s32 param_0)
+{
+    return gUnk_03001458[param_0].unk_4;
+}
+
+/**
+ * @brief 3E6F8 | To document
+ * 
+ * @param param_0 To document
+ * @return s32 To document
+ */
+s32 sub_0803E6F8(s32 param_0)
+{
+    return gUnk_03001458[param_0].unk_8;
+}
+
+/**
+ * @brief 3E70C | To document
+ * 
+ * @param param_0 To document
+ * @return s32 To document
+ */
+s32 sub_0803E70C(s32 param_0)
+{
+    return gUnk_03001458[param_0].unk_C;
+}
+
+/**
+ * @brief 3E720 | To document
+ * 
+ * @param param_0 To document
+ * @return s32 To document
+ */
+s32 sub_0803E720(s32 param_0)
+{
+    return gUnk_03001458[param_0].unk_E;
+}
+
+extern void sub_0803EA28(struct Unk_03001458_10 *param_0, struct Unk_03001458_10 *param_1);
+
+/**
+ * @brief 3E734 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ */
+void sub_0803E734(struct Unk_03001458_10 *param_0, s32 param_1)
+{
+    sub_0803EA28(param_0, &gUnk_03001458[param_1].unk_10);
+}
+
+/**
+ * @brief 3E750 | To document
+ * 
+ * @return s32 To document
+ */
+s32 sub_0803E750(void)
+{
+    return gUnk_030019D8.unk_38;
+}
+
+/**
+ * @brief 3E75C | To document
+ * 
+ * @return s32 To document
+ */
+s32 sub_0803E75C(void)
+{
+    if (gEwramData->unk_11080.unk_11084 == 0)
+    {
+        gEwramData->unk_11080.unk_11080 = gUnk_030019D8.unk_34;
+        gUnk_030019D8.unk_34 = 0;
+        DMA_COPY_32(3, &gUnk_03001458, &gEwramData->unk_11080.unk_11088, 0x500);
+        gEwramData->unk_11080.unk_11084 = 1;
+        return 1;
+    }
+
+    return 0;
+}
+
+/**
+ * @brief 3E7C0 | To document
+ * 
+ * @return s32 To document
+ */
+s32 sub_0803E7C0(void)
+{
+    if (gEwramData->unk_11080.unk_11084 != 0)
+    {
+        gUnk_030019D8.unk_34 = gEwramData->unk_11080.unk_11080;
+        DMA_COPY_32(3, &gEwramData->unk_11080.unk_11088, &gUnk_03001458, 0x500);
+        gEwramData->unk_11080.unk_11084 = 0;
+        return 1;
+    }
+
+    return 0;
 }
 

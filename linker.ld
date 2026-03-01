@@ -12,6 +12,12 @@ SECTIONS {
     } >ewram
 
     iwram (NOLOAD) : ALIGN(4) {
+        . = 0x00000058; gUnk_03000058 = .;
+        . = 0x00000C58; gUnk_03000C58 = .;
+        . = 0x00001458; gUnk_03001458 = .;
+        . = 0x00001958; gUnk_03001958 = .;
+        . = 0x000019D8; gUnk_030019D8 = .;
+
         . = 0x000020D8; src/code_080D73B8.o(.bss);
 
         src/agb_sram.o(.bss);
@@ -27,6 +33,8 @@ SECTIONS {
         . = 0x00002CB0; gUnk_03002CB0 = .;
 
         . = 0x00003CD0; gIntrMainBuffer = .;
+
+        . = 0x00004F70; gUnk_03004F70 = .;
 
         . = 0x00005190; sUnk_03005190 = .;
         . = 0x00005280; sUnk_03005280 = .;

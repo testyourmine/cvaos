@@ -811,6 +811,12 @@ struct EwramData_unk12FF0 {
     u8 unk_12FF7;
 };
 
+struct EwramData_unk11080 {
+    s32 unk_11080;
+    s32 unk_11084;
+    u8 unk_11088[0x500]; // TODO: same as gUnk_03001458
+}; /* size = 0x508 */
+
 struct EwramData {
     /* 0x00000 */ u32 unk_0;
     /* 0x00004 */ u16 unk_4;
@@ -869,7 +875,8 @@ struct EwramData {
     /* 0x11072 */ s16 unk_11072;
     /* 0x11074 */ s16 unk_11074;
     /* 0x11076 */ s16 unk_11076;
-    /* 0x11078 */ u8 pad_11078[0x11588 - 0x11078];
+    /* 0x11078 */ u8 pad_11078[0x11080 - 0x11078];
+    /* 0x11080 */ struct EwramData_unk11080 unk_11080;
     /* 0x11588 */ u16 unk_11588[4];
     /* 0x11590 */ s32 unk_11590;
     /* 0x11594 */ s32 unk_11594;
