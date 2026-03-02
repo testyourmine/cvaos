@@ -192,7 +192,7 @@ s32 sub_0800F1FC(struct EwramData_unk_3DC *param_0)
     if (temp_r0 != 0)
     {
         var_0 = param_0->unk_0 << 0x10;
-        temp_r1_2 = &gEwramData->unk_A078[1];
+        temp_r1_2 = &gEwramData->bgInfo[1];
         temp_r0->unk_524.unk_524_32 = var_0 - temp_r1_2->xPos.whole;
         temp_r0->unk_528.unk_528_32 = (param_0->unk_2 << 0x10) - temp_r1_2->yPos.whole;
         var_r1 = 0;
@@ -227,7 +227,7 @@ s32 sub_0800F1FC(struct EwramData_unk_3DC *param_0)
                 break;
 
             case 4:
-                if (gEwramData->unk_1325C.unk_13266 != 0)
+                if (gEwramData->unk_1325C.currentCharacter != 0)
                 {
                     EntityDelete((struct EwramData_EntityData *) temp_r0);
                     break;
@@ -252,7 +252,7 @@ s32 sub_0800F1FC(struct EwramData_unk_3DC *param_0)
                 break;
 
             case 5:
-                if ((gEwramData->unk_60.unk_A1_4) && (gEwramData->unk_1325C.unk_13266 == 0))
+                if ((gEwramData->unk_60.unk_A1_4) && (gEwramData->unk_1325C.currentCharacter == 0))
                 {
                     if (!(gEwramData->unk_60.unk_360[temp_r0->unk_514.unk_514_16.unk_514 >> 5] & (1 << (temp_r0->unk_514.unk_514_16.unk_514 & 0x1F))))
                     {
@@ -270,7 +270,7 @@ s32 sub_0800F1FC(struct EwramData_unk_3DC *param_0)
                 break;
 
             case 6:
-                if (gEwramData->unk_1325C.unk_13266 != 0)
+                if (gEwramData->unk_1325C.currentCharacter != 0)
                 {
                     EntityDelete((struct EwramData_EntityData *) temp_r0);
                     break;
@@ -312,8 +312,8 @@ void sub_0800F4F8(struct EwramData_unk3D0 *param_0, struct EwramData_unk_3DC *pa
     s16 var_2;
 
     var_sb = 0;
-    var_1 = gEwramData->unk_A078[1].xPos.part16.integer - 80;
-    var_2 = gEwramData->unk_A078[1].xPos.part16.integer + 320;
+    var_1 = gEwramData->bgInfo[1].xPos.part16.integer - 80;
+    var_2 = gEwramData->bgInfo[1].xPos.part16.integer + 320;
     while (TRUE)
     {
         if ((param_1[var_sb].unk_0 >= (var_2)) || (param_1[var_sb].unk_5 == 0))
@@ -350,8 +350,8 @@ void sub_0800F5BC(struct EwramData_unk3D0 *param_0, struct EwramData_unk_3DC *pa
     s16 var_2;
 
     var_sb = 0;
-    var_1 = gEwramData->unk_A078[1].yPos.part16.integer - 80;
-    var_2 = gEwramData->unk_A078[1].yPos.part16.integer + 240;
+    var_1 = gEwramData->bgInfo[1].yPos.part16.integer - 80;
+    var_2 = gEwramData->bgInfo[1].yPos.part16.integer + 240;
     while (TRUE)
     {
         if ((param_1[var_sb].unk_2 >= (var_2)) || (param_1[var_sb].unk_5 == 0))
@@ -394,7 +394,7 @@ void sub_0800F678(struct EwramData_unk_3DC *param_0)
     if (param_0 != NULL)
     {
         DMA_FILL_32(3, 0, &temp_r5->unk_4, sizeof(temp_r5->unk_4));
-        temp_r2 = &gEwramData->unk_A078[1];
+        temp_r2 = &gEwramData->bgInfo[1];
         temp_r7 = temp_r2->pBgMetadata;
         if (gEwramData->unk_60.unk_8E_4)
         {
@@ -416,7 +416,7 @@ void sub_0800F678(struct EwramData_unk_3DC *param_0)
 
         if (gEwramData->unk_60.unk_8E_4)
         {
-            temp_r1 = &gEwramData->unk_A078[1];
+            temp_r1 = &gEwramData->bgInfo[1];
             temp_r1->yPos.part16.integer -= 0x30;
         }
     }
@@ -444,7 +444,7 @@ void sub_0800F750(void)
 
     temp_r7 = &gEwramData->unk_60.unk_3D0;
     temp_r3 = temp_r7->unk_C;
-    temp_r0 = &gEwramData->unk_A078[1];
+    temp_r0 = &gEwramData->bgInfo[1];
     if (temp_r3 == NULL)
     {
         return;
@@ -633,9 +633,9 @@ void sub_0800F9EC(struct EwramData_unk88 *arg0, u16 arg1, u16 arg2)
     for (var_r7 = 1; var_r7 < 4; var_r7++)
     {
         sp18[var_r7] = var_r6->unk_2;
-        gEwramData->unk_A078[var_r7].unk_18 = var_r6->unk_1;
-        gEwramData->unk_A078[var_r7].unk_14 = var_r6->unk_4;
-        gEwramData->unk_A078[var_r7].unk_16 = var_r6->unk_6;
+        gEwramData->bgInfo[var_r7].unk_18 = var_r6->unk_1;
+        gEwramData->bgInfo[var_r7].unk_14 = var_r6->unk_4;
+        gEwramData->bgInfo[var_r7].unk_16 = var_r6->unk_6;
         sub_0803DD14(var_r6->unk_0, var_r7);
         sub_0803F8A8(var_r7, (u32*)var_r6->unk_8, sub_0800ED5C(arg1, var_r6->unk_1, var_r6->unk_8->unk_0, var_r6->unk_4), sub_0800EE54(arg2, var_r6->unk_1, var_r6->unk_8->unk_1, var_r6->unk_6));
         var_r6++;
@@ -804,7 +804,7 @@ s32 sub_0800FCB8(struct EwramData_unk60 *param_0)
     s32 var_0;
 
     gEwramData++,gEwramData--; // Fake
-    temp_r0 = &gEwramData->unk_A078[1];
+    temp_r0 = &gEwramData->bgInfo[1];
     temp_r7 = temp_r0->xPos.part8.integer1;
     temp_r6 = temp_r0->yPos.part8.integer1;
     if ((sub_08001780(temp_r7, temp_r6) != 0) || (GetSaveRoomFlagFromMapPosition(temp_r7, temp_r6) != 0) || (GetWarpRoomFlagFromMapPosition(temp_r7, temp_r6) != 0))
@@ -814,7 +814,7 @@ s32 sub_0800FCB8(struct EwramData_unk60 *param_0)
     else
     {
         memcpy(&unk_080E0FA4, sUnk_080E0FA4, 0x68);
-        temp_r0_2 = &gEwramData->unk_A078[1];
+        temp_r0_2 = &gEwramData->bgInfo[1];
         temp_r4 = temp_r0_2->xPos.part8.integer1;
         temp_r5 = temp_r0_2->yPos.part8.integer1;
         temp_r8 = GetAreaFromMapPosition(temp_r4, temp_r5);
@@ -1195,7 +1195,7 @@ void sub_08010350(struct EwramData_unk60 *param_0)
 
     temp_r5 = gEwramData->unk_13110;
     temp_sb = param_0->unk_88;
-    temp_r4 = &gEwramData->unk_A078[1];
+    temp_r4 = &gEwramData->bgInfo[1];
     temp_r8 = temp_r4;
     temp_r4_2 = temp_r4->pBgMetadata;
 
@@ -1292,7 +1292,7 @@ s32 sub_080104EC(struct EwramData_unk60 *param_0)
     struct EwramData_unkA078 *temp_r5;
     struct EwramData_unk88 *var_0;
 
-    temp_r5 = &gEwramData->unk_A078[1];
+    temp_r5 = &gEwramData->bgInfo[1];
     if (param_0->unk_65 == 0)
     {
         gEwramData->unk_A074_2 = gEwramData->unk_A074_4 = 3;
@@ -1342,7 +1342,7 @@ s32 sub_080104EC(struct EwramData_unk60 *param_0)
             sub_0801083C(param_0);
             gEwramData->unk_60.unk_42C &= 0xFFEFFFFF;
 
-            temp_r2_4 = &gEwramData->unk_A078[1];
+            temp_r2_4 = &gEwramData->bgInfo[1];
             temp_r5_2 = temp_r2_4->xPos.part8.integer1;
             temp_r4 = temp_r2_4->yPos.part8.integer1;
             temp_r6 = GetAreaFromMapPosition(temp_r5_2, temp_r4);
@@ -1380,7 +1380,7 @@ s32 sub_080106DC(struct EwramData_unk60 *param_0)
     s32 var_r4;
 
     temp_r4 = gEwramData->unk_13110;
-    temp_r6 = &gEwramData->unk_A078[1];
+    temp_r6 = &gEwramData->bgInfo[1];
     SetPlayerInput(1, 0);
 
     if (param_0->unk_65 == 0)
@@ -1466,7 +1466,7 @@ void sub_0801083C(struct EwramData_unk60 *param_0)
     param_0->unk_338 = gEwramData->unk_13110->unk_524.unk_524_16.unk_526;
     param_0->unk_33A = gEwramData->unk_13110->unk_528.unk_528_16.unk_52A;
 
-    temp_r2 = &gEwramData->unk_A078[1];
+    temp_r2 = &gEwramData->bgInfo[1];
     param_0->unk_334 = temp_r2->xPos.part16.integer;
 
     // TODO: Fake?

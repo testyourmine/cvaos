@@ -879,7 +879,7 @@ s32 GameModeInGameUpdate(void)
                     break;
     
                 case 4:
-                    if ((gEwramData->unk_60.unk_42C & 1) && (gEwramData->unk_1325C.unk_13266 == 0))
+                    if ((gEwramData->unk_60.unk_42C & 1) && (gEwramData->unk_1325C.currentCharacter == 0))
                     {
                         gEwramData->unk_A074_0 = 0;
                     }
@@ -924,7 +924,7 @@ s32 GameModeInGameUpdate(void)
             break;
 
         case 1:
-            if (gEwramData->unk_1325C.unk_13266 != 0)
+            if (gEwramData->unk_1325C.currentCharacter != 0)
             {
                 if (gEwramData->unk_A074_0 && gEwramData->unk_A074_1)
                 {
@@ -956,7 +956,7 @@ s32 GameModeInGameUpdate(void)
                         sub_0801093C(temp_r7);
                         sub_08011338(temp_r7);
                     }
-                    else if (gEwramData->unk_1325C.unk_13266 == 0 && (gEwramData->inputData.newInput & KEY_START))
+                    else if (gEwramData->unk_1325C.currentCharacter == 0 && (gEwramData->inputData.newInput & KEY_START))
                     {
                         sub_0801093C(temp_r7);
                         sub_080473F4(temp_r7);
@@ -1268,7 +1268,7 @@ void sub_0800C5D8(void)
     }
     else
     {
-        if (gEwramData->unk_1325C.unk_13279 == 0)
+        if (gEwramData->unk_1325C.currentLevel == 0)
         {
             sub_08014548();
         }

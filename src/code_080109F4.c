@@ -408,7 +408,7 @@ void sub_08010D60(struct EwramData_unk60 *param_0)
             }
             else
             {
-                if ((gEwramData->unk_1325C.unk_132B1 != 0) && (temp_r4_2 == 0 || temp_r4_2 == 1))
+                if ((gEwramData->unk_1325C.itemInventory[0x1D] != 0) && (temp_r4_2 == 0 || temp_r4_2 == 1))
                 {
                     if (sub_08010D60_inline_0(param_0, var_r5, var_r7))
                     {
@@ -417,7 +417,7 @@ void sub_08010D60(struct EwramData_unk60 *param_0)
                     }
                 }
 
-                if ((gEwramData->unk_1325C.unk_132B2 != 0) && (temp_r4_2 == 3))
+                if ((gEwramData->unk_1325C.itemInventory[0x1E] != 0) && (temp_r4_2 == 3))
                 {
                     if (sub_08010D60_inline_0(param_0, var_r5, var_r7))
                     {
@@ -426,7 +426,7 @@ void sub_08010D60(struct EwramData_unk60 *param_0)
                     }
                 }
 
-                if ((gEwramData->unk_1325C.unk_132B3 != 0) && (temp_r4_2 == 5))
+                if ((gEwramData->unk_1325C.itemInventory[0x1F] != 0) && (temp_r4_2 == 5))
                 {
                     if (sub_08010D60_inline_0(param_0, var_r5, var_r7))
                     {
@@ -587,7 +587,7 @@ s32 sub_080110E4(struct EwramData_unk60 *param_0)
         case 4:
             sub_0803C3E0();
             sub_0800DA50();
-            temp_r0_4 = &gEwramData->unk_A078[1];
+            temp_r0_4 = &gEwramData->bgInfo[1];
             // TODO: A094 types
             sub_0803F8A8(1, (u32 *) temp_r0_4->pBgMetadata, temp_r0_4->xPos.part16.integer, temp_r0_4->yPos.part16.integer);
             gUnk_03002CB0.dispCnt = 0;
@@ -858,7 +858,7 @@ s32 sub_080116A8(struct EwramData_unk60 *param_0)
         case 4:
             sub_0803C3E0();
             sub_0800DA50();
-            temp_r0_6 = &gEwramData->unk_A078[1];
+            temp_r0_6 = &gEwramData->bgInfo[1];
             sub_0803F8A8(1, (u32 *) temp_r0_6->pBgMetadata, temp_r0_6->xPos.part16.integer, temp_r0_6->yPos.part16.integer);
             gUnk_03002CB0.dispCnt = 0;
             sub_080108DC(temp_r4);
@@ -911,11 +911,11 @@ s32 sub_08011A44(struct EwramData_EntityData *param_0)
     u32 var_r0;
     u32 var_r2;
 
-    temp_r2 = &gEwramData->unk_A078[1];
+    temp_r2 = &gEwramData->bgInfo[1];
     temp_r6 = temp_r2->pBgMetadata;
     temp_r1 = (s16)param_0->unk_524.unk_524_16.unk_526 + (s16)temp_r2->xPos.part16.integer;
     var_0 = (s16)param_0->unk_528.unk_528_16.unk_52A + (s16)temp_r2->yPos.part16.integer;
-    if (gEwramData->unk_1325C.unk_1327A != 0)
+    if (gEwramData->unk_1325C.currentHP != 0)
     {
         if (temp_r6->unk_0 > 1)
         {

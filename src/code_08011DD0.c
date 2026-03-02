@@ -655,7 +655,7 @@ void sub_08012688(struct EwramData_unk60 *param_0)
     s16 temp_r5;
     struct EwramData_unkA078 *temp_r2;
 
-    temp_sl = gEwramData->unk_A078[1].pBgMetadata;
+    temp_sl = gEwramData->bgInfo[1].pBgMetadata;
 
     temp_r4 = GetEntityRoomXPositionInteger(gEwramData->unk_13110);
     temp_r5 = GetEntityRoomYPositionInteger(gEwramData->unk_13110);
@@ -665,7 +665,7 @@ void sub_08012688(struct EwramData_unk60 *param_0)
     param_0->unk_338 = gEwramData->unk_13110->unk_524.unk_524_16.unk_526;
     param_0->unk_33A = gEwramData->unk_13110->unk_528.unk_528_16.unk_52A;
 
-    temp_r2 = &gEwramData->unk_A078[1];
+    temp_r2 = &gEwramData->bgInfo[1];
     param_0->unk_334 = temp_r2->xPos.part16.integer;
     param_0->unk_336 = temp_r2->yPos.part16.integer;
 

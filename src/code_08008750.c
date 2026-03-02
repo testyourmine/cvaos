@@ -105,12 +105,12 @@ s32 GameModeBossRushMenuUpdate(void)
             gEwramData->unk_60.unk_A1_4 = 1;
             gEwramData->unk_60.unk_37C = -1;
             gEwramData->unk_60.unk_33C[3] &= ~0x40000;
-            DMA_FILL_32(3, 0, gEwramData->unk_1325C.unk_13294, 0x8 * 4);
-            if (gEwramData->unk_1325C.unk_13266 == 0)
+            DMA_FILL_32(3, 0, gEwramData->unk_1325C.itemInventory, 0x20);
+            if (gEwramData->unk_1325C.currentCharacter == 0)
             {
                 for (var_0 = 0; sUnk_080E0DE4[var_0] != 0xFF; var_0++)
                 {
-                    gEwramData->unk_1325C.unk_13294[sUnk_080E0DE4[var_0]] = 1;
+                    gEwramData->unk_1325C.itemInventory[sUnk_080E0DE4[var_0]] = 1;
                 }
                 sub_08033E38(0x28);
             }
@@ -126,8 +126,8 @@ s32 GameModeBossRushMenuUpdate(void)
                 sub_08033E6C();
                 sub_08033E6C();
             }
-            gEwramData->unk_1325C.unk_1327A = gEwramData->unk_1325C.unk_1327E;
-            gEwramData->unk_1325C.unk_1327C = gEwramData->unk_1325C.unk_13280;
+            gEwramData->unk_1325C.currentHP = gEwramData->unk_1325C.maxHP;
+            gEwramData->unk_1325C.currentMP = gEwramData->unk_1325C.maxMP;
             sub_0804AD9C();
             break;
     
@@ -251,7 +251,7 @@ s32 GameModeIntroCutsceneUpdate(void)
             break;
     
         case 3:
-            temp_r4 = &gEwramData->unk_A078[1];
+            temp_r4 = &gEwramData->bgInfo[1];
             gDisplayRegisters.bgOfs[1].hOfs = 0;
             sub_0803FC6C(1, 0, -0x1C00);
             sub_0803FC6C(2, 0, -0x3200);
@@ -426,7 +426,7 @@ void sub_08008F40(struct EwramData_EntityData *param_0)
 {
     struct EwramData_unkA078 *temp_r5;
 
-    temp_r5 = &gEwramData->unk_A078[1];
+    temp_r5 = &gEwramData->bgInfo[1];
     switch (param_0->unk_4EE)
     {
         case 0:
@@ -497,7 +497,7 @@ void sub_08009054(struct EwramData_EntityData *param_0)
     s32 temp_r1_2;
     s32 temp_r1_3;
 
-    temp_r3 = &gEwramData->unk_A078[1];
+    temp_r3 = &gEwramData->bgInfo[1];
 
     switch (param_0->unk_4EE)
     {
@@ -548,7 +548,7 @@ void sub_08009054(struct EwramData_EntityData *param_0)
             break;
     }
 
-    temp_r3 = &gEwramData->unk_A078[3];
+    temp_r3 = &gEwramData->bgInfo[3];
     param_0->unk_528.unk_528_32 = 0x5A0000 - temp_r3->yPos.whole;
 }
 
@@ -562,7 +562,7 @@ void sub_08009178(struct EwramData_EntityData *param_0)
     struct EwramData_unkA078 *temp_r5;
     s16 temp_r0_2;
 
-    temp_r5 = &gEwramData->unk_A078[1];
+    temp_r5 = &gEwramData->bgInfo[1];
 
     switch (param_0->unk_4EE)
     {
@@ -622,7 +622,7 @@ void sub_080092A0(struct EwramData_EntityData *param_0)
     s32 var_r1;
     s16 temp_r0_2;
 
-    temp_r5 = &gEwramData->unk_A078[1];
+    temp_r5 = &gEwramData->bgInfo[1];
 
     switch (param_0->unk_4EE)
     {

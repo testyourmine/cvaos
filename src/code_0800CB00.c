@@ -88,7 +88,7 @@ void sub_0800CB8C(s32 param_0, s32 param_1, s32 param_2, s32 param_3)
     var_r6 = gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
 
     temp_r7 = &gDisplayRegisters.bgOfs[param_0];
-    sp8 = &gEwramData->unk_A078[param_0];
+    sp8 = &gEwramData->bgInfo[param_0];
 
     if (var_sb > 160)
     {
@@ -138,7 +138,7 @@ void sub_0800CC90(s32 param_0, s32 param_1, s32 param_2, s32 param_3)
     var_r5 = gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
 
     var_r8 = &gDisplayRegisters.bgOfs[param_0];
-    var_r9 = &gEwramData->unk_A078[param_0];
+    var_r9 = &gEwramData->bgInfo[param_0];
 
     var_r2 = param_2 - param_1;
     param_1 = param_1 - var_r9->yPos.part16.integer;
@@ -203,7 +203,7 @@ void sub_0800CDAC(s32 param_0, s32 param_1, s32 param_2)
     sp4 = gEwramData->unk_0;
     var_r8 = gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
     temp_r1 = &gDisplayRegisters.bgOfs[param_0];
-    var_0 = &gEwramData->unk_A078[param_0];
+    var_0 = &gEwramData->bgInfo[param_0];
     var_sb = param_2 - param_1;
     param_1 = param_1 - var_0->yPos.part16.integer;
     if (param_1 < 0)
@@ -264,7 +264,7 @@ void sub_0800CED4(s32 param_0, s32 param_1, s32 param_2)
     temp_r4 = gEwramData->unk_60.unk_4C8;
     var_r8 = gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
     temp_r1 = &gDisplayRegisters.bgOfs[param_0];
-    var_0 = &gEwramData->unk_A078[param_0];
+    var_0 = &gEwramData->bgInfo[param_0];
     var_sb = sp0 - param_1;
     param_1 = param_1 - var_0->yPos.part16.integer;
     if (param_1 < 0)
@@ -467,7 +467,7 @@ void sub_0800D288(void)
     u16 *var_0;
     u16 *var_1;
 
-    temp_r7_2 = sp28 = &gEwramData->unk_A078[1];
+    temp_r7_2 = sp28 = &gEwramData->bgInfo[1];
     sp2C = sp28->xVel.whole;
     sp30 = sp28->yVel.whole;
     if (sp28->unk_18 == 0x1A)
@@ -477,7 +477,7 @@ void sub_0800D288(void)
 
     for (var_r8 = 2; var_r8 < 4; var_r8++)
     {
-        temp_r7_2 = &gEwramData->unk_A078[var_r8];
+        temp_r7_2 = &gEwramData->bgInfo[var_r8];
         temp_r3 = &gDisplayRegisters.bgOfs[var_r8];
         temp_r4 = &gDisplayRegisters.bgOfs[var_r8].vOfs;
         switch (temp_r7_2->unk_18)
@@ -779,13 +779,13 @@ void sub_0800DA50(void)
     unk_1325c = &gEwramData->unk_1325C;
     unk_60 = &gEwramData->unk_60;
 
-    unk_60->unk_404 = unk_1325c->unk_1327A;
-    unk_60->unk_406 = unk_1325c->unk_1327C;
-    unk_60->unk_408 = unk_1325c->unk_1327E;
-    unk_60->unk_40A = unk_1325c->unk_13280;
+    unk_60->unk_404 = unk_1325c->currentHP;
+    unk_60->unk_406 = unk_1325c->currentMP;
+    unk_60->unk_408 = unk_1325c->maxHP;
+    unk_60->unk_40A = unk_1325c->maxMP;
 
-    sub_0800F138(4, 1, unk_60->unk_404, unk_1325c->unk_1327E, 0);
-    sub_0800F138(4, 2, unk_60->unk_406, unk_1325c->unk_13280, 1);
+    sub_0800F138(4, 1, unk_60->unk_404, unk_1325c->maxHP, 0);
+    sub_0800F138(4, 2, unk_60->unk_406, unk_1325c->maxMP, 1);
 }
 
 struct Unk_080E0F74 {
@@ -937,10 +937,10 @@ void sub_0800DC70(struct EwramData_unk60 *param_0)
     #endif
     for (var_r5 = 0; var_r5 < var_sl; var_r5++)
     {
-        if (*temp_r4 != temp_r7->unk_1327A)
+        if (*temp_r4 != temp_r7->currentHP)
         {
             temp_r2 = *temp_r4;
-            var_0 = temp_r7->unk_1327A;
+            var_0 = temp_r7->currentHP;
             if (*temp_r4 < var_0)
             {
                 *temp_r4 = temp_r2 + 1;
@@ -953,10 +953,10 @@ void sub_0800DC70(struct EwramData_unk60 *param_0)
             }
         }
 
-        if (*temp_r6 != temp_r7->unk_1327E)
+        if (*temp_r6 != temp_r7->maxHP)
         {
             temp_r0_2 = *temp_r6;
-            if (*temp_r6 < temp_r7->unk_1327E)
+            if (*temp_r6 < temp_r7->maxHP)
             {
                 *temp_r6 = temp_r0_2 + 1;
                 var_r3 = 1;
@@ -984,10 +984,10 @@ void sub_0800DC70(struct EwramData_unk60 *param_0)
         temp_r6_2 = &param_0->unk_40A;
         for (var_r5_2 = 0; var_r5_2 < var_sl; var_r5_2++)
         {
-            if (*temp_r4_2 != temp_r7->unk_1327C)
+            if (*temp_r4_2 != temp_r7->currentMP)
             {
                 temp_r2_3 = *temp_r4_2;
-                var_0 = temp_r7->unk_1327C;
+                var_0 = temp_r7->currentMP;
                 if (*temp_r4_2 < var_0)
                 {
                     *temp_r4_2 = temp_r2_3 + 1;
@@ -1000,10 +1000,10 @@ void sub_0800DC70(struct EwramData_unk60 *param_0)
                 }
             }
             
-            if (*temp_r6_2 != temp_r7->unk_13280)
+            if (*temp_r6_2 != temp_r7->maxMP)
             {
                 temp_r0_4 = *temp_r6_2;
-                if (*temp_r6_2 < temp_r7->unk_13280)
+                if (*temp_r6_2 < temp_r7->maxMP)
                 {
                     *temp_r6_2 = temp_r0_4 + 1;
                     var_r3 = 1;
@@ -2235,7 +2235,7 @@ u16 sub_0800ED5C(u16 param_0, u8 param_1, u8 param_2, u16 param_3)
     u16 var_2;
 
     var_2 = param_0;
-    var_0 = &gEwramData->unk_A078[1];
+    var_0 = &gEwramData->bgInfo[1];
 
     switch (param_1)
     {
@@ -2315,7 +2315,7 @@ u16 sub_0800EE54(u16 param_0, u8 param_1, u8 param_2, u16 param_3)
     u16 var_2;
 
     var_2 = param_0;
-    var_0 = &gEwramData->unk_A078[1];
+    var_0 = &gEwramData->bgInfo[1];
 
     switch (param_1)
     {

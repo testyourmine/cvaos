@@ -37,15 +37,15 @@ static inline s32 sub_08013960_inline_0(s32 param_0)
     struct EwramData_unk60 *temp_r5;
 
     temp_r5 = &gEwramData->unk_60;
-    if (temp_r5->unk_90 == param_0)
+    if (temp_r5->currentSong == param_0)
     {
         return 1;
     }
-    if (temp_r5->unk_90 != 0)
+    if (temp_r5->currentSong != 0)
     {
-        PlaySong(temp_r5->unk_90 | 0x8000);
+        PlaySong(temp_r5->currentSong | 0x8000); // stop song
     }
-    temp_r5->unk_90 = param_0;
+    temp_r5->currentSong = param_0;
     PlaySong(param_0);
     return 0;
 }
@@ -66,7 +66,7 @@ s32 sub_08013960(struct EwramData_unk60 *param_0)
     s32 var_r4;
     s32 var_r5;
 
-    temp_r0 = &gEwramData->unk_A078[1];
+    temp_r0 = &gEwramData->bgInfo[1];
     temp_r4 = temp_r0->xPos.part8.integer1;
     temp_r5 = temp_r0->yPos.part8.integer1;
 
@@ -85,7 +85,7 @@ s32 sub_08013960(struct EwramData_unk60 *param_0)
     if (sub_08001780(temp_r4, temp_r5) != 0)
     {
         sub_08013F6C(0x1040);
-        param_0->unk_90 = 0;
+        param_0->currentSong = 0;
         return 0;
     }
 
@@ -93,7 +93,7 @@ s32 sub_08013960(struct EwramData_unk60 *param_0)
     temp_r6 = GetAreaFromMapPosition(temp_r4, temp_r5);
     temp_r3 = GetRoomFromMapPosition(temp_r4, temp_r5);
 
-    if ((gEwramData->unk_1325C.unk_13266 == 0) || !(gEwramData->unk_60.unk_60 & 2))
+    if ((gEwramData->unk_1325C.currentCharacter == 0) || !(gEwramData->unk_60.unk_60 & 2))
     {
         var_r5 = sUnk_084F106C[temp_r6];
     }
@@ -156,7 +156,7 @@ void sub_08013B44(void)
     u8 temp_r7;
     struct EwramData_unkA078 *temp_r0;
 
-    temp_r0 = &gEwramData->unk_A078[1];
+    temp_r0 = &gEwramData->bgInfo[1];
     temp_r7 = temp_r0->xPos.part8.integer1;
     temp_r6 = temp_r0->yPos.part8.integer1;
 
@@ -192,7 +192,7 @@ void sub_08013BCC(void)
     u8 temp_r7;
     struct EwramData_unkA078 *temp_r0;
 
-    temp_r0 = &gEwramData->unk_A078[1];
+    temp_r0 = &gEwramData->bgInfo[1];
     temp_r7 = temp_r0->xPos.part8.integer1;
     temp_r6 = temp_r0->yPos.part8.integer1;
 
@@ -228,10 +228,10 @@ s32 sub_08013C5C(void)
     s32 temp_r4;
     s32 var_r4;
 
-    temp_r1 = &gEwramData->unk_A078[1];
+    temp_r1 = &gEwramData->bgInfo[1];
     temp_r2 = GetAreaFromMapPosition((u8) temp_r1->xPos.part8.integer1, (u8) temp_r1->yPos.part8.integer1);
 
-    if ((gEwramData->unk_1325C.unk_13266 == 0) || !(gEwramData->unk_60.unk_60 & 2))
+    if ((gEwramData->unk_1325C.currentCharacter == 0) || !(gEwramData->unk_60.unk_60 & 2))
     {
         temp_r4 = sUnk_084F106C[temp_r2];
     }
@@ -257,15 +257,15 @@ s32 sub_08013CF0(s32 param_0)
     struct EwramData_unk60 *temp_r5;
 
     temp_r5 = &gEwramData->unk_60;
-    if (temp_r5->unk_90 == param_0)
+    if (temp_r5->currentSong == param_0)
     {
         return 1;
     }
-    if (temp_r5->unk_90 != 0)
+    if (temp_r5->currentSong != 0)
     {
-        PlaySong(temp_r5->unk_90 | 0x8000);
+        PlaySong(temp_r5->currentSong | 0x8000); // stop song
     }
-    temp_r5->unk_90 = param_0;
+    temp_r5->currentSong = param_0;
     PlaySong(param_0);
     return 0;
 }
@@ -465,14 +465,14 @@ void sub_08013EEC(s32 param_0)
     // s32 var_0;
 
     // temp_r4 = &gEwramData->unk_60;
-    // var_0 = temp_r4->unk_90;
+    // var_0 = temp_r4->currentSong;
     // if (var_0 != 0)
     // {
-    //     if (temp_r4->unk_90 != 0)
+    //     if (temp_r4->currentSong != 0)
     //     {
-    //         PlaySong(temp_r4->unk_90 | 0x8000);
+    //         PlaySong(temp_r4->currentSong | 0x8000); // stop song
     //     }
-    //     temp_r4->unk_90 = 0;
+    //     temp_r4->currentSong = 0;
     //     PlaySong(0);
     // }
     sub_08013960_inline_0(0);
@@ -667,7 +667,7 @@ s32 GameModeCreditsUpdate(void)
     struct EwramData_unkA078 *temp_r6;
     s32 gameMode;
 
-    temp_r6 = &gEwramData->unk_A078[1];
+    temp_r6 = &gEwramData->bgInfo[1];
     gameMode = GAME_MODE_SAME_MODE;
 
     switch (gEwramData->gameModeUpdateStage)

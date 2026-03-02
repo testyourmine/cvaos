@@ -1038,7 +1038,7 @@ void sub_08007204(struct EwramData_EntityData *param_0, s32 param_1)
 
     temp_r8 = &gEwramData->unk_60;
     temp_r6 = gEwramData->unk_20;
-    gEwramData->unk_60.unk_428 = (u8) param_1;
+    gEwramData->unk_60.currentSave = (u8) param_1;
     temp_r0 = sub_08013700(param_1, 0);
     DMA_FILL_32(3, 0, 0x0600E000, 0x340);
 
@@ -1318,7 +1318,7 @@ s32 sub_080074C0(struct EwramData_EntityData *param_0)
                 {
                     sub_08013698(var_r5);
                     param_0->unk_4F4.unk_4F4_8.unk_4F5 &= ~(1 << var_r5);
-                    gEwramData->unk_60.unk_428 = var_r5 - 1;
+                    gEwramData->unk_60.currentSave = var_r5 - 1;
                 }
                 gEwramData->unk_60.unk_3CC = GetRoomPointer(gEwramData->unk_60.currentArea, gEwramData->unk_60.currentRoom);
                 sp0 = -2;
@@ -1785,7 +1785,7 @@ void sub_08007D84(struct EwramData_EntityData *param_0, s32 param_1)
 
     temp_r7 = &gEwramData->unk_60;
     temp_sb = gEwramData->unk_20;
-    gEwramData->unk_60.unk_428 = param_1;
+    gEwramData->unk_60.currentSave = param_1;
     temp_r2 = sub_08013700(param_1, 0);
     DMA_FILL_32(3, 0, 0x0600E000, 0x340);
     if ((temp_r2 != 0) && (temp_sb->unk_38 != 0))
@@ -2018,7 +2018,7 @@ s32 sub_080081AC(struct EwramData_EntityData *param_0)
             {
                 var_r4 -= 1;
             }
-            gEwramData->unk_60.unk_428 = var_r4;
+            gEwramData->unk_60.currentSave = var_r4;
             gEwramData->unk_60.unk_3CC = NULL;
             PlaySong(0xF3);
             var_r7 = 1;
@@ -2285,7 +2285,7 @@ s32 sub_080083C8(struct EwramData_EntityData *param_0)
             {
                 if (param_0->unk_4EF == 0)
                 {
-                    gEwramData->unk_1325C.unk_13266 = param_0->unk_4EF;
+                    gEwramData->unk_1325C.currentCharacter = param_0->unk_4EF;
                     var_r5 = 1;
                     var_r3 = 0;
                     var_r2_8 = (u8*)&gEwramData->unk_60.unk_94;
@@ -2302,7 +2302,7 @@ s32 sub_080083C8(struct EwramData_EntityData *param_0)
                     if (var_r5 != 0)
                     {
                         var_r8_2 = 0x1E5;
-                        gEwramData->unk_1325C.unk_13266 = 1;
+                        gEwramData->unk_1325C.currentCharacter = 1;
                     }
                     else
                     {

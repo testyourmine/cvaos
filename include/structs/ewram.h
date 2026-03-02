@@ -517,7 +517,7 @@ struct EwramData_unk60 {
     /* 0x0008E */ u8 unk_8E_1:3; // Length? part of unk_8C/unk_8D?
     /* 0x0008E */ u8 unk_8E_4:2;
     /* 0x0008F */ u8 pad_8F[0x90 - 0x8F];
-    /* 0x00090 */ u16 unk_90;
+    /* 0x00090 */ u16 currentSong;
     /* 0x00092 */ u8 pad_92[0x94 - 0x92];
     /* 0x00094 */ u8 *unk_94;
     /* 0x00098 */ u8 pad_98[0x9E - 0x98];
@@ -570,7 +570,7 @@ struct EwramData_unk60 {
     /* 0x00424 */ u8 unk_424;
     /* 0x00425 */ u8 pad_425[0x427 - 0x425];
     /* 0x00427 */ u8 unk_427;
-    /* 0x00428 */ u8 unk_428;
+    /* 0x00428 */ u8 currentSave; // 0: File 1, 2: File 2, 4: File 3
     /* 0x00429 */ u8 pad_429[0x42C - 0x429];
     /* 0x0042C */ u32 unk_42C; // type?
     /* 0x00430 */ u8 pad_430[0x4BE - 0x430];
@@ -620,41 +620,36 @@ struct EwramData_unk1325C {
     /* 0x1325C */ u32 unk_1325C;
     /* 0x13260 */ u32 unk_13260;
     /* 0x13264 */ u16 unk_13264;
-    /* 0x13266 */ u8 unk_13266;
+    /* 0x13266 */ u8 currentCharacter; // 0: Soma, >= 1: Julius 
     /* 0x13267 */ u8 unk_13267;
-    /* 0x13268 */ u8 unk_13268;
-    /* 0x13269 */ u8 unk_13269;
-    /* 0x1326A */ u8 unk_1326A;
-    /* 0x1326B */ u8 unk_1326B;
-    /* 0x1326C */ u8 unk_1326C;
-    /* 0x1326D */ u8 unk_1326D;
+    /* 0x13268 */ u8 equippedWeapon;
+    /* 0x13269 */ u8 equippedRedSoul;
+    /* 0x1326A */ u8 equippedBlueSoul;
+    /* 0x1326B */ u8 equippedYellowSoul;
+    /* 0x1326C */ u8 equippedArmor;
+    /* 0x1326D */ u8 equippedAccessory;
     /* 0x1326E */ u8 pad_1326E[0x13270 - 0x1326E];
     /* 0x13270 */ u16 unk_13270;
     /* 0x13272 */ s16 unk_13272[2];
     /* 0x13276 */ s16 unk_13276;
-    /* 0x13278 */ u8 unk_13278; // type?
-    /* 0x13279 */ u8 unk_13279;
-    /* 0x1327A */ s16 unk_1327A;
-    /* 0x1327C */ s16 unk_1327C;
-    /* 0x1327E */ u16 unk_1327E;
-    /* 0x13280 */ u16 unk_13280;
-    /* 0x13282 */ u16 unk_13282[4];
+    /* 0x13278 */ u8 pad_13278[0x13279 - 0x13278];
+    /* 0x13279 */ u8 currentLevel;
+    /* 0x1327A */ s16 currentHP;
+    /* 0x1327C */ s16 currentMP;
+    /* 0x1327E */ u16 maxHP;
+    /* 0x13280 */ u16 maxMP;
+    /* 0x13282 */ u16 baseStats[4]; // 0: STR, 1: CON, 2: INT, 3: LCK
     /* 0x1328A */ u8 pad_1328A[0x1328C - 0x1328A];
-    /* 0x1328C */ u32 unk_1328C;
-    /* 0x13290 */ u32 unk_13290; // Type?
-    /* 0x13294 */ u8 unk_13294[0x18]; // Size?
-    /* 0x132AC */ u8 pad_132AC[0x132B1 - 0x132AC];
-    /* 0x132B1 */ u8 unk_132B1;
-    /* 0x132B2 */ u8 unk_132B2;
-    /* 0x132B3 */ u8 unk_132B3;
-    /* 0x132B4 */ u8 unk_132B4;
-    /* 0x132B5 */ u8 pad_132B5[0x132EF - 0x132B5];
-    /* 0x132EF */ u8 unk_132EF;
-    /* 0x132F0 */ u8 pad_132F0[0x1331C - 0x132F0];
-    /* 0x1331C */ u8 unk_1331C[2][0x1C]; // TODO: type
-    /* 0x13354 */ u8 unk_13354[2][0xD]; // TODO: type
-    /* 0x1336E */ u8 unk_1336E[2][0x12]; // TODO: type
-    /* 0x13392 */ u8 unk_13392[2][0x3]; // TODO: type
+    /* 0x1328C */ u32 currentExperience;
+    /* 0x13290 */ u32 currentGold;
+    /* 0x13294 */ u8 itemInventory[0x20];
+    /* 0x132B4 */ u8 weaponInventory[0x3B];
+    /* 0x132EF */ u8 armorInventory[0x19];
+    /* 0x13308 */ u8 accessoryInventory[0x14];
+    /* 0x1331C */ u8 redSoulInventory[2][0x1C];
+    /* 0x13354 */ u8 blueSoulInventory[2][0xD];
+    /* 0x1336E */ u8 yellowSoulInventory[2][0x12];
+    /* 0x13392 */ u8 abilitySoulInventory[2][0x3];
     /* 0x13398 */ u16 unk_13398;
     /* 0x1339A */ u16 unk_1339A;
     /* 0x1339C */ u16 unk_1339C;
@@ -849,7 +844,7 @@ struct EwramData {
 
     /* 0x0A075 */ u8 konamiCodeInputsCounter;
     /* 0x0A076 */ u8 pad_A076[0xA078 - 0xA076];
-    /* 0x0A078 */ struct EwramData_unkA078 unk_A078[4];
+    /* 0x0A078 */ struct EwramData_unkA078 bgInfo[4];
     /* 0x0A0E8 */ u8 pad_A0E8[0xA108 - 0xA0E8];
     /* 0x0A108 */ u16 unk_A108[1]; // Length?
     /* 0x0A10A */ u8 pad_A10A[0xC0EC - 0xA10A];
@@ -920,9 +915,8 @@ struct EwramData {
     /* 0x13118 */ struct EwramData_EntityData *unk_13118;
     /* 0x1311C */ struct EwramData_EntityData *unk_1311C[1];
     /* 0x13120 */ struct EwramData_EntityData *unk_13120;
-    /* 0x13124 */ struct EwramData_EntityData *unk_13124[1]; // Length?
-    /* 0x13128 */ u8 pad_13128[0x13144 - 0x13128];
-    /* 0x13144 */ u32 unk_13144[8];
+    /* 0x13124 */ struct EwramData_EntityData *activeRedSoulEntities[0x8];
+    /* 0x13144 */ struct EwramData_EntityData *activeBlueSoulEntities[0x8];
     /* 0x13164 */ u8 pad_13164[0x13168 - 0x13164];
     /* 0x13168 */ struct EwramData_EntityData *unk_13168; // type?
     /* 0x1316C */ struct EwramData_EntityData *unk_1316C; 
@@ -937,9 +931,9 @@ struct EwramData {
     /* 0x131B5 */ u8 pad_131B5[0x131B8 - 0x131B5];
     /* 0x131B8 */ u32 unk_131B8;
     /* 0x131BC */ u16 unk_131BC;
-    /* 0x131BE */ u8 unk_131BE;
-    /* 0x131BF */ u8 unk_131BF;
-    /* 0x131C0 */ u8 unk_131C0[1];
+    /* 0x131BE */ u8 nbrActiveRedSoulEntities;
+    /* 0x131BF */ u8 lastUsedRedSoul;
+    /* 0x131C0 */ u8 lastUsedWeapon[1]; // TODO: includes unk_131C1? what is unk_131C1?
     /* 0x131C1 */ u8 unk_131C1;
     /* 0x131C2 */ u16 unk_131C2;
     /* 0x131C4 */ u8 pad_131C4[0x131C8 - 0x131C4];
@@ -953,9 +947,9 @@ struct EwramData {
     /* 0x131F0 */ s32 unk_131E0; // type?
     /* 0x131F4 */ s32 unk_131E4; // type?
     /* 0x131F8 */ u8 pad_131E8[0x131EE - 0x131E8];
-    /* 0x131EE */ s16 unk_131EE;
-    /* 0x131F0 */ s16 unk_131F0;
-    /* 0x131F2 */ s16 unk_131F2[4];
+    /* 0x131EE */ s16 currentATK;
+    /* 0x131F0 */ s16 currentDEF;
+    /* 0x131F2 */ s16 currentStats[4]; // 0: STR, 1: CON, 2: INT, 3: LCK
     /* 0x131FA */ u16 unk_131FA;
     /* 0x131FC */ s16 unk_131FC;
     /* 0x131FE */ s16 unk_131FE;

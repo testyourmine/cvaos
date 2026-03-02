@@ -332,11 +332,11 @@ s32 GameModeDebugExitUpdate(void)
                 {
                     if (gEwramData->inputData.heldInput & KEY_LEFT)
                     {
-                        gEwramData->unk_60.unk_428 = 2;
+                        gEwramData->unk_60.currentSave = 2;
                     }
                     else if (gEwramData->inputData.heldInput & KEY_RIGHT)
                     {
-                        gEwramData->unk_60.unk_428 = 4;
+                        gEwramData->unk_60.currentSave = 4;
                     }
                     
                     sub_08014548();
@@ -365,14 +365,14 @@ s32 GameModeDebugExitUpdate(void)
                 if ((gEwramData->unk_60.unk_88 == 0) && (gEwramData->unk_60.unk_3CC == 0))
                 {
                     var_r5_2 = 0;
-                    gEwramData->unk_60.unk_428 = sDebugExitOptions[gEwramData->unk_12].unk_4 * 2;
-                    temp_r3_2 = sub_08013700(gEwramData->unk_60.unk_428 + 1, 0);
+                    gEwramData->unk_60.currentSave = sDebugExitOptions[gEwramData->unk_12].unk_4 * 2;
+                    temp_r3_2 = sub_08013700(gEwramData->unk_60.currentSave + 1, 0);
                     if ((gEwramData->inputData.heldInput & KEY_RIGHT) && (temp_r3_2 != 0))
                     {
                         var_r5_2 = gEwramData->unk_20[0].unk_38 != var_r5_2;
                     }
 
-                    if (sub_08012744(gEwramData->unk_60.unk_428 + var_r5_2) != 0)
+                    if (sub_08012744(gEwramData->unk_60.currentSave + var_r5_2) != 0)
                     {
                         gEwramData->unk_60.unk_3CC = GetRoomPointer(gEwramData->unk_60.currentArea, gEwramData->unk_60.currentRoom);
                     }
@@ -2752,10 +2752,10 @@ s32 GameModeMainMenuUpdate(void)
             {
                 if (temp_r7->unk_4EF != 0)
                 {
-                    sub_08013620(gEwramData->unk_60.unk_428);
+                    sub_08013620(gEwramData->unk_60.currentSave);
                     gEwramData->gameModeUpdateStage += 1;
                     gEwramData->unk_12 = 0;
-                    temp_r5 = gEwramData->unk_60.unk_428 + 1;
+                    temp_r5 = gEwramData->unk_60.currentSave + 1;
                     if (sub_08013700(temp_r5, 1) != 0 && gEwramData->unk_20[1].unk_38 != 0)
                     {
                         var_1 = temp_r5 * 0x47C;

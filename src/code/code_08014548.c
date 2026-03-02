@@ -30,24 +30,24 @@
  */
 void sub_08014548(void)
 {
-    if (gEwramData->unk_1325C.unk_13279 == 0)
+    if (gEwramData->unk_1325C.currentLevel == 0)
     {
         sub_08046A18();
 
-        gEwramData->unk_1325C.unk_13269 = 0;
-        gEwramData->unk_1325C.unk_1326A = 0;
-        gEwramData->unk_1325C.unk_1326B = 0;
+        gEwramData->unk_1325C.equippedRedSoul = 0;
+        gEwramData->unk_1325C.equippedBlueSoul = 0;
+        gEwramData->unk_1325C.equippedYellowSoul = 0;
 
         sub_0804B26C(2, 0);
         sub_0804B26C(0, 0);
         sub_0804B26C(1, 0xFF);
-        gEwramData->unk_1325C.unk_132B4 = 1;
-        gEwramData->unk_1325C.unk_132EF = 1;
+        gEwramData->unk_1325C.weaponInventory[0] = 1;
+        gEwramData->unk_1325C.armorInventory[0] = 1;
         sub_08033DA4();
         sub_0804C3C8();
 
-        gEwramData->unk_1325C.unk_1327A = gEwramData->unk_1325C.unk_1327E;
-        gEwramData->unk_1325C.unk_1327C = gEwramData->unk_1325C.unk_13280;
+        gEwramData->unk_1325C.currentHP = gEwramData->unk_1325C.maxHP;
+        gEwramData->unk_1325C.currentMP = gEwramData->unk_1325C.maxMP;
 
         gEwramData->unk_60.currentArea = 0;
         gEwramData->unk_60.currentRoom = 0;
@@ -125,7 +125,7 @@ void sub_08014720(struct EwramData_EntityData *param_0)
     s32 var_r2;
 
     sub_0804C3C8();
-    if (gEwramData->unk_1325C.unk_13279 > 1)
+    if (gEwramData->unk_1325C.currentLevel > 1)
     {
         sub_08033E38(1);
     }
@@ -147,7 +147,7 @@ void sub_08014720(struct EwramData_EntityData *param_0)
 
     for (var_r2 = 0; var_r2 < 8; var_r2++)
     {
-        gEwramData->unk_13144[var_r2] = 0;
+        gEwramData->activeBlueSoulEntities[var_r2] = 0;
     }
 
     sub_08042A54(0, 0x1E);
@@ -181,20 +181,20 @@ void sub_0801487C(s32 param_0)
 {
     struct EwramData_EntityData *temp_r0;
 
-    gEwramData->unk_131BE = 0;
+    gEwramData->nbrActiveRedSoulEntities = 0;
     gEwramData->unk_131C8 = -1;
     gEwramData->unk_131CC = -1;
     gEwramData->unk_131D0 = -1;
     gEwramData->unk_1311C[0] = 0;
     gEwramData->unk_13120 = 0;
-    gEwramData->unk_131C0[0] = -1;
+    gEwramData->lastUsedWeapon[0] = -1;
     gEwramData->unk_131C1 = -1;
 
     sub_080235C8();
     sub_0802DFF0();
 
-    temp_r0 = EntityCreateInRange(0, 0, (u32*) sUnk_084F10B4[gEwramData->unk_1325C.unk_13266]);
-    sUnk_084F10AC[gEwramData->unk_1325C.unk_13266](temp_r0);
+    temp_r0 = EntityCreateInRange(0, 0, (u32*) sUnk_084F10B4[gEwramData->unk_1325C.currentCharacter]);
+    sUnk_084F10AC[gEwramData->unk_1325C.currentCharacter](temp_r0);
     gEwramData->unk_13110 = temp_r0;
     gEwramData->unk_13168 = temp_r0;
 

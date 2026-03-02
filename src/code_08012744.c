@@ -26,10 +26,10 @@
 
 static inline void sub_080135C0_inline(struct EwramData_unk60 *param_0)
 {
-    param_0->unk_A8 = gEwramData->unk_1325C.unk_13290;
-    param_0->unk_A0 = gEwramData->unk_1325C.unk_13279;
+    param_0->unk_A8 = gEwramData->unk_1325C.currentGold;
+    param_0->unk_A0 = gEwramData->unk_1325C.currentLevel;
     param_0->unk_A6 = sub_08011E24(param_0, 2);
-    param_0->unk_A4 = gEwramData->unk_1325C.unk_13266;
+    param_0->unk_A4 = gEwramData->unk_1325C.currentCharacter;
     param_0->unk_A5 = gEwramData->unk_1325C.unk_13267;
 }
 
@@ -504,9 +504,9 @@ void sub_08013404(void)
 
     sub_08033E38(1);
     sub_080213BC();
-    gEwramData->unk_1325C.unk_13269 = 0;
-    gEwramData->unk_1325C.unk_1326A = 0;
-    gEwramData->unk_1325C.unk_1326B = 0;
+    gEwramData->unk_1325C.equippedRedSoul = 0;
+    gEwramData->unk_1325C.equippedBlueSoul = 0;
+    gEwramData->unk_1325C.equippedYellowSoul = 0;
 }
 
 /**
@@ -525,7 +525,7 @@ s32 sub_0801352C(void)
     temp_r4->unk_AC = 1;
     temp_r5->unk_60.unk_A6 = 0;
     temp_r5->unk_60.unk_A0 = 1;
-    sub_08013620_inline(temp_r5->unk_60.unk_428);
+    sub_08013620_inline(temp_r5->unk_60.currentSave);
     // BUG: no return value
 }
 
@@ -537,10 +537,10 @@ s32 sub_0801352C(void)
 void sub_080135C0(struct EwramData_unk60 *param_0)
 {
     // TODO: sub_080135C0 is the same as sub_080135C0_inline
-    param_0->unk_A8 = gEwramData->unk_1325C.unk_13290;
-    param_0->unk_A0 = gEwramData->unk_1325C.unk_13279;
+    param_0->unk_A8 = gEwramData->unk_1325C.currentGold;
+    param_0->unk_A0 = gEwramData->unk_1325C.currentLevel;
     param_0->unk_A6 = sub_08011E24(param_0, 2);
-    param_0->unk_A4 = gEwramData->unk_1325C.unk_13266;
+    param_0->unk_A4 = gEwramData->unk_1325C.currentCharacter;
     param_0->unk_A5 = gEwramData->unk_1325C.unk_13267;
 }
 
@@ -702,7 +702,7 @@ s32 sub_080137FC(void)
         return 0;
     }
 
-    var_r0 = sub_080127F0(gEwramData->unk_60.unk_428, 1);
+    var_r0 = sub_080127F0(gEwramData->unk_60.currentSave, 1);
     if (var_r0 != 0)
     {
         return 0;

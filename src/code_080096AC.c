@@ -1847,15 +1847,15 @@ s32 GameModeSoulTradeMenu(void)
             if (temp_r6->unk_504.unk_504_8.unk_506 != 0)
             {
                 sub_0803278C(temp_r6->unk_504.unk_504_8.unk_506 - 1, temp_r6->unk_504.unk_504_8.unk_507, 1);
-                sub_08013620(gEwramData->unk_60.unk_428);
+                sub_08013620(gEwramData->unk_60.currentSave);
             }
             if (temp_r6->unk_504.unk_504_8.unk_504 != 0)
             {
-                sub_08013164(gEwramData->unk_60.unk_428, temp_r6->unk_504.unk_504_8.unk_504 - 1, temp_r6->unk_504.unk_504_8.unk_505);
+                sub_08013164(gEwramData->unk_60.currentSave, temp_r6->unk_504.unk_504_8.unk_504 - 1, temp_r6->unk_504.unk_504_8.unk_505);
             }
             else
             {
-                sub_08013620(gEwramData->unk_60.unk_428);
+                sub_08013620(gEwramData->unk_60.currentSave);
             }
             gEwramData->gameModeUpdateStage = 0x12;
             gEwramData->unk_12 = 0;

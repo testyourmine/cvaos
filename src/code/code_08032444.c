@@ -14,6 +14,7 @@
 #include "gba.h"
 #include "macros.h"
 #include "agb_sram.h"
+#include "agb_multi_sio_sync.h"
 #include "syscalls.h"
 
 #include "constants/main.h"
@@ -56,21 +57,21 @@ u8 sub_08032444(s32 param_0, s32 param_1)
     switch (param_0)
     {
         case 0:
-            if ((param_1 + 1) == gEwramData->unk_1325C.unk_13269)
+            if ((param_1 + 1) == gEwramData->unk_1325C.equippedRedSoul)
             {
                 var_r2 += 1;
             }
             break;
 
         case 1:
-            if ((param_1 + 1) == gEwramData->unk_1325C.unk_1326A)
+            if ((param_1 + 1) == gEwramData->unk_1325C.equippedBlueSoul)
             {
                 var_r2 += 1;
             }
             break;
 
         case 2:
-            if ((param_1 + 1) == gEwramData->unk_1325C.unk_1326B)
+            if ((param_1 + 1) == gEwramData->unk_1325C.equippedYellowSoul)
             {
                 var_r2 += 1;
             }
@@ -177,19 +178,19 @@ void sub_08032588(u8 param_0, s32 param_1, s32 param_2, s32 param_3)
     switch (param_1)
     {
         case 0:
-            var_r3 = temp_r1->unk_1331C[param_0];
+            var_r3 = temp_r1->redSoulInventory[param_0];
             break;
 
         case 1:
-            var_r3 = temp_r1->unk_13354[param_0];
+            var_r3 = temp_r1->blueSoulInventory[param_0];
             break;
 
         case 2:
-            var_r3 = temp_r1->unk_1336E[param_0];
+            var_r3 = temp_r1->yellowSoulInventory[param_0];
             break;
 
         case 3:
-            var_r3 = temp_r1->unk_13392[0];
+            var_r3 = temp_r1->abilitySoulInventory[0];
             break;
     }
 
@@ -227,19 +228,19 @@ void sub_08032588(u8 param_0, s32 param_1, s32 param_2, s32 param_3)
     switch (param_1)
     {
         case 0:
-            var_r3_3 = temp_r1_3->unk_1331C[param_0];
+            var_r3_3 = temp_r1_3->redSoulInventory[param_0];
             break;
 
         case 1:
-            var_r3_3 = temp_r1_3->unk_13354[param_0];
+            var_r3_3 = temp_r1_3->blueSoulInventory[param_0];
             break;
 
         case 2:
-            var_r3_3 = temp_r1_3->unk_1336E[param_0];
+            var_r3_3 = temp_r1_3->yellowSoulInventory[param_0];
             break;
 
         case 3:
-            var_r3_3 = temp_r1_3->unk_13392[0];
+            var_r3_3 = temp_r1_3->abilitySoulInventory[0];
             break;
     }
 
@@ -279,19 +280,19 @@ u8 sub_080326B8(s32 param_0, s32 param_1)
     switch (param_0)
     {
         case 0:
-            var_r1_2 = temp_r2_4->unk_1331C[0];
+            var_r1_2 = temp_r2_4->redSoulInventory[0];
             break;
 
         case 1:
-            var_r1_2 = temp_r2_4->unk_13354[0];
+            var_r1_2 = temp_r2_4->blueSoulInventory[0];
             break;
 
         case 2:
-            var_r1_2 = temp_r2_4->unk_1336E[0];
+            var_r1_2 = temp_r2_4->yellowSoulInventory[0];
             break;
 
         case 3:
-            var_r1_2 = temp_r2_4->unk_13392[0];
+            var_r1_2 = temp_r2_4->abilitySoulInventory[0];
             break;
     }
 
@@ -318,19 +319,19 @@ u8 sub_080326B8(s32 param_0, s32 param_1)
     switch (param_0)
     {
         case 0:
-            var_r2_2 = temp_r0->unk_1331C[1];
+            var_r2_2 = temp_r0->redSoulInventory[1];
             break;
 
         case 1:
-            var_r2_2 = temp_r0->unk_13354[1];
+            var_r2_2 = temp_r0->blueSoulInventory[1];
             break;
 
         case 2:
-            var_r2_2 = temp_r0->unk_1336E[1];
+            var_r2_2 = temp_r0->yellowSoulInventory[1];
             break;
 
         case 3:
-            var_r2_2 = temp_r0->unk_13392[0];
+            var_r2_2 = temp_r0->abilitySoulInventory[0];
             break;
     }
 
@@ -374,19 +375,19 @@ void sub_0803278C(s32 param_0, s32 param_1, s32 param_2)
     switch (param_0)
     {
         case 0:
-            var_r1 = temp_r0->unk_1331C[1];
+            var_r1 = temp_r0->redSoulInventory[1];
             break;
 
         case 1:
-            var_r1 = temp_r0->unk_13354[1];
+            var_r1 = temp_r0->blueSoulInventory[1];
             break;
 
         case 2:
-            var_r1 = temp_r0->unk_1336E[1];
+            var_r1 = temp_r0->yellowSoulInventory[1];
             break;
 
         case 3:
-            var_r1 = temp_r0->unk_13392[0];
+            var_r1 = temp_r0->abilitySoulInventory[0];
             break;
     }
 
@@ -445,19 +446,19 @@ void sub_08032844(s32 param_0, s32 param_1)
     switch (param_0)
     {
         case 0:
-            var_r1 = temp_r0->unk_1331C[0];
+            var_r1 = temp_r0->redSoulInventory[0];
             break;
 
         case 1:
-            var_r1 = temp_r0->unk_13354[0];
+            var_r1 = temp_r0->blueSoulInventory[0];
             break;
 
         case 2:
-            var_r1 = temp_r0->unk_1336E[0];
+            var_r1 = temp_r0->yellowSoulInventory[0];
             break;
 
         case 3:
-            var_r1 = temp_r0->unk_13392[0];
+            var_r1 = temp_r0->abilitySoulInventory[0];
             break;
     }
 
@@ -489,19 +490,19 @@ void sub_08032844(s32 param_0, s32 param_1)
         switch (param_0)
         {
             case 0:
-                var_r1_3 = temp_r0_2->unk_1331C[0];
+                var_r1_3 = temp_r0_2->redSoulInventory[0];
                 break;
 
             case 1:
-                var_r1_3 = temp_r0_2->unk_13354[0];
+                var_r1_3 = temp_r0_2->blueSoulInventory[0];
                 break;
 
             case 2:
-                var_r1_3 = temp_r0_2->unk_1336E[0];
+                var_r1_3 = temp_r0_2->yellowSoulInventory[0];
                 break;
 
             case 3:
-                var_r1_3 = temp_r0_2->unk_13392[0];
+                var_r1_3 = temp_r0_2->abilitySoulInventory[0];
                 break;
         }
 
@@ -542,19 +543,19 @@ void sub_08032938(s32 param_0, s32 param_1)
     switch (param_0)
     {
         case 0:
-            var_r1 = temp_r0->unk_1331C[1];
+            var_r1 = temp_r0->redSoulInventory[1];
             break;
 
         case 1:
-            var_r1 = temp_r0->unk_13354[1];
+            var_r1 = temp_r0->blueSoulInventory[1];
             break;
 
         case 2:
-            var_r1 = temp_r0->unk_1336E[1];
+            var_r1 = temp_r0->yellowSoulInventory[1];
             break;
 
         case 3:
-            var_r1 = temp_r0->unk_13392[0];
+            var_r1 = temp_r0->abilitySoulInventory[0];
             break;
     }
 
@@ -586,19 +587,19 @@ void sub_08032938(s32 param_0, s32 param_1)
         switch (param_0)
         {
             case 0:
-                var_r1_3 = temp_r0_2->unk_1331C[1];
+                var_r1_3 = temp_r0_2->redSoulInventory[1];
                 break;
 
             case 1:
-                var_r1_3 = temp_r0_2->unk_13354[1];
+                var_r1_3 = temp_r0_2->blueSoulInventory[1];
                 break;
 
             case 2:
-                var_r1_3 = temp_r0_2->unk_1336E[1];
+                var_r1_3 = temp_r0_2->yellowSoulInventory[1];
                 break;
 
             case 3:
-                var_r1_3 = temp_r0_2->unk_13392[0];
+                var_r1_3 = temp_r0_2->abilitySoulInventory[0];
                 break;
         }
 
@@ -702,9 +703,9 @@ u8 sub_08032AB8(s32 param_0)
     temp_r1 = &gEwramData->unk_1325C;
     temp_r2 = param_0 & 7;
     param_0 = param_0 >> 3;
-    temp_r1_2 = &temp_r1->unk_13392[1][1];
+    temp_r1_2 = &temp_r1->abilitySoulInventory[1][1];
     return temp_r1_2[param_0] & (1 << temp_r2);
-    // return (&gEwramData->unk_1325C.unk_13392[1][1])[param_0 >> 3] & (1 << (param_0 & 7));
+    // return (&gEwramData->unk_1325C.abilitySoulInventory[1][1])[param_0 >> 3] & (1 << (param_0 & 7));
 }
 
 /**
@@ -720,7 +721,7 @@ void sub_08032ADC(s32 param_0, s32 param_1)
     u8 *temp_r2;
 
     temp_r1 = &gEwramData->unk_1325C;
-    temp_r2 = &temp_r1->unk_13392[1][1 + (param_0 >> 3)];
+    temp_r2 = &temp_r1->abilitySoulInventory[1][1 + (param_0 >> 3)];
     temp_r3 = param_0 & 7;
     if (param_1 != 0)
     {
@@ -764,19 +765,19 @@ u8* sub_08032B20(u8 param_0, s32 param_1)
     switch (param_1)
     {
         case 0:
-            var_r0 = temp_r3->unk_1331C[param_0];
+            var_r0 = temp_r3->redSoulInventory[param_0];
             break;
 
         case 1:
-            var_r0 = temp_r3->unk_13354[param_0];
+            var_r0 = temp_r3->blueSoulInventory[param_0];
             break;
 
         case 2:
-            var_r0 = temp_r3->unk_1336E[param_0];
+            var_r0 = temp_r3->yellowSoulInventory[param_0];
             break;
 
         case 3:
-            var_r0 = temp_r3->unk_13392[0];
+            var_r0 = temp_r3->abilitySoulInventory[0];
             break;
     }
 
@@ -805,19 +806,19 @@ u8 sub_08032B88(u8 param_0, s32 param_1, s32 param_2)
     switch (param_1)
     {
         case 0:
-            var_r4 = temp_r2->unk_1331C[param_0];
+            var_r4 = temp_r2->redSoulInventory[param_0];
             break;
 
         case 1:
-            var_r4 = temp_r2->unk_13354[param_0];
+            var_r4 = temp_r2->blueSoulInventory[param_0];
             break;
 
         case 2:
-            var_r4 = temp_r2->unk_1336E[param_0];
+            var_r4 = temp_r2->yellowSoulInventory[param_0];
             break;
 
         case 3:
-            var_r4 = temp_r2->unk_13392[0];
+            var_r4 = temp_r2->abilitySoulInventory[0];
             break;
     }
 
@@ -857,19 +858,19 @@ void sub_08032C10(u8 param_0, s32 param_1, s32 param_2, s8 param_3)
     switch (param_1)
     {
         case 0:
-            var_r3 = temp_r4->unk_1331C[param_0];
+            var_r3 = temp_r4->redSoulInventory[param_0];
             break;
 
         case 1:
-            var_r3 = temp_r4->unk_13354[param_0];
+            var_r3 = temp_r4->blueSoulInventory[param_0];
             break;
 
         case 2:
-            var_r3 = temp_r4->unk_1336E[param_0];
+            var_r3 = temp_r4->yellowSoulInventory[param_0];
             break;
 
         case 3:
-            var_r3 = temp_r4->unk_13392[0];
+            var_r3 = temp_r4->abilitySoulInventory[0];
             break;
     }
 
@@ -998,23 +999,23 @@ void sub_08032D58(s32 param_0, s32 param_1)
     switch (param_0)
     {
         case 0:
-            if (temp_r5->unk_13269 == (param_1 + 1))
+            if (temp_r5->equippedRedSoul == (param_1 + 1))
             {
-                temp_r5->unk_13269 = 0;
+                temp_r5->equippedRedSoul = 0;
             }
             break;
 
         case 1:
-            if (temp_r5->unk_1326A == (param_1 + 1))
+            if (temp_r5->equippedBlueSoul == (param_1 + 1))
             {
-                temp_r5->unk_1326A = 0;
+                temp_r5->equippedBlueSoul = 0;
             }
             break;
 
         case 2:
-            if (temp_r5->unk_1326B == (param_1 + 1))
+            if (temp_r5->equippedYellowSoul == (param_1 + 1))
             {
-                temp_r5->unk_1326B = 0;
+                temp_r5->equippedYellowSoul = 0;
             }
             break;
     }
@@ -1224,7 +1225,7 @@ void sub_08032FC8(struct EwramData_EntityData *param_0)
         var_4 = (s16) gEwramData->unk_13110->unk_528.unk_528_16.unk_52A;
         param_0->unk_528.unk_528_16.unk_52A = var_4;
 
-        temp_r1 = &gEwramData->unk_A078[1];
+        temp_r1 = &gEwramData->bgInfo[1];
         var_0 = temp_r1->xPos.part16.integer + param_0->unk_524.unk_524_16.unk_526;
         var_1 = temp_r1->yPos.part16.integer + var_4 - 8;
         for (var_r5 = 0; var_r5 < 2; var_r5++)
@@ -1233,7 +1234,7 @@ void sub_08032FC8(struct EwramData_EntityData *param_0)
             if (temp_r0_2 != 0)
             {
                 var_5 = var_1 + temp_r0_2;
-                temp_r0_5 = &gEwramData->unk_A078[1];
+                temp_r0_5 = &gEwramData->bgInfo[1];
                 param_0->unk_528.unk_528_16.unk_52A = (var_5 - (temp_r0_5->yPos.part16.integer - 1)) + (var_r5 * 0x10);
                 break;
             }
@@ -1393,7 +1394,7 @@ void sub_08033254(struct EwramData_EntityData *param_0)
             temp_r0->drawFunc = (u32 *) sub_0803B9D0;
             temp_r0->unk_53D_1 = 1;
 
-            temp_r2 = &gEwramData->unk_A078[1];
+            temp_r2 = &gEwramData->bgInfo[1];
             temp_r0->unk_524.unk_524_16.unk_526 = temp_r4_2->unk_4[var_r7 * 2] - temp_r2->xPos.part16.integer;
             temp_r0->unk_528.unk_528_16.unk_52A = temp_r4_2->unk_4[var_r7 * 2 + 1] - temp_r2->yPos.part16.integer;
             temp_r0->unk_538.unk_538_16.unk_53A = 0;
@@ -1715,7 +1716,7 @@ static inline s32 sub_080337EC_inline_0(struct EwramData_EntityData *param_0, s1
 
     var_r4 = 0;
     var_3 = param_1;
-    temp_r3 = &gEwramData->unk_A078[1];
+    temp_r3 = &gEwramData->bgInfo[1];
     var_1 = (var_3 - (s16) temp_r3->xPos.part16.integer) << 0x10;
     var_0 = (param_2 - (s16) temp_r3->yPos.part16.integer) << 0x10;
     
@@ -1779,7 +1780,7 @@ static inline s32 sub_080338B4_inline_0(struct EwramData_EntityData *param_0, s1
 
     var_r4 = 0;
     var_3 = param_1;
-    temp_r3 = &gEwramData->unk_A078[1];
+    temp_r3 = &gEwramData->bgInfo[1];
     var_1 = (var_3 - (s16) temp_r3->xPos.part16.integer) << 0x10;
     var_0 = (param_2 - (s16) temp_r3->yPos.part16.integer) << 0x10;
     
@@ -1850,7 +1851,7 @@ static inline s32 sub_08033984_inline_0(struct EwramData_EntityData *param_0, s1
     var_sb = NULL;
     var_r4 = 0;
     var_3 = param_1;
-    temp_r3 = &gEwramData->unk_A078[1];
+    temp_r3 = &gEwramData->bgInfo[1];
     var_1 = (var_3 - (s16) temp_r3->xPos.part16.integer) << 0x10;
     var_0 = (param_2 - (s16) temp_r3->yPos.part16.integer) << 0x10;
     
@@ -1932,7 +1933,7 @@ static inline s32 sub_08033AC0_inline_0(struct EwramData_EntityData *param_0, s1
     var_sb = NULL;
     var_r6 = 0;
     var_3 = param_1;
-    temp_r3 = &gEwramData->unk_A078[1];
+    temp_r3 = &gEwramData->bgInfo[1];
     var_1 = (var_3 - (s16) temp_r3->xPos.part16.integer) << 0x10;
     var_0 = (param_2 - (s16) temp_r3->yPos.part16.integer) << 0x10;
     
@@ -2074,35 +2075,35 @@ s32 sub_08033CAC(struct EwramData_unk1325C *param_0)
     s32 var_r8;
 
     var_r8 = 0;
-    if (param_0->unk_13279 >= 99)
+    if (param_0->currentLevel >= 99)
     {
         return 0;
     }
 
-    for (var_r8 = 0; param_0->unk_13279 < 99; var_r8++)
+    for (var_r8 = 0; param_0->currentLevel < 99; var_r8++)
     {
-        // Equation is the following form: let x = param_0->unk_13279
+        // Equation is the following form: let x = param_0->currentLevel
         // (3x + 11) * (x + 2) * (x + 1)
         // 3x^3 + 20x^2 + 39x + 22
-        if (sub_08033CAC_inline_0(param_0->unk_13279 + 1) > param_0->unk_1328C)
+        if (sub_08033CAC_inline_0(param_0->currentLevel + 1) > param_0->currentExperience)
         {
             break;
         }
 
-        param_0->unk_1327E += 12;
-        param_0->unk_13280 += sUnk_080E1E08[param_0->unk_13279 / 5];
-        param_0->unk_13282[0] += sUnk_080E1DCC[param_0->unk_13279 / 5];
-        param_0->unk_13282[1] += sUnk_080E1DE0[param_0->unk_13279 / 5];
-        if (param_0->unk_13279 & 3)
+        param_0->maxHP += 12;
+        param_0->maxMP += sUnk_080E1E08[param_0->currentLevel / 5];
+        param_0->baseStats[0] += sUnk_080E1DCC[param_0->currentLevel / 5];
+        param_0->baseStats[1] += sUnk_080E1DE0[param_0->currentLevel / 5];
+        if (param_0->currentLevel & 3)
         {
-            param_0->unk_13282[2] += sUnk_080E1DF4[param_0->unk_13279 / 5];
+            param_0->baseStats[2] += sUnk_080E1DF4[param_0->currentLevel / 5];
         }
         else
         {
-            param_0->unk_13282[2] += 1;
+            param_0->baseStats[2] += 1;
         }
-        param_0->unk_13282[3] += 1;
-        param_0->unk_13279 += 1;
+        param_0->baseStats[3] += 1;
+        param_0->currentLevel += 1;
     }
     sub_0804AD9C();
     return var_r8;
@@ -2118,24 +2119,24 @@ void sub_08033DA4(void)
     struct EwramData_unk1325C *temp_r1;
 
     temp_r1 = &gEwramData->unk_1325C;
-    temp_r1->unk_13279 = 1;
-    if (temp_r1->unk_13266 == 0)
+    temp_r1->currentLevel = 1;
+    if (temp_r1->currentCharacter == 0)
     {
-        temp_r1->unk_1327E = 320;
-        temp_r1->unk_13280 = 80;
-        temp_r1->unk_13282[0] = 10;
-        temp_r1->unk_13282[1] = 12;
-        temp_r1->unk_13282[2] = 11;
-        temp_r1->unk_13282[3] = 9;
+        temp_r1->maxHP = 320;
+        temp_r1->maxMP = 80;
+        temp_r1->baseStats[0] = 10;
+        temp_r1->baseStats[1] = 12;
+        temp_r1->baseStats[2] = 11;
+        temp_r1->baseStats[3] = 9;
     }
     else
     {
-        temp_r1->unk_1327E = 800;
-        temp_r1->unk_13280 = 500;
-        temp_r1->unk_13282[0] = 15;
-        temp_r1->unk_13282[1] = 12;
-        temp_r1->unk_13282[2] = 10;
-        temp_r1->unk_13282[3] = 20;
+        temp_r1->maxHP = 800;
+        temp_r1->maxMP = 500;
+        temp_r1->baseStats[0] = 15;
+        temp_r1->baseStats[1] = 12;
+        temp_r1->baseStats[2] = 10;
+        temp_r1->baseStats[3] = 20;
     }
 }
 
@@ -2162,10 +2163,10 @@ s32 sub_08033DFC(s32 param_0)
  */
 s32 sub_08033E10(struct EwramData_unk1325C *param_0)
 {
-    if (param_0->unk_13279 >= 99)
+    if (param_0->currentLevel >= 99)
         return 0;
 
-    return sub_08033CAC_inline_0(param_0->unk_13279 + 1) - param_0->unk_1328C;
+    return sub_08033CAC_inline_0(param_0->currentLevel + 1) - param_0->currentExperience;
 }
 
 /**
@@ -2179,7 +2180,7 @@ void sub_08033E38(s32 param_0)
 
     temp_r5 = &gEwramData->unk_1325C;
     sub_08033DA4();
-    temp_r5->unk_1328C = sub_08033CAC_inline_0(param_0);
+    temp_r5->currentExperience = sub_08033CAC_inline_0(param_0);
     sub_08033CAC(temp_r5);
 }
 
@@ -2192,11 +2193,11 @@ void sub_08033E6C(void)
     struct EwramData_unk1325C *temp_r1;
 
     temp_r1 = &gEwramData->unk_1325C;
-    if (temp_r1->unk_13266 != 0)
+    if (temp_r1->currentCharacter != 0)
     {
-        temp_r1->unk_13282[0] += 0x19;
-        temp_r1->unk_13282[1] += 0x14;
-        temp_r1->unk_13282[2] += 0x12;
+        temp_r1->baseStats[0] += 0x19;
+        temp_r1->baseStats[1] += 0x14;
+        temp_r1->baseStats[2] += 0x12;
         sub_0804AD9C();
     }
 }
@@ -2443,7 +2444,7 @@ void sub_0803427C(void)
     gEwramData->unk_13238[temp_r0_3] = temp_sb;
 
     gEwramData->unk_13114 += 0;
-    temp_r4_3 = &gEwramData->unk_A078[1];
+    temp_r4_3 = &gEwramData->bgInfo[1];
     gEwramData->unk_13114->unk_524.unk_524_16.unk_526 = temp_r8->unk_4DC - temp_r4_3->xPos.part16.integer;
     gEwramData->unk_13114->unk_528.unk_528_16.unk_52A = temp_r8->unk_4DE - temp_r4_3->yPos.part16.integer;
 
@@ -2549,7 +2550,7 @@ void sub_080344F0(struct EwramData_EntityData *param_0)
             param_0->unk_528.unk_528_16.unk_52A = 0xC;
             gEwramData->unk_131CC = sub_0803B800((u8 *)0x081FA2B8, 0x10000);
             sub_0803B924(param_0, (u8 *)0x08252CCC, gEwramData->unk_131CC, 3);
-            param_0->unk_4EF = gEwramData->unk_1325C.unk_13269;
+            param_0->unk_4EF = gEwramData->unk_1325C.equippedRedSoul;
             param_0->unk_549 = sUnk_080E1F18[param_0->unk_4EF].unk_0;
             // param_0->unk5A = (u8) ((-0x79 & param_0->unk5A) | ((sUnk_080E1F18[param_0->unk_4EF].unk_1 & 0xF) * 8));
             param_0->unk_53E_3 = sUnk_080E1F18[param_0->unk_4EF].unk_1;
@@ -2559,9 +2560,9 @@ void sub_080344F0(struct EwramData_EntityData *param_0)
             param_0->unk_4EE = 1;
             /* fallthrough */
         case 1:
-            if (param_0->unk_4EF != gEwramData->unk_1325C.unk_13269)
+            if (param_0->unk_4EF != gEwramData->unk_1325C.equippedRedSoul)
             {
-                param_0->unk_4EF = gEwramData->unk_1325C.unk_13269;
+                param_0->unk_4EF = gEwramData->unk_1325C.equippedRedSoul;
                 param_0->unk_549 = sUnk_080E1F18[param_0->unk_4EF].unk_0;
                 // param_0->unk5A = (u8) ((-0x79 & param_0->unk5A) | ((sUnk_080E1F18[param_0->unk_4EF].unk_1 & 0xF) * 8));
                 param_0->unk_53E_3 = sUnk_080E1F18[param_0->unk_4EF].unk_1;
@@ -2606,16 +2607,16 @@ void sub_08034624(struct EwramData_EntityData *param_0)
         return;
     }
 
-    temp_r8 = sub_0802D284(gEwramData->unk_1325C.unk_13269);
-    if (gEwramData->unk_131BE == 0)
+    temp_r8 = sub_0802D284(gEwramData->unk_1325C.equippedRedSoul);
+    if (gEwramData->nbrActiveRedSoulEntities == 0)
     {
-        if (gEwramData->unk_131BF != gEwramData->unk_1325C.unk_13269)
+        if (gEwramData->lastUsedRedSoul != gEwramData->unk_1325C.equippedRedSoul)
         {
-            gEwramData->unk_131BF = gEwramData->unk_1325C.unk_13269;
+            gEwramData->lastUsedRedSoul = gEwramData->unk_1325C.equippedRedSoul;
         }
     }
 
-    if (gEwramData->unk_131BF != gEwramData->unk_1325C.unk_13269)
+    if (gEwramData->lastUsedRedSoul != gEwramData->unk_1325C.equippedRedSoul)
     {
         return;
     }
@@ -2625,12 +2626,12 @@ void sub_08034624(struct EwramData_EntityData *param_0)
         return;
     }
 
-    if (temp_r8->unk_6 >= gEwramData->unk_1325C.unk_1327C)
+    if (temp_r8->unk_6 >= gEwramData->unk_1325C.currentMP)
     {
         return;
     }
 
-    if (sub_0802D2BC() <= gEwramData->unk_131BE)
+    if (sub_0802D2BC() <= gEwramData->nbrActiveRedSoulEntities)
     {
         return;
     }
@@ -2645,8 +2646,8 @@ void sub_08034624(struct EwramData_EntityData *param_0)
     if (temp_r0_2 == NULL)
         return;
 
-    gEwramData->unk_1325C.unk_1327C -= temp_r8->unk_6;
-    gEwramData->unk_13124[temp_r0] = temp_r0_2;
+    gEwramData->unk_1325C.currentMP -= temp_r8->unk_6;
+    gEwramData->activeRedSoulEntities[temp_r0] = temp_r0_2;
 
     if (temp_r8->unk_4 == 0)
     {
@@ -2668,7 +2669,7 @@ void sub_08034624(struct EwramData_EntityData *param_0)
     param_0->unk_4F4.unk_4F4_32 |= 0x100;
     temp_r0_2->unk_4F8.unk_4F8_entity = param_0;
     temp_r0_2->unk_4FC.unk_4FC_16.unk_4FE[0] = temp_r0;
-    temp_r0_2->unk_500.unk_500_16.unk_500 = gEwramData->unk_1325C.unk_13269;
+    temp_r0_2->unk_500.unk_500_16.unk_500 = gEwramData->unk_1325C.equippedRedSoul;
     temp_r0_2->unk_500.unk_500_16.unk_502 = temp_r8->unk_E;
     temp_r0_2->unk_53D_2 = 1;
     param_0->unk_4F4.unk_4F4_32 &= ~0x200060;
@@ -2691,7 +2692,7 @@ void sub_080347AC(struct EwramData_EntityData *param_0)
     switch (param_0->unk_4EE)
     {
         case 0:
-            gEwramData->unk_131BE += 1;
+            gEwramData->nbrActiveRedSoulEntities += 1;
             param_0->unk_4F1 = 0xE;
             param_0->unk_4EE = 1;
             /* fallthrough */
@@ -2862,7 +2863,7 @@ void sub_08034B18(struct EwramData_EntityData *param_0)
     switch (param_0->unk_4EE)
     {
         case 0:
-            gEwramData->unk_131BE += 1;
+            gEwramData->nbrActiveRedSoulEntities += 1;
             param_0->unk_4F1 = 0xE;
             param_0->unk_4EE = 1;
             /* fallthrough */
@@ -3029,7 +3030,7 @@ void sub_08034E5C(struct EwramData_EntityData *param_0)
     switch (param_0->unk_4EE)
     {
         case 0:
-            gEwramData->unk_131BE += 1;
+            gEwramData->nbrActiveRedSoulEntities += 1;
             param_0->unk_4F1 = 0xA;
             param_0->unk_4EE = 1;
             break;
@@ -3098,7 +3099,7 @@ void sub_08034F48(struct EwramData_EntityData *param_0)
     switch (param_0->unk_4EE)
     {
         case 0:
-            gEwramData->unk_131BE += 1;
+            gEwramData->nbrActiveRedSoulEntities += 1;
             sub_08013D60(0xFA);
             param_0->unk_4F1 = 0x20;
             param_0->unk_4EE = 1;
