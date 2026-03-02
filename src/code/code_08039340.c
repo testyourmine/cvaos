@@ -3769,3 +3769,279 @@ s32 sub_0803E7C0(void)
     return 0;
 }
 
+/**
+ * @brief 3E820 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @return s16 To document
+ */
+s16 sub_0803E820(s16 param_0, s16 param_1)
+{
+    s32 var_r1;
+
+    var_r1 = (param_0 * param_1);
+    var_r1 /= 0x100;
+    return var_r1;
+}
+
+/**
+ * @brief 3E83C | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @return s16 To document
+ */
+s16 sub_0803E83C(s16 param_0, s16 param_1)
+{
+    s32 num = param_0 << 8;
+    return num / param_1;
+}
+
+/**
+ * @brief 3E854 | To document
+ * 
+ * @param param_0 To document
+ * @return s16 To document
+ */
+s16 sub_0803E854(s16 param_0)
+{
+    s32 num = 0x100 << 8;
+    return num / param_0;
+}
+
+/**
+ * @brief 3E86C | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @return s32 To document
+ */
+s32 sub_0803E86C(s32 param_0, s32 param_1)
+{
+    s32 var_r0;
+    s32 var_r2;
+
+    if ((param_0 == 0) || (param_1 == 0))
+    {
+        return 0;
+    }
+
+    if (param_0 == 0x10000)
+    {
+        return param_1;
+    }
+    
+    if (param_1 == 0x10000)
+    {
+        return param_0;
+    }
+
+    if (param_0 < 0)
+    {
+        var_r2 = -(-param_0 >> 8);
+    }
+    else
+    {
+        var_r2 = param_0 >> 8;
+    }
+
+    if (param_1 < 0)
+    {
+        var_r0 = -(-param_1 >> 8);
+    }
+    else
+    {
+        var_r0 = param_1 >> 8;
+    }
+
+    var_r2 *= var_r0;
+    var_r2 /= 0x100;
+    var_r2 <<= 8;
+    return var_r2;
+}
+
+/**
+ * @brief 3E8BC | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @return s32 To document
+ */
+s32 sub_0803E8BC(s32 param_0, s32 param_1)
+{
+    s32 var_r0;
+    s32 var_r1;
+
+    if (param_1 == 0)
+    {
+        return 0;
+    }
+
+    if (param_1 == 0x10000)
+    {
+        return param_0;
+    }
+
+    if (param_0 < 0)
+    {
+        var_r0 = -(-param_0 >> 8);
+    }
+    else
+    {
+        var_r0 = param_0 >> 8;
+    }
+    var_r0 = var_r0 << 8;
+
+    if (param_1 < 0)
+    {
+        param_1 = -param_1;
+        param_1 = param_1 >> 8;
+        param_1 = -param_1;
+    }
+    else
+    {
+        param_1 = param_1 >> 8;
+    }
+
+    return (var_r0 / param_1) << 8;
+}
+
+/**
+ * @brief 3E8FC | To document
+ * 
+ * @param param_0 To document
+ * @return s32 To document
+ */
+s32 sub_0803E8FC(s32 param_0)
+{
+    s32 var_r1;
+    s32 var_0;
+
+    var_r1 = 0x10000;
+    if (param_0 == 0x10000)
+    {
+        return 0x10000;
+    }
+
+    var_0 = 0x10000;
+    if (param_0 < 0)
+    {
+        var_r1 = -param_0;
+        var_r1 = var_r1 >> 8;
+        var_r1 = -var_r1;
+    }
+    else
+    {
+        var_r1 = param_0 >> 8;
+    }
+
+    var_0 /= var_r1;
+    var_0 <<= 8;
+    return var_0;
+}
+
+/**
+ * @brief 3E92C | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @return s32 To document
+ */
+s32 sub_0803E92C(s32 param_0, s32 param_1)
+{
+    return (param_0 >> 8) * (param_1 >> 8);
+}
+
+/**
+ * @brief 3E934 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @return s32 To document
+ */
+s32 sub_0803E934(s32 param_0, s32 param_1)
+{
+    return (param_0 / (param_1 >> 8)) << 8;
+}
+
+/**
+ * @brief 3E944 | To document
+ * 
+ * @param param_0 To document
+ * @return s32 To document
+ */
+s32 sub_0803E944(s32 param_0)
+{
+    s32 num = 0x100 << 8;
+    return (num / (param_0 >> 8)) << 8;
+}
+
+/**
+ * @brief 3E958 | To document
+ * 
+ * @param param_0 To document
+ */
+void sub_0803E958(struct Unk_03001458_10 *param_0)
+{
+    param_0->unk_C = 0x10000;
+    param_0->unk_0 = 0x10000;
+    param_0->unk_8 = 0;
+    param_0->unk_4 = 0;
+}
+
+/**
+ * @brief 3E968 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @param param_3 To document
+ */
+void sub_0803E968(struct Unk_03001458_10 *param_0, s32 param_1, s32 param_2, s32 param_3)
+{
+    s32 temp_r0;
+    s32 temp_r4;
+
+    switch (param_1)
+    {
+        case 0x0:
+        case 0x10000:
+            param_0->unk_0 = param_2;
+            param_0->unk_4 = 0;
+            param_0->unk_8 = 0;
+            param_0->unk_C = param_3;
+            break;
+
+        case 0x4000:
+            param_0->unk_0 = 0;
+            param_0->unk_4 = -param_2;
+            param_0->unk_8 = param_3;
+            param_0->unk_C = 0;
+            break;
+
+        case 0x8000:
+            param_0->unk_0 = -param_2;
+            param_0->unk_4 = 0;
+            param_0->unk_8 = 0;
+            param_0->unk_C = -param_3;
+            break;
+
+        case 0xC000:
+            param_0->unk_0 = 0;
+            param_0->unk_4 = param_2;
+            param_0->unk_8 = -param_3;
+            param_0->unk_C = 0;
+            break;
+
+        default:
+            temp_r4 = sub_080009E4(param_1);
+            temp_r0 = sub_080009E4(param_1 + 0x4000);
+            param_0->unk_0 = (param_2 >> 8) * (temp_r0 >> 8);
+            param_0->unk_4 = (param_2 >> 8) * (-temp_r4 >> 8);
+            param_0->unk_8 = (param_3 >> 8) * (temp_r4 >> 8);
+            param_0->unk_C = (param_3 >> 8) * (temp_r0 >> 8);
+            break;
+    }
+}
+

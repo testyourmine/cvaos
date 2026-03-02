@@ -132,9 +132,15 @@ extern s32 sub_0803E720(s32 param_0);
 extern s32 sub_0803E750(void);
 extern s32 sub_0803E75C(void);
 extern s32 sub_0803E7C0(void);
+extern s16 sub_0803E820(s16 param_0, s16 param_1);
+extern s16 sub_0803E83C(s16 param_0, s16 param_1);
+extern s16 sub_0803E854(s16 param_0);
 extern s32 sub_0803E86C(s32 param_0, s32 param_1);
 extern s32 sub_0803E8BC(s32 param_0, s32 param_1);
 extern s32 sub_0803E8FC(s32 param_0);
+extern s32 sub_0803E92C(s32 param_0, s32 param_1);
+extern s32 sub_0803E934(s32 param_0, s32 param_1);
+extern s32 sub_0803E944(s32 param_0);
 extern s32 sub_0803F17C(struct EwramData_EntityData* param_0); // TODO: return type?
 extern s32 sub_0803F2C8(struct EwramData_EntityData *param_0, u16 param_1, u8 param_2, u8 param_3);
 extern void sub_0803F8A8(u32 param_0, u32* param_1, u16 param_2, u16 param_3);
