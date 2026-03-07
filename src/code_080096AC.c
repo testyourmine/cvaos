@@ -1287,7 +1287,7 @@ s32 GameModeSoulTradeMenu(void)
             }
             else
             {
-                gEwramData->unk_7864.unk_7864_1 = 1;
+                gEwramData->hBlankEffect.requestStop = 1;
                 sub_08008314(&gEwramData->entityData[4]);
                 gDisplayRegisters.bldCnt = 0x853;
                 gUnk_03002CB0.dispCnt &= 0xFBFF;

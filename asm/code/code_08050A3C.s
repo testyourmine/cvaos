@@ -21474,7 +21474,7 @@ _0805B40C:
 	adds r0, r5, #0
 	bl sub_08048A64
 _0805B418:
-	bl sub_0800CADC
+	bl UpdateInGameTimer
 	adds r0, r7, #0
 	add sp, #4
 	pop {r4, r5, r6, r7}

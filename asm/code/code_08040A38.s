@@ -9452,7 +9452,7 @@ _08045650: .4byte sub_08045454
 sub_08045654: @ 0x08045654
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
-	bl sub_0800CADC
+	bl UpdateInGameTimer
 	ldrb r0, [r4, #0xd]
 	cmp r0, #0
 	bne _08045678

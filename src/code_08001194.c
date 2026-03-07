@@ -416,27 +416,27 @@ struct Unk_030034BC* sub_080016D0(u32 arg0, u32 *arg1, u32 *arg2)
 }
 
 /**
- * @brief 1718 | To document
+ * @brief 1718 | Setup H-Blank effect
  * 
- * @param arg0 To document
+ * @param numEntries Number of entries to allocate for buffer
  * @param vcountSetting Target V-Counter value
  * @param writeSize Amount of bytes to write to
  * @param destReg The register to write to
  */
-void sub_08001718(u8 arg0, u8 vcountSetting, u8 writeSize, void *destReg)
+void HBlankEffectSetup(u8 numEntries, u8 vcountSetting, u8 writeSize, void *destReg)
 {
-    struct EwramData_unk7864 *var_0;
+    struct HBlankEffect *hBlankEffect;
 
-    var_0 = &gEwramData->unk_7864;
+    hBlankEffect = &gEwramData->hBlankEffect;
 
-    var_0->vcountSetting = vcountSetting;
-    var_0->writeSize = writeSize;
-    var_0->destReg = destReg;
+    hBlankEffect->vcountSetting = vcountSetting;
+    hBlankEffect->writeSize = writeSize;
+    hBlankEffect->destReg = destReg;
 
-    if (arg0 != 0)
+    if (numEntries != 0)
     {
-        DMA_FILL_16(3, 0, &var_0->unk_786C[0], (arg0 * writeSize));
-        DMA_FILL_16(3, 0, &var_0->unk_786C[1], (arg0 * writeSize));
+        DMA_FILL_16(3, 0, &hBlankEffect->hBlankBuffer[0], (numEntries * writeSize));
+        DMA_FILL_16(3, 0, &hBlankEffect->hBlankBuffer[1], (numEntries * writeSize));
     }
 }
 
@@ -1566,16 +1566,16 @@ s16 sub_080022E8(s32 param_0, s32 param_1, u8 param_2)
  */
 void sub_08002324(s16 param_0, s16 param_1, s16 param_2)
 {
-    s16 *var_r5;
+    s16 *hBlankBuf;
     s32 var_r0;
     u16 temp_r5;
     u16 temp_r7;
-    s32 var_r4;
+    s32 scanline;
     u16 temp_r0_2;
     u16 var_0;
     u16 var_1;
     
-    var_r5 = (s16*)&gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
+    hBlankBuf = (s16*)&gEwramData->hBlankEffect.hBlankBuffer[1 - gEwramData->hBlankEffect.currentBuffer];
 
     var_r0 = param_1 - param_2;
     if (var_r0 < 0)
@@ -1593,9 +1593,9 @@ void sub_08002324(s16 param_0, s16 param_1, s16 param_2)
 
     gDisplayRegisters.win1V = (temp_r5 << 8) | temp_r7;
 
-    for (var_r4 = temp_r5; var_r4 < temp_r7; var_r4 += 1)
+    for (scanline = temp_r5; scanline < temp_r7; scanline += 1)
     {
-        temp_r0_2 = Sqrt(((param_2 * param_2) - ((param_1 - var_r4) * (param_1 - var_r4))) << 8) >> 4;
+        temp_r0_2 = Sqrt(((param_2 * param_2) - ((param_1 - scanline) * (param_1 - scanline))) << 8) >> 4;
         var_r0 = param_0 - temp_r0_2;
         if (var_r0 < 0)
         {
@@ -1610,10 +1610,10 @@ void sub_08002324(s16 param_0, s16 param_1, s16 param_2)
         }
         var_1 = var_r0;
 
-        var_r5[var_r4] = (var_0 << 8) | var_1;
+        hBlankBuf[scanline] = (var_0 << 8) | var_1;
     }
 
-    gEwramData->unk_7864.unk_7864_0 = 1;
+    gEwramData->hBlankEffect.requestStart = 1;
 }
 
 /**
@@ -1623,7 +1623,7 @@ void sub_08002324(s16 param_0, s16 param_1, s16 param_2)
 void sub_08002400(void)
 {
     gUnk_03002CB0.dispCnt |= DCNT_WIN1;
-    sub_08001718(160, 159, 2, REG_WIN1H);
+    HBlankEffectSetup(160, SCREEN_SIZE_Y - 1, 2, REG_WIN1H);
 }
 
 /**
@@ -1633,5 +1633,5 @@ void sub_08002400(void)
 void sub_08002428(void)
 {
     gUnk_03002CB0.dispCnt &= ~DCNT_WIN1;
-    gEwramData->unk_7864.unk_7864_1 = 1;
+    gEwramData->hBlankEffect.requestStop = 1;
 }

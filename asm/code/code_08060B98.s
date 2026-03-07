@@ -7316,7 +7316,7 @@ sub_08064518: @ 0x08064518
 	movs r0, #0
 	movs r1, #0xa0
 	movs r2, #0x10
-	bl sub_08001718
+	bl HBlankEffectSetup
 	ldrb r0, [r7, #0x15]
 	cmp r0, #0xa
 	bls _08064566
@@ -8812,7 +8812,7 @@ sub_080650f8: @ 0x080650F8
 	movs r0, #0
 	movs r1, #0xa0
 	movs r2, #0x10
-	bl sub_08001718
+	bl HBlankEffectSetup
 	ldrb r0, [r6, #0x15]
 	cmp r0, #8
 	bls _0806513E
@@ -9427,7 +9427,7 @@ sub_08065600: @ 0x08065600
 	movs r0, #0
 	movs r1, #0xa0
 	movs r2, #2
-	bl sub_08001718
+	bl HBlankEffectSetup
 	movs r6, #0
 	movs r7, #2
 _0806563E:
@@ -9523,7 +9523,7 @@ sub_080656BC: @ 0x080656BC
 	movs r0, #0
 	movs r1, #0xa0
 	movs r2, #0x10
-	bl sub_08001718
+	bl HBlankEffectSetup
 	movs r5, #0
 	mov r2, r8
 	lsls r1, r2, #8
@@ -13060,7 +13060,7 @@ sub_0806724C: @ 0x0806724C
 	movs r0, #0xa0
 	movs r1, #0xa0
 	movs r2, #2
-	bl sub_08001718
+	bl HBlankEffectSetup
 	movs r1, #0x40
 	adds r4, #0xc2
 	movs r0, #0x3f

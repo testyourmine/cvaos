@@ -18,6 +18,6 @@ void sub_0800C7A4(struct EwramData_unk60 *param_0);
 s32 sub_0800C8C8(void);
 s32 sub_0800CA40(void);
 s32 sub_0800CA98(void);
-void sub_0800CADC(void);
+void UpdateInGameTimer(void);
 
 #endif /* CODE_0800B700_H */

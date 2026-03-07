@@ -1380,7 +1380,7 @@ void sub_0800C7A4(struct EwramData_unk60 *param_0)
     sub_0801391C();
     PlaySong(0x1000);
 
-    gEwramData->unk_7864.unk_7864_1 = 1;
+    gEwramData->hBlankEffect.requestStop = 1;
     gEwramData->unk_A074_2 = gEwramData->unk_A074_4 = 0;
     gEwramData->unk_A074_0 = 0;
 }
@@ -1403,7 +1403,7 @@ s32 sub_0800C8C8(void)
     sub_08000B64();
 
     temp_r5 = &gEwramData->unk_60;
-    sub_0800CADC();
+    UpdateInGameTimer();
     temp_r5->unk_4C8 += 1;
 
     if (!(gEwramData->unk_60.unk_42C & 0x20))
@@ -1421,7 +1421,7 @@ s32 sub_0800C8C8(void)
             sub_0802DFF0();
             gEwramData->unk_13168 = 0;
             PlaySong(0x1010);
-            temp_r6->unk_AC = 0;
+            temp_r6->inGameTimer = 0;
             temp_r6->unk_65 += 1;
             sub_0803D18C(0, 0, 0, 0x10000, 0, 0x40);
             sub_0803CDF0(0, 0, 0, 0x10000, 0, 0x80);
@@ -1459,13 +1459,11 @@ s32 sub_0800C8C8(void)
 s32 sub_0800CA40(void)
 {
     // inline for sub_0800C8C8?
-    struct EwramData *temp_r4;
     struct EwramData_unk60 *temp_r5;
 
-    temp_r4 = gEwramData;
     temp_r5 = &gEwramData->unk_60;
-    sub_0800CADC();
-    temp_r4->unk_60.unk_4C8 += 1;
+    UpdateInGameTimer();
+    temp_r5->unk_4C8 += 1;
 
     if (!(gEwramData->unk_60.unk_42C & 0x20))
     {
@@ -1506,10 +1504,10 @@ s32 sub_0800CA98(void)
  * @brief CADC | To document
  * 
  */
-void sub_0800CADC(void)
+void UpdateInGameTimer(void)
 {
-    if (gEwramData->unk_60.unk_AC < 0x014996C4)
+    if (gEwramData->unk_60.inGameTimer < 0x014996C4)
     {
-        gEwramData->unk_60.unk_AC += 1;
+        gEwramData->unk_60.inGameTimer += 1;
     }
 }

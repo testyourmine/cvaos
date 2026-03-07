@@ -35,276 +35,273 @@
  */
 void sub_0800CB00(void)
 {
-    s16 *temp_r2;
-    s16 *var_r4;
-    s32 var_r0;
-    u32 temp_r5;
-    s32 var_r1;
+    s16 *hBlankBuf;
+    s32 temp_r5;
+    s32 scanline;
 
     temp_r5 = gEwramData->unk_60.unk_4C8;
-    var_r4 = gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
-    sub_08001718(0, 160, 2, REG_BG3HOFS);
+    hBlankBuf = gEwramData->hBlankEffect.hBlankBuffer[1 - gEwramData->hBlankEffect.currentBuffer];
+    HBlankEffectSetup(0, SCREEN_SIZE_Y, 2, REG_BG3HOFS);
 
-    for (var_r1 = 0; var_r1 < 0x80; var_r1++)
+    for (scanline = 0; scanline < (s32)(SCREEN_SIZE_Y * 0.8f); scanline++)
     {
-        var_r0 = temp_r5 * (0x40 - var_r1 / 2);
-        temp_r2 = var_r4;
-        var_r4 += 1;
-        if (var_r0 < 0)
-        {
-            var_r0 += 0xF;
-        }
-        *temp_r2 = var_r0 >> 4;
+        *hBlankBuf++ = (temp_r5 * (0x40 - scanline / 2)) / 0x10;
     }
 
-    for (var_r1 = 0; var_r1 < 0x20; var_r1++)
+    for (scanline = 0; scanline < (s32)(SCREEN_SIZE_Y * 0.2f); scanline++)
     {
-        *var_r4++ = 0;
+        *hBlankBuf++ = 0;
     }
 
-    gEwramData->unk_7864.unk_7864_0 = 1;
+    gEwramData->hBlankEffect.requestStart = 1;
 }
 
 /**
  * @brief CB8C | To document
  * 
- * @param param_0 To document
+ * @param bgNum To document
  * @param param_1 To document
  * @param param_2 To document
  * @param param_3 To document
  */
-void sub_0800CB8C(s32 param_0, s32 param_1, s32 param_2, s32 param_3)
+void sub_0800CB8C(s32 bgNum, s32 param_1, s32 param_2, s32 param_3)
 {
-    u32 sp4;
+    u32 frameCtr;
     struct EwramData_unkA078 *sp8;
     s32 temp_r0;
-    s32 var_r5_2;
+    s32 scanline;
     s32 var_sb;
     struct BgOffset *temp_r7;
-    u16 *var_r6;
+    u16 *hBlankBuf;
 
-    sp4 = gEwramData->unk_0;
+    frameCtr = gEwramData->frameCounter;
     var_sb = param_1 + param_2;
-    var_r6 = gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
+    hBlankBuf = gEwramData->hBlankEffect.hBlankBuffer[1 - gEwramData->hBlankEffect.currentBuffer];
 
-    temp_r7 = &gDisplayRegisters.bgOfs[param_0];
-    sp8 = &gEwramData->bgInfo[param_0];
+    temp_r7 = &gDisplayRegisters.bgOfs[bgNum];
+    sp8 = &gEwramData->bgInfo[bgNum];
 
-    if (var_sb > 160)
+    if (var_sb > SCREEN_SIZE_Y)
     {
-        var_sb = 160;
+        var_sb = SCREEN_SIZE_Y;
     }
-    sub_08001718(0, 160, 2, (struct BgOffset *)REG_BG0HOFS + param_0);
+    HBlankEffectSetup(0, SCREEN_SIZE_Y, 2, (struct BgOffset *)REG_BG0HOFS + bgNum);
 
-    for (var_r5_2 = 0; var_r5_2 < param_1; var_r5_2++)
+    for (scanline = 0; scanline < param_1; scanline++)
     {
-        *var_r6++ = temp_r7->hOfs;
-    }
-
-    for (var_r5_2 = param_1; var_r5_2 < var_sb; var_r5_2++)
-    {
-        temp_r0 = (param_3 * (var_r5_2 - param_1)) / param_2;
-        *var_r6++ = (sub_080009E4(((sp8->yPos.part16.integer + var_r5_2) << 0xD) + (sp4 << (0xA - temp_r0))) >> ((temp_r0 >> 1) + 0xF)) + temp_r7->hOfs;
+        *hBlankBuf++ = temp_r7->hOfs;
     }
 
-    for (var_r5_2; var_r5_2 < 160; var_r5_2++)
+    for (scanline = param_1; scanline < var_sb; scanline++)
     {
-        *var_r6++ = temp_r7->hOfs;
+        temp_r0 = (param_3 * (scanline - param_1)) / param_2;
+        *hBlankBuf++ = (sub_080009E4(((sp8->yPos.part16.integer + scanline) << 13) + (frameCtr << (10 - temp_r0))) >> ((temp_r0 >> 1) + 15)) + temp_r7->hOfs;
+    }
+
+    for (; scanline < SCREEN_SIZE_Y; scanline++)
+    {
+        *hBlankBuf++ = temp_r7->hOfs;
     }
     
-    gEwramData->unk_7864.unk_7864_0 = 1;
+    gEwramData->hBlankEffect.requestStart = 1;
 }
 
 /**
  * @brief CC90 | To document
  * 
- * @param param_0 To document
+ * @param bgNum To document
  * @param param_1 To document
  * @param param_2 To document
  * @param param_3 To document
  */
-void sub_0800CC90(s32 param_0, s32 param_1, s32 param_2, s32 param_3)
+void sub_0800CC90(s32 bgNum, s32 param_1, s32 param_2, s32 param_3)
 {
     s32 var_r2;
-    s32 var_r4_2;
-    struct BgOffset *var_r8;
-    u16 *var_r5;
-    s32 var_sl;
-    struct EwramData_unkA078 *var_r9;
+    s32 scanline;
+    struct BgOffset *bgOfs;
+    u16 *hBlankBuf;
+    s32 frameCtr;
+    struct EwramData_unkA078 *bgInfo;
     s32 var_0;
 
-    var_sl = gEwramData->unk_0;
-    var_0 = param_2 - param_1; // Fake?
-    var_r5 = gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
+    frameCtr = gEwramData->frameCounter;
+    hBlankBuf = gEwramData->hBlankEffect.hBlankBuffer[1 - gEwramData->hBlankEffect.currentBuffer];
 
-    var_r8 = &gDisplayRegisters.bgOfs[param_0];
-    var_r9 = &gEwramData->bgInfo[param_0];
+    bgOfs = &gDisplayRegisters.bgOfs[bgNum];
+    bgInfo = &gEwramData->bgInfo[bgNum];
 
     var_r2 = param_2 - param_1;
-    param_1 = param_1 - var_r9->yPos.part16.integer;
+    param_1 = param_1 - bgInfo->yPos.part16.integer;
     if (param_1 < 0)
     {
         param_1 = 0;
     }
-    else if (param_1 > 160)
+    else if (param_1 > SCREEN_SIZE_Y)
     {
-        param_1 = 160;
+        param_1 = SCREEN_SIZE_Y;
     }
 
-    if ((param_1 + var_r2) > 160)
+    if ((param_1 + var_r2) > SCREEN_SIZE_Y)
     {
-        var_r2 = 160 - param_1;
+        var_r2 = SCREEN_SIZE_Y - param_1;
     }
 
     param_2 = param_1 + var_r2;
-    if (param_2 > 160)
+    if (param_2 > SCREEN_SIZE_Y)
     {
-        param_2 = 160;
+        param_2 = SCREEN_SIZE_Y;
     }
-    sub_08001718(0, 160, 2, (struct BgOffset *)REG_BG0HOFS + param_0);
+    HBlankEffectSetup(0, SCREEN_SIZE_Y, 2, (struct BgOffset *)REG_BG0HOFS + bgNum);
 
-    var_0 = var_sl << 9;
-    for (var_r4_2 = 0; var_r4_2 < param_1; var_r4_2++)
+    for (scanline = 0; scanline < param_1; scanline++)
     {
-        *var_r5++ = var_r8->hOfs;
+        *hBlankBuf++ = bgOfs->hOfs;
     }
-    var_sl = var_0;
+    frameCtr = frameCtr << 9;
 
-    for (var_r4_2 = param_1; var_r4_2 < param_2; var_r4_2++)
+    for (scanline = param_1; scanline < param_2; scanline++)
     {
-        *var_r5++ = ((param_3 * sub_080009E4(((var_r9->yPos.part16.integer + var_r4_2) << 0xC) + (var_sl))) >> 0x10) + var_r8->hOfs;
-    }
-
-    for (var_r4_2; var_r4_2 < 160; var_r4_2++)
-    {
-        *var_r5++ = var_r8->hOfs;
+        var_0 = sub_080009E4(((bgInfo->yPos.part16.integer + scanline) << 0xC) + (frameCtr));
+        *hBlankBuf++ = ((param_3 * var_0) >> 0x10) + bgOfs->hOfs;
     }
 
-    gEwramData->unk_7864.unk_7864_0 = 1;
+    for (; scanline < SCREEN_SIZE_Y; scanline++)
+    {
+        *hBlankBuf++ = bgOfs->hOfs;
+    }
+
+    gEwramData->hBlankEffect.requestStart = 1;
 }
 
 /**
  * @brief CDAC | To document
  * 
- * @param param_0 To document
+ * @param bgNum To document
  * @param param_1 To document
  * @param param_2 To document
  */
-void sub_0800CDAC(s32 param_0, s32 param_1, s32 param_2)
+void sub_0800CDAC(s32 bgNum, s32 param_1, s32 param_2)
 {
-    u32 sp4;
+    u32 frameCtr;
     s32 sp8;
-    s16 *var_r8;
-    s32 var_r6;
+    s16 *hBlankBuf;
+    s32 scanline;
     s32 var_sb;
-    struct BgOffset *temp_r1;
-    struct EwramData_unkA078 *var_0;
+    struct BgOffset *bgOfs;
+    struct EwramData_unkA078 *bgInfo;
+    s32 var_0;
+    s32 var_1;
 
-    sp4 = gEwramData->unk_0;
-    var_r8 = gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
-    temp_r1 = &gDisplayRegisters.bgOfs[param_0];
-    var_0 = &gEwramData->bgInfo[param_0];
+    frameCtr = gEwramData->frameCounter;
+    hBlankBuf = gEwramData->hBlankEffect.hBlankBuffer[1 - gEwramData->hBlankEffect.currentBuffer];
+    bgOfs = &gDisplayRegisters.bgOfs[bgNum];
+    bgInfo = &gEwramData->bgInfo[bgNum];
+
     var_sb = param_2 - param_1;
-    param_1 = param_1 - var_0->yPos.part16.integer;
+    param_1 = param_1 - bgInfo->yPos.part16.integer;
     if (param_1 < 0)
     {
         param_1 = 0;
     }
-    else if (param_1 > 160)
+    else if (param_1 > SCREEN_SIZE_Y)
     {
-        param_1 = 160;
+        param_1 = SCREEN_SIZE_Y;
     }
-    if ((param_1 + var_sb) > 160)
+    if ((param_1 + var_sb) > SCREEN_SIZE_Y)
     {
-        var_sb = 160 - param_1;
+        var_sb = SCREEN_SIZE_Y - param_1;
     }
     param_2 = param_1 + var_sb;
-    sub_08001718(0, 160, 2, (struct BgOffset *)REG_BG0HOFS + param_0);
-    sp8 = sub_080009E4(sp4 << 0xC);
 
-    for (var_r6 = 0; var_r6 < 160; var_r6++)
+    HBlankEffectSetup(0, SCREEN_SIZE_Y, 2, (struct BgOffset *)REG_BG0HOFS + bgNum);
+    sp8 = sub_080009E4(frameCtr << 0xC);
+
+    for (scanline = 0; scanline < SCREEN_SIZE_Y; scanline++)
     {
-        if ((var_r6 < param_1) || (var_r6 > param_2))
+        if ((scanline < param_1) || (scanline > param_2))
         {
-            *var_r8 = temp_r1->hOfs;
+            *hBlankBuf = bgOfs->hOfs;
         }
         else
         {
-            *var_r8 = temp_r1->hOfs + (((8 * var_r6 + param_1 * -8) - (((8 * var_r6 + param_1 * -8) * (sub_080009E4((s32) (((-(param_1 << 0xC)) + 0x1000 * var_r6) + (sp4 << 0xD)) >> 2) + sp8)) >> 0x13)) / var_sb);
+            var_0 = sub_080009E4((s32) (((-(param_1 << 0xC)) + 0x1000 * scanline) + (frameCtr << 0xD)) >> 2);
+            var_1 = 8 * scanline + param_1 * -8;
+            *hBlankBuf = bgOfs->hOfs + ((var_1 - ((var_1 * (var_0 + sp8)) >> 0x13)) / var_sb);
         }
-        var_r8++;
+        hBlankBuf++;
     }
 
-    gEwramData->unk_7864.unk_7864_0 = 1;
+    gEwramData->hBlankEffect.requestStart = 1;
 }
 
 /**
  * @brief CED4 | To document
  * 
- * @param param_0 To document
+ * @param bgNum To document
  * @param param_1 To document
  * @param param_2 To document
  */
-void sub_0800CED4(s32 param_0, s32 param_1, s32 param_2)
+void sub_0800CED4(s32 bgNum, s32 param_1, s32 param_2)
 {
-    s32 sp0;
     s32 sp4;
-    s16 *var_r8;
+    s16 *hBlankBuf;
     s32 temp_r4_2;
     s32 var_r4;
-    s32 var_r6;
+    s32 scanline;
     s32 var_r7;
     s32 var_sb;
-    struct BgOffset *temp_r1;
-    u32 temp_r4;
+    struct BgOffset *bgOfs;
+    s32 temp_r4;
     u8 *temp_r1_2;
-    struct EwramData_unkA078 *var_0;
+    struct EwramData_unkA078 *bgInfo;
+    s32 var_1;
+    s32 var_2;
+    s32 var_3;
+    s32 var_4;
 
-    sp0 = param_2;
     temp_r4 = gEwramData->unk_60.unk_4C8;
-    var_r8 = gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
-    temp_r1 = &gDisplayRegisters.bgOfs[param_0];
-    var_0 = &gEwramData->bgInfo[param_0];
-    var_sb = sp0 - param_1;
-    param_1 = param_1 - var_0->yPos.part16.integer;
+    hBlankBuf = gEwramData->hBlankEffect.hBlankBuffer[1 - gEwramData->hBlankEffect.currentBuffer];
+    bgOfs = &gDisplayRegisters.bgOfs[bgNum];
+    bgInfo = &gEwramData->bgInfo[bgNum];
+
+    var_sb = param_2 - param_1;
+    param_1 = param_1 - bgInfo->yPos.part16.integer;
     if (param_1 < 0)
     {
         param_1 = 0;
     }
-    else if (param_1 > 160)
+    else if (param_1 > SCREEN_SIZE_Y)
     {
-        param_1 = 160;
+        param_1 = SCREEN_SIZE_Y;
     }
-    if ((s32) (param_1 + var_sb) > 160)
+    if ((param_1 + var_sb) > SCREEN_SIZE_Y)
     {
-        var_sb = 160 - param_1;
+        var_sb = SCREEN_SIZE_Y - param_1;
     }
-    sp0 = param_1 + var_sb;
-    sub_08001718(0, 160, 2, (struct BgOffset *)REG_BG0HOFS + param_0);
-    temp_r4_2 = temp_r4 << 9;
-    sp4 = sub_080009E4(temp_r4_2);
+    param_2 = param_1 + var_sb;
 
-    // TODO: simplify
-    var_r6 = 0;
-    var_r7 = temp_r4_2 - (param_1 << 0xC);
-    var_r4 = 0 - (param_1 * 0xC);
-    do
+    HBlankEffectSetup(0, SCREEN_SIZE_Y, 2, (struct BgOffset *)REG_BG0HOFS + bgNum);
+    temp_r4 = temp_r4 << 9;
+    sp4 = sub_080009E4(temp_r4);
+
+    for (scanline = 0; scanline < SCREEN_SIZE_Y; scanline++)
     {
-        if ((var_r6 < param_1) || (var_r6 > sp0))
+        if ((scanline < param_1) || (scanline > param_2))
         {
-            *var_r8 = (s16) temp_r1->hOfs;
+            *hBlankBuf = bgOfs->hOfs;
         }
         else
         {
-            *var_r8 = temp_r1->hOfs + ((s32) (var_r4 - ((s32) (var_r4 * (sub_080009E4(var_r7 >> 2) + sp4)) >> 0x13)) / var_sb);
+            var_1 = (scanline - param_1) * 0xC;
+            var_2 = (scanline - param_1) << 0xC;
+            var_3 = sub_080009E4((temp_r4 + var_2) >> 2);
+            var_4 = (var_1 * (var_3 + sp4)) >> 0x13;
+            *hBlankBuf = bgOfs->hOfs + ((var_1 - var_4) / var_sb);
         }
-        var_r8 += 1;
-        var_r7 += 0x1000;
-        var_r4 += 0xC;
-        var_r6 += 1;
-    } while (var_r6 <= 0x9F);
+        *hBlankBuf++;
+    }
 
-    gEwramData->unk_7864.unk_7864_0 = 1;
+    gEwramData->hBlankEffect.requestStart = 1;
 }
 
 /**
@@ -315,45 +312,45 @@ void sub_0800D000(void)
 {
     s32 temp_r0;
     s32 temp_r0_2;
-    s32 var_r5;
+    s32 scanline;
     s32 var_r6;
-    struct BgAffineDstData *var_r7;
+    struct BgAffineDstData *hBlankBuf;
     u32 temp_r8;
     struct BgAffineSrcData src;
 
     temp_r8 = gEwramData->unk_60.unk_4C8;
-    var_r7 = (struct BgAffineDstData *)&gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
+    hBlankBuf = (struct BgAffineDstData *)&gEwramData->hBlankEffect.hBlankBuffer[1 - gEwramData->hBlankEffect.currentBuffer];
     var_r6 = 0;
-    sub_08001718(0, 160, 0x10, REG_BG2PA);
+    HBlankEffectSetup(0, SCREEN_SIZE_Y, 0x10, REG_BG2PA);
 
-    for (var_r5 = 0; var_r5 < 160; var_r5++)
+    for (scanline = 0; scanline < SCREEN_SIZE_Y; scanline++)
     {
         src.texX = 0x8000 - (0x100 * temp_r8);
         src.scrX = 0x78;
         src.scrY = 0;
-        if (var_r5 < 0x80)
+        if (scanline < 0x80)
         {
-            temp_r0 = (0x80 - var_r5) << 5; // Fake?
-            temp_r0 = Div(0x80000, ((0x80 - var_r5) << 5) + 0x400);
+            temp_r0 = (0x80 - scanline) << 5; // Fake?
+            temp_r0 = Div(0x80000, ((0x80 - scanline) << 5) + 0x400);
             src.sx = temp_r0;
             var_r6 -= temp_r0;
             src.texY = var_r6 - (temp_r8 << 7);
         }
         else
         {
-            temp_r0_2 = (var_r5 << 7); // Fake?
-            temp_r0_2 = Div(0x80000, (var_r5 << 7) - 0x3C00);
+            temp_r0_2 = (scanline << 7); // Fake?
+            temp_r0_2 = Div(0x80000, (scanline << 7) - 0x3C00);
             src.sx = temp_r0_2;
             var_r6 -= temp_r0_2 * 2;
             src.texY = var_r6 + (temp_r8 << 7);
         }
         src.sy = 0x100;
         src.alpha = 0;
-        BgAffineSet(&src, var_r7, 1);
-        var_r7 += 1;
+        BgAffineSet(&src, hBlankBuf, 1);
+        hBlankBuf += 1;
     }
 
-    gEwramData->unk_7864.unk_7864_0 = 1;
+    gEwramData->hBlankEffect.requestStart = 1;
 }
 
 /**
@@ -385,20 +382,21 @@ void sub_0800D0F8(s32 param_0, s32 param_1, s32 param_2)
  */
 void sub_0800D154(void)
 {
-    struct EwramData *ewramData;
+    struct EwramData_unk60 *unk_60;
     struct EwramData_unk68 *unk_68;
 
-    ewramData = gEwramData;
-    unk_68 = &gEwramData->unk_60.unk_68;
+    unk_60 = &gEwramData->unk_60;
+    unk_68 = &unk_60->unk_68;
+
     unk_68->unk_68 = gUnk_03002CB0.dispCnt;
     unk_68->unk_6A = gDisplayRegisters.bldCnt;
     unk_68->unk_6C = gDisplayRegisters.bldAlpha;
     unk_68->unk_6E_0 = gUnk_03002CB0.unk_2;
-    unk_68->unk_6E_7 = gEwramData->unk_7864.unk_7864_0;
-    unk_68->unk_6F = gEwramData->unk_7864.vcountSetting;
+    unk_68->unk_6E_7 = gEwramData->hBlankEffect.requestStart;
+    unk_68->unk_6F = gEwramData->hBlankEffect.vcountSetting;
 
-    DMA_COPY_32(3, &gDisplayRegisters.bgCnt, &ewramData->unk_60.unk_68.unk_70, sizeof(gDisplayRegisters.bgCnt));
-    DMA_COPY_32(3, &gDisplayRegisters.win0H, &ewramData->unk_60.unk_78, sizeof(ewramData->unk_60.unk_78));
+    DMA_COPY_32(3, &gDisplayRegisters.bgCnt, &unk_60->unk_68.unk_70, sizeof(gDisplayRegisters.bgCnt));
+    DMA_COPY_32(3, &gDisplayRegisters.win0H, &unk_60->unk_78, sizeof(unk_60->unk_78));
 }
 
 /**
@@ -407,20 +405,21 @@ void sub_0800D154(void)
  */
 void sub_0800D1F0(void)
 {
-    struct EwramData *ewramData;
+    struct EwramData_unk60 *unk_60;
     struct EwramData_unk68 *unk_68;
 
-    ewramData = gEwramData;
-    unk_68 = &gEwramData->unk_60.unk_68;
+    unk_60 = &gEwramData->unk_60;
+    unk_68 = &unk_60->unk_68;
+
     gUnk_03002CB0.dispCnt = unk_68->unk_68;
     gDisplayRegisters.bldCnt = unk_68->unk_6A;
     gDisplayRegisters.bldAlpha = unk_68->unk_6C;
     gUnk_03002CB0.unk_2 = unk_68->unk_6E_0;
-    gEwramData->unk_7864.unk_7864_0 = unk_68->unk_6E_7;
-    gEwramData->unk_7864.vcountSetting = unk_68->unk_6F;
+    gEwramData->hBlankEffect.requestStart = unk_68->unk_6E_7;
+    gEwramData->hBlankEffect.vcountSetting = unk_68->unk_6F;
     
-    DMA_COPY_32(3, &ewramData->unk_60.unk_68.unk_70, &gDisplayRegisters.bgCnt, sizeof(ewramData->unk_60.unk_68.unk_70));
-    DMA_COPY_32(3, &ewramData->unk_60.unk_78, &gDisplayRegisters.win0H, sizeof(ewramData->unk_60.unk_78));
+    DMA_COPY_32(3, &unk_60->unk_68.unk_70, &gDisplayRegisters.bgCnt, sizeof(unk_60->unk_68.unk_70));
+    DMA_COPY_32(3, &unk_60->unk_78, &gDisplayRegisters.win0H, sizeof(unk_60->unk_78));
 }
 
 static inline s32 sub_0800D288_inline_0(s32 param_0, s32 param_1, s32 param_2, s32 param_3, s32 param_4)
@@ -454,7 +453,7 @@ void sub_0800D288(void)
     s32 var_r6_3;
     s32 var_r6_4;
     s32 var_r7;
-    s32 var_r8;
+    s32 bgNum;
     struct BgOffset *temp_r3;
     u16 *temp_r4;
     u32 temp_r5;
@@ -475,39 +474,39 @@ void sub_0800D288(void)
         sub_0800CDAC(1, 0x450, 0x4A0);
     }
 
-    for (var_r8 = 2; var_r8 < 4; var_r8++)
+    for (bgNum = 2; bgNum < 4; bgNum++)
     {
-        temp_r7_2 = &gEwramData->bgInfo[var_r8];
-        temp_r3 = &gDisplayRegisters.bgOfs[var_r8];
-        temp_r4 = &gDisplayRegisters.bgOfs[var_r8].vOfs;
+        temp_r7_2 = &gEwramData->bgInfo[bgNum];
+        temp_r3 = &gDisplayRegisters.bgOfs[bgNum];
+        temp_r4 = &gDisplayRegisters.bgOfs[bgNum].vOfs;
         switch (temp_r7_2->unk_18)
         {
             case 1:
-                sub_0803FBBC(var_r8, sp2C, sp30);
+                sub_0803FBBC(bgNum, sp2C, sp30);
                 break;
 
             case 5:
-                sub_0803FBBC(var_r8, sp2C * 2, sp30);
+                sub_0803FBBC(bgNum, sp2C * 2, sp30);
                 break;
 
             case 6:
-                sub_0803FBBC(var_r8, sp2C, sp30 * 2);
+                sub_0803FBBC(bgNum, sp2C, sp30 * 2);
                 break;
 
             case 7:
-                sub_0803FBBC(var_r8, sp2C * 2, sp30 * 2);
+                sub_0803FBBC(bgNum, sp2C * 2, sp30 * 2);
                 break;
 
             case 2:
-                sub_0803FBBC(var_r8, sp2C >> 1, sp30);
+                sub_0803FBBC(bgNum, sp2C >> 1, sp30);
                 break;
 
             case 3:
-                sub_0803FBBC(var_r8, sp2C, sp30 >> 1);
+                sub_0803FBBC(bgNum, sp2C, sp30 >> 1);
                 break;
 
             case 4:
-                sub_0803FBBC(var_r8, sp2C >> 1, sp30 >> 1);
+                sub_0803FBBC(bgNum, sp2C >> 1, sp30 >> 1);
                 break;
 
             case 8:
@@ -526,15 +525,15 @@ void sub_0800D288(void)
                 break;
 
             case 11:
-                sub_0803FBBC(var_r8, sub_0800D288_inline_0(temp_r7_2->unk_14, sp28->unk_14, sp2C, 0xF0, 0xF0), sp30);
+                sub_0803FBBC(bgNum, sub_0800D288_inline_0(temp_r7_2->unk_14, sp28->unk_14, sp2C, 0xF0, 0xF0), sp30);
                 break;
 
             case 12:
-                sub_0803FBBC(var_r8, sp2C, sub_0800D288_inline_0(temp_r7_2->unk_16, sp28->unk_16, sp30, 0xD0, 0xD0));
+                sub_0803FBBC(bgNum, sp2C, sub_0800D288_inline_0(temp_r7_2->unk_16, sp28->unk_16, sp30, 0xD0, 0xD0));
                 break;
 
             case 13:
-                sub_0803FBBC(var_r8, sub_0800D288_inline_0(temp_r7_2->unk_14, sp28->unk_14, sp2C, 0xF0, 0xF0), sub_0800D288_inline_0(temp_r7_2->unk_16, sp28->unk_16, sp30, 0xD0, 0xD0));
+                sub_0803FBBC(bgNum, sub_0800D288_inline_0(temp_r7_2->unk_14, sp28->unk_14, sp2C, 0xF0, 0xF0), sub_0800D288_inline_0(temp_r7_2->unk_16, sp28->unk_16, sp30, 0xD0, 0xD0));
                 break;
 
             case 14:
@@ -542,13 +541,13 @@ void sub_0800D288(void)
                 break;
 
             case 15:
-                sub_0803FBBC(var_r8, sub_0800D288_inline_0(temp_r7_2->unk_14, sp28->unk_14, sp2C, 0xF0, 0xF0), sub_0800D288_inline_0(temp_r7_2->unk_16, sp28->unk_16, sp30, 0xD0, 0xD0));
-                sub_0800CB8C(var_r8, 0, 160, 1);
+                sub_0803FBBC(bgNum, sub_0800D288_inline_0(temp_r7_2->unk_14, sp28->unk_14, sp2C, 0xF0, 0xF0), sub_0800D288_inline_0(temp_r7_2->unk_16, sp28->unk_16, sp30, 0xD0, 0xD0));
+                sub_0800CB8C(bgNum, 0, SCREEN_SIZE_Y, 1);
                 break;
 
             case 16:
-                sub_0803FBBC(var_r8, sub_0800D288_inline_0(temp_r7_2->unk_14, sp28->unk_14, sp2C, 0xF0, 0xF0), sub_0800D288_inline_0(temp_r7_2->unk_16, sp28->unk_16, sp30, 0xD0, 0xD0));
-                sub_0800CC90(var_r8, 0, 160, 2);
+                sub_0803FBBC(bgNum, sub_0800D288_inline_0(temp_r7_2->unk_14, sp28->unk_14, sp2C, 0xF0, 0xF0), sub_0800D288_inline_0(temp_r7_2->unk_16, sp28->unk_16, sp30, 0xD0, 0xD0));
+                sub_0800CC90(bgNum, 0, SCREEN_SIZE_Y, 2);
                 break;
 
             case 18:
@@ -560,13 +559,13 @@ void sub_0800D288(void)
                 {
                     gUnk_03002CB0.dispCnt &= ~DCNT_BG2;
                 }
-                sub_0803FBBC(var_r8, sp2C, sp30);
+                sub_0803FBBC(bgNum, sp2C, sp30);
                 break;
 
             case 20:
                 temp_r6 = gEwramData->unk_60.unk_4C8;
-                var_r4 = (s16*)&gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
-                sub_08001718(0, 160, 2, REG_BG3HOFS);
+                var_r4 = (s16*)&gEwramData->hBlankEffect.hBlankBuffer[1 - gEwramData->hBlankEffect.currentBuffer];
+                HBlankEffectSetup(0, SCREEN_SIZE_Y, 2, REG_BG3HOFS);
 
                 for (var_r1 = 0; var_r1 < 0x80; var_r1++)
                 {
@@ -588,7 +587,7 @@ void sub_0800D288(void)
                     *var_r4++ = temp_r6 * 2;
                 }
 
-                gEwramData->unk_7864.unk_7864_0 = 1;
+                gEwramData->hBlankEffect.requestStart = 1;
                 break;
 
             case 21:
@@ -610,21 +609,21 @@ void sub_0800D288(void)
                 break;
 
             case 23:
-                sub_0803FBBC(var_r8, sub_0800D288_inline_0(temp_r7_2->unk_14, sp28->unk_14, sp2C, 0xF0, 0xF0), sp30);
-                sub_0800CB8C(var_r8, 0x70, 0x30, 3);
+                sub_0803FBBC(bgNum, sub_0800D288_inline_0(temp_r7_2->unk_14, sp28->unk_14, sp2C, 0xF0, 0xF0), sp30);
+                sub_0800CB8C(bgNum, (s32)(SCREEN_SIZE_Y * 0.7f), (s32)(SCREEN_SIZE_Y * 0.3f), 3);
                 break;
 
             case 24:
-                sub_0803FBBC(var_r8, sp2C, sp30);
-                sub_0800CC90(var_r8, 0xB0, 0x200, 1);
+                sub_0803FBBC(bgNum, sp2C, sp30);
+                sub_0800CC90(bgNum, 0xB0, 0x200, 1);
                 break;
 
             case 25:
-                sub_0800CC90(var_r8, 0x70, 0x100, 1);
+                sub_0800CC90(bgNum, 0x70, 0x100, 1);
                 break;
 
             case 26:
-                sub_0803FBBC(var_r8, sp2C, sp30);
+                sub_0803FBBC(bgNum, sp2C, sp30);
                 break;
 
             case 27:
@@ -639,46 +638,46 @@ void sub_0800D288(void)
                 break;
 
             case 28:
-                sub_0800CED4(var_r8, 0x38, 0x90);
+                sub_0800CED4(bgNum, 0x38, 0x90);
                 break;
 
             case 29:
-                sub_0800CED4(var_r8, 0x70, 0xCC);
+                sub_0800CED4(bgNum, 0x70, 0xCC);
                 break;
 
             case 30:
                 sp34 = 1;
                 temp_sb = gEwramData->unk_60.unk_4C8;
-                sp38 = &gDisplayRegisters.bgOfs[var_r8].vOfs;
-                var_r4_2 = (s16*)&gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
-                sub_08001718(0, 160, 2, (struct BgOffset *)REG_BG0VOFS + var_r8);
+                sp38 = &gDisplayRegisters.bgOfs[bgNum].vOfs;
+                var_r4_2 = (s16*)&gEwramData->hBlankEffect.hBlankBuffer[1 - gEwramData->hBlankEffect.currentBuffer];
+                HBlankEffectSetup(0, SCREEN_SIZE_Y, 2, (struct BgOffset *)REG_BG0VOFS + bgNum);
 
                 sp34 = 0xD;
                 temp_sb <<= 0xA;
                 var_r1_5 = 0xB;
-                for (var_r6 = 0; var_r6 < 160; var_r6++)
+                for (var_r6 = 0; var_r6 < SCREEN_SIZE_Y; var_r6++)
                 {
                     *var_r4_2++ = (sub_080009E4((var_r6 << var_r1_5) + temp_sb) >> sp34) + *sp38;
                 }
 
-                gEwramData->unk_7864.unk_7864_0 = 1;
+                gEwramData->hBlankEffect.requestStart = 1;
                 temp_r7_2->xPos.whole += sp2C;
                 temp_r3->hOfs = temp_r7_2->xPos.part16.integer;
                 break;
 
             case 31:
-                sub_0803FBBC(var_r8, sp2C, sp30);
-                var_r6_2 = (s16*)&gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
-                var_0 = &gDisplayRegisters.bgOfs[var_r8].hOfs;
-                sub_08001718(0, 160, 2, (struct BgOffset *)REG_BG0HOFS + var_r8);
+                sub_0803FBBC(bgNum, sp2C, sp30);
+                var_r6_2 = (s16*)&gEwramData->hBlankEffect.hBlankBuffer[1 - gEwramData->hBlankEffect.currentBuffer];
+                var_0 = &gDisplayRegisters.bgOfs[bgNum].hOfs;
+                HBlankEffectSetup(0, SCREEN_SIZE_Y, 2, (struct BgOffset *)REG_BG0HOFS + bgNum);
 
-                temp_r2_2 = sub_080009E4(gEwramData->unk_0 << 8) >> 0xF;
-                for (var_r1_6 = 0; var_r1_6 < 160; var_r1_6++)
+                temp_r2_2 = sub_080009E4(gEwramData->frameCounter << 8) >> 0xF;
+                for (var_r1_6 = 0; var_r1_6 < SCREEN_SIZE_Y; var_r1_6++)
                 {
                     *var_r6_2++ = *var_0 + temp_r2_2;
                 }
 
-                gEwramData->unk_7864.unk_7864_0 = 1;
+                gEwramData->hBlankEffect.requestStart = 1;
                 break;
 
             case 32:
@@ -728,11 +727,11 @@ void sub_0800D288(void)
                 break;
 
             case 36:
-                sub_0803FBBC(var_r8, sp2C, sp30);
+                sub_0803FBBC(bgNum, sp2C, sp30);
                 temp_sl = gEwramData->unk_60.unk_4C8;
-                var_1 = &gDisplayRegisters.bgOfs[var_r8].vOfs;
-                var_r4_2 = (s16*)&gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
-                sub_08001718(0, 160, 2, (struct BgOffset *)REG_BG0VOFS + var_r8);
+                var_1 = &gDisplayRegisters.bgOfs[bgNum].vOfs;
+                var_r4_2 = (s16*)&gEwramData->hBlankEffect.hBlankBuffer[1 - gEwramData->hBlankEffect.currentBuffer];
+                HBlankEffectSetup(0, SCREEN_SIZE_Y, 2, (struct BgOffset *)REG_BG0VOFS + bgNum);
 
                 var_r2_3 = 0xE;
                 temp_sl <<= 0xA;
@@ -742,7 +741,7 @@ void sub_0800D288(void)
                     *var_r4_2++ = (sub_080009E4((var_r6_4 << var_r1_7) + temp_sl) >> var_r2_3) + *var_1;
                 }
 
-                gEwramData->unk_7864.unk_7864_0 = 1;
+                gEwramData->hBlankEffect.requestStart = 1;
                 break;
         }
     }
@@ -1370,12 +1369,12 @@ void sub_0800E40C(void)
     else
     {
         var_2 = ((u16*)gEwramData->unk_133F4);
-        *var_2 = (gEwramData->unk_60.unk_AC & 8) ? 0xF226 : 0xF227;
+        *var_2 = (gEwramData->unk_60.inGameTimer & 8) ? 0xF226 : 0xF227;
         sub_08001668(2, (s32) temp_r0, (u32 *) (0x0600E000 + (var_1 << 1) + (var_r7 << 6)));
         var_r7++;
 
         var_2 = ((u16*)gEwramData->unk_133F4);
-        *var_2 = (gEwramData->unk_60.unk_AC & 8) ? 0xF236 : 0xF237;
+        *var_2 = (gEwramData->unk_60.inGameTimer & 8) ? 0xF236 : 0xF237;
         sub_08001668(2, (s32) temp_r0, (u32 *) (0x0600E000 + (var_1 << 1) + (var_r7 << 6)));
     }
 }
@@ -2120,7 +2119,7 @@ void sub_0800EB04(void)
     if (!(gEwramData->unk_60.unk_42C & 0x02000000))
     {
         gEwramData->unk_60.unk_42C |= 0x02000000;
-        gEwramData->unk_7864.unk_7864_1 = 1;
+        gEwramData->hBlankEffect.requestStop = 1;
         var_0 = 0x26;
         DMA_FILL_32(3, 0, temp_r6, var_0);
         var_r4 = 0x0600E01A;
@@ -2165,8 +2164,8 @@ void sub_0800EBE0(void)
         sub_0800ECA0(0U, 0U);
     }
 
-    gEwramData->unk_7864.unk_7864_1 = 1;
-    DMA_FILL_32(3, 0, &gEwramData->unk_7864.unk_786C, sizeof(gEwramData->unk_7864.unk_786C[0]));
+    gEwramData->hBlankEffect.requestStop = 1;
+    DMA_FILL_32(3, 0, &gEwramData->hBlankEffect.hBlankBuffer, sizeof(gEwramData->hBlankEffect.hBlankBuffer[0]));
 }
 
 /**

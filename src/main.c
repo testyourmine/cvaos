@@ -38,9 +38,9 @@ extern void _intr_main(void);
  */
 void AgbMain(void)
 {
-    struct EwramData_unk7864 *unk_7864;
+    struct HBlankEffect *hBlankEffect;
 
-    unk_7864 = &gEwramData->unk_7864;
+    hBlankEffect = &gEwramData->hBlankEffect;
 
     InitializeGame();
 
@@ -62,23 +62,23 @@ void AgbMain(void)
 
             GameModeUpdate();
             sub_0803DF70();
-            gEwramData->unk_0 += 1;
+            gEwramData->frameCounter += 1;
             sub_08000424();
             sub_0803CDDC();
 
-            if (unk_7864->unk_7864_0)
+            if (hBlankEffect->requestStart)
             {
-                unk_7864->unk_7864_3 ^= 1;
-                unk_7864->unk_7864_2 = 1;
-                unk_7864->unk_7864_1 = 0;
-                unk_7864->unk_7864_0 = 0;
+                hBlankEffect->currentBuffer ^= 1;
+                hBlankEffect->enabled = 1;
+                hBlankEffect->requestStop = 0;
+                hBlankEffect->requestStart = 0;
             }
-            else if (unk_7864->unk_7864_1)
+            else if (hBlankEffect->requestStop)
             {
                 WRITE_16(REG_DISPSTAT, READ_16(REG_DISPSTAT) & ~DSTAT_IF_VCOUNT);
-                unk_7864->unk_7864_2 = 0;
-                unk_7864->unk_7864_0 = 0;
-                unk_7864->unk_7864_1 = 0;
+                hBlankEffect->enabled = 0;
+                hBlankEffect->requestStart = 0;
+                hBlankEffect->requestStop = 0;
                 DMA_STOP(0);
             }
 
@@ -86,9 +86,9 @@ void AgbMain(void)
             sub_080D7E94();
             DMA_COPY_32(3, &gDisplayRegisters, REG_BG0CNT, sizeof(gDisplayRegisters));
 
-            if (unk_7864->unk_7864_2)
+            if (hBlankEffect->enabled)
             {
-                DMA_COPY_16(3, &unk_7864->unk_786C[unk_7864->unk_7864_3], unk_7864->destReg, unk_7864->writeSize);
+                DMA_COPY_16(3, &hBlankEffect->hBlankBuffer[hBlankEffect->currentBuffer], hBlankEffect->destReg, hBlankEffect->writeSize);
             }
 
             sub_080015E4();
@@ -108,20 +108,20 @@ void AgbMain(void)
  */
 void VblankInterrupt(void)
 {
-    struct EwramData_unk7864 *unk_7864;
+    struct HBlankEffect *hBlankEffect;
 
-    unk_7864 = &gEwramData->unk_7864;
+    hBlankEffect = &gEwramData->hBlankEffect;
     sub_080D7F1C();
     m4aSoundVSync();
 
-    if (unk_7864->unk_7864_2)
+    if (hBlankEffect->enabled)
     {
         DMA_STOP(0);
-        DMA_SET(0, &unk_7864->unk_786C[unk_7864->unk_7864_3][unk_7864->writeSize >> 1], unk_7864->destReg,
-            C_32_2_16(DMA_ENABLE | DMA_START_HBLANK | DMA_16BIT | DMA_REPEAT | DMA_SRC_INC | DMA_DEST_RELOAD, unk_7864->writeSize / sizeof(u16)));
+        DMA_SET(0, &hBlankEffect->hBlankBuffer[hBlankEffect->currentBuffer][hBlankEffect->writeSize >> 1], hBlankEffect->destReg,
+            C_32_2_16(DMA_ENABLE | DMA_START_HBLANK | DMA_16BIT | DMA_REPEAT | DMA_SRC_INC | DMA_DEST_RELOAD, hBlankEffect->writeSize / sizeof(u16)));
 
         gUnk_03002CB0.unk_2 = 2;
-        WRITE_16(REG_DISPSTAT, C_16_2_8(unk_7864->vcountSetting, DSTAT_IF_VCOUNT | DSTAT_IF_VBLANK));
+        WRITE_16(REG_DISPSTAT, C_16_2_8(hBlankEffect->vcountSetting, DSTAT_IF_VCOUNT | DSTAT_IF_VBLANK));
     }
 
     INTR_CHECK |= IF_VBLANK;

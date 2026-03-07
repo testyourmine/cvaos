@@ -182,7 +182,7 @@ s32 GameModeIntroCutsceneUpdate(void)
     switch (gEwramData->gameModeUpdateStage)
     {
         case 0:
-            gEwramData->unk_7864.unk_7864_1 = 1;
+            gEwramData->hBlankEffect.requestStop = 1;
             EntityDeleteAll();
             sub_0803D9A8();
             sub_0803E438();
@@ -303,7 +303,7 @@ s32 GameModeIntroCutsceneUpdate(void)
                 sub_0803CED4();
                 gDisplayRegisters.bldCnt = BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_DECREASE_EFFECT;
                 gDisplayRegisters.bldY = BLDY_MAX_VALUE;
-                gEwramData->unk_7864.unk_7864_1 = 1;
+                gEwramData->hBlankEffect.requestStop = 1;
                 EntityDeleteAll();
                 sub_0803D9A8();
                 sub_0803E438();
@@ -336,7 +336,7 @@ s32 GameModeIntroCutsceneUpdate(void)
         sub_0803CED4();
         gDisplayRegisters.bldCnt = BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_DECREASE_EFFECT;
         gDisplayRegisters.bldY = BLDY_MAX_VALUE;
-        gEwramData->unk_7864.unk_7864_1 = 1;
+        gEwramData->hBlankEffect.requestStop = 1;
         EntityDeleteAll();
         sub_0803D9A8();
         sub_0803E438();

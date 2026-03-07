@@ -13,16 +13,16 @@ struct InputData {
     /* 0x0001E */ u16 playerNewInput;
 }; /* size = 0xC */
 
-struct EwramData_unk7864 {
-    /* 0x07864 */ u8 unk_7864_0:1;
-    /* 0x07864 */ u8 unk_7864_1:1;
-    /* 0x07864 */ u8 unk_7864_2:1;
-    /* 0x07864 */ u16 unk_7864_3:1;
+struct HBlankEffect {
+    /* 0x07864 */ u8 requestStart:1;
+    /* 0x07864 */ u8 requestStop:1;
+    /* 0x07864 */ u8 enabled:1;
+    /* 0x07864 */ u16 currentBuffer:1;
     /* 0x07865 */ u8 vcountSetting;
     /* 0x07866 */ u8 writeSize;
     /* 0x07867 */ u8 pad_7867[0x07868 - 0x07867];
     /* 0x07868 */ void *destReg;
-    /* 0x0786C */ s16 unk_786C[2][0x500];
+    /* 0x0786C */ s16 hBlankBuffer[2][0x500];
 }; /* size = 0x1408 */
 
 struct EwramData_unk4F8_8 {
@@ -531,7 +531,7 @@ struct EwramData_unk60 {
     /* 0x000A5 */ u8 unk_A5;
     /* 0x000A6 */ u16 unk_A6;
     /* 0x000A8 */ u32 unk_A8; // type?
-    /* 0x000AC */ u32 unk_AC; // type?
+    /* 0x000AC */ u32 inGameTimer;
     /* 0x000B0 */ u8 pad_B0[0xB4 - 0xB0];
     /* 0x000B4 */ u32 unk_B4[1]; // Length?
     /* 0x000B8 */ u32 unk_B8[1]; // Length?
@@ -813,7 +813,7 @@ struct EwramData_unk11080 {
 }; /* size = 0x508 */
 
 struct EwramData {
-    /* 0x00000 */ u32 unk_0;
+    /* 0x00000 */ u32 frameCounter;
     /* 0x00004 */ u16 unk_4;
     /* 0x00006 */ u16 unk_6;
     /* 0x00008 */ u32 randomNumber;
@@ -833,8 +833,8 @@ struct EwramData {
     /* 0x004DC */ struct EwramData_unk4DC unk_4DC; // TODO: EwramData_unk4D4 and EwramData_unk4DC likely the same
     /* 0x004E4 */ struct EwramData_EntityData entityData[0xE0];
 
-    /* 0x07864 */ struct EwramData_unk7864 unk_7864;
-    /* 0x08C6C */ struct EwramData_unk7864 unk_8C6C; // TODO: probably a backup of unk_7864
+    /* 0x07864 */ struct HBlankEffect hBlankEffect;
+    /* 0x08C6C */ struct HBlankEffect hBlankEffect_backup;
 
     /* 0x0A074 */ u8 unk_A074_0:1;
     /* 0x0A074 */ u8 unk_A074_1:1;

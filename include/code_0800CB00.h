@@ -6,10 +6,10 @@
 #include "structs/main.h"
 
 void sub_0800CB00(void);
-void sub_0800CB8C(s32 param_0, s32 param_1, s32 param_2, s32 param_3);
-void sub_0800CC90(s32 param_0, s32 param_1, s32 param_2, s32 param_3);
-void sub_0800CDAC(s32 param_0, s32 param_1, s32 param_2);
-void sub_0800CED4(s32 param_0, s32 param_1, s32 param_2);
+void sub_0800CB8C(s32 bgNum, s32 param_1, s32 param_2, s32 param_3);
+void sub_0800CC90(s32 bgNum, s32 param_1, s32 param_2, s32 param_3);
+void sub_0800CDAC(s32 bgNum, s32 param_1, s32 param_2);
+void sub_0800CED4(s32 bgNum, s32 param_1, s32 param_2);
 void sub_0800D000(void);
 void sub_0800D0F8(s32 param_0, s32 param_1, s32 param_2);
 void sub_0800D154(void);

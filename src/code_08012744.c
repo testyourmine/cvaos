@@ -147,7 +147,7 @@ s32 sub_080127F0(s32 param_0, s32 param_1)
 
     temp_r5 = &gEwramData->unk_60;
     temp_sb = &gEwramData->unk_20[1];
-    temp_sl = temp_r5->unk_AC;
+    temp_sl = temp_r5->inGameTimer;
 
     if (sub_08013700_inline(param_0, 1) && temp_sb->unk_38)
     {
@@ -163,7 +163,7 @@ s32 sub_080127F0(s32 param_0, s32 param_1)
         temp_r5->unk_33A = 0x9F;
     }
 
-    temp_r5->unk_AC = temp_sl;
+    temp_r5->inGameTimer = temp_sl;
     sub_080213BC();
 
     if (param_1 != 0)
@@ -522,7 +522,7 @@ s32 sub_0801352C(void)
     temp_r5 = gEwramData;
     temp_r4 = &temp_r5->unk_60;
     sub_08008ED0(0);
-    temp_r4->unk_AC = 1;
+    temp_r4->inGameTimer = 1;
     temp_r5->unk_60.unk_A6 = 0;
     temp_r5->unk_60.unk_A0 = 1;
     sub_08013620_inline(temp_r5->unk_60.currentSave);

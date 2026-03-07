@@ -741,17 +741,17 @@ s32 GameModeResetUpdate(void)
  */
 void TitleScreen_sub_08002F44(s32 arg0)
 {
-    s16 *var_r6;
+    s16 *hBlankBuf;
     s32 var_r4;
-    s32 var_r5;
+    s32 scanline;
     u16 var_r0;
     u16 var_r1;
 
-    var_r6 = gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
-    var_r4 = gEwramData->unk_0 << 10;
-    sub_08001718(0, 120, 2, REG_BG1HOFS);
+    hBlankBuf = gEwramData->hBlankEffect.hBlankBuffer[1 - gEwramData->hBlankEffect.currentBuffer];
+    var_r4 = gEwramData->frameCounter << 10;
+    HBlankEffectSetup(0, (s32)(SCREEN_SIZE_Y * 0.75f), 2, REG_BG1HOFS);
     
-    for (var_r5 = 0; var_r5 < 120; var_r5++)
+    for (scanline = 0; scanline < (s32)(SCREEN_SIZE_Y * 0.75f); scanline++)
     {
         if ((arg0 * (sub_080009E4(var_r4) >> 8)) < 0)
         {
@@ -763,16 +763,16 @@ void TitleScreen_sub_08002F44(s32 arg0)
         }
 
         var_r1 = var_r0;
-        if (var_r5 & 1)
+        if (scanline & 1)
         {
             var_r1 = -(var_r1 << 0x10) >> 0x10;
         }
-        *var_r6 = var_r1;
+        *hBlankBuf = var_r1;
         var_r4 += 0x1000;
-        var_r6 += 1;
+        hBlankBuf += 1;
     }
 
-    gEwramData->unk_7864.unk_7864_0 = 1;
+    gEwramData->hBlankEffect.requestStart = 1;
 }
 
 struct Unk_084F0C84 {
@@ -878,7 +878,7 @@ void TitleScreen_sub_08002FF8(void)
  */
 void TitleScreen_sub_08003080(void)
 {
-    gEwramData->unk_7864.unk_7864_1 = 1;
+    gEwramData->hBlankEffect.requestStop = 1;
     sub_0803D3A0(0);
     sub_0800466C(&gEwramData->entityData[0x12]);
     EntityDeleteAll();
@@ -916,7 +916,7 @@ static inline void TitleScreenSetAffine_inline(s16 scale)
     src.scrY = SCREEN_SIZE_Y / 2;
     src.sx = scale;
     src.sy = scale;
-    src.alpha = gEwramData->unk_0 * 0x10;
+    src.alpha = gEwramData->frameCounter * 0x10;
     BgAffineSet(&src, (struct BgAffineDstData *) &gDisplayRegisters.bg2PA, 1);
 }
 
@@ -2185,40 +2185,40 @@ void sub_080046D0(struct EwramData_EntityData *param_0)
  */
 void sub_08004750(void)
 {
-    s16 *var_r5;
+    s16 *hBlankBuf;
     s32 temp_r2;
     s32 var_r4;
-    s32 var_r6;
+    s32 scanline;
     s32 var_r7;
     u16 temp_r8;
 
-    var_r5 = (s16*)&gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3];
-    var_r4 = gEwramData->unk_0 << 0xA;
+    hBlankBuf = (s16*)&gEwramData->hBlankEffect.hBlankBuffer[1 - gEwramData->hBlankEffect.currentBuffer];
+    var_r4 = gEwramData->frameCounter << 0xA;
 
     // Fake
-    var_r4 = gEwramData->unk_0;
+    var_r4 = gEwramData->frameCounter;
     var_r4 <<= 0xA;
 
     temp_r8 = gDisplayRegisters.bgOfs[2].vOfs;
-    sub_08001718(0, 160, 2, REG_BG2HOFS); 
+    HBlankEffectSetup(0, SCREEN_SIZE_Y, 2, REG_BG2HOFS); 
 
-    for (var_r6 = 0, var_r7 = 2; var_r6 < 0xA0; var_r6 += 1, var_r7 += 3)
+    for (scanline = 0, var_r7 = 2; scanline < SCREEN_SIZE_Y; scanline += 1, var_r7 += 3)
     {
-        temp_r2 = var_r6 + temp_r8;
-        if ((temp_r2 > 0x120) || ((temp_r2 & 1) == ((gEwramData->unk_0 & 0x10) >> 4)))
+        temp_r2 = scanline + temp_r8;
+        if ((temp_r2 > 0x120) || ((temp_r2 & 1) == ((gEwramData->frameCounter & 0x10) / 0x10)))
         {
-            var_r5[var_r7] = 0;
+            hBlankBuf[var_r7] = 0;
         }
         else
         {
-            *var_r5 = sub_080009E4(var_r4) >> 0xF;
+            *hBlankBuf = sub_080009E4(var_r4) >> 0xF;
         }
 
-        var_r5 += 1;
+        hBlankBuf += 1;
         var_r4 -= 0x2000;
     }
 
-    gEwramData->unk_7864.unk_7864_0 = 1;
+    gEwramData->hBlankEffect.requestStart = 1;
 }
 
 /**
@@ -2562,7 +2562,7 @@ s32 GameModeMainMenuUpdate(void)
             {
                 gUnk_03002CB0.dispCnt |= DCNT_BG0;
                 temp_r7->unk_4EE = 1;
-                gEwramData->unk_7864.unk_7864_1 = 1;
+                gEwramData->hBlankEffect.requestStop = 1;
                 sUnk_084F0D34[temp_r7->unk_4EF](temp_r7);
                 temp_r7->unk_4F0 = 0;
                 gEwramData->gameModeUpdateStage += 1;
@@ -2607,7 +2607,7 @@ s32 GameModeMainMenuUpdate(void)
                 GameModeMainMenuUpdate_inline(gEwramData->unk_4);
                 break;
             }
-            gEwramData->unk_7864.unk_7864_1 = 1;
+            gEwramData->hBlankEffect.requestStop = 1;
             sUnk_084F0D34[temp_r7->unk_4EF](temp_r7);
             temp_r7->unk_4F0 = 0;
             gDisplayRegisters.bldAlpha = C_16_2_8(BLDALPHA_MAX_VALUE, 0);
@@ -2642,7 +2642,7 @@ s32 GameModeMainMenuUpdate(void)
                 break;
             }
             gUnk_03002CB0.dispCnt |= DCNT_BG0;
-            gEwramData->unk_7864.unk_7864_1 = 1;
+            gEwramData->hBlankEffect.requestStop = 1;
             sUnk_084F0D34[temp_r7->unk_4EF](temp_r7);
             temp_r7->unk_4F0 = 0;
             gEwramData->gameModeUpdateStage += 1;
@@ -2718,7 +2718,7 @@ s32 GameModeMainMenuUpdate(void)
             }
             else
             {
-                gEwramData->unk_7864.unk_7864_1 = 1;
+                gEwramData->hBlankEffect.requestStop = 1;
                 sub_08008324(temp_r7);
                 gEwramData->gameModeUpdateStage += 1;
                 gEwramData->unk_12 = 0;
@@ -2735,7 +2735,7 @@ s32 GameModeMainMenuUpdate(void)
             gUnk_03002CB0.dispCnt |= DCNT_BG2;
             gDisplayRegisters.bldAlpha = C_16_2_8(10, 6);
             gDisplayRegisters.bldCnt = BLDCNT_BG3_SECOND_TARGET_PIXEL | BLDCNT_ALPHA_BLENDING_EFFECT | BLDCNT_BACKDROP_FIRST_TARGET_PIXEL | BLDCNT_BG3_FIRST_TARGET_PIXEL | BLDCNT_BG2_FIRST_TARGET_PIXEL | BLDCNT_BG0_FIRST_TARGET_PIXEL;
-            gEwramData->unk_7864.unk_7864_1 = 1;
+            gEwramData->hBlankEffect.requestStop = 1;
             gEwramData->gameModeUpdateStage += 1;
             gEwramData->unk_12 = 0;
             break;
@@ -2803,7 +2803,7 @@ s32 GameModeMainMenuUpdate(void)
             }
             gUnk_03002CB0.dispCnt &= ~(DCNT_WINOBJ | DCNT_WIN1 | DCNT_WIN0);
             gUnk_03002CB0.dispCnt |= DCNT_BG0;
-            gEwramData->unk_7864.unk_7864_1 = 1;
+            gEwramData->hBlankEffect.requestStop = 1;
             sub_0803F8A8(1, (u32 *)0x080E73A4, 0, 0);
             sub_0803F8A8(2, (u32 *)0x080E7434, 0, 0);
             sub_0800480C(temp_r7->unk_4EF);
@@ -2852,7 +2852,7 @@ s32 GameModeMainMenuUpdate(void)
                 }
                 break;
             }
-            gEwramData->unk_7864.unk_7864_1 = 1;
+            gEwramData->hBlankEffect.requestStop = 1;
             sub_0803F8A8(1, (u32 *)0x080E73A4, 0, 0);
             sub_0803F8A8(2, (u32 *)0x080E7434, 0, 0);
             sub_0800480C(temp_r7->unk_4EF);
@@ -2918,7 +2918,7 @@ s32 GameModeMainMenuUpdate(void)
                 }
                 break;
             }
-            gEwramData->unk_7864.unk_7864_1 = 1;
+            gEwramData->hBlankEffect.requestStop = 1;
             sub_0800480C((s32) temp_r7->unk_4EF);
             sub_0803F8A8(1, (u32 *)0x080E73A4, 0, 0);
             sub_0803F8A8(2, (u32 *)0x080E7434, 0, 0);
@@ -2962,7 +2962,7 @@ s32 GameModeMainMenuUpdate(void)
             gDisplayRegisters.bldY = gEwramData->unk_4;
             if (gDisplayRegisters.bldY >= BLDY_MAX_VALUE)
             {
-                gEwramData->unk_7864.unk_7864_1 = 1;
+                gEwramData->hBlankEffect.requestStop = 1;
                 sub_080049C4(temp_r7);
                 gameMode = GAME_MODE_IN_GAME;
             }

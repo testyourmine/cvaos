@@ -51,7 +51,7 @@ void sub_08005894(u8 arg0, u8 arg1, u8 arg2, u8 arg3)
     gDisplayRegisters.win0H = C_16_2_8(arg0, arg1);
     gDisplayRegisters.win0V = C_16_2_8(arg2, arg3);
 
-    gDisplayRegisters.bldY = (sub_080009E4(gEwramData->unk_0 << 0xA) >> 0xE) + 4;
+    gDisplayRegisters.bldY = (sub_080009E4(gEwramData->frameCounter << 0xA) >> 0xE) + 4;
     if (gDisplayRegisters.bldY < 2)
     {
         gDisplayRegisters.bldY = 2;
@@ -241,7 +241,7 @@ void sub_08005928(struct EwramData_EntityData *param_0)
     {
         if (param_0->unk_4FC.unk_4FC_8.unk_4FD != 0)
         {
-            temp_r1_2 = gEwramData->unk_0 >> 1;
+            temp_r1_2 = gEwramData->frameCounter >> 1;
             if (temp_r1_2 & 8)
             {
                 var_r1 = -((temp_r1_2 & 7) - 3);
@@ -253,7 +253,7 @@ void sub_08005928(struct EwramData_EntityData *param_0)
             param_0->unk_524.unk_524_16.unk_526 = (param_0->unk_4FC.unk_4FC_8.unk_4FE * 0x60) + 0x24 + var_r1;
             param_0->unk_528.unk_528_16.unk_52A = 0x8C;
             sub_0803AC40(param_0);
-            if (gEwramData->unk_0 & 2)
+            if (gEwramData->frameCounter & 2)
             {
                 if (param_0->unk_4F8.unk_4F8_8.unk_4F9 < 6)
                 {
@@ -276,7 +276,7 @@ void sub_08005928(struct EwramData_EntityData *param_0)
         else {
             if (param_0->unk_4F8.unk_4F8_8.unk_4F9 < 6)
             {
-                temp_r1_2 = gEwramData->unk_0 >> 1;
+                temp_r1_2 = gEwramData->frameCounter >> 1;
                 if (temp_r1_2 & 8)
                 {
                     var_r2 = -((temp_r1_2 & 7) - 3);
@@ -295,7 +295,7 @@ void sub_08005928(struct EwramData_EntityData *param_0)
             }
             else
             {
-                temp_r1_2 = gEwramData->unk_0 >> 1;
+                temp_r1_2 = gEwramData->frameCounter >> 1;
                 if (temp_r1_2 & 8)
                 {
                     var_r2 = -((temp_r1_2 & 7) - 3);
@@ -312,7 +312,7 @@ void sub_08005928(struct EwramData_EntityData *param_0)
     }
     else
     {
-        temp_r1_2 = gEwramData->unk_0 >> 1;
+        temp_r1_2 = gEwramData->frameCounter >> 1;
         if (temp_r1_2 & 8)
         {
             var_r2 = -((temp_r1_2 & 7) - 3);
@@ -325,7 +325,7 @@ void sub_08005928(struct EwramData_EntityData *param_0)
         param_0->unk_528.unk_528_16.unk_52A = 0x90;
         sub_0803AC40(param_0);
 
-        if (gEwramData->unk_0 & 2)
+        if (gEwramData->frameCounter & 2)
         {
             param_0->unk_524.unk_524_16.unk_526 = (u16) ((param_0->unk_4F4.unk_4F4_8.unk_4F6 * 0x10) + 0x10);
             param_0->unk_528.unk_528_16.unk_52A = 0x48;
@@ -449,7 +449,7 @@ void sub_08005E28(struct EwramData_EntityData *param_0)
     param_0->unk_549 = 0x10;
     if (param_0->unk_4F0 != 2)
     {
-        temp_r1_2 = gEwramData->unk_0 >> 1;
+        temp_r1_2 = gEwramData->frameCounter >> 1;
         if (temp_r1_2 & 8)
         {
             var_r1 = -((temp_r1_2 & 7) - 3);
@@ -464,7 +464,7 @@ void sub_08005E28(struct EwramData_EntityData *param_0)
     }
     else
     {
-        temp_r1_2 = gEwramData->unk_0 >> 1;
+        temp_r1_2 = gEwramData->frameCounter >> 1;
         if (temp_r1_2 & 8)
         {
             var_r1 = -((temp_r1_2 & 7) - 3);
@@ -476,7 +476,7 @@ void sub_08005E28(struct EwramData_EntityData *param_0)
         param_0->unk_524.unk_524_16.unk_526 = (param_0->unk_4F8.unk_4F8_8.unk_4F9 << 6) + 0x46 + var_r1;
         param_0->unk_528.unk_528_16.unk_52A = 0x90;
         sub_0803AC40(param_0);
-        if (gEwramData->unk_0 & 2)
+        if (gEwramData->frameCounter & 2)
         {
             param_0->unk_524.unk_524_16.unk_526 = (param_0->unk_4F4.unk_4F4_8.unk_4F7 * 0x10) + 0x88;
             param_0->unk_528.unk_528_16.unk_52A = 0x10;
@@ -571,7 +571,7 @@ void sub_08006318(struct EwramData_EntityData *param_0)
     sub_0803AC40(param_0);
     sub_08005928_inline_2(param_0, 2);
 
-    if (gEwramData->unk_0 & 0x10)
+    if (gEwramData->frameCounter & 0x10)
     {
         param_0->unk_524.unk_524_16.unk_526 = (param_0->unk_4F8.unk_4F8_8.unk_4FB * 0xC) + 0x48;
         param_0->unk_528.unk_528_16.unk_52A = 0x10;
@@ -619,7 +619,7 @@ void sub_0800656C(struct EwramData_EntityData *param_0)
     sub_08006910(param_0, 8, 0x10);
     sub_08005928_inline_2(param_0, 0);
     param_0->unk_549 = 0x10;
-    temp_r2 = gEwramData->unk_0 >> 1;
+    temp_r2 = gEwramData->frameCounter >> 1;
     if (temp_r2 & 8)
     {
         var_r1 = -((temp_r2 & 7) - 3);
@@ -1069,7 +1069,7 @@ void sub_08007204(struct EwramData_EntityData *param_0, s32 param_1)
     if (param_0->unk_4EF == 0)
     {
         sub_0804066C(0, 1);
-        var_r3 = &gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3][0x18];
+        var_r3 = &gEwramData->hBlankEffect.hBlankBuffer[1 - gEwramData->hBlankEffect.currentBuffer][0x18];
         
         if (param_0->unk_4F4.unk_4F4_8.unk_4F4 != 0)
         {
@@ -1085,7 +1085,7 @@ void sub_08007204(struct EwramData_EntityData *param_0, s32 param_1)
             *var_r3++ = var_r1_2;
         }
         *var_r3 = 0;
-        gEwramData->unk_7864.unk_7864_0 = 1;
+        gEwramData->hBlankEffect.requestStart = 1;
 
         if (param_0->unk_4F8.unk_4F8_8.unk_4F9 < 6)
         {
@@ -1163,7 +1163,7 @@ void sub_0800737C(struct EwramData_EntityData *param_0, s32 param_1, s32 param_2
         param_0->unk_4F4.unk_4F4_8.unk_4F4 = 1;
     }
 
-    var_r1 = &gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3][0x18];
+    var_r1 = &gEwramData->hBlankEffect.hBlankBuffer[1 - gEwramData->hBlankEffect.currentBuffer][0x18];
     if (param_0->unk_4F4.unk_4F4_8.unk_4F4 == 0)
     {
         var_r2 = 0x88;
@@ -1177,7 +1177,7 @@ void sub_0800737C(struct EwramData_EntityData *param_0, s32 param_1, s32 param_2
     {
         *var_r1++ = var_r2;
     }
-    gEwramData->unk_7864.unk_7864_0 = 1;
+    gEwramData->hBlankEffect.requestStart = 1;
 }
 
 /**
@@ -1189,7 +1189,7 @@ void sub_0800744C(struct EwramData_EntityData *param_0)
 {
     sub_0803F8A8(1, (u32 *)0x080E7314, 0, 0);
     sub_0803F8A8(2, (u32 *)0x080E7044, 0, 0);
-    sub_08001718(160, 104, 2, REG_BG1VOFS);
+    HBlankEffectSetup(160, (s32)(SCREEN_SIZE_Y * 0.65f), 2, REG_BG1VOFS);
 
     param_0->unk_4F8.unk_4F8_8.unk_4F9 = 0;
     if ((sub_08013700(1, 1) != 0) && (gEwramData->unk_20[1].unk_38 != 0))
@@ -1463,12 +1463,12 @@ void sub_08007820(struct EwramData_EntityData *param_0)
     param_0->unk_4F8.unk_4F8_8.unk_4F9 = param_0->unk_4F4.unk_4F4_8.unk_4F6;
     sub_0803F8A8(1, (u32*)&sUnk_080E7284, 0, 0);
     sub_0803F8A8(2, (u32*)&sUnk_080E6FB4, 0, 0);
-    sub_08001718(160, 152, 2, REG_BG1VOFS);
+    HBlankEffectSetup(160, (s32)(SCREEN_SIZE_Y * 0.95f), 2, REG_BG1VOFS);
     sub_0800737C(param_0, param_0->unk_4F4.unk_4F4_8.unk_4F6, param_0->unk_4F4.unk_4F4_8.unk_4F7);
     sub_0804728C(0x358);
     param_0->unk_4EE = 4;
     param_0->unk_4F0 = 0;
-    var_r3 = &gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3][0x18];
+    var_r3 = &gEwramData->hBlankEffect.hBlankBuffer[1 - gEwramData->hBlankEffect.currentBuffer][0x18];
     if (param_0->unk_4F4.unk_4F4_8.unk_4F4 == 0)
     {
         var_r4 = 0x88;
@@ -1481,7 +1481,7 @@ void sub_08007820(struct EwramData_EntityData *param_0)
     {
         *var_r3++ = var_r4;
     }
-    gEwramData->unk_7864.unk_7864_0 = 1;
+    gEwramData->hBlankEffect.requestStart = 1;
 }
 
 /**
@@ -1623,7 +1623,7 @@ s32 sub_08007914(struct EwramData_EntityData *param_0)
         }
         sub_0800737C(param_0, param_0->unk_4F4.unk_4F4_8.unk_4F6, param_0->unk_4F4.unk_4F4_8.unk_4F7);
     }
-    var_r1 = &gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3][0x18];
+    var_r1 = &gEwramData->hBlankEffect.hBlankBuffer[1 - gEwramData->hBlankEffect.currentBuffer][0x18];
     if (param_0->unk_4F4.unk_4F4_8.unk_4F4 == 0)
     {
         var_r2 = 0x88;
@@ -1636,7 +1636,7 @@ s32 sub_08007914(struct EwramData_EntityData *param_0)
     {
         *var_r1++ = var_r2;
     }
-    gEwramData->unk_7864.unk_7864_0 = 1;
+    gEwramData->hBlankEffect.requestStart = 1;
     return var_r7;
 }
 
@@ -1749,7 +1749,7 @@ s32 sub_08007B8C(struct EwramData_EntityData *param_0)
             sub_08007204(param_0, param_0->unk_4F8.unk_4F8_8.unk_4F9);
         }
     }
-    var_r1 = &gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3][0x18];
+    var_r1 = &gEwramData->hBlankEffect.hBlankBuffer[1 - gEwramData->hBlankEffect.currentBuffer][0x18];
     if (param_0->unk_4F4.unk_4F4_8.unk_4F4 != 0)
     {
         var_r2 = 0x88;
@@ -1762,7 +1762,7 @@ s32 sub_08007B8C(struct EwramData_EntityData *param_0)
     {
         *var_r1++ = var_r2;
     }
-    gEwramData->unk_7864.unk_7864_0 = 1;
+    gEwramData->hBlankEffect.requestStart = 1;
     return var_r7;
 }
 
@@ -1802,7 +1802,7 @@ void sub_08007D84(struct EwramData_EntityData *param_0, s32 param_1)
     if (param_0->unk_4EF == 0)
     {
         sub_0804066C(0, 1);
-        var_r1_2 = &gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3][0x18];
+        var_r1_2 = &gEwramData->hBlankEffect.hBlankBuffer[1 - gEwramData->hBlankEffect.currentBuffer][0x18];
         
         if (param_0->unk_4F4.unk_4F4_8.unk_4F4 != 0)
         {
@@ -1817,7 +1817,7 @@ void sub_08007D84(struct EwramData_EntityData *param_0, s32 param_1)
             *var_r1_2++ = var_r2_2;
         }
         *var_r1_2 = 0;
-        gEwramData->unk_7864.unk_7864_0 = 1;
+        gEwramData->hBlankEffect.requestStart = 1;
         if (gEwramData->gameMode == GAME_MODE_SOUL_TRADE_MENU)
         {
             temp_r2 = sub_08013700(param_1 + 1, 1);
@@ -1950,7 +1950,7 @@ void sub_08007FF0(struct EwramData_EntityData *param_0)
     sub_0803F8A8(1, (u32 *)0x080E7314, 0, 0);
     sub_08006BC0(param_0);
     sub_08007EE0(0);
-    sub_08001718(160, 104, 2, REG_BG1VOFS);
+    HBlankEffectSetup(160, (s32)(SCREEN_SIZE_Y * 0.65f), 2, REG_BG1VOFS);
     param_0->unk_4F8.unk_4F8_8.unk_4F9 = 0;
     sub_08007D84(param_0, 0);
     param_0->unk_4EE = 7;
@@ -2065,7 +2065,7 @@ void sub_08008290(struct EwramData_EntityData *param_0)
     }
     sub_0803F8A8(1, (u32 *)&sUnk_080E71F4, 0, 0);
     sub_0803F8A8(2, (u32 *)&sUnk_080E6E04, 0, 0);
-    sub_08001718(160, 152, 2, REG_BG1VOFS);
+    HBlankEffectSetup(160, (s32)(SCREEN_SIZE_Y * 0.95f), 2, REG_BG1VOFS);
     sub_08007204(param_0, param_0->unk_4F8.unk_4F8_8.unk_4F9);
     sub_0804728C(0x35A);
     param_0->unk_4EE = 5;
@@ -2100,14 +2100,14 @@ void sub_08008314(struct EwramData_EntityData *param_0)
  */
 void sub_08008324(struct EwramData_EntityData *param_0)
 {
-    s16 *var_r2;
+    s16 *hBlankBuf;
     s16 var_r3;
-    s32 var_r0;
+    s32 scanline;
 
     sub_0803F8A8(1, (u32 *)0x080E70D4, 0, 0);
     sub_0803F8A8(2, (u32 *)0x080E6E94, 0, 0);
-    sub_08001718(160, 16, 2, REG_BG1VOFS);
-    var_r2 = &gEwramData->unk_7864.unk_786C[1 - gEwramData->unk_7864.unk_7864_3][0];
+    HBlankEffectSetup(160, (s32)(SCREEN_SIZE_Y * 0.1f), 2, REG_BG1VOFS);
+    hBlankBuf = gEwramData->hBlankEffect.hBlankBuffer[1 - gEwramData->hBlankEffect.currentBuffer];
     if (param_0->unk_4EF != 0)
     {
         var_r3 = 0xA0;
@@ -2116,9 +2116,9 @@ void sub_08008324(struct EwramData_EntityData *param_0)
     {
         var_r3 = 0;
     }
-    for (var_r0 = 0; var_r0 < 0x10; var_r0++)
+    for (scanline = 0; scanline < (s32)(SCREEN_SIZE_Y * 0.1f); scanline++)
     {
-        *var_r2++ = var_r3;
+        *hBlankBuf++ = var_r3;
     }
     gUnk_03002CB0.dispCnt = DCNT_WIN1 | DCNT_WIN0 | DCNT_OBJ | DCNT_BG3 | DCNT_BG1;
     gDisplayRegisters.bldCnt = BLDCNT_SCREEN_SECOND_TARGET | BLDCNT_ALPHA_BLENDING_EFFECT | BLDCNT_OBJ_FIRST_TARGET_PIXEL | BLDCNT_BG1_FIRST_TARGET_PIXEL;

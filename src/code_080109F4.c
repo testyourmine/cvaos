@@ -500,7 +500,7 @@ void sub_08010FF4(struct EwramData_unk60 *param_0)
         {
             temp_sb = (param_0->roomMapXPos + (GetEntityRoomXPositionInteger(temp_r7) >> 8) + 4) * 4;
             temp_r4_2 = ((param_0->roomMapYPos + (GetEntityRoomYPositionInteger(temp_r7) >> 8) + 2) * 4) + 2;
-            temp_r3 = gEwramData->unk_0 >> 2;
+            temp_r3 = gEwramData->frameCounter >> 2;
             var_0 = 0x10 - (temp_r3 & 0xF);
             if ((param_0->unk_8D_6 == 1 && param_0->unk_8E_0) || (param_0->unk_8D_6 == 3 && !param_0->unk_8E_0))
             {
@@ -599,7 +599,7 @@ s32 sub_080110E4(struct EwramData_unk60 *param_0)
         case 5:
             sub_0800D1F0();
             // TODO: 7864 and 8C6C
-            DMA_COPY_32(3, &gEwramData->unk_8C6C, &gEwramData->unk_7864, 0x1408);
+            DMA_COPY_32(3, &gEwramData->hBlankEffect_backup, &gEwramData->hBlankEffect, sizeof(gEwramData->hBlankEffect));
             sub_08000B64();
             gDisplayRegisters.bldY = 0;
             gDisplayRegisters.bldCnt |= BLDCNT_SCREEN_SECOND_TARGET;
@@ -623,7 +623,7 @@ s32 sub_080110E4(struct EwramData_unk60 *param_0)
             break;
     }
 
-    gEwramData->unk_7864.unk_7864_1 = 1;
+    gEwramData->hBlankEffect.requestStop = 1;
     return var_r7;
 }
 
@@ -643,11 +643,11 @@ void sub_08011338(struct EwramData_unk60 *param_0)
     param_0->unk_64 = 4;
     param_0->unk_65 = 0;
     gDisplayRegisters.bldY = BLDY_MAX_VALUE;
-    DMA_COPY_32(3, &gEwramData->unk_7864, &gEwramData->unk_8C6C, 0x1408);
+    DMA_COPY_32(3, &gEwramData->hBlankEffect, &gEwramData->hBlankEffect_backup, sizeof(gEwramData->hBlankEffect_backup));
     gDisplayRegisters.bgOfs[0].hOfs = 0;
     gDisplayRegisters.bgOfs[0].vOfs = 0;
-    gEwramData->unk_7864.unk_7864_1 = 1;
-    DMA_FILL_32(3, 0, &gEwramData->unk_7864.unk_786C, sizeof(gEwramData->unk_7864.unk_786C[0]));
+    gEwramData->hBlankEffect.requestStop = 1;
+    DMA_FILL_32(3, 0, &gEwramData->hBlankEffect.hBlankBuffer, sizeof(gEwramData->hBlankEffect.hBlankBuffer[0]));
     sub_08013BCC();
     DMA_COPY_32(3, sUnk_080E3664, VRAM_BASE + 0x6000, sizeof(sUnk_080E3664));
 }
@@ -742,13 +742,13 @@ void sub_080115D4(struct EwramData_unk60 *param_0)
     param_0->unk_64 = 7;
     param_0->unk_65 = 0;
     gDisplayRegisters.bldY = BLDY_MAX_VALUE;
-    DMA_COPY_32(3, &gEwramData->unk_7864, &gEwramData->unk_8C6C, 0x1408);
+    DMA_COPY_32(3, &gEwramData->hBlankEffect, &gEwramData->hBlankEffect_backup, sizeof(gEwramData->hBlankEffect_backup));
     gDisplayRegisters.bgOfs[0].hOfs = 0;
     gDisplayRegisters.bgOfs[0].vOfs = 0;
-    gEwramData->unk_7864.unk_7864_1 = 1;
-    DMA_FILL_32(3, 0, &gEwramData->unk_7864.unk_786C, sizeof(gEwramData->unk_7864.unk_786C[0]));
+    gEwramData->hBlankEffect.requestStop = 1;
+    DMA_FILL_32(3, 0, &gEwramData->hBlankEffect.hBlankBuffer, sizeof(gEwramData->hBlankEffect.hBlankBuffer[0]));
     sub_08013BCC();
-    DMA_COPY_32(3, sUnk_080E3664, 0x06006000, sizeof(sUnk_080E3664));
+    DMA_COPY_32(3, sUnk_080E3664, VRAM_BASE + 0x6000, sizeof(sUnk_080E3664));
 }
 
 /**
@@ -821,7 +821,7 @@ s32 sub_080116A8(struct EwramData_unk60 *param_0)
             temp_r7 = sub_0804F84C(gEwramData->unk_60.unk_3F4);
             temp_r0_4 = ((temp_r7->unk_0 + 4) * 4) + 2;
             temp_r1_4 = ((temp_r7->unk_2 + 2) * 4) + 2;
-            temp_r4_4 = gEwramData->unk_0 >> 2;
+            temp_r4_4 = gEwramData->frameCounter >> 2;
             var_0 = 8 - (temp_r4_4 & 3);
             gDisplayRegisters.bldY = (temp_r4_4 & 7) + 8;
             sub_08002324(temp_r0_4, temp_r1_4, var_0);
@@ -868,7 +868,7 @@ s32 sub_080116A8(struct EwramData_unk60 *param_0)
 
         case 5:
             sub_0800D1F0();
-            DMA_COPY_32(3, &gEwramData->unk_8C6C, &gEwramData->unk_7864, 0x1408);
+            DMA_COPY_32(3, &gEwramData->hBlankEffect_backup, &gEwramData->hBlankEffect, sizeof(gEwramData->hBlankEffect));
             sub_08000B64();
             gDisplayRegisters.bldY = 0;
             gDisplayRegisters.bldCnt |= BLDCNT_SCREEN_SECOND_TARGET;
@@ -892,7 +892,7 @@ s32 sub_080116A8(struct EwramData_unk60 *param_0)
             break;
     }
 
-    gEwramData->unk_7864.unk_7864_1 = 1;
+    gEwramData->hBlankEffect.requestStop = 1;
     return sp4;
 }
 
