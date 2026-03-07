@@ -77,7 +77,7 @@ struct DebugMenuOptions sDebugMenuOptions[] = {
 
 struct DebugExitOptions {
     s32 gameMode;
-    s32 unk_4;
+    s32 saveFile;
     u32* unk_8; // Type?
     const u8* text;
 };
@@ -85,103 +85,103 @@ struct DebugExitOptions {
 struct DebugExitOptions sDebugExitOptions[] = {
     [0] = {
         .gameMode = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
+        .saveFile = 0,
         .unk_8 = (u32*)0x0850F15C,
         .text = "0.Entrance"
     },
     [1] = {
         .gameMode = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
+        .saveFile = 0,
         .unk_8 = (u32*)0x085122FC,
         .text = "1.Adoration Hall"
     },
     [2] = {
         .gameMode = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
+        .saveFile = 0,
         .unk_8 = (u32*)0x085132D4,
         .text = "2.Library"
     },
     [3] = {
         .gameMode = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
+        .saveFile = 0,
         .unk_8 = (u32*)0x08514AB0,
         .text = "3.Dance Hall"
     },
     [4] = {
         .gameMode = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
+        .saveFile = 0,
         .unk_8 = (u32*)0x08516768,
         .text = "4.Harem"
     },
     [5] = {
         .gameMode = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
+        .saveFile = 0,
         .unk_8 = (u32*)0x08517790,
         .text = "5.Babylon"
     },
     [6] = {
         .gameMode = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
+        .saveFile = 0,
         .unk_8 = (u32*)0x085196E0,
         .text = "6.Clock Tower"
     },
     [7] = {
         .gameMode = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
+        .saveFile = 0,
         .unk_8 = (u32*)0x0851ADD4,
         .text = "7.Water Vein"
     },
     [8] = {
         .gameMode = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
+        .saveFile = 0,
         .unk_8 = (u32*)0x0851E7F8,
         .text = "8.Arena"
     },
     [9] = {
         .gameMode = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
+        .saveFile = 0,
         .unk_8 = (u32*)0x085209B8,
         .text = "9.Saijo-kai"
     },
     [10] = {
         .gameMode = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
+        .saveFile = 0,
         .unk_8 = (u32*)0x08523064,
         .text = " Chaos Start"
     },
     [11] = {
         .gameMode = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
+        .saveFile = 0,
         .unk_8 = (u32*)0x08522ABC,
         .text = " Chaos Boss"
     },
     [12] = {
         .gameMode = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
+        .saveFile = 0,
         .unk_8 = (u32*)0x08524E5C,
         .text = " Boss Rush 1P"
     },
     [13] = {
         .gameMode = GAME_MODE_BOSS_RUSH_MENU,
-        .unk_4 = 0,
+        .saveFile = 0,
         .unk_8 = (u32*)0x08524020,
         .text = " Boss Rush 2P"
     },
     [14] = {
         .gameMode = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
+        .saveFile = 0,
         .unk_8 = (u32*)0x0851BF1C,
         .text = "  VS Legion"
     },
     [15] = {
         .gameMode = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
+        .saveFile = 0,
         .unk_8 = (u32*)0x0851E490,
         .text = "  VS Balor"
     },
     [16] = {
         .gameMode = GAME_MODE_IN_GAME,
-        .unk_4 = 0,
+        .saveFile = 0,
         .unk_8 = (u32*)0x08515EF0,
         .text = "  VS Collector"
     },
@@ -365,7 +365,7 @@ s32 GameModeDebugExitUpdate(void)
                 if ((gEwramData->unk_60.unk_88 == 0) && (gEwramData->unk_60.unk_3CC == 0))
                 {
                     var_r5_2 = 0;
-                    gEwramData->unk_60.currentSave = sDebugExitOptions[gEwramData->unk_12].unk_4 * 2;
+                    gEwramData->unk_60.currentSave = sDebugExitOptions[gEwramData->unk_12].saveFile * 2;
                     temp_r3_2 = sub_08013700(gEwramData->unk_60.currentSave + 1, 0);
                     if ((gEwramData->inputData.heldInput & KEY_RIGHT) && (temp_r3_2 != 0))
                     {
@@ -856,7 +856,7 @@ void TitleScreen_sub_08002FF8(void)
     unk_4E4 = &gEwramData->entityData[0x12];
     temp_r4 = &sUnk_084F0C84[unk_4E4->unk_508.unk_508_8.unk_508];
 
-    if (gEwramData->entityData[0x12].unk_4F8.unk_4F8_32++ > temp_r4->unk_6)
+    if (unk_4E4->unk_4F8.unk_4F8_32++ > temp_r4->unk_6)
     {
         unk_4E4->unk_4F8.unk_4F8_32 = 0;
         sub_0803C918((void*)temp_r4->unk_0, temp_r4->unk_4, 1, 0);

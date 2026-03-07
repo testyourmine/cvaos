@@ -33,6 +33,7 @@ static inline void sub_080135C0_inline(struct EwramData_unk60 *param_0)
     param_0->unk_A5 = gEwramData->unk_1325C.unk_13267;
 }
 
+// saves file to SRAM
 static inline u32 sub_08013620_inline(s32 param_0)
 {
     void *temp_r6;
@@ -55,6 +56,7 @@ static inline u32 sub_08013620_inline(s32 param_0)
     return error_addr;
 }
 
+// clears file from SRAM
 static inline s32 sub_08013698_inline(s32 param_0)
 {
     u32 error_addr;
@@ -94,6 +96,7 @@ static inline s32 sub_08013700_inline(s32 param_0, s32 param_1)
     return var_r5;
 }
 
+// load save file
 /**
  * @brief 12744 | To document
  * 
@@ -187,6 +190,7 @@ s32 sub_080127F0(s32 param_0, s32 param_1)
     return error_addr;
 }
 
+// deletes a file?
 /**
  * @brief 12A08 | To document
  * 
@@ -296,6 +300,7 @@ s32 sub_08012A08(s32 param_0)
     }
 }
 
+// copies file?
 /**
  * @brief 12E30 | To document
  * 
@@ -493,7 +498,7 @@ void sub_08013404(void)
     {
         for (var_r4 = 0; var_r4 < 2; var_r4++)
         {
-            gEwramData->unk_60.unk_B4[var_r0 * 2 + var_r4 * 0x50] = 0;
+            gEwramData->unk_60.unk_B4[var_r4][var_r0].unk_B4 = 0;
         }
     }
 
@@ -573,6 +578,7 @@ u32 sub_08013620(s32 param_0)
     return error_addr;
 }
 
+// loads file?
 /**
  * @brief 13698 | To document
  * 

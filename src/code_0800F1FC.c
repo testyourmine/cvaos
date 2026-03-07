@@ -790,71 +790,73 @@ static inline s32 sub_0800FCB8_inline_0(s32 temp_r8, s32 temp_r3, struct Unk_080
  */
 s32 sub_0800FCB8(struct EwramData_unk60 *param_0)
 {
-    s32 temp_r3;
-    s32 temp_r8;
+    s32 room;
+    s32 area;
     s32 var_r1;
-    s32 var_r4;
+    s32 area_;
     u8 temp_r4;
     u8 temp_r5;
     u8 temp_r6;
     u8 temp_r7;
-    struct EwramData_unkA078 *temp_r0;
-    struct EwramData_unkA078 *temp_r0_2;
+    struct EwramData_unkA078 *bg1Info;
     struct Unk_080E0FA4 unk_080E0FA4[13];
     s32 var_0;
 
     gEwramData++,gEwramData--; // Fake
-    temp_r0 = &gEwramData->bgInfo[1];
-    temp_r7 = temp_r0->xPos.part8.integer1;
-    temp_r6 = temp_r0->yPos.part8.integer1;
-    if ((sub_08001780(temp_r7, temp_r6) != 0) || (GetSaveRoomFlagFromMapPosition(temp_r7, temp_r6) != 0) || (GetWarpRoomFlagFromMapPosition(temp_r7, temp_r6) != 0))
+    bg1Info = &gEwramData->bgInfo[1];
+    temp_r7 = bg1Info->xPos.part8.integer1;
+    temp_r6 = bg1Info->yPos.part8.integer1;
+
+    if (CheckRoomTransition(temp_r7, temp_r6) != 0)
     {
         return -1;
     }
+
+    if ((GetSaveRoomFlagFromMapPosition(temp_r7, temp_r6) != 0) || (GetWarpRoomFlagFromMapPosition(temp_r7, temp_r6) != 0))
+    {
+        return -1;
+    }
+    
+    memcpy(&unk_080E0FA4, sUnk_080E0FA4, 0x68);
+    bg1Info = &gEwramData->bgInfo[1];
+    temp_r4 = bg1Info->xPos.part8.integer1;
+    temp_r5 = bg1Info->yPos.part8.integer1;
+    area_ = GetAreaFromMapPosition(temp_r4, temp_r5);
+    room = GetRoomFromMapPosition(temp_r4, temp_r5);
+
+    if (sub_0800FCB8_inline_0(area_, room, unk_080E0FA4))
+    {
+        return -1;
+    }
+
+    area = GetAreaFromMapPosition(temp_r7, temp_r6);
+
+    if ((GetRoomFromMapPosition(temp_r7, temp_r6) == 13) && (area == 7))
+    {
+        area = 12;
+    }
+    else if ((GetRoomFromMapPosition(temp_r7, temp_r6) == 9) && (area == 8))
+    {
+        area = 13;
+    }
+    else if ((GetRoomFromMapPosition(temp_r7, temp_r6) == 10) && (area == 8))
+    {
+        area = 14;
+    }
+    else if ((GetRoomFromMapPosition(temp_r7, temp_r6) == 11) && (area == 8))
+    {
+        area = 15;
+    }
+    
+    if (!((param_0->unk_37C >> area) & 1))
+    {
+        var_r1 = area;
+    }
     else
     {
-        memcpy(&unk_080E0FA4, sUnk_080E0FA4, 0x68);
-        temp_r0_2 = &gEwramData->bgInfo[1];
-        temp_r4 = temp_r0_2->xPos.part8.integer1;
-        temp_r5 = temp_r0_2->yPos.part8.integer1;
-        temp_r8 = GetAreaFromMapPosition(temp_r4, temp_r5);
-        temp_r3 = GetRoomFromMapPosition(temp_r4, temp_r5);
-
-        if (sub_0800FCB8_inline_0(temp_r8, temp_r3, unk_080E0FA4))
-        {
-            return -1;
-        }
-
-        var_r4 = GetAreaFromMapPosition(temp_r7, temp_r6);
-
-        if ((GetRoomFromMapPosition(temp_r7, temp_r6) == 13) && (var_r4 == 7))
-        {
-            var_r4 = 12;
-        }
-        else if ((GetRoomFromMapPosition(temp_r7, temp_r6) == 9) && (var_r4 == 8))
-        {
-            var_r4 = 13;
-        }
-        else if ((GetRoomFromMapPosition(temp_r7, temp_r6) == 10) && (var_r4 == 8))
-        {
-            var_r4 = 14;
-        }
-        else if ((GetRoomFromMapPosition(temp_r7, temp_r6) == 11) && (var_r4 == 8))
-        {
-            var_r4 = 15;
-        }
-        
-        if (!((param_0->unk_37C >> var_r4) & 1))
-        {
-            var_r1 = var_r4;
-        }
-        else
-        {
-            var_r1 = -1;
-        }
-        return var_r1;
+        var_r1 = -1;
     }
-    return -1;
+    return var_r1;
 }
 
 /**

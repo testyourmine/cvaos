@@ -14,7 +14,7 @@ void sub_080015E4(void);
 struct Unk_030034BC* sub_08001668(u16 arg0, s32 arg1, u32 *arg2);
 struct Unk_030034BC* sub_080016D0(u32 arg0, u32 *arg1, u32 *arg2);
 void HBlankEffectSetup(u8 numEntries, u8 vcountSetting, u8 writeSize, void *destReg);
-s32 sub_08001780(s32 param_0, s32 param_1);
+s32 CheckRoomTransition(s32 xOffset, s32 yOffset);
 s32 sub_08001800(struct EwramData_unkA078_0 *param_0, u16 param_1, u16 param_2);
 s32 GetAreaFromMapPosition(s32 xOffset, s32 yOffset);
 s32 GetRoomFromMapPosition(s32 xOffset, s32 yOffset);

@@ -40,11 +40,11 @@ s32 sub_08011DD0(struct EwramData_unk60 *param_0)
 
     var_r6 = 0;
 
-    for (var_r1 = 0; var_r1 < 0x28; var_r1++)
+    for (var_r1 = 0; var_r1 < 40; var_r1++)
     {
         for (var_r3 = 0; var_r3 < 0x40; var_r3++)
         {
-            if (param_0->unk_B8[((var_r1 * 8) + ((var_r3 >> 5) * 0x140)) >> 2] & (1 << (var_r3 & 0x1F)))
+            if (param_0->unk_B4[var_r3 >> 5][var_r1].unk_B8 & (1 << (var_r3 & 0x1F)))
             {
                 var_r6 += 1;
             }
@@ -68,11 +68,11 @@ s32 sub_08011E24(struct EwramData_unk60 *param_0, s32 param_1)
 
     var_r6 = 0;
 
-    for (var_r1 = 0; var_r1 < 0x28; var_r1++)
+    for (var_r1 = 0; var_r1 < 40; var_r1++)
     {
         for (var_r3 = 0; var_r3 < 0x40; var_r3++)
         {
-            if (param_0->unk_B8[((var_r1 * 8) + ((var_r3 >> 5) * 0x140)) >> 2] & (1 << (var_r3 & 0x1F)))
+            if (param_0->unk_B4[var_r3 >> 5][var_r1].unk_B8 & (1 << (var_r3 & 0x1F)))
             {
                 var_r6 += 1;
             }
@@ -118,11 +118,11 @@ void sub_08011E88(struct EwramData_unk60 *param_0, s32 param_1, s32 param_2, s32
 
     var_r6 = 0;
 
-    for (var_r1 = 0; var_r1 < 0x28; var_r1++)
+    for (var_r1 = 0; var_r1 < 40; var_r1++)
     {
         for (var_r3 = 0; var_r3 < 0x40; var_r3++)
         {
-            if (param_0->unk_B8[((var_r1 * 8) + ((var_r3 >> 5) * 0x140)) >> 2] & (1 << (var_r3 & 0x1F)))
+            if (param_0->unk_B4[var_r3 >> 5][var_r1].unk_B8 & (1 << (var_r3 & 0x1F)))
             {
                 var_r6 += 1;
             }

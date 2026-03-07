@@ -58,7 +58,7 @@ static inline s32 sub_08013960_inline_0(s32 param_0)
  */
 s32 sub_08013960(struct EwramData_unk60 *param_0)
 {
-    struct EwramData_unkA078 *temp_r0;
+    struct EwramData_unkA078 *bg1Info;
     u8 temp_r4;
     u8 temp_r5;
     s32 temp_r6;
@@ -66,9 +66,9 @@ s32 sub_08013960(struct EwramData_unk60 *param_0)
     s32 var_r4;
     s32 var_r5;
 
-    temp_r0 = &gEwramData->bgInfo[1];
-    temp_r4 = temp_r0->xPos.part8.integer1;
-    temp_r5 = temp_r0->yPos.part8.integer1;
+    bg1Info = &gEwramData->bgInfo[1];
+    temp_r4 = bg1Info->xPos.part8.integer1;
+    temp_r5 = bg1Info->yPos.part8.integer1;
 
     if (gEwramData->unk_60.unk_4CC_0)
     {
@@ -82,7 +82,7 @@ s32 sub_08013960(struct EwramData_unk60 *param_0)
         return 0;
     }
 
-    if (sub_08001780(temp_r4, temp_r5) != 0)
+    if (CheckRoomTransition(temp_r4, temp_r5) != 0)
     {
         sub_08013F6C(0x1040);
         param_0->currentSong = 0;

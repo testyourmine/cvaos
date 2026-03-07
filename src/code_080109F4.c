@@ -402,7 +402,7 @@ void sub_08010D60(struct EwramData_unk60 *param_0)
             }
 
             temp_r4_2 = (temp_r4_2 >> 6) & 0xF;
-            if (param_0->unk_B8[((var_r7 * 8) + ((var_r5 >> 5) * 0x140)) >> 2] & (1 << (var_r5 & 0x1F)))
+            if (param_0->unk_B4[var_r5 >> 5][var_r7].unk_B8 & (1 << (var_r5 & 0x1F)))
             {
                 sub_08010C4C(param_0, var_r5, var_r7, 4);
             }
@@ -447,7 +447,7 @@ void sub_08010D60(struct EwramData_unk60 *param_0)
             if (temp_r4_4 == 0xFFFF)
                 continue;
 
-            if (param_0->unk_B4[((var_r7 * 8) + ((var_r5 >> 5) * 0x140)) >> 2] & (1 << (var_r5 & 0x1F)))
+            if (param_0->unk_B4[var_r5 >> 5][var_r7].unk_B4 & (1 << (var_r5 & 0x1F)))
             {
                 // Is save room
                 if (temp_r4_4 & 0x4000)
@@ -662,24 +662,22 @@ void sub_08011430(struct EwramData_unk60 *param_0)
     struct EwramData_EntityData *temp_r4;
     s32 temp_r7;
     s32 temp_r8;
-    s32 temp_r0;
     s32 temp_r1;
-    s32 temp_r2;
+    s16 temp_r2;
 
     temp_r4 = gEwramData->unk_13110;
-    if ((s16)temp_r4->unk_524.unk_524_16.unk_526 < 0xF0)
+    if ((s16)temp_r4->unk_524.unk_524_16.unk_526 < SCREEN_SIZE_X)
     {
         temp_r7 = GetEntityRoomXPositionInteger(temp_r4);
         temp_r8 = GetEntityRoomYPositionInteger(temp_r4);
         if ((GetAreaFromMapPosition(GetEntityRoomXPositionInteger(gEwramData->unk_13110), GetEntityRoomYPositionInteger(gEwramData->unk_13110)) != 11))
         {
-            temp_r0 = gEwramData->unk_60.unk_4CC_0 != 0;
-            if (!temp_r0)
+            if (!gEwramData->unk_60.unk_4CC_0)
             {
                 temp_r1 = param_0->roomMapXPos + (temp_r7 >> 8);
-                temp_r2 = (((param_0->roomMapYPos + (temp_r8 >> 8)) * 8) + ((temp_r1 >> 5) * 0x140)) >> 2;
-                param_0->unk_B4[temp_r2] |= 1 << (temp_r1 & 0x1F);
-                param_0->unk_B8[temp_r2] |= 1 << (temp_r1 & 0x1F);
+                temp_r2 = param_0->roomMapYPos + (temp_r8 >> 8);
+                param_0->unk_B4[temp_r1 >> 5][temp_r2].unk_B4 |= 1 << (temp_r1 & 0x1F);
+                param_0->unk_B4[temp_r1 >> 5][temp_r2].unk_B8 |= 1 << (temp_r1 & 0x1F);
             }
         }
     }

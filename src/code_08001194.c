@@ -440,42 +440,42 @@ void HBlankEffectSetup(u8 numEntries, u8 vcountSetting, u8 writeSize, void *dest
     }
 }
 
-extern u32 *sUnk_0850E968[];
-extern u16 sUnk_08116650[];
+extern u32 *sUnk_0850E968[]; // transition rooms list
+extern u16 sUnk_08116650[]; // map info
 
 /**
- * @brief 1780 | To document
+ * @brief 1780 | Check if incoming room is a transition room
  * 
- * @param param_0 To document
- * @param param_1 To document
- * @return s32 To document
+ * @param xOffset X Offset
+ * @param yOffset Y offset
+ * @return bool, room is a transition room
  */
-s32 sub_08001780(s32 param_0, s32 param_1)
+s32 CheckRoomTransition(s32 xOffset, s32 yOffset)
 {
     u16 room;
     u16 area;
-    u32 *var_2;
-    u32 var_3;
-    u32 var_4;
+    u32 *roomPtr;
+    u32 i;
+    u32 isTransitionRoom;
 
-    var_4 = 0;
+    isTransitionRoom = FALSE;
 
-    area = sUnk_08116650[(gEwramData->unk_60.roomMapXPos + (param_0 >> 8)) + ((gEwramData->unk_60.roomMapYPos + (param_1 >> 8)) << 6)];
+    area = sUnk_08116650[(gEwramData->unk_60.roomMapXPos + (xOffset >> 8)) + ((gEwramData->unk_60.roomMapYPos + (yOffset >> 8)) << 6)];
     area = (area >> 6) & 0xF;
 
-    room = sUnk_08116650[(gEwramData->unk_60.roomMapXPos + (param_0 >> 8)) + ((gEwramData->unk_60.roomMapYPos + (param_1 >> 8)) << 6)];
+    room = sUnk_08116650[(gEwramData->unk_60.roomMapXPos + (xOffset >> 8)) + ((gEwramData->unk_60.roomMapYPos + (yOffset >> 8)) << 6)];
     room = room & 0x3F;
 
-    var_2 = GetRoomPointer(area, room);
-    for (var_3 = 0; sUnk_0850E968[var_3] != 0; var_3++)
+    roomPtr = GetRoomPointer(area, room);
+    for (i = 0; sUnk_0850E968[i] != 0; i++)
     {
-        if (sUnk_0850E968[var_3] == var_2)
+        if (sUnk_0850E968[i] == roomPtr)
         {
-            var_4 = 1;
+            isTransitionRoom = TRUE;
             break;
         }
     }
-    return var_4;
+    return isTransitionRoom;
 }
 
 /**
@@ -492,38 +492,38 @@ s32 sub_08001800(struct EwramData_unkA078_0 *param_0, u16 param_1, u16 param_2)
     u16 temp_r5;
     u8 var_r1;
     u8 var_r3;
-    s32 tmp;
-    u8 tmp2;
+    u8 var_0;
+    u8 var_1;
+    u8 var_2;
 
-    temp_r2_2 = param_0->unk_C[(u8)(param_1 >> 0x2) + (((u8)(param_2 >> 0x2) << 0x3) * param_0->unk_0)];
+    var_0 = param_1 >> 0x2;
+    var_1 = param_2 >> 0x2;
+    temp_r2_2 = param_0->unk_C[var_0 + ((var_1 << 0x3) * param_0->unk_0)];
     temp_r5 = temp_r2_2 & 0xC000;
     gUnk_03002CB0.unk_100C = temp_r5 >> 0xC;
 
     temp_r2_2 = temp_r2_2 & 0x3FFF;
     if (temp_r2_2 == 0)
     {
-        tmp = -1;
+        return -1;
     }
-    else
+
+    temp_r2_2 -= 1;
+    var_r1 = 3; // TODO: static inline also works
+
+    var_r3 = param_1 & var_r1;
+    if (temp_r5 & 0x4000)
     {
-        temp_r2_2 -= 1;
-        var_r1 = 3; // Fake?
-
-        var_r3 = param_1 & var_r1;
-        if (temp_r5 & 0x4000)
-        {
-            var_r3 = 3 - var_r3;
-        }
-
-        tmp2 = param_2 & var_r1;
-        if (temp_r5 & 0x8000)
-        {
-            tmp2 = 3 - tmp2;
-        }
-
-        tmp = ((u16) temp_r2_2 << 4) + var_r3 + (tmp2 << 2);
+        var_r3 = 3 - var_r3;
     }
-    return tmp;
+
+    var_2 = param_2 & var_r1;
+    if (temp_r5 & 0x8000)
+    {
+        var_2 = 3 - var_2;
+    }
+
+    return (temp_r2_2 << 4) + var_r3 + (var_2 << 2);
 }
 
 /**
@@ -586,7 +586,7 @@ s32 GetWarpRoomFlagFromMapPosition(s32 xOffset, s32 yOffset)
     return (tmp >> 0xE) & 1;
 }
 
-extern u32 **sUnk_0850EF08[];
+extern u32 **sUnk_0850EF08[]; // List of room pointers
 
 /**
  * @brief 1980 | Get the pointer to the room
@@ -1295,10 +1295,10 @@ s16 sub_08001F3C(s32 param_0, s32 param_1)
  */
 u8 sub_08001FE8(struct EwramData_EntityData *param_0, s32 param_1, s32 param_2)
 {
-    struct EwramData_unkA078 *temp_r4;
+    struct EwramData_unkA078 *bg1Info;
 
-    temp_r4 = &gEwramData->bgInfo[1];
-    return sub_08001A00((s16)temp_r4->xPos.part16.integer + (s16)param_0->unk_524.unk_524_16.unk_526 + param_1, (s16)temp_r4->yPos.part16.integer + param_0->unk_528.unk_528_16.unk_52A + param_2);
+    bg1Info = &gEwramData->bgInfo[1];
+    return sub_08001A00((s16)bg1Info->xPos.part16.integer + (s16)param_0->unk_524.unk_524_16.unk_526 + param_1, (s16)bg1Info->yPos.part16.integer + param_0->unk_528.unk_528_16.unk_52A + param_2);
 }
 
 /**
@@ -1310,10 +1310,10 @@ u8 sub_08001FE8(struct EwramData_EntityData *param_0, s32 param_1, s32 param_2)
  */
 u8 sub_08002028(s32 param_0, s32 param_1)
 {
-    struct EwramData_unkA078 *temp_r4;
+    struct EwramData_unkA078 *bg1Info;
 
-    temp_r4 = &gEwramData->bgInfo[1];
-    return sub_08001A00((s16)temp_r4->xPos.part16.integer + param_0, (s16)temp_r4->yPos.part16.integer + param_1);
+    bg1Info = &gEwramData->bgInfo[1];
+    return sub_08001A00((s16)bg1Info->xPos.part16.integer + param_0, (s16)bg1Info->yPos.part16.integer + param_1);
 }
 
 /**

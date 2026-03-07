@@ -483,6 +483,11 @@ struct EwramData_unk88 {
     u8 pad_2D[0x30 - 0x2D];
 };
 
+struct EwramData_unkB4 {
+    /* 0x000B4 */ u32 unk_B4;
+    /* 0x000B8 */ u32 unk_B8;
+}; /* size = 0x8 */
+
 struct EwramData_unk_3DC {
     /* 0x0 */ s16 unk_0;
     /* 0x2 */ s16 unk_2;
@@ -512,9 +517,9 @@ struct EwramData_unk60 {
     /* 0x00088 */ struct EwramData_unk88* unk_88;
     /* 0x0008C */ u16 roomMapXPos:7;
     /* 0x0008C */ u16 roomMapYPos:7;
-    /* 0x0008D */ u16 unk_8D_6:2; // Fake?
-    /* 0x0008E */ u8 unk_8E_0:1; // Length? part of unk_8C/unk_8D?
-    /* 0x0008E */ u8 unk_8E_1:3; // Length? part of unk_8C/unk_8D?
+    /* 0x0008D */ u16 unk_8D_6:2;
+    /* 0x0008E */ u8 unk_8E_0:1;
+    /* 0x0008E */ u8 unk_8E_1:3; // Length?
     /* 0x0008E */ u8 unk_8E_4:2;
     /* 0x0008F */ u8 pad_8F[0x90 - 0x8F];
     /* 0x00090 */ u16 currentSong;
@@ -533,9 +538,7 @@ struct EwramData_unk60 {
     /* 0x000A8 */ u32 unk_A8; // type?
     /* 0x000AC */ u32 inGameTimer;
     /* 0x000B0 */ u8 pad_B0[0xB4 - 0xB0];
-    /* 0x000B4 */ u32 unk_B4[1]; // Length?
-    /* 0x000B8 */ u32 unk_B8[1]; // Length?
-    /* 0x000BC */ u8 pad_BC[0x334 - 0xBC];
+    /* 0x000B4 */struct EwramData_unkB4 unk_B4[2][40];
     /* 0x00334 */ u16 unk_334;
     /* 0x00336 */ u16 unk_336;
     /* 0x00338 */ s16 unk_338;
