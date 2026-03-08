@@ -16,6 +16,7 @@
 #include "syscalls.h"
 
 #include "constants/main.h"
+#include "constants/songs.h"
 
 #include "data/data_0E0334.h"
 #include "data/data_0E3464.h"
@@ -43,7 +44,7 @@ static inline s32 sub_08013960_inline_0(s32 param_0)
     }
     if (temp_r5->currentSong != 0)
     {
-        PlaySong(temp_r5->currentSong | 0x8000); // stop song
+        PlaySong(temp_r5->currentSong | STOP_SONG);
     }
     temp_r5->currentSong = param_0;
     PlaySong(param_0);
@@ -78,7 +79,7 @@ s32 sub_08013960(struct EwramData_unk60 *param_0)
 
     if ((GetSaveRoomFlagFromMapPosition(temp_r4, temp_r5) != 0) || (GetWarpRoomFlagFromMapPosition(temp_r4, temp_r5) != 0))
     {
-        PlaySong(0x1012);
+        PlaySong(SONG_QUIET);
         return 0;
     }
 
@@ -89,7 +90,7 @@ s32 sub_08013960(struct EwramData_unk60 *param_0)
         return 0;
     }
 
-    PlaySong(0x1011);
+    PlaySong(SONG_LOUD);
     temp_r6 = GetAreaFromMapPosition(temp_r4, temp_r5);
     temp_r3 = GetRoomFromMapPosition(temp_r4, temp_r5);
 
@@ -138,7 +139,7 @@ s32 sub_08013960(struct EwramData_unk60 *param_0)
     {
         if (gEwramData->unk_60.unk_4BE != 0)
         {
-            PlaySong(0x1030);
+            PlaySong(MUSIC_PLAYER_STOP(0));
         }
     }
     return var_r4;
@@ -175,7 +176,7 @@ void sub_08013B44(void)
     {
         if (!(gEwramData->unk_60.unk_42C & 0x40000))
         {
-            PlaySong(0x1011);
+            PlaySong(SONG_LOUD);
         }
     }
 }
@@ -202,7 +203,7 @@ void sub_08013BCC(void)
     {
         if (var_r4[var_r5] != 0)
         {
-            PlaySong(var_r4[var_r5] | 0x8000);
+            PlaySong(var_r4[var_r5] | STOP_SONG);
         }
         var_r5 -= 1;
     }
@@ -211,7 +212,7 @@ void sub_08013BCC(void)
     {
         if (!(gEwramData->unk_60.unk_42C & 0x40000))
         {
-            PlaySong(0x1012);
+            PlaySong(SONG_QUIET);
         }
     }
 }
@@ -241,7 +242,7 @@ s32 sub_08013C5C(void)
     }
 
     var_r4 = sub_08013960_inline_0(temp_r4);
-    PlaySong(0x1012);
+    PlaySong(SONG_QUIET);
     return var_r4;
 }
 
@@ -263,7 +264,7 @@ s32 sub_08013CF0(s32 param_0)
     }
     if (temp_r5->currentSong != 0)
     {
-        PlaySong(temp_r5->currentSong | 0x8000); // stop song
+        PlaySong(temp_r5->currentSong | STOP_SONG);
     }
     temp_r5->currentSong = param_0;
     PlaySong(param_0);
@@ -404,7 +405,7 @@ s32 sub_08013E18(s32 param_0)
         }
     }
 
-    PlaySong(param_0 | 0x8000);
+    PlaySong(param_0 | STOP_SONG);
     return var_r4;
 }
 
@@ -419,7 +420,7 @@ void sub_08013E74(void)
     u16 *var_r4;
 
     temp_r4 = gEwramData; // TODO: Fake?
-    PlaySong(0x1003);
+    PlaySong(AUDIO_RESUME);
 
     var_r4 = &temp_r4->unk_254C4[0];
     for (var_r5 = 3; var_r5 >= 0; var_r5--)
@@ -442,14 +443,14 @@ void sub_08013EAC(void)
     u16 *var_r4;
 
     temp_r4 = gEwramData; // TODO: Fake?
-    PlaySong(0x1002);
+    PlaySong(AUDIO_PAUSE);
 
     var_r4 = &temp_r4->unk_254C4[0];
     for (var_r5 = 3; var_r5 >= 0; var_r5--)
     {
         if (var_r4[var_r5] != 0)
         {
-            PlaySong(var_r4[var_r5] | 0x8000);
+            PlaySong(var_r4[var_r5] | STOP_SONG);
         }
     } 
 }
@@ -470,10 +471,10 @@ void sub_08013EEC(s32 param_0)
     // {
     //     if (temp_r4->currentSong != 0)
     //     {
-    //         PlaySong(temp_r4->currentSong | 0x8000); // stop song
+    //         PlaySong(temp_r4->currentSong | STOP_SONG); // stop song
     //     }
     //     temp_r4->currentSong = 0;
-    //     PlaySong(0);
+    //     PlaySong(MUS_DUMMY);
     // }
     sub_08013960_inline_0(0);
     gEwramData->unk_254CC = param_0;
@@ -488,7 +489,7 @@ void sub_08013F38(void)
 {
     if (gEwramData->unk_254CC != 0)
     {
-        PlaySong(gEwramData->unk_254CC | 0x8000);
+        PlaySong(gEwramData->unk_254CC | STOP_SONG);
         gEwramData->unk_254CC = 0;
     }
 }
@@ -537,7 +538,7 @@ s32 GameModeGameOverUpdate(void)
             gEwramData->unk_4 = 0x20;
             gEwramData->gameModeUpdateStage += 1;
             gEwramData->unk_12 = 0;
-            PlaySong(0xF);
+            PlaySong(MUS_15);
             break;
 
         case 1:
@@ -603,7 +604,7 @@ s32 GameModeGameOverUpdate(void)
                 sub_0803CDF0(0x1F, 0x1F, 0x1F, 0x10000, 0, 0x20);
                 gEwramData->gameModeUpdateStage += 1;
                 gEwramData->unk_12 = 0;
-                PlaySong(0x1010);
+                PlaySong(SONG_MUTE);
             }
             break;
 
@@ -692,7 +693,7 @@ s32 GameModeCreditsUpdate(void)
             break;
 
         case 1:
-            PlaySong(0x1A);
+            PlaySong(MUS_26);
             sub_0803FD9C((u8 *)0x080E5BC8, VRAM_BASE, 0);
             sub_0803FD9C((u8 *)0x080E5BD0, VRAM_BASE + 0x2000, 0);
             sub_0803FD9C((u8 *)0x080E5BD8, VRAM_BASE + 0x4000, 0);
@@ -730,7 +731,7 @@ s32 GameModeCreditsUpdate(void)
 
             if ((temp_r6->yVel.whole == 0) && (gEwramData->inputData.newInput & (KEY_A | KEY_START)))
             {
-                PlaySong(0x1010);
+                PlaySong(SONG_MUTE);
                 gDisplayRegisters.bldCnt = BLDCNT_SCREEN_FIRST_TARGET | BLDCNT_BRIGHTNESS_INCREASE_EFFECT;
                 gEwramData->unk_4 = 0;
                 gEwramData->gameModeUpdateStage += 1;

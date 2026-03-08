@@ -24,6 +24,7 @@
 #include "syscalls.h"
 
 #include "constants/main.h"
+#include "constants/songs.h"
 
 #include "data/data_0E0334.h"
 #include "data/data_0E3464.h"
@@ -650,7 +651,7 @@ static inline void GameModeSoulTradeMenu_inline_1(struct EwramData_EntityData *t
 void sub_0800997C(struct EwramData_EntityData *param_0)
 {
     struct EwramData_unk25484* unk_25484;
-    PlaySong(0xF0);
+    PlaySong(SE_240);
     gEwramData->gameModeUpdateStage = 0xA;
     gEwramData->unk_12 = 0;
 
@@ -843,7 +844,7 @@ s32 sub_08009C8C(struct EwramData_EntityData *param_0)
 
     if (gEwramData->inputData.repeatedInput & KEY_DOWN)
     {
-        PlaySong(0xF1);
+        PlaySong(SE_241);
         param_0->unk_4F8.unk_4F8_8.unk_4F8 += 1;
         if (param_0->unk_4F8.unk_4F8_8.unk_4F8 > 2)
         {
@@ -852,7 +853,7 @@ s32 sub_08009C8C(struct EwramData_EntityData *param_0)
     }
     else if (gEwramData->inputData.repeatedInput & KEY_UP)
     {
-        PlaySong(0xF1);
+        PlaySong(SE_241);
         param_0->unk_4F8.unk_4F8_8.unk_4F8 -= 1;
         if (param_0->unk_4F8.unk_4F8_8.unk_4F8 < 0)
         {
@@ -871,13 +872,13 @@ s32 sub_08009C8C(struct EwramData_EntityData *param_0)
             
             sub_0800B5E8(param_0);
             sub_08009DD8(param_0);
-            PlaySong(0xF3);
+            PlaySong(SE_243);
             return 1;
         }
     }
     else if (gEwramData->inputData.repeatedInput & KEY_B)
     {
-        PlaySong(0xF0);
+        PlaySong(SE_240);
         return -1;
     }
 
@@ -1074,7 +1075,7 @@ s32 sub_0800A108(struct EwramData_EntityData *param_0)
 
     if (temp_r4 != param_0->unk_4FC.unk_4FC_16.unk_4FC)
     {
-        PlaySong(0xF1);
+        PlaySong(SE_241);
         GameModeSoulTradeMenu_inline_1(param_0, temp_r6 + param_0->unk_4FC.unk_4FC_16.unk_4FC);
     }
     if (var_sl != 0)
@@ -1100,7 +1101,7 @@ s32 sub_0800A108(struct EwramData_EntityData *param_0)
     else if (gEwramData->inputData.repeatedInput & KEY_B)
     {
         sub_08009BB0(param_0);
-        PlaySong(0xF0);
+        PlaySong(SE_240);
         return -1;
     }
     else if ((param_0->unk_504.unk_504_8.unk_504 != 0) && (gEwramData->inputData.repeatedInput & KEY_SELECT))
@@ -1162,7 +1163,7 @@ s32 sub_0800A2AC(struct EwramData_EntityData *param_0)
         case 3:
             sub_0800997C_inline_0(param_0->unk_504.unk_504_8.unk_504, param_0->unk_504.unk_504_8.unk_505);
             sub_0800997C_inline_1(param_0->unk_504.unk_504_8.unk_506, param_0->unk_504.unk_504_8.unk_507);
-            PlaySong(0xF3);
+            PlaySong(SE_243);
             sub_08009A9C(param_0);
             return 1;
     }

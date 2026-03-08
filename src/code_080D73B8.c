@@ -4,6 +4,8 @@
 #include "m4a.h"
 #include "m4a_internal.h"
 
+#include "constants/songs.h"
+
 #define VOLUME_DIRECTION_UP 1
 #define VOLUME_DIRECTION_DOWN 0
 
@@ -21,18 +23,18 @@ struct MusicPlayerVolume {
 static struct MusicPlayerVolume gMPlayVolume[8]; // NUM_MUSIC_PLAYERS
 
 static u32 sSoundModeFreqTable[] = {
-    [0x1020 - 0x1020] = SOUND_MODE_FREQ_05734,
-    [0x1021 - 0x1020] = SOUND_MODE_FREQ_07884,
-    [0x1022 - 0x1020] = SOUND_MODE_FREQ_10512,
-    [0x1023 - 0x1020] = SOUND_MODE_FREQ_13379,
-    [0x1024 - 0x1020] = SOUND_MODE_FREQ_15768,
-    [0x1025 - 0x1020] = SOUND_MODE_FREQ_18157,
-    [0x1026 - 0x1020] = SOUND_MODE_FREQ_21024,
-    [0x1027 - 0x1020] = SOUND_MODE_FREQ_26758,
-    [0x1028 - 0x1020] = SOUND_MODE_FREQ_31536,
-    [0x1029 - 0x1020] = SOUND_MODE_FREQ_36314,
-    [0x102A - 0x1020] = SOUND_MODE_FREQ_40137,
-    [0x102B - 0x1020] = SOUND_MODE_FREQ_42048
+    [AUDIO_FREQ_OFFSET(SOUND_MODE_FREQ_05734) - 1] = SOUND_MODE_FREQ_05734,
+    [AUDIO_FREQ_OFFSET(SOUND_MODE_FREQ_07884) - 1] = SOUND_MODE_FREQ_07884,
+    [AUDIO_FREQ_OFFSET(SOUND_MODE_FREQ_10512) - 1] = SOUND_MODE_FREQ_10512,
+    [AUDIO_FREQ_OFFSET(SOUND_MODE_FREQ_13379) - 1] = SOUND_MODE_FREQ_13379,
+    [AUDIO_FREQ_OFFSET(SOUND_MODE_FREQ_15768) - 1] = SOUND_MODE_FREQ_15768,
+    [AUDIO_FREQ_OFFSET(SOUND_MODE_FREQ_18157) - 1] = SOUND_MODE_FREQ_18157,
+    [AUDIO_FREQ_OFFSET(SOUND_MODE_FREQ_21024) - 1] = SOUND_MODE_FREQ_21024,
+    [AUDIO_FREQ_OFFSET(SOUND_MODE_FREQ_26758) - 1] = SOUND_MODE_FREQ_26758,
+    [AUDIO_FREQ_OFFSET(SOUND_MODE_FREQ_31536) - 1] = SOUND_MODE_FREQ_31536,
+    [AUDIO_FREQ_OFFSET(SOUND_MODE_FREQ_36314) - 1] = SOUND_MODE_FREQ_36314,
+    [AUDIO_FREQ_OFFSET(SOUND_MODE_FREQ_40137) - 1] = SOUND_MODE_FREQ_40137,
+    [AUDIO_FREQ_OFFSET(SOUND_MODE_FREQ_42048) - 1] = SOUND_MODE_FREQ_42048
 };
 
 /**
@@ -44,7 +46,7 @@ void StartSong(u16 song)
 {
     struct MP2KPlayerState *mplayInfo;
 
-    if (song < 0x2E)
+    if (song < MUS_COUNT)
     {
         gCurrentSong = song;
     }
@@ -74,17 +76,17 @@ void AudioCommand(u16 command)
 {
     s32 i;
 
-    if (command >= 0x1020 && command <= 0x102B)
+    if (command >= (AUDIO_FREQ(SOUND_MODE_FREQ_05734) - 1) && command <= (AUDIO_FREQ(SOUND_MODE_FREQ_42048) - 1))
     {
         // Set the audio frequency
-        m4aSoundMode(sSoundModeFreqTable[command - 0x1020]);
+        m4aSoundMode(sSoundModeFreqTable[command - AUDIO_FREQ_BASE]);
         return;
     }
 
     switch (command)
     {
         // Mute the current song
-        case 0x1010:
+        case SONG_MUTE:
             if (gCurrentSong >= 0)
             {
                 MPlayVolumeSet(gSongTable[gCurrentSong].ms, 0x19, 0);
@@ -92,7 +94,7 @@ void AudioCommand(u16 command)
             break;
 
         // Make the current song quiet
-        case 0x1012:
+        case SONG_QUIET:
             if (gCurrentSong >= 0)
             {
                 MPlayVolumeSet(gSongTable[gCurrentSong].ms, 0x3C, 0x90);
@@ -100,7 +102,7 @@ void AudioCommand(u16 command)
             break;
 
         // Set the current song to max volume
-        case 0x1011:
+        case SONG_LOUD:
             if (gCurrentSong >= 0)
             {
                 MPlayVolumeSet(gSongTable[gCurrentSong].ms, 0x3C, 0xFF);
@@ -108,64 +110,64 @@ void AudioCommand(u16 command)
             break;
 
         // Set amplitude resolution to 6 bit (262.144kHz sampling cycle)
-        case 0x1006:
+        case AUDIO_6BIT:
             m4aSoundMode(SOUND_MODE_DA_BIT_6);
             break;
 
         // Set amplitude resolution to 7 bit (131.072kHz sampling cycle)
-        case 0x1007:
+        case AUDIO_7BIT:
             m4aSoundMode(SOUND_MODE_DA_BIT_7);
             break;
 
         // Set amplitude resolution to 8 bit (65.536kHz sampling cycle)
-        case 0x1008:
+        case AUDIO_8BIT:
             m4aSoundMode(SOUND_MODE_DA_BIT_8);
             break;
 
         // Set amplitude resolution to 9 bit (32.768kHz sampling cycle)
-        case 0x1009:
+        case AUDIO_9BIT:
             m4aSoundMode(SOUND_MODE_DA_BIT_9);
             break;
 
         // Mute the music player
-        case 0x1040:
-        case 0x1041:
-        case 0x1042:
-        case 0x1043:
-        case 0x1044:
-        case 0x1045:
-        case 0x1046:
-        case 0x1047:
-            MPlayVolumeSet(command - 0x1040, 0x19, 0);
+        case MUSIC_PLAYER_MUTE(0):
+        case MUSIC_PLAYER_MUTE(1):
+        case MUSIC_PLAYER_MUTE(2):
+        case MUSIC_PLAYER_MUTE(3):
+        case MUSIC_PLAYER_MUTE(4):
+        case MUSIC_PLAYER_MUTE(5):
+        case MUSIC_PLAYER_MUTE(6):
+        case MUSIC_PLAYER_MUTE(7):
+            MPlayVolumeSet(command - MUSIC_PLAYER_MUTE_BASE, 0x19, 0);
             break;
 
         // Stop the music player
-        case 0x1030:
-        case 0x1031:
-        case 0x1032:
-        case 0x1033:
-        case 0x1034:
-        case 0x1035:
-        case 0x1036:
-        case 0x1037:
-            MPlayStop(gMPlayTable[command - 0x1030].info);
-            gMPlayVolume[gSongTable[command - 0x1030].ms].step = 0;
+        case MUSIC_PLAYER_STOP(0):
+        case MUSIC_PLAYER_STOP(1):
+        case MUSIC_PLAYER_STOP(2):
+        case MUSIC_PLAYER_STOP(3):
+        case MUSIC_PLAYER_STOP(4):
+        case MUSIC_PLAYER_STOP(5):
+        case MUSIC_PLAYER_STOP(6):
+        case MUSIC_PLAYER_STOP(7):
+            MPlayStop(gMPlayTable[command - MUSIC_PLAYER_STOP_BASE].info);
+            gMPlayVolume[gSongTable[command - MUSIC_PLAYER_STOP_BASE].ms].step = 0;
             break;
 
         // Resume the music player
-        case 0x1038:
-        case 0x1039:
-        case 0x103A:
-        case 0x103B:
-        case 0x103C:
-        case 0x103D:
-        case 0x103E:
-        case 0x103F:
-            m4aMPlayContinue(gMPlayTable[command - 0x1038].info);
+        case MUSIC_PLAYER_RESUME(0):
+        case MUSIC_PLAYER_RESUME(1):
+        case MUSIC_PLAYER_RESUME(2):
+        case MUSIC_PLAYER_RESUME(3):
+        case MUSIC_PLAYER_RESUME(4):
+        case MUSIC_PLAYER_RESUME(5):
+        case MUSIC_PLAYER_RESUME(6):
+        case MUSIC_PLAYER_RESUME(7):
+            m4aMPlayContinue(gMPlayTable[command - MUSIC_PLAYER_RESUME_BASE].info);
             break;
 
         // Pause audio
-        case 0x1002:
+        case AUDIO_PAUSE:
             if (gAudioPaused == FALSE)
             {
                 gAudioPaused = TRUE;
@@ -174,7 +176,7 @@ void AudioCommand(u16 command)
             break;
 
         // Resume audio
-        case 0x1003:
+        case AUDIO_RESUME:
             if (gAudioPaused)
             {
                 gAudioPaused = FALSE;
@@ -182,8 +184,8 @@ void AudioCommand(u16 command)
             }
             break;
 
-        // Reset audio
-        case 0x1000:
+        // Stop audio
+        case AUDIO_STOP:
             m4aMPlayAllStop();
             gAudioPaused = FALSE;
             gCurrentSong = -1;
@@ -253,6 +255,7 @@ void MPlayVolumeUpdate(void)
 
         if (mplayVolume->direction != VOLUME_DIRECTION_DOWN)
         {
+            // Increase volume
             newVolume = mplayVolume->updated + mplayVolume->step;
             // If the new volume has reached the target or the updated volume has reached the maximum
             if ((mplayVolume->target <= newVolume) || (mplayVolume->updated >= (0xFF * 0x10)))
@@ -276,6 +279,7 @@ void MPlayVolumeUpdate(void)
         }
         else
         {
+            // Decrease volume
             newVolume = mplayVolume->updated - mplayVolume->step;
             // If the new volume has reached the target or the updated volume has reached the minimum
             if ((mplayVolume->target >= newVolume) || (mplayVolume->updated <= (0x10 * 0x10)))
@@ -323,16 +327,15 @@ void InitializeAudio(void)
         gMPlayVolume[i].target = 0;
     }
 
-    // TODO: figure out why these StartSongs are here
-    // my guess: it's loading silence into all the music players
-    StartSong(0x2E);
-    StartSong(0x2F);
-    StartSong(0x30);
-    StartSong(0x31);
-    StartSong(0x32);
-    StartSong(0x33);
-    StartSong(0x34);
-    StartSong(0x35);
+    // Fill music players with silence
+    StartSong(MUS_46);
+    StartSong(MUS_47);
+    StartSong(MUS_48);
+    StartSong(MUS_49);
+    StartSong(MUS_50);
+    StartSong(MUS_51);
+    StartSong(MUS_52);
+    StartSong(MUS_53);
     m4aMPlayAllStop();
 }
 
@@ -359,11 +362,11 @@ void PlaySong(u16 song)
         return;
     }
 
-    if (song & 0x8000)
+    if (song & STOP_SONG)
     {
         m4aSongNumStop(song & 0x3FF);
         gMPlayVolume[gSongTable[song & 0xFFF].ms].step = 0;
-        if ((song & 0xFFF) < 0x2E)
+        if ((song & 0xFFF) < MUS_COUNT)
         {
             gCurrentSong = -1;
         }

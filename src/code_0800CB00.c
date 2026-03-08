@@ -21,6 +21,7 @@
 #include "syscalls.h"
 
 #include "constants/main.h"
+#include "constants/songs.h"
 
 #include "data/data_0E0334.h"
 #include "data/data_0E3464.h"
@@ -2156,7 +2157,7 @@ void sub_0800EBE0(void)
         {
             sub_08013C5C();
             sub_08013CF0(0);
-            PlaySong(0x1000U);
+            PlaySong(AUDIO_STOP);
         }
     }
     else

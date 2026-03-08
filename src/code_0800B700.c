@@ -26,6 +26,7 @@
 #include "syscalls.h"
 
 #include "constants/main.h"
+#include "constants/songs.h"
 
 #include "data/data_0E0334.h"
 #include "data/data_0E3464.h"
@@ -631,7 +632,7 @@ s32 GameModeSoundTestMenu(void)
 
             gEwramData->gameModeUpdateStage = 1;
             gEwramData->unk_12 = 0;
-            PlaySong(0x1000);
+            PlaySong(AUDIO_STOP);
             EntityDelete(&gEwramData->entityData[3]);
             EntityDelete(&gEwramData->entityData[2]);
             EntityDelete(&gEwramData->entityData[4]);
@@ -742,7 +743,7 @@ s32 GameModeSoundTestMenu(void)
 
                         if (gEwramData->entityData[2].unk_504.unk_504_16.unk_506[gEwramData->entityData[2].unk_4FC.unk_4FC_16.unk_4FC] != 0)
                         {
-                            PlaySong(gEwramData->entityData[2].unk_504.unk_504_16.unk_506[gEwramData->entityData[2].unk_4FC.unk_4FC_16.unk_4FC] | -0x8000);
+                            PlaySong(gEwramData->entityData[2].unk_504.unk_504_16.unk_506[gEwramData->entityData[2].unk_4FC.unk_4FC_16.unk_4FC] | STOP_SONG);
                         }
 
                         GameModeSoundTestMenu_inline_3(var_r4, gEwramData->entityData[2].unk_4FC.unk_4FC_16.unk_4FC);
@@ -750,7 +751,7 @@ s32 GameModeSoundTestMenu(void)
                         break;
                     
                     case 2:
-                        PlaySong(0x1000U);
+                        PlaySong(AUDIO_STOP);
                         gEwramData->gameModeUpdateStage = 4;
                         gEwramData->unk_12 = 0;
                         break;
@@ -768,7 +769,7 @@ s32 GameModeSoundTestMenu(void)
                 {
                     GameModeSoundTestMenu_inline_3(0, var_r4_3);
                 }
-                PlaySong(0x1000);
+                PlaySong(AUDIO_STOP);
             }
 
             for (var_r4_3 = 0; var_r4_3 < 2; var_r4_3++)
@@ -1378,7 +1379,7 @@ void sub_0800C7A4(struct EwramData_unk60 *param_0)
     sub_0804C3C8();
     sub_080137B8();
     sub_0801391C();
-    PlaySong(0x1000);
+    PlaySong(AUDIO_STOP);
 
     gEwramData->hBlankEffect.requestStop = 1;
     gEwramData->unk_A074_2 = gEwramData->unk_A074_4 = 0;
@@ -1420,7 +1421,7 @@ s32 sub_0800C8C8(void)
             sub_080235C8();
             sub_0802DFF0();
             gEwramData->unk_13168 = 0;
-            PlaySong(0x1010);
+            PlaySong(SONG_MUTE);
             temp_r6->inGameTimer = 0;
             temp_r6->unk_65 += 1;
             sub_0803D18C(0, 0, 0, 0x10000, 0, 0x40);
