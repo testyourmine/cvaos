@@ -778,7 +778,7 @@ void sub_08006BC0(struct EwramData_EntityData *param_0)
 {
     s32 temp_r4;
     s32 var_r4;
-    struct EwramData_unk20 *temp_r6;
+    struct EwramData_unk20 *unk_20;
 
     EntityDelete(param_0);
     switch (gEwramData->unk_60.language)
@@ -825,12 +825,12 @@ void sub_08006BC0(struct EwramData_EntityData *param_0)
     sub_0803F17C(param_0);
     param_0->unk_500.unk_500_8.unk_500 = param_0->unk_549;
     param_0->drawFunc = (u32 *) sub_080069C4;
-    temp_r6 = gEwramData->unk_20;
+    unk_20 = gEwramData->unk_20;
 
     for (var_r4 = 0; var_r4 < 6; var_r4++)
     {
         sub_08013700(var_r4, 0);
-        if (temp_r6->unk_38 != 0)
+        if (unk_20->unk_38 != 0)
         {
             param_0->unk_4F4.unk_4F4_8.unk_4F5 |= 1 << var_r4;
         }
@@ -1028,8 +1028,8 @@ void sub_08006D9C(struct EwramData_EntityData *param_0, struct EwramData_unk20 *
  */
 void sub_08007204(struct EwramData_EntityData *param_0, s32 param_1)
 {
-    struct EwramData_unk20 *temp_r6;
-    struct EwramData_unk60 *temp_r8;
+    struct EwramData_unk20 *unk_20;
+    struct EwramData_unk60 *unk_60;
     s16 *var_r3;
     s32 var_r1_2;
     s32 temp_r0;
@@ -1037,33 +1037,33 @@ void sub_08007204(struct EwramData_EntityData *param_0, s32 param_1)
     s32 var_r1_3;
     s32 var_r1_4;
 
-    temp_r8 = &gEwramData->unk_60;
-    temp_r6 = gEwramData->unk_20;
-    gEwramData->unk_60.currentSave = (u8) param_1;
+    unk_60 = &gEwramData->unk_60;
+    unk_20 = gEwramData->unk_20;
+    gEwramData->unk_60.currentSaveSlot = (u8) param_1;
     temp_r0 = sub_08013700(param_1, 0);
     DMA_FILL_32(3, 0, 0x0600E000, 0x340);
 
-    if ((temp_r0 != 0) && (temp_r6->unk_38 != 0))
+    if ((temp_r0 != 0) && (unk_20->unk_38 != 0))
     {
         if (param_0->unk_4F8.unk_4F8_8.unk_4F9 < 6)
         {
-            sub_08006D9C(param_0, temp_r6, 0x10, 8, 0);
+            sub_08006D9C(param_0, unk_20, 0x10, 8, 0);
             param_0->unk_4F4.unk_4F4_8.unk_4F4 = 0;
-            temp_r8->unk_4CC_3 = 2;
+            unk_60->unk_4CC_3 = 2;
         }
     }
     else
     {
         param_0->unk_4F4.unk_4F4_8.unk_4F4 = 1;
-        temp_r8->unk_4CC_3 = 1;
+        unk_60->unk_4CC_3 = 1;
     }
 
     if (param_0->unk_4F8.unk_4F8_8.unk_4F9 > 5)
     {
-        if (temp_r6->unk_2D & 0xF)
+        if (unk_20->unk_2D & 0xF)
         {
             param_0->unk_4F4.unk_4F4_8.unk_4F4 = 1;
-            temp_r8->unk_4CC_3 = 1;
+            unk_60->unk_4CC_3 = 1;
         }
     }
 
@@ -1135,23 +1135,23 @@ void sub_08007204(struct EwramData_EntityData *param_0, s32 param_1)
  */
 void sub_0800737C(struct EwramData_EntityData *param_0, s32 param_1, s32 param_2)
 {
-    struct EwramData_unk20 *temp_r5;
+    struct EwramData_unk20 *unk_20;
     s16 *var_r1;
     s16 var_r2;
     s32 var_r0;
 
-    temp_r5 = gEwramData->unk_20;
+    unk_20 = gEwramData->unk_20;
     DMA_FILL_32(3, 0, 0x0600E000, 0x340);
     sub_08013700(param_1, 0);
-    sub_08006D9C(param_0, temp_r5, 1, 8, 0);
+    sub_08006D9C(param_0, unk_20, 1, 8, 0);
 
     if (param_0->unk_4F0 != 0)
     {
         sub_08013700(param_2, 1);
-        temp_r5++;
-        if (temp_r5->unk_38 != 0)
+        unk_20++;
+        if (unk_20->unk_38 != 0)
         {
-            sub_08006D9C(param_0, temp_r5, 0x11, 8, 1);
+            sub_08006D9C(param_0, unk_20, 0x11, 8, 1);
             param_0->unk_4F4.unk_4F4_8.unk_4F4 = 0;
         }
         else
@@ -1294,7 +1294,7 @@ s32 sub_080074C0(struct EwramData_EntityData *param_0)
             {
                 var_r0_2 = var_r5;
             }
-            sub_08012744(var_r0_2);
+            SaveData_LoadSlotFromSram(var_r0_2);
             if (param_0->unk_4F4.unk_4F4_8.unk_4F4 != 0)
             {
                 gEwramData->unk_60.unk_3CC = NULL;
@@ -1317,9 +1317,9 @@ s32 sub_080074C0(struct EwramData_EntityData *param_0)
             {
                 if (var_r5 & 1)
                 {
-                    sub_08013698(var_r5);
+                    SaveData_ClearSlotInSram(var_r5);
                     param_0->unk_4F4.unk_4F4_8.unk_4F5 &= ~(1 << var_r5);
-                    gEwramData->unk_60.currentSave = var_r5 - 1;
+                    gEwramData->unk_60.currentSaveSlot = var_r5 - 1;
                 }
                 gEwramData->unk_60.unk_3CC = GetRoomPointer(gEwramData->unk_60.currentArea, gEwramData->unk_60.currentRoom);
                 sp0 = -2;
@@ -1593,7 +1593,7 @@ s32 sub_08007914(struct EwramData_EntityData *param_0)
                 var_r6 = param_0->unk_4F8.unk_4F8_8.unk_4F9 = param_0->unk_4F4.unk_4F4_8.unk_4F6;
                 sub_0800737C(param_0, param_0->unk_4F4.unk_4F4_8.unk_4F6, param_0->unk_4F4.unk_4F4_8.unk_4F7);
                 param_0->unk_4F0 = 0;
-                sub_08013698(param_0->unk_4F4.unk_4F4_8.unk_4F7 + 1);
+                SaveData_ClearSlotInSram(param_0->unk_4F4.unk_4F4_8.unk_4F7 + 1);
                 param_0->unk_4F4.unk_4F4_8.unk_4F5 &= ~(1 << (param_0->unk_4F4.unk_4F4_8.unk_4F7 + 1));
             }
             else if (repeatedInput & (KEY_A | KEY_B))
@@ -1715,7 +1715,7 @@ s32 sub_08007B8C(struct EwramData_EntityData *param_0)
                 }
                 else
                 {
-                    sub_08013698(param_0->unk_4F4.unk_4F4_8.unk_4F6);
+                    SaveData_ClearSlotInSram(param_0->unk_4F4.unk_4F4_8.unk_4F6);
                 }
                 param_0->unk_4F4.unk_4F4_8.unk_4F5 &= ~(1 << param_0->unk_4F4.unk_4F4_8.unk_4F6);
                 sub_0804728C(0x35A);
@@ -1724,7 +1724,7 @@ s32 sub_08007B8C(struct EwramData_EntityData *param_0)
                 param_0->unk_4F0 -= 1;
                 if (!(param_0->unk_4F4.unk_4F4_8.unk_4F6 & 1))
                 {
-                    sub_08013698(param_0->unk_4F4.unk_4F4_8.unk_4F6 + 1);
+                    SaveData_ClearSlotInSram(param_0->unk_4F4.unk_4F4_8.unk_4F6 + 1);
                     param_0->unk_4F4.unk_4F4_8.unk_4F5 &= ~(1 << (param_0->unk_4F4.unk_4F4_8.unk_4F6 + 1));
                 }
             }
@@ -1781,24 +1781,24 @@ void sub_08007D84(struct EwramData_EntityData *param_0, s32 param_1)
     s32 var_r0_2;
     s32 var_r1_3;
     s32 var_r1_4;
-    struct EwramData_unk20 *temp_sb;
-    struct EwramData_unk60 *temp_r7;
+    struct EwramData_unk20 *unk_20;
+    struct EwramData_unk60 *unk_60;
 
-    temp_r7 = &gEwramData->unk_60;
-    temp_sb = gEwramData->unk_20;
-    gEwramData->unk_60.currentSave = param_1;
+    unk_60 = &gEwramData->unk_60;
+    unk_20 = gEwramData->unk_20;
+    gEwramData->unk_60.currentSaveSlot = param_1;
     temp_r2 = sub_08013700(param_1, 0);
     DMA_FILL_32(3, 0, 0x0600E000, 0x340);
-    if ((temp_r2 != 0) && (temp_sb->unk_38 != 0))
+    if ((temp_r2 != 0) && (unk_20->unk_38 != 0))
     {
-        sub_08006D9C(param_0, temp_sb, 0x10, 8, 0);
+        sub_08006D9C(param_0, unk_20, 0x10, 8, 0);
         param_0->unk_4F4.unk_4F4_8.unk_4F4 = 0;
-        temp_r7->unk_4CC_3 = 2;
+        unk_60->unk_4CC_3 = 2;
     }
     else
     {
         param_0->unk_4F4.unk_4F4_8.unk_4F4 = 1;
-        temp_r7->unk_4CC_3 = 1;
+        unk_60->unk_4CC_3 = 1;
     }
     if (param_0->unk_4EF == 0)
     {
@@ -1822,7 +1822,7 @@ void sub_08007D84(struct EwramData_EntityData *param_0, s32 param_1)
         if (gEwramData->gameMode == GAME_MODE_SOUL_TRADE_MENU)
         {
             temp_r2 = sub_08013700(param_1 + 1, 1);
-            if ((temp_sb[1].unk_38 != 0) && (temp_r2 != 0))
+            if ((unk_20[1].unk_38 != 0) && (temp_r2 != 0))
             {
                 sub_0804728C(0x38F);
                 return;
@@ -1980,7 +1980,7 @@ s32 sub_080081AC(struct EwramData_EntityData *param_0)
     }
     else if (repeatedInput & KEY_A)
     {
-        sub_08012744(var_r4);
+        SaveData_LoadSlotFromSram(var_r4);
         if (param_0->unk_4F4.unk_4F4_8.unk_4F4 != 0)
         {
             var_0 = 0;
@@ -2019,7 +2019,7 @@ s32 sub_080081AC(struct EwramData_EntityData *param_0)
             {
                 var_r4 -= 1;
             }
-            gEwramData->unk_60.currentSave = var_r4;
+            gEwramData->unk_60.currentSaveSlot = var_r4;
             gEwramData->unk_60.unk_3CC = NULL;
             PlaySong(SE_243);
             var_r7 = 1;

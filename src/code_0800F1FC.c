@@ -1352,11 +1352,11 @@ s32 sub_080104EC(struct EwramData_unk60 *param_0)
             temp_r6 = GetAreaFromMapPosition(temp_r5_2, temp_r4);
             if ((GetRoomFromMapPosition(temp_r5_2, temp_r4) == 5) && (temp_r6 == 5))
             {
-                sub_08012048(0x3D);
+                sub_08012048((1 << 5) | 0x1D);
             }
             else if ((GetRoomFromMapPosition(temp_r5_2, temp_r4) == 1) && (temp_r6 == 5))
             {
-                sub_08012048(0x3C);
+                sub_08012048((1 << 5) | 0x1C);
             }
         }
     }

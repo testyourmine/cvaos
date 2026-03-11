@@ -23007,7 +23007,7 @@ _0804BE40:
 	adds r0, r0, r1
 	ldrb r0, [r0]
 	adds r0, #1
-	bl sub_08013620
+	bl SaveData_SaveSlotToSram
 	cmp r0, #0
 	bne _0804BE88
 	adds r5, #5

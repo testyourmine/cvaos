@@ -2602,7 +2602,7 @@ void sub_08034624(struct EwramData_EntityData *param_0)
         return;
     }
 
-    if (!(gEwramData->inputData.playerNewInput & gEwramData->unk_1325C.unk_13398))
+    if (!(gEwramData->inputData.playerNewInput & gEwramData->unk_1325C.attackButton))
     {
         return;
     }

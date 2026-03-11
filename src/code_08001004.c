@@ -28,11 +28,11 @@
 static u8 sUnk_084F0B18[0x10] = "CASTLEVANIA2-010";
 
 /**
- * @brief 1004 | To document
+ * @brief 1004 | Clears SRAM and writes SRAM header
  * 
- * @return u32 To document
+ * @return u32 0 if SRAM operations successful, otherwise the address it failed at
  */
-u32 sub_08001004(void)
+u32 SramInitialize(void)
 {
     s32 i;
     u8 *dst;
@@ -59,80 +59,80 @@ u32 sub_08001004(void)
 }
 
 /**
- * @brief 1094 | To document
+ * @brief 1094 | Check SRAM header to determine if SRAM is initialized
  * 
- * @return u32 To document
+ * @return bool, SRAM is initialized
  */
-s32 sub_08001094(void)
+s32 SramCheckInitialized(void)
 {
-    s32 var_r2;
-    s32 var_r5;
-    u8 *var_r1;
-    u8 *var_r4;
+    s32 i;
+    s32 sramInitialized;
+    u8 *sramPtr;
+    u8 *headerStrPtr;
 
-    var_r5 = 1;
-    var_r4 = gEwramData->unk_133F4;
+    sramInitialized = TRUE;
+    sramPtr = gEwramData->unk_133F4;
     gReadSramFast(SRAM_BASE, &gEwramData->unk_133F4, 0x10);
 
-    var_r2 = 0x10;
-    var_r1 = sUnk_084F0B18;
+    i = 0x10;
+    headerStrPtr = sUnk_084F0B18;
 
-    for (; var_r2 > 0; var_r2--, var_r4++, var_r1++)
+    for (; i > 0; i--, sramPtr++, headerStrPtr++)
     {
-        if (*var_r4 != *var_r1)
+        if (*sramPtr != *headerStrPtr)
         {
-            var_r5 = 0;
+            sramInitialized = FALSE;
             break;
         }
     }
-    return var_r5;
+    return sramInitialized;
 }
 
 /**
- * @brief 10E4 | To document
+ * @brief 10E4 | Set SRAM save slot as locked (i.e. being operated on)
  * 
- * @param param_0 To document
- * @return u32 To document
+ * @param saveSlot Save slot index to SRAM
+ * @return u32 0 if the SRAM verified, otherwise the address it failed at
  */
-u32 sub_080010E4(u32 param_0)
+u32 SramLockSaveSlot(u32 saveSlot)
 {
-    u8 var_0;
+    u8 saveSlots; // each bit corresponds to a save slot, 0/1 is unlocked/locked
 
-    gReadSramFast(SRAM_BASE + 0x10, &var_0, 1);
+    gReadSramFast(SRAM_BASE + 0x10, &saveSlots, 1);
 
-    var_0 |= (1 << param_0);
+    saveSlots |= (1 << saveSlot);
 
-    return WriteAndVerifySramFast(&var_0, SRAM_BASE + 0x10, 1);
+    return WriteAndVerifySramFast(&saveSlots, SRAM_BASE + 0x10, 1);
 }
 
 /**
- * @brief 1124 | To document
+ * @brief 1124 | Set SRAM save slot as unlocked (i.e. not being operated on)
  * 
- * @param param_0 To document
- * @return u32 To document
+ * @param saveSlot Save slot index to SRAM
+ * @return u32 0 if the SRAM verified, otherwise the address it failed at
  */
-u32 sub_08001124(u32 param_0)
+u32 SramUnlockSaveSlot(u32 saveSlot)
 {
-    u8 var_0;
+    u8 saveSlots; // each bit corresponds to a save slot, 0/1 is unlocked/locked
 
-    gReadSramFast(SRAM_BASE + 0x10, &var_0, 1);
+    gReadSramFast(SRAM_BASE + 0x10, &saveSlots, 1);
 
-    var_0 &= ~(1 << param_0);
+    saveSlots &= ~(1 << saveSlot);
 
-    return WriteAndVerifySramFast(&var_0, SRAM_BASE + 0x10, 1);
+    return WriteAndVerifySramFast(&saveSlots, SRAM_BASE + 0x10, 1);
 }
 
 /**
- * @brief 1164 | To document
+ * @brief 1164 | Check if SRAM save slot is unlocked (something has gone wrong if it's locked)
  * 
- * @param param_0 To document
- * @return u32 To document
+ * @param saveSlot Save slot index to SRAM
+ * @return bool, save slot is unlocked
  */
-u32 sub_08001164(u32 param_0)
+u32 SramCheckSaveSlotUnlocked(u32 saveSlot)
 {
-    u8 var_0;
+    u8 saveSlots; // each bit corresponds to a save slot, 0/1 is unlocked/locked
 
-    gReadSramFast(SRAM_BASE + 0x10, &var_0, 1);
+    gReadSramFast(SRAM_BASE + 0x10, &saveSlots, 1);
 
-    return (var_0 & (1 << param_0)) == 0;
+    return (saveSlots & (1 << saveSlot)) == 0;
 }

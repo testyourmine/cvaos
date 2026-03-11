@@ -2238,7 +2238,7 @@ block_552:
         }
         else if (!(param_0->unk_4F4.unk_4F4_32 & 0x20) || (sub_08023424() == 0))
         {
-            if (!(gEwramData->inputData.playerHeldInput & 0xF0) && !((gEwramData->unk_1325C.unk_1339A | gEwramData->unk_1325C.unk_13398 | gEwramData->unk_1325C.unk_1339C | gEwramData->unk_1325C.unk_1339E) & gEwramData->inputData.playerNewInput))
+            if (!(gEwramData->inputData.playerHeldInput & 0xF0) && !((gEwramData->unk_1325C.jumpButton | gEwramData->unk_1325C.attackButton | gEwramData->unk_1325C.abilityButton | gEwramData->unk_1325C.guardianButton) & gEwramData->inputData.playerNewInput))
             {
                 sp34 = *(s32 *)0x080E12FC;
                 param_0->unk_504.unk_504_16.unk_504 = 0xD;

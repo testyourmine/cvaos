@@ -573,7 +573,7 @@ struct EwramData_unk60 {
     /* 0x00424 */ u8 unk_424;
     /* 0x00425 */ u8 pad_425[0x427 - 0x425];
     /* 0x00427 */ u8 unk_427;
-    /* 0x00428 */ u8 currentSave; // 0: File 1, 2: File 2, 4: File 3
+    /* 0x00428 */ u8 currentSaveSlot; // 0: File 1, 1: Quicksave 1, 2: File 2, 3: Quicksave 2, 4: File 3, 5: Quicksave 3
     /* 0x00429 */ u8 pad_429[0x42C - 0x429];
     /* 0x0042C */ u32 unk_42C; // type?
     /* 0x00430 */ u8 pad_430[0x4BE - 0x430];
@@ -596,17 +596,17 @@ struct EwramData_unk60 {
 struct EwramData_unk20 {
     /* 0x00020 */ u8 unk_20[8]; // length?
     /* 0x00028 */ u8 pad_28[0x2A - 0x28];
-    /* 0x0002A */ u8 unk_2A;
-    /* 0x0002B */ u8 unk_2B;
-    /* 0x0002C */ u8 unk_2C;
+    /* 0x0002A */ u8 unk_2A; // area?
+    /* 0x0002B */ u8 unk_2B; // room?
+    /* 0x0002C */ u8 unk_2C; // level?
     /* 0x0002D */ u8 unk_2D;
     /* 0x0002E */ u8 unk_2E;
     /* 0x0002F */ u8 unk_2F;
     /* 0x00030 */ u8 unk_30;
     /* 0x00031 */ u8 unk_31;
-    /* 0x00032 */ u16 unk_32;
-    /* 0x00034 */ u32 unk_34;
-    /* 0x00038 */ u32 unk_38;
+    /* 0x00032 */ u16 unk_32; // item percent?
+    /* 0x00034 */ u32 unk_34; // gold?
+    /* 0x00038 */ u32 unk_38; // time?
     /* 0x0003C */ u32 unk_3C;
 }; /* size = 0x20 */
 
@@ -653,10 +653,10 @@ struct EwramData_unk1325C {
     /* 0x13354 */ u8 blueSoulInventory[2][0xD];
     /* 0x1336E */ u8 yellowSoulInventory[2][0x12];
     /* 0x13392 */ u8 abilitySoulInventory[2][0x3];
-    /* 0x13398 */ u16 unk_13398;
-    /* 0x1339A */ u16 unk_1339A;
-    /* 0x1339C */ u16 unk_1339C;
-    /* 0x1339E */ u16 unk_1339E;
+    /* 0x13398 */ u16 attackButton;
+    /* 0x1339A */ u16 jumpButton;
+    /* 0x1339C */ u16 abilityButton;
+    /* 0x1339E */ u16 guardianButton;
     /* 0x133A0 */ u8 pad_133A0[0x133EC - 0x133A0];
 }; /* size = 0x190 */
 

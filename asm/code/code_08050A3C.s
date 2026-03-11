@@ -1027,7 +1027,7 @@ _08051254:
 	lsls r1, r1, #3
 	adds r0, r0, r1
 	ldrb r0, [r0]
-	bl sub_08012744
+	bl SaveData_LoadSlotFromSram
 	ldr r0, [r5, #0x18]
 	bl sub_08043B18
 	ldr r0, [r6]
@@ -1051,7 +1051,7 @@ _08051288:
 	lsls r1, r1, #3
 	adds r0, r0, r1
 	ldrb r0, [r0]
-	bl sub_08013620
+	bl SaveData_SaveSlotToSram
 	b _080512BE
 	.align 2, 0
 _0805129C: .4byte 0x0000124C
@@ -7989,7 +7989,7 @@ _080549F8:
 	lsls r0, r0, #3
 	adds r4, r4, r0
 	ldrb r0, [r4]
-	bl sub_08013620
+	bl SaveData_SaveSlotToSram
 	adds r4, r0, #0
 	cmp r4, #0
 	bne _08054A84

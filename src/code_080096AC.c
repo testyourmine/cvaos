@@ -1848,15 +1848,15 @@ s32 GameModeSoulTradeMenu(void)
             if (temp_r6->unk_504.unk_504_8.unk_506 != 0)
             {
                 sub_0803278C(temp_r6->unk_504.unk_504_8.unk_506 - 1, temp_r6->unk_504.unk_504_8.unk_507, 1);
-                sub_08013620(gEwramData->unk_60.currentSave);
+                SaveData_SaveSlotToSram(gEwramData->unk_60.currentSaveSlot);
             }
             if (temp_r6->unk_504.unk_504_8.unk_504 != 0)
             {
-                sub_08013164(gEwramData->unk_60.currentSave, temp_r6->unk_504.unk_504_8.unk_504 - 1, temp_r6->unk_504.unk_504_8.unk_505);
+                sub_08013164(gEwramData->unk_60.currentSaveSlot, temp_r6->unk_504.unk_504_8.unk_504 - 1, temp_r6->unk_504.unk_504_8.unk_505);
             }
             else
             {
-                sub_08013620(gEwramData->unk_60.currentSave);
+                SaveData_SaveSlotToSram(gEwramData->unk_60.currentSaveSlot);
             }
             gEwramData->gameModeUpdateStage = 0x12;
             gEwramData->unk_12 = 0;
@@ -3891,7 +3891,7 @@ _0800B45C: \n\
 	lsls r1, r1, #3 \n\
 	adds r0, r0, r1 \n\
 	ldrb r0, [r0] \n\
-	bl sub_08013620 \n\
+	bl SaveData_SaveSlotToSram \n\
 _0800B484: \n\
 	adds r1, r6, #0 \n\
 	adds r1, #0x20 \n\
@@ -3920,7 +3920,7 @@ _0800B4B0: \n\
 	lsls r3, r3, #3 \n\
 	adds r0, r0, r3 \n\
 	ldrb r0, [r0] \n\
-	bl sub_08013620 \n\
+	bl SaveData_SaveSlotToSram \n\
 _0800B4C0: \n\
 	ldr r2, _0800B4D0 @ =gEwramData \n\
 	ldr r1, [r2] \n\

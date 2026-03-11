@@ -7,6 +7,7 @@
 #include "code_0800B700.h"
 #include "code_0800CB00.h"
 #include "code_0800F1FC.h"
+#include "code_08011DD0.h"
 #include "code_08012744.h"
 #include "code/code_08014548.h"
 #include "code/code_080211F0.h"
@@ -333,11 +334,11 @@ s32 GameModeDebugExitUpdate(void)
                 {
                     if (gEwramData->inputData.heldInput & KEY_LEFT)
                     {
-                        gEwramData->unk_60.currentSave = 2;
+                        gEwramData->unk_60.currentSaveSlot = 2;
                     }
                     else if (gEwramData->inputData.heldInput & KEY_RIGHT)
                     {
-                        gEwramData->unk_60.currentSave = 4;
+                        gEwramData->unk_60.currentSaveSlot = 4;
                     }
                     
                     sub_08014548();
@@ -366,14 +367,14 @@ s32 GameModeDebugExitUpdate(void)
                 if ((gEwramData->unk_60.unk_88 == 0) && (gEwramData->unk_60.unk_3CC == 0))
                 {
                     var_r5_2 = 0;
-                    gEwramData->unk_60.currentSave = sDebugExitOptions[gEwramData->unk_12].saveFile * 2;
-                    temp_r3_2 = sub_08013700(gEwramData->unk_60.currentSave + 1, 0);
+                    gEwramData->unk_60.currentSaveSlot = sDebugExitOptions[gEwramData->unk_12].saveFile * 2;
+                    temp_r3_2 = sub_08013700(gEwramData->unk_60.currentSaveSlot + 1, 0);
                     if ((gEwramData->inputData.heldInput & KEY_RIGHT) && (temp_r3_2 != 0))
                     {
                         var_r5_2 = gEwramData->unk_20[0].unk_38 != var_r5_2;
                     }
 
-                    if (sub_08012744(gEwramData->unk_60.currentSave + var_r5_2) != 0)
+                    if (SaveData_LoadSlotFromSram(gEwramData->unk_60.currentSaveSlot + var_r5_2) != 0)
                     {
                         gEwramData->unk_60.unk_3CC = GetRoomPointer(gEwramData->unk_60.currentArea, gEwramData->unk_60.currentRoom);
                     }
@@ -398,7 +399,7 @@ s32 GameModeDebugExitUpdate(void)
 
             if (sDebugExitOptions[gEwramData->unk_12].unk_8 != (u32*)0x0850F15C)
             {
-                sub_08012048(0x20);
+                sub_08012048((1 << 5) | 0);
             }
             break;
     }
@@ -2753,16 +2754,16 @@ s32 GameModeMainMenuUpdate(void)
             {
                 if (temp_r7->unk_4EF != 0)
                 {
-                    sub_08013620(gEwramData->unk_60.currentSave);
+                    SaveData_SaveSlotToSram(gEwramData->unk_60.currentSaveSlot);
                     gEwramData->gameModeUpdateStage += 1;
                     gEwramData->unk_12 = 0;
-                    temp_r5 = gEwramData->unk_60.currentSave + 1;
+                    temp_r5 = gEwramData->unk_60.currentSaveSlot + 1;
                     if (sub_08013700(temp_r5, 1) != 0 && gEwramData->unk_20[1].unk_38 != 0)
                     {
                         var_1 = temp_r5 * 0x47C;
-                        sub_080010E4(temp_r5);
+                        SramLockSaveSlot(temp_r5);
                         WriteAndVerifySramFast(&gEwramData->unk_60.unk_94, SRAM_BASE + 0x10 + 0x190 + var_1, 8);
-                        sub_08001124(temp_r5);
+                        SramUnlockSaveSlot(temp_r5);
                     }
                 }
                 else

@@ -402,9 +402,9 @@ void InitializeGame(void)
     InitializeAudio();
     SetSramFastFunc();
 
-    if (sub_08001094() == 0)
+    if (SramCheckInitialized() == 0)
     {
-        sub_08001004(); // return value ignored
+        SramInitialize(); // return value ignored
     }
     gEwramData->randomNumber = 0x1E86EF;
 }

@@ -33,100 +33,98 @@ static inline void sub_080135C0_inline(struct EwramData_unk60 *param_0)
     param_0->unk_A5 = gEwramData->unk_1325C.unk_13267;
 }
 
-// saves file to SRAM
-static inline u32 sub_08013620_inline(s32 param_0)
+static inline u32 SaveData_SaveSlotToSram_inline(s32 saveSlot)
 {
-    void *temp_r6;
+    void *sramSaveSlot;
     u32 error_addr;
 
     if (gEwramData) {} // TODO: Why?
 
-    temp_r6 = SRAM_BASE + 0x10 + param_0 * 0x47C;
-    sub_080010E4(param_0);
-    error_addr = WriteAndVerifySramFast(&gEwramData->unk_1325C, temp_r6, 0x190);
+    sramSaveSlot = SRAM_BASE + 0x10 + saveSlot * 0x47C;
+    SramLockSaveSlot(saveSlot);
+    error_addr = WriteAndVerifySramFast(&gEwramData->unk_1325C, sramSaveSlot, 0x190);
     if (error_addr == 0)
     {
-        error_addr = WriteAndVerifySramFast(&gEwramData->unk_60.unk_94, temp_r6 + 0x190, 0x20);
+        error_addr = WriteAndVerifySramFast(&gEwramData->unk_60.unk_94, sramSaveSlot + 0x190, 0x20);
         if (error_addr == 0)
         {
-            error_addr = WriteAndVerifySramFast(&gEwramData->unk_60.unk_B4, temp_r6 + 0x190 + 0x20, 0x2CC);
+            error_addr = WriteAndVerifySramFast(&gEwramData->unk_60.unk_B4, sramSaveSlot + 0x190 + 0x20, 0x2CC);
         }
     }
-    sub_08001124(param_0);
+    SramUnlockSaveSlot(saveSlot);
     return error_addr;
 }
 
-// clears file from SRAM
-static inline s32 sub_08013698_inline(s32 param_0)
+static inline s32 SaveData_ClearSlotInSram_inline(s32 saveSlot)
 {
     u32 error_addr;
-    void *temp_r5;
-    void *var_0;
+    void *zeroBuf;
+    void *sramSaveSlot;
 
-    temp_r5 = gEwramData->unk_133F4;
-    DMA_FILL_32(3, 0, temp_r5, 0x47C);
-    var_0 = SRAM_BASE + 0x10 + param_0 * 0x47C;
-    sub_080010E4(param_0);
-    error_addr = WriteAndVerifySramFast(temp_r5, var_0, 0x47C);
-    sub_08001124(param_0);
+    zeroBuf = gEwramData->unk_133F4;
+    DMA_FILL_32(3, 0, zeroBuf, 0x47C);
+    sramSaveSlot = SRAM_BASE + 0x10 + saveSlot * 0x47C;
+    SramLockSaveSlot(saveSlot);
+    error_addr = WriteAndVerifySramFast(zeroBuf, sramSaveSlot, 0x47C);
+    SramUnlockSaveSlot(saveSlot);
     return error_addr;
 }
 
-static inline s32 sub_08013700_inline(s32 param_0, s32 param_1)
+static inline s32 sub_08013700_inline(s32 saveSlot, s32 param_1)
 {
-    s32 var_r5;
-    s32 var_1;
+    s32 saveValid;
+    s32 sramSaveSlotOffset;
 
     if (gEwramData) {}
 
-    var_r5 = sub_08001094();
-    if (var_r5 != 0)
+    saveValid = SramCheckInitialized();
+    if (saveValid)
     {
-        var_1 = (param_0 * 0x47C);
-        var_r5 = sub_08001164(param_0);
-        if (var_r5 != 0)
+        sramSaveSlotOffset = (saveSlot * 0x47C);
+        saveValid = SramCheckSaveSlotUnlocked(saveSlot);
+        if (saveValid)
         {
-            gReadSramFast(SRAM_BASE + 0x10 + 0x190 + var_1, &gEwramData->unk_20[param_1], sizeof(gEwramData->unk_20[param_1]));
+            gReadSramFast(SRAM_BASE + 0x10 + sramSaveSlotOffset + 0x190, &gEwramData->unk_20[param_1], sizeof(gEwramData->unk_20[param_1]));
         }
         else
         {
             DMA_FILL_32(3, 0, &gEwramData->unk_20[param_1], sizeof(gEwramData->unk_20[param_1]));
         }
     }
-    return var_r5;
+    return saveValid;
 }
 
 // load save file
 /**
  * @brief 12744 | To document
  * 
- * @param param_0 To document
+ * @param saveSlot Save slot index into SRAM
  * @return s32 To document
  */
-s32 sub_08012744(s32 param_0)
+s32 SaveData_LoadSlotFromSram(s32 saveSlot)
 {
-    s32 var_r6;
-    void *var_0;
+    s32 saveValid;
+    void *sramSaveSlot;
 
     if (gEwramData) {}
 
-    var_r6 = sub_08001094();
-    if (var_r6 != 0)
+    saveValid = SramCheckInitialized();
+    if (saveValid)
     {
-        var_0 = SRAM_BASE + 0x10 + param_0 * 0x47C;
-        var_r6 = sub_08001164(param_0);
-        if (var_r6 != 0)
+        sramSaveSlot = SRAM_BASE + 0x10 + saveSlot * 0x47C;
+        saveValid = SramCheckSaveSlotUnlocked(saveSlot);
+        if (saveValid)
         {
-            gReadSramFast(var_0, &gEwramData->unk_1325C, 0x190);
-            gReadSramFast(var_0 + 0x190, &gEwramData->unk_60.unk_94, 0x20);
-            gReadSramFast(var_0 + 0x190 + 0x20, &gEwramData->unk_60.unk_B4, 0x2CC);
+            gReadSramFast(sramSaveSlot, &gEwramData->unk_1325C, 0x190);
+            gReadSramFast(sramSaveSlot + 0x190, &gEwramData->unk_60.unk_94, 0x20);
+            gReadSramFast(sramSaveSlot + 0x190 + 0x20, &gEwramData->unk_60.unk_B4, 0x2CC);
 
             if ((gEwramData->unk_60.unk_338 | gEwramData->unk_60.unk_33A) != 0)
-               return var_r6;
+               return saveValid;
         }
-        var_r6 = 0;
+        saveValid = FALSE;
     }
-    return var_r6;
+    return saveValid;
 }
 
 const u32 sUnk_080E1170[] = {
@@ -136,43 +134,43 @@ const u32 sUnk_080E1170[] = {
 /**
  * @brief 127F0 | To document
  * 
- * @param param_0 To document
+ * @param saveSlot Save slot index into SRAM
  * @param param_1 To document
  * @return s32 To document
  */
-s32 sub_080127F0(s32 param_0, s32 param_1)
+s32 sub_080127F0(s32 saveSlot, s32 param_1)
 {
-    struct EwramData_unk20 *temp_sb;
-    struct EwramData_unk60 *temp_r5;
-    s32 temp_sl;
+    struct EwramData_unk20 *unk_20;
+    struct EwramData_unk60 *unk_60;
+    s32 inGameTimerBackup;
     s32 var_2;
     u32 error_addr;
 
-    temp_r5 = &gEwramData->unk_60;
-    temp_sb = &gEwramData->unk_20[1];
-    temp_sl = temp_r5->inGameTimer;
+    unk_60 = &gEwramData->unk_60;
+    unk_20 = &gEwramData->unk_20[1];
+    inGameTimerBackup = unk_60->inGameTimer;
 
-    if (sub_08013700_inline(param_0, 1) && temp_sb->unk_38)
+    if (sub_08013700_inline(saveSlot, 1) && unk_20->unk_38)
     {
-        sub_08012744(param_0);
+        SaveData_LoadSlotFromSram(saveSlot);
     }
     else
     {
-        temp_r5->currentArea = 0;
-        temp_r5->currentRoom = 0x24;
-        temp_r5->unk_334 = 0;
-        temp_r5->unk_336 = 0x30;
-        temp_r5->unk_338 = 0x78;
-        temp_r5->unk_33A = 0x9F;
+        unk_60->currentArea = 0;
+        unk_60->currentRoom = 0x24; // First save room
+        unk_60->unk_334 = 0;
+        unk_60->unk_336 = 0x30;
+        unk_60->unk_338 = 0x78;
+        unk_60->unk_33A = 0x9F;
     }
 
-    temp_r5->inGameTimer = temp_sl;
+    unk_60->inGameTimer = inGameTimerBackup;
     sub_080213BC();
 
     if (param_1 != 0)
     {
-        temp_r5->unk_A1_0 = 1;
-        gEwramData->unk_60.unk_37E &= ~0x80;
+        unk_60->unk_A1_0 = 1;
+        gEwramData->unk_60.unk_37E &= ~0x80; // clear Chaos death flag?
 
         for (var_2 = 0; sUnk_080E1170[var_2] != 0; var_2++)
         {
@@ -181,23 +179,24 @@ s32 sub_080127F0(s32 param_0, s32 param_1)
     }
     else
     {
-        gEwramData->unk_60.unk_37E &= ~1;
+        gEwramData->unk_60.unk_37E &= ~1; // clear Graham death flag?
         sub_080121E0((1 << 5) | 8);
     }
 
     sub_080135C0_inline(&gEwramData->unk_60);
-    error_addr = sub_08013620_inline(param_0);
+    error_addr = SaveData_SaveSlotToSram_inline(saveSlot);
     return error_addr;
 }
 
 // deletes a file?
+// copies a file?
 /**
  * @brief 12A08 | To document
  * 
- * @param param_0 To document
+ * @param saveSlot Save slot index into SRAM
  * @return s32 To document
  */
-s32 sub_08012A08(s32 param_0)
+s32 sub_08012A08(s32 saveSlot)
 {
     s32 sp4;
     s32 temp_r1_4;
@@ -212,7 +211,7 @@ s32 sub_08012A08(s32 param_0)
     struct EwramData_unk20 *var_4;
 
     var_0 = &gEwramData->unk_20[0];
-    var_r0_2 = sub_08013700_inline(param_0, 0);
+    var_r0_2 = sub_08013700_inline(saveSlot, 0);
     var_1 = var_r0_2 && var_0->unk_38;
     if (var_1 == 0)
     {
@@ -226,13 +225,13 @@ s32 sub_08012A08(s32 param_0)
     {
         temp_r1_4 = temp_r1_2 - 1;
 
-        sub_08013698_inline(param_0);
-        sub_08012744(temp_r1_4);
+        SaveData_ClearSlotInSram_inline(saveSlot);
+        SaveData_LoadSlotFromSram(temp_r1_4);
         sub_08032CD0();
 
         for (var_r7 = 0; var_r7 < 6; var_r7 += 2)
         {
-            if ((var_r7 != param_0) && (temp_r1_4 != var_r7))
+            if ((var_r7 != saveSlot) && (temp_r1_4 != var_r7))
             {
                 var_2 = &gEwramData->unk_20[1];
                 var_r0_2 = sub_08013700_inline(var_r7, 0);
@@ -248,7 +247,7 @@ s32 sub_08012A08(s32 param_0)
             }
         }
 
-        error_addr = sub_08013620_inline(temp_r1_4);
+        error_addr = SaveData_SaveSlotToSram_inline(temp_r1_4);
         return error_addr;
     }
 
@@ -256,7 +255,7 @@ s32 sub_08012A08(s32 param_0)
     {
         temp_r1_4 = var_7->unk_2F;
 
-        error_addr = sub_08013698_inline(param_0);
+        error_addr = SaveData_ClearSlotInSram_inline(saveSlot);
         if (temp_r1_4 == 0)
         {
             return error_addr;
@@ -266,7 +265,7 @@ s32 sub_08012A08(s32 param_0)
 
         for (var_r7 = 0; var_r7 < 6; var_r7 += 2)
         {
-            if ((var_r7 != param_0) && (temp_r1_4 != var_r7))
+            if ((var_r7 != saveSlot) && (temp_r1_4 != var_r7))
             {
                 var_4 = &gEwramData->unk_20[0];
                 var_r0_2 = sub_08013700_inline(var_r7, 0);
@@ -274,7 +273,7 @@ s32 sub_08012A08(s32 param_0)
                 if (var_1 != 0)
                 {
                     var_7 = &gEwramData->unk_20[0];
-                    if (var_7->unk_2E == (param_0 + 1))
+                    if (var_7->unk_2E == (saveSlot + 1))
                     {
                         sp4 = var_r7;
                     }
@@ -282,19 +281,19 @@ s32 sub_08012A08(s32 param_0)
             }
         }
 
-        sub_08012744(temp_r1_4);
+        SaveData_LoadSlotFromSram(temp_r1_4);
         sub_08032CE0();
         if (sp4 >= 0)
         {
             sub_08032CBC(1, sp4 + 1);
         }
 
-        error_addr = sub_08013620_inline(temp_r1_4);
+        error_addr = SaveData_SaveSlotToSram_inline(temp_r1_4);
         if (sp4 >= 0)
         {
-            sub_08012744(sp4);
+            SaveData_LoadSlotFromSram(sp4);
             sub_08032CA8(temp_r1_4 + 1, 0);
-            error_addr = sub_08013620_inline(sp4);
+            error_addr = SaveData_SaveSlotToSram_inline(sp4);
         }
         return error_addr;
     }
@@ -304,37 +303,37 @@ s32 sub_08012A08(s32 param_0)
 /**
  * @brief 12E30 | To document
  * 
- * @param param_0 To document
- * @param param_1 To document
+ * @param srcSaveSlot Save slot to copy from
+ * @param dstSaveSlot Save slot to copy to
  * @return s32 To document
  */
-s32 sub_08012E30(s32 param_0, s32 param_1)
+s32 sub_08012E30(s32 srcSaveSlot, s32 dstSaveSlot)
 {
     s32 var_2;
-    struct EwramData_unk20 *var_0;
+    struct EwramData_unk20 *unk_20;
     u32 var_r0;
     s32 var_1;
     u32 error_addr;
 
-    sub_08012A08(param_1);
-    sub_08012744(param_0);
-    sub_08032CBC(1, param_1 + 1);
+    sub_08012A08(dstSaveSlot);
+    SaveData_LoadSlotFromSram(srcSaveSlot);
+    sub_08032CBC(1, dstSaveSlot + 1);
 
-    sub_08013620_inline(param_0);
-    var_2 = param_0 + 1;
-    var_0 = &gEwramData->unk_20[0];
+    SaveData_SaveSlotToSram_inline(srcSaveSlot);
+    var_2 = srcSaveSlot + 1;
+    unk_20 = &gEwramData->unk_20[0];
     var_r0 = sub_08013700_inline(var_2, 0);
-    var_1 = var_r0 && var_0->unk_38;
+    var_1 = var_r0 && unk_20->unk_38;
     if (var_1)
     {
-        sub_08012744(param_0 + 1);
-        sub_08032CBC(1, param_1 + 1);
-        sub_08013620_inline(param_0 + 1);
+        SaveData_LoadSlotFromSram(srcSaveSlot + 1);
+        sub_08032CBC(1, dstSaveSlot + 1);
+        SaveData_SaveSlotToSram_inline(srcSaveSlot + 1);
     }
 
-    sub_08012744(param_0);
-    sub_08032D18(param_0 + 1);
-    error_addr = sub_08013620_inline(param_1);
+    SaveData_LoadSlotFromSram(srcSaveSlot);
+    sub_08032D18(srcSaveSlot + 1);
+    error_addr = SaveData_SaveSlotToSram_inline(dstSaveSlot);
     return error_addr;
 }
 
@@ -349,19 +348,19 @@ s32 sub_08012E30(s32 param_0, s32 param_1)
  */
 s32 sub_08013038(s32 param_0, s32 param_1, s32 param_2, s32 param_3)
 {
-    struct EwramData_unk20 *var_1;
+    struct EwramData_unk20 *unk_20;
     u32 var_r0;
     s32 var_0;
 
-    var_1 = &gEwramData->unk_20[0];
+    unk_20 = &gEwramData->unk_20[0];
     var_r0 = sub_08013700_inline(param_0, 0);
-    var_0 = var_r0 && var_1->unk_38;
+    var_0 = var_r0 && unk_20->unk_38;
     if (var_0 != 0)
     {
-        sub_08012744(param_0);
+        SaveData_LoadSlotFromSram(param_0);
         sub_08032588(param_1, param_2, param_3, -1);
         sub_08032D58(param_2, param_3);
-        sub_08013620_inline(param_0);
+        SaveData_SaveSlotToSram_inline(param_0);
         return 1;
     }
     return 0;
@@ -393,7 +392,7 @@ s32 sub_08013164(s32 param_0, s32 param_1, s32 param_2)
     {
         sub_0803278C(param_1, param_2, -1);
         sub_08032D58(param_1, param_2);
-        error_addr = sub_08013620_inline(param_0);
+        error_addr = SaveData_SaveSlotToSram_inline(param_0);
         return error_addr;
     }
 
@@ -409,10 +408,10 @@ s32 sub_08013164(s32 param_0, s32 param_1, s32 param_2)
     }
 
     param_0 = param_0 - 1;
-    sub_08012744(param_0);
+    SaveData_LoadSlotFromSram(param_0);
     sub_08032588(0, param_1, param_2, -1);
     sub_08032D58(param_1, param_2);
-    sub_08013620_inline(param_0);
+    SaveData_SaveSlotToSram_inline(param_0);
     sub_08013038(param_0 + 1, 0, param_1, param_2);
     
     for(var_r7 = 0; var_r7 < 6; var_r7 += 2)
@@ -477,7 +476,7 @@ void sub_08013404(void)
         temp_r7 = 0;
 
     DMA_FILL_32(3, 0, &gEwramData->unk_60.unk_33C, 0x44);
-    sub_08012048(0x3B);
+    sub_08012048((1 << 5) | 0x1B);
 
     if (temp_r4 != 0)
     {
@@ -521,19 +520,19 @@ void sub_08013404(void)
  */
 s32 sub_0801352C(void)
 {
-    struct EwramData *temp_r5;
-    struct EwramData_unk60 *temp_r4;
+    struct EwramData_unk60 *unk_60;
 
-    temp_r5 = gEwramData;
-    temp_r4 = &temp_r5->unk_60;
+    unk_60 = &gEwramData->unk_60;
     sub_08008ED0(0);
-    temp_r4->inGameTimer = 1;
-    temp_r5->unk_60.unk_A6 = 0;
-    temp_r5->unk_60.unk_A0 = 1;
-    sub_08013620_inline(temp_r5->unk_60.currentSave);
+    unk_60->inGameTimer = 1;
+    unk_60->unk_A6 = 0;
+    unk_60->unk_A0 = 1;
+    SaveData_SaveSlotToSram_inline(unk_60->currentSaveSlot);
     // BUG: no return value
 }
 
+// creates quick save?
+// called on save?
 /**
  * @brief 135C0 | To document
  * 
@@ -552,85 +551,84 @@ void sub_080135C0(struct EwramData_unk60 *param_0)
 /**
  * @brief 13620 | To document
  * 
- * @param param_0 To document
+ * @param saveSlot Save slot index into SRAM
  * @return s32 To document
  */
-u32 sub_08013620(s32 param_0)
+u32 SaveData_SaveSlotToSram(s32 saveSlot)
 {
-    // todo: sub_08013620 is the same as sub_08013620_inline
-    void *temp_r6;
+    // todo: SaveData_SaveSlotToSram is the same as SaveData_SaveSlotToSram_inline
+    void *sramSaveSlot;
     u32 error_addr;
 
     if (gEwramData) {} // TODO: Why?
 
-    temp_r6 = SRAM_BASE + 0x10 + param_0 * 0x47C;
-    sub_080010E4(param_0);
-    error_addr = WriteAndVerifySramFast(&gEwramData->unk_1325C, temp_r6, 0x190);
+    sramSaveSlot = SRAM_BASE + 0x10 + saveSlot * 0x47C;
+    SramLockSaveSlot(saveSlot);
+    error_addr = WriteAndVerifySramFast(&gEwramData->unk_1325C, sramSaveSlot, 0x190);
     if (error_addr == 0)
     {
-        error_addr = WriteAndVerifySramFast(&gEwramData->unk_60.unk_94, temp_r6 + 0x190, 0x20);
+        error_addr = WriteAndVerifySramFast(&gEwramData->unk_60.unk_94, sramSaveSlot + 0x190, 0x20);
         if (error_addr == 0)
         {
-            error_addr = WriteAndVerifySramFast(&gEwramData->unk_60.unk_B4, temp_r6 + 0x190 + 0x20, 0x2CC);
+            error_addr = WriteAndVerifySramFast(&gEwramData->unk_60.unk_B4, sramSaveSlot + 0x190 + 0x20, 0x2CC);
         }
     }
-    sub_08001124(param_0);
+    SramUnlockSaveSlot(saveSlot);
     return error_addr;
 }
 
-// loads file?
 /**
- * @brief 13698 | To document
+ * @brief 13698 | Clear the save slot in SRAM
  * 
- * @param param_0 To document
+ * @param saveSlot Save slot index into SRAM
  * @return s32 To document
  */
-s32 sub_08013698(s32 param_0)
+s32 SaveData_ClearSlotInSram(s32 saveSlot)
 {
-    // todo: sub_08013698 is the same as sub_08013698_inline
+    // todo: SaveData_ClearSlotInSram is the same as SaveData_ClearSlotInSram_inline
     u32 error_addr;
-    void *temp_r5;
-    void *var_0;
+    void *zeroBuf;
+    void *sramSaveSlot;
 
-    temp_r5 = gEwramData->unk_133F4;
-    DMA_FILL_32(3, 0, temp_r5, 0x47C);
-    var_0 = SRAM_BASE + 0x10 + param_0 * 0x47C;
-    sub_080010E4(param_0);
-    error_addr = WriteAndVerifySramFast(temp_r5, var_0, 0x47C);
-    sub_08001124(param_0);
+    zeroBuf = gEwramData->unk_133F4;
+    DMA_FILL_32(3, 0, zeroBuf, 0x47C);
+    sramSaveSlot = SRAM_BASE + 0x10 + saveSlot * 0x47C;
+    SramLockSaveSlot(saveSlot);
+    error_addr = WriteAndVerifySramFast(zeroBuf, sramSaveSlot, 0x47C);
+    SramUnlockSaveSlot(saveSlot);
     return error_addr;
 }
 
 /**
  * @brief 13700 | To document
  * 
- * @param param_0 To document
+ * @param saveSlot Save slot index into SRAM
  * @param param_1 To document
  * @return s32 To document
  */
-s32 sub_08013700(s32 param_0, s32 param_1)
+s32 sub_08013700(s32 saveSlot, s32 param_1)
 {
     // todo: sub_08013700 is the same as sub_08013700_inline
-    s32 var_r5;
-    s32 var_1;
+    s32 saveValid;
+    s32 sramSaveSlotOffset;
 
     if (gEwramData) {}
 
-    var_r5 = sub_08001094();
-    if (var_r5 != 0)
+    saveValid = SramCheckInitialized();
+    if (saveValid)
     {
-        var_1 = (param_0 * 0x47C);
-        var_r5 = sub_08001164(param_0);
-        if (var_r5 != 0)
+        sramSaveSlotOffset = (saveSlot * 0x47C);
+        saveValid = SramCheckSaveSlotUnlocked(saveSlot);
+        if (saveValid)
         {
-            gReadSramFast(SRAM_BASE + 0x10 + 0x190 + var_1, &gEwramData->unk_20[param_1], sizeof(gEwramData->unk_20[param_1]));
+            gReadSramFast(SRAM_BASE + 0x10 + 0x190 + sramSaveSlotOffset, &gEwramData->unk_20[param_1], sizeof(gEwramData->unk_20[param_1]));
         }
         else
         {
             DMA_FILL_32(3, 0, &gEwramData->unk_20[param_1], sizeof(gEwramData->unk_20[param_1]));
         }
     }
-    return var_r5;
+    return saveValid;
 }
 
 /**
@@ -645,10 +643,10 @@ u32 sub_08013788(void)
 
     if (gEwramData) {}
 
-    var_0 = SRAM_BASE + 0x10 + 0x47C * 6;
-    sub_080010E4(6);
+    var_0 = SRAM_BASE + 0x10 + 0x47C * 6 + 0;
+    SramLockSaveSlot(6);
     error_addr = WriteAndVerifySramFast(&gEwramData->unk_60, var_0, 4);
-    sub_08001124(6);
+    SramUnlockSaveSlot(6);
     return error_addr;
 }
 
@@ -659,22 +657,22 @@ u32 sub_08013788(void)
  */
 u32 sub_080137B8(void)
 {
-    s32 var_r4;
+    s32 saveValid;
     void *var_0;
 
     if (gEwramData) {}
 
-    var_r4 = sub_08001094();
-    if (var_r4 != 0)
+    saveValid = SramCheckInitialized();
+    if (saveValid)
     {
-        var_0 = SRAM_BASE + 0x10 + 0x47C * 6;
-        var_r4 = sub_08001164(6);
-        if (var_r4 != 0)
+        var_0 = SRAM_BASE + 0x10 + 0x47C * 6 + 0;
+        saveValid = SramCheckSaveSlotUnlocked(6);
+        if (saveValid)
         {
             gReadSramFast(var_0, &gEwramData->unk_60.unk_60, sizeof(gEwramData->unk_60.unk_60));
         }
     }
-    return var_r4;
+    return saveValid;
 }
 
 /**
@@ -700,15 +698,15 @@ s32 sub_080137FC(void)
 
     gEwramData->unk_60.unk_60 |= 3;
 
-    sub_080010E4(6);
-    error_addr = WriteAndVerifySramFast(&gEwramData->unk_60, SRAM_BASE + 0x1AF8, 4);
-    sub_08001124(6);
+    SramLockSaveSlot(6);
+    error_addr = WriteAndVerifySramFast(&gEwramData->unk_60.unk_60, SRAM_BASE + 0x10 + 0x47C * 6 + 0, sizeof(gEwramData->unk_60.unk_60));
+    SramUnlockSaveSlot(6);
     if (error_addr != 0)
     {
         return 0;
     }
 
-    var_r0 = sub_080127F0(gEwramData->unk_60.currentSave, 1);
+    var_r0 = sub_080127F0(gEwramData->unk_60.currentSaveSlot, 1);
     if (var_r0 != 0)
     {
         return 0;
@@ -719,33 +717,33 @@ s32 sub_080137FC(void)
 /**
  * @brief 13854 | To document
  * 
- * @param param_0 To document
+ * @param saveSlot Save slot index into SRAM
  * @param param_1 To document
  * @return s32 To document
  */
-s32 sub_08013854(s32 param_0, s32 param_1)
+s32 sub_08013854(s32 saveSlot, s32 param_1)
 {
-    struct EwramData_unk20 *temp_r8;
-    u32 temp_r0;
-    s32 var_0;
+    struct EwramData_unk20 *unk_20;
+    u32 saveValid;
+    s32 sramSaveSlotOffset;
 
-    temp_r8 = &gEwramData->unk_20[param_1];
+    unk_20 = &gEwramData->unk_20[param_1];
 
-    temp_r0 = sub_08001094();
-    if (temp_r0 != 0)
+    saveValid = SramCheckInitialized();
+    if (saveValid)
     {
-        var_0 = param_0 * 0x47C;
-        temp_r0 = sub_08001164(param_0);
-        if (temp_r0 != 0)
+        sramSaveSlotOffset = saveSlot * 0x47C;
+        saveValid = SramCheckSaveSlotUnlocked(saveSlot);
+        if (saveValid)
         {
-            gReadSramFast(SRAM_BASE + 0x10 + 0x190 + var_0, &gEwramData->unk_20[0], sizeof(gEwramData->unk_20[0]));
+            gReadSramFast(SRAM_BASE + 0x10 + sramSaveSlotOffset + 0x190, &gEwramData->unk_20[0], sizeof(gEwramData->unk_20[0]));
         }
         else
         {
             DMA_FILL_32(3, 0, &gEwramData->unk_20[0], sizeof(gEwramData->unk_20[0]));
         }
 
-        if ((temp_r0 != 0) && (temp_r8->unk_38 != 0))
+        if (saveValid && (unk_20->unk_38 != 0))
         {
             return 1;
         }
@@ -761,14 +759,14 @@ s32 sub_08013854(s32 param_0, s32 param_1)
 u32 sub_080138E8(void)
 {
     u32 error_addr;
-    void *var_0;
+    void *sramLanguageOffset;
 
     if (gEwramData) {}
 
-    var_0 = SRAM_BASE + 0x10 + 0x47C * 6 + 4;
-    sub_080010E4(6);
-    error_addr = WriteAndVerifySramFast(&gEwramData->unk_60.language, var_0, sizeof(gEwramData->unk_60.language));
-    sub_08001124(6);
+    sramLanguageOffset = SRAM_BASE + 0x10 + 0x47C * 6 + 4;
+    SramLockSaveSlot(6);
+    error_addr = WriteAndVerifySramFast(&gEwramData->unk_60.language, sramLanguageOffset, sizeof(gEwramData->unk_60.language));
+    SramUnlockSaveSlot(6);
     return error_addr;
 }
 
@@ -779,20 +777,20 @@ u32 sub_080138E8(void)
  */
 s32 sub_0801391C(void)
 {
-    s32 var_r4;
-    void *var_0;
+    s32 saveValid;
+    void *sramLanguageOffset;
 
     if (gEwramData) {}
 
-    var_r4 = sub_08001094();
-    if (var_r4 != 0)
+    saveValid = SramCheckInitialized();
+    if (saveValid)
     {
-        var_0 = SRAM_BASE + 0x10 + 0x47C * 6 + 4;
-        var_r4 = sub_08001164(6);
-        if (var_r4 != 0)
+        sramLanguageOffset = SRAM_BASE + 0x10 + 0x47C * 6 + 4;
+        saveValid = SramCheckSaveSlotUnlocked(6);
+        if (saveValid)
         {
-            gReadSramFast(var_0, &gEwramData->unk_60.language, sizeof(gEwramData->unk_60.language));
+            gReadSramFast(sramLanguageOffset, &gEwramData->unk_60.language, sizeof(gEwramData->unk_60.language));
         }
     }
-    return var_r4;
+    return saveValid;
 }
