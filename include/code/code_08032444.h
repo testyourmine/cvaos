@@ -85,9 +85,21 @@ extern struct Unk_080E1ED8* sub_08035218(u8 param_0);
 
 extern void sub_08035228(struct EwramData_EntityData *param_0, s32 param_1);
 extern void sub_0803526C(struct EwramData_EntityData *param_0);
-extern struct EwramData_EntityData *sub_080354C8(s32 param_0, s32 param_1, u8 *param_2, struct EwramData_EntityData *param_3); // Types?
-extern struct EwramData_EntityData *sub_080355D0(void);
+extern void sub_08035310(struct EwramData_unk4F4_Struct_0 *param_0, struct EwramData_unk4F4_Struct_0 *param_1, s16 param_2);
+extern void sub_080353C0(struct EwramData_EntityData *param_0);
+extern void sub_08035450(struct EwramData_EntityData *param_0);
+extern struct EwramData_EntityData* sub_080354C8(s32 param_0, s32 param_1, u8 *param_2, struct EwramData_EntityData *param_3);
+extern struct EwramData_EntityData* sub_080355D0(void);
+extern void sub_08035618(struct EwramData_EntityData *param_0);
 extern void sub_08035638(struct EwramData_EntityData *param_0);
+extern void sub_08035640(struct EwramData_EntityData *param_0, s16 param_1);
+extern void sub_080356D4(struct EwramData_EntityData *param_0);
+extern void sub_08035704(struct EwramData_EntityData *param_0);
+extern void sub_08035738(struct EwramData_EntityData *param_0);
+extern void sub_08035768(struct EwramData_EntityData *param_0);
+extern void sub_0803579C(struct EwramData_EntityData *param_0);
+extern s16 sub_080357B8(struct EwramData_EntityData *param_0, s32 param_1, s32 param_2); // TODO: return is s16 or s32?
+extern void sub_08035868(struct EwramData_EntityData *param_0);
 extern s32 GameModeDebug1967Update(void);
 extern s32 GameModeDebug2229Update(void);
 extern s32 GameModeDebug2739Update(void);

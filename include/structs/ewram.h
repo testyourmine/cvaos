@@ -204,9 +204,17 @@ struct EwramData_unk4F4_16 {
     s16 unk_4F6;
 }; 
 
+struct EwramData_unk4F4_Struct_0 {
+    s32 unk_0;
+    s32 unk_4;
+    s32 unk_8;
+    s32 unk_C;
+};
+
 union EwramData_unk4F4 {
     struct EwramData_EntityData *unk_4F4_entity;
     s32 *unk_4F4_p32; // TODO: investigate
+    struct EwramData_unk4F4_Struct_0 *unk_4F4_struct_0; // TODO: investigate
     s32 unk_4F4_32;
     struct EwramData_unk4F4_16 unk_4F4_16;
     struct EwramData_unk4F4_8 unk_4F4_8;
@@ -910,7 +918,9 @@ struct EwramData {
     /* 0x13076 */ u16 unk_13076;
     /* 0x13078 */ u16 unk_13078;
     /* 0x1307A */ u16 unk_1307A;
-    /* 0x1307C */ u8 pad_1307C[0x13110 - 0x1307C];
+    /* 0x1307C */ u8 pad_1307C[0x13080 - 0x1307C];
+    /* 0x13080 */ struct EwramData_unk4F4_Struct_0 unk_13080[1];
+    /* 0x13090 */ u8 pad_13090[0x13110 - 0x13090];
 
     // TODO: probably a struct, according to sub_0800C7A4
     /* 0x13110 */ struct EwramData_EntityData *unk_13110;
@@ -939,7 +949,8 @@ struct EwramData {
     /* 0x131C0 */ u8 lastUsedWeapon[1]; // TODO: includes unk_131C1? what is unk_131C1?
     /* 0x131C1 */ u8 unk_131C1;
     /* 0x131C2 */ u16 unk_131C2;
-    /* 0x131C4 */ u8 pad_131C4[0x131C8 - 0x131C4];
+    /* 0x131C4 */ u16 unk_131C4;
+    /* 0x131C6 */ u8 pad_131C6[0x131C8 - 0x131C6];
     /* 0x131C8 */ u32 unk_131C8;
     /* 0x131CC */ u32 unk_131CC;
     /* 0x131D0 */ u32 unk_131D0;
