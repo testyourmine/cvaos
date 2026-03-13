@@ -823,6 +823,15 @@ struct EwramData_unk11080 {
     u8 unk_11088[0x500]; // TODO: same as gUnk_03001458
 }; /* size = 0x508 */
 
+struct EwramData_unk254D0 {
+    /* 0x254D0 */ u8 unk_254D0;
+    /* 0x254D1 */ u8 unk_254D1;
+    /* 0x254D2 */ u8 pad_254D2[0x254D6 - 0x254D2];
+    /* 0x254D6 */ s16 unk_254D6;
+    /* 0x254D8 */ u16 unk_254D8[1]; // TODO: length?
+    /* 0x254DA */ u8 pad_254DA[0x254E0 - 0x254DA];
+}; /* size = 0x10 */
+
 struct EwramData {
     /* 0x00000 */ u32 frameCounter;
     /* 0x00004 */ u16 unk_4;
@@ -1014,7 +1023,8 @@ struct EwramData {
     /* 0x254C4 */ u16 unk_254C4[4];
     /* 0x254CC */ u16 unk_254CC;
     /* 0x254CE */ u16 unk_254CE;
-    /* 0x254D0 */ u8 pad_254D0[0x25554 - 0x254D0];
+    /* 0x254D0 */ struct EwramData_unk254D0 unk_254D0;
+    /* 0x254E0 */ u8 pad_254E0[0x25554 - 0x254E0];
 }; /* size = 0x25554 */
 
 extern struct EwramData *gEwramData;

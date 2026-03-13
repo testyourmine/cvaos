@@ -7196,7 +7196,7 @@ _08035AF8:
 	bne _08035B24
 	movs r0, #0x1b
 	movs r1, #0x48
-	ldr r2, _08035B20 @ =sub_0803647c
+	ldr r2, _08035B20 @ =sub_0803647C
 	bl EntityCreateInRange
 	adds r1, r0, #0
 	cmp r1, #0
@@ -7210,7 +7210,7 @@ _08035AF8:
 	str r1, [r4]
 	b _08035B36
 	.align 2, 0
-_08035B20: .4byte sub_0803647c
+_08035B20: .4byte sub_0803647C
 _08035B24:
 	ldr r0, [r0]
 	cmp r0, #0
@@ -8387,8 +8387,8 @@ _08036476:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_0803647c
-sub_0803647c: @ 0x0803647C
+	thumb_func_start sub_0803647C
+sub_0803647C: @ 0x0803647C
 	push {r4, r5, lr}
 	sub sp, #0x14
 	adds r5, r0, #0
