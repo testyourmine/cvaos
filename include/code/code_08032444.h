@@ -223,5 +223,8 @@ extern void sub_08038A14(struct Unk_03000050 *param_0);
 extern void sub_08038A34(struct EwramData_EntityData *param_0);
 
 extern s32 GameModeDebug4531Update(void);
+extern s32 sub_08038D38(void);
+extern s32 sub_08038F8C(void);
+extern s32 sub_080392A4(void);
 
 #endif /* CODE_08032444_H */
