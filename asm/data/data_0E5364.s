@@ -5,61 +5,61 @@
 
     .section .rodata
 
-    .incbin "cvaos_us_baserom.gba", 0x0E5364, 0x1AA0
+    .incbin "cvaos_us_baserom.gba", 0x0E5364, 0x0E6E04 - 0x0E5364
 
     .global sUnk_080E6E04
 sUnk_080E6E04: @ 0x080E6E04
     .incbin "cvaos_us_baserom.gba", 0x0E6E04, 0x1 @ TODO: size
 
-    .incbin "cvaos_us_baserom.gba", 0x0E6E05, 0x1AF
+    .incbin "cvaos_us_baserom.gba", 0x0E6E05, 0x0E6FB4 - 0x0E6E05
 
     .global sUnk_080E6FB4
 sUnk_080E6FB4: @ 0x080E6FB4
     .incbin "cvaos_us_baserom.gba", 0x0E6FB4, 0x1 @ TODO: size
 
-    .incbin "cvaos_us_baserom.gba", 0x0E6FB5, 0x23F
+    .incbin "cvaos_us_baserom.gba", 0x0E6FB5, 0x0E71F4 - 0x0E6FB5
 
     .global sUnk_080E71F4
 sUnk_080E71F4: @ 0x080E71F4
     .incbin "cvaos_us_baserom.gba", 0x0E71F4, 0x1 @ TODO: size
 
-    .incbin "cvaos_us_baserom.gba", 0x0E71F5, 0x8F
+    .incbin "cvaos_us_baserom.gba", 0x0E71F5, 0x0E7284 - 0x0E71F5
 
     .global sUnk_080E7284
 sUnk_080E7284: @ 0x080E7284
     .incbin "cvaos_us_baserom.gba", 0x0E7284, 0x1 @ TODO: size
 
-    .incbin "cvaos_us_baserom.gba", 0x0E7285, 0x23BF
+    .incbin "cvaos_us_baserom.gba", 0x0E7285, 0x0E9644 - 0x0E7285
 
     .global sUnk_080E9644
 sUnk_080E9644: @ 0x080E9644
     .incbin "cvaos_us_baserom.gba", 0x0E9644, 0x1 @ TODO: size
 
-    .incbin "cvaos_us_baserom.gba", 0x0E9645, 0xFE3
+    .incbin "cvaos_us_baserom.gba", 0x0E9645, 0x0EA628 - 0x0E9645
 
     .global sUnk_080EA628
 sUnk_080EA628: @ 0x080EA628
     .incbin "cvaos_us_baserom.gba", 0x0EA628, 0x1 @ TODO: size
 
-    .incbin "cvaos_us_baserom.gba", 0x0EA629, 0x2C027
+    .incbin "cvaos_us_baserom.gba", 0x0EA629, 0x116650 - 0x0EA629
 
     .global sUnk_08116650
 sUnk_08116650: @ 0x08116650
     .incbin "cvaos_us_baserom.gba", 0x116650, 0x1 @ TODO: size
 
-    .incbin "cvaos_us_baserom.gba", 0x116651, 0x177F
+    .incbin "cvaos_us_baserom.gba", 0x116651, 0x117DD0 - 0x116651
 
     .global sUnk_08117DD0
 sUnk_08117DD0: @ 0x08117DD0
     .incbin "cvaos_us_baserom.gba", 0x117DD0, 0x1 @ TODO: size
 
-    .incbin "cvaos_us_baserom.gba", 0x117DD1, 0x5DF
+    .incbin "cvaos_us_baserom.gba", 0x117DD1, 0x1183B0 - 0x117DD1
 
     .global sUnk_081183B0
 sUnk_081183B0: @ 0x081183B0
     .incbin "cvaos_us_baserom.gba", 0x1183B0, 0x1
 
-    .incbin "cvaos_us_baserom.gba", 0x1183B1, 0x480CF
+    .incbin "cvaos_us_baserom.gba", 0x1183B1, 0x160480 - 0x1183B1
 
     .global sUnk_08160480
 sUnk_08160480: @ 0x08160480
@@ -69,31 +69,31 @@ sUnk_08160480: @ 0x08160480
 sUnk_08160488: @ 0x08160488
     .incbin "cvaos_us_baserom.gba", 0x160488, 0x8
 
-    .incbin "cvaos_us_baserom.gba", 0x160490, 0xAC418
+    .incbin "cvaos_us_baserom.gba", 0x160490, 0x20C8A8 - 0x160490
 
     .global sUnk_0820C8A8
 sUnk_0820C8A8: @ 0x0820C8A8
     .incbin "cvaos_us_baserom.gba", 0x20C8A8, 0x1 @ TODO: size
 
-    .incbin "cvaos_us_baserom.gba", 0x20C8A9, 0x273
+    .incbin "cvaos_us_baserom.gba", 0x20C8A9, 0x20CB1C - 0x20C8A9
 
     .global sUnk_0820CB1C
 sUnk_0820CB1C: @ 0x0820CB1C
     .incbin "cvaos_us_baserom.gba", 0x20CB1C, 0x1 @ TODO: size
 
-    .incbin "cvaos_us_baserom.gba", 0x20CB1D, 0x51FB7
+    .incbin "cvaos_us_baserom.gba", 0x20CB1D, 0x25EAD4 - 0x20CB1D
 
     .global sUnk_0825EAD4
 sUnk_0825EAD4: @ 0x0825EAD4
     .incbin "cvaos_us_baserom.gba", 0x25EAD4, 0x8
 
-    .incbin "cvaos_us_baserom.gba", 0x25EADC, 0x7E60
+    .incbin "cvaos_us_baserom.gba", 0x25EADC, 0x26693C - 0x25EADC
 
     .global sUnk_0826693C
 sUnk_0826693C: @ 0x0826693C
     .incbin "cvaos_us_baserom.gba", 0x26693C, 0x1 @ TODO: size
 
-    .incbin "cvaos_us_baserom.gba", 0x26693D, 0x18FF
+    .incbin "cvaos_us_baserom.gba", 0x26693D, 0x26823C - 0x26693D
 
     .global sUnk_0826823C
 sUnk_0826823C: @ 0x0826823C
@@ -103,16 +103,16 @@ sUnk_0826823C: @ 0x0826823C
 sUnk_08268244: @ 0x08268244
     .incbin "cvaos_us_baserom.gba", 0x268244, 0x8
 
-    .incbin "cvaos_us_baserom.gba", 0x26824C, 0xF8
+    .incbin "cvaos_us_baserom.gba", 0x26824C, 0x268344 - 0x26824C
 
     .global sUnk_08268344
 sUnk_08268344: @ 0x08268344
     .incbin "cvaos_us_baserom.gba", 0x268344, 0x1 @ TODO: size
 
-    .incbin "cvaos_us_baserom.gba", 0x268345, 0xFB
+    .incbin "cvaos_us_baserom.gba", 0x268345, 0x268440 - 0x268345
 
     .global sUnk_08268440
 sUnk_08268440: @ 0x08268440
     .incbin "cvaos_us_baserom.gba", 0x268440, 0x1 @ TODO: size
 
-    .incbin "cvaos_us_baserom.gba", 0x268441, 0x12DCF
+    .incbin "cvaos_us_baserom.gba", 0x268441, 0x27B210 - 0x268441

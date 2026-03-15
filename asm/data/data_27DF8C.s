@@ -5,4 +5,4 @@
 
     .section .rodata
 
-    .incbin "cvaos_us_baserom.gba", 0x27DF8C, 0x27296C
+    .incbin "cvaos_us_baserom.gba", 0x27DF8C, 0x4F08F8 - 0x27DF8C

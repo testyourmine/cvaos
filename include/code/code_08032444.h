@@ -1,5 +1,5 @@
-#ifndef CODE_08032444_H
-#define CODE_08032444_H
+#ifndef CODE_08032444__H
+#define CODE_08032444__H
 
 #include "types.h"
 #include "structs/ewram.h"
@@ -227,4 +227,4 @@ extern s32 sub_08038D38(void);
 extern s32 sub_08038F8C(void);
 extern s32 sub_080392A4(void);
 
-#endif /* CODE_08032444_H */
+#endif /* CODE_08032444__H */
