@@ -10164,9 +10164,6 @@ _08037298:
 	movs r0, #0x10
 	strb r0, [r1]
 	adds r0, r7, #0
-
-	thumb_func_start sub_080372FC
-sub_080372FC: @ 0x080372FC
 	bl sub_08037070
 	adds r6, r5, #0
 	mov sb, r4

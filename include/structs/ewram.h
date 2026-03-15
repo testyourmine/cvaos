@@ -967,9 +967,11 @@ struct EwramData {
     /* 0x131D6 */ u16 unk_131D6;
     /* 0x131D8 */ u32 unk_131D8;
     /* 0x131DC */ u32 unk_131DC;
-    /* 0x131F0 */ s32 unk_131E0; // type?
-    /* 0x131F4 */ s32 unk_131E4; // type?
-    /* 0x131F8 */ u8 pad_131E8[0x131EE - 0x131E8];
+    /* 0x131E0 */ s32 unk_131E0; // type?
+    /* 0x131E4 */ s32 unk_131E4; // type?
+    /* 0x131E8 */ u8 pad_131E8[0x131EA - 0x131E8];
+    /* 0x131EA */ u16 unk_131EA;
+    /* 0x131EC */ u16 unk_131EC;
     /* 0x131EE */ s16 currentATK;
     /* 0x131F0 */ s16 currentDEF;
     /* 0x131F2 */ s16 currentStats[4]; // 0: STR, 1: CON, 2: INT, 3: LCK
