@@ -6,6 +6,7 @@
 #include "code_0800F1FC.h"
 #include "code_08011DD0.h"
 #include "code/code_080211F0.h"
+#include "code_08032444.h"
 #include "code/code_08032444.h"
 #include "code/code_08039340.h"
 #include "code/code_08040A38.h"
