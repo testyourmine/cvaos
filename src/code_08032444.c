@@ -7,6 +7,7 @@
 #include "code_0800F1FC.h"
 #include "code/code_08014548.h"
 #include "code/code_080211F0.h"
+#include "code_08032E4C.h"
 #include "code/code_08032444.h" // make sure to remove
 #include "code/code_08039340.h"
 #include "code/code_08040A38.h"
@@ -929,7 +930,7 @@ void sub_08032CD0(void)
 }
 
 const u8 sUnk_080E1CD4[] = {
-    0x37, 0x18, 0x23
+    0x37, 0x18, 0x23, 0x8
 };
 
 /**
