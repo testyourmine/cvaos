@@ -84,6 +84,7 @@ SECTIONS {
         asm/code/code_080211F0.o(.text);
         src/code_08032444.o(.text);
         src/code_08032E4C.o(.text);
+        src/code_08033CAC.o(.text);
         asm/code/code_08032444.o(.text);
         asm/code/code_08039340.o(.text);
         asm/code/code_08040A38.o(.text);
@@ -173,6 +174,7 @@ SECTIONS {
         asm/data/data_0E0B68.o(.rodata);
         src/code_08032444.o(.rodata);
         src/code_08032E4C.o(.rodata);
+        src/code_08033CAC.o(.rodata);
         asm/data/data_0E1CD0.o(.rodata);
         src/data/data_0E3464.o(.rodata);
         asm/data/data_0E5364.o(.rodata);
