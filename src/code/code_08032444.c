@@ -2510,7 +2510,114 @@ s32 GameModeDebug4531Update(void)
     return gameMode;
 }
 
-// sub_08038D38: https://decomp.me/scratch/Tt6Fz
+struct Unk_080E281C {
+    u8 *unk_0; // string ptr
+    s32 unk_4;
+};
+
+/**
+ * @brief 38D38 | To document
+ * 
+ * @return s32 To document
+ */
+s32 sub_08038D38(void)
+{
+    struct Unk_080E281C subroutine_arg0[18];
+    s32 temp_r1;
+    s32 temp_r5;
+    s32 var_r4;
+    u16 temp_r7;
+    s32 ret;
+    s32 var_0;
+
+    memcpy(&subroutine_arg0, (void *)0x080E281C, 0x90);
+    temp_r7 = gEwramData->inputData.repeatedInput;
+    ret = 1;
+
+    DMA_COPY_16(3, (void*)0x080E25E8, PALRAM_BASE, 0x80);
+    BgCmdBuffer_WriteString(1, 1, 1, (u8 *)0x080E28AC); // "DEBUG MODE --usr04531--"
+
+    temp_r5 = ((u32*)&gEwramData->unk_254D0)[0];
+    temp_r1 = (gEwramData->unk_25551 / 17) * 17;
+    ((u32*)&gEwramData->unk_254D0)[0] = temp_r1;
+    if (temp_r5 != temp_r1)
+    {
+        DMA_FILL_32(3, 0, VRAM_BASE + 0xE000, 0x800);
+    }
+
+    ((u32*)&gEwramData->unk_254D0)[2] = 0;
+    for (var_r4 = ((u32*)&gEwramData->unk_254D0)[0]; subroutine_arg0[var_r4].unk_0 != NULL; var_r4++)
+    {
+        if (((s32*)&gEwramData->unk_254D0)[2] <= 0x10)
+        {
+            ((u32*)&gEwramData->unk_254D0)[2] += 1;
+        }
+    }
+    ((u32*)&gEwramData->unk_254D0)[1] = ((u32*)&gEwramData->unk_254D0)[0] + ((u32*)&gEwramData->unk_254D0)[2];
+
+    if (gEwramData->inputData.newInput & 1)
+    {
+        DMA_FILL_32(3, 0, VRAM_BASE + 0xE000, 0x800);
+        ret =  subroutine_arg0[gEwramData->unk_25551].unk_4;
+        return ret;
+    }
+
+    if (temp_r7 & 0x40)
+    {
+        if ((gEwramData->unk_25551 % 17) != 0)
+        {
+            gEwramData->unk_25551 -= 1;
+        }
+        else
+        {
+            gEwramData->unk_25551 = ((u32*)&gEwramData->unk_254D0)[1] - 1;
+        }
+    }
+    else if (temp_r7 & 0x80)
+    {
+        if ((((gEwramData->unk_25551 + 1) % 17) == 0) || ((gEwramData->unk_25551 + 1) >= ((s32*)&gEwramData->unk_254D0)[1]))
+        {
+            gEwramData->unk_25551 = ((u32*)&gEwramData->unk_254D0)[0];
+        }
+        else
+        {
+            gEwramData->unk_25551 += 1;
+        }
+    }
+    else if (temp_r7 & 0x100)
+    {
+        if ((gEwramData->unk_25551 + 0x11) < var_r4)
+        {
+            gEwramData->unk_25551 += 0x11;
+        }
+        else
+        {
+            gEwramData->unk_25551 = var_r4 - 1;
+        }
+    }
+    else if (temp_r7 & 0x200)
+    {
+        if (gEwramData->unk_25551 > 0x11)
+        {
+            gEwramData->unk_25551 -= 0x11;
+        }
+        else
+        {
+            gEwramData->unk_25551 = 0;
+        }
+    }
+
+    var_r4 = ((u32*)&gEwramData->unk_254D0)[0];
+    var_0 = 0;
+    for (; var_r4 < (s32) (((u32*)&gEwramData->unk_254D0)[0] + ((u32*)&gEwramData->unk_254D0)[2]); )
+    {
+        BgCmdBuffer_WriteString(4, 2 + var_0, (var_r4 == gEwramData->unk_25551) ? 1 : 3, subroutine_arg0[var_r4].unk_0);
+        var_r4++;
+        var_0++;
+    }
+    return ret;
+}
+
 
 extern s32 sUnk_084F158C[];
 extern s32 sUnk_084F159C[];
