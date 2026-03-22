@@ -11,6 +11,7 @@
 #include "code_08032444.h"
 #include "code_08032E4C.h"
 #include "code_08033CAC.h"
+#include "code_08035930.h"
 #include "code/code_08032444.h"
 #include "code/code_08039340.h"
 #include "code/code_08040A38.h"
