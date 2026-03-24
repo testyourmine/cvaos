@@ -86,6 +86,7 @@ SECTIONS {
         src/code_08032E4C.o(.text);
         src/code_08033CAC.o(.text);
         src/code_08035930.o(.text);
+        src/code_08036670.o(.text);
         asm/code/code_08032444.o(.text);
         asm/code/code_08039340.o(.text);
         asm/code/code_08040A38.o(.text);

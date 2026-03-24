@@ -5,8 +5,6 @@
 #include "structs/ewram.h"
 #include "structs/main.h"
 
-extern s32 GameModeDebug2229Update(void);
-extern void sub_08036758(struct EwramData_EntityData *param_0);
 extern s32 GameModeDebug2739Update(void);
 extern s32 sub_08036958(void);
 extern void sub_08036964(u8 param_0);
