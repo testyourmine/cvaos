@@ -95,7 +95,7 @@ SECTIONS {
         src/code_0803681C.o(.text);
         src/code_08037E9C.o(.text);
         src/code_0803889C.o(.text);
-        asm/code/code_08032444.o(.text);
+        src/code_08038A38.o(.text);
         asm/code/code_08039340.o(.text);
         asm/code/code_08040A38.o(.text);
         asm/code/code_08050A3C.o(.text);
@@ -189,6 +189,7 @@ SECTIONS {
         src/code_0803681C.o(.rodata);
         src/code_08037E9C.o(.rodata);
         src/code_0803889C.o(.rodata);
+        src/code_08038A38.o(.rodata);
         asm/data/data_0E1CD0.o(.rodata);
         src/data/data_0E3464.o(.rodata);
         asm/data/data_0E5364.o(.rodata);
@@ -258,6 +259,7 @@ SECTIONS {
         src/code_0803681C.o(.data);
         src/code_08037E9C.o(.data);
         src/code_0803889C.o(.data);
+        src/code_08038A38.o(.data);
         asm/data/data_4F1444.o(.data);
         src/code_080D73B8.o(.data);
         *libc.a:memcpy.o(.data);

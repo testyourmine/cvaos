@@ -17,7 +17,6 @@
 #include "code_08036670.h"
 #include "code_08037E9C.h"
 #include "code_0803889C.h"
-#include "code/code_08032444.h" // make sure to remove
 #include "code/code_08039340.h"
 #include "code/code_08040A38.h"
 #include "code/code_08060B98.h"

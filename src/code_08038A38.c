@@ -1,12 +1,23 @@
-#include "code/code_08032444.h"
+#include "code_08038A38.h"
 #include "code_08009A0.h"
 #include "code_08001004.h"
 #include "code_08001194.h"
 #include "code_08008750.h"
-// #include "code_0800CB00.h" // TODO: sub_0800D288 implicitly called with arguments in debug 2739 code (it should have none)
+#include "code_0800B700.h"
+// #include "code_0800CB00.h" // TODO: sub_0800D288 implicitly called with arguments (it should have none)
 #include "code_0800F1FC.h"
+#include "code_080109F4.h"
+#include "code_08011DD0.h"
 #include "code/code_08014548.h"
 #include "code/code_080211F0.h"
+#include "code_08032444.h"
+#include "code_08032E4C.h"
+#include "code_08033CAC.h"
+#include "code_08035930.h"
+#include "code_08036670.h"
+#include "code_08037E9C.h"
+#include "code_0803889C.h"
+#include "code_0803681C.h"
 #include "code/code_08039340.h"
 #include "code/code_08040A38.h"
 #include "code/code_08060B98.h"
@@ -26,6 +37,13 @@
 #include "structs/ewram.h"
 #include "structs/main.h"
 
+const u16 sUnk_080E25E8[] = {
+    0x7FFF, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
+    0x7FFF, 0x001F, 0x001F, 0x001F, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
+    0x7FFF, 0x03E0, 0x03E0, 0x03E0, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
+    0x7FFF, 0x7C00, 0x7C00, 0x7C00, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000
+};
+
 /**
  * @brief 38A38 | Handle debug 4531 game mode
  * 
@@ -33,11 +51,30 @@
  */
 s32 GameModeDebug4531Update(void)
 {
-    void *subroutine_arg0[18];
     s32 gameMode;
     struct EwramData_unk1325C *temp_r4;
 
-    memcpy(&subroutine_arg0, (void *)0x080E2668, 0x48);
+    // 080E2668
+    void *subroutine_arg0[] = {
+        (void*)0x0851fd70,
+        (void*)0x0850feec,
+        (void*)0x08513414,
+        (void*)0x0850f3b4,
+        (void*)0x085198a0,
+        (void*)0x08518b70,
+        (void*)0x0851ac14,
+        (void*)0x0851e490,
+        (void*)0x08520240,
+        (void*)0x08517790,
+        (void*)0x0852269c,
+        (void*)0x085134ac,
+        (void*)0x0850f15c,
+        (void*)0x08522c54,
+        (void*)0x0852362c,
+        (void*)0x08522c54,
+        (void*)0x0851fd70,
+        (void*)0x085236a4,
+    };
 
     gameMode = GAME_MODE_SAME_MODE;
     if (gEwramData->unk_25550 == 0)
@@ -186,7 +223,6 @@ struct Unk_080E281C {
  */
 s32 sub_08038D38(void)
 {
-    struct Unk_080E281C subroutine_arg0[18];
     s32 temp_r1;
     s32 temp_r5;
     s32 var_r4;
@@ -194,12 +230,87 @@ s32 sub_08038D38(void)
     s32 ret;
     s32 var_0;
 
-    memcpy(&subroutine_arg0, (void *)0x080E281C, 0x90);
+    // 080E281C
+    struct Unk_080E281C subroutine_arg0[] = {
+        [0] = {
+            .unk_0 = "EVENT02:GRA :",
+            .unk_4 = 4
+        },
+        [1] = {
+            .unk_0 = "EVENT03:YOKO:",
+            .unk_4 = 5
+        },
+        [2] = {
+            .unk_0 = "EVENT04:JB  :",
+            .unk_4 = 6
+        },
+        [3] = {
+            .unk_0 = "EVENT05:GRA :HYOUHEN",
+            .unk_4 = 7
+        },
+        [4] = {
+            .unk_0 = "EVENT06:YOKO:TSUISEKI",
+            .unk_4 = 8
+        },
+        [5] = {
+            .unk_0 = "EVENT07:YOKO:SANGEKI",
+            .unk_4 = 9
+        },
+        [6] = {
+            .unk_0 = "EVENT08:JB  :KIOKU",
+            .unk_4 = 10
+        },
+        [7] = {
+            .unk_0 = "EVENT09:GRA :VS GRAHAM",
+            .unk_4 = 11
+        },
+        [8] = {
+            .unk_0 = "EVENT10:JB  :VS BELMONDO",
+            .unk_4 = 12
+        },
+        [9] = {
+            .unk_0 = "EVENT11:    :VS CHAOS",
+            .unk_4 = 13
+        },
+        [10] = {
+            .unk_0 = "EVENT12:ENDING_BAD",
+            .unk_4 = 16
+        },
+        [11] = {
+            .unk_0 = "EVENT13:ENDING_TRUE",
+            .unk_4 = 17
+        },
+        [12] = {
+            .unk_0 = "EVENT14:SYOUNIN",
+            .unk_4 = 14
+        },
+        [13] = {
+            .unk_0 = "EVENT16:YOKO HINSHI",
+            .unk_4 = 15
+        },
+        [14] = {
+            .unk_0 = "EVENTJB:ENDING_BELMONDO",
+            .unk_4 = 18
+        },
+        [15] = {
+            .unk_0 = "EVENT09_05:VS GRAHAM2",
+            .unk_4 = 19
+        },
+        [16] = {
+            .unk_0 = "EVENTED:ENDING CHAOS",
+            .unk_4 = 20
+        },
+        [17] = {
+            .unk_0 = NULL,
+            .unk_4 = 0
+        },
+    };
+
     temp_r7 = gEwramData->inputData.repeatedInput;
     ret = 1;
 
-    DMA_COPY_16(3, (void*)0x080E25E8, PALRAM_BASE, 0x80);
-    BgCmdBuffer_WriteString(1, 1, 1, (u8 *)0x080E28AC); // "DEBUG MODE --usr04531--"
+    DMA_COPY_16(3, &sUnk_080E25E8, PALRAM_BASE, 0x80);
+    BgCmdBuffer_WriteString(1, 1, 1, "DEBUG MODE --usr04531--"); // "DEBUG MODE --usr04531--"
 
     temp_r5 = ((u32*)&gEwramData->unk_254D0)[0];
     temp_r1 = (gEwramData->unk_25551 / 17) * 17;
@@ -282,9 +393,13 @@ s32 sub_08038D38(void)
     return ret;
 }
 
+s32 sUnk_084F158C[] = {
+    0x37, 0x18, 0x23, 0x8
+};
 
-extern s32 sUnk_084F158C[];
-extern s32 sUnk_084F159C[];
+s32 sUnk_084F159C[] = {
+    0x20, 0x3B, 0x2D
+};
 
 /**
  * @brief 38F8C | To document
@@ -372,12 +487,10 @@ s32 sub_08038F8C(void)
                 {
                     char sp4[29];
 
-                    // "HP=%3d MP=%3d"
-                    sprintf(sp4, (u8 *)0x080E28C4, gEwramData->unk_1325C.currentHP, gEwramData->unk_1325C.currentMP);
+                    sprintf(sp4, "HP=%3d MP=%3d", gEwramData->unk_1325C.currentHP, gEwramData->unk_1325C.currentMP);
                     BgCmdBuffer_WriteString(0xE, 4, 0xC, (u8 *) sp4);
 
-                    // "%004x:%004x"
-                    sprintf(sp4, (u8 *)0x080E28D4, temp_sb, temp_r4);
+                    sprintf(sp4, "%004x:%004x", temp_sb, temp_r4);
                     BgCmdBuffer_WriteString(0xE, 5, 0xC, (u8 *) sp4);
                 }
             }
@@ -468,4 +581,3 @@ s32 sub_080392A4(void)
 
     return var_r6;
 }
-
