@@ -29,7 +29,7 @@ s16 sub_08001C1C(s32 param_0, s32 param_1);
 s16 sub_08001CCC(s32 param_0, s32 param_1, s32 param_2);
 s16 sub_08001D94(s32 param_0, s32 param_1);
 s16 sub_08001E58(s32 param_0, s32 param_1, s32 param_2);
-s16 sub_08001F3C(s32 param_0, s32 param_1);
+s32 sub_08001F3C(s32 param_0, s32 param_1); // TODO: returns s32 or s16?
 u8 sub_08001FE8(struct EwramData_EntityData *param_0, s32 param_1, s32 param_2);
 u8 sub_08002028(s32 param_0, s32 param_1);
 s16 sub_08002058(s32 param_0, s32 param_1);

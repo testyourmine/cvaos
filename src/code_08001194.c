@@ -1200,7 +1200,7 @@ s16 sub_08001E58(s32 param_0, s32 param_1, s32 param_2)
  * @param param_1 To document
  * @return s16 To document
  */
-s16 sub_08001F3C(s32 param_0, s32 param_1)
+s32 sub_08001F3C(s32 param_0, s32 param_1)
 {
     s16 var_r5;
     u32 var_r0_2;

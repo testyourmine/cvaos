@@ -12,6 +12,11 @@ SECTIONS {
     } >ewram
 
     iwram (NOLOAD) : ALIGN(4) {
+        . = 0x00000000; gUnk_03000000 = .;
+        . = 0x00000018; gUnk_03000018 = .;
+        . = 0x00000028; gUnk_03000028 = .;
+        . = 0x00000050; gUnk_03000050 = .;
+
         . = 0x00000058; gUnk_03000058 = .;
         . = 0x00000C58; gUnk_03000C58 = .;
         . = 0x00001458; gUnk_03001458 = .;
@@ -87,6 +92,9 @@ SECTIONS {
         src/code_08033CAC.o(.text);
         src/code_08035930.o(.text);
         src/code_08036670.o(.text);
+        src/code_0803681C.o(.text);
+        src/code_08037E9C.o(.text);
+        src/code_0803889C.o(.text);
         asm/code/code_08032444.o(.text);
         asm/code/code_08039340.o(.text);
         asm/code/code_08040A38.o(.text);
@@ -178,6 +186,9 @@ SECTIONS {
         src/code_08032E4C.o(.rodata);
         src/code_08033CAC.o(.rodata);
         src/code_08035930.o(.rodata);
+        src/code_0803681C.o(.rodata);
+        src/code_08037E9C.o(.rodata);
+        src/code_0803889C.o(.rodata);
         asm/data/data_0E1CD0.o(.rodata);
         src/data/data_0E3464.o(.rodata);
         asm/data/data_0E5364.o(.rodata);
@@ -244,6 +255,9 @@ SECTIONS {
         src/code_08013960.o(.data);
         asm/data/data_4F0B18.o(.data);
         src/code_08035930.o(.data);
+        src/code_0803681C.o(.data);
+        src/code_08037E9C.o(.data);
+        src/code_0803889C.o(.data);
         asm/data/data_4F1444.o(.data);
         src/code_080D73B8.o(.data);
         *libc.a:memcpy.o(.data);

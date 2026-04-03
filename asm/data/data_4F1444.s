@@ -5,7 +5,7 @@
 
     .section .data
 
-    .incbin "cvaos_us_baserom.gba", 0x4F1464, 0x506B38 - 0x4F1464
+    .incbin "cvaos_us_baserom.gba", 0x4F158C, 0x506B38 - 0x4F158C
 
     .global sUnk_08506B38
 sUnk_08506B38: @ 0x08506B38

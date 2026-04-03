@@ -53,17 +53,13 @@ struct Unk_084F1444 sUnk_084F1444[] = {
     }
 };
 
-const u8 pad[] = {0, 0};
+const u8 pad_080e1f72[] = {0, 0};
 
 // TODO: used by sub_08035868, so seemingly externed?
 const u8 sUnk_080E1F74[24] = {
     0x01, 0x00, 0x00, 0x00, 0xF1, 0x20, 0x02, 0x08, 0xB9, 0x57, 0x03, 0x08, 0xF1, 0x20, 0x02, 0x08, 
     0xF1, 0x20, 0x02, 0x08, 0x6D, 0x63, 0x03, 0x08, 
 };
-
-const u8 sUnk_080E1F8C[] = " ";
-const u8 sUnk_080E1F90[] = "+";
-const u8 pad_[] = {0,0};
 
 /**
  * @brief 35930 | Handle debug 1967 game mode
@@ -113,10 +109,10 @@ s32 GameModeDebug1967Update(void)
 
             for (var_r4 = 0; var_r4 < 4; var_r4++)
             {
-                BgCmdBuffer_WriteString(6, var_r4 * 2 + 4, 1, (u8 *)sUnk_080E1F8C);
+                BgCmdBuffer_WriteString(6, var_r4 * 2 + 4, 1, " ");
             }
 
-            BgCmdBuffer_WriteString(6, gEwramData->unk_12 * 2 + 4, 1, (u8 *)sUnk_080E1F90);
+            BgCmdBuffer_WriteString(6, gEwramData->unk_12 * 2 + 4, 1, "+");
             if (gEwramData->inputData.newInput & 1)
             {
                 DMA_FILL_32(3, 0, &gEwramData->unk_254D0, sizeof(gEwramData->unk_254D0));
@@ -137,6 +133,8 @@ s32 GameModeDebug1967Update(void)
 
     return gameMode;
 }
+
+const u8 pad_080e1f92[] = {0,0};
 
 /**
  * @brief 35AB0 | To document
