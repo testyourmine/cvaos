@@ -93,6 +93,7 @@ SECTIONS {
         src/code_08035930.o(.text);
         src/code_08036670.o(.text);
         src/code_0803681C.o(.text);
+        src/code_08036B40.o(.text);
         src/code_08037E9C.o(.text);
         src/code_0803889C.o(.text);
         src/code_08038A38.o(.text);
@@ -187,6 +188,7 @@ SECTIONS {
         src/code_08033CAC.o(.rodata);
         src/code_08035930.o(.rodata);
         src/code_0803681C.o(.rodata);
+        src/code_08036B40.o(.rodata);
         src/code_08037E9C.o(.rodata);
         src/code_0803889C.o(.rodata);
         src/code_08038A38.o(.rodata);
@@ -257,6 +259,7 @@ SECTIONS {
         asm/data/data_4F0B18.o(.data);
         src/code_08035930.o(.data);
         src/code_0803681C.o(.data);
+        src/code_08036B40.o(.data);
         src/code_08037E9C.o(.data);
         src/code_0803889C.o(.data);
         src/code_08038A38.o(.data);
