@@ -12,10 +12,10 @@ SECTIONS {
     } >ewram
 
     iwram (NOLOAD) : ALIGN(4) {
-        . = 0x00000000; gUnk_03000000 = .;
-        . = 0x00000018; gUnk_03000018 = .;
-        . = 0x00000028; gUnk_03000028 = .;
-        . = 0x00000050; gUnk_03000050 = .;
+        src/code_0803681C.o(.bss);
+        src/code_08036B40.o(.bss);
+        src/code_08037E9C.o(.bss);
+        src/code_0803889C.o(.bss);
 
         . = 0x00000058; gUnk_03000058 = .;
         . = 0x00000C58; gUnk_03000C58 = .;

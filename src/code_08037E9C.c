@@ -35,7 +35,7 @@
 #include "structs/ewram.h"
 #include "structs/main.h"
 
-extern struct Unk_03000028 gUnk_03000028;
+static struct Unk_03000028 gUnk_03000028;
 
 struct Unk_084F1568 {
     void *unk_0; // func ptr

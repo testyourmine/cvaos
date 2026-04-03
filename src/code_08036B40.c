@@ -42,7 +42,7 @@ const u8 sUnk_080e2044[] = "obj_";
 const u8 sUnk_080e204c[] = "../graph/dr_objhit.h";
 const u8 sUnk_080e2064[] = "obj_";
 
-extern struct Unk_03000018 gUnk_03000018;
+static struct Unk_03000018 gUnk_03000018;
 
 struct Unk_084F1544 {
     void *unk_0; // func ptr
