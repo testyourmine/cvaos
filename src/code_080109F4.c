@@ -593,7 +593,7 @@ s32 sub_080110E4(struct EwramData_unk60 *param_0)
             sub_0800DA50();
             temp_r0_4 = &gEwramData->bgInfo[1];
             // TODO: A094 types
-            sub_0803F8A8(1, (u32 *) temp_r0_4->pBgMetadata, temp_r0_4->xPos.part16.integer, temp_r0_4->yPos.part16.integer);
+            sub_0803F8A8(1, (struct EwramData_unkA078_0 *) temp_r0_4->pBgMetadata, temp_r0_4->xPos.part16.integer, temp_r0_4->yPos.part16.integer);
             gUnk_03002CB0.dispCnt = 0;
             sub_080108DC(temp_r6);
             sub_080108FC(temp_r6);
@@ -861,7 +861,7 @@ s32 sub_080116A8(struct EwramData_unk60 *param_0)
             sub_0803C3E0();
             sub_0800DA50();
             temp_r0_6 = &gEwramData->bgInfo[1];
-            sub_0803F8A8(1, (u32 *) temp_r0_6->pBgMetadata, temp_r0_6->xPos.part16.integer, temp_r0_6->yPos.part16.integer);
+            sub_0803F8A8(1, (struct EwramData_unkA078_0 *) temp_r0_6->pBgMetadata, temp_r0_6->xPos.part16.integer, temp_r0_6->yPos.part16.integer);
             gUnk_03002CB0.dispCnt = 0;
             sub_080108DC(temp_r4);
             sub_080108FC(temp_r4);

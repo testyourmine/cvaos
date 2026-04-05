@@ -1331,8 +1331,6 @@ void sub_0803526C(struct EwramData_EntityData *param_0)
     }
 }
 
-// TODO: declarations for sub_0803EA1C, sub_0803EAA4, sub_0803EABC
-
 /**
  * @brief 35310 | To document
  * 
@@ -1354,11 +1352,11 @@ void sub_08035310(struct EwramData_unk4F4_Struct_0 *param_0, struct EwramData_un
     param_0->unk_C = param_0->unk_C >> 8;
     tmp = 0xE0;
     param_0->unk_C *= tmp;
-    sub_0803EAA4(&sp0, param_0, &param_0->unk_8);
+    sub_0803EAA4((s32*)&sp0, (s32*)param_0, (s32*)&param_0->unk_8);
 
     sp0[0] += 0x200;
     sp0[1] += 0x6000;
-    sub_0803EABC(&sp8, &sp0, param_1);
+    sub_0803EABC((s32*)&sp8, (s32*)&sp0, (s32*)param_1);
 
     temp_r0 = (sp8[0] >> 8) * (sp8[0] >> 8);
     temp_r0_2 = (sp8[1] >> 8) * (sp8[1] >> 8);
@@ -1368,9 +1366,9 @@ void sub_08035310(struct EwramData_unk4F4_Struct_0 *param_0, struct EwramData_un
 
     sp8[0] = (sp8[0] >> 8) * (temp_r0_3 >> 8);
     sp8[1] = (sp8[1] >> 8) * (temp_r0_3 >> 8);
-    sub_0803EA1C(&sp0, param_0);
-    sub_0803EAA4(&param_0->unk_0, param_1, &sp8);
-    sub_0803EABC(&param_0->unk_8, &param_0->unk_0, &sp0);
+    sub_0803EA1C((s32*)&sp0, param_0);
+    sub_0803EAA4((s32*)&param_0->unk_0, (s32*)param_1, (s32*)&sp8);
+    sub_0803EABC((s32*)&param_0->unk_8, (s32*)&param_0->unk_0, (s32*)&sp0);
 }
 
 /**

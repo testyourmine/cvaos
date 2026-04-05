@@ -4048,3 +4048,2310 @@ void sub_0803E968(struct Unk_03001458_10 *param_0, s32 param_1, s32 param_2, s32
     }
 }
 
+/**
+ * @brief 3EA1C | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ */
+void sub_0803EA1C(s32 *param_0, struct EwramData_unk4F4_Struct_0 *param_1)
+{
+    param_0[0] = param_1->unk_0;
+    param_0[1] = param_1->unk_4;
+}
+
+/**
+ * @brief 3EA28 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ */
+void sub_0803EA28(struct Unk_03001458_10 *param_0, struct Unk_03001458_10 *param_1)
+{
+    param_0->unk_0 = param_1->unk_0;
+    param_0->unk_4 = param_1->unk_4;
+    param_0->unk_8 = param_1->unk_8;
+    param_0->unk_C = param_1->unk_C;
+}
+
+/**
+ * @brief 3EA3C | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ */
+void sub_0803EA3C(s32 *param_0, s32 *param_1, s32 *param_2)
+{
+    s32 var_0[4];
+
+    var_0[0] = param_1[0] + param_2[0];
+    var_0[1] = param_1[1] + param_2[1];
+    var_0[2] = param_1[2] + param_2[2];
+    var_0[3] = param_1[3] + param_2[3];
+
+    param_0[0] = var_0[0];
+    param_0[1] = var_0[1];
+    param_0[2] = var_0[2];
+    param_0[3] = var_0[3];
+}
+
+/**
+ * @brief 3EA70 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ */
+void sub_0803EA70(s32 *param_0, s32 *param_1, s32 *param_2)
+{
+    s32 var_0[4];
+
+    var_0[0] = param_1[0] - param_2[0];
+    var_0[1] = param_1[1] - param_2[1];
+    var_0[2] = param_1[2] - param_2[2];
+    var_0[3] = param_1[3] - param_2[3];
+
+    param_0[0] = var_0[0];
+    param_0[1] = var_0[1];
+    param_0[2] = var_0[2];
+    param_0[3] = var_0[3];
+}
+
+/**
+ * @brief 3EAA4 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ */
+void sub_0803EAA4(s32 *param_0, s32 *param_1, s32 *param_2)
+{
+    param_0[0] = param_1[0] + param_2[0];
+    param_0[1] = param_1[1] + param_2[1];
+}
+
+/**
+ * @brief 3EABC | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ */
+void sub_0803EABC(s32 *param_0, s32 *param_1, s32 *param_2)
+{
+    param_0[0] = param_1[0] - param_2[0];
+    param_0[1] = param_1[1] - param_2[1];
+}
+
+static inline s32 sub_0803EAD4_inline_0(s32 param_0, s32 param_1)
+{
+    return (param_0 >> 8) * (param_1 >> 8);
+}
+
+/**
+ * @brief 3EAD4 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ */
+void sub_0803EAD4(s32 *param_0, s32 *param_1, s32 param_2)
+{
+    param_0[0] = sub_0803EAD4_inline_0(param_1[0], param_2);
+    param_0[1] = sub_0803EAD4_inline_0(param_1[1], param_2);
+}
+
+/**
+ * @brief 3EAE8 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ */
+void sub_0803EAE8(s32 *param_0, s32 *param_1, s32 *param_2)
+{
+    s32 sp0[2];
+
+    sp0[0] = sub_0803EAD4_inline_0(param_1[0], param_2[0]) + sub_0803EAD4_inline_0(param_1[1], param_2[1]);
+    sp0[1] = sub_0803EAD4_inline_0(param_1[2], param_2[0]) + sub_0803EAD4_inline_0(param_1[3], param_2[1]);
+
+    param_0[0] = *&sp0[0];
+    param_0[1] = *&sp0[1];
+}
+
+/**
+ * @brief 3EB24 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ */
+void sub_0803EB24(s32 *param_0, s32 *param_1, s32 *param_2)
+{
+    s32 sp0[4];
+
+    sp0[0] = sub_0803EAD4_inline_0(param_1[0], param_2[0]) + sub_0803EAD4_inline_0(param_1[1], param_2[2]);
+    sp0[1] = sub_0803EAD4_inline_0(param_1[0], param_2[1]) + sub_0803EAD4_inline_0(param_1[1], param_2[3]);
+    sp0[2] = sub_0803EAD4_inline_0(param_1[2], param_2[0]) + sub_0803EAD4_inline_0(param_1[3], param_2[2]);
+    sp0[3] = sub_0803EAD4_inline_0(param_1[2], param_2[1]) + sub_0803EAD4_inline_0(param_1[3], param_2[3]);
+
+    param_0[0] = sp0[0];
+    param_0[1] = sp0[1];
+    param_0[2] = sp0[2];
+    param_0[3] = sp0[3];
+}
+
+/**
+ * @brief 3EBA8 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @return s32 To document
+ */
+s32 sub_0803EBA8(struct EwramData_unk54C *param_0, struct EwramData_EntityData *param_1)
+{
+    s32 var_r6;
+    struct EwramData_unk54C_4 *temp_r2;
+
+    var_r6 = 1;
+    temp_r2 = param_0->unk_4;
+    temp_r2 = &temp_r2[param_1->unk_552];
+    param_1->unk_549 = temp_r2->unk_0;
+    if (param_1->unk_550 & 4)
+    {
+        return 3;
+    }
+
+    if ((param_1->unk_550 & (4 | 2)) == 0)
+    {
+        param_1->unk_553 += 1;
+        if (param_1->unk_553 >= temp_r2->unk_1)
+        {
+            var_r6 = 2;
+            param_1->unk_553 = 0;
+            param_1->unk_552 += 1;
+
+            if (param_1->unk_552 >= param_0->unk_0)
+            {
+                if (param_1->unk_550 & 1)
+                {
+                    param_1->unk_552 = 0;
+                    var_r6 = 4;
+                }
+                else
+                {
+                    param_1->unk_552 = param_0->unk_0 - 1;
+                    var_r6 = 3;
+                    param_1->unk_550 |= 4;
+                }
+                param_1->unk_53D_0 = 1;
+            }
+        }
+    }
+    return var_r6;
+}
+
+/**
+ * @brief 3EC34 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @return s32 To document
+ */
+s32 sub_0803EC34(struct EwramData_unk54C *param_0, struct EwramData_EntityData *param_1)
+{
+    s32 var_r6;
+    struct EwramData_unk54C_4 **temp_r2; // TODO: what is happening here with temp_r2?
+
+    var_r6 = 1;
+    temp_r2 = &param_0->unk_4;
+    temp_r2 = &temp_r2[param_1->unk_552];
+    param_1->unk_549 = ((struct EwramData_unk54C_4 *)temp_r2)->unk_0;
+    if (param_1->unk_550 & 4)
+    {
+        return 3;
+    }
+
+    if ((param_1->unk_550 & (4 | 2)) == 0)
+    {
+        param_1->unk_553 += 1;
+        if (param_1->unk_553 >= ((struct EwramData_unk54C_4 *)temp_r2)->unk_1)
+        {
+            var_r6 = 2;
+            param_1->unk_553 = 0;
+            param_1->unk_552 += 1;
+
+            if (param_1->unk_552 >= param_0->unk_0)
+            {
+                if (param_1->unk_550 & 1)
+                {
+                    param_1->unk_552 = 0;
+                    var_r6 = 4;
+                }
+                else
+                {
+                    param_1->unk_552 = param_0->unk_0 - 1;
+                    var_r6 = 3;
+                    param_1->unk_550 |= 4;
+                }
+                param_1->unk_53D_0 = 1;
+            }
+        }
+    }
+    return var_r6;
+}
+
+/**
+ * @brief 3ECC0 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @return s32 To document
+ */
+s32 sub_0803ECC0(struct EwramData_unk54C *param_0, struct EwramData_EntityData *param_1)
+{
+    s32 var_r8;
+    struct EwramData_unk54C_4 **temp_r4; // TODO: what is happening here with temp_r4?
+
+    var_r8 = 1;
+    temp_r4 = &param_0->unk_4;
+    temp_r4 = &temp_r4[param_1->unk_552 * 2];
+    param_1->unk_549 = READ_16(&((struct EwramData_unk54C_4 *)temp_r4)->unk_0); // TODO: what????
+    sub_08042884(param_1, ((struct EwramData_unk54C_4 *)temp_r4)->unk_4);
+    if (param_1->unk_550 & 4)
+    {
+        return 3;
+    }
+
+    if ((param_1->unk_550 & (4 | 2)) == 0)
+    {
+        param_1->unk_553 = param_1->unk_553 + 1;
+        if (param_1->unk_553 >= ((struct EwramData_unk54C_4 *)temp_r4)->unk_2)
+        {
+            var_r8 = 2;
+            param_1->unk_553 = 0;
+            param_1->unk_552 += 1;
+
+            if (param_1->unk_552 >= param_0->unk_0)
+            {
+                if (param_1->unk_550 & 1)
+                {
+                    param_1->unk_552 = 0;
+                    var_r8 = 4;
+                }
+                else
+                {
+                    param_1->unk_552 = param_0->unk_0 - 1;
+                    var_r8 = 3;
+                    param_1->unk_550 |= 4;
+                }
+                param_1->unk_53D_0 = 1;
+            }
+        }
+    }
+    return var_r8;
+}
+
+/**
+ * @brief 3ED6C | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @return s32 To document
+ */
+s32 sub_0803ED6C(struct EwramData_unk54C *param_0, struct EwramData_EntityData *param_1)
+{
+    s32 var_r8;
+    struct EwramData_unk54C_4 **temp_r4; // TODO: what is happening here with temp_r4?
+
+    var_r8 = 1;
+    temp_r4 = &param_0->unk_4;
+    temp_r4 = &temp_r4[param_1->unk_552 * 3];
+    param_1->unk_549 = READ_16(&((struct EwramData_unk54C_4 *)temp_r4)->unk_0); // TODO: what????
+    sub_08042884(param_1, ((struct EwramData_unk54C_4 *)temp_r4)->unk_4);
+    sub_080428F0(param_1, ((struct EwramData_unk54C_4 *)temp_r4)->unk_8);
+    if (param_1->unk_550 & 4)
+    {
+        return 3;
+    }
+
+    if ((param_1->unk_550 & (4 | 2)) == 0)
+    {
+        param_1->unk_553 = param_1->unk_553 + 1;
+        if (param_1->unk_553 >= ((struct EwramData_unk54C_4 *)temp_r4)->unk_2)
+        {
+            var_r8 = 2;
+            param_1->unk_553 = 0;
+            param_1->unk_552 += 1;
+
+            if (param_1->unk_552 >= param_0->unk_0)
+            {
+                if (param_1->unk_550 & 1)
+                {
+                    param_1->unk_552 = 0;
+                    var_r8 = 4;
+                }
+                else
+                {
+                    param_1->unk_552 = param_0->unk_0 - 1;
+                    var_r8 = 3;
+                    param_1->unk_550 |= 4;
+                }
+                param_1->unk_53D_0 = 1;
+            }
+        }
+    }
+    return var_r8;
+}
+
+extern const void *sUnk_80E2B34[];
+
+static inline struct EwramData_unk10170_C* sub_0803EE24_inline_0(struct EwramData_EntityData *param_0)
+{
+    return gEwramData->unk_10170[param_0->unk_548].unk_C;
+}
+
+/**
+ * @brief 3EE24 | To document
+ * 
+ * @param param_0 To document
+ * @return s32 To document
+ */
+s32 sub_0803EE24(struct EwramData_EntityData *param_0)
+{
+    s32 temp_r0_2;
+    s32 var_r6;
+    s32 temp_r4;
+    s32 temp_r4_2;
+    struct EwramData_unk10170_C *temp_r0;
+    struct EwramData_unk10170_C *temp_r1;
+    struct EwramData_unk54C *var_r3;
+
+    temp_r4 = param_0->unk_549;
+    param_0->unk_548 += 0;
+    temp_r0 = sub_0803EE24_inline_0(param_0);
+    if (temp_r0 == NULL)
+    {
+        var_r6 = 0;
+    }
+    else
+    {
+        if (param_0->unk_550 & 8)
+        {
+            var_r3 = param_0->unk_54C;
+        }
+        else
+        {
+            var_r3 = temp_r0->var_8 + param_0->unk_551;
+        }
+
+        if (var_r3 == NULL)
+        {
+            var_r6 = 0;
+        }
+        else
+        {
+            var_r6 = ((s32 (*)(struct EwramData_unk54C *, struct EwramData_EntityData *)) sUnk_80E2B34[var_r3->unk_2])(var_r3, param_0);
+        }
+    }
+
+    if (temp_r4 != param_0->unk_549)
+    {
+        param_0->unk_548 += 0;
+        temp_r1 = gEwramData->unk_10170[param_0->unk_548].unk_C;
+        if (temp_r1 == NULL)
+        {
+            return 0;
+        }
+
+        if (param_0->unk_549 < temp_r1->unk_0)
+        {
+            temp_r4_2 = temp_r1->var_4[param_0->unk_549].unk_C->unk_9;
+        }
+        else
+        {
+            temp_r4_2 = temp_r1->var_4->unk_C->unk_9;
+        }
+        
+        temp_r0_2 = sub_0803B998(param_0);
+        if (sub_0803B840(temp_r0_2, 0) != temp_r4_2)
+        {
+            sub_0803AA20(temp_r0_2, 0, temp_r4_2, 1);
+        }
+    }
+
+    return var_r6;
+}
+
+/**
+ * @brief 3EEFC | To document
+ * 
+ * @param param_0 To document
+ * @return s32 To document
+ */
+s32 sub_0803EEFC(struct EwramData_EntityData *param_0)
+{
+    s32 temp_r0_3;
+    s32 var_r2;
+    s32 var_r7;
+    struct EwramData_unk54C *var_r3;
+    s32 temp_r1_2;
+    s32 temp_r6;
+    s32 var_r5;
+    struct EwramData_unk10170_C *temp_r0;
+    struct EwramData_unk10170_C *temp_r0_2;
+    struct EwramData_unk10170_C_4 *var_r0;
+
+    temp_r6 = param_0->unk_549;
+    param_0->unk_548 += 0;
+    temp_r0 = sub_0803EE24_inline_0(param_0);
+    if (temp_r0 == NULL)
+    {
+        var_r7 = 0;
+    }
+    else
+    {
+        if (param_0->unk_550 & 8)
+        {
+            var_r3 = param_0->unk_54C;
+        }
+        else
+        {
+            var_r3 = temp_r0->var_8 + param_0->unk_551;
+        }
+
+        if (var_r3 == NULL)
+        {
+            var_r7 = 0;
+        }
+        else
+        {
+            var_r7 = ((s32 (*)(struct EwramData_unk54C *, struct EwramData_EntityData *)) sUnk_80E2B34[var_r3->unk_2])(var_r3, param_0);
+        }
+    }
+
+    if (temp_r6 != param_0->unk_549)
+    {
+        param_0->unk_548 += 0;
+        temp_r0_2 = gEwramData->unk_10170[param_0->unk_548].unk_C;
+        if (temp_r0_2 == NULL)
+        {
+            return 0;
+        }
+
+        if (param_0->unk_549 < temp_r0_2->unk_0)
+        {
+            var_r0 = temp_r0_2->var_4 + param_0->unk_549;
+        }
+        else
+        {
+            var_r0 = temp_r0_2->var_4;
+        }
+
+        temp_r1_2 = var_r0->pad_5[0];
+        for (var_r2 = 0; var_r2 < temp_r1_2; var_r2++)
+        {
+            var_r5 = var_r0->unk_C[var_r2].unk_9;
+            if (var_r5 != 0)
+            {
+                break;
+            }
+            
+        }
+
+        if (var_r5 != 0)
+        {
+            temp_r0_3 = sub_0803B998(param_0);
+            if (sub_0803B840(temp_r0_3, 1) != var_r5)
+            {
+                sub_0803AA20(temp_r0_3, 1, var_r5, 1);
+            }
+        }
+    }
+
+    return var_r7;
+}
+
+/**
+ * @brief 3EFF0 | To document
+ * 
+ * @param param_0 To document
+ * @return s32 To document
+ */
+s32 sub_0803EFF0(struct EwramData_EntityData *param_0)
+{
+    s32 temp_r1;
+    struct EwramData_unk54C *var_r3;
+    u8 *temp_r1_2;
+    u8 *temp_r4;
+    u8 temp_r1_3;
+    u8 temp_r6;
+    void *temp_r7;
+    struct EwramData_unk10170_C *temp_r2;
+    s32 var_0;
+
+    temp_r1 = param_0->unk_548;
+    if (sub_0803EE24_inline_0(param_0) == 0)
+    {
+        var_0 = 0;
+    }
+    else
+    {
+        temp_r1_2 = gEwramData->unk_FEC4[gEwramData->unk_10170[param_0->unk_548].unk_4].unk_FED4;
+        if (temp_r1_2 == NULL)
+        {
+            var_0 = 0;
+        }
+        else if (*temp_r1_2 != 2)
+        {
+            var_0 = 0;
+        }
+        else
+        {
+            temp_r7 = temp_r1_2 + 4;
+            temp_r4 = (void*)&param_0->unk_54C->unk_4;
+            temp_r4 += (param_0->unk_552 * 4);
+            temp_r1_3 = *temp_r4;
+            temp_r6 = temp_r1_3 >> 2;
+            if (param_0->unk_518.unk_518_8.unk_51B != temp_r1_3)
+            {
+                param_0->unk_518.unk_518_8.unk_51B = temp_r1_3;
+                sub_0803B66C(sub_0803B998(param_0), (void*)(*(u32*)(temp_r7 + (temp_r6 * 4))), *temp_r4, 0, 1, 1);
+            }
+        
+            temp_r2 = gEwramData->unk_10170[param_0->unk_548].unk_C;
+            if (temp_r2 == NULL)
+            {
+                var_0 = 0;
+            }
+            else
+            {
+                if (param_0->unk_550 & 8)
+                {
+                    var_r3 = param_0->unk_54C;
+                }
+                else
+                {
+                    var_r3 = temp_r2->var_8 + param_0->unk_551;
+                }
+
+                if (var_r3 == NULL)
+                {
+                    var_0 = 0;
+                }
+                else
+                {
+                    var_0 = ((s32 (*)(struct EwramData_unk54C *, struct EwramData_EntityData *)) sUnk_80E2B34[var_r3->unk_2])(var_r3, param_0);
+                }
+            }
+        }
+    }
+
+    return var_0;
+}
+
+/**
+ * @brief 3F0E4 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @param param_3 To document
+ * @return s32 To document
+ */
+s32 sub_0803F0E4(struct EwramData_EntityData *param_0, struct EwramData_unk54C *param_1, u8 param_2, u8 param_3)
+{
+    param_0->unk_53F = param_2;
+    param_0->unk_548 += 0;
+    if (gEwramData->unk_10170[param_0->unk_548].unk_C == 0)
+        return 0;
+
+    param_0->unk_54C = param_1;
+    param_0->unk_550 = param_3 | 8;
+    param_0->unk_551 = 0;
+    param_0->unk_552 = 0;
+    param_0->unk_553 = 0;
+    sub_0803F17C(param_0);
+    param_0->unk_550 = param_3 | 8;
+    param_0->unk_551 = 0;
+    param_0->unk_552 = 0;
+    param_0->unk_553 = 0;
+    param_0->unk_53D_0 = 0;
+    return 1;
+}
+
+/**
+ * @brief 3F17C | To document
+ * 
+ * @param param_0 To document
+ * @return s32 To document
+ */
+s32 sub_0803F17C(struct EwramData_EntityData *param_0)
+{
+    struct EwramData_unk54C *var_r3;
+    s16 var_r0;
+    s32 var_r0_2;
+    struct EwramData_unk10170_C *temp_r2;
+
+    var_r0 = 0;
+    switch (param_0->unk_53F)
+    {
+        case 0:
+            param_0->unk_548 += 0;
+            temp_r2 = gEwramData->unk_10170[param_0->unk_548].unk_C;
+            if (temp_r2 == NULL)
+            {
+                var_r0_2 = 0;
+            }
+            else
+            {
+                if (param_0->unk_550 & 8)
+                {
+                    var_r3 = param_0->unk_54C;
+                }
+                else
+                {
+                    var_r3 = temp_r2->var_8 + param_0->unk_551;
+                }
+
+                if (var_r3 == NULL)
+                {
+                    var_r0_2 = 0;
+                }
+                else
+                {
+                    var_r0_2 = ((s32 (*)(struct EwramData_unk54C *, struct EwramData_EntityData *)) sUnk_80E2B34[var_r3->unk_2])(var_r3, param_0);
+                }
+            }
+
+            var_r0 = var_r0_2;
+            break;
+
+        case 1:
+            var_r0 = sub_0803EE24(param_0);
+            break;
+
+        case 2:
+            var_r0 = sub_0803EEFC(param_0);
+            break;
+
+        case 3:
+            var_r0 = sub_0803EFF0(param_0);
+            break;
+    }
+
+    return var_r0;
+}
+
+/**
+ * @brief 3F224 | To document
+ * 
+ * @param param_0 To document
+ * @return s32 To document
+ */
+s32 sub_0803F224(struct EwramData_EntityData *param_0)
+{
+    struct EwramData_unk54C_4 *var_r1;
+    struct EwramData_unk54C *var_r2;
+    s32 var_r4;
+    struct EwramData_unk10170_C *temp_r0;
+    u8 *var_0;
+    u16 *var_1;
+    u16 *var_2;
+
+    var_r4 = 0;
+    param_0->unk_548 += 0;
+    temp_r0 = sub_0803EE24_inline_0(param_0);
+    if (temp_r0 == NULL)
+    {
+        return 0;
+    }
+
+    if (param_0->unk_550 & 8)
+    {
+        var_r2 = param_0->unk_54C;
+    }
+    else
+    {
+        var_r2 = temp_r0->var_8 + param_0->unk_551;
+    }
+
+    switch (var_r2->unk_2)
+    {
+        case 0:
+            var_r1 = var_r2->unk_4;
+            var_r1 = &var_r1[param_0->unk_552];
+            var_r4 = var_r1->unk_1;
+            break;
+
+        case 1:
+            var_0 = (u8*)var_r2 + param_0->unk_552 * 4;
+            var_r4 = var_0[5];
+            break;
+
+        case 2:
+            var_1 = (u16*)var_r2 + param_0->unk_552 * 4;
+            var_r4 = var_1[3];
+            break;
+
+        case 3:
+            var_2 = (u16*)var_r2 + param_0->unk_552 * 6;
+            var_r4 = var_2[3];
+            break;
+    }
+
+    return var_r4;
+}
+
+// nonmatching: https://decomp.me/scratch/650Uz
+s32 sub_0803F2C8(struct EwramData_EntityData *param_0, u16 param_1, u8 param_2, u8 param_3)
+{
+    struct EwramData_unk10170_C *temp_r0;
+    s32 tmp;
+
+    tmp = param_0->unk_548;
+    temp_r0 = sub_0803EE24_inline_0(param_0);
+    if ((temp_r0->unk_C != 0) && (param_1 < temp_r0->unk_2))
+    {
+        param_0->unk_53F = param_2;
+        param_0->unk_54C = temp_r0->unk_C[param_1];
+        param_3 |= 8;
+        param_0->unk_550 = param_3 | 8;
+        param_0->unk_551 = param_1;
+        param_0->unk_552 = 0;
+        param_0->unk_553 = 0;
+        param_0->unk_53D_0 = 0;
+        return 1;
+    }
+    return 0;
+}
+
+/**
+ * @brief 3F348 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @return s32 To document
+ */
+s32 sub_0803F348(struct EwramData_EntityData *param_0, u8 param_1, u8 param_2)
+{
+    struct EwramData_unk10170_C *temp_r1;
+    s32 tmp;
+
+    tmp = param_0->unk_548;
+    temp_r1 = gEwramData->unk_10170[param_0->unk_548].unk_C;
+    if ((temp_r1 != NULL) && (param_1 < temp_r1->unk_2))
+    {
+        param_0->unk_550 = param_2;
+        param_0->unk_551 = param_1;
+        param_0->unk_552 = 0;
+        param_0->unk_553 = 0;
+        return 1;
+    }
+    return 0;
+}
+
+/**
+ * @brief 3F39C | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @return s32 To document
+ */
+s32 sub_0803F39C(struct EwramData_EntityData *param_0, struct EwramData_unk54C *param_1, u8 param_2)
+{
+    param_0->unk_548 += 0;
+    if (gEwramData->unk_10170[param_0->unk_548].unk_C == 0)
+        return 0;
+
+    param_0->unk_54C = param_1;
+    param_0->unk_550 &= ~(4 | 1);
+    param_0->unk_550 |= param_2 | 8;
+    param_0->unk_53D_0 = 0;
+    return 1;
+}
+
+/**
+ * @brief 3F3F8 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @return s32 To document
+ */
+s32 sub_0803F3F8(s32 param_0, struct EwramData_unkA078 *param_1, s32 param_2)
+{
+    u16 *sp0;
+    s32 var_r6;
+    u16 temp_sb;
+    u32 temp_sl;
+    u16 var_r4;
+    s32 var_0;
+    s32 var_1 = 0x0600E000;
+
+    if ((((u32) (param_1->xPos.whole + param_2) >> 0x13) + 0x1E) >= (param_1->pBgMetadata->unk_0 << 5))
+    {
+        var_0 = 0xF0;
+        param_2 = (param_1->pBgMetadata->unk_0 << 0x18) - (param_1->xPos.whole + (var_0 << 0x10));
+    }
+
+    if (param_2 > 0x80000)
+    {
+        param_2 = 0x80000;
+    }
+    param_1->xVel.whole = param_2;
+
+    if (((u32) (param_1->xPos.whole - 0x10000) >> 0x13) != ((u32) (param_1->xPos.whole + param_2 - 0x10000) >> 0x13))
+    {
+        sp0 = (u16*)&gEwramData->unk_133F4[0x20];
+        temp_sb = (param_1->xPos.part16.integer + 0xF7) >> 3;
+        var_r4 = param_1->yPos.part16.integer >> 3;
+        temp_sl = var_1 + (param_0 << 11) + ((temp_sb & 0x1F) * 2) + ((var_r4 & 0x1F) << 6);
+
+        for (var_r6 = 0; var_r6 < 0x15; var_r6++, var_r4++)
+        {
+            sp0[var_r6] = sub_08001994(param_1->pBgMetadata, temp_sb, var_r4);
+        }
+
+        BgCmdBuffer_WriteData(0x80, 0x15, (u8*)sp0, temp_sl);
+    }
+
+    param_1->xPos.whole += param_2;
+    return param_1->xPos.whole;
+}
+
+/**
+ * @brief 3F4C8 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @return s32 To document
+ */
+s32 sub_0803F4C8(s32 param_0, struct EwramData_unkA078 *param_1, s32 param_2)
+{
+    u16 *sp0;
+    s32 var_r7;
+    u16 temp_sb;
+    u32 temp_sl;
+    u16 var_r4;
+    s32 var_0 = 0x0600E000;
+
+    param_1++,param_1--; // FAKE
+    if ((param_1->xPos.whole + param_2) < 0)
+    {
+        param_2 = -param_1->xPos.whole;
+    }
+
+    if (param_2 < -0x80000)
+    {
+        param_2 = -0x80000;
+    }
+    param_1->xVel.whole = param_2;
+
+    if (((u32) param_1->xPos.whole >> 0x13) != ((u32) (param_1->xPos.whole + param_2) >> 0x13))
+    {
+        sp0 = (u16*)&gEwramData->unk_133F4[0x20];
+        temp_sb = (param_1->xPos.part16.integer - 8) >> 3;
+        var_r4 = param_1->yPos.part16.integer >> 3;
+        temp_sl = var_0 + (param_0 << 11) + ((temp_sb & 0x1F) * 2) + ((var_r4 & 0x1F) << 6);
+
+        for (var_r7 = 0; var_r7 < 0x15; var_r7++, var_r4++)
+        {
+            sp0[var_r7] = sub_08001994(param_1->pBgMetadata, temp_sb, var_r4);
+        }
+
+        BgCmdBuffer_WriteData(0x80, 0x15, (u8*)sp0, temp_sl);
+    }
+
+    param_1->xPos.whole += param_2;
+    return param_1->xPos.whole;
+}
+
+/**
+ * @brief 3F580 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @return s32 To document
+ */
+s32 sub_0803F580(s32 param_0, struct EwramData_unkA078 *param_1, s32 param_2)
+{
+    u16 *sp0;
+    s32 var_r6;
+    u16 temp_sb;
+    u32 temp_sl;
+    u16 var_r5;
+    s32 var_0;
+    s32 var_1 = 0x0600E000;
+
+    if ((((u32) (param_1->yPos.whole + param_2) >> 0x13) + 0x1A) >= (param_1->pBgMetadata->unk_1 << 5))
+    {
+        var_0 = 0xD0;
+        param_2 = (param_1->pBgMetadata->unk_1 << 0x18) - (param_1->yPos.whole + (var_0 << 0x10));
+    }
+
+    if (param_2 > 0x80000)
+    {
+        param_2 = 0x80000;
+    }
+    param_1->yVel.whole = param_2;
+
+    if (((u32) (param_1->yPos.whole - 0x10000) >> 0x13) != ((u32) (param_1->yPos.whole + param_2 - 0x10000) >> 0x13))
+    {
+        sp0 = (u16*)&gEwramData->unk_133F4[0x20];
+        var_r5 = param_1->xPos.part16.integer >> 3;
+        temp_sb = (param_1->yPos.part16.integer + 0xA7) >> 3;
+        temp_sl = var_1 + (param_0 << 0xB) + ((var_r5 & 0x1F) * 2) + ((temp_sb & 0x1F) << 6);
+
+        for (var_r6 = 0; var_r6 < 0x1F; var_r6++, var_r5++)
+        {
+            sp0[var_r6] = sub_08001994(param_1->pBgMetadata, var_r5, temp_sb);
+        }
+
+        BgCmdBuffer_WriteData(0, 0x1F, (u8*)sp0, temp_sl);
+    }
+
+    param_1->yPos.whole += param_2;
+    return param_1->yPos.whole;
+}
+
+/**
+ * @brief 3F650 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @return s32 To document
+ */
+s32 sub_0803F650(s32 param_0, struct EwramData_unkA078 *param_1, s32 param_2)
+{
+    u16 *sp0;
+    s32 var_r6;
+    u16 temp_sb;
+    u32 temp_sl;
+    u16 var_r5;
+    s32 var_0 = 0x0600E000;
+
+    if ((param_1->yPos.whole + param_2) < 0x300000)
+    {
+        param_2 = 0x300000 - param_1->yPos.whole;
+    }
+
+    if (param_2 < -0x80000)
+    {
+        param_2 = -0x80000;
+    }
+    param_1->yVel.whole = param_2;
+
+    if (((u32) param_1->yPos.whole >> 0x13) != ((u32) (param_1->yPos.whole + param_2) >> 0x13))
+    {
+        sp0 = (u16*)&gEwramData->unk_133F4[0x20];
+        var_r5 = param_1->xPos.part16.integer >> 3;
+        temp_sb = (param_1->yPos.part16.integer - 8) >> 3;
+        temp_sl = var_0 + (param_0 << 11) + ((var_r5 & 0x1F) * 2) + ((temp_sb & 0x1F) << 6);
+
+        for (var_r6 = 0; var_r6 < 0x1F; var_r6++, var_r5++)
+        {
+            sp0[var_r6] = sub_08001994(param_1->pBgMetadata, var_r5, temp_sb);
+        }
+
+        BgCmdBuffer_WriteData(0, 0x1F, (u8*)sp0, temp_sl);
+    }
+
+    param_1->yPos.whole += param_2;
+    return param_1->yPos.whole;
+}
+
+// nonmatching: https://decomp.me/scratch/hV8oX
+void sub_0803F710(s32 param_0)
+{
+    u16 sp0;
+    struct BgOffset *temp_r4;
+    u16 *temp_r4_2;
+    struct EwramData_unkA078 *temp_r2;
+    u16 var_r1;
+    u16 var_r7;
+    u16 var_r5;
+    u16 var_r6;
+    void* var_0 = (void*)0x0600E000;
+
+    temp_r2 = &gEwramData->bgInfo[param_0];
+
+    temp_r4 = &gDisplayRegisters.bgOfs[param_0];
+    temp_r4->hOfs = temp_r2->xPos.part16.integer;
+    temp_r4->vOfs = temp_r2->yPos.part16.integer;
+
+    sp0 = temp_r2->xPos.part16.integer >> 3;
+    var_r6 = temp_r2->yPos.part16.integer >> 3;
+
+    for (var_r1 = 0; var_r1 < 0x20; var_r1++, var_r6++)
+    {
+        for (var_r5 = sp0, var_r7 = 0; var_r7 < 0x20; var_r7++, var_r5++)
+        {
+            temp_r4_2 = var_0 + (param_0 << 11) + ((var_r5 & 0x1F) * 2) + ((var_r6 & 0x1F) << 6);
+            *temp_r4_2 = sub_08001994(temp_r2->pBgMetadata, var_r5, var_r6);
+        }
+    }
+}
+
+/**
+ * @brief 3F7C8 | To document
+ * 
+ * @param param_0 To document
+ */
+void sub_0803F7C8(s32 param_0)
+{
+    struct BgAffineSrcData subroutine_arg0;
+    struct EwramData_unkA078 *temp_r2;
+    s32 var_r0;
+    u16 var_r2;
+    u16 var_r4;
+    u16 *var_0;
+    u32 *var_1;
+    u32 *var_2;
+
+    temp_r2 = &gEwramData->bgInfo[param_0];
+    var_0 = temp_r2->pBgMetadata->unk_C;
+
+    if (param_0 == 2)
+    {
+        gDisplayRegisters.bgOfs[2].hOfs = temp_r2->xPos.part16.integer;
+        gDisplayRegisters.bgOfs[2].vOfs = temp_r2->yPos.part16.integer;
+
+        for (var_r2 = 0; var_r2 < 0x20; var_r2++)
+        {
+            for (var_r4 = 0; var_r4 < 8; var_r4++)
+            {
+                var_1 = (u32*)0x0600F000 + (var_r4) + (var_r2 << 3);
+                var_2 = (u32*)gEwramData->unk_C0EC;
+                var_r0 = var_0[(u8)var_r4 + ((u8)(var_r2 >> 2) << 3)];
+                if (var_r0 != 0)
+                {
+                    *var_1 = var_2[var_r0 * 4 + (var_r2 & 3) - 4];
+                }
+                else
+                {
+                    *var_1 = 0;
+                }
+                
+            }
+        }
+
+        subroutine_arg0.texX = 0x8000;
+        subroutine_arg0.texY = 0x8000;
+        subroutine_arg0.scrX = 0x78;
+        subroutine_arg0.scrY = 0x50;
+        subroutine_arg0.sx = 0x100;
+        subroutine_arg0.sy = 0x100;
+        subroutine_arg0.alpha = 0;
+        BgAffineSet((struct BgAffineSrcData *) &subroutine_arg0, (struct BgAffineDstData *) &gDisplayRegisters.bg2PA, 1);
+    }
+}
+
+/**
+ * @brief 3F8A8 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @param param_3 To document
+ */
+void sub_0803F8A8(s32 param_0, struct EwramData_unkA078_0 *param_1, u16 param_2, u16 param_3)
+{
+    struct EwramData_unkA078 *temp_r0;
+
+    temp_r0 = &gEwramData->bgInfo[param_0];
+    temp_r0->pBgMetadata = param_1;
+    temp_r0->xPos.part16.integer = param_2;
+    temp_r0->yPos.part16.integer = param_3;
+    temp_r0->yPos.part16.fraction = 0;
+    temp_r0->xPos.part16.fraction = 0;
+    temp_r0->yVel.whole = 0;
+    temp_r0->xVel.whole = 0;
+
+    if (param_1 == NULL)
+        return;
+
+    if (param_1->unk_2 & 2)
+    {
+        LZ77UnCompWram((u32 *) param_1->unk_4, ((param_0 == 1) ? &gEwramData->unk_A108 - 2 : &gEwramData->unk_C0EC - 2));
+        if ((param_1->unk_8 != NULL) && (param_0 == 1))
+        {
+            LZ77UnCompWram((u32 *) param_1->unk_8, &gEwramData->unk_E0D0 - 4);
+        }
+    }
+    else
+    {
+        DMA_COPY_16(3, param_1->unk_4, ((param_0 == 1) ? &gEwramData->unk_A108 : &gEwramData->unk_C0EC), 0x800);
+    }
+
+    if (!(param_1->unk_2 & 1))
+    {
+        sub_0803F710(param_0);
+    }
+    else
+    {
+        sub_0803F7C8(param_0);
+    }
+}
+
+/**
+ * @brief 3F970 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @param param_3 To document
+ */
+void sub_0803F970(s32 param_0, struct EwramData_unkA078_0 *param_1, u16 param_2, u16 param_3)
+{
+    struct EwramData_unkA078 *temp_r0;
+
+    temp_r0 = &gEwramData->bgInfo[param_0];
+    temp_r0->pBgMetadata = param_1;
+    temp_r0->xPos.part16.integer = param_2;
+    temp_r0->yPos.part16.integer = param_3;
+    temp_r0->yPos.part16.fraction = 0;
+    temp_r0->xPos.part16.fraction = 0;
+    temp_r0->yVel.whole = 0;
+    temp_r0->xVel.whole = 0;
+
+    if (param_1 == NULL)
+        return;
+
+    if (param_1->unk_2 & 2)
+    {
+        LZ77UnCompWram((u32 *) param_1->unk_4, ((param_0 == 1) ? &gEwramData->unk_A108 - 2 : &gEwramData->unk_C0EC - 2));
+    }
+    else
+    {
+        DMA_COPY_16(3, param_1->unk_4, ((param_0 == 1) ? &gEwramData->unk_A108 : &gEwramData->unk_C0EC), 0x800);
+    }
+
+    if (!(param_1->unk_2 & 1))
+    {
+        sub_0803F710(param_0);
+    }
+}
+
+/**
+ * @brief 3FA10 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @return s32 To document
+ */
+s32 sub_0803FA10(s32 param_0, struct EwramData_unkA078 *param_1, s32 param_2)
+{
+    u16 *sp0;
+    s32 var_r6;
+    u16 temp_sb;
+    u32 temp_sl;
+    u16 var_r5;
+    s32 var_0;
+    s32 var_1 = 0x0600E000;
+
+    if ((((u32) (param_1->yPos.whole + param_2) >> 0x13) + 0x14) >= (param_1->pBgMetadata->unk_1 << 5))
+    {
+        var_0 = 0xA0;
+        param_2 = (param_1->pBgMetadata->unk_1 << 0x18) - (param_1->yPos.whole + (var_0 << 0x10));
+    }
+
+    if (param_2 > 0x80000)
+    {
+        param_2 = 0x80000;
+    }
+    param_1->yVel.whole = param_2;
+
+    if (((u32) (param_1->yPos.whole - 0x10000) >> 0x13) != ((u32) (param_1->yPos.whole + param_2 - 0x10000) >> 0x13))
+    {
+        sp0 = (u16*)&gEwramData->unk_133F4[0x20];
+        var_r5 = param_1->xPos.part16.integer >> 3;
+        temp_sb = (param_1->yPos.part16.integer + 0xA7) >> 3;
+        temp_sl = var_1 + (param_0 << 0xB) + ((var_r5 & 0x1F) * 2) + ((temp_sb & 0x1F) << 6);
+
+        for (var_r6 = 0; var_r6 < 0x1F; var_r6++, var_r5++)
+        {
+            sp0[var_r6] = sub_08001994(param_1->pBgMetadata, var_r5, temp_sb);
+        }
+
+        BgCmdBuffer_WriteData(0, 0x1F, (u8*)sp0, temp_sl);
+    }
+
+    param_1->yPos.whole += param_2;
+    return param_1->yPos.whole;
+}
+
+/**
+ * @brief 3FAE0 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @return s32 To document
+ */
+s32 sub_0803FAE0(s32 param_0, struct EwramData_unkA078 *param_1, s32 param_2)
+{
+    u16 *sp0;
+    s32 var_r7;
+    u16 temp_sb;
+    u32 temp_sl;
+    u16 var_r5;
+    s32 var_0 = 0x0600E000;
+
+    param_1++,param_1--; // FAKE
+    if ((param_1->yPos.whole + param_2) < 0)
+    {
+        param_2 = -param_1->yPos.whole;
+    }
+
+    if (param_2 < -0x80000)
+    {
+        param_2 = -0x80000;
+    }
+    param_1->yVel.whole = param_2;
+
+    if (((u32) param_1->yPos.whole >> 0x13) != ((u32) (param_1->yPos.whole + param_2) >> 0x13))
+    {
+        sp0 = (u16*)&gEwramData->unk_133F4[0x20];
+        var_r5 = param_1->xPos.part16.integer >> 3;
+        temp_sb = (param_1->yPos.part16.integer - 8) >> 3;
+        temp_sl = var_0 + (param_0 << 11) + ((var_r5 & 0x1F) * 2) + ((temp_sb & 0x1F) << 6);
+
+        for (var_r7 = 0; var_r7 < 0x1F; var_r7++, var_r5++)
+        {
+            sp0[var_r7] = sub_08001994(param_1->pBgMetadata, var_r5, temp_sb);
+        }
+
+        BgCmdBuffer_WriteData(0, 0x1F, (u8*)sp0, temp_sl);
+    }
+
+    param_1->yPos.whole += param_2;
+    return param_1->yPos.whole;
+}
+
+// TODO: inline likely used in many functions here
+
+static inline s32 sub_0803FB98_inline_0(s32 param_0, s32 param_1, s32 param_2)
+{
+    s32 var_0 = 0x0600E000;
+    return var_0 + (param_0 << 0xB) + ((param_1 & 0x1F) * 2) + ((param_2 & 0x1F) << 6);
+}
+
+/**
+ * @brief 3FB98 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @return s32 To document
+ */
+s32 sub_0803FB98(s32 param_0, u16 param_1, u16 param_2)
+{
+    return sub_0803FB98_inline_0(param_0, param_1, param_2);
+}
+
+/**
+ * @brief 3FBBC | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ */
+void sub_0803FBBC(s32 param_0, s32 param_1, s32 param_2)
+{
+    struct EwramData_unkA078 *temp_r4;
+    u16 *temp_r7;
+    u16 *temp_r8;
+
+    temp_r4 = &gEwramData->bgInfo[param_0];
+    temp_r7 = &gDisplayRegisters.bgOfs[param_0].hOfs;
+    temp_r8 = &gDisplayRegisters.bgOfs[param_0].vOfs;
+
+    if (temp_r4->pBgMetadata->unk_0 > 1)
+    {
+        if (param_1 > 0)
+        {
+            sub_0803F3F8(param_0, temp_r4, param_1);
+        }
+        else if (param_1 < 0)
+        {
+            sub_0803F4C8(param_0, temp_r4, param_1);
+        }
+        else
+        {
+            temp_r4->xVel.whole = 0;
+        }
+    }
+    else
+    {
+        temp_r4->xVel.whole = 0;
+        temp_r4->xPos.whole = 0;
+    }
+
+    if (temp_r4->pBgMetadata->unk_1 > 1)
+    {
+        if (param_2 > 0)
+        {
+            sub_0803F580(param_0, temp_r4, param_2);
+        }
+        else if (param_2 < 0)
+        {
+            sub_0803F650(param_0, temp_r4, param_2);
+        }
+        else
+        {
+            temp_r4->yVel.whole = 0;
+        }
+    }
+    else
+    {
+        temp_r4->yPos.whole = 0x300000;
+        temp_r4->yVel.whole = 0;
+    }
+
+    *temp_r7 = temp_r4->xPos.part16.integer;
+    *temp_r8 = temp_r4->yPos.part16.integer;
+}
+
+/**
+ * @brief 3FC6C | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ */
+void sub_0803FC6C(s32 param_0, s32 param_1, s32 param_2)
+{
+    struct EwramData_unkA078 *temp_r4;
+    u16 *temp_r7;
+    u16 *temp_r8;
+
+    temp_r4 = &gEwramData->bgInfo[param_0];
+    temp_r7 = &gDisplayRegisters.bgOfs[param_0].hOfs;
+    temp_r8 = &gDisplayRegisters.bgOfs[param_0].vOfs;
+
+    if (temp_r4->pBgMetadata->unk_0 > 1)
+    {
+        if (param_1 > 0)
+        {
+            sub_0803F3F8(param_0, temp_r4, param_1);
+        }
+        else if (param_1 < 0)
+        {
+            sub_0803F4C8(param_0, temp_r4, param_1);
+        }
+        else
+        {
+            temp_r4->xVel.whole = 0;
+        }
+    }
+    else
+    {
+        temp_r4->xVel.whole = 0;
+        temp_r4->xPos.whole = 0;
+    }
+
+    if (temp_r4->pBgMetadata->unk_1 > 1)
+    {
+        if (param_2 > 0)
+        {
+            sub_0803FA10(param_0, temp_r4, param_2);
+        }
+        else if (param_2 < 0)
+        {
+            sub_0803FAE0(param_0, temp_r4, param_2);
+        }
+        else
+        {
+            temp_r4->yVel.whole = 0;
+        }
+    }
+    else
+    {
+        temp_r4->yVel.whole = 0;
+        temp_r4->yPos.whole = 0;
+    }
+
+    *temp_r7 = temp_r4->xPos.part16.integer;
+    *temp_r8 = temp_r4->yPos.part16.integer;
+}
+
+/**
+ * @brief 3FD1C | To document
+ * 
+ * @param param_0 To document
+ */
+void sub_0803FD1C(u8 param_0)
+{
+    struct EwramData_unkA078 *temp_r1;
+
+    temp_r1 = &gEwramData->bgInfo[param_0];
+
+    gEwramData->unk_A0E8 = temp_r1->pBgMetadata;
+    gEwramData->unk_A0EC = temp_r1->xPos.part16.integer;
+    gEwramData->unk_A0EE = temp_r1->yPos.part16.integer;
+}
+
+/**
+ * @brief 3FD60 | To document
+ * 
+ */
+void sub_0803FD60(void)
+{
+    s16 var_r1;
+    u16 *var_r5;
+    s32 tmp;
+    s32 tmp2;
+
+    var_r5 = &gDisplayRegisters.bgCnt[0];
+
+    for (var_r1 = 0; var_r1 < 4; var_r1++)
+    {
+        var_r5[0] = var_r5[0] & ~3;
+        tmp2 = sub_0803E57C(var_r1);
+        tmp = var_r5[0];
+        var_r5[0] = tmp | tmp2;
+        var_r5++;
+    }
+}
+
+/**
+ * @brief 3FD9C | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ */
+void sub_0803FD9C(void *param_0, void *param_1, u16 param_2)
+{
+    u32 var_r0;
+    u8 *var_r1;
+    u8 *var_0;
+
+    var_0 = param_0;
+    var_r1 = NULL;
+
+    if (var_0[0] != 0)
+    {
+        if (var_0[0] == 1)
+        {
+            sub_0803B9B4(var_0);
+            var_r1 = gEwramData->unk_153F8;
+        }
+    }
+    else
+    {
+        var_r1 = var_0 + 4;
+    }
+
+    if ((var_0[1] == 4) || (var_0[1] == 0))
+    {
+        var_r0 = var_0[3] << 9;
+    }
+    else
+    {
+        var_r0 = 0x4000;
+    }
+
+    if (param_2 == 0)
+    {
+        DMA_COPY_16(3, var_r1, param_1, var_r0);
+    }
+    else
+    {
+        sub_080016D0(var_r0, (u32 *) var_r1, param_1);
+    }
+}
+
+/**
+ * @brief 3FE0C | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @param param_3 To document
+ */
+void sub_0803FE0C(void *param_0, s32 param_1, s32 param_2, s32 param_3)
+{
+    u8 *var_r3;
+    u8 *var_0;
+    void *var_1;
+    s32 var_2;
+
+    var_0 = param_0;
+    var_r3 = NULL;
+
+    if (var_0[0] != 0)
+    {
+        if (var_0[0] == 1)
+        {
+            sub_0803B9B4(param_0);
+            var_r3 = gEwramData->unk_153F8;
+        }
+    }
+    else
+    {
+        var_r3 = param_0 + 4;
+    }
+
+    var_r3 = var_r3 + (param_2 << 0xB);
+    var_1 = (void*)0x06000000 + (param_1 << 0xB);
+    var_2 = param_3 << 11;
+    DMA_COPY_16(3, var_r3, var_1, var_2);
+}
+
+/**
+ * @brief 3FE64 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @return s32 To document
+ */
+s32 sub_0803FE64(s32 param_0, s32 param_1, u16 param_2)
+{
+    if (gEwramData->unk_A074_2 > param_0)
+        return 0;
+
+    // TODO: what?
+    // gDisplayRegisters.bgCnt[(param_1 - 8) >> 1] = param_2;
+    ((param_1 - 8) >> 1)[gDisplayRegisters.bgCnt] = param_2;
+    return 1;
+}
+
+extern u8 sUnk_0850A136[][0xE]; // TODO: array or struct?
+extern s32 sUnk_03001A18[];
+
+/**
+ * @brief 3FEA4 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ */
+void sub_0803FEA4(u16 param_0, u32 param_1, u32 param_2)
+{
+    u8 *sp0;
+    s32 sp4;
+    s32 temp_r0;
+    s32 var_r1;
+    s32 var_r4;
+    u32 var_r3;
+    u32 temp_r5;
+    u8 var_r2;
+    u8 (*var_0)[0xE];
+    s32 var_1;
+
+    sp4 = gEwramData->unk_115C4;
+    var_0 = sUnk_0850A136;
+    var_1 = param_0 - 0x20;
+    sp0 = var_0[var_1];
+
+    temp_r5 = gEwramData->unk_115C6 + (gEwramData->unk_115C6 * 0x10); // gEwramData->unk_115C6 * 0x11
+    temp_r5 = temp_r5 & 0xFF;
+    temp_r5 = temp_r5 | (temp_r5 << 8);
+    temp_r5 = temp_r5 | (temp_r5 << 0x10);
+
+    for (var_r1 = 0; var_r1 < 0xC; var_r1++)
+    {
+        var_r4 = temp_r5;
+        var_r2 = sp0[var_r1];
+
+        for (var_r3 = 0; var_r3 < param_1; var_r3++)
+        {
+            var_r2 *= 2;
+        }
+
+        for (var_r3 = 0; var_r3 < param_2; var_r3++)
+        {
+            if (var_r2 & 0x80)
+            {
+                temp_r0 = var_r3 * 4;
+                var_r4 = (var_r4 & ~(0xF << temp_r0)) | (sp4 << temp_r0);
+            }
+            var_r2 *= 2;
+        }
+
+        sUnk_03001A18[var_r1] = var_r4;
+    }
+}
+
+/**
+ * @brief 3FF64 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ */
+void sub_0803FF64(u16 param_0, u32 param_1, u32 param_2)
+{
+    s32 temp_ip;
+    s32 var_r4;
+    s32 var_r5;
+    s32 var_r7;
+    s32 temp_r8;
+    s32 temp_r9;
+    s32 var_r3;
+    void *var_sl;
+    s32 var_0;
+
+    temp_r8 = gEwramData->unk_115A6 & 7;
+    sub_0803FEA4(param_0, param_1, param_2);
+
+    var_sl = (void*)gEwramData->unk_11598 + ((gEwramData->unk_115A6 >> 3) * 0x20) + ((gEwramData->unk_115A8 >> 3) * 0x400);
+
+    var_r5 = 0;
+    for (var_r3 = temp_r8; var_r3 < temp_r8 + param_2; var_r3++)
+    {
+        var_r5 |= 0xF << (var_r3 * 4);
+    }
+    temp_r9 = ~var_r5;
+
+    var_r7 = 0;
+    var_r4 = gEwramData->unk_115A8 & 7;
+    temp_ip = 8 - var_r4;
+    for (var_r3 = 0; var_r3 < 12; var_r3++)
+    {
+        if (var_r3 == temp_ip)
+        {
+            var_r7 = 0x400;
+            var_r4 -= 8;
+        }
+
+        var_0 = ((s32*)(var_sl + var_r7 + (var_r3 + var_r4) * 4))[0];
+        var_0 &= temp_r9;
+        var_0 |= (sUnk_03001A18[var_r3] << (temp_r8 * 4)) & var_r5;
+        ((s32*)(var_sl + var_r7 + (var_r3 + var_r4) * 4))[0] = var_0;
+    }
+}
+
+/**
+ * @brief 40048 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ */
+void sub_08040048(u16 param_0, u32 param_1, u32 param_2)
+{
+    void *sp0;
+    s32 sp4;
+    s32 sp8;
+    s32 spC;
+    s32 sp14;
+    s32 temp_sb;
+    s32 var_ip;
+    s32 var_r5;
+    s32 var_r6;
+    s32 var_r8;
+    s32 var_0;
+    s32 var_1;
+
+    temp_sb = gEwramData->unk_115A6 & 7;
+    sub_0803FEA4(param_0, param_1, param_2);
+
+    sp0 = (void*)gEwramData->unk_11598 + ((gEwramData->unk_115A6 >> 3) * 0x20) + ((gEwramData->unk_115A8 >> 3) * 0x400);
+
+    var_ip = 0;
+    for (var_r5 = temp_sb; var_r5 < 8; var_r5++)
+    {
+        var_ip |= 0xF << (var_r5 * 4);
+    }
+    sp8 = ~var_ip;
+
+    sp14 = 0;
+    for (var_r5 = 0; var_r5 < ((temp_sb + param_2) - 8); var_r5++)
+    {
+        sp14 |= 0xF << (var_r5 * 4);
+    }
+    spC = ~sp14;
+
+    var_r8 = 0;
+    var_r6 = gEwramData->unk_115A8 & 7;
+    sp4 = 8 - var_r6;
+    for (var_r5 = 0; var_r5 < 12; var_r5++)
+    {
+        if (var_r5 == sp4)
+        {
+            var_r8 = 0x400;
+            var_r6 -= 8;
+        }
+
+        var_0 = ((s32*)(sp0 + var_r8 + (var_r5 + var_r6) * 4))[0];
+        var_1 = ((s32*)(sp0 + var_r8 + (var_r5 + var_r6) * 4))[8];
+
+        var_0 &= sp8;
+        var_1 &= spC;
+
+        var_0 |= (sUnk_03001A18[var_r5] << (temp_sb * 4)) & var_ip;
+        var_1 |= (sUnk_03001A18[var_r5] >> ((8 - temp_sb) * 4)) & sp14;
+
+        ((s32*)(sp0 + var_r8 + (var_r5 + var_r6) * 4))[0] = var_0;
+        ((s32*)(sp0 + var_r8 + (var_r5 + var_r6) * 4))[8] = var_1;
+    }
+}
+
+/**
+ * @brief 4017C | To document
+ * 
+ * @param param_0 To document
+ */
+void sub_0804017C(u32 param_0)
+{
+    s32 temp_r5;
+    s32 var_r2;
+    s32 var_r3;
+    s32 var_r4;
+    s32 temp_r4;
+    s32 var_r6;
+    void *var_r7;
+    s32 var_0;
+
+    temp_r4 = gEwramData->unk_115A6 & 7;
+
+    var_r7 = (void*)gEwramData->unk_11598 + ((gEwramData->unk_115A6 >> 3) * 0x20) + ((gEwramData->unk_115A8 >> 3) * 0x400);
+    
+    var_r2 = 0;
+    for (var_r6 = temp_r4; var_r6 < temp_r4 + param_0; var_r6++)
+    {
+        var_r2 |= 0xF << (var_r6 * 4);
+    }
+    var_r2 = ~var_r2;
+
+    var_r4 = 0;
+    var_r3 = gEwramData->unk_115A8 & 7;
+    temp_r5 = 8 - var_r3;
+    for (var_r6 = 0; var_r6 < 12; var_r6++)
+    {
+        if (var_r6 == temp_r5)
+        {
+            var_r4 = 0x400;
+            var_r3 -= 8;
+        }
+
+        var_0 = ((s32*)(var_r7 + var_r4 + (var_r6 + var_r3) * 4))[0];
+        var_0 &= var_r2;
+        ((s32*)(var_r7 + var_r4 + (var_r6 + var_r3) * 4))[0] = var_0;
+    }
+}
+
+/**
+ * @brief 40208 | To document
+ * 
+ * @param param_0 To document
+ */
+void sub_08040208(u32 param_0)
+{
+    s32 temp_r5;
+    s32 temp_r6;
+    s32 var_r2;
+    s32 var_r3;
+    s32 var_r3_2;
+    s32 var_r4;
+    s32 var_r5;
+    void *var_r8;
+    s32 var_ip;
+    s32 var_sl;
+    s32 var_0;
+    s32 var_1;
+
+    temp_r5 = gEwramData->unk_115A6 & 7;
+
+    var_r8 = (void*)gEwramData->unk_11598 + ((gEwramData->unk_115A6 >> 3) * 0x20) + ((gEwramData->unk_115A8 >> 3) * 0x400);
+
+    var_r2 = 0;
+    for (var_r4 = temp_r5; var_r4 < 8; var_r4++)
+    {
+        var_r2 |= 0xF << (var_r4 * 4);
+    }
+    var_ip = ~var_r2;
+
+    var_r3 = 0;
+    for (var_r4 = 0; var_r4 < ((temp_r5 + param_0) - 8); var_r4++)
+    {
+        var_r3 |= 0xF << (var_r4 * 4);
+    }
+    var_sl = ~var_r3;
+
+    var_r5 = 0;
+    var_r3_2 = gEwramData->unk_115A8 & 7;
+    temp_r6 = 8 - var_r3_2;
+    for (var_r4 = 0; var_r4 < 12; var_r4++)
+    {
+        if (var_r4 == temp_r6)
+        {
+            var_r5 = 0x400;
+            var_r3_2 -= 8;
+        }
+
+        var_0 = ((s32*)(var_r8 + var_r5 + (var_r4 + var_r3_2) * 4))[0];
+        var_1 = ((s32*)(var_r8 + var_r5 + (var_r4 + var_r3_2) * 4))[8];
+
+        var_0 &= var_ip;
+        var_1 &= var_sl;
+
+        ((s32*)(var_r8 + var_r5 + (var_r4 + var_r3_2) * 4))[0] = var_0;
+        ((s32*)(var_r8 + var_r5 + (var_r4 + var_r3_2) * 4))[8] = var_1;
+    }
+}
+
+extern u8 sUnk_08509876[][0xA]; // TODO: array or struct?
+
+/**
+ * @brief 402DC | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ */
+void sub_080402DC(u16 param_0, u32 param_1, u32 param_2)
+{
+    u8 *sp0;
+    s32 sp4;
+    s32 temp_r0;
+    s32 temp_r5_2;
+    s32 var_r1;
+    s32 var_r4;
+    u32 var_r3;
+    u32 var_r3_2;
+    s32 temp_r5;
+    u8 var_r2;
+    u8 (*var_0)[0xA];
+    s32 var_1;
+
+    sp4 = gEwramData->unk_115C4;
+    var_0 = sUnk_08509876;
+    var_1 = param_0 - 0x20;
+    sp0 = var_0[var_1];
+
+    temp_r5 = gEwramData->unk_115C6 + (gEwramData->unk_115C6 * 0x10); // gEwramData->unk_115C6 * 0x11
+    temp_r5 = temp_r5 & 0xFF;
+    temp_r5 = temp_r5 | (temp_r5 << 8);
+    temp_r5 = temp_r5 | (temp_r5 << 0x10);
+
+    for (var_r1 = 0; var_r1 < 8; var_r1++)
+    {
+        var_r4 = temp_r5;
+        var_r2 = sp0[var_r1];
+
+        for (var_r3 = 0; var_r3 < param_1; var_r3++)
+        {
+            var_r2 *= 2;
+        }
+
+        for (var_r3 = 0; var_r3 < param_2; var_r3++)
+        {
+            if (var_r2 & 0x80)
+            {
+                temp_r0 = var_r3 * 4;
+                var_r4 = (var_r4 & ~(0xF << temp_r0)) | (sp4 << temp_r0);
+            }
+            var_r2 *= 2;
+        }
+        sUnk_03001A18[var_r1] = var_r4;
+    }
+}
+
+/**
+ * @brief 4039C | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ */
+void sub_0804039C(u16 param_0, u32 param_1, u32 param_2)
+{
+    void *sp0;
+    s32 sp4;
+    s32 sp8;
+    s32 temp_r8;
+    s32 var_r4;
+    s32 var_r6;
+    s32 var_sl;
+    s32 var_0;
+    s32 var_1;
+
+    temp_r8 = gEwramData->unk_115B8 & 7;
+    sub_080402DC(param_0, param_1, param_2);
+
+    sp0 = (void*)gEwramData->unk_11598 + ((gEwramData->unk_115B8 >> 3) * 0x20) + (gEwramData->unk_115B4 * 0x400);
+
+    sp8 = 0;
+    for (var_r4 = temp_r8; var_r4 < 8; var_r4++)
+    {
+        sp8 |= 0xF << (var_r4 * 4);
+    }
+    sp4 = ~sp8;
+
+    var_r6 = 0;
+    for (var_r4 = 0; var_r4 < ((temp_r8 + param_2) - 8); var_r4++)
+    {
+        var_r6 |= 0xF << (var_r4 * 4);
+    }
+    var_sl = ~var_r6;
+
+    for (var_r4 = 0; var_r4 < 8; var_r4++)
+    {
+        var_0 = ((u32*)(sp0))[var_r4 + 0];
+        var_1 = ((u32*)(sp0))[var_r4 + 8];
+
+        var_0 &= sp4;
+        var_1 &= var_sl;
+
+        var_0 |= ((sUnk_03001A18[var_r4] << (temp_r8 * 4)) & sp8);
+        var_1 |= ((sUnk_03001A18[var_r4] >> ((8 - temp_r8) * 4)) & var_r6);
+
+        ((u32*)(sp0))[var_r4 + 0] = var_0;
+        ((u32*)(sp0))[var_r4 + 8] = var_1;
+    }
+}
+
+/**
+ * @brief 404A0 | To document
+ * 
+ * @param param_0 To document
+ */
+void sub_080404A0(u32 param_0)
+{
+    s32 var_r2;
+    s32 temp_r4;
+    s32 var_r5;
+    void *var_r6;
+    s32 var_r1;
+    s32 var_0;
+
+    temp_r4 = gEwramData->unk_115B8 & 7;
+
+    var_r6 = (void*)gEwramData->unk_11598 + ((gEwramData->unk_115B8 >> 3) * 0x20) + (gEwramData->unk_115B4 * 0x400);
+
+    var_r2 = 0;
+    for (var_r5 = temp_r4; var_r5 < temp_r4 + param_0; var_r5++)
+    {
+        var_r2 |= 0xF << (var_r5 * 4);
+    }
+    var_r1 = ~var_r2;
+
+    for (var_r5 = 0; var_r5 < 8; var_r5++)
+    {
+        var_0 = ((s32*)(var_r6))[var_r5 + 0];
+        var_0 &= var_r1;
+        ((s32*)(var_r6))[var_r5 + 0] = var_0;
+    }
+}
+
+/**
+ * @brief 40508 | To document
+ * 
+ * @param param_0 To document
+ */
+void sub_08040508(u32 param_0)
+{
+    s32 var_r2;
+    s32 var_r3;
+    s32 var_r4;
+    s32 var_r4_2;
+    s32 temp_r0;
+    s32 var_r6;
+    void *var_r7;
+    s32 var_0;
+    s32 var_1;
+
+    temp_r0 = gEwramData->unk_115B8 & 7;
+
+    var_r7 = (void*)gEwramData->unk_11598 + ((gEwramData->unk_115B8 >> 3) << 5) + (gEwramData->unk_115B4 << 0xA);
+
+    var_r2 = 0;
+    for (var_r3 = temp_r0; var_r3 < 8; var_r3++)
+    {
+        var_r2 |= 0xF << (var_r3 * 4);
+    }
+    var_r6 = ~var_r2;
+
+    var_r4 = 0;
+    for (var_r3 = 0; var_r3 < ((temp_r0 + param_0) - 8); var_r3++)
+    {
+        var_r4 |= 0xF << (var_r3 * 4);
+    }
+    var_r4_2 = ~var_r4;
+
+    for (var_r3 = 0; var_r3 < 8; var_r3++)
+    {
+        var_0 = ((s32*)var_r7)[var_r3 + 0];
+        var_1 = ((s32*)var_r7)[var_r3 + 8];
+
+        var_0 &= var_r6;
+        var_1 &= var_r4_2;
+
+        ((s32*)var_r7)[var_r3 + 0] = var_0;
+        ((s32*)var_r7)[var_r3 + 8] = var_1;
+    }
+}
+
+/**
+ * @brief 4059C | To document
+ * 
+ */
+void sub_0804059C(void)
+{
+    gEwramData->unk_11598 = (void *)0x06000000;
+    gEwramData->unk_1159C = 0x100;
+    gEwramData->unk_1159E = 0x100;
+    gEwramData->unk_115AA = 0;
+    gEwramData->unk_115A0 = 0;
+    gEwramData->unk_115AC = 0;
+    gEwramData->unk_115A2 = 0;
+    gEwramData->unk_115AE = 0x28;
+    gEwramData->unk_115B0 = 0x14;
+    gEwramData->unk_115A4 = 0;
+    gEwramData->unk_115A8 = 0;
+    gEwramData->unk_115A6 = 0;
+    gEwramData->unk_115BC = 0;
+    gEwramData->unk_115B2 = 0;
+    gEwramData->unk_115BE = 0;
+    gEwramData->unk_115B4 = 0;
+    gEwramData->unk_115C0 = 0x28;
+    gEwramData->unk_115C2 = 0x1F;
+    gEwramData->unk_115B6 = 0;
+    gEwramData->unk_115BA = 0;
+    gEwramData->unk_115B8 = 0;
+    gEwramData->unk_115C4 = 1;
+    gEwramData->unk_115C6 = 0;
+}
+
+
+// TODO: is inline needed?
+static inline void sub_0804066C_inline_0()
+{
+    gEwramData->unk_115A6 = gEwramData->unk_115A0 * 6;
+    gEwramData->unk_115A8 = gEwramData->unk_115A2 * 12;
+}
+
+/**
+ * @brief 4066C | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ */
+void sub_0804066C(u16 param_0, u16 param_1)
+{
+    gEwramData->unk_115A0 = param_0;
+    gEwramData->unk_115A2 = param_1;
+
+    if (gEwramData->unk_115A0 > 0x28)
+    {
+        gEwramData->unk_115A0 = 0x28;
+    }
+
+    if (gEwramData->unk_115A2 > 0x14)
+    {
+        gEwramData->unk_115A2 = 0x14;
+    }
+
+    gEwramData->unk_115A4 = 0;
+    // gEwramData->unk_115A6 = gEwramData->unk_115A0 * 6;
+    // gEwramData->unk_115A8 = gEwramData->unk_115A2 * 12;
+    sub_0804066C_inline_0();
+}
+
+/**
+ * @brief 406E4 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ */
+void sub_080406E4(u16 param_0, u16 param_1)
+{
+    if (param_0 > 0xF0)
+    {
+        param_0 = 0xF0;
+    }
+
+    if (param_1 > 0x14)
+    {
+        param_1 = 0x14;
+    }
+
+    gEwramData->unk_115A0 = param_0 / 6;
+    gEwramData->unk_115A4 = param_0 % 6;
+
+    gEwramData->unk_115A6 = param_0;
+    gEwramData->unk_115A2 = param_1;
+    gEwramData->unk_115A8 = param_1 * 12;
+}
+
+/**
+ * @brief 40748 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @param param_3 To document
+ */
+void sub_08040748(u16 param_0, u16 param_1, u16 param_2, u16 param_3)
+{
+    gEwramData->unk_115AA = param_0;
+    gEwramData->unk_115AC = param_1;
+
+    gEwramData->unk_115AE = (param_0 + param_2) - 2;
+    gEwramData->unk_115B0 = (param_1 + param_3) - 1;
+
+    if (gEwramData->unk_115AA > 0x28)
+    {
+        gEwramData->unk_115AA = 0x28;
+    }
+
+    if (gEwramData->unk_115AC > 0x14)
+    {
+        gEwramData->unk_115AC = 0x14;
+    }
+
+    if (gEwramData->unk_115AE > 0x28)
+    {
+        gEwramData->unk_115AE = 0x28;
+    }
+
+    if (gEwramData->unk_115B0 > 0x14)
+    {
+        gEwramData->unk_115B0 = 0x14;
+    }
+
+    gEwramData->unk_115A4 = 0;
+    gEwramData->unk_115A6 = gEwramData->unk_115A0 * 6;
+    gEwramData->unk_115A8 = gEwramData->unk_115A2 * 12;
+}
+
+// TODO: is inline needed?
+static inline void sub_08040814_inline_0()
+{
+    gEwramData->unk_115A6 = gEwramData->unk_115A0 * 6;
+    gEwramData->unk_115A8 = gEwramData->unk_115A2 * 12;
+}
+
+/**
+ * @brief 40814 | To document
+ * 
+ */
+void sub_08040814(void)
+{
+    gEwramData->unk_115A0 = gEwramData->unk_115AA;
+
+    gEwramData->unk_115A2 += 1;
+    if (gEwramData->unk_115A2 > gEwramData->unk_115B0)
+    {
+        gEwramData->unk_115A2 = gEwramData->unk_115AC;
+    }
+
+    gEwramData->unk_115A4 = 0;
+    // gEwramData->unk_115A6 = gEwramData->unk_115A0 * 6;
+    // gEwramData->unk_115A8 = gEwramData->unk_115A2 * 12;
+    sub_08040814_inline_0();
+}
+
+// TODO: is inline needed?
+static inline void sub_08040898_inline_0()
+{
+    gEwramData->unk_115B8 = gEwramData->unk_115B2 * 6;
+    gEwramData->unk_115BA = gEwramData->unk_115B4 * 8;
+}
+
+/**
+ * @brief 40898 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ */
+void sub_08040898(u16 param_0, u16 param_1)
+{
+    gEwramData->unk_115B2 = param_0;
+    gEwramData->unk_115B4 = param_1;
+
+    if (gEwramData->unk_115B2 > 0x28)
+    {
+        gEwramData->unk_115B2 = 0x28;
+    }
+
+    if (gEwramData->unk_115B4 > 0x1F)
+    {
+        gEwramData->unk_115B4 = 0x1F;
+    }
+
+    gEwramData->unk_115B6 = 0;
+    // gEwramData->unk_115B8 = gEwramData->unk_115B2 * 6;
+    // gEwramData->unk_115BA = gEwramData->unk_115B4 * 8;
+    sub_08040898_inline_0();
+}
+
+/**
+ * @brief 4090C | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ */
+void sub_0804090C(u16 param_0, u16 param_1)
+{
+    if (param_0 > 0xF0)
+    {
+        param_0 = 0xF0;
+    }
+
+    if (param_1 > 0x1F)
+    {
+        param_1 = 0x1F;
+    }
+
+    gEwramData->unk_115B2 = param_0 / 6;
+    gEwramData->unk_115B6 = param_0 % 6;
+
+    gEwramData->unk_115B8 = param_0;
+    gEwramData->unk_115B4 = param_1;
+    gEwramData->unk_115BA = param_1 * 0xC;
+}
+
+/**
+ * @brief 40970 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @param param_3 To document
+ */
+void sub_08040970(u16 param_0, u16 param_1, u16 param_2, u16 param_3)
+{
+    gEwramData->unk_115BC = param_0;
+    gEwramData->unk_115BE = param_1;
+
+    gEwramData->unk_115C0 = (param_0 + param_2) - 2;
+    gEwramData->unk_115C2 = (param_1 + param_3) - 1;
+
+    if (gEwramData->unk_115BC > 0x28)
+    {
+        gEwramData->unk_115BC = 0x28;
+    }
+
+    if (gEwramData->unk_115BE > 0x1F)
+    {
+        gEwramData->unk_115BE = 0x1F;
+    }
+
+    if (gEwramData->unk_115C0 > 0x28)
+    {
+        gEwramData->unk_115C0 = 0x28;
+    }
+
+    if (gEwramData->unk_115C2 > 0x1F)
+    {
+        gEwramData->unk_115C2 = 0x1F;
+    }
+
+    gEwramData->unk_115B6 = 0;
+    gEwramData->unk_115B8 = gEwramData->unk_115B2 * 6;
+    gEwramData->unk_115BA = gEwramData->unk_115B4 * 8;
+}
+

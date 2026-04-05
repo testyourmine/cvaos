@@ -317,6 +317,21 @@ struct EwramData_unk554 {
     /* 0x00564 */ void *unk_564; // TODO: function signature
 };
 
+struct EwramData_unk54C_4 {
+    u8 unk_0;
+    u8 unk_1;
+    u16 unk_2;
+    u32 unk_4; // TODO: pointer or value?
+    u32 unk_8; // TODO: pointer or value?
+    u8 pad_C[0x10 - 0xC];
+}; /* size = 0x10 */
+
+struct EwramData_unk54C {
+    u16 unk_0;
+    u16 unk_2;
+    struct EwramData_unk54C_4 *unk_4;
+};
+
 struct EwramData_EntityData {
     /* 0x004E4 */ u32 *updateFunc; // TODO: function signature
     /* 0x004E8 */ u32 *drawFunc; // TODO: function signature
@@ -367,7 +382,9 @@ struct EwramData_EntityData {
     /* 0x00547 */ u8 unk_547;
     /* 0x00548 */ u8 unk_548;
     /* 0x00549 */ u8 unk_549;
-    /* 0x0054A */ u8 pad_54A[0x551 - 0x54A];
+    /* 0x0054A */ u8 pad_54A[0x54C - 0x54A];
+    /* 0x0054C */ struct EwramData_unk54C *unk_54C;
+    /* 0x00550 */ u8 unk_550;
     /* 0x00551 */ u8 unk_551;
     /* 0x00552 */ u8 unk_552;
     /* 0x00553 */ u8 unk_553;
@@ -713,10 +730,11 @@ struct EwramData_unk10170_C_4 {
 };
 
 struct EwramData_unk10170_C {
-    // u8 pad_0[0x4 - 0x0];
-    u32 unk_0;
+    u16 unk_0;
+    u16 unk_2;
     struct EwramData_unk10170_C_4 *var_4;
-    void *var_8;
+    struct EwramData_unk54C *var_8;
+    struct EwramData_unk54C **unk_C;
 };
 
 struct EwramData_unk10170 {
@@ -862,7 +880,10 @@ struct EwramData {
     /* 0x0A075 */ u8 konamiCodeInputsCounter;
     /* 0x0A076 */ u8 pad_A076[0xA078 - 0xA076];
     /* 0x0A078 */ struct EwramData_unkA078 bgInfo[4];
-    /* 0x0A0E8 */ u8 pad_A0E8[0xA108 - 0xA0E8];
+    /* 0x0A0E8 */ struct EwramData_unkA078_0 *unk_A0E8;
+    /* 0x0A0EC */ u16 unk_A0EC;
+    /* 0x0A0EE */ u16 unk_A0EE;
+    /* 0x0A0F0 */ u8 pad_A0F0[0xA108 - 0xA0F0];
     /* 0x0A108 */ u16 unk_A108[1]; // Length?
     /* 0x0A10A */ u8 pad_A10A[0xC0EC - 0xA10A];
     /* 0x0C0EC */ u16 unk_C0EC[1]; // Length?
@@ -892,8 +913,29 @@ struct EwramData {
     /* 0x11588 */ u16 unk_11588[4];
     /* 0x11590 */ s32 unk_11590;
     /* 0x11594 */ s32 unk_11594;
-    /* 0x11598 */ u8 pad_11598[0x115C8 - 0x11598];
-
+    /* 0x11598 */ s32 *unk_11598;
+    /* 0x1159C */ u16 unk_1159C;
+    /* 0x1159E */ u16 unk_1159E;
+    /* 0x115A0 */ u16 unk_115A0;
+    /* 0x115A2 */ u16 unk_115A2;
+    /* 0x115A4 */ u16 unk_115A4;
+    /* 0x115A6 */ u16 unk_115A6;
+    /* 0x115A8 */ u16 unk_115A8;
+    /* 0x115AA */ u16 unk_115AA;
+    /* 0x115AC */ u16 unk_115AC;
+    /* 0x115AE */ u16 unk_115AE;
+    /* 0x115B0 */ u16 unk_115B0;
+    /* 0x115B2 */ u16 unk_115B2;
+    /* 0x115B4 */ u16 unk_115B4;
+    /* 0x115B6 */ u16 unk_115B6;
+    /* 0x115B8 */ u16 unk_115B8;
+    /* 0x115BA */ u16 unk_115BA;
+    /* 0x115BC */ u16 unk_115BC;
+    /* 0x115BE */ u16 unk_115BE;
+    /* 0x115C0 */ u16 unk_115C0;
+    /* 0x115C2 */ u16 unk_115C2;
+    /* 0x115C4 */ u16 unk_115C4;
+    /* 0x115C6 */ u16 unk_115C6;
     /* 0x115C8 */ u8 unk_115C8[8];
     /* 0x115D0 */ u8 unk_115D0[8];
     /* 0x115D8 */ u8 unk_115D8[0x400]; // Struct or array?

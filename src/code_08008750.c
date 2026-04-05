@@ -199,9 +199,9 @@ s32 GameModeIntroCutsceneUpdate(void)
             sub_0803C8B0((u8 *)0x080E6634);
             sub_0803FD9C((u8 *)0x080E5BF0, VRAM_BASE + 0x8000, 0);
             sub_0803FD9C((u8 *)0x080E5BF8, VRAM_BASE + 0xA000, 0);
-            sub_0803F8A8(1, (u32 *)0x080E9464, 0, 0x160);
-            sub_0803F8A8(2, (u32 *)0x080E9244, 0, 0x260);
-            sub_0803F8A8(3, (u32 *)0x080E9354, 0, 0xC9);
+            sub_0803F8A8(1, (struct EwramData_unkA078_0 *)0x080E9464, 0, 0x160);
+            sub_0803F8A8(2, (struct EwramData_unkA078_0 *)0x080E9244, 0, 0x260);
+            sub_0803F8A8(3, (struct EwramData_unkA078_0 *)0x080E9354, 0, 0xC9);
             gDisplayRegisters.bgCnt[0] = CREATE_BGCNT(0, 28, BGCNT_HIGH_PRIORITY, BGCNT_SIZE_256x256);
             gDisplayRegisters.bgCnt[1] = CREATE_BGCNT(2, 29, BGCNT_HIGH_MID_PRIORITY, BGCNT_SIZE_256x256);
             gDisplayRegisters.bgCnt[2] = CREATE_BGCNT(2, 30, BGCNT_LOW_MID_PRIORITY, BGCNT_SIZE_256x256);

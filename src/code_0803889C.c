@@ -93,10 +93,6 @@ s32 sub_0803889C(s32 param_0)
     return var_r6;
 }
 
-const u8 pad____[] = {0, 0, 0};
-
-// s32 sub_0803F348(struct EwramData_EntityData *, s32, s32); /* extern */
-
 /**
  * @brief 3896C | To document
  * 

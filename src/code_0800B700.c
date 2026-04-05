@@ -671,9 +671,9 @@ s32 GameModeSoundTestMenu(void)
             }
             
             sub_0803C8B0((u8 *)0x080E5E24);
-            sub_0803F8A8(3, (u32 *)0x080E74C4, 0, 0);
-            sub_0803F8A8(2, (u32 *)0x080E6CE4, 0, 0);
-            sub_0803F8A8(1, (u32 *)0x080E6D74, 0, 0);
+            sub_0803F8A8(3, (struct EwramData_unkA078_0 *)0x080E74C4, 0, 0);
+            sub_0803F8A8(2, (struct EwramData_unkA078_0 *)0x080E6CE4, 0, 0);
+            sub_0803F8A8(1, (struct EwramData_unkA078_0 *)0x080E6D74, 0, 0);
             sub_0800B700(0x3AC);
             gEwramData->unk_4 = BLDALPHA_MAX_VALUE;
             gEwramData->gameModeUpdateStage = 2;

@@ -1191,8 +1191,8 @@ void sub_0800737C(struct EwramData_EntityData *param_0, s32 param_1, s32 param_2
  */
 void sub_0800744C(struct EwramData_EntityData *param_0)
 {
-    sub_0803F8A8(1, (u32 *)0x080E7314, 0, 0);
-    sub_0803F8A8(2, (u32 *)0x080E7044, 0, 0);
+    sub_0803F8A8(1, (struct EwramData_unkA078_0 *)0x080E7314, 0, 0);
+    sub_0803F8A8(2, (struct EwramData_unkA078_0 *)0x080E7044, 0, 0);
     HBlankEffectSetup(160, (s32)(SCREEN_SIZE_Y * 0.65f), 2, REG_BG1VOFS);
 
     param_0->unk_4F8.unk_4F8_8.unk_4F9 = 0;
@@ -1465,8 +1465,8 @@ void sub_08007820(struct EwramData_EntityData *param_0)
         }
     }
     param_0->unk_4F8.unk_4F8_8.unk_4F9 = param_0->unk_4F4.unk_4F4_8.unk_4F6;
-    sub_0803F8A8(1, (u32*)&sUnk_080E7284, 0, 0);
-    sub_0803F8A8(2, (u32*)&sUnk_080E6FB4, 0, 0);
+    sub_0803F8A8(1, (struct EwramData_unkA078_0*)&sUnk_080E7284, 0, 0);
+    sub_0803F8A8(2, (struct EwramData_unkA078_0*)&sUnk_080E6FB4, 0, 0);
     HBlankEffectSetup(160, (s32)(SCREEN_SIZE_Y * 0.95f), 2, REG_BG1VOFS);
     sub_0800737C(param_0, param_0->unk_4F4.unk_4F4_8.unk_4F6, param_0->unk_4F4.unk_4F4_8.unk_4F7);
     sub_0804728C(0x358);
@@ -1949,9 +1949,9 @@ void sub_08007FF0(struct EwramData_EntityData *param_0)
     }
 
     sub_0803C8B0((u8 *)0x080E5E24);
-    sub_0803F8A8(3, (u32 *)0x080E74C4, 0, 0);
-    sub_0803F8A8(2, (u32 *)0x080E7044, 0, 0);
-    sub_0803F8A8(1, (u32 *)0x080E7314, 0, 0);
+    sub_0803F8A8(3, (struct EwramData_unkA078_0 *)0x080E74C4, 0, 0);
+    sub_0803F8A8(2, (struct EwramData_unkA078_0 *)0x080E7044, 0, 0);
+    sub_0803F8A8(1, (struct EwramData_unkA078_0 *)0x080E7314, 0, 0);
     sub_08006BC0(param_0);
     sub_08007EE0(0);
     HBlankEffectSetup(160, (s32)(SCREEN_SIZE_Y * 0.65f), 2, REG_BG1VOFS);
@@ -2067,8 +2067,8 @@ void sub_08008290(struct EwramData_EntityData *param_0)
             break;
         }
     }
-    sub_0803F8A8(1, (u32 *)&sUnk_080E71F4, 0, 0);
-    sub_0803F8A8(2, (u32 *)&sUnk_080E6E04, 0, 0);
+    sub_0803F8A8(1, (struct EwramData_unkA078_0 *)&sUnk_080E71F4, 0, 0);
+    sub_0803F8A8(2, (struct EwramData_unkA078_0 *)&sUnk_080E6E04, 0, 0);
     HBlankEffectSetup(160, (s32)(SCREEN_SIZE_Y * 0.95f), 2, REG_BG1VOFS);
     sub_08007204(param_0, param_0->unk_4F8.unk_4F8_8.unk_4F9);
     sub_0804728C(0x35A);
@@ -2108,8 +2108,8 @@ void sub_08008324(struct EwramData_EntityData *param_0)
     s16 var_r3;
     s32 scanline;
 
-    sub_0803F8A8(1, (u32 *)0x080E70D4, 0, 0);
-    sub_0803F8A8(2, (u32 *)0x080E6E94, 0, 0);
+    sub_0803F8A8(1, (struct EwramData_unkA078_0 *)0x080E70D4, 0, 0);
+    sub_0803F8A8(2, (struct EwramData_unkA078_0 *)0x080E6E94, 0, 0);
     HBlankEffectSetup(160, (s32)(SCREEN_SIZE_Y * 0.1f), 2, REG_BG1VOFS);
     hBlankBuf = gEwramData->hBlankEffect.hBlankBuffer[1 - gEwramData->hBlankEffect.currentBuffer];
     if (param_0->unk_4EF != 0)

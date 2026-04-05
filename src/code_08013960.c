@@ -534,7 +534,7 @@ s32 GameModeGameOverUpdate(void)
             sub_0803FD9C((u8 *)0x080E5C08, VRAM_BASE, 0);
             sub_0803FD9C((u8 *)0x080E5C10, VRAM_BASE + 0x4000, 0);
             sub_0803C8B0((u8 *)0x080E6A3C);
-            sub_0803F8A8(1, (u32 *)0x080E9584, 0, 0);
+            sub_0803F8A8(1, (struct EwramData_unkA078_0 *)0x080E9584, 0, 0);
             sub_0803D18C(0, 0, 0, 0, 0x10000, 0x20);
             gDisplayRegisters.bldCnt = BLDCNT_BG1_SECOND_TARGET_PIXEL | BLDCNT_ALPHA_BLENDING_EFFECT | BLDCNT_OBJ_FIRST_TARGET_PIXEL;
             gDisplayRegisters.bldAlpha = C_16_2_8(BLDALPHA_MAX_VALUE, 0);
@@ -701,16 +701,16 @@ s32 GameModeCreditsUpdate(void)
             sub_0803FD9C((u8 *)0x080E5BD0, VRAM_BASE + 0x2000, 0);
             sub_0803FD9C((u8 *)0x080E5BD8, VRAM_BASE + 0x4000, 0);
             sub_0803C918((u8 *)0x080E6028, 0, 8, 0);
-            sub_0803F8A8(1, (u32 *)0x080E8F04, 0, 0x50);
+            sub_0803F8A8(1, (struct EwramData_unkA078_0 *)0x080E8F04, 0, 0x50);
 
             if (gEwramData->unk_60.unk_42C & 0x4000)
             {
-                sub_0803F8A8(2, (u32 *)0x080E7B54, 0, 0x50);
-                sub_0803F8A8(3, (u32 *)0x080E81E4, 0, 0x50);
+                sub_0803F8A8(2, (struct EwramData_unkA078_0 *)0x080E7B54, 0, 0x50);
+                sub_0803F8A8(3, (struct EwramData_unkA078_0 *)0x080E81E4, 0, 0x50);
             }
             else
             {
-                sub_0803F8A8(2, (u32 *)0x080E8874, 0, 0x50);
+                sub_0803F8A8(2, (struct EwramData_unkA078_0 *)0x080E8874, 0, 0x50);
             }
 
             gEwramData->gameModeUpdateStage += 1;

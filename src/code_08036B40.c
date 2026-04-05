@@ -215,8 +215,6 @@ void * const sUnk_080E2288[4] = {
 // extern void sub_0800D288(); // implicit (should have no arguments)
 // extern s32 sub_08001F3C(s32 param_0, s32 param_1); // implicit (should return s16)
 
-// s32 sub_0803F348(struct EwramData_EntityData *, s32, s32); /* extern */
-
 void sub_08036DC4(struct EwramData_EntityData *param_0)
 {
     char subroutine_arg0[0x10];
@@ -1889,7 +1887,7 @@ void sub_08037CE4(struct Unk_03000018 *param_0)
     sub_0803FE0C((void *)0x080E5364, 0, 0, 4);
     sub_0803FE0C((void *)0x080E536C, 4, 0, 4);
     sub_0803FE0C((void *)0x080E5374, 8, 0, 4);
-    sub_0803F8A8(param_0->unk_0.val, (u32 *)0x080E5BA0, 0, 0);
+    sub_0803F8A8(param_0->unk_0.val, (struct EwramData_unkA078_0 *)0x080E5BA0, 0, 0);
 }
 
 /**

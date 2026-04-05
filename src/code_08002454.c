@@ -476,7 +476,7 @@ s32 GameModeKonamiLogoUpdate(void)
         case 1:
             sub_0803FD9C((u8 *)0x080E5C18, VRAM_BASE, 0);
             sub_0803C918((u8 *)0x080E6C40, 0, 1, 0);
-            sub_0803F8A8(0, (u32 *)0x080E9614, 0, 0);
+            sub_0803F8A8(0, (struct EwramData_unkA078_0 *)0x080E9614, 0, 0);
             gEwramData->gameModeUpdateStage += 1;
             gEwramData->unk_12 = 0;
             break;
@@ -550,7 +550,7 @@ s32 GameModeLicensedByNintendoUpdate(void)
         case 1:
             sub_0803FD9C((u8 *)0x080E5C00, VRAM_BASE, 0);
             sub_0803C8B0((u8 *)0x080E6838);
-            sub_0803F8A8(0, (u32 *)0x080E94F4, 0, 0);
+            sub_0803F8A8(0, (struct EwramData_unkA078_0 *)0x080E94F4, 0, 0);
             gEwramData->gameModeUpdateStage += 1;
             gEwramData->unk_12 = 0;
             break;
@@ -998,9 +998,9 @@ s32 GameModeTitleScreenUpdate(void)
             sub_0803FD9C((u8 *)0x080E5BE0, VRAM_BASE, 0);
             sub_0803FD9C((u8 *)0x080E5BE8, VRAM_BASE + 0x8000, 0);
             sub_0803C8B0((u8 *)0x080E6430);
-            sub_0803F8A8(0, (u32 *)0x080E9024, 0, 0);
-            sub_0803F8A8(1, (u32 *)0x080E90B4, 0, 0);
-            sub_0803F8A8(2, (u32 *)0x080E8F94, 0, 0);
+            sub_0803F8A8(0, (struct EwramData_unkA078_0 *)0x080E9024, 0, 0);
+            sub_0803F8A8(1, (struct EwramData_unkA078_0 *)0x080E90B4, 0, 0);
+            sub_0803F8A8(2, (struct EwramData_unkA078_0 *)0x080E8F94, 0, 0);
             sub_08004160(temp_r7);
             sub_08003DBC(temp_r8);
 
@@ -2475,9 +2475,9 @@ s32 GameModeMainMenuUpdate(void)
             }
 
             sub_0803C8B0((u8 *)0x080E5E24);
-            sub_0803F8A8(3, (u32 *)0x080E74C4, 0, 0);
-            sub_0803F8A8(2, (u32 *)0x080E7434, 0, 0);
-            sub_0803F8A8(1, (u32 *)0x080E73A4, 0, 0);
+            sub_0803F8A8(3, (struct EwramData_unkA078_0 *)0x080E74C4, 0, 0);
+            sub_0803F8A8(2, (struct EwramData_unkA078_0 *)0x080E7434, 0, 0);
+            sub_0803F8A8(1, (struct EwramData_unkA078_0 *)0x080E73A4, 0, 0);
             sub_08006BC0(temp_r7);
             sub_0800480C(0);
             gEwramData->unk_4 = 0;
@@ -2809,8 +2809,8 @@ s32 GameModeMainMenuUpdate(void)
             gUnk_03002CB0.dispCnt &= ~(DCNT_WINOBJ | DCNT_WIN1 | DCNT_WIN0);
             gUnk_03002CB0.dispCnt |= DCNT_BG0;
             gEwramData->hBlankEffect.requestStop = 1;
-            sub_0803F8A8(1, (u32 *)0x080E73A4, 0, 0);
-            sub_0803F8A8(2, (u32 *)0x080E7434, 0, 0);
+            sub_0803F8A8(1, (struct EwramData_unkA078_0 *)0x080E73A4, 0, 0);
+            sub_0803F8A8(2, (struct EwramData_unkA078_0 *)0x080E7434, 0, 0);
             sub_0800480C(temp_r7->unk_4EF);
             temp_r7->unk_4EE = 1;
             temp_r7->unk_4F0 = 0;
@@ -2858,8 +2858,8 @@ s32 GameModeMainMenuUpdate(void)
                 break;
             }
             gEwramData->hBlankEffect.requestStop = 1;
-            sub_0803F8A8(1, (u32 *)0x080E73A4, 0, 0);
-            sub_0803F8A8(2, (u32 *)0x080E7434, 0, 0);
+            sub_0803F8A8(1, (struct EwramData_unkA078_0 *)0x080E73A4, 0, 0);
+            sub_0803F8A8(2, (struct EwramData_unkA078_0 *)0x080E7434, 0, 0);
             sub_0800480C(temp_r7->unk_4EF);
             temp_r7->unk_4EE = 1;
             temp_r7->unk_4F0 = 0;
@@ -2925,8 +2925,8 @@ s32 GameModeMainMenuUpdate(void)
             }
             gEwramData->hBlankEffect.requestStop = 1;
             sub_0800480C((s32) temp_r7->unk_4EF);
-            sub_0803F8A8(1, (u32 *)0x080E73A4, 0, 0);
-            sub_0803F8A8(2, (u32 *)0x080E7434, 0, 0);
+            sub_0803F8A8(1, (struct EwramData_unkA078_0 *)0x080E73A4, 0, 0);
+            sub_0803F8A8(2, (struct EwramData_unkA078_0 *)0x080E7434, 0, 0);
             if (temp_r7->unk_4F4.unk_4F4_8.unk_4F5 == 0)
             {
                 temp_r7->unk_4EF = 0;

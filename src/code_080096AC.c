@@ -1316,8 +1316,8 @@ s32 GameModeSoulTradeMenu(void)
                 temp_r6->updateFunc = (u32 *) sub_08009A48;
                 DMA_FILL_32(3, 0, 0x0600E000, 0x800);
                 sub_08048C74(&gEwramData->entityData[3], 0xEU);
-                sub_0803F8A8(1U, (u32 *)0x080E7164, 0U, 0U);
-                sub_0803F8A8(2U, (u32 *)0x080E6F24, 0U, 0U);
+                sub_0803F8A8(1U, (struct EwramData_unkA078_0 *)0x080E7164, 0U, 0U);
+                sub_0803F8A8(2U, (struct EwramData_unkA078_0 *)0x080E6F24, 0U, 0U);
                 gDisplayRegisters.bgCnt[1] = 0x1D01;
                 gDisplayRegisters.bgCnt[2] = 0x1E02;
                 gDisplayRegisters.bgCnt[3] = 0x1F03;

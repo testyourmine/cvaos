@@ -13249,7 +13249,7 @@ _0803F894: .4byte 0x0000A078
 _0803F898: .4byte gDisplayRegisters
 _0803F89C: .4byte 0x0600F000
 _0803F8A0: .4byte 0x0000C0EC
-_0803F8A4: .4byte 0x03002C78
+_0803F8A4: .4byte gDisplayRegisters+0x18
 
 	thumb_func_start sub_0803F8A8
 sub_0803F8A8: @ 0x0803F8A8

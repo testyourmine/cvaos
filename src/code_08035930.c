@@ -751,7 +751,6 @@ s32 sub_0803636C(struct EwramData_EntityData *param_0)
 }
 
 // TODO: function declarations
-// s32 sub_0803F348(struct EwramData_EntityData *, s32, s32);
 // void sub_08042B8C(struct EwramData_EntityData *, s16, s32);
 // s16 sub_0806B7D8(struct EwramData_EntityData *, s32, u16 *, s32);
 
@@ -812,7 +811,6 @@ s32 sub_08036420(struct EwramData_EntityData *param_0)
 }
 
 // TODO: function declarations
-// ? sub_0803F0E4(struct EwramData_EntityData *, s32, s32, s32);
 // ? sub_080421AC(? *, struct EwramData_EntityData *);
 // ? sub_080428F0(struct EwramData_EntityData *, s32);
 // ? sub_0806D5C0(s32, s32, s32, s32, s32);
@@ -839,7 +837,7 @@ void sub_0803647C(struct EwramData_EntityData *param_0)
             temp_r4 = sub_0803B800((u8 *)0x081CBF2C, 0);
             param_0->unk_510.unk_510_8.unk_510 = (u8) sub_080681D8((void *)0x0820A3FC);
             sub_0803B924(param_0, (void *)0x0821285C, temp_r4, (u32) param_0->unk_510.unk_510_8.unk_510);
-            sub_0803F0E4(param_0, *(s32 *)0x086391C0, 0, 1);
+            sub_0803F0E4(param_0, (struct EwramData_unk54C *)(*(s32 *)0x086391C0), 0, 1);
             param_0->unk_4EE = 1;
             param_0->unk_53D_1 = 1;
 

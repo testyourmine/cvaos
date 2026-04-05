@@ -640,7 +640,7 @@ void sub_0800F9EC(struct EwramData_unk88 *arg0, u16 arg1, u16 arg2)
         gEwramData->bgInfo[var_r7].unk_14 = var_r6->unk_4;
         gEwramData->bgInfo[var_r7].unk_16 = var_r6->unk_6;
         sub_0803DD14(var_r6->unk_0, var_r7);
-        sub_0803F8A8(var_r7, (u32*)var_r6->unk_8, sub_0800ED5C(arg1, var_r6->unk_1, var_r6->unk_8->unk_0, var_r6->unk_4), sub_0800EE54(arg2, var_r6->unk_1, var_r6->unk_8->unk_1, var_r6->unk_6));
+        sub_0803F8A8(var_r7, (struct EwramData_unkA078_0*)var_r6->unk_8, sub_0800ED5C(arg1, var_r6->unk_1, var_r6->unk_8->unk_0, var_r6->unk_4), sub_0800EE54(arg2, var_r6->unk_1, var_r6->unk_8->unk_1, var_r6->unk_6));
         var_r6++;
     }
 
