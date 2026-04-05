@@ -1,4 +1,3 @@
-#include "io.h"
 
 /**
  * @brief Fetches the low byte from an @c u16
@@ -292,14 +291,6 @@
  * @param color Color
  */
 #define SET_BACKDROP_COLOR(color) (WRITE_16(PALRAM_BASE, (color)))
-
-/**
- * @brief Generic Dma transfer to send palette to pal
- * 
- * @param pal Palette data
- * @param dst Destination address in palram
- */
-#define SEND_TO_PALRAM(pal, dst) (DmaTransfer(3, pal, dst, sizeof(pal), 16))
 
 /**
  * @brief Converts a number to Q8.8 fixed-point format
