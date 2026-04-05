@@ -716,3 +716,27 @@ enum name ##_
  * 
  */
 #define ENUM_FLAG
+
+/**
+ * @brief Flag to allow the non-matching version of the code
+ * 
+ */
+#if 0
+#define NON_MATCHING
+#endif
+
+/**
+ * @brief Includes the asm file, unless non-matching is allowed, in which case use the C version
+ * 
+ */
+#ifdef NON_MATCHING
+#define NONMATCH(path, decl) decl
+#define END_NONMATCH
+#else
+#define NONMATCH(path, decl)       \
+    NAKED_FUNCTION decl            \
+    {                              \
+        asm(".include " #path);    \
+        if (0)
+#define END_NONMATCH }
+#endif
