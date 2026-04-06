@@ -275,13 +275,305 @@ void sub_08039DC0(void)
     sUnk_03004560 = sUnk_03004970;
 }
 
-// sub_08039E90: https://decomp.me/scratch/tBU0r
+static inline void* sub_08039E90_inline_1(s32 offset)
+{
+    return VRAM_BASE + 0x10000 + offset;
+}
 
-// sub_0803A1E8: https://decomp.me/scratch/08ucP
+static inline s32 sub_08039E90_inline_2()
+{
+    return (gEwramData->unk_12FEC & 2) != 0;
+}
 
-// sub_0803A544: https://decomp.me/scratch/dcjSh
+static inline void sub_08039E90_inline_0(s32 temp_r0, u8 *var_r6, s32 var_sb, s32 var_0)
+{
+    u16 var_r5;
+    s32 temp_r3;
+    u32 var_r8;
+    s32 var_r4;
 
-// sub_0803A8C8: https://decomp.me/scratch/zE6Pr
+    var_r5 = sub_0803D8B4(temp_r0) << 5;
+    temp_r3 = var_sb * 4;
+    var_r8 = 0x200;
+    if (sub_08039E90_inline_2() == 1)
+    {
+        var_r8 <<= 1;
+    }
+    if (var_0 == 0)
+    {
+        for (var_r4 = 0; var_r4 < temp_r3; var_r4++)
+        {
+            DMA_COPY_16(3, var_r6, sub_08039E90_inline_1(var_r5), var_r8);
+            var_r6 += var_r8;
+            var_r5 += 0x400;
+        }
+    }
+    else
+    {
+        for (var_r4 = 0; var_r4 < temp_r3; var_r4++)
+        {
+            sub_080016D0(var_r8, (u32 *) var_r6, sub_08039E90_inline_1(var_r5));
+            var_r6 += var_r8;
+            var_r5 += 0x400;
+        }
+    }
+}
+
+static inline void sub_0803A1E8_inline_1(u8 *var_2, s32 temp_r5, s32 param_1, u32 param_3)
+{
+    switch (var_2[0])
+    {
+        case 1:
+            sub_0803B9B4(var_2);
+
+            sub_08039E90_inline_0(temp_r5, gEwramData->unk_153F8, param_1, param_3);
+            break;
+
+        case 0:
+            sub_08039E90_inline_0(temp_r5, var_2 + 4, param_1, param_3);
+            break;
+    }
+}
+
+static inline void sub_08039E90_inline_3(u8 spC, u8 sp10, u8 var_0, s32 temp_r0, u8 *param_0, s32 var_1)
+{
+    s32 temp_r0_4;
+    s16 temp_r5;
+    s16 temp_r2;
+    s32 var_r3;
+
+    if (gEwramData->unk_11070 != -1)
+    {
+        temp_r0_4 = gEwramData->unk_11070;
+        temp_r5 = gEwramData->unk_11070;
+        temp_r2 = gEwramData->unk_11072;
+
+        gEwramData->unk_11070 = gEwramData->unk_FEC4[temp_r5].unk_FEC6;
+        if (gEwramData->unk_FEC4[temp_r5].unk_FEC6 != -1)
+        {
+            gEwramData->unk_FEC4[gEwramData->unk_FEC4[temp_r5].unk_FEC6].unk_FEC4 = -1;
+        }
+        if (temp_r2 != -1)
+        {
+            gEwramData->unk_FEC4[temp_r2].unk_FEC4 = temp_r5;
+        }
+        gEwramData->unk_11072 = temp_r5;
+        gEwramData->unk_FEC4[temp_r5].unk_FEC6 = temp_r2;
+        gEwramData->unk_FEC4[temp_r5].unk_FEC4 = -1;
+        gEwramData->unk_FEC4[temp_r0_4].unk_FEC8 = temp_r0;
+        gEwramData->unk_FEC4[temp_r0_4].unk_FECC = var_1;
+        if (gEwramData->unk_10004 == 0)
+        {
+            gEwramData->unk_FEC4[temp_r0_4].unk_FECD = spC;
+        }
+        else
+        {
+            gEwramData->unk_FEC4[temp_r0_4].unk_FECD = 2;
+        }
+
+        for (var_r3 = 0; var_r3 < var_0; var_r3++)
+        {
+            gEwramData->unk_FEC4[temp_r0_4].unk_FED0[var_r3] = var_r3;
+        }
+        gEwramData->unk_FEC4[temp_r0_4].unk_FECE = sp10;
+        gEwramData->unk_FEC4[temp_r0_4].unk_FECF = var_0;
+        gEwramData->unk_FEC4[temp_r0_4].unk_FED4 = param_0;
+    }
+}
+
+static inline s32 sub_08039E90_inline_4(s32 val)
+{
+    s32 var_sb;
+    
+    switch (val)
+    {
+        case 16:
+            var_sb = 4;
+            break;
+
+        case 8:
+            var_sb = 2;
+            break;
+
+        case 4:
+            var_sb = 1;
+            break;
+
+        default:
+            var_sb = -1;
+            break;
+    }
+    return var_sb;
+}
+
+static inline void sub_0803A1E8_inline_0(u8 *sp10, s32 param_1, s32 param_2, u32 param_3, s32 temp_r0)
+{
+    u32 var_r7;
+
+    for (var_r7 = 0; var_r7 < param_2; var_r7++)
+    {
+        sub_0803A1E8_inline_1(*(u8**)(sp10 + (var_r7 * 4)), temp_r0 + (var_r7 * param_1), param_1, param_3 & 0xFFFF);
+    }
+}
+
+/**
+ * @brief 39E90 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @return s32 To document
+ */
+s32 sub_08039E90(u8 *param_0, s32 param_1)
+{
+    s32 temp_r0;
+    s32 var_sb;
+    u32 var_0;
+    u8 *var_1;
+
+    var_1 = param_0;
+    temp_r0 = sub_0803AFB8(param_0);
+    if (temp_r0 >= 0)
+    {
+        return temp_r0;
+    }
+
+    var_sb = sub_08039E90_inline_4(param_0[3]);
+    temp_r0 = var_0 = sub_0803DAB4(var_sb, 1, param_1);
+    if (temp_r0 < 0)
+    {
+        return temp_r0;
+    }
+
+    sub_0803A1E8_inline_1(var_1, temp_r0, var_sb, param_1 & 0xFFFF);
+
+    var_0 = param_1;
+    sub_08039E90_inline_3(var_0 >> 0x10, var_sb, 1, temp_r0, param_0, 0);
+    return temp_r0;
+}
+
+/**
+ * @brief 3A1E8 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @param param_3 To document
+ * @return s32 To document
+ */
+s32 sub_0803A1E8(u8 *param_0, s32 param_1, s32 param_2, s32 param_3)
+{
+    s32 temp_r0;
+    s32 temp_r0_2;
+    u32 var_0;
+
+    temp_r0_2 = sub_0803AFB8(param_0);
+    if (temp_r0_2 >= 0)
+    {
+        return temp_r0_2;
+    }
+
+    temp_r0 = var_0 = sub_0803DAB4(param_1, param_2, param_3);
+    if (temp_r0 < 0)
+    {
+        return temp_r0;
+    }
+
+    sub_0803A1E8_inline_0(param_0 + 4, param_1, param_2, param_3, temp_r0);
+
+    var_0 = param_3;
+    sub_08039E90_inline_3(var_0 >> 0x10, param_1, param_2, temp_r0, param_0, 1);
+    return temp_r0;
+}
+
+/**
+ * @brief 3A544 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @param param_3 To document
+ * @return s32 To document
+ */
+s32 sub_0803A544(u8 *param_0, s32 param_1, s32 param_2, s32 param_3)
+{
+    s32 temp_r0;
+    s32 temp_r0_2;
+    u32 var_0;
+
+    temp_r0_2 = sub_0803AFB8(param_0);
+    if (temp_r0_2 >= 0)
+    {
+        return temp_r0_2;
+    }
+
+    if (gEwramData->unk_25464 != NULL)
+    {
+        return -1;
+    }
+
+    temp_r0 = var_0 = sub_0803DAB4(param_1, param_2, param_3);
+    if (temp_r0 < 0)
+    {
+        return temp_r0;
+    }
+
+    sub_08039748((struct EwramData_unk19404 *) param_0);
+
+    sub_0803A1E8_inline_0((u8*)gEwramData->unk_2546C, param_1, param_2, param_3, temp_r0);
+
+    var_0 = param_3;
+    sub_08039E90_inline_3(var_0 >> 0x10, param_1, param_2, temp_r0, param_0, 2);
+
+    return temp_r0;
+}
+
+/**
+ * @brief 3A8C8 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @param param_3 To document
+ * @param param_4 To document
+ * @param param_5 To document
+ * @return s32 To document
+ */
+s32 sub_0803A8C8(s32 param_0, u8 *param_1, s32 param_2, s32 param_3, u32 param_4, s32 param_5)
+{
+    u8 *sp8;
+    s32 spC;
+    s32 var_r4;
+    s32 var_0;
+
+    var_0 = gEwramData->unk_12FF0[(s16)param_0].unk_12FF1;
+    if ((param_3 + param_4) > var_0)
+    {
+        return 0;
+    }
+
+    spC = 0x800;
+    if (sub_08039E90_inline_2() == 1)
+    {
+        spC <<= 1;
+    }
+
+    switch (param_1[0])
+    {
+        case 1:
+            sub_0803B9B4(param_1);
+            sp8 = gEwramData->unk_153F8;
+            break;
+        case 0:
+            sp8 = param_1 + 4;
+            break;
+    }
+
+    for (var_r4 = 0; var_r4 < param_4; var_r4++)
+    {
+        sub_08039E90_inline_0(param_0 + param_2 + var_r4, sp8 + spC * var_r4, 1, param_5 & 0xFFFF);
+    }
+    return 1;
+}
 
 /**
  * @brief 3AA20 | To document
@@ -2802,28 +3094,31 @@ s32 sub_0803DA7C(s32 param_0, u32 param_1, u32 param_2)
  * @param param_3 To document
  * @return s32 To document
  */
-s32 sub_0803DAB4(s32 param_0, s32 param_1, s32 param_2, s32 param_3)
+s32 sub_0803DAB4(s32 param_0, s32 param_1, s32 param_2)
 {
+    s32 var_r3;
+
     switch (param_0)
     {
         case 4:
-            param_3 = sub_0803D580(param_0, param_1);
+            var_r3 = sub_0803D580(param_0, param_1);
             break;
 
         case 1:
         case 2:
             if (param_2 == 0)
             {
-                param_3 = sub_0803D580(param_0, param_1);
+                var_r3 = sub_0803D580(param_0, param_1);
             }
             else
             {
-                param_3 = sub_0803D640(param_0, param_1);
+                var_r3 = sub_0803D640(param_0, param_1);
             }
             break;
     }
 
-    return param_3;
+    // BUG: var_r3 can be uninitialized
+    return var_r3;
 }
 
 /**
