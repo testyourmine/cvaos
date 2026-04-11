@@ -256,17 +256,17 @@ void sub_08032EFC(s32 param_0, s32 param_1)
     do
     {
         temp_r0_2 = EntityCreateInRange(0x49, 0xCF, (u32 *) sub_08032E4C);
-        var_0 = gEwramData->unk_13110->unk_524.unk_524_32;
+        var_0 = gEwramData->unk_13110.unk_13110->unk_524.unk_524_32;
         temp_r0_2->unk_524.unk_524_32 = var_0 + ((var_r5->unk_2 << 8) * var_r8);
 
         if ((var_r5->unk_0 & 0xF) == 1)
         {
-            temp_r4 = gEwramData->unk_13110->unk_528.unk_528_32;
+            temp_r4 = gEwramData->unk_13110.unk_13110->unk_528.unk_528_32;
             temp_r0_2->unk_528.unk_528_32 = (temp_r4 + (var_r5->unk_4 << 8)) - ((RandomNumberGenerator() & 3) << 0x10);
         }
         else
         {
-            var_1 = gEwramData->unk_13110->unk_528.unk_528_32;
+            var_1 = gEwramData->unk_13110.unk_13110->unk_528.unk_528_32;
             temp_r0_2->unk_528.unk_528_32 = var_1 + (var_r5->unk_4 << 8);
         }
 
@@ -301,9 +301,9 @@ void sub_08032FC8(struct EwramData_EntityData *param_0)
 
     if (param_0->unk_4EE == 0)
     {
-        var_3 = (s16) gEwramData->unk_13110->unk_524.unk_524_16.unk_526;
+        var_3 = (s16) gEwramData->unk_13110.unk_13110->unk_524.unk_524_16.unk_526;
         param_0->unk_524.unk_524_16.unk_526 = var_3;
-        var_4 = (s16) gEwramData->unk_13110->unk_528.unk_528_16.unk_52A;
+        var_4 = (s16) gEwramData->unk_13110.unk_13110->unk_528.unk_528_16.unk_52A;
         param_0->unk_528.unk_528_16.unk_52A = var_4;
 
         temp_r1 = &gEwramData->bgInfo[1];
@@ -679,7 +679,7 @@ void sub_08033370(struct EwramData_EntityData *param_0)
     s16 temp_r6;
     u32 temp_r4;
 
-    temp_r1 = gEwramData->unk_13110;
+    temp_r1 = gEwramData->unk_13110.unk_13110;
     temp_r2 = param_0->unk_524.unk_524_32;
     temp_r7 = temp_r2 - temp_r1->unk_524.unk_524_32;
     temp_r4 = param_0->unk_528.unk_528_32 - temp_r1->unk_528.unk_528_32;
@@ -984,7 +984,7 @@ static inline s32 sub_08033984_inline_0(struct EwramData_EntityData *param_0, s1
     struct EwramData_EntityData *var_5;
     s32 var_6;
 
-    var_5 = gEwramData->unk_13110;
+    var_5 = gEwramData->unk_13110.unk_13110;
     var_6 = var_5->unk_4F4.unk_4F4_32 & 0x100000;
     var_sb = NULL;
     var_r4 = 0;
@@ -1021,7 +1021,7 @@ static inline s32 sub_08033984_inline_0(struct EwramData_EntityData *param_0, s1
         }
     }
 
-    temp_r4_2 = gEwramData->unk_13110;
+    temp_r4_2 = gEwramData->unk_13110.unk_13110;
     if ((temp_r4_2->unk_4F4.unk_4F4_32 & 0x400) && (temp_r4_2->unk_4EE != 3))
     {
         var_r4 = 0;
@@ -1066,7 +1066,7 @@ static inline s32 sub_08033AC0_inline_0(struct EwramData_EntityData *param_0, s1
     struct EwramData_EntityData *var_5;
     s32 var_6;
 
-    var_5 = gEwramData->unk_13110;
+    var_5 = gEwramData->unk_13110.unk_13110;
     var_6 = var_5->unk_4F4.unk_4F4_32 & 0x100000;
     var_sb = NULL;
     var_r6 = 0;
@@ -1103,7 +1103,7 @@ static inline s32 sub_08033AC0_inline_0(struct EwramData_EntityData *param_0, s1
         }
     }
 
-    temp_r4_2 = gEwramData->unk_13110;
+    temp_r4_2 = gEwramData->unk_13110.unk_13110;
     if ((temp_r4_2->unk_4F4.unk_4F4_32 & 0x400) && (temp_r4_2->unk_4EE != 3))
     {
         var_r6 = 0;

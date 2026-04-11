@@ -96,7 +96,7 @@ void sub_08014628(struct EwramData_EntityData *param_0)
     sub_0803B924(param_0, (u8 *)0x080E11C4, temp_r4, 0);
     param_0->unk_551 = 0xFF;
     unk_0 = *sUnk_080E12F8;
-    if (!(gEwramData->unk_131B8 & 0x800) && (param_0->unk_551 != 0))
+    if (!(gEwramData->unk_13110.unk_131B8 & 0x800) && (param_0->unk_551 != 0))
     {
         sub_0803F2C8(param_0, 0, 3, 1);
         sub_080428B4(param_0, &unk_0);
@@ -150,7 +150,7 @@ void sub_08014720(struct EwramData_EntityData *param_0)
 
     for (var_r2 = 0; var_r2 < 8; var_r2++)
     {
-        gEwramData->activeBlueSoulEntities[var_r2] = 0;
+        gEwramData->unk_13110.activeBlueSoulEntities[var_r2] = 0;
     }
 
     sub_08042A54(0, 0x1E);
@@ -166,8 +166,8 @@ void sub_08014720(struct EwramData_EntityData *param_0)
 
     EntityCreateInRange(0x11, 0x11, (u32 *) sub_080344F0);
     param_0->unk_514.unk_514_32 = sub_080355D0();
-    gEwramData->unk_13120 = sub_080354C8(0x01300000, 0, (u8 *)0x081FA2B8, param_0->unk_514.unk_514_32);
-    sub_08035638(gEwramData->unk_13120);
+    gEwramData->unk_13110.unk_13120 = sub_080354C8(0x01300000, 0, (u8 *)0x081FA2B8, param_0->unk_514.unk_514_32);
+    sub_08035638(gEwramData->unk_13110.unk_13120);
 }
 
 // sub_08014628, sub_08014720
@@ -184,22 +184,22 @@ void sub_0801487C(s32 param_0)
 {
     struct EwramData_EntityData *temp_r0;
 
-    gEwramData->nbrActiveRedSoulEntities = 0;
-    gEwramData->unk_131C8 = -1;
-    gEwramData->unk_131CC = -1;
-    gEwramData->unk_131D0 = -1;
-    gEwramData->unk_1311C[0] = 0;
-    gEwramData->unk_13120 = 0;
-    gEwramData->lastUsedWeapon[0] = -1;
-    gEwramData->unk_131C1 = -1;
+    gEwramData->unk_13110.nbrActiveRedSoulEntities = 0;
+    gEwramData->unk_13110.unk_131C8 = -1;
+    gEwramData->unk_13110.unk_131CC = -1;
+    gEwramData->unk_13110.unk_131D0 = -1;
+    gEwramData->unk_13110.unk_1311C[0] = 0;
+    gEwramData->unk_13110.unk_13120 = 0;
+    gEwramData->unk_13110.lastUsedWeapon[0] = -1;
+    gEwramData->unk_13110.unk_131C1 = -1;
 
     sub_080235C8();
     sub_0802DFF0();
 
     temp_r0 = EntityCreateInRange(0, 0, (u32*) sUnk_084F10B4[gEwramData->unk_1325C.currentCharacter]);
     sUnk_084F10AC[gEwramData->unk_1325C.currentCharacter](temp_r0);
-    gEwramData->unk_13110 = temp_r0;
-    gEwramData->unk_13168 = temp_r0;
+    gEwramData->unk_13110.unk_13110 = temp_r0;
+    gEwramData->unk_13110.unk_13168 = temp_r0;
 
     sub_08021E50(7);
     temp_r0->unk_53D_1 = 1;
@@ -210,20 +210,20 @@ void sub_0801487C(s32 param_0)
     temp_r0->unk_4FC.unk_4FC_32 = 0x080E12DC;
 
     sub_08021F18();
-    gEwramData->unk_13214 = 0x78;
-    gEwramData->unk_13216 = 0x6F;
-    gEwramData->unk_131B4 = 0;
+    gEwramData->unk_13110.unk_13214 = 0x78;
+    gEwramData->unk_13110.unk_13216 = 0x6F;
+    gEwramData->unk_13110.unk_131B4 = 0;
     temp_r0->unk_504.unk_504_16.unk_504 = 0xFF;
     temp_r0->unk_508.unk_508_8.unk_508 = 0;
     temp_r0->unk_508.unk_508_8.unk_509 = 0;
     temp_r0->unk_50C.unk_50C_8.unk_50D = 0xFF;
     temp_r0->unk_50C.unk_50C_8.unk_50C = 0;
-    gEwramData->unk_13218 = 4;
-    gEwramData->unk_13219 = 0xF8;
-    gEwramData->unk_1321A = 0xF4;
-    gEwramData->unk_1321B = 0xEC;
-    gEwramData->unk_1321C = 0xE4;
-    gEwramData->unk_131B8 = 0;
+    gEwramData->unk_13110.unk_13218 = 4;
+    gEwramData->unk_13110.unk_13219 = 0xF8;
+    gEwramData->unk_13110.unk_1321A = 0xF4;
+    gEwramData->unk_13110.unk_1321B = 0xEC;
+    gEwramData->unk_13110.unk_1321C = 0xE4;
+    gEwramData->unk_13110.unk_131B8 = 0;
     sub_080430B0();
     gEwramData->unk_60.unk_4BE = 0;
 }
@@ -588,9 +588,9 @@ void sub_08014A04(struct EwramData_EntityData *param_0)
     temp_r6 = (s16) temp_r8;
     temp_r5 = (s32) (temp_r0 - 0x21);
     temp_r4 = (u16) sub_08001C1C((s32) temp_r6, temp_r5);
-    if (gEwramData->unk_1316C != NULL)
+    if (gEwramData->unk_13110.unk_1316C != NULL)
     {
-        temp_r0_2 = ((u16 (*)(struct EwramData_unk1316C *, s16, s32)) gEwramData->unk_1316C->unk_10->unk_4)(gEwramData->unk_1316C, temp_r6, temp_r5);
+        temp_r0_2 = ((u16 (*)(struct EwramData_unk1316C *, s16, s32)) gEwramData->unk_13110.unk_1316C->unk_10->unk_4)(gEwramData->unk_13110.unk_1316C, temp_r6, temp_r5);
         var_r2 = temp_r4;
         if ((s32) (temp_r4 << 0x10) < (s32) (temp_r0_2 << 0x10))
         {
@@ -624,7 +624,7 @@ void sub_08014A04(struct EwramData_EntityData *param_0)
     temp_r0_3 = (s32) (spE0 + 0x10000) >> 0x10;
     temp_r0_4 = (u16) sub_08001E58(temp_r3, temp_r0_3, 0U);
     var_r4 = temp_r0_4;
-    temp_r1_3 = gEwramData->unk_1316C;
+    temp_r1_3 = gEwramData->unk_13110.unk_1316C;
     if (temp_r1_3 != NULL)
     {
         temp_r0_5 = ((u16 (*)(struct EwramData_unk1316C *, s32, s32)) temp_r1_3->unk_10->unk_8)(temp_r1_3, temp_r3, temp_r0_3);
@@ -636,21 +636,21 @@ void sub_08014A04(struct EwramData_EntityData *param_0)
         }
     }
 
-    if (gEwramData->unk_131B4 != 0)
+    if (gEwramData->unk_13110.unk_131B4 != 0)
     {
-        temp_r2 = gEwramData->unk_13110;
+        temp_r2 = gEwramData->unk_13110.unk_13110;
         if ((s32) temp_r2->unk_530.unk_530_32 >= 0 && (!(temp_r2->unk_4F4.unk_4F4_32 & 2) || ((u16) temp_r2->unk_4F8.unk_4F8_16.unk_4F8 == 0x10)))
         {
             sp54 = temp_r3;
             sp58 = temp_r0_3;
             sp5C = (s32) var_r4;
             sp60 = 0;
-            if ((s32) gEwramData->unk_131B4 <= 0)
+            if ((s32) gEwramData->unk_13110.unk_131B4 <= 0)
             {
                 goto block_42;
             }
 loop_24:
-            temp_r5_3 = gEwramData->unk_13170[sp60];
+            temp_r5_3 = gEwramData->unk_13110.unk_13170[sp60];
             temp_r4_3 = GetEntityRoomXPositionInteger(temp_r5_3);
             temp_sb = (u16) GetEntityRoomYPositionInteger(temp_r5_3);
             if (sub_08042030(&sp0, &sp4, temp_r5_3) == 0)
@@ -671,7 +671,7 @@ loop_24:
 
             sp64 = 0;
             var_sl = 0;
-            temp_r6_2 = &gEwramData->unk_131AC[sp60];
+            temp_r6_2 = &gEwramData->unk_13110.unk_131AC[sp60];
             temp_r2_2 = *temp_r6_2;
             if (2 & temp_r2_2)
             {
@@ -685,7 +685,7 @@ loop_24:
             if ((sp54 >= (s32) (s16) var_r4_2) && (sp54 <= (s32) (s16) var_r3) && (temp_r1_4 = (s16) (u16) ((s8) sp4.unk_1 + ((s16) temp_sb - 1)), (sp58 >= (s32) (temp_r1_4 - (s16) var_sl))) && (sp58 <= (s32) (temp_r1_4 + ((s16) sp64 + 8))))
             {
                 sp5C = (s32) (u16) (temp_r1_4 - sp58);
-                gEwramData->unk_13190 = temp_r5_3;
+                gEwramData->unk_13110.unk_13190 = temp_r5_3;
                 temp_r1_5 = *temp_r6_2;
                 if (1 & temp_r1_5)
                 {
@@ -699,7 +699,7 @@ loop_24:
 block_40:
                 temp_r2_3 = sp60 + 1;
                 sp60 = temp_r2_3;
-                if (temp_r2_3 < (s32) gEwramData->unk_131B4)
+                if (temp_r2_3 < (s32) gEwramData->unk_13110.unk_131B4)
                 {
                     goto loop_24;
                 }
@@ -710,7 +710,7 @@ block_42:
         }
     }
 
-    if (((var_r4 << 0x10) != 0) && (gEwramData->unk_13110->unk_50C.unk_50C_8.unk_50D == 0xFF))
+    if (((var_r4 << 0x10) != 0) && (gEwramData->unk_13110.unk_13110->unk_50C.unk_50C_8.unk_50D == 0xFF))
     {
         temp_r2_4 = gUnk_03002CB0.unk_100D;
         if (8 & temp_r2_4)
@@ -733,12 +733,12 @@ block_50:
 block_55:
             var_r1_2 = 0xFF;
         }
-        gEwramData->unk_13110->unk_50C.unk_50C_8.unk_50D = (u8) var_r1_2;
+        gEwramData->unk_13110.unk_13110->unk_50C.unk_50C_8.unk_50D = (u8) var_r1_2;
     }
 
     sp68 = (s32) var_r4;
-    temp_r2_5 = gEwramData->unk_1316C;
-    if ((temp_r2_5 != NULL) || (gEwramData->unk_131B4 != 0))
+    temp_r2_5 = gEwramData->unk_13110.unk_1316C;
+    if ((temp_r2_5 != NULL) || (gEwramData->unk_13110.unk_131B4 != 0))
     {
         var_r1_3 = 0;
         if (temp_r2_5 != NULL)
@@ -749,7 +749,7 @@ block_55:
                 sp4C = 0;
             }
 
-            var_r1_3 = ((s32 (*)(struct EwramData_unk1316C *, s32, s32)) temp_r4_4)(gEwramData->unk_1316C, spDC >> 0x10, (s32) (spE0 + 0x10000) >> 0x10);
+            var_r1_3 = ((s32 (*)(struct EwramData_unk1316C *, s32, s32)) temp_r4_4)(gEwramData->unk_13110.unk_1316C, spDC >> 0x10, (s32) (spE0 + 0x10000) >> 0x10);
             if (var_r1_3 != 0)
             {
                 param_0->unk_534.unk_534_32 = 0;
@@ -758,17 +758,17 @@ block_55:
             }
         }
 
-        temp_r4_5 = &gEwramData->unk_131B4;
+        temp_r4_5 = &gEwramData->unk_13110.unk_131B4;
         if ((*temp_r4_5 != 0) && (var_r1_3 == 0))
         {
-            if (gEwramData->unk_13190 != NULL)
+            if (gEwramData->unk_13110.unk_13190 != NULL)
             {
                 var_r2_2 = 0;
                 temp_r0_6 = *temp_r4_5;
                 if (var_r1_3 < (s32) temp_r0_6)
                 {
 loop_69:
-                    if (!(8 & gEwramData->unk_131AC[var_r2_2]))
+                    if (!(8 & gEwramData->unk_13110.unk_131AC[var_r2_2]))
                     {
                         var_r2_2 += 1;
                         if (var_r2_2 >= (s32) temp_r0_6)
@@ -777,7 +777,7 @@ loop_69:
                         }
                         goto loop_69;
                     }
-                    var_r1_3 = gEwramData->unk_13170[var_r2_2]->unk_52C.unk_52C_32;
+                    var_r1_3 = gEwramData->unk_13110.unk_13170[var_r2_2]->unk_52C.unk_52C_32;
                 }
                 else
                 {
@@ -805,7 +805,7 @@ loop_76:
             temp_r6_3 = (s32) (spDC + 0xFFF80000) >> 0x10;
             temp_r5_5 = (spE0 >> 0x10) + (s8) temp_r5_4[var_r8];
             temp_r4_6 = (u16) sub_0800207C(temp_r6_3, (s32) temp_r5_5);
-            temp_r1_6 = gEwramData->unk_1316C;
+            temp_r1_6 = gEwramData->unk_13110.unk_1316C;
             if (temp_r1_6 != NULL)
             {
                 temp_r0_8 = ((u16 (*)(struct EwramData_unk1316C *, s32, s16)) temp_r1_6->unk_10->unk_10)(temp_r1_6, temp_r6_3, temp_r5_5);
@@ -865,7 +865,7 @@ loop_93:
             temp_r6_4 = (s32) (spDC + 0x80000) >> 0x10;
             temp_r5_6 = (spE0 >> 0x10) + (s8) temp_r5_4[var_r8_2];
             temp_r4_7 = (u16) sub_08002058(temp_r6_4, (s32) temp_r5_6);
-            temp_r1_8 = gEwramData->unk_1316C;
+            temp_r1_8 = gEwramData->unk_13110.unk_1316C;
             if (temp_r1_8 != NULL)
             {
                 temp_r0_10 = ((u16 (*)(struct EwramData_unk1316C *, s32, s16)) temp_r1_8->unk_10->unk_C)(temp_r1_8, temp_r6_4, temp_r5_6);
@@ -922,7 +922,7 @@ block_106:
     temp_r6_5 = (s32) ((temp_r0_12 << 0x10) + 0xFFFB0000) >> 0x10;
     temp_r5_7 = (s32) (spE0 + 0xFFEC0000) >> 0x10;
     temp_r4_8 = (u16) sub_08001C1C(temp_r6_5, temp_r5_7);
-    temp_r1_10 = gEwramData->unk_1316C;
+    temp_r1_10 = gEwramData->unk_13110.unk_1316C;
     if (temp_r1_10 != NULL)
     {
         temp_r0_13 = ((u16 (*)(struct EwramData_unk1316C *, s32, s32)) temp_r1_10->unk_10->unk_4)(temp_r1_10, temp_r6_5, temp_r5_7);
@@ -945,7 +945,7 @@ block_106:
         temp_r6_6 = (s32) (temp_r4_9 + 0x50000) >> 0x10;
         temp_r5_8 = (s32) (spE0 + 0xFFEC0000) >> 0x10;
         temp_r4_10 = (u16) sub_08001C1C(temp_r6_6, temp_r5_8);
-        temp_r1_11 = gEwramData->unk_1316C;
+        temp_r1_11 = gEwramData->unk_13110.unk_1316C;
         if (temp_r1_11 != NULL)
         {
             temp_r0_14 = ((u16 (*)(struct EwramData_unk1316C *, s32, s32)) temp_r1_11->unk_10->unk_4)(temp_r1_11, temp_r6_6, temp_r5_8);
@@ -1109,7 +1109,7 @@ block_165:
     temp_r3_3 = spE0 >> 0x10;
     temp_r0_19 = (u16) sub_08001E58(temp_r2_8, temp_r3_3, sp3C);
     var_r4_5 = temp_r0_19;
-    temp_r1_14 = gEwramData->unk_1316C;
+    temp_r1_14 = gEwramData->unk_13110.unk_1316C;
     if (temp_r1_14 != NULL)
     {
         temp_r0_20 = ((u16 (*)(struct EwramData_unk1316C *, s32, s32)) temp_r1_14->unk_10->unk_8)(temp_r1_14, temp_r2_8, temp_r3_3);
@@ -1121,10 +1121,10 @@ block_165:
         }
     }
 
-    temp_r3_4 = &gEwramData->unk_131B4;
+    temp_r3_4 = &gEwramData->unk_13110.unk_131B4;
     if (*temp_r3_4 != 0)
     {
-        temp_r2_9 = gEwramData->unk_13110;
+        temp_r2_9 = gEwramData->unk_13110.unk_13110;
         if ((s32) temp_r2_9->unk_530.unk_530_32 < 0)
         {
 
@@ -1144,7 +1144,7 @@ block_165:
                 goto block_201;
             }
 loop_183:
-            temp_r5_12 = gEwramData->unk_13170[sp7C];
+            temp_r5_12 = gEwramData->unk_13110.unk_13170[sp7C];
             temp_r4_12 = (u16) GetEntityRoomXPositionInteger(temp_r5_12);
             temp_sb_2 = (u16) GetEntityRoomYPositionInteger(temp_r5_12);
             if (sub_08042030(&sp8, &spC, temp_r5_12) == 0)
@@ -1163,7 +1163,7 @@ loop_183:
             }
             sp80 = 0;
             var_sl_2 = 0;
-            temp_r6_8 = &gEwramData->unk_131AC[sp7C];
+            temp_r6_8 = &gEwramData->unk_13110.unk_131AC[sp7C];
             temp_r2_10 = *temp_r6_8;
             if (2 & temp_r2_10)
             {
@@ -1176,7 +1176,7 @@ loop_183:
             if ((sp70 >= (s32) (s16) var_r4_6) && (sp70 <= (s32) (s16) var_r3_3) && (temp_r1_15 = (s16) (u16) ((s8) spC.unk_1 + ((s16) temp_sb_2 - 1)), (sp74 >= (s32) (temp_r1_15 - (s16) var_sl_2))) && (sp74 <= (s32) (temp_r1_15 + ((s16) sp80 + 8))))
             {
                 sp78 = (s32) (u16) (temp_r1_15 - sp74);
-                gEwramData->unk_13190 = temp_r5_12;
+                gEwramData->unk_13110.unk_13190 = temp_r5_12;
                 temp_r1_16 = *temp_r6_8;
                 if (1 & temp_r1_16)
                 {
@@ -1190,7 +1190,7 @@ loop_183:
 block_199:
                 temp_r2_11 = sp7C + 1;
                 sp7C = temp_r2_11;
-                if (temp_r2_11 < (s32) gEwramData->unk_131B4)
+                if (temp_r2_11 < (s32) gEwramData->unk_13110.unk_131B4)
                 {
                     goto loop_183;
                 }
@@ -1201,7 +1201,7 @@ block_201:
         }
     }
 
-    if (((var_r4_5 << 0x10) != 0) && (gEwramData->unk_13110->unk_50C.unk_50C_8.unk_50D == 0xFF))
+    if (((var_r4_5 << 0x10) != 0) && (gEwramData->unk_13110.unk_13110->unk_50C.unk_50C_8.unk_50D == 0xFF))
     {
         temp_r2_12 = gUnk_03002CB0.unk_100D;
         if (8 & temp_r2_12)
@@ -1224,7 +1224,7 @@ block_209:
 block_212:
             var_r1_5 = 0xFF;
         }
-        gEwramData->unk_13110->unk_50C.unk_50C_8.unk_50D = (u8) var_r1_5;
+        gEwramData->unk_13110.unk_13110->unk_50C.unk_50C_8.unk_50D = (u8) var_r1_5;
     }
 
     temp_r1_17 = gUnk_03002CB0.unk_100D;
@@ -1272,7 +1272,7 @@ block_227:
     temp_r0_21 = (s32) (spE0 + 0x10000) >> 0x10;
     temp_r0_22 = (u16) sub_08001E58(temp_r3_5, temp_r0_21, sp3C);
     var_r4_7 = temp_r0_22;
-    temp_r1_19 = gEwramData->unk_1316C;
+    temp_r1_19 = gEwramData->unk_13110.unk_1316C;
     if (temp_r1_19 != NULL)
     {
         temp_r0_23 = ((u16 (*)(struct EwramData_unk1316C *, s32, s32)) temp_r1_19->unk_10->unk_8)(temp_r1_19, temp_r3_5, temp_r0_21);
@@ -1283,10 +1283,10 @@ block_227:
             gUnk_03002CB0.unk_100E = 1;
         }
     }
-    temp_r3_6 = &gEwramData->unk_131B4;
+    temp_r3_6 = &gEwramData->unk_13110.unk_131B4;
     if (*temp_r3_6 != 0)
     {
-        temp_r2_13 = gEwramData->unk_13110;
+        temp_r2_13 = gEwramData->unk_13110.unk_13110;
         if ((s32) temp_r2_13->unk_530.unk_530_32 < 0)
         {
 
@@ -1306,7 +1306,7 @@ block_227:
                 goto block_259;
             }
 loop_241:
-            temp_r5_13 = gEwramData->unk_13170[sp90];
+            temp_r5_13 = gEwramData->unk_13110.unk_13170[sp90];
             temp_r4_13 = (u16) GetEntityRoomXPositionInteger(temp_r5_13);
             temp_sb_3 = (u16) GetEntityRoomYPositionInteger(temp_r5_13);
             if (sub_08042030(&sp10, &sp14, temp_r5_13) == 0)
@@ -1325,7 +1325,7 @@ loop_241:
             }
             sp94 = 0;
             var_sl_3 = 0;
-            temp_r6_9 = &gEwramData->unk_131AC[sp90];
+            temp_r6_9 = &gEwramData->unk_13110.unk_131AC[sp90];
             temp_r2_14 = *temp_r6_9;
             if (2 & temp_r2_14)
             {
@@ -1338,7 +1338,7 @@ loop_241:
             if ((sp84 >= (s32) (s16) var_r4_8) && (sp84 <= (s32) (s16) var_r3_4) && (temp_r1_20 = (s16) (u16) ((s8) sp14.unk_1 + ((s16) temp_sb_3 - 1)), (sp88 >= (s32) (temp_r1_20 - (s16) var_sl_3))) && (sp88 <= (s32) (temp_r1_20 + ((s16) sp94 + 8))))
             {
                 sp8C = (s32) (u16) (temp_r1_20 - sp88);
-                gEwramData->unk_13190 = temp_r5_13;
+                gEwramData->unk_13110.unk_13190 = temp_r5_13;
                 temp_r1_21 = *temp_r6_9;
                 if (1 & temp_r1_21)
                 {
@@ -1352,7 +1352,7 @@ loop_241:
 block_257:
                 temp_r2_15 = sp90 + 1;
                 sp90 = temp_r2_15;
-                if (temp_r2_15 < (s32) gEwramData->unk_131B4)
+                if (temp_r2_15 < (s32) gEwramData->unk_13110.unk_131B4)
                 {
                     goto loop_241;
                 }
@@ -1363,7 +1363,7 @@ block_259:
         }
     }
 
-    if (((var_r4_7 << 0x10) != 0) && (gEwramData->unk_13110->unk_50C.unk_50C_8.unk_50D == 0xFF))
+    if (((var_r4_7 << 0x10) != 0) && (gEwramData->unk_13110.unk_13110->unk_50C.unk_50C_8.unk_50D == 0xFF))
     {
         temp_r2_16 = gUnk_03002CB0.unk_100D;
         if (8 & temp_r2_16)
@@ -1386,7 +1386,7 @@ block_267:
 block_270:
             var_r1_7 = 0xFF;
         }
-        gEwramData->unk_13110->unk_50C.unk_50C_8.unk_50D = (u8) var_r1_7;
+        gEwramData->unk_13110.unk_13110->unk_50C.unk_50C_8.unk_50D = (u8) var_r1_7;
     }
 
     sp6C = (s32) var_r4_7;
@@ -1443,7 +1443,7 @@ block_270:
         sp98 = temp_r1_25;
         temp_r0_25 = (u16) sub_08001E58(temp_r0_24, temp_r1_25, sp3C);
         var_r4_9 = temp_r0_25;
-        temp_r1_26 = gEwramData->unk_1316C;
+        temp_r1_26 = gEwramData->unk_13110.unk_1316C;
         if (temp_r1_26 != NULL)
         {
             temp_r0_26 = ((u16 (*)(struct EwramData_unk1316C *, s32, s32)) temp_r1_26->unk_10->unk_8)(temp_r1_26, temp_r0_24, temp_r1_25);
@@ -1454,14 +1454,14 @@ block_270:
                 gUnk_03002CB0.unk_100E = 1;
             }
         }
-        temp_r3_7 = &gEwramData->unk_131B4;
+        temp_r3_7 = &gEwramData->unk_13110.unk_131B4;
         if (*temp_r3_7 == 0)
         {
 
         }
         else
         {
-            temp_r2_17 = gEwramData->unk_13110;
+            temp_r2_17 = gEwramData->unk_13110.unk_13110;
             if ((s32) temp_r2_17->unk_530.unk_530_32 < 0)
             {
 
@@ -1481,7 +1481,7 @@ block_270:
                     goto block_379;
                 }
 loop_361:
-                temp_r5_14 = gEwramData->unk_13170[spA8];
+                temp_r5_14 = gEwramData->unk_13110.unk_13170[spA8];
                 temp_r4_14 = (u16) GetEntityRoomXPositionInteger(temp_r5_14);
                 temp_sb_4 = (u16) GetEntityRoomYPositionInteger(temp_r5_14);
                 if (sub_08042030(&sp18, &sp1C, temp_r5_14) == 0)
@@ -1500,7 +1500,7 @@ loop_361:
                 }
                 spAC = 0;
                 var_sl_4 = 0;
-                temp_r6_10 = &gEwramData->unk_131AC[spA8];
+                temp_r6_10 = &gEwramData->unk_13110.unk_131AC[spA8];
                 temp_r2_18 = *temp_r6_10;
                 if (2 & temp_r2_18)
                 {
@@ -1513,7 +1513,7 @@ loop_361:
                 if ((sp9C >= (s32) (s16) var_r4_10) && (sp9C <= (s32) (s16) var_r3_5) && (temp_r1_27 = (s16) (u16) ((s8) sp1C.unk_1 + ((s16) temp_sb_4 - 1)), (spA0 >= (s32) (temp_r1_27 - (s16) var_sl_4))) && (spA0 <= (s32) (temp_r1_27 + ((s16) spAC + 8))))
                 {
                     spA4 = (s32) (u16) (temp_r1_27 - spA0);
-                    gEwramData->unk_13190 = temp_r5_14;
+                    gEwramData->unk_13110.unk_13190 = temp_r5_14;
                     temp_r1_28 = *temp_r6_10;
                     if (1 & temp_r1_28)
                     {
@@ -1527,7 +1527,7 @@ loop_361:
 block_377:
                     temp_r2_19 = spA8 + 1;
                     spA8 = temp_r2_19;
-                    if (temp_r2_19 < (s32) gEwramData->unk_131B4)
+                    if (temp_r2_19 < (s32) gEwramData->unk_13110.unk_131B4)
                     {
                         goto loop_361;
                     }
@@ -1537,7 +1537,7 @@ block_379:
                 var_r4_9 = var_r0_18;
             }
         }
-        if (((var_r4_9 << 0x10) != 0) && (gEwramData->unk_13110->unk_50C.unk_50C_8.unk_50D == 0xFF))
+        if (((var_r4_9 << 0x10) != 0) && (gEwramData->unk_13110.unk_13110->unk_50C.unk_50C_8.unk_50D == 0xFF))
         {
             temp_r2_20 = gUnk_03002CB0.unk_100D;
             if (8 & temp_r2_20)
@@ -1560,7 +1560,7 @@ block_387:
 block_390:
                 var_r1_10 = 0xFF;
             }
-            gEwramData->unk_13110->unk_50C.unk_50C_8.unk_50D = (u8) var_r1_10;
+            gEwramData->unk_13110.unk_13110->unk_50C.unk_50C_8.unk_50D = (u8) var_r1_10;
         }
         sp40 = (s32) var_r4_9;
         temp_r1_29 = gUnk_03002CB0.unk_100D;
@@ -1610,7 +1610,7 @@ block_390:
         spB0 = temp_r1_32;
         temp_r0_28 = (u16) sub_08001E58(temp_r0_27, temp_r1_32, sp3C);
         var_r4_11 = temp_r0_28;
-        temp_r1_33 = gEwramData->unk_1316C;
+        temp_r1_33 = gEwramData->unk_13110.unk_1316C;
         if (temp_r1_33 != NULL)
         {
             temp_r0_29 = ((u16 (*)(struct EwramData_unk1316C *, s32, s32)) temp_r1_33->unk_10->unk_8)(temp_r1_33, temp_r0_27, temp_r1_32);
@@ -1621,14 +1621,14 @@ block_390:
                 gUnk_03002CB0.unk_100E = 1;
             }
         }
-        temp_r3_8 = &gEwramData->unk_131B4;
+        temp_r3_8 = &gEwramData->unk_13110.unk_131B4;
         if (*temp_r3_8 == 0)
         {
 
         }
         else
         {
-            temp_r2_21 = gEwramData->unk_13110;
+            temp_r2_21 = gEwramData->unk_13110.unk_13110;
             if ((s32) temp_r2_21->unk_530.unk_530_32 < 0)
             {
 
@@ -1648,7 +1648,7 @@ block_390:
                     goto block_440;
                 }
 loop_422:
-                temp_r5_15 = gEwramData->unk_13170[spC0];
+                temp_r5_15 = gEwramData->unk_13110.unk_13170[spC0];
                 temp_r4_15 = (u16) GetEntityRoomXPositionInteger(temp_r5_15);
                 temp_sb_5 = (u16) GetEntityRoomYPositionInteger(temp_r5_15);
                 if (sub_08042030(&sp20, &sp24, temp_r5_15) == 0)
@@ -1667,7 +1667,7 @@ loop_422:
                 }
                 spC4 = 0;
                 var_sl_5 = 0;
-                temp_r6_11 = &gEwramData->unk_131AC[spC0];
+                temp_r6_11 = &gEwramData->unk_13110.unk_131AC[spC0];
                 temp_r2_22 = *temp_r6_11;
                 if (2 & temp_r2_22)
                 {
@@ -1680,7 +1680,7 @@ loop_422:
                 if ((spB4 >= (s32) (s16) var_r4_12) && (spB4 <= (s32) (s16) var_r3_6) && (temp_r1_34 = (s16) (u16) ((s8) sp24.unk_1 + ((s16) temp_sb_5 - 1)), (spB8 >= (s32) (temp_r1_34 - (s16) var_sl_5))) && (spB8 <= (s32) (temp_r1_34 + ((s16) spC4 + 8))))
                 {
                     spBC = (s32) (u16) (temp_r1_34 - spB8);
-                    gEwramData->unk_13190 = temp_r5_15;
+                    gEwramData->unk_13110.unk_13190 = temp_r5_15;
                     temp_r1_35 = *temp_r6_11;
                     if (1 & temp_r1_35)
                     {
@@ -1694,7 +1694,7 @@ loop_422:
 block_438:
                     temp_r2_23 = spC0 + 1;
                     spC0 = temp_r2_23;
-                    if (temp_r2_23 < (s32) gEwramData->unk_131B4)
+                    if (temp_r2_23 < (s32) gEwramData->unk_13110.unk_131B4)
                     {
                         goto loop_422;
                     }
@@ -1704,7 +1704,7 @@ block_440:
                 var_r4_11 = var_r0_20;
             }
         }
-        if (((var_r4_11 << 0x10) != 0) && (gEwramData->unk_13110->unk_50C.unk_50C_8.unk_50D == 0xFF))
+        if (((var_r4_11 << 0x10) != 0) && (gEwramData->unk_13110.unk_13110->unk_50C.unk_50C_8.unk_50D == 0xFF))
         {
             temp_r2_24 = gUnk_03002CB0.unk_100D;
             if (8 & temp_r2_24)
@@ -1727,7 +1727,7 @@ block_448:
 block_451:
                 var_r1_13 = 0xFF;
             }
-            gEwramData->unk_13110->unk_50C.unk_50C_8.unk_50D = (u8) var_r1_13;
+            gEwramData->unk_13110.unk_13110->unk_50C.unk_50C_8.unk_50D = (u8) var_r1_13;
         }
         sp44 = (s32) var_r4_11;
         temp_r1_36 = gUnk_03002CB0.unk_100D;
@@ -1771,7 +1771,7 @@ block_451:
     else
     {
         temp_r0_30 = (u16) sub_08001E58((s32) (spDC + 0xFFFB0000) >> 0x10, (s32) (spE0 + 0x10000) >> 0x10, sp3C);
-        if (((temp_r0_30 << 0x10) != 0) && (gEwramData->unk_13110->unk_50C.unk_50C_8.unk_50D == 0xFF))
+        if (((temp_r0_30 << 0x10) != 0) && (gEwramData->unk_13110.unk_13110->unk_50C.unk_50C_8.unk_50D == 0xFF))
         {
             temp_r2_25 = gUnk_03002CB0.unk_100D;
             if (8 & temp_r2_25)
@@ -1794,7 +1794,7 @@ block_299:
 block_302:
                 var_r1_16 = 0xFF;
             }
-            gEwramData->unk_13110->unk_50C.unk_50C_8.unk_50D = (u8) var_r1_16;
+            gEwramData->unk_13110.unk_13110->unk_50C.unk_50C_8.unk_50D = (u8) var_r1_16;
         }
         sp40 = (s32) temp_r0_30;
         temp_r2_26 = gUnk_03002CB0.unk_100D;
@@ -1840,7 +1840,7 @@ block_302:
             param_0->unk_500.unk_500_8.unk_501 = (s8) temp_r1_39;
         }
         temp_r0_31 = (u16) sub_08001E58((s32) (spDC + 0x50000) >> 0x10, (s32) (spE0 + 0x10000) >> 0x10, sp3C);
-        if (((temp_r0_31 << 0x10) != 0) && (gEwramData->unk_13110->unk_50C.unk_50C_8.unk_50D == 0xFF))
+        if (((temp_r0_31 << 0x10) != 0) && (gEwramData->unk_13110.unk_13110->unk_50C.unk_50C_8.unk_50D == 0xFF))
         {
             temp_r2_27 = gUnk_03002CB0.unk_100D;
             if (8 & temp_r2_27)
@@ -1864,7 +1864,7 @@ block_302:
 block_330:
                 var_r1_19 = 0xFF;
             }
-            gEwramData->unk_13110->unk_50C.unk_50C_8.unk_50D = (u8) var_r1_19;
+            gEwramData->unk_13110.unk_13110->unk_50C.unk_50C_8.unk_50D = (u8) var_r1_19;
         }
         sp44 = (s32) temp_r0_31;
         temp_r2_28 = gUnk_03002CB0.unk_100D;
@@ -1965,7 +1965,7 @@ block_484:
     temp_r4_17 = spDC >> 0x10;
     temp_r0_32 = (s32) (spE0 + 0x70000) >> 0x10;
     var_r4_13 = (u16) sub_08001E58(temp_r4_17, temp_r0_32, sp3C);
-    temp_r1_44 = gEwramData->unk_1316C;
+    temp_r1_44 = gEwramData->unk_13110.unk_1316C;
     if (temp_r1_44 != NULL)
     {
         temp_r0_34 = ((u16 (*)(struct EwramData_unk1316C *, s32, s32)) temp_r1_44->unk_10->unk_8)(temp_r1_44, temp_r4_17, temp_r0_32);
@@ -1977,21 +1977,21 @@ block_484:
         }
     }
 
-    if (gEwramData->unk_131B4 != 0)
+    if (gEwramData->unk_13110.unk_131B4 != 0)
     {
-        temp_r2_31 = gEwramData->unk_13110;
+        temp_r2_31 = gEwramData->unk_13110.unk_13110;
         if (temp_r2_31->unk_530.unk_530_32 >= 0 && (!(temp_r2_31->unk_4F4.unk_4F4_32 & 2) || ((u16) temp_r2_31->unk_4F8.unk_4F8_16.unk_4F8 == 0x10)))
         {
             spC8 = temp_r4_17;
             spCC = temp_r0_32;
             spD0 = (s32) var_r4_13;
             spD4 = 0;
-            if (gEwramData->unk_131B4 <= 0)
+            if (gEwramData->unk_13110.unk_131B4 <= 0)
             {
                 goto block_518;
             }
 loop_500:
-            temp_r5_17 = gEwramData->unk_13170[spD4];
+            temp_r5_17 = gEwramData->unk_13110.unk_13170[spD4];
             temp_r4_18 = (u16) GetEntityRoomXPositionInteger(temp_r5_17);
             temp_sb_6 = (u16) GetEntityRoomYPositionInteger(temp_r5_17);
             if (sub_08042030(&sp28, &sp2C, temp_r5_17) == 0)
@@ -2010,7 +2010,7 @@ loop_500:
             }
             spD8 = 0;
             var_sl_6 = 0;
-            temp_r6_12 = &gEwramData->unk_131AC[spD4];
+            temp_r6_12 = &gEwramData->unk_13110.unk_131AC[spD4];
             temp_r2_32 = *temp_r6_12;
             if (2 & temp_r2_32)
             {
@@ -2023,7 +2023,7 @@ loop_500:
             if ((spC8 >= (s32) (s16) var_r4_14) && (spC8 <= (s32) (s16) var_r3_9) && (temp_r1_45 = (s16) (u16) ((s8) sp2C.unk_1 + ((s16) temp_sb_6 - 1)), (spCC >= (s32) (temp_r1_45 - (s16) var_sl_6))) && (spCC <= (s32) (temp_r1_45 + ((s16) spD8 + 8))))
             {
                 spD0 = (s32) (u16) (temp_r1_45 - spCC);
-                gEwramData->unk_13190 = temp_r5_17;
+                gEwramData->unk_13110.unk_13190 = temp_r5_17;
                 temp_r1_46 = *temp_r6_12;
                 if (1 & temp_r1_46)
                 {
@@ -2037,7 +2037,7 @@ loop_500:
 block_516:
                 temp_r2_33 = spD4 + 1;
                 spD4 = temp_r2_33;
-                if (temp_r2_33 < (s32) gEwramData->unk_131B4)
+                if (temp_r2_33 < (s32) gEwramData->unk_13110.unk_131B4)
                 {
                     goto loop_500;
                 }
@@ -2047,7 +2047,7 @@ block_518:
             var_r4_13 = var_r0_24;
         }
     }
-    if (((var_r4_13 << 0x10) != 0) && (gEwramData->unk_13110->unk_50C.unk_50C_8.unk_50D == 0xFF))
+    if (((var_r4_13 << 0x10) != 0) && (gEwramData->unk_13110.unk_13110->unk_50C.unk_50C_8.unk_50D == 0xFF))
     {
         temp_r2_34 = gUnk_03002CB0.unk_100D;
         if (temp_r2_34 & 8)
@@ -2073,7 +2073,7 @@ block_518:
         {
             var_r1_22 = 0xFF;
         }
-        gEwramData->unk_13110->unk_50C.unk_50C_8.unk_50D = (u8) var_r1_22;
+        gEwramData->unk_13110.unk_13110->unk_50C.unk_50C_8.unk_50D = (u8) var_r1_22;
     }
     temp_r3_10 = var_r4_13;
     sp6C = (s32) temp_r3_10;
@@ -2209,7 +2209,7 @@ block_552:
         param_0->unk_4F1 = 0;
         PlaySong(0xBBU);
         param_0->unk_528.unk_528_16.unk_528 = 0;
-        if ((gEwramData->unk_131B8 & 8) || (4 & gEwramData->unk_1325C.unk_13270))
+        if ((gEwramData->unk_13110.unk_131B8 & 8) || (4 & gEwramData->unk_1325C.unk_13270))
         {
             param_0->unk_530.unk_530_32 = 0;
             param_0->unk_538.unk_538_32 = 0;
@@ -2224,7 +2224,7 @@ block_552:
             }
             PlaySong(0xBBU);
             sp30 = *(s32 *)0x080E1300;
-            if (!(gEwramData->unk_131B8 & 0x800) && (param_0->unk_551 != 0x13))
+            if (!(gEwramData->unk_13110.unk_131B8 & 0x800) && (param_0->unk_551 != 0x13))
             {
                 sub_0803F2C8(param_0, 0x13U, 3U, 0U);
                 sub_080428B4(param_0, &sp30);
@@ -2250,7 +2250,7 @@ block_552:
             if (gEwramData->inputData.playerHeldInput & 0x30)
             {
                 sp38 = *(s32 *)0x080E12F8;
-                if (!(gEwramData->unk_131B8 & 0x800) && (param_0->unk_551 != 1))
+                if (!(gEwramData->unk_13110.unk_131B8 & 0x800) && (param_0->unk_551 != 1))
                 {
                     sub_0803F2C8(param_0, 1U, 3U, 1U);
                     sub_080428B4(param_0, &sp38);

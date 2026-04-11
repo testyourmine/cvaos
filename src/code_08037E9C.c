@@ -160,7 +160,7 @@ s32 sub_08037F60(struct Unk_03000028 *param_0)
             gEwramData->inputData.playerHeldInput = sp4.playerHeldInput;
             gEwramData->inputData.playerNewInput = sp4.playerNewInput;
 
-            if (sub_08011A44(gEwramData->unk_13110) == 0)
+            if (sub_08011A44(gEwramData->unk_13110.unk_13110) == 0)
             {
                 sub_08010244(&gEwramData->unk_60);
                 param_0->unk_0.unk_0_8 = 4;

@@ -45,7 +45,7 @@ void sub_080211F4(void)
 {
     struct EwramData_EntityData *temp_r2;
 
-    temp_r2 = gEwramData->unk_13110;
+    temp_r2 = gEwramData->unk_13110.unk_13110;
     temp_r2->unk_4F4.unk_4F4_32 |= 0x80000;
 }
 
@@ -57,10 +57,10 @@ void sub_080211F4(void)
  */
 void sub_08021214(s32 param_0, s32 param_1)
 {
-    gEwramData->unk_13110->unk_52C.unk_52C_32 = param_0;
-    gEwramData->unk_13110->unk_530.unk_530_32 = param_1;
+    gEwramData->unk_13110.unk_13110->unk_52C.unk_52C_32 = param_0;
+    gEwramData->unk_13110.unk_13110->unk_530.unk_530_32 = param_1;
  
-    gEwramData->unk_13110->unk_534.unk_534_32 = (gEwramData->unk_13110->unk_52C.unk_52C_32 < 0) ? 0x1000 : -0x1000;
+    gEwramData->unk_13110.unk_13110->unk_534.unk_534_32 = (gEwramData->unk_13110.unk_13110->unk_52C.unk_52C_32 < 0) ? 0x1000 : -0x1000;
 }
 
 /**
@@ -71,10 +71,10 @@ void sub_08021214(s32 param_0, s32 param_1)
  */
 void sub_08021248(s32 param_0, s32 param_1)
 {
-    if (gEwramData->unk_131D4 == 3)
+    if (gEwramData->unk_13110.unk_131D4 == 3)
     {
-        gEwramData->unk_131E0 = param_0;
-        gEwramData->unk_131E4 = param_1;
+        gEwramData->unk_13110.unk_131E0 = param_0;
+        gEwramData->unk_13110.unk_131E4 = param_1;
     }
 }
 
@@ -86,11 +86,11 @@ void sub_08021248(s32 param_0, s32 param_1)
  */
 void sub_08021278(struct EwramData_EntityData *param_0, u8 param_1)
 {
-    if (gEwramData->unk_131B4 < 7)
+    if (gEwramData->unk_13110.unk_131B4 < 7)
     {
-        gEwramData->unk_13170[gEwramData->unk_131B4] = param_0;
-        gEwramData->unk_131AC[gEwramData->unk_131B4] = param_1;
-        gEwramData->unk_131B4 += 1;
+        gEwramData->unk_13110.unk_13170[gEwramData->unk_13110.unk_131B4] = param_0;
+        gEwramData->unk_13110.unk_131AC[gEwramData->unk_13110.unk_131B4] = param_1;
+        gEwramData->unk_13110.unk_131B4 += 1;
     }
 }
 
@@ -101,9 +101,9 @@ void sub_08021278(struct EwramData_EntityData *param_0, u8 param_1)
  */
 s32 sub_080212C8(void)
 {
-    if (gEwramData->unk_13168 == gEwramData->unk_13110)
+    if (gEwramData->unk_13110.unk_13168 == gEwramData->unk_13110.unk_13110)
     {
-        return gEwramData->unk_13168->unk_4F4.unk_4F4_32;
+        return gEwramData->unk_13110.unk_13168->unk_4F4.unk_4F4_32;
     }
     return 0;
 }
@@ -130,7 +130,7 @@ s32 sub_08021304(void)
     struct EwramData_EntityData *temp_r2;
     s32 var_r1;
 
-    temp_r2 = gEwramData->unk_13110;
+    temp_r2 = gEwramData->unk_13110.unk_13110;
     if (temp_r2->unk_4EE == 0)
     {
         var_r1 = temp_r2->unk_52C.unk_52C_32;
@@ -169,7 +169,7 @@ void sub_08021344(u8 param_0, u8 param_1, u8 param_2)
  */
 void sub_0802138C(s32 param_0)
 {
-    gEwramData->unk_13110->unk_524.unk_524_16.unk_524 = param_0;
+    gEwramData->unk_13110.unk_13110->unk_524.unk_524_16.unk_524 = param_0;
 }
 
 /**
@@ -179,7 +179,7 @@ void sub_0802138C(s32 param_0)
  */
 void sub_080213A4(s32 param_0)
 {
-    gEwramData->unk_13110->unk_528.unk_528_16.unk_528 = param_0;
+    gEwramData->unk_13110.unk_13110->unk_528.unk_528_16.unk_528 = param_0;
 }
 
 /**
@@ -204,11 +204,11 @@ s32 sub_080213F4(void)
     {
         return 0;
     }
-    if (gEwramData->unk_13220 == NULL)
+    if (gEwramData->unk_13110.unk_13220 == NULL)
     {
         return 0;
     }
-    if (gEwramData->unk_13220->unk_518.unk_518_16.unk_518 > 0 && gEwramData->unk_13220->unk_518.unk_518_16.unk_518 < 200)
+    if (gEwramData->unk_13110.unk_13220->unk_518.unk_518_16.unk_518 > 0 && gEwramData->unk_13110.unk_13220->unk_518.unk_518_16.unk_518 < 200)
     {
         return 1;
     }
@@ -225,7 +225,7 @@ s32 sub_080213F4(void)
  */
 s32 sub_08021438(struct EwramData_EntityData *param_0, u8 param_1, u8 param_2)
 {
-    if (gEwramData->unk_131B8 & 0x800)
+    if (gEwramData->unk_13110.unk_131B8 & 0x800)
     {
         return 0;
     }
@@ -288,7 +288,7 @@ void sub_080214DC(struct EwramData_EntityData *param_0)
  */
 void sub_08021518(s32 param_0)
 {
-    gEwramData->unk_13110->unk_500.unk_500_8.unk_502 = param_0;
+    gEwramData->unk_13110.unk_13110->unk_500.unk_500_8.unk_502 = param_0;
 }
 
 extern u16 sUnk_080E1320[]; // array or struct?
@@ -306,7 +306,7 @@ u16 sub_08021530(u16 param_0)
 
     if (param_0 == 3)
     {
-        var_r4 = gEwramData->currentATK * sUnk_080E1320[3];
+        var_r4 = gEwramData->unk_13110.currentATK * sUnk_080E1320[3];
         var_r4 /= 16;
     }
     else if (param_0 == 5)
@@ -314,7 +314,7 @@ u16 sub_08021530(u16 param_0)
         if (gEwramData->unk_60.unk_4CC_6 == 0)
         {
             temp_r5 = sub_0802D244();
-            var_r4 = ((gEwramData->currentStats[0] * temp_r5->unk_A) / 10) + (gEwramData->currentStats[2] >> 2) + (temp_r5->unk_A * 4) + (temp_r5->unk_A * 2);
+            var_r4 = ((gEwramData->unk_13110.currentStats[0] * temp_r5->unk_A) / 10) + (gEwramData->unk_13110.currentStats[2] >> 2) + (temp_r5->unk_A * 4) + (temp_r5->unk_A * 2);
         }
         else
         {
@@ -324,11 +324,11 @@ u16 sub_08021530(u16 param_0)
     }
     else if (param_0 == 6)
     {
-        var_r4 = gEwramData->unk_131C2 + ((gEwramData->unk_131C2 >> 3) * (gEwramData->currentStats[2] >> 1));
+        var_r4 = gEwramData->unk_13110.unk_131C2 + ((gEwramData->unk_13110.unk_131C2 >> 3) * (gEwramData->unk_13110.currentStats[2] >> 1));
     }
     else
     {
-        var_r4 = gEwramData->currentStats[0] * sUnk_080E1320[param_0];
+        var_r4 = gEwramData->unk_13110.currentStats[0] * sUnk_080E1320[param_0];
         var_r4 /= 16;
     }
 
@@ -347,7 +347,7 @@ extern struct Unk_080E1338 sUnk_080E1338[];
 
 static inline s16 sub_08021654_inline_0()
 {
-    return gEwramData->unk_13110->unk_524.unk_524_16.unk_526;
+    return gEwramData->unk_13110.unk_13110->unk_524.unk_524_16.unk_526;
 }
 
 void sub_08021654(struct Unk_08021654 *param_0)
@@ -366,14 +366,14 @@ void sub_08021654(struct Unk_08021654 *param_0)
     s32 temp_r6_2;
 
     var_sb = 0;
-    if (gEwramData->unk_13110->unk_500.unk_500_8.unk_502 != 0)
+    if (gEwramData->unk_13110.unk_13110->unk_500.unk_500_8.unk_502 != 0)
     {
         return;
     }
     temp_r6 = sub_0806E268(param_0->unk_2);
     if (temp_r6 != 0)
     {
-        // temp_r5_2 = (s16) gEwramData->unk_13110->unk_524.unk_524_16.unk_526;
+        // temp_r5_2 = (s16) gEwramData->unk_13110.unk_13110->unk_524.unk_524_16.unk_526;
         // temp_r5 = temp_r5_2 + sub_0802D5EC(8);
         temp_r5 = sub_08021654_inline_0() + sub_0802D5EC(8);
         temp_r4 = sub_0801CFB0() + sub_0802D5EC(4);
@@ -385,12 +385,12 @@ void sub_08021654(struct Unk_08021654 *param_0)
     }
     else
     {
-        temp_r0 = (gEwramData->unk_131FE >> 0x1) + (gEwramData->unk_131FE >> 0x2) + (gEwramData->unk_1325C.maxHP >> 4);
+        temp_r0 = (gEwramData->unk_13110.unk_131FE >> 0x1) + (gEwramData->unk_13110.unk_131FE >> 0x2) + (gEwramData->unk_1325C.maxHP >> 4);
         var_r3 = (param_0->unk_0 * 5) + (temp_r0 >> 1);
     }
-    temp_r3 = var_r3 - (gEwramData->currentDEF * 2);
+    temp_r3 = var_r3 - (gEwramData->unk_13110.currentDEF * 2);
     var_r4 = temp_r3 >> 1;
-    if ((gEwramData->unk_131FA != 0) && (param_0->unk_2 & gEwramData->unk_131FA))
+    if ((gEwramData->unk_13110.unk_131FA != 0) && (param_0->unk_2 & gEwramData->unk_13110.unk_131FA))
     {
         var_r4 = temp_r3 >> 2;
     }
@@ -429,10 +429,10 @@ void sub_08021654(struct Unk_08021654 *param_0)
         sub_0800C5A8(0);
         gEwramData->unk_A074_0 = 0;
     }
-    gEwramData->unk_131D6 = var_r4;
-    gEwramData->unk_131D8 = param_0->unk_8;
-    gEwramData->unk_131DC = param_0->unk_C;
-    gEwramData->unk_131D4 = param_0->unk_6;
+    gEwramData->unk_13110.unk_131D6 = var_r4;
+    gEwramData->unk_13110.unk_131D8 = param_0->unk_8;
+    gEwramData->unk_13110.unk_131DC = param_0->unk_C;
+    gEwramData->unk_13110.unk_131D4 = param_0->unk_6;
     if (gEwramData->unk_1325C.unk_13260 & 0x40000)
     {
         sub_08044F80(var_r4 * 5);
@@ -441,16 +441,16 @@ void sub_08021654(struct Unk_08021654 *param_0)
     {
         sub_08022028(var_r4 * 2);
     }
-    if ((gEwramData->unk_131D4 == 0) && (var_r4 > (gEwramData->unk_1325C.maxHP >> 2)))
+    if ((gEwramData->unk_13110.unk_131D4 == 0) && (var_r4 > (gEwramData->unk_1325C.maxHP >> 2)))
     {
-        gEwramData->unk_131D4 = 1;
+        gEwramData->unk_13110.unk_131D4 = 1;
     }
     sub_08042A7C(var_r4, 0);
     PlaySong(0xB3);
     if ((gEwramData->unk_1325C.currentCharacter == 0) && (gEwramData->unk_1325C.unk_13276 == 0))
     {
         temp_r6_2 = (param_0->unk_2 & (7 << 6)) >> 6;
-        if (((gEwramData->unk_131FA >> 6) & temp_r6_2) != temp_r6_2)
+        if (((gEwramData->unk_13110.unk_131FA >> 6) & temp_r6_2) != temp_r6_2)
         {
             gEwramData->unk_1325C.unk_13270 |= temp_r6_2;
             for (var_r4_2 = 2; var_r4_2 >= 0; var_r4_2--)
@@ -482,17 +482,17 @@ s32 sub_08021924(struct EwramData_EntityData *param_0)
     u8 *temp_r6;
 
     var_r4 = -1;
-    temp_r6 = gEwramData->unk_131A4;
+    temp_r6 = gEwramData->unk_13110.unk_131A4;
 
     for (var_r3 = 0; var_r3 < 4; var_r3++)
     {
-        if (gEwramData->unk_13194[var_r3] == param_0)
+        if (gEwramData->unk_13110.unk_13194[var_r3] == param_0)
         {
             temp_r6[var_r3 * 2 + 1] += 1;
             return 1;
         }
 
-        if ((var_r4 < 0) && (gEwramData->unk_13194[var_r3] == 0))
+        if ((var_r4 < 0) && (gEwramData->unk_13110.unk_13194[var_r3] == 0))
         {
             var_r4 = var_r3;
         }
@@ -500,7 +500,7 @@ s32 sub_08021924(struct EwramData_EntityData *param_0)
 
     if (var_r4 >= 0)
     {
-        gEwramData->unk_13194[var_r4] = param_0;
+        gEwramData->unk_13110.unk_13194[var_r4] = param_0;
         temp_r6[var_r4 * 2 + 1] = 1;
         temp_r6[var_r4 * 2 + 0] = 0;
         return 1;
@@ -582,9 +582,9 @@ void sub_08021994(struct EwramData_EntityData *param_0)
 
     if (gEwramData->unk_1325C.unk_13270 & 1)
     {
-        gEwramData->currentStats[0] >>= 2;
-        gEwramData->currentStats[1] >>= 2;
-        gEwramData->currentStats[2] >>= 2;
+        gEwramData->unk_13110.currentStats[0] >>= 2;
+        gEwramData->unk_13110.currentStats[1] >>= 2;
+        gEwramData->unk_13110.currentStats[2] >>= 2;
     }
 
     if (gEwramData->unk_1325C.unk_13270 & 2)
@@ -623,17 +623,17 @@ void sub_08021994(struct EwramData_EntityData *param_0)
  */
 void sub_08021C44(void)
 {
-    gEwramData->currentATK = sub_08021F64(gEwramData->currentStats[0]);
-    gEwramData->currentDEF = sub_08021F84(gEwramData->currentStats[1]);
+    gEwramData->unk_13110.currentATK = sub_08021F64(gEwramData->unk_13110.currentStats[0]);
+    gEwramData->unk_13110.currentDEF = sub_08021F84(gEwramData->unk_13110.currentStats[1]);
 
-    if (gEwramData->currentATK < 0)
+    if (gEwramData->unk_13110.currentATK < 0)
     {
-        gEwramData->currentATK = 0;
+        gEwramData->unk_13110.currentATK = 0;
     }
 
-    if (gEwramData->currentDEF < 0)
+    if (gEwramData->unk_13110.currentDEF < 0)
     {
-        gEwramData->currentDEF = 0;
+        gEwramData->unk_13110.currentDEF = 0;
     }
 }
 
@@ -673,7 +673,7 @@ void sub_08021CA8(struct EwramData_EntityData *param_0)
                 var_r1 = -var_r1;
             }
             param_0->unk_4F1 = param_0->unk_4F1 + 1;
-            temp_r2_3 = (s16) gEwramData->unk_13110->unk_524.unk_524_16.unk_526;
+            temp_r2_3 = (s16) gEwramData->unk_13110.unk_13110->unk_524.unk_524_16.unk_526;
             param_0->unk_524.unk_524_16.unk_526 = (var_r1 < 0) ? (temp_r2_3 - (-var_r1 >> 0x10)) : (temp_r2_3 + (var_r1 >> 0x10));
             param_0->unk_528.unk_528_16.unk_52A = sub_0801CFB0() - 4;
             param_0->unk_53D_2 = 1;
@@ -703,7 +703,7 @@ void sub_08021CA8(struct EwramData_EntityData *param_0)
  */
 s32 sub_08021DB0(void)
 {
-    return gEwramData->unk_131BC;
+    return gEwramData->unk_13110.unk_131BC;
 }
 
 /**
@@ -718,8 +718,8 @@ void sub_08021DC4(void)
     u8 *var_r4;
 
     
-    var_r2 = gEwramData->unk_131A4;
-    var_r1 = gEwramData->unk_13194;
+    var_r2 = gEwramData->unk_13110.unk_131A4;
+    var_r1 = gEwramData->unk_13110.unk_13194;
 
     for (var_r6 = 0; var_r6 < 4; var_r6++)
     {
@@ -840,7 +840,7 @@ void sub_08021F18(void)
     u16 *var_r1;
     u16 *var_r2;
 
-    var_r2 = gEwramData->unk_13200;
+    var_r2 = gEwramData->unk_13110.unk_13200;
     var_r1 = gEwramData->unk_1325C.baseStats;
 
     for (var_r3 = 0; var_r3 < 4; var_r3++)
@@ -859,9 +859,9 @@ void sub_08021F44(u16 param_0, u16 param_1)
 {
     u16 *var_0;
 
-    var_0 = gEwramData->unk_13200 + param_0;
+    var_0 = gEwramData->unk_13110.unk_13200 + param_0;
     *var_0 += param_1;
-    // gEwramData->unk_13200[param_0] += param_1;
+    // gEwramData->unk_13110.unk_13200[param_0] += param_1;
 }
 
 /**
@@ -872,7 +872,7 @@ void sub_08021F44(u16 param_0, u16 param_1)
  */
 s16 sub_08021F64(s16 param_0)
 {
-    return gEwramData->unk_131FC + param_0;
+    return gEwramData->unk_13110.unk_131FC + param_0;
 }
 
 /**
@@ -883,7 +883,7 @@ s16 sub_08021F64(s16 param_0)
  */
 s16 sub_08021F84(s16 param_0)
 {
-    return (param_0 >> 1) + gEwramData->unk_131FE;
+    return (param_0 >> 1) + gEwramData->unk_13110.unk_131FE;
 }
 
 /**
@@ -896,15 +896,15 @@ void sub_08021FA4(void)
     u16 *var_r2;
     s32 var_r1;
 
-    var_r3 = gEwramData->currentStats;
-    var_r2 = gEwramData->unk_13200;
+    var_r3 = gEwramData->unk_13110.currentStats;
+    var_r2 = gEwramData->unk_13110.unk_13200;
 
     for (var_r1 = 0; var_r1 < 4; var_r1++)
     {
         *var_r3++ = *var_r2++;
     } 
 
-    gEwramData->unk_131FA = gEwramData->unk_13208;
+    gEwramData->unk_13110.unk_131FA = gEwramData->unk_13110.unk_13208;
 }
 
 /**
@@ -965,9 +965,9 @@ void sub_08022060(s32 param_0)
  */
 s32 sub_08022088(struct EwramData_EntityData *param_0, void *param_1)
 {
-    if (gEwramData->unk_1316C == NULL)
+    if (gEwramData->unk_13110.unk_1316C == NULL)
     {
-        gEwramData->unk_1316C = param_0;
+        gEwramData->unk_13110.unk_1316C = param_0;
         param_0->unk_4F4.unk_4F4_entity = param_1;
         return 1;
     }
@@ -980,7 +980,7 @@ s32 sub_08022088(struct EwramData_EntityData *param_0, void *param_1)
  */
 void sub_080220B4(void)
 {
-    gEwramData->unk_1316C = NULL;
+    gEwramData->unk_13110.unk_1316C = NULL;
 }
 
 /**
@@ -990,9 +990,9 @@ void sub_080220B4(void)
  */
 s32 sub_080220CC(void)
 {
-    if (gEwramData->unk_1316C != NULL)
+    if (gEwramData->unk_13110.unk_1316C != NULL)
     {
-        return *gEwramData->unk_1316C->unk_4F4.unk_4F4_p32; // TODO: investigate
+        return *gEwramData->unk_13110.unk_1316C->unk_4F4.unk_4F4_p32; // TODO: investigate
     }
     return 0;
 }
@@ -1044,7 +1044,7 @@ void sub_080220F8(s32 param_0)
 void sub_08022134(u8 param_0)
 {
     sub_08021518(param_0);
-    gEwramData->unk_13110->unk_518.unk_518_16.unk_518 = param_0;
+    gEwramData->unk_13110.unk_13110->unk_518.unk_518_16.unk_518 = param_0;
 }
 
 /**
@@ -1054,8 +1054,8 @@ void sub_08022134(u8 param_0)
 void sub_0802215C(void)
 {
     sub_08021518(1);
-    gEwramData->unk_13110->unk_518.unk_518_16.unk_518 = 0;
-    gEwramData->unk_13110->unk_4F3 = 0;
+    gEwramData->unk_13110.unk_13110->unk_518.unk_518_16.unk_518 = 0;
+    gEwramData->unk_13110.unk_13110->unk_4F3 = 0;
 }
 
 /**
@@ -1064,7 +1064,7 @@ void sub_0802215C(void)
  */
 void sub_08022184(void)
 {
-    gEwramData->unk_131B8 |= 0x700;
+    gEwramData->unk_13110.unk_131B8 |= 0x700;
     sub_080235C8();
     sub_0802DFF0();
     sub_080321C4();
@@ -1121,12 +1121,12 @@ void sub_080221CC(struct EwramData_EntityData *param_0)
             param_0->unk_4FC.unk_4FC_8.unk_4FC = gEwramData->unk_1325C.equippedWeapon;
             if (temp_r3->unk_50C.unk_50C_8.unk_50C == 0)
             {
-                if (gEwramData->lastUsedWeapon[0] != temp_r6_2->unk_12)
+                if (gEwramData->unk_13110.lastUsedWeapon[0] != temp_r6_2->unk_12)
                 {
-                    if (gEwramData->unk_131C8 != -1)
+                    if (gEwramData->unk_13110.unk_131C8 != -1)
                     {
-                        sub_0803B980(gEwramData->unk_131C8);
-                        gEwramData->unk_131C8 = -1;
+                        sub_0803B980(gEwramData->unk_13110.unk_131C8);
+                        gEwramData->unk_13110.unk_131C8 = -1;
                     }
                 }
                 var_r4 = 1;
@@ -1134,12 +1134,12 @@ void sub_080221CC(struct EwramData_EntityData *param_0)
             }
             else
             {
-                if (gEwramData->unk_131C1 != temp_r6_2->unk_12)
+                if (gEwramData->unk_13110.unk_131C1 != temp_r6_2->unk_12)
                 {
-                    if (gEwramData->unk_131CC != -1)
+                    if (gEwramData->unk_13110.unk_131CC != -1)
                     {
-                        sub_0803B980(gEwramData->unk_131CC);
-                        gEwramData->unk_131CC = -1;
+                        sub_0803B980(gEwramData->unk_13110.unk_131CC);
+                        gEwramData->unk_13110.unk_131CC = -1;
                     }
                 }
                 var_r4 = 2;
@@ -1149,16 +1149,16 @@ void sub_080221CC(struct EwramData_EntityData *param_0)
             sub_0803C7B4((u8 *)0x082098B8, (u16) temp_r6_2->unk_15, 1, var_r4);
             sub_0803B924(param_0, (u8 *) sUnk_084F117C[temp_r6_2->unk_13], temp_r7, (s32) var_r4);
             sub_0803F2C8(param_0, (u16) temp_r6_2->unk_14, 0, 0);
-            gEwramData->lastUsedWeapon[temp_r3->unk_50C.unk_50C_8.unk_50C] = temp_r6_2->unk_12;
+            gEwramData->unk_13110.lastUsedWeapon[temp_r3->unk_50C.unk_50C_8.unk_50C] = temp_r6_2->unk_12;
             if (temp_r3->unk_50C.unk_50C_8.unk_50C == 0)
             {
-                gEwramData->unk_131C8 = temp_r7;
+                gEwramData->unk_13110.unk_131C8 = temp_r7;
                 var_r1_2 = 3;
                 var_r4_2 = 0;
             }
             else
             {
-                gEwramData->unk_131CC = temp_r7;
+                gEwramData->unk_13110.unk_131CC = temp_r7;
                 var_r1_2 = 5;
                 var_r4_2 = 1;
             }
@@ -1184,7 +1184,7 @@ void sub_080221CC(struct EwramData_EntityData *param_0)
             param_0->unk_53D_2 = 1;
             if ((temp_r0->unk_4F4.unk_4F4_32 & 0x20) == 0)
             {
-                gEwramData->unk_1311C[temp_r0->unk_50C.unk_50C_8.unk_50C] = 0;
+                gEwramData->unk_13110.unk_1311C[temp_r0->unk_50C.unk_50C_8.unk_50C] = 0;
                 EntityDelete(param_0);
                 return;
             }
@@ -1216,7 +1216,7 @@ void sub_080221CC(struct EwramData_EntityData *param_0)
             }
             else
             {
-                gEwramData->unk_1311C[temp_r0->unk_50C.unk_50C_8.unk_50C] = 0;
+                gEwramData->unk_13110.unk_1311C[temp_r0->unk_50C.unk_50C_8.unk_50C] = 0;
                 EntityDelete(param_0);
             }
             break;
@@ -1254,7 +1254,7 @@ void sub_080224BC(struct EwramData_EntityData *param_0)
             temp_r0_2 = sub_0803E654(0);
             if ((s32) (temp_r0_2 << 0x10) < 0)
             {
-                gEwramData->unk_1311C[temp_r0->unk_50C.unk_50C_8.unk_50C] = 0;
+                gEwramData->unk_13110.unk_1311C[temp_r0->unk_50C.unk_50C_8.unk_50C] = 0;
                 EntityDelete(param_0);
                 return;
             }
@@ -1265,12 +1265,12 @@ void sub_080224BC(struct EwramData_EntityData *param_0)
             param_0->unk_4FC.unk_4FC_8.unk_4FC = gEwramData->unk_1325C.equippedWeapon;
             if (temp_r3->unk_50C.unk_50C_8.unk_50C == 0)
             {
-                if (gEwramData->lastUsedWeapon[0] != temp_r7->unk_12)
+                if (gEwramData->unk_13110.lastUsedWeapon[0] != temp_r7->unk_12)
                 {
-                    if (gEwramData->unk_131C8 != -1)
+                    if (gEwramData->unk_13110.unk_131C8 != -1)
                     {
-                        sub_0803B980(gEwramData->unk_131C8);
-                        gEwramData->unk_131C8 = -1;
+                        sub_0803B980(gEwramData->unk_13110.unk_131C8);
+                        gEwramData->unk_13110.unk_131C8 = -1;
                     }
                 }
                 var_r4 = 1;
@@ -1278,12 +1278,12 @@ void sub_080224BC(struct EwramData_EntityData *param_0)
             }
             else
             {
-                if (gEwramData->unk_131C1 != temp_r7->unk_12)
+                if (gEwramData->unk_13110.unk_131C1 != temp_r7->unk_12)
                 {
-                    if (gEwramData->unk_131CC != -1)
+                    if (gEwramData->unk_13110.unk_131CC != -1)
                     {
-                        sub_0803B980(gEwramData->unk_131CC);
-                        gEwramData->unk_131CC = -1;
+                        sub_0803B980(gEwramData->unk_13110.unk_131CC);
+                        gEwramData->unk_13110.unk_131CC = -1;
                     }
                 }
                 var_r4 = 2;
@@ -1293,16 +1293,16 @@ void sub_080224BC(struct EwramData_EntityData *param_0)
             sub_0803C7B4((u8 *)0x082098B8, temp_r7->unk_15, 1, var_r4);
             sub_0803B924(param_0, (u8 *) sUnk_084F117C[temp_r7->unk_13], temp_r5_3, var_r4);
             sub_0803F2C8(param_0, temp_r7->unk_14, 0, 0);
-            gEwramData->lastUsedWeapon[temp_r3->unk_50C.unk_50C_8.unk_50C] = temp_r7->unk_12;
+            gEwramData->unk_13110.lastUsedWeapon[temp_r3->unk_50C.unk_50C_8.unk_50C] = temp_r7->unk_12;
             if (temp_r3->unk_50C.unk_50C_8.unk_50C == 0)
             {
-                gEwramData->unk_131C8 = temp_r5_3;
+                gEwramData->unk_13110.unk_131C8 = temp_r5_3;
                 var_r1_2 = 3;
                 var_r4_2 = 0;
             }
             else
             {
-                gEwramData->unk_131CC = temp_r5_3;
+                gEwramData->unk_13110.unk_131CC = temp_r5_3;
                 var_r1_2 = 5;
                 var_r4_2 = 1;
             }
@@ -1348,7 +1348,7 @@ void sub_080224BC(struct EwramData_EntityData *param_0)
             param_0->unk_53D_2 = 1;
             if ((temp_r0->unk_4F4.unk_4F4_32 & 0x20) == 0)
             {
-                gEwramData->unk_1311C[temp_r0->unk_50C.unk_50C_8.unk_50C] = 0;
+                gEwramData->unk_13110.unk_1311C[temp_r0->unk_50C.unk_50C_8.unk_50C] = 0;
                 sub_0803E6BC(param_0->unk_53C_0);
                 EntityDelete(param_0);
                 return;
@@ -1397,7 +1397,7 @@ void sub_080224BC(struct EwramData_EntityData *param_0)
                 }
                 break;
             }
-            gEwramData->unk_1311C[temp_r0->unk_50C.unk_50C_8.unk_50C] = 0;
+            gEwramData->unk_13110.unk_1311C[temp_r0->unk_50C.unk_50C_8.unk_50C] = 0;
             sub_0803E6BC(param_0->unk_53C_0);
             EntityDelete(param_0);
             return;
@@ -1527,12 +1527,12 @@ void sub_08022A54(struct EwramData_EntityData *param_0)
 
             if (temp_r1_4->unk_50C.unk_50C_8.unk_50C == 0)
             {
-                if (gEwramData->lastUsedWeapon[0] != temp_r5->unk_12)
+                if (gEwramData->unk_13110.lastUsedWeapon[0] != temp_r5->unk_12)
                 {
-                    if (gEwramData->unk_131C8 != -1)
+                    if (gEwramData->unk_13110.unk_131C8 != -1)
                     {
-                        sub_0803B980(gEwramData->unk_131C8);
-                        gEwramData->unk_131C8 = -1;
+                        sub_0803B980(gEwramData->unk_13110.unk_131C8);
+                        gEwramData->unk_13110.unk_131C8 = -1;
                     }
                 }
                 var_r4 = 1;
@@ -1540,12 +1540,12 @@ void sub_08022A54(struct EwramData_EntityData *param_0)
             }
             else
             {
-                if (gEwramData->unk_131C1 != temp_r5->unk_12)
+                if (gEwramData->unk_13110.unk_131C1 != temp_r5->unk_12)
                 {
-                    if (gEwramData->unk_131CC != -1)
+                    if (gEwramData->unk_13110.unk_131CC != -1)
                     {
-                        sub_0803B980(gEwramData->unk_131CC);
-                        gEwramData->unk_131CC = -1;
+                        sub_0803B980(gEwramData->unk_13110.unk_131CC);
+                        gEwramData->unk_13110.unk_131CC = -1;
                     }
                 }
                 var_r4 = 2;
@@ -1556,17 +1556,17 @@ void sub_08022A54(struct EwramData_EntityData *param_0)
             sub_0803C7B4((u8 *)0x082098B8, (u16) temp_r5->unk_15, 1U, var_r4);
             sub_0803B924(param_0, (u8 *) sUnk_084F117C[temp_r5->unk_13], temp_r7, (s32) var_r4);
             sub_0803F2C8(param_0, (u16) temp_r5->unk_14, 0U, 0U);
-            gEwramData->lastUsedWeapon[temp_r1_4->unk_50C.unk_50C_8.unk_50C] = temp_r5->unk_12;
+            gEwramData->unk_13110.lastUsedWeapon[temp_r1_4->unk_50C.unk_50C_8.unk_50C] = temp_r5->unk_12;
 
             if (temp_r1_4->unk_50C.unk_50C_8.unk_50C == 0)
             {
-                gEwramData->unk_131C8 = (u32) temp_r7;
+                gEwramData->unk_13110.unk_131C8 = (u32) temp_r7;
                 var_r1_2 = 3;
                 var_r4_2 = 0;
             }
             else
             {
-                gEwramData->unk_131CC = (u32) temp_r7;
+                gEwramData->unk_13110.unk_131CC = (u32) temp_r7;
                 var_r1_2 = 5;
                 var_r4_2 = 1;
             }
@@ -1614,7 +1614,7 @@ void sub_08022A54(struct EwramData_EntityData *param_0)
             param_0->unk_53D_2 = 1;
             if ((temp_r0->unk_4F4.unk_4F4_32 & 0x20) == 0)
             {
-                gEwramData->unk_1311C[temp_r0->unk_50C.unk_50C_8.unk_50C] = 0;
+                gEwramData->unk_13110.unk_1311C[temp_r0->unk_50C.unk_50C_8.unk_50C] = 0;
                 EntityDelete(param_0);
                 break;
             }
@@ -1659,7 +1659,7 @@ void sub_08022A54(struct EwramData_EntityData *param_0)
             param_0->unk_4F3 = temp_r0->unk_4F3;
             if (sub_0803F17C(param_0) == 3)
             {
-                gEwramData->unk_1311C[temp_r0->unk_50C.unk_50C_8.unk_50C] = 0;
+                gEwramData->unk_13110.unk_1311C[temp_r0->unk_50C.unk_50C_8.unk_50C] = 0;
                 EntityDelete(param_0);
             }
             break;
@@ -1695,12 +1695,12 @@ void sub_08022DEC(struct EwramData_EntityData *param_0)
 
             if (var_1->unk_50C.unk_50C_8.unk_50C == 0)
             {
-                if (gEwramData->lastUsedWeapon[0] != temp_r6->unk_12)
+                if (gEwramData->unk_13110.lastUsedWeapon[0] != temp_r6->unk_12)
                 {
-                    if (gEwramData->unk_131C8 != -1)
+                    if (gEwramData->unk_13110.unk_131C8 != -1)
                     {
-                        sub_0803B980(gEwramData->unk_131C8);
-                        gEwramData->unk_131C8 = -1;
+                        sub_0803B980(gEwramData->unk_13110.unk_131C8);
+                        gEwramData->unk_13110.unk_131C8 = -1;
                     }
                 }
                 var_r4 = 1;
@@ -1708,12 +1708,12 @@ void sub_08022DEC(struct EwramData_EntityData *param_0)
             }
             else
             {
-                if (gEwramData->unk_131C1 != temp_r6->unk_12)
+                if (gEwramData->unk_13110.unk_131C1 != temp_r6->unk_12)
                 {
-                    if (gEwramData->unk_131CC != -1)
+                    if (gEwramData->unk_13110.unk_131CC != -1)
                     {
-                        sub_0803B980(gEwramData->unk_131CC);
-                        gEwramData->unk_131CC = -1;
+                        sub_0803B980(gEwramData->unk_13110.unk_131CC);
+                        gEwramData->unk_13110.unk_131CC = -1;
                     }
                 }
                 var_r4 = 2;
@@ -1724,17 +1724,17 @@ void sub_08022DEC(struct EwramData_EntityData *param_0)
             sub_0803C7B4((u8 *)0x082098B8, temp_r6->unk_15, 1, var_r4);
             sub_0803B924(param_0, (u8 *) sUnk_084F117C[temp_r6->unk_13], temp_r7, var_r4);
             sub_0803F2C8(param_0, temp_r6->unk_14, 0, 0);
-            gEwramData->lastUsedWeapon[var_1->unk_50C.unk_50C_8.unk_50C] = temp_r6->unk_12;
+            gEwramData->unk_13110.lastUsedWeapon[var_1->unk_50C.unk_50C_8.unk_50C] = temp_r6->unk_12;
 
             if (var_1->unk_50C.unk_50C_8.unk_50C == 0)
             {
-                gEwramData->unk_131C8 = temp_r7;
+                gEwramData->unk_13110.unk_131C8 = temp_r7;
                 var_r1_2 = 3;
                 var_r4_2 = 0;
             }
             else
             {
-                gEwramData->unk_131CC = temp_r7;
+                gEwramData->unk_13110.unk_131CC = temp_r7;
                 var_r1_2 = 5;
                 var_r4_2 = 1;
             }
@@ -1791,7 +1791,7 @@ void sub_08022DEC(struct EwramData_EntityData *param_0)
     }
     else
     {
-        gEwramData->unk_1311C[temp_r0->unk_50C.unk_50C_8.unk_50C] = 0;
+        gEwramData->unk_13110.unk_1311C[temp_r0->unk_50C.unk_50C_8.unk_50C] = 0;
         EntityDelete(param_0);
     }
 }
@@ -1813,15 +1813,15 @@ struct EwramData_EntityData* sub_080230A8(struct EwramData_EntityData *param_0)
         return 0;
     }
 
-    gEwramData->unk_1311C[param_0->unk_50C.unk_50C_8.unk_50C] = EntityCreateInRange(2, 0x10, (u32 *) sUnk_084F124C[temp_r0->unk_8]);
-    if (gEwramData->unk_1311C[param_0->unk_50C.unk_50C_8.unk_50C] != NULL)
+    gEwramData->unk_13110.unk_1311C[param_0->unk_50C.unk_50C_8.unk_50C] = EntityCreateInRange(2, 0x10, (u32 *) sUnk_084F124C[temp_r0->unk_8]);
+    if (gEwramData->unk_13110.unk_1311C[param_0->unk_50C.unk_50C_8.unk_50C] != NULL)
     {
-        gEwramData->unk_1311C[param_0->unk_50C.unk_50C_8.unk_50C]->unk_4F8.unk_4F8_entity = param_0;
-        gEwramData->unk_1311C[param_0->unk_50C.unk_50C_8.unk_50C]->unk_53C_6 = param_0->unk_53C_6;
-        gEwramData->unk_1311C[param_0->unk_50C.unk_50C_8.unk_50C]->unk_53D_1 = 1;
+        gEwramData->unk_13110.unk_1311C[param_0->unk_50C.unk_50C_8.unk_50C]->unk_4F8.unk_4F8_entity = param_0;
+        gEwramData->unk_13110.unk_1311C[param_0->unk_50C.unk_50C_8.unk_50C]->unk_53C_6 = param_0->unk_53C_6;
+        gEwramData->unk_13110.unk_1311C[param_0->unk_50C.unk_50C_8.unk_50C]->unk_53D_1 = 1;
     }
 
-    return gEwramData->unk_1311C[param_0->unk_50C.unk_50C_8.unk_50C];
+    return gEwramData->unk_13110.unk_1311C[param_0->unk_50C.unk_50C_8.unk_50C];
 }
 
 /**
@@ -1859,7 +1859,7 @@ void sub_08023144(struct EwramData_EntityData *param_0)
             param_0->unk_53D_2 = 1;
             if ((temp_r6->unk_4F4.unk_4F4_32 & 0x20) == 0)
             {
-                gEwramData->unk_1311C[temp_r6->unk_50C.unk_50C_8.unk_50C] = 0;
+                gEwramData->unk_13110.unk_1311C[temp_r6->unk_50C.unk_50C_8.unk_50C] = 0;
                 EntityDelete(param_0);
                 break;
             }
@@ -1889,17 +1889,17 @@ void sub_08023144(struct EwramData_EntityData *param_0)
  */
 struct EwramData_EntityData* sub_0802326C(struct EwramData_EntityData *param_0)
 {
-    gEwramData->unk_1311C[param_0->unk_50C.unk_50C_8.unk_50C] = EntityCreateInRange(2, 0x10, (u32 *) sub_08023144);
+    gEwramData->unk_13110.unk_1311C[param_0->unk_50C.unk_50C_8.unk_50C] = EntityCreateInRange(2, 0x10, (u32 *) sub_08023144);
 
-    if (gEwramData->unk_1311C[param_0->unk_50C.unk_50C_8.unk_50C] != NULL)
+    if (gEwramData->unk_13110.unk_1311C[param_0->unk_50C.unk_50C_8.unk_50C] != NULL)
     {
-        gEwramData->unk_1311C[param_0->unk_50C.unk_50C_8.unk_50C]->unk_4F8.unk_4F8_entity = param_0;
-        gEwramData->unk_1311C[param_0->unk_50C.unk_50C_8.unk_50C]->unk_53C_6 = param_0->unk_53C_6;
-        gEwramData->unk_1311C[param_0->unk_50C.unk_50C_8.unk_50C]->unk_53D_1 = 1;
-        gEwramData->unk_1311C[param_0->unk_50C.unk_50C_8.unk_50C]->unk_53D_2 = 1;
+        gEwramData->unk_13110.unk_1311C[param_0->unk_50C.unk_50C_8.unk_50C]->unk_4F8.unk_4F8_entity = param_0;
+        gEwramData->unk_13110.unk_1311C[param_0->unk_50C.unk_50C_8.unk_50C]->unk_53C_6 = param_0->unk_53C_6;
+        gEwramData->unk_13110.unk_1311C[param_0->unk_50C.unk_50C_8.unk_50C]->unk_53D_1 = 1;
+        gEwramData->unk_13110.unk_1311C[param_0->unk_50C.unk_50C_8.unk_50C]->unk_53D_2 = 1;
     }
 
-    return gEwramData->unk_1311C[param_0->unk_50C.unk_50C_8.unk_50C];
+    return gEwramData->unk_13110.unk_1311C[param_0->unk_50C.unk_50C_8.unk_50C];
 }
 
 extern struct Unk_08023368 sUnk_084F1270;
@@ -2013,9 +2013,9 @@ s32 sub_08023424(void)
  */
 void sub_0802346C(struct EwramData_EntityData *param_0, struct EwramData_EntityData *param_1)
 {
-    if (!(gEwramData->unk_60.unk_4CC_6) || (param_1 == gEwramData->unk_13220))
+    if (!(gEwramData->unk_60.unk_4CC_6) || (param_1 == gEwramData->unk_13110.unk_13220))
     {
-        gEwramData->unk_13110->unk_4F4.unk_4F4_32 |= 0x80000;
+        gEwramData->unk_13110.unk_13110->unk_4F4.unk_4F4_32 |= 0x80000;
     }
 }
 
@@ -2030,9 +2030,9 @@ void sub_080234B0(struct EwramData_EntityData *param_0, struct EwramData_EntityD
     param_0->unk_554.unk_556 |= 2;
     param_0->unk_500.unk_500_32 = 1;
 
-    if (!(gEwramData->unk_60.unk_4CC_6) || (param_1 == gEwramData->unk_13220))
+    if (!(gEwramData->unk_60.unk_4CC_6) || (param_1 == gEwramData->unk_13110.unk_13220))
     {
-        gEwramData->unk_13110->unk_4F4.unk_4F4_32 |= 0x80000;
+        gEwramData->unk_13110.unk_13110->unk_4F4.unk_4F4_32 |= 0x80000;
     }
 }
 
@@ -2065,7 +2065,7 @@ static inline s8 sub_08023530_inline_0()
 
     for (var_r1 = 0; var_r1 < 8; var_r1++)
     {
-        if (gEwramData->activeRedSoulEntities[var_r1] == NULL)
+        if (gEwramData->unk_13110.activeRedSoulEntities[var_r1] == NULL)
         {
             return var_r1;
         }
@@ -2098,12 +2098,12 @@ struct EwramData_EntityData* sub_08023530(struct EwramData_EntityData *param_0, 
         return NULL;
     }
 
-    gEwramData->activeRedSoulEntities[var_r0] = temp_r0;
+    gEwramData->unk_13110.activeRedSoulEntities[var_r0] = temp_r0;
     temp_r0->unk_4F8.unk_4F8_entity = param_0;
     temp_r0->unk_4FC.unk_4FC_16.unk_4FE[0] = var_r0;
     temp_r0->unk_53D_2 = 1;
     temp_r0->unk_53D_1 = 1;
-    gEwramData->nbrActiveRedSoulEntities += 1;
+    gEwramData->unk_13110.nbrActiveRedSoulEntities += 1;
     return temp_r0;
 }
 
@@ -2118,7 +2118,7 @@ void sub_080235C8(void)
 
     for (var_r2 = 0; var_r2 < 8; var_r2++)
     {
-        temp_r4 = gEwramData->activeRedSoulEntities[var_r2];
+        temp_r4 = gEwramData->unk_13110.activeRedSoulEntities[var_r2];
         if (temp_r4 != NULL)
         {
             if (temp_r4->updateFunc != NULL)
@@ -2129,7 +2129,7 @@ void sub_080235C8(void)
                 }
                 EntityDelete(temp_r4);
             }
-            gEwramData->activeRedSoulEntities[var_r2] = 0;
+            gEwramData->unk_13110.activeRedSoulEntities[var_r2] = 0;
         }
     }
 
@@ -2160,17 +2160,17 @@ void sub_080235C8(void)
     }
 
     sub_08013D30();
-    gEwramData->unk_13168 = gEwramData->unk_13110;
-    gEwramData->nbrActiveRedSoulEntities = 0;
+    gEwramData->unk_13110.unk_13168 = gEwramData->unk_13110.unk_13110;
+    gEwramData->unk_13110.nbrActiveRedSoulEntities = 0;
     sub_0802215C();
 
     if (gEwramData->unk_1325C.currentCharacter == 0)
     {
-        if ((gEwramData->unk_13110->unk_4EE == 2) && (gEwramData->unk_13110->unk_4EF != 0))
+        if ((gEwramData->unk_13110.unk_13110->unk_4EE == 2) && (gEwramData->unk_13110.unk_13110->unk_4EF != 0))
         {
-            gEwramData->unk_13110->unk_4EF = gEwramData->unk_1325C.currentCharacter;
-            gEwramData->unk_13110->unk_4F4.unk_4F4_32 |= 0x200000;
-            gEwramData->unk_13110->unk_4F4.unk_4F4_32 &= ~0x100;
+            gEwramData->unk_13110.unk_13110->unk_4EF = gEwramData->unk_1325C.currentCharacter;
+            gEwramData->unk_13110.unk_13110->unk_4F4.unk_4F4_32 |= 0x200000;
+            gEwramData->unk_13110.unk_13110->unk_4F4.unk_4F4_32 &= ~0x100;
         }
     }
 }
@@ -2179,7 +2179,7 @@ static inline s32 sub_08023724_inline_0()
 {
     s32 var_r1;
 
-    if ((gEwramData->nbrActiveRedSoulEntities == 0) && (gEwramData->activeRedSoulEntities[0] == NULL))
+    if ((gEwramData->unk_13110.nbrActiveRedSoulEntities == 0) && (gEwramData->unk_13110.activeRedSoulEntities[0] == NULL))
     {
         var_r1 = 1;
     }
@@ -2208,11 +2208,11 @@ void sub_08023724(struct EwramData_EntityData *param_0)
 
     // TODO: what is happening with these fields?
     temp_r6 = &param_0->unk_4F8.unk_4F8_16.unk_4F8;
-    temp_r5 = gEwramData->activeRedSoulEntities[param_0->unk_4F0];
+    temp_r5 = gEwramData->unk_13110.activeRedSoulEntities[param_0->unk_4F0];
     temp_r7 = &param_0->unk_52C.unk_52C_8.unk_52C;
 
     var_r1 = sub_08023724_inline_0();
-    if ((var_r1 != 0) || (gEwramData->activeRedSoulEntities[param_0->unk_4F0] == NULL))
+    if ((var_r1 != 0) || (gEwramData->unk_13110.activeRedSoulEntities[param_0->unk_4F0] == NULL))
     {
         EntityDelete(param_0);
         return;
@@ -2351,7 +2351,7 @@ void sub_080239E4(struct EwramData_EntityData *param_0)
     temp_r4 = param_0->unk_4F8.unk_4F8_entity;
     temp_r1 = param_0->unk_504.unk_504_entity;
     
-    if ((gEwramData->nbrActiveRedSoulEntities == 0) && (gEwramData->activeRedSoulEntities[0] == NULL))
+    if ((gEwramData->unk_13110.nbrActiveRedSoulEntities == 0) && (gEwramData->unk_13110.activeRedSoulEntities[0] == NULL))
     {
         var_r5 = 1;
     }
@@ -2388,9 +2388,9 @@ extern struct Unk_084F128C sUnk_084F128C[];
 
 static inline void SkillLoadGraphicsInline(struct EwramData_EntityData *param_0, u8 temp_r6, void *temp_r0_10, void *temp_r5, void *temp_r8)
 {
-    gEwramData->unk_131CC = sub_0803B800(temp_r0_10, 0x10000);
+    gEwramData->unk_13110.unk_131CC = sub_0803B800(temp_r0_10, 0x10000);
     sub_0803C7B4(temp_r5, temp_r6, 1, 2);
-    sub_0803B924(param_0, temp_r8, gEwramData->unk_131CC, 2);
+    sub_0803B924(param_0, temp_r8, gEwramData->unk_13110.unk_131CC, 2);
 }
 
 /**
@@ -2427,7 +2427,7 @@ void Skill_EvilButcher_Ripper_Use(struct EwramData_EntityData *param_0)
             temp_r0_3 = sub_0803E654(0);
             if ((s32) (temp_r0_3 << 0x10) < 0)
             {
-                gEwramData->activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
+                gEwramData->unk_13110.activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
                 EntityDelete(param_0);
                 return;
             }
@@ -2454,7 +2454,7 @@ void Skill_EvilButcher_Ripper_Use(struct EwramData_EntityData *param_0)
             sub_08042884(param_0, 0x0202FFFF);
             param_0->unk_554.unk_556 |= 4;
             PlaySong(0xE6U);
-            gEwramData->nbrActiveRedSoulEntities += 1;
+            gEwramData->unk_13110.nbrActiveRedSoulEntities += 1;
             /* fallthrough */
         case 1:
             temp_r1_2 = param_0->unk_504.unk_504_entity;
@@ -2568,8 +2568,8 @@ block_33:
             /* fallthrough */
         case 4:
             sub_0803E6BC(param_0->unk_53C_0);
-            gEwramData->activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
-            gEwramData->nbrActiveRedSoulEntities -= 1;
+            gEwramData->unk_13110.activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
+            gEwramData->unk_13110.nbrActiveRedSoulEntities -= 1;
             EntityDelete(param_0);
             return;
     }
@@ -2610,7 +2610,7 @@ void sub_08023E50(struct EwramData_EntityData *param_0)
             temp_r0_2 = sub_0803E654(0);
             if ((temp_r0_2 << 0x10) < 0)
             {
-                gEwramData->activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
+                gEwramData->unk_13110.activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
                 EntityDelete(param_0);
                 return;
             }
@@ -2639,7 +2639,7 @@ void sub_08023E50(struct EwramData_EntityData *param_0)
             sub_0804277C(param_0, 5, NULL, 0);
             sub_08042884(param_0, 0x1414F6F6);
             param_0->unk_554.unk_556 |= 4;
-            gEwramData->nbrActiveRedSoulEntities += 1;
+            gEwramData->unk_13110.nbrActiveRedSoulEntities += 1;
             /* fallthrough */
         case 1:
             param_0->unk_524.unk_524_32 += param_0->unk_52C.unk_52C_32;
@@ -2662,8 +2662,8 @@ void sub_08023E50(struct EwramData_EntityData *param_0)
 
         case 2:
             sub_0803E6BC(param_0->unk_53C_0);
-            gEwramData->activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
-            gEwramData->nbrActiveRedSoulEntities -= 1;
+            gEwramData->unk_13110.activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
+            gEwramData->unk_13110.nbrActiveRedSoulEntities -= 1;
             EntityDelete(param_0);
             return;
     }
@@ -2693,8 +2693,8 @@ void sub_080240A0(struct EwramData_EntityData *param_0)
             temp_r0 = sub_0803E654(0);
             if ((temp_r0 << 0x10) < 0)
             {
-                gEwramData->activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
-                gEwramData->nbrActiveRedSoulEntities -= 1;
+                gEwramData->unk_13110.activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
+                gEwramData->unk_13110.nbrActiveRedSoulEntities -= 1;
                 EntityDelete(param_0);
                 return;
             }
@@ -2717,8 +2717,8 @@ void sub_080240A0(struct EwramData_EntityData *param_0)
             if (temp_sb->unk_4EE == 2)
             {
                 sub_0803E6BC(param_0->unk_53C_0);
-                gEwramData->activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
-                gEwramData->nbrActiveRedSoulEntities -= 1;
+                gEwramData->unk_13110.activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
+                gEwramData->unk_13110.nbrActiveRedSoulEntities -= 1;
                 EntityDelete(param_0);
                 return;
             }
@@ -2771,7 +2771,7 @@ void SkillAxeArmorUse(struct EwramData_EntityData *param_0)
             temp_r0_3 = sub_0803E654(0);
             if ((temp_r0_3 << 0x10) < 0)
             {
-                gEwramData->activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
+                gEwramData->unk_13110.activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
                 EntityDelete(param_0);
                 return;
             }
@@ -2803,7 +2803,7 @@ void SkillAxeArmorUse(struct EwramData_EntityData *param_0)
             sub_08042884(param_0, 0x1414F6F6);
             param_0->unk_554.unk_556 |= 4;
             PlaySong(0xE3);
-            gEwramData->nbrActiveRedSoulEntities += 1;
+            gEwramData->unk_13110.nbrActiveRedSoulEntities += 1;
 
             for (var_r4 = 1; var_r4 < 3; var_r4++)
             {
@@ -2848,8 +2848,8 @@ void SkillAxeArmorUse(struct EwramData_EntityData *param_0)
             {
                 sub_0803E6BC(param_0->unk_53C_0);
             }
-            gEwramData->activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
-            gEwramData->nbrActiveRedSoulEntities -= 1;
+            gEwramData->unk_13110.activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
+            gEwramData->unk_13110.nbrActiveRedSoulEntities -= 1;
             EntityDelete(param_0);
             break;
     }
@@ -2922,7 +2922,7 @@ void sub_08024530(struct EwramData_EntityData *param_0)
             temp_r0_3 = sub_0803E654(0);
             if ((temp_r0_3 << 0x10) < 0)
             {
-                gEwramData->activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = 0;
+                gEwramData->unk_13110.activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = 0;
                 EntityDelete(param_0);
                 return;
             }
@@ -2940,24 +2940,24 @@ void sub_08024530(struct EwramData_EntityData *param_0)
             sub_08042884(param_0, 0x1414F6F6);
             var_7 = param_0->unk_554.unk_556; // Fake?
             param_0->unk_554.unk_556 = var_7 | 4;
-            gEwramData->nbrActiveRedSoulEntities += 1;
+            gEwramData->unk_13110.nbrActiveRedSoulEntities += 1;
             param_0->unk_4EE += 1;
             sp8 = -1;
             var_r8 = NULL;
-            var_r0_3 = gEwramData->unk_13220;
+            var_r0_3 = gEwramData->unk_13110.unk_13220;
             if (var_r0_3 == NULL)
             {
                 for (var_r4_2 = 0; var_r4_2 < 4; var_r4_2++)
                 {
-                    if (gEwramData->unk_13194[var_r4_2] != NULL)
+                    if (gEwramData->unk_13110.unk_13194[var_r4_2] != NULL)
                     {
-                        temp_r2_5 = (s16) gEwramData->unk_13194[var_r4_2]->unk_524.unk_524_16.unk_526 - (s16) param_0->unk_524.unk_524_16.unk_526;
-                        temp_r1_6 = gEwramData->unk_13194[var_r4_2]->unk_528.unk_528_16.unk_52A - param_0->unk_528.unk_528_16.unk_52A;
+                        temp_r2_5 = (s16) gEwramData->unk_13110.unk_13194[var_r4_2]->unk_524.unk_524_16.unk_526 - (s16) param_0->unk_524.unk_524_16.unk_526;
+                        temp_r1_6 = gEwramData->unk_13110.unk_13194[var_r4_2]->unk_528.unk_528_16.unk_52A - param_0->unk_528.unk_528_16.unk_52A;
                         temp_r2_6 = (temp_r2_5 * temp_r2_5) + (temp_r1_6 * temp_r1_6);
                         if (sp8 > temp_r2_6)
                         {
                             sp8 = temp_r2_6;
-                            var_r8 = gEwramData->unk_13194[var_r4_2];
+                            var_r8 = gEwramData->unk_13110.unk_13194[var_r4_2];
                         }
                     }
                 }
@@ -2974,7 +2974,7 @@ void sub_08024530(struct EwramData_EntityData *param_0)
                 var_r0_5 = sub_08024530_inline_0(temp_r2_7, (s16) param_0->unk_528.unk_528_16.unk_52A);
                 param_0->unk_510.unk_510_32 = ArcTan2(var_r0_4, var_r0_5) + 0x8000;
             }
-            else if (CheckUnk_53C_6(gEwramData->unk_13110) == 1)
+            else if (CheckUnk_53C_6(gEwramData->unk_13110.unk_13110) == 1)
             {
                 param_0->unk_510.unk_510_32 = 0x8000;
             }
@@ -2988,7 +2988,7 @@ void sub_08024530(struct EwramData_EntityData *param_0)
             }
             else
             {
-                temp_r3 = gEwramData->unk_13110;
+                temp_r3 = gEwramData->unk_13110.unk_13110;
                 if (CheckUnk_53C_6(temp_r3) == 1)
                 {
                     var_r3 = temp_r3->unk_524.unk_524_32 + 0xC00000;
@@ -2997,7 +2997,7 @@ void sub_08024530(struct EwramData_EntityData *param_0)
                 {
                     var_r3 = temp_r3->unk_524.unk_524_32 - 0xC00000;
                 }
-                var_r2 = gEwramData->unk_13110->unk_528.unk_528_32;
+                var_r2 = gEwramData->unk_13110.unk_13110->unk_528.unk_528_32;
             }
             var_r4 = param_0->unk_510.unk_510_32;
 
@@ -3039,8 +3039,8 @@ void sub_08024530(struct EwramData_EntityData *param_0)
 
         case 3:
             sub_0803E6BC(param_0->unk_53C_0);
-            gEwramData->activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
-            gEwramData->nbrActiveRedSoulEntities -= 1;
+            gEwramData->unk_13110.activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
+            gEwramData->unk_13110.nbrActiveRedSoulEntities -= 1;
             EntityDelete(param_0);
             return;
     }
@@ -3089,7 +3089,7 @@ void SkillChronomageUse(struct EwramData_EntityData *param_0)
             temp_r0_3 = sub_0803E654(0);
             if ((temp_r0_3 << 0x10) < 0)
             {
-                gEwramData->activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
+                gEwramData->unk_13110.activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
                 EntityDelete(param_0);
                 return;
             }
@@ -3105,7 +3105,7 @@ void SkillChronomageUse(struct EwramData_EntityData *param_0)
             param_0->unk_53D_1 = 1;
 
             gEwramData->unk_60.unk_4BE = param_0->unk_500.unk_500_16.unk_502;
-            gEwramData->nbrActiveRedSoulEntities += 1;
+            gEwramData->unk_13110.nbrActiveRedSoulEntities += 1;
             PlaySong(0x1030);
             PlaySong(0x19D);
             PlaySong(0xEC);
@@ -3172,8 +3172,8 @@ void SkillChronomageUse(struct EwramData_EntityData *param_0)
             {
                 gEwramData->unk_12FE4 = 1;
                 sub_0803E6BC(param_0->unk_53C_0);
-                gEwramData->activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
-                gEwramData->nbrActiveRedSoulEntities -= 1;
+                gEwramData->unk_13110.activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
+                gEwramData->unk_13110.nbrActiveRedSoulEntities -= 1;
                 EntityDelete(param_0);
                 return;
             }
@@ -3262,7 +3262,7 @@ void SkillValkyrieUse(struct EwramData_EntityData *param_0)
 
             sub_08031EA4(param_0, temp_r8, 0x14, -0x10);
             sub_08042A54(1, 0x3C);
-            gEwramData->nbrActiveRedSoulEntities += 1;
+            gEwramData->unk_13110.nbrActiveRedSoulEntities += 1;
             sub_0804277C(param_0, 5, NULL, 0);
             param_0->unk_554.unk_556 |= 4;
             param_0->unk_554.unk_556 &= ~2;
@@ -3306,8 +3306,8 @@ void SkillValkyrieUse(struct EwramData_EntityData *param_0)
             }
             else
             {
-                gEwramData->activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = 0;
-                gEwramData->nbrActiveRedSoulEntities -= 1;
+                gEwramData->unk_13110.activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = 0;
+                gEwramData->unk_13110.nbrActiveRedSoulEntities -= 1;
                 param_0->unk_53D_3 = 1;
             }
             break;
@@ -3366,8 +3366,8 @@ void SkillKillerDollUse(struct EwramData_EntityData *param_0)
             param_0->unk_53D_1 = 1;
 
             PlaySong(0xE5);
-            gEwramData->nbrActiveRedSoulEntities += 1;
-            gEwramData->unk_13168 = param_0;
+            gEwramData->unk_13110.nbrActiveRedSoulEntities += 1;
+            gEwramData->unk_13110.unk_13168 = param_0;
             sub_08031EA4(param_0, temp_r8, 8, -0x10);
             param_0->unk_52C.unk_52C_32 = 0x18000;
             if (param_0->unk_53C_6)
@@ -3456,9 +3456,9 @@ void SkillKillerDollUse(struct EwramData_EntityData *param_0)
         case 2:
             if (param_0->unk_4F1 == 0)
             {
-                gEwramData->unk_13168 = gEwramData->unk_13110;
-                gEwramData->activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
-                gEwramData->nbrActiveRedSoulEntities -= 1;
+                gEwramData->unk_13110.unk_13168 = gEwramData->unk_13110.unk_13110;
+                gEwramData->unk_13110.activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
+                gEwramData->unk_13110.nbrActiveRedSoulEntities -= 1;
                 EntityDelete(param_0);
                 return;
             }
@@ -3469,9 +3469,9 @@ void SkillKillerDollUse(struct EwramData_EntityData *param_0)
     if ((sub_0806D128(param_0, 2) != 0) || !(param_0->unk_53D_2))
     {
         param_0->unk_53D_2 = 1;
-        gEwramData->unk_13168 = gEwramData->unk_13110;
-        gEwramData->activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
-        gEwramData->nbrActiveRedSoulEntities -= 1;
+        gEwramData->unk_13110.unk_13168 = gEwramData->unk_13110.unk_13110;
+        gEwramData->unk_13110.activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = NULL;
+        gEwramData->unk_13110.nbrActiveRedSoulEntities -= 1;
         EntityDelete(param_0);
     }
     else
@@ -3504,9 +3504,9 @@ void SkillNemesisUse(struct EwramData_EntityData *param_0)
             param_0->unk_540 = 0xF;
             param_0->unk_53D_1 = 1;
 
-            gEwramData->nbrActiveRedSoulEntities += 1;
+            gEwramData->unk_13110.nbrActiveRedSoulEntities += 1;
             PlaySong(0x97);
-            gEwramData->unk_13168 = 0;
+            gEwramData->unk_13110.unk_13168 = 0;
             param_0->unk_508.unk_508_16.unk_508 = 0x12C;
             param_0->unk_4EE += 1;
             /* fallthrough */
@@ -3524,9 +3524,9 @@ void SkillNemesisUse(struct EwramData_EntityData *param_0)
         case 2:
             if (param_0->unk_4F1 == 0)
             {
-                gEwramData->unk_13168 = gEwramData->unk_13110;
-                gEwramData->activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = 0;
-                gEwramData->nbrActiveRedSoulEntities -= 1;
+                gEwramData->unk_13110.unk_13168 = gEwramData->unk_13110.unk_13110;
+                gEwramData->unk_13110.activeRedSoulEntities[param_0->unk_4FC.unk_4FC_16.unk_4FE[0]] = 0;
+                gEwramData->unk_13110.nbrActiveRedSoulEntities -= 1;
                 EntityDelete(param_0);
                 return;
             }

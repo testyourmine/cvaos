@@ -339,7 +339,7 @@ u8 sUnk_084F1054[][2] = {
 
 static inline struct EwramData_EntityData* Get_unk_13110()
 {
-    return gEwramData->unk_13110;
+    return gEwramData->unk_13110.unk_13110;
 }
 
 static inline s32 sub_08010D60_inline_0(struct EwramData_unk60 *param_0, s32 var_r5, s32 var_r7)
@@ -497,7 +497,7 @@ void sub_08010FF4(struct EwramData_unk60 *param_0)
     s32 var_0;
 
     temp_r7 = Get_unk_13110();
-    if (GetAreaFromMapPosition(GetEntityRoomXPositionInteger(gEwramData->unk_13110), GetEntityRoomYPositionInteger(Get_unk_13110())) != 11)
+    if (GetAreaFromMapPosition(GetEntityRoomXPositionInteger(gEwramData->unk_13110.unk_13110), GetEntityRoomYPositionInteger(Get_unk_13110())) != 11)
     {
         temp_r0 = gEwramData->unk_60.unk_4CC_0 != 0;
         if (!temp_r0)
@@ -669,12 +669,12 @@ void sub_08011430(struct EwramData_unk60 *param_0)
     s32 temp_r1;
     s16 temp_r2;
 
-    temp_r4 = gEwramData->unk_13110;
+    temp_r4 = gEwramData->unk_13110.unk_13110;
     if ((s16)temp_r4->unk_524.unk_524_16.unk_526 < SCREEN_SIZE_X)
     {
         temp_r7 = GetEntityRoomXPositionInteger(temp_r4);
         temp_r8 = GetEntityRoomYPositionInteger(temp_r4);
-        if ((GetAreaFromMapPosition(GetEntityRoomXPositionInteger(gEwramData->unk_13110), GetEntityRoomYPositionInteger(gEwramData->unk_13110)) != 11))
+        if ((GetAreaFromMapPosition(GetEntityRoomXPositionInteger(gEwramData->unk_13110.unk_13110), GetEntityRoomYPositionInteger(gEwramData->unk_13110.unk_13110)) != 11))
         {
             if (!gEwramData->unk_60.unk_4CC_0)
             {
@@ -782,8 +782,8 @@ s32 sub_080116A8(struct EwramData_unk60 *param_0)
             gEwramData->unk_A074_2 = gEwramData->unk_A074_4 = 3;
             if (gDisplayRegisters.bldY == BLDY_MAX_VALUE)
             {
-                temp_r8 = gEwramData->unk_60.roomMapXPos + (GetEntityRoomXPositionInteger(gEwramData->unk_13110) >> 8);
-                temp_r1_4 = gEwramData->unk_60.roomMapYPos + (GetEntityRoomYPositionInteger(gEwramData->unk_13110) >> 8);
+                temp_r8 = gEwramData->unk_60.roomMapXPos + (GetEntityRoomXPositionInteger(gEwramData->unk_13110.unk_13110) >> 8);
+                temp_r1_4 = gEwramData->unk_60.roomMapYPos + (GetEntityRoomYPositionInteger(gEwramData->unk_13110.unk_13110) >> 8);
                 sub_0803C8B0((u8 *)0x081183CC);
                 sub_08010D60(param_0);
                 param_0->unk_65 += 1;
@@ -943,7 +943,7 @@ s32 sub_08011A44(struct EwramData_EntityData *param_0)
         if (var_0 < 0x30 || var_0 > var_r0)
             return 0;
 
-        if (sub_08001FE8(gEwramData->unk_13110, 0, 0) == 0xF0)
+        if (sub_08001FE8(gEwramData->unk_13110.unk_13110, 0, 0) == 0xF0)
             return 0;
     }
     return 1;
@@ -991,10 +991,10 @@ s32 sub_08011B2C(struct EwramData_unk60 *param_0)
             DMA_FILL_32(3, 0, 0x0600E800, 0x800);
             DMA_FILL_32(3, 0, 0x0600F000, 0x800);
             DMA_FILL_32(3, 0, 0x0600F800, 0x800);
-            gEwramData->unk_13110->unk_524.unk_524_16.unk_526 = gEwramData->unk_60.unk_400;
-            gEwramData->unk_13110->unk_528.unk_528_16.unk_52A = gEwramData->unk_60.unk_402;
-            gEwramData->unk_13110->unk_52C.unk_52C_32 = 0;
-            gEwramData->unk_13110->unk_530.unk_530_32 = 0;
+            gEwramData->unk_13110.unk_13110->unk_524.unk_524_16.unk_526 = gEwramData->unk_60.unk_400;
+            gEwramData->unk_13110.unk_13110->unk_528.unk_528_16.unk_52A = gEwramData->unk_60.unk_402;
+            gEwramData->unk_13110.unk_13110->unk_52C.unk_52C_32 = 0;
+            gEwramData->unk_13110.unk_13110->unk_530.unk_530_32 = 0;
             gEwramData->unk_60.unk_88 = gEwramData->unk_60.unk_3F8;
             sub_0800ECA0(gEwramData->unk_60.unk_3FC, gEwramData->unk_60.unk_3FE);
             sub_0801083C(param_0);

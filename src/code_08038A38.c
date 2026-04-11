@@ -419,7 +419,7 @@ s32 sub_08038F8C(void)
 
     var_0 = &gEwramData->unk_60;
     temp_r7 = &gEwramData->unk_1325C;
-    var_1 = gEwramData->unk_13110;
+    var_1 = gEwramData->unk_13110.unk_13110;
     var_sb = -1;
 
     switch (gEwramData->unk_25551)
@@ -482,8 +482,8 @@ s32 sub_08038F8C(void)
             if ((var_0->unk_64 != 6) && (gEwramData->unk_25552 & 4))
             {
                 DMA_COPY_32(3, &sUnk_080E3464, PALRAM_BASE + 0x160, 0x40);
-                temp_sb = GetEntityRoomXPositionInteger(gEwramData->unk_13110);
-                temp_r4 = GetEntityRoomYPositionInteger(gEwramData->unk_13110);
+                temp_sb = GetEntityRoomXPositionInteger(gEwramData->unk_13110.unk_13110);
+                temp_r4 = GetEntityRoomYPositionInteger(gEwramData->unk_13110.unk_13110);
                 {
                     char sp4[29];
 

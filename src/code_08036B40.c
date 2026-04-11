@@ -177,14 +177,14 @@ void sub_08036CB4(struct Unk_03000018 *param_0)
     param_0->unk_0.ptr = (void*)0x0850F01C;
     param_0->unk_8 = 1;
     sub_0800F9EC((struct EwramData_unk88 *)0x0850F01C, 0, 0);
-    gEwramData->unk_13110 = param_0->unk_4;
-    gEwramData->unk_131EA = 0x100;
-    gEwramData->unk_131EC = 0x100;
+    gEwramData->unk_13110.unk_13110 = param_0->unk_4;
+    gEwramData->unk_13110.unk_131EA = 0x100;
+    gEwramData->unk_13110.unk_131EC = 0x100;
 
-    gEwramData->currentStats[0] = 0x40;
-    gEwramData->currentDEF = 0x40;
-    gEwramData->unk_13214 = 0x78;
-    gEwramData->unk_13216 = 0x60;
+    gEwramData->unk_13110.currentStats[0] = 0x40;
+    gEwramData->unk_13110.currentDEF = 0x40;
+    gEwramData->unk_13110.unk_13214 = 0x78;
+    gEwramData->unk_13110.unk_13216 = 0x60;
 }
 
 /**
@@ -198,14 +198,14 @@ void sub_08036D44(struct Unk_03000018 *param_0)
     param_0->unk_0.ptr = (void *)0x0850EF9C;
     param_0->unk_8 = 1;
     sub_0800F9EC((struct EwramData_unk88 *)0x0850EF9C, 0, 0);
-    gEwramData->unk_13110 = param_0->unk_4;
-    gEwramData->unk_131EA = 0x100;
-    gEwramData->unk_131EC = 0x100;
+    gEwramData->unk_13110.unk_13110 = param_0->unk_4;
+    gEwramData->unk_13110.unk_131EA = 0x100;
+    gEwramData->unk_13110.unk_131EC = 0x100;
 
-    gEwramData->currentStats[0] = 0x40;
-    gEwramData->currentDEF = 0x40;
-    gEwramData->unk_13214 = 0x78;
-    gEwramData->unk_13216 = 0x60;
+    gEwramData->unk_13110.currentStats[0] = 0x40;
+    gEwramData->unk_13110.currentDEF = 0x40;
+    gEwramData->unk_13110.unk_13214 = 0x78;
+    gEwramData->unk_13110.unk_13216 = 0x60;
 }
 
 void * const sUnk_080E2288[4] = {

@@ -915,7 +915,7 @@ s32 GameModeInGameUpdate(void)
                         }
                         else
                         {
-                            gEwramData->unk_13224 = 0;
+                            gEwramData->unk_13110.unk_13224 = 0;
                             temp_r7->unk_64 = 0xB;
                             sub_080D7F78();
                             sub_080D7FB8();
@@ -944,7 +944,7 @@ s32 GameModeInGameUpdate(void)
             sub_08011CD0();
             sub_0800FFCC(temp_r7);
 
-            if ((sub_08011A44(gEwramData->unk_13110) == 0) && !gEwramData->unk_A074_0)
+            if ((sub_08011A44(gEwramData->unk_13110.unk_13110) == 0) && !gEwramData->unk_A074_0)
             {
                 sub_08010244(temp_r7);
             }
@@ -992,7 +992,7 @@ s32 GameModeInGameUpdate(void)
                 {
                     temp_r7->unk_64 = 0xB;
                     temp_r7->unk_66 = 0x10;
-                    gEwramData->unk_13110->unk_524.unk_524_32 = 0x10000;
+                    gEwramData->unk_13110.unk_13110->unk_524.unk_524_32 = 0x10000;
                 }
             }
             sub_08000B64();
@@ -1073,8 +1073,8 @@ s32 GameModeInGameUpdate(void)
             else
             {
                 temp_r7->unk_64 = 0xC;
-                gEwramData->unk_13224 = 0;
-                gEwramData->unk_13226 = 0;
+                gEwramData->unk_13110.unk_13224 = 0;
+                gEwramData->unk_13110.unk_13226 = 0;
                 gEwramData->randomNumber2 = 0;
             }
             break;
@@ -1099,11 +1099,11 @@ s32 GameModeInGameUpdate(void)
             else
             {
                 temp_r7->unk_66 = 0;
-                gEwramData->unk_13226 = 0;
+                gEwramData->unk_13110.unk_13226 = 0;
 
-                if (gEwramData->unk_13224 >= 0xB && (gEwramData->unk_4DC.unk_4E1 & 0x10))
+                if (gEwramData->unk_13110.unk_13224 >= 0xB && (gEwramData->unk_4DC.unk_4E1 & 0x10))
                 {
-                    if (gEwramData->unk_13224 <= gEwramData->unk_4DC.unk_4E2)
+                    if (gEwramData->unk_13110.unk_13224 <= gEwramData->unk_4DC.unk_4E2)
                     {
                         sub_080D7FD0();
                         gEwramData->unk_60.unk_64 = 2;
@@ -1111,8 +1111,8 @@ s32 GameModeInGameUpdate(void)
                     }
                     else
                     {
-                        temp_r7->unk_66 = gEwramData->unk_13224 - gEwramData->unk_4DC.unk_4E2;
-                        gEwramData->unk_13226 = 0;
+                        temp_r7->unk_66 = gEwramData->unk_13110.unk_13224 - gEwramData->unk_4DC.unk_4E2;
+                        gEwramData->unk_13110.unk_13226 = 0;
                         temp_r7->unk_64 = 0xD;
                     }
                 }
@@ -1162,7 +1162,7 @@ s32 GameModeInGameUpdate(void)
 
             if (var_r4 == 0)
             {
-                if (++gEwramData->unk_13226 > 0)
+                if (++gEwramData->unk_13110.unk_13226 > 0)
                 {
                     sub_080D7FD0();
                     gEwramData->unk_60.unk_64 = 2;
@@ -1172,7 +1172,7 @@ s32 GameModeInGameUpdate(void)
             }
             else
             {
-                gEwramData->unk_13226 = 0;
+                gEwramData->unk_13110.unk_13226 = 0;
             }
 
             if (!gEwramData->unk_A074_0)
@@ -1181,7 +1181,7 @@ s32 GameModeInGameUpdate(void)
             }
             sub_08011CD0();
 
-            if (sub_08011A44(gEwramData->unk_13110) == 0)
+            if (sub_08011A44(gEwramData->unk_13110.unk_13110) == 0)
             {
                 sub_08010244(temp_r7);
                 sub_08034498(NULL);
@@ -1267,8 +1267,8 @@ void sub_0800C5D8(void)
     if (gEwramData->unk_60.unk_4CC_6)
     {
         sub_08033EA0();
-        gEwramData->unk_13110->unk_524.unk_524_16.unk_526 = 0x78;
-        gEwramData->unk_13110->unk_528.unk_528_16.unk_52A = 0x50;
+        gEwramData->unk_13110.unk_13110->unk_524.unk_524_16.unk_526 = 0x78;
+        gEwramData->unk_13110.unk_13110->unk_528.unk_528_16.unk_52A = 0x50;
     }
     else
     {
@@ -1278,8 +1278,8 @@ void sub_0800C5D8(void)
         }
         if (gEwramData->unk_60.unk_3CC == NULL)
         {
-            gEwramData->unk_13110->unk_524.unk_524_16.unk_526 = 0x78;
-            gEwramData->unk_13110->unk_528.unk_528_16.unk_52A = 0x50;
+            gEwramData->unk_13110.unk_13110->unk_524.unk_524_16.unk_526 = 0x78;
+            gEwramData->unk_13110.unk_13110->unk_528.unk_528_16.unk_52A = 0x50;
         }
     }
 
@@ -1376,8 +1376,8 @@ void sub_0800C7A4(struct EwramData_unk60 *param_0)
     gUnk_03002CB0.dispCnt = DCNT_OBJ | DCNT_BG3 | DCNT_BG2 | DCNT_BG1 | DCNT_BG0;
 
     DMA_FILL_32(3, 0, &gEwramData->unk_60, sizeof(gEwramData->unk_60));
-    DMA_FILL_32(3, 0, &gEwramData->unk_13110, 0x14C);
-    DMA_FILL_32(3, 0, &gEwramData->unk_1325C, 0x190);
+    DMA_FILL_32(3, 0, &gEwramData->unk_13110.unk_13110, 0x14C);
+    DMA_FILL_32(3, 0, &gEwramData->unk_1325C, sizeof(gEwramData->unk_1325C));
 
     sub_0804C3C8();
     sub_080137B8();
@@ -1423,7 +1423,7 @@ s32 sub_0800C8C8(void)
             sub_0800EB04();
             sub_080235C8();
             sub_0802DFF0();
-            gEwramData->unk_13168 = 0;
+            gEwramData->unk_13110.unk_13168 = 0;
             PlaySong(SONG_MUTE);
             temp_r6->inGameTimer = 0;
             temp_r6->unk_65 += 1;

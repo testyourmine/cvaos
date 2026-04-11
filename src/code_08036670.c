@@ -51,7 +51,7 @@ s32 GameModeDebug2229Update(void)
 
         case 1:
             sub_080211F0();
-            if (sub_08011A44(gEwramData->unk_13110) == 0)
+            if (sub_08011A44(gEwramData->unk_13110.unk_13110) == 0)
             {
                 sub_08010244(&gEwramData->unk_60);
                 gEwramData->unk_12 = 2;

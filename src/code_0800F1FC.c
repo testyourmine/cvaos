@@ -199,7 +199,7 @@ s32 sub_0800F1FC(struct EwramData_unk_3DC *param_0)
         temp_r0->unk_524.unk_524_32 = var_0 - temp_r1_2->xPos.whole;
         temp_r0->unk_528.unk_528_32 = (param_0->unk_2 << 0x10) - temp_r1_2->yPos.whole;
         var_r1 = 0;
-        if (temp_r0->unk_524.unk_524_32 < gEwramData->unk_13110->unk_524.unk_524_32)
+        if (temp_r0->unk_524.unk_524_32 < gEwramData->unk_13110.unk_13110->unk_524.unk_524_32)
         {
             var_r1 = 1;
         }
@@ -1157,26 +1157,26 @@ void sub_08010244(struct EwramData_unk60 *param_0)
     gEwramData->unk_A074_0 = 1;
     sub_08010244_inline_1();
 
-    if (gEwramData->unk_13110->unk_528.unk_528_16.unk_52A >= 0x31 && gEwramData->unk_13110->unk_528.unk_528_16.unk_52A <= 0xCF)
+    if (gEwramData->unk_13110.unk_13110->unk_528.unk_528_16.unk_52A >= 0x31 && gEwramData->unk_13110.unk_13110->unk_528.unk_528_16.unk_52A <= 0xCF)
     {
-        if ((s16)gEwramData->unk_13110->unk_524.unk_524_16.unk_526 < 0x78)
+        if ((s16)gEwramData->unk_13110.unk_13110->unk_524.unk_524_16.unk_526 < 0x78)
         {
-            if (gEwramData->unk_13110->unk_52C.unk_52C_32 > 0)
+            if (gEwramData->unk_13110.unk_13110->unk_52C.unk_52C_32 > 0)
             {
-                gEwramData->unk_13110->unk_52C.unk_52C_32 = 0;
-                gEwramData->unk_13110->unk_534.unk_534_32 = 0;
+                gEwramData->unk_13110.unk_13110->unk_52C.unk_52C_32 = 0;
+                gEwramData->unk_13110.unk_13110->unk_534.unk_534_32 = 0;
             }
         }
 
-        else if (gEwramData->unk_13110->unk_52C.unk_52C_32 < 0)
+        else if (gEwramData->unk_13110.unk_13110->unk_52C.unk_52C_32 < 0)
         {
-            gEwramData->unk_13110->unk_52C.unk_52C_32 = 0;
-            gEwramData->unk_13110->unk_534.unk_534_32 = 0;
+            gEwramData->unk_13110.unk_13110->unk_52C.unk_52C_32 = 0;
+            gEwramData->unk_13110.unk_13110->unk_534.unk_534_32 = 0;
         }
 
-        if (gEwramData->unk_13110->unk_530.unk_530_32 < -0x50000)
+        if (gEwramData->unk_13110.unk_13110->unk_530.unk_530_32 < -0x50000)
         {
-            gEwramData->unk_13110->unk_530.unk_530_32 = -0x10000;
+            gEwramData->unk_13110.unk_13110->unk_530.unk_530_32 = -0x10000;
         }
     }
 }
@@ -1200,7 +1200,7 @@ void sub_08010350(struct EwramData_unk60 *param_0)
     struct EwramData_unkA078 *temp_r4;
     struct EwramData_unkA078 *temp_r8;
 
-    temp_r5 = gEwramData->unk_13110;
+    temp_r5 = gEwramData->unk_13110.unk_13110;
     temp_sb = param_0->unk_88;
     temp_r4 = &gEwramData->bgInfo[1];
     temp_r8 = temp_r4;
@@ -1326,8 +1326,8 @@ s32 sub_080104EC(struct EwramData_unk60 *param_0)
 
     else if (param_0->unk_65 == 2)
     {
-        temp_r2_2 = gEwramData->unk_13110;
-        sub_0800ED24(0, ((s16)temp_r2_2->unk_524.unk_524_16.unk_526 - gEwramData->unk_13214) << 0x10, (temp_r2_2->unk_528.unk_528_16.unk_52A - gEwramData->unk_13216) << 0x10);
+        temp_r2_2 = gEwramData->unk_13110.unk_13110;
+        sub_0800ED24(0, ((s16)temp_r2_2->unk_524.unk_524_16.unk_526 - gEwramData->unk_13110.unk_13214) << 0x10, (temp_r2_2->unk_528.unk_528_16.unk_52A - gEwramData->unk_13110.unk_13216) << 0x10);
 
         if (temp_r5->xVel.whole == 0 && temp_r5->yVel.whole == 0)
         {
@@ -1386,7 +1386,7 @@ s32 sub_080106DC(struct EwramData_unk60 *param_0)
     struct EwramData_unkA078 *temp_r6;
     s32 var_r4;
 
-    temp_r4 = gEwramData->unk_13110;
+    temp_r4 = gEwramData->unk_13110.unk_13110;
     temp_r6 = &gEwramData->bgInfo[1];
     SetPlayerInput(1, 0);
 
@@ -1411,7 +1411,7 @@ s32 sub_080106DC(struct EwramData_unk60 *param_0)
             sub_0806C354();
             sub_080124A8();
             gEwramData->hBlankEffect.requestStop = 1;
-            gEwramData->unk_13110->unk_53C_5 = 0;
+            gEwramData->unk_13110.unk_13110->unk_53C_5 = 0;
             param_0->unk_65 += 1;
         }
     }
@@ -1465,13 +1465,13 @@ void sub_0801083C(struct EwramData_unk60 *param_0)
     s32 var_0;
     u16 *var_1;
 
-    temp_r4 = GetEntityRoomXPositionInteger(gEwramData->unk_13110);
-    temp_r5 = GetEntityRoomYPositionInteger(gEwramData->unk_13110);
+    temp_r4 = GetEntityRoomXPositionInteger(gEwramData->unk_13110.unk_13110);
+    temp_r5 = GetEntityRoomYPositionInteger(gEwramData->unk_13110.unk_13110);
     param_0->currentArea = GetAreaFromMapPosition(temp_r4, temp_r5);
     param_0->currentRoom = GetRoomFromMapPosition(temp_r4, temp_r5);
 
-    param_0->unk_338 = gEwramData->unk_13110->unk_524.unk_524_16.unk_526;
-    param_0->unk_33A = gEwramData->unk_13110->unk_528.unk_528_16.unk_52A;
+    param_0->unk_338 = gEwramData->unk_13110.unk_13110->unk_524.unk_524_16.unk_526;
+    param_0->unk_33A = gEwramData->unk_13110.unk_13110->unk_528.unk_528_16.unk_52A;
 
     temp_r2 = &gEwramData->bgInfo[1];
     param_0->unk_334 = temp_r2->xPos.part16.integer;

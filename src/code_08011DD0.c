@@ -660,13 +660,13 @@ void sub_08012688(struct EwramData_unk60 *param_0)
 
     temp_sl = gEwramData->bgInfo[1].pBgMetadata;
 
-    temp_r4 = GetEntityRoomXPositionInteger(gEwramData->unk_13110);
-    temp_r5 = GetEntityRoomYPositionInteger(gEwramData->unk_13110);
+    temp_r4 = GetEntityRoomXPositionInteger(gEwramData->unk_13110.unk_13110);
+    temp_r5 = GetEntityRoomYPositionInteger(gEwramData->unk_13110.unk_13110);
     param_0->currentArea = GetAreaFromMapPosition(temp_r4, temp_r5);
     param_0->currentRoom = GetRoomFromMapPosition(temp_r4, temp_r5);
 
-    param_0->unk_338 = gEwramData->unk_13110->unk_524.unk_524_16.unk_526;
-    param_0->unk_33A = gEwramData->unk_13110->unk_528.unk_528_16.unk_52A;
+    param_0->unk_338 = gEwramData->unk_13110.unk_13110->unk_524.unk_524_16.unk_526;
+    param_0->unk_33A = gEwramData->unk_13110.unk_13110->unk_528.unk_528_16.unk_52A;
 
     temp_r2 = &gEwramData->bgInfo[1];
     param_0->unk_334 = temp_r2->xPos.part16.integer;
