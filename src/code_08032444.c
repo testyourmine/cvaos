@@ -30,662 +30,665 @@
 #include "structs/main.h"
 
 /**
- * @brief 32444 | To document
+ * @brief 32444 | Get the total for the specified soul in group 1 (checks soulIndex + 1, what does this do?)
  * 
- * @param param_0 To document
- * @param param_1 To document
- * @return u8 To document
+ * @param soulType Soul type (red, blue, yellow, or ability)
+ * @param soulIndex Soul index (into soul inventory)
+ * @return u8 Soul total
  */
-u8 sub_08032444(s32 param_0, s32 param_1)
+u8 SoulInventory_GetFirstGroupSoulTotalDifferent(s32 soulType, s32 soulIndex)
 {
-    u8 *temp_r0;
-    u8 var_r2;
+    u8 *soulInventoryFirstGroup;
+    u8 soulInventoryFirstGroupAmount;
 
-    temp_r0 = sub_08032A5C(param_0);
-    if (temp_r0 == NULL)
+    soulInventoryFirstGroup = SoulInventory_GetInventoryFirstGroupPointer(soulType);
+    if (soulInventoryFirstGroup == NULL)
     {
         return 0;
     }
 
-    var_r2 = temp_r0[param_1 >> 1];
-    if (param_1 & 1)
+    soulInventoryFirstGroupAmount = soulInventoryFirstGroup[soulIndex >> 1];
+    if (soulIndex & 1)
     {
-        var_r2 = var_r2 >> 4;
+        soulInventoryFirstGroupAmount = (soulInventoryFirstGroupAmount >> 4) & 0xF;
     }
     else
     {
-        var_r2 = var_r2 & 0xF;
+        soulInventoryFirstGroupAmount = soulInventoryFirstGroupAmount & 0xF;
     }
 
-    switch (param_0)
+    switch (soulType)
     {
         case 0:
-            if ((param_1 + 1) == gEwramData->unk_1325C.equippedRedSoul)
+            if ((soulIndex + 1) == gEwramData->unk_1325C.equippedRedSoul)
             {
-                var_r2 += 1;
+                soulInventoryFirstGroupAmount += 1;
             }
             break;
 
         case 1:
-            if ((param_1 + 1) == gEwramData->unk_1325C.equippedBlueSoul)
+            if ((soulIndex + 1) == gEwramData->unk_1325C.equippedBlueSoul)
             {
-                var_r2 += 1;
+                soulInventoryFirstGroupAmount += 1;
             }
             break;
 
         case 2:
-            if ((param_1 + 1) == gEwramData->unk_1325C.equippedYellowSoul)
+            if ((soulIndex + 1) == gEwramData->unk_1325C.equippedYellowSoul)
             {
-                var_r2 += 1;
+                soulInventoryFirstGroupAmount += 1;
             }
             break;
     }
 
-    return var_r2;
+    return soulInventoryFirstGroupAmount;
 }
 
 /**
- * @brief 324D0 | To document
+ * @brief 324D0 | Add an additional amount to the first group total for the specified soul
  * 
- * @param param_0 To document
- * @param param_1 To document
- * @param param_2 To document
+ * @param soulType Soul type (red, blue, yellow, or ability)
+ * @param soulIndex Soul index (into soul inventory)
+ * @param additionalSoulAmount Additional amount to add to soul total
  */
-void sub_080324D0(s32 param_0, s32 param_1, s32 param_2)
+void SoulInventory_AddAmountToFirstGroupTotal(s32 soulType, s32 soulIndex, s32 additionalSoulAmount)
 {
-    s32 temp_r4;
-    s32 temp_r6;
-    s8 var_r0;
-    u8 *temp_r1_2;
-    u8 *temp_r1_3;
-    u8 temp_r1;
-    u8 *temp_r2;
-    s8 var_r3;
+    s32 newUpperSoulAmount;
+    s32 newLowerSoulAmount;
+    s8 soulFirstGroupAmount;
+    u8 *soulInventoryFirstGroup;
+    u8 *soulInventoryFirstGroupLower;
+    u8 soulInventoryFirstGroupAmount;
+    u8 *soulInventoryFirstGroupUpper;
+    s8 totalFirstGroupSoulAmount;
 
-    temp_r1_2 = sub_08032A5C(param_0);
-    if (temp_r1_2 == NULL)
+    soulInventoryFirstGroup = SoulInventory_GetInventoryFirstGroupPointer(soulType);
+    if (soulInventoryFirstGroup == NULL)
     {
-        var_r0 = 0;
+        soulFirstGroupAmount = 0;
     }
     else
     {
-        temp_r1 = temp_r1_2[param_1 >> 1];
-        if (param_1 & 1)
+        soulInventoryFirstGroupAmount = soulInventoryFirstGroup[soulIndex >> 1];
+        if (soulIndex & 1)
         {
-            temp_r1 = temp_r1 >> 4;
+            soulInventoryFirstGroupAmount = (soulInventoryFirstGroupAmount >> 4) & 0xF;
         }
         else
         {
-            temp_r1 = temp_r1 & 0xF;
+            soulInventoryFirstGroupAmount = soulInventoryFirstGroupAmount & 0xF;
         }
-        var_r0 = temp_r1;
+        soulFirstGroupAmount = soulInventoryFirstGroupAmount;
     }
 
-    var_r3 = var_r0 + param_2;
-    if (var_r3 < 0)
+    totalFirstGroupSoulAmount = soulFirstGroupAmount + additionalSoulAmount;
+    if (totalFirstGroupSoulAmount < 0)
     {
-        var_r3 = 0;
+        totalFirstGroupSoulAmount = 0;
     }
-    else if (var_r3 > 9)
+    else if (totalFirstGroupSoulAmount > 9)
     {
-        var_r3 = 9;
-    }
-
-    if (param_2 > 0)
-    {
-        gEwramData->unk_1325C.unk_13264 += param_2;
-        if (gEwramData->unk_1325C.unk_13264 > 0x3E7)
-        {
-            gEwramData->unk_1325C.unk_13264 = 0x3E7;
-        }
+        totalFirstGroupSoulAmount = 9;
     }
 
-    temp_r4 = var_r3;
-    temp_r6 = temp_r4;
-    temp_r1_3 = sub_08032B20(0, param_0);
-    temp_r2 = temp_r1_3;
-    if (temp_r1_3 != NULL)
+    if (additionalSoulAmount > 0)
     {
-        if (param_1 & 1)
+        gEwramData->unk_1325C.totalNbrSoulsCollected += additionalSoulAmount;
+        if (gEwramData->unk_1325C.totalNbrSoulsCollected > 999)
         {
-            temp_r1_3[param_1 >> 1] = (temp_r1_3[param_1 >> 1] & 0xF) | (temp_r4 * 0x10);
-        }
-        else
-        {
-            temp_r2[param_1 >> 1] = (temp_r2[param_1 >> 1] & 0xF0) | temp_r6;
+            gEwramData->unk_1325C.totalNbrSoulsCollected = 999;
         }
     }
-}
 
-/**
- * @brief 32588 | To document
- * 
- * @param param_0 To document
- * @param param_1 To document
- * @param param_2 To document
- * @param param_3 To document
- */
-void sub_08032588(u8 param_0, s32 param_1, s32 param_2, s32 param_3)
-{
-    s32 temp_r5;
-    struct EwramData_unk1325C *temp_r1;
-    struct EwramData_unk1325C *temp_r1_3;
-    s8 var_r0;
-    u32 var_r1;
-    u8 *var_r3;
-    u8 *var_r3_3;
-    s8 var_r3_2;
-
-    temp_r1 = &gEwramData->unk_1325C;
-    var_r3 = NULL;
-    switch (param_1)
+    newUpperSoulAmount = totalFirstGroupSoulAmount;
+    newLowerSoulAmount = newUpperSoulAmount;
+    soulInventoryFirstGroupLower = SoulInventory_GetInventoryPointer(0, soulType);
+    soulInventoryFirstGroupUpper = soulInventoryFirstGroupLower;
+    if (soulInventoryFirstGroupLower != NULL)
     {
-        case 0:
-            var_r3 = temp_r1->redSoulInventory[param_0];
-            break;
-
-        case 1:
-            var_r3 = temp_r1->blueSoulInventory[param_0];
-            break;
-
-        case 2:
-            var_r3 = temp_r1->yellowSoulInventory[param_0];
-            break;
-
-        case 3:
-            var_r3 = temp_r1->abilitySoulInventory[0];
-            break;
-    }
-
-    if (var_r3 == NULL)
-    {
-        var_r0 = 0;
-    }
-    else
-    {
-        var_r1 = var_r3[param_2 >> 1];
-        if (param_2 & 1)
+        if (soulIndex & 1)
         {
-            var_r1 = var_r1 >> 4;
+            // Set upper nibble
+            soulInventoryFirstGroupLower[soulIndex >> 1] = (soulInventoryFirstGroupLower[soulIndex >> 1] & 0xF) | (newUpperSoulAmount << 4);
         }
         else
         {
-            var_r1 = var_r1 & 0xF;
-        }
-        var_r0 = var_r1;
-    }
-
-    var_r3_2 = var_r0 + param_3;
-    if (var_r3_2 < 0)
-    {
-        var_r3_2 = 0;
-    }
-    else if (var_r3_2 > 9)
-    {
-        var_r3_2 = 9;
-    }
-    temp_r5 = var_r3_2;
-
-    temp_r1_3 = &gEwramData->unk_1325C;
-    var_r3_3 = NULL;
-    switch (param_1)
-    {
-        case 0:
-            var_r3_3 = temp_r1_3->redSoulInventory[param_0];
-            break;
-
-        case 1:
-            var_r3_3 = temp_r1_3->blueSoulInventory[param_0];
-            break;
-
-        case 2:
-            var_r3_3 = temp_r1_3->yellowSoulInventory[param_0];
-            break;
-
-        case 3:
-            var_r3_3 = temp_r1_3->abilitySoulInventory[0];
-            break;
-    }
-
-    if (var_r3_3 != NULL)
-    {
-        if (param_2 & 1)
-        {
-            var_r3_3[param_2 >> 1] = (var_r3_3[param_2 >> 1] & 0xF) | (temp_r5 * 0x10);
-        }
-        else
-        {
-            var_r3_3[param_2 >> 1] = (var_r3_3[param_2 >> 1] & 0xF0) | temp_r5;
+            // Set lower nibble
+            soulInventoryFirstGroupUpper[soulIndex >> 1] = (soulInventoryFirstGroupUpper[soulIndex >> 1] & 0xF0) | newLowerSoulAmount;
         }
     }
 }
 
 /**
- * @brief 326B8 | To document
+ * @brief 32588 | Add an additional amount to the group total for the specified soul
  * 
- * @param param_0 To document
- * @param param_1 To document
- * @return u8 To document
+ * @param soulGroupOffset Soul group offset (0 for first, 1 for second)
+ * @param soulType Soul type (red, blue, yellow, or ability)
+ * @param soulIndex Soul index (into soul inventory)
+ * @param additionalSoulAmount Additional amount to add to soul total
  */
-u8 sub_080326B8(s32 param_0, s32 param_1)
+void SoulInventory_AddAmountToGroupTotal(u8 soulGroupOffset, s32 soulType, s32 soulIndex, s32 additionalSoulAmount)
 {
-    struct EwramData_unk1325C *temp_r2_4;
-    struct EwramData_unk1325C *temp_r0;
-    u32 var_r0;
-    u32 var_r1;
-    u32 var_r2;
-    u32 var_r2_3;
-    u8 *var_r1_2;
-    u8 *var_r2_2;
+    struct EwramData_unk1325C *unk_1325C;
+    u8 inventorySoulAmount;
+    s8 baseSoulAmount;
+    s8 totalSoulAmount;
+    s32 newSoulAmount;
+    u8 *soulInventory;
+    u8 *soulInventory_2;
 
-    temp_r2_4 = &gEwramData->unk_1325C;
-    var_r1_2 = NULL;
-    switch (param_0)
+    unk_1325C = &gEwramData->unk_1325C;
+    soulInventory = NULL;
+    switch (soulType)
     {
         case 0:
-            var_r1_2 = temp_r2_4->redSoulInventory[0];
+            soulInventory = unk_1325C->redSoulInventory[soulGroupOffset];
             break;
 
         case 1:
-            var_r1_2 = temp_r2_4->blueSoulInventory[0];
+            soulInventory = unk_1325C->blueSoulInventory[soulGroupOffset];
             break;
 
         case 2:
-            var_r1_2 = temp_r2_4->yellowSoulInventory[0];
+            soulInventory = unk_1325C->yellowSoulInventory[soulGroupOffset];
             break;
 
         case 3:
-            var_r1_2 = temp_r2_4->abilitySoulInventory[0];
+            soulInventory = unk_1325C->abilitySoulInventory;
             break;
     }
 
-    if (var_r1_2 == NULL)
+    if (soulInventory == NULL)
     {
-        var_r1 = 0;
+        baseSoulAmount = 0;
     }
     else
     {
-        var_r2 = var_r1_2[param_1 >> 1];
-        if (param_1 & 1)
+        inventorySoulAmount = soulInventory[soulIndex >> 1];
+        if (soulIndex & 1)
         {
-            var_r2 = var_r2 >> 4;
+            inventorySoulAmount = (inventorySoulAmount >> 4) & 0xF;
         }
         else
         {
-            var_r2 = var_r2 & 0xF;
+            inventorySoulAmount = inventorySoulAmount & 0xF;
         }
-        var_r1 = var_r2;
+        baseSoulAmount = inventorySoulAmount;
     }
 
-    temp_r0 = &gEwramData->unk_1325C;
-    var_r2_2 = NULL;
-    switch (param_0)
+    totalSoulAmount = baseSoulAmount + additionalSoulAmount;
+    if (totalSoulAmount < 0)
+    {
+        totalSoulAmount = 0;
+    }
+    else if (totalSoulAmount > 9)
+    {
+        totalSoulAmount = 9;
+    }
+    newSoulAmount = totalSoulAmount;
+
+    unk_1325C = &gEwramData->unk_1325C;
+    soulInventory_2 = NULL;
+    switch (soulType)
     {
         case 0:
-            var_r2_2 = temp_r0->redSoulInventory[1];
+            soulInventory_2 = unk_1325C->redSoulInventory[soulGroupOffset];
             break;
 
         case 1:
-            var_r2_2 = temp_r0->blueSoulInventory[1];
+            soulInventory_2 = unk_1325C->blueSoulInventory[soulGroupOffset];
             break;
 
         case 2:
-            var_r2_2 = temp_r0->yellowSoulInventory[1];
+            soulInventory_2 = unk_1325C->yellowSoulInventory[soulGroupOffset];
             break;
 
         case 3:
-            var_r2_2 = temp_r0->abilitySoulInventory[0];
+            soulInventory_2 = unk_1325C->abilitySoulInventory;
             break;
     }
 
-    if (var_r2_2 == NULL)
+    if (soulInventory_2 != NULL)
     {
-        var_r0 = 0;
-    }
-    else
-    {
-        var_r2_3 = var_r2_2[param_1 >> 1];
-        if (param_1 & 1)
+        if (soulIndex & 1)
         {
-            var_r2_3 = var_r2_3 >> 4;
+            // Set upper nibble
+            soulInventory_2[soulIndex >> 1] = (soulInventory_2[soulIndex >> 1] & 0xF) | (newSoulAmount << 4);
         }
         else
         {
-            var_r2_3 = var_r2_3 & 0xF;
+            // Set lower nibble
+            soulInventory_2[soulIndex >> 1] = (soulInventory_2[soulIndex >> 1] & 0xF0) | newSoulAmount;
         }
-        var_r0 = var_r2_3;
-    }
-    return var_r1 + var_r0;
-}
-
-/**
- * @brief 3278C | To document
- * 
- * @param param_0 To document
- * @param param_1 To document
- * @param param_2 To document
- */
-void sub_0803278C(s32 param_0, s32 param_1, s32 param_2)
-{
-    struct EwramData_unk1325C *temp_r0;
-    u32 var_r0;
-    u8 var_r0_2;
-    u32 var_r1_2;
-    u8 *var_r1;
-
-    temp_r0 = &gEwramData->unk_1325C;
-    var_r1 = NULL;
-    switch (param_0)
-    {
-        case 0:
-            var_r1 = temp_r0->redSoulInventory[1];
-            break;
-
-        case 1:
-            var_r1 = temp_r0->blueSoulInventory[1];
-            break;
-
-        case 2:
-            var_r1 = temp_r0->yellowSoulInventory[1];
-            break;
-
-        case 3:
-            var_r1 = temp_r0->abilitySoulInventory[0];
-            break;
-    }
-
-    if (var_r1 == NULL)
-    {
-        var_r0 = 0;
-    }
-    else
-    {
-        var_r1_2 = var_r1[param_1 >> 1];
-        if (param_1 & 1)
-        {
-            var_r1_2 = var_r1_2 >> 4;
-        }
-        else
-        {
-            var_r1_2 = var_r1_2 & 0xF;
-        }
-        var_r0 = var_r1_2;
-    }
-    var_r0_2 = var_r0;
-
-    if ((var_r0_2 != 0) && (param_2 > 0))
-    {
-        if ((s16) (sub_080326B8(param_0, param_1) + param_2) > 9)
-        {
-            sub_08032588(1, param_0, param_1, -param_2);
-        }
-        sub_08032588(0, param_0, param_1, param_2);
-    }
-    else
-    {
-        sub_08032588(0, param_0, param_1, param_2);
     }
 }
 
 /**
- * @brief 32844 | To document
+ * @brief 326B8 | Get the total for the specified soul (sum of group 1 and group 2 totals)
  * 
- * @param param_0 To document
- * @param param_1 To document
+ * @param soulType Soul type (red, blue, yellow, or ability)
+ * @param soulIndex Soul index (into soul inventory)
+ * @return u8 Soul total
  */
-void sub_08032844(s32 param_0, s32 param_1)
+u8 SoulInventory_GetSoulTotal(s32 soulType, s32 soulIndex)
 {
-    struct EwramData_unk1325C *temp_r0;
-    struct EwramData_unk1325C *temp_r0_2;
-    u32 var_r0;
-    u32 var_r1_2;
-    u8 *var_r1;
-    u8 temp_r3;
-    u8 *var_r1_3;
-    s32 var_0;
+    struct EwramData_unk1325C *unk_1325C;
+    u8 soulFirstGroupAmount;
+    u8 soulSecondGroupAmount;
+    u8 soulInventoryFirstGroupAmount;
+    u8 soulInventorySecondGroupAmount;
+    u8 *soulInventoryFirstGroup;
+    u8 *soulInventorySecondGroup;
 
-    temp_r0 = &gEwramData->unk_1325C;
-    var_r1 = NULL;
-    switch (param_0)
+    unk_1325C = &gEwramData->unk_1325C;
+    soulInventoryFirstGroup = NULL;
+    switch (soulType)
     {
         case 0:
-            var_r1 = temp_r0->redSoulInventory[0];
+            soulInventoryFirstGroup = unk_1325C->redSoulInventory[0];
             break;
 
         case 1:
-            var_r1 = temp_r0->blueSoulInventory[0];
+            soulInventoryFirstGroup = unk_1325C->blueSoulInventory[0];
             break;
 
         case 2:
-            var_r1 = temp_r0->yellowSoulInventory[0];
+            soulInventoryFirstGroup = unk_1325C->yellowSoulInventory[0];
             break;
 
         case 3:
-            var_r1 = temp_r0->abilitySoulInventory[0];
+            soulInventoryFirstGroup = unk_1325C->abilitySoulInventory;
             break;
     }
 
-    if (var_r1 == NULL)
+    if (soulInventoryFirstGroup == NULL)
     {
-        var_r0 = 0;
+        soulFirstGroupAmount = 0;
     }
     else
     {
-        var_r1_2 = var_r1[param_1 >> 1];
-        if (param_1 & 1)
+        soulInventoryFirstGroupAmount = soulInventoryFirstGroup[soulIndex >> 1];
+        if (soulIndex & 1)
         {
-            var_r1_2 = var_r1_2 >> 4;
+            soulInventoryFirstGroupAmount = (soulInventoryFirstGroupAmount >> 4) & 0xF;
         }
         else
         {
-            var_r1_2 = var_r1_2 & 0xF;
+            soulInventoryFirstGroupAmount = soulInventoryFirstGroupAmount & 0xF;
         }
-        var_r0 = var_r1_2;
+        soulFirstGroupAmount = soulInventoryFirstGroupAmount;
     }
-    temp_r3 = var_r0;
 
-    if (temp_r3 != 0)
+    unk_1325C = &gEwramData->unk_1325C;
+    soulInventorySecondGroup = NULL;
+    switch (soulType)
     {
-        sub_08032588(1, param_0, param_1, temp_r3);
-        var_0 = 0;
-        temp_r0_2 = &gEwramData->unk_1325C;
-        var_r1_3 = NULL;
-        switch (param_0)
+        case 0:
+            soulInventorySecondGroup = unk_1325C->redSoulInventory[1];
+            break;
+
+        case 1:
+            soulInventorySecondGroup = unk_1325C->blueSoulInventory[1];
+            break;
+
+        case 2:
+            soulInventorySecondGroup = unk_1325C->yellowSoulInventory[1];
+            break;
+
+        case 3:
+            soulInventorySecondGroup = unk_1325C->abilitySoulInventory;
+            break;
+    }
+
+    if (soulInventorySecondGroup == NULL)
+    {
+        soulSecondGroupAmount = 0;
+    }
+    else
+    {
+        soulInventorySecondGroupAmount = soulInventorySecondGroup[soulIndex >> 1];
+        if (soulIndex & 1)
+        {
+            soulInventorySecondGroupAmount = (soulInventorySecondGroupAmount >> 4) & 0xF;
+        }
+        else
+        {
+            soulInventorySecondGroupAmount = soulInventorySecondGroupAmount & 0xF;
+        }
+        soulSecondGroupAmount = soulInventorySecondGroupAmount;
+    }
+    return soulFirstGroupAmount + soulSecondGroupAmount;
+}
+
+/**
+ * @brief 3278C | Add an additional amount to the total for the specified soul
+ * 
+ * @param soulType Soul type (red, blue, yellow, or ability)
+ * @param soulIndex Soul index (into soul inventory)
+ * @param additionalSoulAmount Additional amount to add to soul total
+ */
+void SoulInventory_AddAmountToSoulTotal(s32 soulType, s32 soulIndex, s32 additionalSoulAmount)
+{
+    struct EwramData_unk1325C *unk_1325C;
+    u32 soulInventorySecondGroupAmount;
+    u32 soulSecondGroupAmount;
+    u8 soulAmount;
+    u8 *soulInventorySecondGroup;
+
+    unk_1325C = &gEwramData->unk_1325C;
+    soulInventorySecondGroup = NULL;
+    switch (soulType)
+    {
+        case 0:
+            soulInventorySecondGroup = unk_1325C->redSoulInventory[1];
+            break;
+
+        case 1:
+            soulInventorySecondGroup = unk_1325C->blueSoulInventory[1];
+            break;
+
+        case 2:
+            soulInventorySecondGroup = unk_1325C->yellowSoulInventory[1];
+            break;
+
+        case 3:
+            soulInventorySecondGroup = unk_1325C->abilitySoulInventory;
+            break;
+    }
+
+    if (soulInventorySecondGroup == NULL)
+    {
+        soulSecondGroupAmount = 0;
+    }
+    else
+    {
+        soulInventorySecondGroupAmount = soulInventorySecondGroup[soulIndex >> 1];
+        if (soulIndex & 1)
+        {
+            soulInventorySecondGroupAmount = (soulInventorySecondGroupAmount >> 4) & 0xF;
+        }
+        else
+        {
+            soulInventorySecondGroupAmount = soulInventorySecondGroupAmount & 0xF;
+        }
+        soulSecondGroupAmount = soulInventorySecondGroupAmount;
+    }
+    soulAmount = soulSecondGroupAmount;
+
+    if (soulAmount != 0 && additionalSoulAmount > 0)
+    {
+        if ((s16) (SoulInventory_GetSoulTotal(soulType, soulIndex) + additionalSoulAmount) > 9)
+        {
+            SoulInventory_AddAmountToGroupTotal(1, soulType, soulIndex, -additionalSoulAmount);
+        }
+        SoulInventory_AddAmountToGroupTotal(0, soulType, soulIndex, additionalSoulAmount);
+    }
+    else
+    {
+        SoulInventory_AddAmountToGroupTotal(0, soulType, soulIndex, additionalSoulAmount);
+    }
+}
+
+/**
+ * @brief 32844 | Set the second group total to the first group total, and clear the first group total
+ * 
+ * @param soulType Soul type (red, blue, yellow, or ability)
+ * @param soulIndex Soul index (into soul inventory)
+ */
+void SoulInventory_TransferFirstGroupTotalToSecondGroupTotal(s32 soulType, s32 soulIndex)
+{
+    struct EwramData_unk1325C *unk_1325C;
+    u32 soulInventoryFirstGroupAmount;
+    u32 soulFirstGroupAmount;
+    u8 *soulInventoryFirstGroup;
+    u8 additionalSoulAmount;
+    u8 newSoulAmount;
+
+    unk_1325C = &gEwramData->unk_1325C;
+    soulInventoryFirstGroup = NULL;
+    switch (soulType)
+    {
+        case 0:
+            soulInventoryFirstGroup = unk_1325C->redSoulInventory[0];
+            break;
+
+        case 1:
+            soulInventoryFirstGroup = unk_1325C->blueSoulInventory[0];
+            break;
+
+        case 2:
+            soulInventoryFirstGroup = unk_1325C->yellowSoulInventory[0];
+            break;
+
+        case 3:
+            soulInventoryFirstGroup = unk_1325C->abilitySoulInventory;
+            break;
+    }
+
+    if (soulInventoryFirstGroup == NULL)
+    {
+        soulFirstGroupAmount = 0;
+    }
+    else
+    {
+        soulInventoryFirstGroupAmount = soulInventoryFirstGroup[soulIndex >> 1];
+        if (soulIndex & 1)
+        {
+            soulInventoryFirstGroupAmount = (soulInventoryFirstGroupAmount >> 4) & 0xF;
+        }
+        else
+        {
+            soulInventoryFirstGroupAmount = soulInventoryFirstGroupAmount & 0xF;
+        }
+        soulFirstGroupAmount = soulInventoryFirstGroupAmount;
+    }
+    additionalSoulAmount = soulFirstGroupAmount;
+
+    if (additionalSoulAmount == 0)
+        return;
+
+    SoulInventory_AddAmountToGroupTotal(1, soulType, soulIndex, additionalSoulAmount);
+
+    newSoulAmount = 0;
+    unk_1325C = &gEwramData->unk_1325C;
+    soulInventoryFirstGroup = NULL;
+    switch (soulType)
+    {
+        case 0:
+            soulInventoryFirstGroup = unk_1325C->redSoulInventory[0];
+            break;
+
+        case 1:
+            soulInventoryFirstGroup = unk_1325C->blueSoulInventory[0];
+            break;
+
+        case 2:
+            soulInventoryFirstGroup = unk_1325C->yellowSoulInventory[0];
+            break;
+
+        case 3:
+            soulInventoryFirstGroup = unk_1325C->abilitySoulInventory;
+            break;
+    }
+
+    if (soulInventoryFirstGroup != NULL)
+    {
+        if (soulIndex & 1)
+        {
+            // Set upper nibble
+            soulInventoryFirstGroup[soulIndex >> 1] = (soulInventoryFirstGroup[soulIndex >> 1] & 0xF) | newSoulAmount;
+        }
+        else
+        {
+            // Set lower nibble
+            soulInventoryFirstGroup[soulIndex >> 1] = (soulInventoryFirstGroup[soulIndex >> 1] & 0xF0) | newSoulAmount;
+        }
+    }
+}
+
+/**
+ * @brief 32938 | Set the first group total to the second group total, and clear the second group total
+ * 
+ * @param soulType Soul type (red, blue, yellow, or ability)
+ * @param soulIndex Soul index (into soul inventory)
+ */
+void SoulInventory_TransferSecondGroupTotalToFirstGroupTotal(s32 soulType, s32 soulIndex)
+{
+    struct EwramData_unk1325C *unk_1325C;
+    u32 soulInventorySecondGroupAmount;
+    u32 soulSecondGroupAmount;
+    u8 *soulInventorySecondGroup;
+    u8 additionalSoulAmount;
+    u8 newSoulAmount;
+
+    unk_1325C = &gEwramData->unk_1325C;
+    soulInventorySecondGroup = NULL;
+    switch (soulType)
+    {
+        case 0:
+            soulInventorySecondGroup = unk_1325C->redSoulInventory[1];
+            break;
+
+        case 1:
+            soulInventorySecondGroup = unk_1325C->blueSoulInventory[1];
+            break;
+
+        case 2:
+            soulInventorySecondGroup = unk_1325C->yellowSoulInventory[1];
+            break;
+
+        case 3:
+            soulInventorySecondGroup = unk_1325C->abilitySoulInventory;
+            break;
+    }
+
+    if (soulInventorySecondGroup == NULL)
+    {
+        soulSecondGroupAmount = 0;
+    }
+    else
+    {
+        soulInventorySecondGroupAmount = soulInventorySecondGroup[soulIndex >> 1];
+        if (soulIndex & 1)
+        {
+            soulInventorySecondGroupAmount = (soulInventorySecondGroupAmount >> 4) & 0xF;
+        }
+        else
+        {
+            soulInventorySecondGroupAmount = soulInventorySecondGroupAmount & 0xF;
+        }
+        soulSecondGroupAmount = soulInventorySecondGroupAmount;
+    }
+    additionalSoulAmount = soulSecondGroupAmount;
+
+    if (additionalSoulAmount != 0)
+    {
+        SoulInventory_AddAmountToGroupTotal(0, soulType, soulIndex, additionalSoulAmount);
+
+        newSoulAmount = 0;
+        unk_1325C = &gEwramData->unk_1325C;
+        soulInventorySecondGroup = NULL;
+        switch (soulType)
         {
             case 0:
-                var_r1_3 = temp_r0_2->redSoulInventory[0];
+                soulInventorySecondGroup = unk_1325C->redSoulInventory[1];
                 break;
 
             case 1:
-                var_r1_3 = temp_r0_2->blueSoulInventory[0];
+                soulInventorySecondGroup = unk_1325C->blueSoulInventory[1];
                 break;
 
             case 2:
-                var_r1_3 = temp_r0_2->yellowSoulInventory[0];
+                soulInventorySecondGroup = unk_1325C->yellowSoulInventory[1];
                 break;
 
             case 3:
-                var_r1_3 = temp_r0_2->abilitySoulInventory[0];
+                soulInventorySecondGroup = unk_1325C->abilitySoulInventory;
                 break;
         }
 
-        if (var_r1_3 != NULL)
+        if (soulInventorySecondGroup != NULL)
         {
-            if (param_1 & 1)
+            if (soulIndex & 1)
             {
-                var_r1_3[param_1 >> 1] = (var_r1_3[param_1 >> 1] & 0xF) | var_0;
+                soulInventorySecondGroup[soulIndex >> 1] = (soulInventorySecondGroup[soulIndex >> 1] & 0xF) | newSoulAmount;
             }
             else
             {
-                var_r1_3[param_1 >> 1] = (var_r1_3[param_1 >> 1] & 0xF0) | var_0;
+                soulInventorySecondGroup[soulIndex >> 1] = (soulInventorySecondGroup[soulIndex >> 1] & 0xF0) | newSoulAmount;
             }
         }
     }
 }
 
 /**
- * @brief 32938 | To document
+ * @brief 32A2C | Get the total for the specified soul in group 1
  * 
- * @param param_0 To document
- * @param param_1 To document
+ * @param soulType Soul type (red, blue, yellow, or ability)
+ * @param soulIndex Soul index (into soul inventory)
+ * @return u32 Soul total
  */
-void sub_08032938(s32 param_0, s32 param_1)
+u32 SoulInventory_GetFirstGroupSoulTotal(s32 soulType, s32 soulIndex)
 {
-    struct EwramData_unk1325C *temp_r0;
-    struct EwramData_unk1325C *temp_r0_2;
-    u32 var_r0;
-    u32 var_r1_2;
-    u8 *var_r1;
-    u8 temp_r1;
-    u8 temp_r3;
-    u8 *var_r1_3;
-    s32 var_0;
+    // TODO: likely an inline for SoulInventory_GetFirstGroupSoulTotalDifferent and SoulInventory_AddAmountToFirstGroupTotal
+    u32 soulInventoryFirstGroupAmount;
+    u8 *soulInventoryFirstGroup;
 
-    temp_r0 = &gEwramData->unk_1325C;
-    var_r1 = NULL;
-    switch (param_0)
-    {
-        case 0:
-            var_r1 = temp_r0->redSoulInventory[1];
-            break;
-
-        case 1:
-            var_r1 = temp_r0->blueSoulInventory[1];
-            break;
-
-        case 2:
-            var_r1 = temp_r0->yellowSoulInventory[1];
-            break;
-
-        case 3:
-            var_r1 = temp_r0->abilitySoulInventory[0];
-            break;
-    }
-
-    if (var_r1 == NULL)
-    {
-        var_r0 = 0;
-    }
-    else
-    {
-        var_r1_2 = var_r1[param_1 >> 1];
-        if (param_1 & 1)
-        {
-            var_r1_2 = var_r1_2 >> 4;
-        }
-        else
-        {
-            var_r1_2 = var_r1_2 & 0xF;
-        }
-        var_r0 = var_r1_2;
-    }
-    temp_r3 = var_r0;
-
-    if (temp_r3 != 0)
-    {
-        sub_08032588(0, param_0, param_1, temp_r3);
-        var_0 = 0;
-        temp_r0_2 = &gEwramData->unk_1325C;
-        var_r1_3 = NULL;
-        switch (param_0)
-        {
-            case 0:
-                var_r1_3 = temp_r0_2->redSoulInventory[1];
-                break;
-
-            case 1:
-                var_r1_3 = temp_r0_2->blueSoulInventory[1];
-                break;
-
-            case 2:
-                var_r1_3 = temp_r0_2->yellowSoulInventory[1];
-                break;
-
-            case 3:
-                var_r1_3 = temp_r0_2->abilitySoulInventory[0];
-                break;
-        }
-
-        if (var_r1_3 != NULL)
-        {
-            if (param_1 & 1)
-            {
-                var_r1_3[param_1 >> 1] = (var_r1_3[param_1 >> 1] & 0xF) | var_0;
-            }
-            else
-            {
-                var_r1_3[param_1 >> 1] = (var_r1_3[param_1 >> 1] & 0xF0) | var_0;
-            }
-        }
-    }
-}
-
-/**
- * @brief 32A2C | To document
- * 
- * @param param_0 To document
- * @param param_1 To document
- * @return u32 To document
- */
-u32 sub_08032A2C(s32 param_0, s32 param_1)
-{
-    // TODO: likely an inline for sub_08032444 and sub_080324D0
-    u32 var_r1;
-    u8 *temp_r0;
-
-    temp_r0 = sub_08032A5C(param_0);
-    if (temp_r0 == NULL)
+    soulInventoryFirstGroup = SoulInventory_GetInventoryFirstGroupPointer(soulType);
+    if (soulInventoryFirstGroup == NULL)
     {
         return 0;
     }
 
-    var_r1 = temp_r0[param_1 >> 1];
-    if (param_1 & 1)
+    soulInventoryFirstGroupAmount = soulInventoryFirstGroup[soulIndex >> 1];
+    if (soulIndex & 1)
     {
-        var_r1 = var_r1 >> 4;
+        soulInventoryFirstGroupAmount = (soulInventoryFirstGroupAmount >> 4) & 0xF;
     }
     else
     {
-        var_r1 = var_r1 & 0xF;
+        soulInventoryFirstGroupAmount = soulInventoryFirstGroupAmount & 0xF;
     }
-    return var_r1;
+    return soulInventoryFirstGroupAmount;
 }
 
 /**
- * @brief 32A5C | To document
+ * @brief 32A5C | Get the pointer to the first group soul type inventory
  * 
- * @param param_0 To document
- * @return u8* To document
+ * @param soulType Soul type (red, blue, yellow, or ability)
+ * @return u8* Pointer to first group soul type inventory
  */
-u8* sub_08032A5C(s32 param_0)
+u8* SoulInventory_GetInventoryFirstGroupPointer(s32 soulType)
 {
-    return sub_08032B20(0, param_0);
+    return SoulInventory_GetInventoryPointer(0, soulType);
 }
 
 /**
- * @brief 32A6C | To document
+ * @brief 32A6C | Set the new amount for the soul in the first group
  * 
- * @param param_0 To document
- * @param param_1 To document
- * @param param_2 To document
+ * @param soulType Soul type (red, blue, yellow, or ability)
+ * @param soulIndex Soul index (into soul inventory)
+ * @param newSoulAmount New soul amount
  */
-void sub_08032A6C(s32 param_0, s32 param_1, s8 param_2)
+void SoulInventory_SetFirstGroupSoulTotal(s32 soulType, s32 soulIndex, s8 newSoulAmount)
 {
-    // TODO: likely an inline for sub_080324D0
-    u8 *var_r1;
-    u8 *var_r2;
+    // TODO: likely an inline for SoulInventory_AddAmountToFirstGroupTotal
+    u8 *soulInventoryFirstGroupLower;
+    u8 *soulInventoryFirstGroupUpper;
 
-    var_r1 = sub_08032B20(0, param_0);
-    var_r2 = var_r1;
-    if (var_r1 != NULL)
+    soulInventoryFirstGroupLower = SoulInventory_GetInventoryPointer(0, soulType);
+    soulInventoryFirstGroupUpper = soulInventoryFirstGroupLower;
+    if (soulInventoryFirstGroupLower != NULL)
     {
-        if (param_1 & 1)
+        if (soulIndex & 1)
         {
-            var_r1[param_1 >> 1] = (var_r1[param_1 >> 1] & 0xF) | (param_2 << 4);
+            // Set upper nibble
+            soulInventoryFirstGroupLower[soulIndex >> 1] = (soulInventoryFirstGroupLower[soulIndex >> 1] & 0xF) | (newSoulAmount << 4);
         }
         else
         {
-            var_r2[param_1 >> 1] = (var_r2[param_1 >> 1] & 0xF0) | param_2;
+            // Set lower nibble
+            soulInventoryFirstGroupUpper[soulIndex >> 1] = (soulInventoryFirstGroupUpper[soulIndex >> 1] & 0xF0) | newSoulAmount;
         }
     }
 }
@@ -698,17 +701,12 @@ void sub_08032A6C(s32 param_0, s32 param_1, s8 param_2)
  */
 u8 sub_08032AB8(s32 param_0)
 {
-    // TODO: better match
-    struct EwramData_unk1325C *temp_r1;
+    struct EwramData_unk1325C *unk_1325C;
     s32 temp_r2;
-    u8 *temp_r1_2;
 
-    temp_r1 = &gEwramData->unk_1325C;
+    unk_1325C = &gEwramData->unk_1325C;
     temp_r2 = param_0 & 7;
-    param_0 = param_0 >> 3;
-    temp_r1_2 = &temp_r1->abilitySoulInventory[1][1];
-    return temp_r1_2[param_0] & (1 << temp_r2);
-    // return (&gEwramData->unk_1325C.abilitySoulInventory[1][1])[param_0 >> 3] & (1 << (param_0 & 7));
+    return unk_1325C->unk_13396[param_0 >> 3] & (1 << temp_r2);
 }
 
 /**
@@ -719,12 +717,12 @@ u8 sub_08032AB8(s32 param_0)
  */
 void sub_08032ADC(s32 param_0, s32 param_1)
 {
-    struct EwramData_unk1325C *temp_r1;
+    struct EwramData_unk1325C *unk_1325C;
     s32 temp_r3;
     u8 *temp_r2;
 
-    temp_r1 = &gEwramData->unk_1325C;
-    temp_r2 = &temp_r1->abilitySoulInventory[1][1 + (param_0 >> 3)];
+    unk_1325C = &gEwramData->unk_1325C;
+    temp_r2 = &unk_1325C->unk_13396[param_0 >> 3];
     temp_r3 = param_0 & 7;
     if (param_1 != 0)
     {
@@ -752,142 +750,140 @@ u8 sub_08032B14(s32 param_0)
 }
 
 /**
- * @brief 32B20 | To document
+ * @brief 32B20 | Get the pointer to the group soul type inventory
  * 
- * @param param_0 To document
- * @param param_1 To document
- * @return u8* To document
+ * @param soulGroupOffset Soul group offset (0 for first, 1 for second)
+ * @param soulType Soul type (red, blue, yellow, or ability)
+ * @return u8* Pointer to group soul type inventory
  */
-u8* sub_08032B20(u8 param_0, s32 param_1)
+u8* SoulInventory_GetInventoryPointer(u8 soulGroupOffset, s32 soulType)
 {
     // TODO: inline? looks similar to several functions above
-    struct EwramData_unk1325C *temp_r3;
-    u8 *var_r0;
+    struct EwramData_unk1325C *unk_1325C;
+    u8 *soulInventory;
 
-    temp_r3 = &gEwramData->unk_1325C;
-    var_r0 = NULL;
-
-    switch (param_1)
+    unk_1325C = &gEwramData->unk_1325C;
+    soulInventory = NULL;
+    switch (soulType)
     {
         case 0:
-            var_r0 = temp_r3->redSoulInventory[param_0];
+            soulInventory = unk_1325C->redSoulInventory[soulGroupOffset];
             break;
 
         case 1:
-            var_r0 = temp_r3->blueSoulInventory[param_0];
+            soulInventory = unk_1325C->blueSoulInventory[soulGroupOffset];
             break;
 
         case 2:
-            var_r0 = temp_r3->yellowSoulInventory[param_0];
+            soulInventory = unk_1325C->yellowSoulInventory[soulGroupOffset];
             break;
 
         case 3:
-            var_r0 = temp_r3->abilitySoulInventory[0];
+            soulInventory = unk_1325C->abilitySoulInventory;
             break;
     }
 
-    return var_r0;
+    return soulInventory;
 }
 
 /**
- * @brief 32B88 | To document
+ * @brief 32B88 | Get the total for the specified soul and group
  * 
- * @param param_0 To document
- * @param param_1 To document
- * @param param_2 To document
+ * @param soulGroupOffset Soul group offset (0 for first, 1 for second)
+ * @param soulType Soul type (red, blue, yellow, or ability)
+ * @param soulIndex Soul index (into soul inventory)
  * @return u8 To document
  */
-u8 sub_08032B88(u8 param_0, s32 param_1, s32 param_2)
+u8 SoulInventory_GetGroupSoulTotal(u8 soulGroupOffset, s32 soulType, s32 soulIndex)
 {
     // TODO: inline? looks similar to several functions above
-    struct EwramData_unk1325C *temp_r2;
-    u32 var_r1;
-    u8 *var_r4;
-    u8 temp_r1;
+    struct EwramData_unk1325C *unk_1325C;
+    u8 soulInventoryAmount;
+    u8 *soulInventory;
 
-    temp_r2 = &gEwramData->unk_1325C;
-    var_r4 = NULL;
-
-    switch (param_1)
+    unk_1325C = &gEwramData->unk_1325C;
+    soulInventory = NULL;
+    switch (soulType)
     {
         case 0:
-            var_r4 = temp_r2->redSoulInventory[param_0];
+            soulInventory = unk_1325C->redSoulInventory[soulGroupOffset];
             break;
 
         case 1:
-            var_r4 = temp_r2->blueSoulInventory[param_0];
+            soulInventory = unk_1325C->blueSoulInventory[soulGroupOffset];
             break;
 
         case 2:
-            var_r4 = temp_r2->yellowSoulInventory[param_0];
+            soulInventory = unk_1325C->yellowSoulInventory[soulGroupOffset];
             break;
 
         case 3:
-            var_r4 = temp_r2->abilitySoulInventory[0];
+            soulInventory = unk_1325C->abilitySoulInventory;
             break;
     }
 
-    if (var_r4 == NULL)
+    if (soulInventory == NULL)
     {
         return 0;
     }
 
-    var_r1 = var_r4[param_2 >> 1];
-    if (param_2 & 1)
+    soulInventoryAmount = soulInventory[soulIndex >> 1];
+    if (soulIndex & 1)
     {
-        var_r1 = var_r1 >> 4;
+        soulInventoryAmount = (soulInventoryAmount >> 4) & 0xF;
     }
     else
     {
-        var_r1 = var_r1 & 0xF;
+        soulInventoryAmount = soulInventoryAmount & 0xF;
     }
-    return var_r1;
+    return soulInventoryAmount;
 }
 
 /**
  * @brief 32C10 | To document
- * @param param_0 To document
- * @param param_1 To document
- * @param param_2 To document
- * @param param_3 To document
+ * 
+ * @param soulGroupOffset Soul group offset (0 for first, 1 for second)
+ * @param soulType Soul type (red, blue, yellow, or ability)
+ * @param soulIndex Soul index (into soul inventory)
+ * @param newSoulAmount To document
  */
-void sub_08032C10(u8 param_0, s32 param_1, s32 param_2, s8 param_3)
+void SoulInventory_SetGroupTotalAmount(u8 soulGroupOffset, s32 soulType, s32 soulIndex, s8 newSoulAmount)
 {
     // TODO: inline? looks similar to several functions above
-    struct EwramData_unk1325C *temp_r4;
-    u8 *var_r3;
+    struct EwramData_unk1325C *unk_1325C;
+    u8 *soulInventory;
 
-    temp_r4 = &gEwramData->unk_1325C;
-    var_r3 = NULL;
+    unk_1325C = &gEwramData->unk_1325C;
+    soulInventory = NULL;
 
-    switch (param_1)
+    switch (soulType)
     {
         case 0:
-            var_r3 = temp_r4->redSoulInventory[param_0];
+            soulInventory = unk_1325C->redSoulInventory[soulGroupOffset];
             break;
 
         case 1:
-            var_r3 = temp_r4->blueSoulInventory[param_0];
+            soulInventory = unk_1325C->blueSoulInventory[soulGroupOffset];
             break;
 
         case 2:
-            var_r3 = temp_r4->yellowSoulInventory[param_0];
+            soulInventory = unk_1325C->yellowSoulInventory[soulGroupOffset];
             break;
 
         case 3:
-            var_r3 = temp_r4->abilitySoulInventory[0];
+            soulInventory = unk_1325C->abilitySoulInventory;
             break;
     }
 
-    if (var_r3 != NULL)
+    if (soulInventory != NULL)
     {
-        if (param_2 & 1)
+        if (soulIndex & 1)
         {
-            var_r3[param_2 >> 1] = (var_r3[param_2 >> 1] & 0xF) | (param_3 << 4);
+            soulInventory[soulIndex >> 1] = (soulInventory[soulIndex >> 1] & 0xF) | (newSoulAmount << 4);
         }
         else
         {
-            var_r3[param_2 >> 1] = (var_r3[param_2 >> 1] & 0xF0) | param_3;
+            soulInventory[soulIndex >> 1] = (soulInventory[soulIndex >> 1] & 0xF0) | newSoulAmount;
         }
     }
 }
@@ -930,6 +926,7 @@ void sub_08032CD0(void)
     gEwramData->unk_60.unk_A2[1] = 0;
 }
 
+// Last index for each soul type
 const u8 sUnk_080E1CD4[] = {
     0x37, 0x18, 0x23, 0x8
 };
@@ -941,21 +938,21 @@ const u8 sUnk_080E1CD4[] = {
 void sub_08032CE0(void)
 {
     struct EwramData_unk60 *var_0;
-    s32 var_r5;
-    s32 var_r4;
+    s32 soulType;
+    s32 soulIndex;
 
     var_0 = &gEwramData->unk_60;
     var_0->unk_A2[0] = 0;
 
-    for (var_r5 = 0; var_r5 < 3; var_r5++)
+    for (soulType = 0; soulType < 3; soulType++)
     {
-        var_r4 = sUnk_080E1CD4[var_r5];
+        soulIndex = sUnk_080E1CD4[soulType];
         do
         {
-            var_r4 -= 1;
-            sub_08032938(var_r5, var_r4);
+            soulIndex -= 1;
+            SoulInventory_TransferSecondGroupTotalToFirstGroupTotal(soulType, soulIndex);
         }
-        while (var_r4 != 0);
+        while (soulIndex != 0);
     }
 }
 
@@ -967,22 +964,22 @@ void sub_08032CE0(void)
 void sub_08032D18(u8 param_0)
 {
     struct EwramData_unk60 *var_0;
-    s32 var_r5;
-    s32 var_r4;
+    s32 soulType;
+    s32 soulIndex;
 
     var_0 = &gEwramData->unk_60;
     var_0->unk_A2[0] = param_0;
     var_0->unk_A2[1] = 0;
 
-    for (var_r5 = 0; var_r5 < 3; var_r5++)
+    for (soulType = 0; soulType < 3; soulType++)
     {
-        var_r4 = sUnk_080E1CD4[var_r5];
+        soulIndex = sUnk_080E1CD4[soulType];
         do
         {
-            var_r4 -= 1;
-            sub_08032844(var_r5, var_r4);
+            soulIndex -= 1;
+            SoulInventory_TransferFirstGroupTotalToSecondGroupTotal(soulType, soulIndex);
         }
-        while (var_r4 != 0);
+        while (soulIndex != 0);
     }
 }
 
@@ -992,37 +989,35 @@ void sub_08032D18(u8 param_0)
  * @param param_0 To document
  * @param param_1 To document
  */
-void sub_08032D58(s32 param_0, s32 param_1)
+void sub_08032D58(s32 soulType, s32 soulIndex)
 {
-    struct EwramData_unk1325C *temp_r5;
-    u8 temp_r2;
+    struct EwramData_unk1325C *unk_1325C;
 
-    temp_r5 = &gEwramData->unk_1325C;
+    unk_1325C = &gEwramData->unk_1325C;
 
-    temp_r2 = sub_080326B8(param_0, param_1);
-    if (temp_r2 != 0)
+    if (SoulInventory_GetSoulTotal(soulType, soulIndex) != 0)
         return;
 
-    switch (param_0)
+    switch (soulType)
     {
         case 0:
-            if (temp_r5->equippedRedSoul == (param_1 + 1))
+            if (unk_1325C->equippedRedSoul == (soulIndex + 1))
             {
-                temp_r5->equippedRedSoul = 0;
+                unk_1325C->equippedRedSoul = 0;
             }
             break;
 
         case 1:
-            if (temp_r5->equippedBlueSoul == (param_1 + 1))
+            if (unk_1325C->equippedBlueSoul == (soulIndex + 1))
             {
-                temp_r5->equippedBlueSoul = 0;
+                unk_1325C->equippedBlueSoul = 0;
             }
             break;
 
         case 2:
-            if (temp_r5->equippedYellowSoul == (param_1 + 1))
+            if (unk_1325C->equippedYellowSoul == (soulIndex + 1))
             {
-                temp_r5->equippedYellowSoul = 0;
+                unk_1325C->equippedYellowSoul = 0;
             }
             break;
     }
@@ -1037,10 +1032,10 @@ void sub_08032DBC(s32 param_0)
 {
     if (param_0 > 0)
     {
-        gEwramData->unk_1325C.unk_13264 += param_0;
-        if (gEwramData->unk_1325C.unk_13264 > 0x3E7)
+        gEwramData->unk_1325C.totalNbrSoulsCollected += param_0;
+        if (gEwramData->unk_1325C.totalNbrSoulsCollected > 999)
         {
-            gEwramData->unk_1325C.unk_13264 = 0x3E7;
+            gEwramData->unk_1325C.totalNbrSoulsCollected = 999;
         }
     }
 }
@@ -1052,18 +1047,18 @@ void sub_08032DBC(s32 param_0)
  */
 s32 sub_08032DF0(void)
 {
-    s32 var_r4;
-    s32 var_r5;
+    s32 soulIndex;
+    s32 soulType;
     s32 var_r6;
     s32 var_r7;
 
     var_r7 = 0;
-    for (var_r5 = 0; var_r5 < 3; var_r5++)
+    for (soulType = 0; soulType < 3; soulType++)
     {
-        var_r6 = sUnk_080E1CD4[var_r5];
-        for (var_r4 = 0; var_r4 < var_r6; var_r4++)
+        var_r6 = sUnk_080E1CD4[soulType];
+        for (soulIndex = 0; soulIndex < var_r6; soulIndex++)
         {
-            if (sub_080326B8(var_r5, var_r4) != 0)
+            if (SoulInventory_GetSoulTotal(soulType, soulIndex) != 0)
             {
                 var_r7 += 1;
             }
@@ -1071,11 +1066,11 @@ s32 sub_08032DF0(void)
     }
 
     var_r6 = 0;
-    for (var_r5 = 0; var_r5 < 3; var_r5++)
+    for (soulType = 0; soulType < 3; soulType++)
     {
-        var_r6 += sUnk_080E1CD4[var_r5];
+        var_r6 += sUnk_080E1CD4[soulType];
     }
 
-    var_r7 *= 0x3E8;
+    var_r7 *= 1000;
     return Div(var_r7, var_r6);
 }

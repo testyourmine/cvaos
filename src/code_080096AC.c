@@ -71,7 +71,7 @@ s16 sub_080096AC(s32 param_0)
 
     for (var_r4 = 0; var_r4 < temp_r7; )
     {
-        if (sub_080326B8(param_0, var_r4) == 0)
+        if (SoulInventory_GetSoulTotal(param_0, var_r4) == 0)
         {
             var_r4++;
         }
@@ -663,7 +663,7 @@ void sub_08009EB8(s32 param_0, s32 param_1)
         sub_08040970(0, var_r5 + 8, 0xE, 1);
         sub_08041204();
         sub_08041338((struct unk_08506B38 *) sub_08041434(param_1[gEwramData->unk_143F4] + temp_sb), 0);
-        sub_08046E5C(0x1A, var_r5 + 4, sub_080326B8(param_0, param_1[gEwramData->unk_143F4]), 1, 0xF200, 0);
+        sub_08046E5C(0x1A, var_r5 + 4, SoulInventory_GetSoulTotal(param_0, param_1[gEwramData->unk_143F4]), 1, 0xF200, 0);
         param_1++;
     }
 
@@ -1531,7 +1531,7 @@ NONMATCH("asm/non_matching/GameModeSoulTradeMenu.inc", s32 GameModeSoulTradeMenu
         case 17:
             if (temp_r6->unk_504.unk_504_8.unk_506 != 0)
             {
-                sub_0803278C(temp_r6->unk_504.unk_504_8.unk_506 - 1, temp_r6->unk_504.unk_504_8.unk_507, 1);
+                SoulInventory_AddAmountToSoulTotal(temp_r6->unk_504.unk_504_8.unk_506 - 1, temp_r6->unk_504.unk_504_8.unk_507, 1);
                 SaveData_SaveSlotToSram(gEwramData->unk_60.currentSaveSlot);
             }
             if (temp_r6->unk_504.unk_504_8.unk_504 != 0)

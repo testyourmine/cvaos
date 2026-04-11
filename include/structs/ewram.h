@@ -715,7 +715,7 @@ struct EwramData_unk13110 {
 struct EwramData_unk1325C {
     /* 0x1325C */ u32 unk_1325C;
     /* 0x13260 */ u32 unk_13260;
-    /* 0x13264 */ u16 unk_13264;
+    /* 0x13264 */ u16 totalNbrSoulsCollected;
     /* 0x13266 */ u8 currentCharacter; // 0: Soma, >= 1: Julius 
     /* 0x13267 */ u8 unk_13267;
     /* 0x13268 */ u8 equippedWeapon;
@@ -745,7 +745,9 @@ struct EwramData_unk1325C {
     /* 0x1331C */ u8 redSoulInventory[2][0x1C];
     /* 0x13354 */ u8 blueSoulInventory[2][0xD];
     /* 0x1336E */ u8 yellowSoulInventory[2][0x12];
-    /* 0x13392 */ u8 abilitySoulInventory[2][0x3];
+    /* 0x13392 */ u8 abilitySoulInventory[0x3];
+    /* 0x13395 */ u8 pad_13395[0x13396 - 0x13395]; // TODO: is abilitySoulInventory really 4 entries?
+    /* 0x13396 */ u8 unk_13396[0x2];
     /* 0x13398 */ u16 attackButton;
     /* 0x1339A */ u16 jumpButton;
     /* 0x1339C */ u16 abilityButton;

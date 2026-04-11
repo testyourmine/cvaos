@@ -24998,7 +24998,7 @@ _0805CFF0:
 	movs r0, #0
 	movs r1, #0
 	movs r2, #1
-	bl sub_0803278C
+	bl SoulInventory_AddAmountToSoulTotal
 	ldrb r0, [r4, #0xd]
 	cmp r0, #0
 	bne _0805D018

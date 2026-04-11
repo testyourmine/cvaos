@@ -1993,7 +1993,7 @@ _0800B45C:
 	adds r1, #1
 	ldrb r1, [r1]
 	movs r2, #1
-	bl sub_0803278C
+	bl SoulInventory_AddAmountToSoulTotal
 	ldr r0, _0800B4AC @ =gEwramData
 	ldr r0, [r0]
 	movs r1, #0x85

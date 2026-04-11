@@ -436,10 +436,10 @@ s32 sub_08038F8C(void)
             {
                 for (var_r4 = 0; var_r4 < sUnk_084F158C[var_r6]; var_r4++)
                 {
-                    sub_080324D0(var_r6, var_r4, 1);
+                    SoulInventory_AddAmountToFirstGroupTotal(var_r6, var_r4, 1);
                 }
             }
-            sub_0803278C(0, 0, 7);
+            SoulInventory_AddAmountToSoulTotal(0, 0, 7);
 
             for (var_r6 = 3; var_r6 < 6; var_r6++)
             {

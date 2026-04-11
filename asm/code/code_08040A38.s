@@ -7190,7 +7190,7 @@ _08044494:
 	subs r5, r0, #5
 	adds r0, r5, #0
 	adds r1, r6, #0
-	bl sub_080326B8
+	bl SoulInventory_GetSoulTotal
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _080444C8
@@ -7221,7 +7221,7 @@ _080444E0:
 	adds r0, r5, #0
 	adds r1, r6, #0
 	movs r2, #1
-	bl sub_0803278C
+	bl SoulInventory_AddAmountToSoulTotal
 	movs r0, #1
 	bl sub_08032DBC
 	adds r0, r6, #0
@@ -17169,7 +17169,7 @@ _080491CC:
 	adds r1, r0, #0
 	subs r1, #1
 	ldr r0, [sp]
-	bl sub_080326B8
+	bl SoulInventory_GetSoulTotal
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080491E8
@@ -17190,7 +17190,7 @@ _080491F8:
 _080491FC:
 	subs r1, r5, #1
 	ldr r0, [sp]
-	bl sub_080326B8
+	bl SoulInventory_GetSoulTotal
 	lsls r0, r0, #0x18
 	adds r4, r5, #1
 	cmp r0, #0
@@ -17239,7 +17239,7 @@ _0804924C:
 	adds r1, r0, #0
 	subs r1, #1
 	ldr r0, [sp]
-	bl sub_080326B8
+	bl SoulInventory_GetSoulTotal
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08049276
@@ -17272,7 +17272,7 @@ _08049284:
 _08049290:
 	subs r1, r5, #1
 	ldr r0, [sp]
-	bl sub_080326B8
+	bl SoulInventory_GetSoulTotal
 	lsls r0, r0, #0x18
 	adds r4, r5, #1
 	cmp r0, #0
@@ -17323,7 +17323,7 @@ _080492E4:
 _080492EA:
 	subs r1, r5, #1
 	ldr r0, [sp]
-	bl sub_080326B8
+	bl SoulInventory_GetSoulTotal
 	lsls r0, r0, #0x18
 	adds r4, r5, #1
 	cmp r0, #0
@@ -17741,7 +17741,7 @@ _080495F0:
 	adds r1, r0, #0
 	subs r1, #1
 	ldr r0, [sp, #8]
-	bl sub_080326B8
+	bl SoulInventory_GetSoulTotal
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08049610
@@ -17769,7 +17769,7 @@ _08049624:
 _08049630:
 	subs r1, r7, #1
 	ldr r0, [sp, #8]
-	bl sub_080326B8
+	bl SoulInventory_GetSoulTotal
 	lsls r0, r0, #0x18
 	adds r6, r7, #1
 	cmp r0, #0
@@ -17823,7 +17823,7 @@ _0804968A:
 	adds r1, r0, #0
 	subs r1, #1
 	ldr r0, [sp, #8]
-	bl sub_080326B8
+	bl SoulInventory_GetSoulTotal
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	str r0, [sp, #4]
@@ -17910,7 +17910,7 @@ _08049736:
 _0804973C:
 	subs r1, r7, #1
 	ldr r0, [sp, #8]
-	bl sub_080326B8
+	bl SoulInventory_GetSoulTotal
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	str r0, [sp, #4]
@@ -18043,7 +18043,7 @@ _08049838:
 _08049840:
 	subs r1, r7, #1
 	ldr r0, [sp, #8]
-	bl sub_080326B8
+	bl SoulInventory_GetSoulTotal
 	lsls r0, r0, #0x18
 	adds r6, r7, #1
 	cmp r0, #0
@@ -18157,7 +18157,7 @@ _08049904:
 	subs r1, #1
 	adds r0, r3, #0
 	str r3, [sp]
-	bl sub_080326B8
+	bl SoulInventory_GetSoulTotal
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	ldr r3, [sp]
@@ -18295,7 +18295,7 @@ _080499FE:
 	adds r1, r0, #0
 	subs r1, #1
 	adds r0, r6, #0
-	bl sub_080326B8
+	bl SoulInventory_GetSoulTotal
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	cmp r0, #1
@@ -18329,7 +18329,7 @@ _08049A50:
 	ldrb r1, [r4, #0x17]
 	subs r1, #1
 	adds r0, r6, #0
-	bl sub_080326B8
+	bl SoulInventory_GetSoulTotal
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _08049A88
@@ -22554,7 +22554,7 @@ _0804BA98:
 _0804BABC:
 	movs r0, #3
 	adds r1, r6, #0
-	bl sub_080326B8
+	bl SoulInventory_GetSoulTotal
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0804BADC
@@ -22630,7 +22630,7 @@ sub_0804BB40: @ 0x0804BB40
 	movs r1, #0x15
 	ldrsb r1, [r7, r1]
 	movs r0, #3
-	bl sub_080326B8
+	bl SoulInventory_GetSoulTotal
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0804BB9C
@@ -22682,7 +22682,7 @@ _0804BBC6:
 	movs r1, #0x15
 	ldrsb r1, [r7, r1]
 	movs r0, #3
-	bl sub_080326B8
+	bl SoulInventory_GetSoulTotal
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0804BBF4
@@ -22730,7 +22730,7 @@ _0804BC38: .4byte 0x00000F34
 _0804BC3C:
 	movs r0, #3
 	adds r1, r5, #0
-	bl sub_080326B8
+	bl SoulInventory_GetSoulTotal
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0804BC7A
@@ -22787,7 +22787,7 @@ sub_0804BCA0: @ 0x0804BCA0
 	movs r1, #0x15
 	ldrsb r1, [r4, r1]
 	movs r0, #3
-	bl sub_080326B8
+	bl SoulInventory_GetSoulTotal
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0804BCC4
@@ -22819,7 +22819,7 @@ sub_0804BCDC: @ 0x0804BCDC
 _0804BCE4:
 	movs r0, #3
 	adds r1, r5, #0
-	bl sub_080326B8
+	bl SoulInventory_GetSoulTotal
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0804BD22
@@ -24573,7 +24573,7 @@ _0804CAE0:
 	ldrb r0, [r3, #0x17]
 	ldrb r1, [r3, #0x18]
 	subs r1, #1
-	bl sub_080326B8
+	bl SoulInventory_GetSoulTotal
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0804CB28
@@ -24584,7 +24584,7 @@ _0804CB10:
 	ldrb r0, [r3, #0x17]
 	ldrb r1, [r3, #0x18]
 	subs r1, #1
-	bl sub_080326B8
+	bl SoulInventory_GetSoulTotal
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0804CB24
@@ -25155,7 +25155,7 @@ _0804CF88:
 	ldrb r0, [r1, #0x17]
 	ldrb r1, [r1, #0x18]
 	subs r1, #1
-	bl sub_080326B8
+	bl SoulInventory_GetSoulTotal
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0804CFC4
@@ -25331,7 +25331,7 @@ _0804D0F4:
 	ldrb r0, [r7, #0x17]
 	ldrb r1, [r7, #0x18]
 	subs r1, #1
-	bl sub_080326B8
+	bl SoulInventory_GetSoulTotal
 	lsls r0, r0, #0x18
 	lsrs r3, r0, #0x18
 _0804D102:
@@ -25459,7 +25459,7 @@ sub_0804D1DC: @ 0x0804D1DC
 	ldrb r0, [r4, #0x17]
 	ldrb r1, [r4, #0x18]
 	subs r1, #1
-	bl sub_080326B8
+	bl SoulInventory_GetSoulTotal
 	lsls r0, r0, #0x18
 	lsrs r5, r0, #0x18
 	b _0804D20A
@@ -25672,7 +25672,7 @@ _0804D386:
 	ldrb r0, [r4, #0x17]
 	ldrb r1, [r4, #0x18]
 	subs r1, #1
-	bl sub_080326B8
+	bl SoulInventory_GetSoulTotal
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0804D3AE

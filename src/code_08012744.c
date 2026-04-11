@@ -361,7 +361,7 @@ s32 sub_08013038(s32 param_0, s32 param_1, s32 param_2, s32 param_3)
     if (var_0 != 0)
     {
         SaveData_LoadSlotFromSram(param_0);
-        sub_08032588(param_1, param_2, param_3, -1);
+        SoulInventory_AddAmountToGroupTotal(param_1, param_2, param_3, -1);
         sub_08032D58(param_2, param_3);
         SaveData_SaveSlotToSram_inline(param_0);
         return 1;
@@ -391,9 +391,9 @@ s32 sub_08013164(s32 param_0, s32 param_1, s32 param_2)
     s32 var_2;
 
     temp_r4 = &gEwramData->unk_60;
-    if ((sub_08032B88(0, param_1, param_2) != 0) && (temp_r4->unk_A2[1] == 0))
+    if ((SoulInventory_GetGroupSoulTotal(0, param_1, param_2) != 0) && (temp_r4->unk_A2[1] == 0))
     {
-        sub_0803278C(param_1, param_2, -1);
+        SoulInventory_AddAmountToSoulTotal(param_1, param_2, -1);
         sub_08032D58(param_1, param_2);
         error_addr = SaveData_SaveSlotToSram_inline(param_0);
         return error_addr;
@@ -412,7 +412,7 @@ s32 sub_08013164(s32 param_0, s32 param_1, s32 param_2)
 
     param_0 = param_0 - 1;
     SaveData_LoadSlotFromSram(param_0);
-    sub_08032588(0, param_1, param_2, -1);
+    SoulInventory_AddAmountToGroupTotal(0, param_1, param_2, -1);
     sub_08032D58(param_1, param_2);
     SaveData_SaveSlotToSram_inline(param_0);
     sub_08013038(param_0 + 1, 0, param_1, param_2);
@@ -492,8 +492,8 @@ void sub_08013404(void)
 
     for (var_r4 = 0; var_r4 < 11; var_r4++, var_r5 += 1)
     {
-        sub_08032C10(0, var_r5->unk_0, var_r5->unk_1 - 1, 0);
-        sub_08032C10(1, var_r5->unk_0, var_r5->unk_1 - 1, 0);
+        SoulInventory_SetGroupTotalAmount(0, var_r5->unk_0, var_r5->unk_1 - 1, 0);
+        SoulInventory_SetGroupTotalAmount(1, var_r5->unk_0, var_r5->unk_1 - 1, 0);
     }
 
     for (var_r0 = 0; var_r0 < 40; var_r0++)
