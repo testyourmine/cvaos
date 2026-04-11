@@ -10,9 +10,9 @@ u16* BgCmdBuffer_WriteString(u16 tileIndex, u16 rowOffset, u8 tileInfo, u8 *stri
 u16* BgCmdBuffer_WriteNumber(u16 tileIndex, u16 rowOffset, u8 palNum, s32 numChars, s32 value);
 u16* BgCmdBuffer_WriteString_Duplicate(u16 tileIndex, u16 rowOffset, u8 tileInfo, u8 *string);
 u16* BgCmdBuffer_WriteData(u8 bgCmd, u8 length, u8* src, u32 vramAddr);
-void sub_080015E4(void);
-struct Unk_030034BC* sub_08001668(u16 arg0, s32 arg1, u32 *arg2);
-struct Unk_030034BC* sub_080016D0(u32 arg0, u32 *arg1, u32 *arg2);
+void DmaQueue_Process(void);
+struct DmaQueueInfo* DmaQueue_DirectCopy(u16 size, u32 *src, u32 *dst);
+struct DmaQueueInfo* DmaQueue_IndirectCopy(u32 size, u32 *src, u32 *dst);
 void HBlankEffectSetup(u8 numEntries, u8 vcountSetting, u8 writeSize, void *destReg);
 s32 CheckRoomTransition(s32 xOffset, s32 yOffset);
 s32 sub_08001800(struct EwramData_unkA078_0 *param_0, u16 param_1, u16 param_2);

@@ -22,7 +22,7 @@ extern u32 sub_080137B8(void);
 extern s32 sub_080137F8(struct EwramData_unk20 *param_0);
 extern s32 sub_080137FC(void);
 extern s32 sub_08013854(s32 saveSlot, s32 param_1);
-extern u32 sub_080138E8(void);
-extern s32 sub_0801391C(void);
+extern u32 SaveData_SaveLanguage(void);
+extern s32 SaveData_LoadLanguage(void);
 
 #endif /* CODE_08012744_H */

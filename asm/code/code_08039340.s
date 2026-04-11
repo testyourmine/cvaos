@@ -1589,7 +1589,7 @@ _08039F9E:
 	adds r2, r5, r0
 	mov r0, r8
 	adds r1, r6, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	add r6, r8
 	movs r1, #0x80
 	lsls r1, r1, #3
@@ -1674,7 +1674,7 @@ _0803A04C:
 	adds r2, r5, r0
 	adds r0, r7, #0
 	adds r1, r6, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	adds r6, r6, r7
 	movs r1, #0x80
 	lsls r1, r1, #3
@@ -2007,7 +2007,7 @@ _0803A2EA:
 	adds r2, r5, r0
 	adds r0, r7, #0
 	adds r1, r6, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	adds r6, r6, r7
 	movs r1, #0x80
 	lsls r1, r1, #3
@@ -2092,7 +2092,7 @@ _0803A396:
 	adds r2, r5, r0
 	mov r0, r8
 	adds r1, r6, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	add r6, r8
 	movs r1, #0x80
 	lsls r1, r1, #3
@@ -2455,7 +2455,7 @@ _0803A66E:
 	adds r2, r5, r0
 	adds r0, r7, #0
 	adds r1, r6, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	adds r6, r6, r7
 	movs r1, #0x80
 	lsls r1, r1, #3
@@ -2540,7 +2540,7 @@ _0803A71A:
 	adds r2, r5, r0
 	mov r0, r8
 	adds r1, r6, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	add r6, r8
 	movs r1, #0x80
 	lsls r1, r1, #3
@@ -2896,7 +2896,7 @@ _0803A9E2:
 	adds r2, r5, r0
 	adds r0, r7, #0
 	adds r1, r6, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	adds r6, r6, r7
 	movs r1, #0x80
 	lsls r1, r1, #3
@@ -4617,7 +4617,7 @@ _0803B742:
 	adds r2, r4, r1
 	mov r0, sb
 	adds r1, r6, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	b _0803B770
 	.align 2, 0
 _0803B758: .4byte 0x040000D4
@@ -4665,7 +4665,7 @@ _0803B7A0:
 	mov r0, sb
 	adds r1, r6, #0
 	str r3, [sp, #0x10]
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	ldr r3, [sp, #0x10]
 	b _0803B7CC
 	.align 2, 0
@@ -13954,7 +13954,7 @@ _0803FDE2:
 _0803FDFC: .4byte 0x040000D4
 _0803FE00:
 	adds r2, r5, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 _0803FE06:
 	pop {r4, r5, r6}
 	pop {r0}

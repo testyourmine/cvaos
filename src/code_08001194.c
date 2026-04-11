@@ -338,84 +338,92 @@ u16* BgCmdBuffer_WriteData(u8 bgCmd, u8 length, u8* src, u32 vramAddr)
 }
 
 /**
- * @brief 15E4 | To document
+ * @brief 15E4 | Perform all DMA requests in queue
  * 
  */
-void sub_080015E4(void)
+void DmaQueue_Process(void)
 {
-    struct Unk_030034BC *var_0;
-    u8 *var_1;
+    struct DmaQueueInfo *dmaQueueInfo;
+    u8 *nextDmaEntry;
 
-    var_0 = &gUnk_03002CB0.unk_80C;
-    while ((u32)var_0 < (u32)gUnk_03002CB0.unk_808)
+    dmaQueueInfo = gUnk_03002CB0.dmaQueue;
+
+    while (dmaQueueInfo < gUnk_03002CB0.dmaQueueEnd)
     {
-        if (var_0->unk_814 != 0)
+        if (dmaQueueInfo->directSize != 0)
         {
-            DMA_COPY_16(3, &var_0->unk_818, var_0->unk_810, var_0->unk_814);
-            var_1 = var_0->unk_814 + (u8*)var_0 + 0xC;
+            // Direct transfer (data is embedded)
+            DMA_COPY_16(3, &dmaQueueInfo->unk_818.directData, dmaQueueInfo->dst, dmaQueueInfo->directSize);
+            nextDmaEntry = (u8*)dmaQueueInfo + dmaQueueInfo->directSize + 0xC;
         }
         else
         {
-            DMA_COPY_16(3, var_0->unk_80C, var_0->unk_810, var_0->unk_818);
-            var_1 = (u8*)var_0 + 0x10;
+            // Indirect transfer (data comes from pointer)
+            DMA_COPY_16(3, dmaQueueInfo->src, dmaQueueInfo->dst, dmaQueueInfo->unk_818.indirectSize);
+            nextDmaEntry = (u8*)dmaQueueInfo + 0x10;
         }
-        var_0 = (struct Unk_030034BC *)((s32)((var_1 + 3)) & ~3);
+        dmaQueueInfo = (struct DmaQueueInfo *)((s32)(nextDmaEntry + 3) & ~3);
     }
-    gUnk_03002CB0.unk_808 = &gUnk_03002CB0.unk_80C;
+
+    gUnk_03002CB0.dmaQueueEnd = &gUnk_03002CB0.dmaQueue[0];
 }
 
 /**
- * @brief 1668 | To document
+ * @brief 1668 | Add direct DMA to queue (data is copied into buffer)
  * 
- * @param arg0 To document
- * @param arg1 To document
- * @param arg2 To document
- * @return struct Unk_030034BC* To document
+ * @param size Size in bytes
+ * @param src Source
+ * @param dst Destination
+ * @return struct DmaQueueInfo* Pointer to end of DMA queue
  */
-struct Unk_030034BC* sub_08001668(u16 arg0, s32 arg1, u32 *arg2)
+struct DmaQueueInfo* DmaQueue_DirectCopy(u16 size, u32 *src, u32 *dst)
 {
-    struct Unk_030034BC *tmp1;
+    struct DmaQueueInfo *dmaQueueInfo;
 
-    tmp1 = gUnk_03002CB0.unk_808;
-    if (((s32) ((u8*)tmp1 + (arg0 + 0xC)) >= (s32) (&gUnk_03002CB0.unk_100C)) || (arg0 == 0))
+    dmaQueueInfo = gUnk_03002CB0.dmaQueueEnd;
+
+    // check if enough room in queue and size is nonzero
+    if (((s32) ((u8*)dmaQueueInfo + (size + 0xC)) >= (s32) (&gUnk_03002CB0.dmaQueue[0x80])) || (size == 0))
     {
         return NULL;
     }
 
-    tmp1->unk_80C = (u32*)&tmp1->unk_818;
-    tmp1->unk_810 = arg2;
-    tmp1->unk_814 = arg0;
+    dmaQueueInfo->src = (u32*)&dmaQueueInfo->unk_818.directData;
+    dmaQueueInfo->dst = dst;
+    dmaQueueInfo->directSize = size;
+    DMA_COPY_16(3, src, dmaQueueInfo->src, size);
 
-    DMA_COPY_16(3, arg1, tmp1->unk_80C, arg0);
-    gUnk_03002CB0.unk_808 = (struct Unk_030034BC*)(((u32)((u8*)tmp1 + arg0 + 0xC + 3)) & ~3);
-    return gUnk_03002CB0.unk_808;
+    gUnk_03002CB0.dmaQueueEnd = (struct DmaQueueInfo*)((u32)((u8*)dmaQueueInfo + size + 0xC + 3) & ~3);
+    return gUnk_03002CB0.dmaQueueEnd;
 }
 
 /**
- * @brief 16D0 | To document
+ * @brief 16D0 | Add indirect DMA to queue (data is pointed to)
  * 
- * @param arg0 To document
- * @param arg1 To document
- * @param arg2 To document
- * @return s32 To document
+ * @param size Size in bytes
+ * @param src Source
+ * @param dst Destination
+ * @return struct DmaQueueInfo* Pointer to end of DMA queue
  */
-struct Unk_030034BC* sub_080016D0(u32 arg0, u32 *arg1, u32 *arg2)
+struct DmaQueueInfo* DmaQueue_IndirectCopy(u32 size, u32 *src, u32 *dst)
 {
-    struct Unk_030034BC *temp_r3;
+    struct DmaQueueInfo *dmaQueueInfo;
 
-    temp_r3 = gUnk_03002CB0.unk_808;
-    if ((u32) ((u8*)temp_r3 + 0x10) >= (u32) (&gUnk_03002CB0.unk_100C))
+    dmaQueueInfo = gUnk_03002CB0.dmaQueueEnd;
+
+    // check if enough room in queue
+    if ((u32) ((u8*)dmaQueueInfo + 0x10) >= (u32) (&gUnk_03002CB0.dmaQueue[0x80]))
     {
         return NULL;
     }
 
-    temp_r3->unk_80C = arg1;
-    temp_r3->unk_810 = arg2;
-    temp_r3->unk_814 = 0;
-    temp_r3->unk_818 = arg0;
+    dmaQueueInfo->src = src;
+    dmaQueueInfo->dst = dst;
+    dmaQueueInfo->directSize = 0;
+    dmaQueueInfo->unk_818.indirectSize = size;
 
-    gUnk_03002CB0.unk_808 = (struct Unk_030034BC*)(((u32)((u8*)temp_r3 + 0x10 + 3)) & ~3);
-    return gUnk_03002CB0.unk_808;
+    gUnk_03002CB0.dmaQueueEnd = (struct DmaQueueInfo*)((u32)((u8*)dmaQueueInfo + 0x10 + 3) & ~3);
+    return gUnk_03002CB0.dmaQueueEnd;
 }
 
 /**

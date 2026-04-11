@@ -248,7 +248,7 @@ _0800E8DC:
 	adds r1, r1, r3
 	adds r2, r2, r1
 	ldr r1, [sp, #0xc]
-	bl sub_08001668
+	bl DmaQueue_DirectCopy
 	mov ip, r7
 	ldr r0, _0800EA04 @ =gEwramData
 	ldr r1, [r0]
@@ -299,7 +299,7 @@ _0800E946:
 	adds r1, r1, r3
 	adds r2, r2, r1
 	ldr r1, [sp, #0xc]
-	bl sub_08001668
+	bl DmaQueue_DirectCopy
 	adds r2, r7, #0
 	ldr r4, [sp, #0x1c]
 	ldr r0, _0800EA04 @ =gEwramData
@@ -351,7 +351,7 @@ _0800E9A8:
 	adds r1, r1, r3
 	adds r2, r2, r1
 	ldr r1, [sp, #0xc]
-	bl sub_08001668
+	bl DmaQueue_DirectCopy
 	ldr r0, _0800EA48 @ =0x0820C428
 	ldr r4, [sp, #0x20]
 	lsrs r1, r4, #0x10

@@ -6990,7 +6990,7 @@ _08054130:
 	ldr r0, _08054274 @ =0x0600E00E
 	adds r2, r2, r0
 	movs r0, #0xa
-	bl sub_08001668
+	bl DmaQueue_DirectCopy
 	ldr r0, [r6]
 	adds r1, r0, r4
 	movs r2, #0
@@ -7020,7 +7020,7 @@ _0805416C:
 	ldr r0, _08054274 @ =0x0600E00E
 	adds r2, r2, r0
 	movs r0, #0xa
-	bl sub_08001668
+	bl DmaQueue_DirectCopy
 	ldr r0, [r5]
 	adds r1, r0, r4
 	movs r2, #0
@@ -7043,7 +7043,7 @@ _0805419C:
 	ldr r0, _08054278 @ =0x0600E028
 	adds r2, r2, r0
 	movs r0, #0xa
-	bl sub_08001668
+	bl DmaQueue_DirectCopy
 	ldr r0, [r5]
 	adds r1, r0, r4
 	movs r2, #0
@@ -7067,7 +7067,7 @@ _080541CA:
 	ldr r0, _08054278 @ =0x0600E028
 	adds r2, r2, r0
 	movs r0, #0xa
-	bl sub_08001668
+	bl DmaQueue_DirectCopy
 	ldr r0, [r5]
 	adds r1, r0, r4
 	movs r2, #0
@@ -7089,7 +7089,7 @@ _080541FA:
 	ldr r2, _0805427C @ =0x0600E014
 	add r2, sb
 	movs r0, #0x18
-	bl sub_08001668
+	bl DmaQueue_DirectCopy
 	ldr r0, [r5]
 	adds r1, r0, r4
 	movs r2, #0
@@ -7112,7 +7112,7 @@ _08054226:
 	ldr r0, _0805427C @ =0x0600E014
 	adds r2, r2, r0
 	movs r0, #0x18
-	bl sub_08001668
+	bl DmaQueue_DirectCopy
 	pop {r3, r4}
 	mov r8, r3
 	mov sb, r4
@@ -7197,7 +7197,7 @@ _080542F6:
 	ldr r0, _0805443C @ =0x0600E010
 	adds r2, r2, r0
 	movs r0, #0xa
-	bl sub_08001668
+	bl DmaQueue_DirectCopy
 	ldr r0, [r6]
 	adds r1, r0, r4
 	movs r2, #0
@@ -7227,7 +7227,7 @@ _08054332:
 	ldr r0, _0805443C @ =0x0600E010
 	adds r2, r2, r0
 	movs r0, #0xa
-	bl sub_08001668
+	bl DmaQueue_DirectCopy
 	ldr r0, [r5]
 	adds r1, r0, r4
 	movs r2, #0
@@ -7250,7 +7250,7 @@ _08054362:
 	ldr r0, _08054440 @ =0x0600E028
 	adds r2, r2, r0
 	movs r0, #0xa
-	bl sub_08001668
+	bl DmaQueue_DirectCopy
 	ldr r0, [r5]
 	adds r1, r0, r4
 	movs r2, #0
@@ -7274,7 +7274,7 @@ _08054390:
 	ldr r0, _08054440 @ =0x0600E028
 	adds r2, r2, r0
 	movs r0, #0xa
-	bl sub_08001668
+	bl DmaQueue_DirectCopy
 	ldr r0, [r5]
 	adds r1, r0, r4
 	movs r2, #0
@@ -7296,7 +7296,7 @@ _080543C0:
 	ldr r2, _08054444 @ =0x0600E014
 	add r2, sb
 	movs r0, #0x18
-	bl sub_08001668
+	bl DmaQueue_DirectCopy
 	ldr r0, [r5]
 	adds r1, r0, r4
 	movs r2, #0
@@ -7320,7 +7320,7 @@ _080543EC:
 	adds r0, #0x14
 	adds r2, r2, r0
 	movs r0, #0x18
-	bl sub_08001668
+	bl DmaQueue_DirectCopy
 	pop {r3, r4}
 	mov r8, r3
 	mov sb, r4

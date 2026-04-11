@@ -1126,7 +1126,7 @@ void sub_0800DE4C(s32 param_0)
     *var_r4_6++ = 0xE641;
     *var_r4_6++ = 0xE640;
 
-    if (sub_08001668(0xC0, (s32) gEwramData->unk_133F4, (u32 *)(0x0600E000 + (var_0 << 6))) != NULL)
+    if (DmaQueue_DirectCopy(0xC0, (u32 *)gEwramData->unk_133F4, (u32 *)(VRAM_BASE + 0xE000 + var_0 * 0x40)) != NULL)
     {
         sub_0803C918((u8 *)0x0820C428, 5, 1, 0xE);
         sub_0803C918((u8 *)0x081183F4, 1, 1, 0xF);
@@ -1252,7 +1252,7 @@ void sub_0800E0E8(s32 param_0)
     *temp_r5++ = 0xE641;
     *temp_r5++ = 0xE640;
 
-    if (sub_08001668(0xC0, (s32) gEwramData->unk_133F4, (u32 *)(0x0600E000 + (var_1 << 6))) != NULL)
+    if (DmaQueue_DirectCopy(0xC0, (u32 *)gEwramData->unk_133F4, (u32 *)(VRAM_BASE + 0xE000 + var_1 * 0x40)) != NULL)
     {
         sub_0803C918((u8 *)0x0820C428, var_0, 1, 0xE);
         sub_0803C918((u8 *)0x081183F4, 1, 1, 0xF);
@@ -1363,23 +1363,23 @@ void sub_0800E40C(void)
     {
         var_2 = ((u16*)gEwramData->unk_133F4);
         *var_2 = 0xF228;
-        sub_08001668(2, (s32) temp_r0, (u32 *) (0x0600E000 + (var_1 << 1) + (var_r7 << 6)));
+        DmaQueue_DirectCopy(2, (u32 *)temp_r0, (u32 *) (VRAM_BASE + 0xE000 + (var_1 * 2) + (var_r7 * 0x40)));
         var_r7++;
 
         var_2 = ((u16*)gEwramData->unk_133F4);
         *var_2 = 0xF238;
-        sub_08001668(2, (s32) temp_r0, (u32 *) (0x0600E000 + (var_1 << 1) + (var_r7 << 6)));
+        DmaQueue_DirectCopy(2, (u32 *)temp_r0, (u32 *) (VRAM_BASE + 0xE000 + (var_1 * 2) + (var_r7 * 0x40)));
     }
     else
     {
         var_2 = ((u16*)gEwramData->unk_133F4);
         *var_2 = (gEwramData->unk_60.inGameTimer & 8) ? 0xF226 : 0xF227;
-        sub_08001668(2, (s32) temp_r0, (u32 *) (0x0600E000 + (var_1 << 1) + (var_r7 << 6)));
+        DmaQueue_DirectCopy(2, (u32 *)temp_r0, (u32 *) (VRAM_BASE + 0xE000 + (var_1 * 2) + (var_r7 * 0x40)));
         var_r7++;
 
         var_2 = ((u16*)gEwramData->unk_133F4);
         *var_2 = (gEwramData->unk_60.inGameTimer & 8) ? 0xF236 : 0xF237;
-        sub_08001668(2, (s32) temp_r0, (u32 *) (0x0600E000 + (var_1 << 1) + (var_r7 << 6)));
+        DmaQueue_DirectCopy(2, (u32 *)temp_r0, (u32 *) (VRAM_BASE + 0xE000 + (var_1 * 2) + (var_r7 * 0x40)));
     }
 }
 
@@ -1464,7 +1464,7 @@ void sub_0800E540(s32 param_0, s32 param_1)
             *var_r3_2++ = var_r1_2 + (var_r1 << 5) + 0xE2E0;
         }
 
-        sub_08001668(var_0 << 1, (s32) temp_sb, (u32 *) (0x0600E000 + (var_5 << 1) + (var_3 << 6)));
+        DmaQueue_DirectCopy(var_0 << 1, (u32 *)temp_sb, (u32 *) (VRAM_BASE + 0xE000 + (var_5 * 2) + (var_3 * 0x40)));
         var_r2++;
     }
 
@@ -1474,7 +1474,7 @@ void sub_0800E540(s32 param_0, s32 param_1)
     {
         *var_r3_2++ = 0xE2B0;
     }
-    sub_08001668(var_0 << 1, (s32) temp_sb, (u32 *) (0x0600E000 + (var_5 << 1) + (var_3 << 6)));
+    DmaQueue_DirectCopy(var_0 << 1, (u32 *)temp_sb, (u32 *) (VRAM_BASE + 0xE000 + (var_5 * 2) + (var_3 * 0x40)));
 
     var_r3_2 = (u16*)&gEwramData->unk_133F4;
     var_3 = var_2 + 3;
@@ -1482,7 +1482,7 @@ void sub_0800E540(s32 param_0, s32 param_1)
     {
         *var_r3_2++ = 0xE2B1;
     }
-    sub_08001668(var_0 << 1, (s32) temp_sb, (u32 *) (0x0600E000 + (var_5 << 1) + (var_3 << 6)));
+    DmaQueue_DirectCopy(var_0 << 1, (u32 *)temp_sb, (u32 *) (VRAM_BASE + 0xE000 + (var_5 * 2) + (var_3 * 0x40)));
 }
 
 // (94.64%) https://decomp.me/scratch/iF3mv
@@ -1593,7 +1593,7 @@ NONMATCH("asm/non_matching/sub_0800E708.inc", void sub_0800E708(s32 arg0, s32 ar
     *var_r3_2++ = 0xE622;
     *var_r3_2++ = 0xE621;
     *var_r3_2++ = 0xE620;
-    sub_08001668((var_0 + 4) << 1, (s32) spC, (u32 *) (0x0600E000 + (var_1 << 1) + (var_6 << 6)));
+    DmaQueue_DirectCopy((var_0 + 4) << 1, (u32 *)spC, (u32 *) (VRAM_BASE + 0xE000 + (var_1 * 2) + (var_6 * 0x40)));
     var_1 = var_r7;
 
     var_r3_2 = (u16*)&gEwramData->unk_133F4[0];
@@ -1605,7 +1605,7 @@ NONMATCH("asm/non_matching/sub_0800E708.inc", void sub_0800E708(s32 arg0, s32 ar
     }
     *var_r3_2++ = 0xE631;
     *var_r3_2++ = 0xE630;
-    sub_08001668((var_0 + 4) << 1, (s32) spC, (u32 *) (0x0600E000 + (var_1 << 1) + ((var_r1 + 1) << 6)));
+    DmaQueue_DirectCopy((var_0 + 4) << 1, (u32 *)spC, (u32 *) (VRAM_BASE + 0xE000 + (var_1 * 2) + ((var_r1 + 1) * 0x40)));
     var_5 = var_r7;
     var_3 = var_r1 + 2;
 
@@ -1620,7 +1620,7 @@ NONMATCH("asm/non_matching/sub_0800E708.inc", void sub_0800E708(s32 arg0, s32 ar
     *var_r3_2++ = 0xE642;
     *var_r3_2++ = 0xE641;
     *var_r3_2++ = 0xE640;
-    sub_08001668((var_0 + 4) << 1, (s32) spC, (u32 *) (0x0600E000 + (var_5 << 1) + ((var_3) << 6)));
+    DmaQueue_DirectCopy((var_0 + 4) << 1, (u32 *)spC, (u32 *) (VRAM_BASE + 0xE000 + (var_5 * 2) + ((var_3) * 0x40)));
 
     sub_0803C918((u8 *)0x0820C428, sp10, 1, 0xE);
     sub_0803C918((u8 *)0x081183F4, 1, 1, 0xF);
@@ -1686,19 +1686,21 @@ void sub_0800EB04(void)
     {
         gEwramData->unk_60.unk_42C |= 0x02000000;
         gEwramData->hBlankEffect.requestStop = 1;
+
         var_0 = 0x26;
         DMA_FILL_32(3, 0, temp_r6, var_0);
         var_r4 = 0x0600E01A;
         for (var_r5 = 0; var_r5 < 4; var_r5++)
         {
-            sub_08001668(var_0, (s32) temp_r6, (u32 *) var_r4);
+            DmaQueue_DirectCopy(var_0, (u32 *)temp_r6, (u32 *) var_r4);
             var_r4 += 0x40;
         }
-        var_r5++;
         var_r4 = 0;
+
+        var_r5 = 5;
         var_1 = 0x11;
         DMA_FILL_32(3, 0, temp_r6, var_1 * 64);
-        sub_08001668(var_1 * 64, (s32) temp_r6, (u32 *)(0x0600E000 + var_r5 * 0x40));
+        DmaQueue_DirectCopy(var_1 * 64, (u32 *)temp_r6, (u32 *)(VRAM_BASE + 0xE000 + var_r5 * 0x40));
         temp_r8->unk_423 = 0;
         temp_r8->unk_422 = 0;
         gEwramData->unk_60.unk_42C &= ~0x01000000;

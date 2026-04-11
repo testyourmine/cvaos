@@ -755,11 +755,11 @@ s32 sub_08013854(s32 saveSlot, s32 param_1)
 }
 
 /**
- * @brief 138E8 | To document
+ * @brief 138E8 | Save the language to SRAM
  * 
  * @return u32 To document
  */
-u32 sub_080138E8(void)
+u32 SaveData_SaveLanguage(void)
 {
     u32 error_addr;
     void *sramLanguageOffset;
@@ -774,11 +774,11 @@ u32 sub_080138E8(void)
 }
 
 /**
- * @brief 1391C | To document
+ * @brief 1391C | Load the language from SRAM
  * 
  * @return u32 To document
  */
-s32 sub_0801391C(void)
+s32 SaveData_LoadLanguage(void)
 {
     s32 saveValid;
     void *sramLanguageOffset;

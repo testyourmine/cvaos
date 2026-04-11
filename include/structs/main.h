@@ -45,23 +45,25 @@ struct DisplayRegisters {
 
 extern struct DisplayRegisters gDisplayRegisters;
 
-struct Unk_030034BC {
-    u32 *unk_80C; // 34BC
-    u32 *unk_810; // 34C0
-    u16 unk_814; // 34C4
-    u16 unk_816;
-    u32 unk_818; // 34C8
-    u8 pad_81C[0x100C - 0x81C]; // TODO: verify
+struct DmaQueueInfo {
+    u32 *src; // 34BC
+    u32 *dst; // 34C0
+    u16 directSize; // 34C4
+    u8 pad_816[0x818 - 0x816];
+    union {
+        u32 directData; // 34C8
+        u32 indirectSize; // 34C8
+    } unk_818;
 };
 
 struct Unk_03002CB0 {
     /* 0x0000 */ u16 dispCnt;
     /* 0x0002 */ u8 unk_2;
-    /* 0x0003 */ u8 unk_3;
+    /* 0x0003 */ u8 pad_3[0x4 - 0x3];
     /* 0x0004 */ u16 *pBgCmdBuffer;
-    /* 0x0008 */ u16 bgCmdBuffer[0x400]; // TODO: verify length
-    /* 0x0808 */ struct Unk_030034BC *unk_808;
-    /* 0x080C */ struct Unk_030034BC unk_80C;
+    /* 0x0008 */ u16 bgCmdBuffer[0x400];
+    /* 0x0808 */ struct DmaQueueInfo *dmaQueueEnd;
+    /* 0x080C */ struct DmaQueueInfo dmaQueue[0x80];
     /* 0x100C */ u8 unk_100C;
     /* 0x100D */ u8 unk_100D;
     /* 0x100E */ u8 unk_100E;

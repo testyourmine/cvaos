@@ -10906,7 +10906,7 @@ sub_08046148: @ 0x08046148
 	adds r2, r4, r0
 	movs r0, #0xc0
 	adds r1, r5, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	movs r0, #0x80
 	lsls r0, r0, #2
 	adds r5, r5, r0
@@ -10915,7 +10915,7 @@ sub_08046148: @ 0x08046148
 	movs r0, #0xc0
 	adds r1, r5, #0
 	adds r2, r4, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 _080461A2:
 	pop {r4, r5, r6}
 	pop {r0}

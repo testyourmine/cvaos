@@ -620,7 +620,7 @@ s32 GameModeResetUpdate(void)
             if (unk_60->language != 1)
             {
                 unk_60->language = 1;
-                sub_080138E8();
+                SaveData_SaveLanguage();
             }
             gameMode = GAME_MODE_LICENSED_BY_NINTENDO;
             break;
@@ -731,7 +731,7 @@ s32 GameModeResetUpdate(void)
             }
             else
             {
-                sub_080138E8();
+                SaveData_SaveLanguage();
                 gameMode = GAME_MODE_LICENSED_BY_NINTENDO;
             }
             break;

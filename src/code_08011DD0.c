@@ -386,8 +386,8 @@ void sub_08012210(void)
     {
         temp_r6 = gEwramData->unk_115D8;
         temp_r4 = sub_0803D8B4(gEwramData->unk_11DD8) << 5;
-        sub_080016D0(0x200, (u32 *) temp_r6, (u32*)((u8*)0x06013800 + temp_r4));
-        sub_080016D0(0x200, (u32 *) &temp_r6[0x200], (u32*)((u8*)0x06013C00 + temp_r4));
+        DmaQueue_IndirectCopy(0x200, (u32 *) temp_r6, (u32*)(VRAM_BASE + 0x13800 + temp_r4));
+        DmaQueue_IndirectCopy(0x200, (u32 *) &temp_r6[0x200], (u32*)(VRAM_BASE + 0x13800 + 0x400 + temp_r4));
         gEwramData->unk_11DD9 |= 2;
     }
 }

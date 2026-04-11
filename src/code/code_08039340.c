@@ -312,7 +312,7 @@ static inline void sub_08039E90_inline_0(s32 temp_r0, u8 *var_r6, s32 var_sb, s3
     {
         for (var_r4 = 0; var_r4 < temp_r3; var_r4++)
         {
-            sub_080016D0(var_r8, (u32 *) var_r6, sub_08039E90_inline_1(var_r5));
+            DmaQueue_IndirectCopy(var_r8, (u32 *) var_r6, sub_08039E90_inline_1(var_r5));
             var_r6 += var_r8;
             var_r5 += 0x400;
         }
@@ -971,11 +971,11 @@ s32 sub_0803B66C(s32 param_0, struct Unk_0803B66C *param_1, u32 param_2, s32 par
         {
             if (param_5 != 0)
             {
-                sub_080016D0(var_1, (u32 *) var_r6, (void*)0x06010000 + var_r4);
+                DmaQueue_IndirectCopy(var_1, (u32 *) var_r6, VRAM_BASE + 0x10000 + var_r4);
             }
             else
             {
-                DMA_COPY_16(3, var_r6, (void*)0x06010000 + var_r4, var_6 * 2);
+                DMA_COPY_16(3, var_r6, VRAM_BASE + 0x10000 + var_r4, var_6 * 2);
             }
             var_r6 += 0x200;
             var_r4 += 0x400;
@@ -987,11 +987,11 @@ s32 sub_0803B66C(s32 param_0, struct Unk_0803B66C *param_1, u32 param_2, s32 par
         {
             if (param_5 != 0)
             {
-                sub_080016D0(var_1, (u32 *) var_r6, (void*)0x06010000 + var_r4);
+                DmaQueue_IndirectCopy(var_1, (u32 *) var_r6, VRAM_BASE + 0x10000 + var_r4);
             }
             else
             {
-                DMA_COPY_16(3, var_r6, (void*)0x06010000 + var_r4, var_6 * 2);
+                DMA_COPY_16(3, var_r6, VRAM_BASE + 0x10000 + var_r4, var_6 * 2);
             }
             var_r6 += 0x200;
             var_r4 += 0x400;
@@ -3157,6 +3157,8 @@ s32 sub_0803DAE0(s32 param_0, s32 param_1, s32 param_2)
     return 1;
 }
 
+// file split
+
 struct Unk_03000058 {
     u8 unk_0;
     u8 pad_1[0x5 - 0x1];
@@ -4066,6 +4068,8 @@ s32 sub_0803E7C0(void)
 
     return 0;
 }
+
+// file split
 
 /**
  * @brief 3E820 | To document
@@ -5861,7 +5865,7 @@ void sub_0803FD9C(void *param_0, void *param_1, u16 param_2)
     }
     else
     {
-        sub_080016D0(var_r0, (u32 *) var_r1, param_1);
+        DmaQueue_IndirectCopy(var_r0, (u32 *) var_r1, param_1);
     }
 }
 
@@ -5920,6 +5924,8 @@ s32 sub_0803FE64(s32 param_0, s32 param_1, u16 param_2)
     ((param_1 - 8) >> 1)[gDisplayRegisters.bgCnt] = param_2;
     return 1;
 }
+
+// file split
 
 extern u8 sUnk_0850A136[][0xE]; // TODO: array or struct?
 extern s32 sUnk_03001A18[];

@@ -11690,7 +11690,7 @@ _080D6358:
 	movs r0, #0x80
 	lsls r0, r0, #2
 	adds r1, r5, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	movs r1, #0x80
 	lsls r1, r1, #2
 	adds r5, r5, r1
@@ -11699,7 +11699,7 @@ _080D6358:
 	adds r0, r1, #0
 	adds r1, r5, #0
 	adds r2, r4, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	ldr r1, [r7]
 	ldr r0, _080D63BC @ =0x0000042C
 	adds r1, r1, r0
@@ -11748,7 +11748,7 @@ _080D63CC:
 	movs r0, #0x80
 	lsls r0, r0, #2
 	adds r1, r5, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	movs r1, #0x80
 	lsls r1, r1, #2
 	adds r5, r5, r1
@@ -11757,7 +11757,7 @@ _080D63CC:
 	adds r0, r1, #0
 	adds r1, r5, #0
 	adds r2, r4, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	ldr r1, [r6]
 	ldr r0, _080D6440 @ =0x0000042C
 	adds r1, r1, r0
@@ -11846,7 +11846,7 @@ _080D64AA:
 	movs r0, #0x80
 	lsls r0, r0, #2
 	adds r1, r5, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	movs r1, #0x80
 	lsls r1, r1, #2
 	adds r5, r5, r1
@@ -11855,7 +11855,7 @@ _080D64AA:
 	adds r0, r1, #0
 	adds r1, r5, #0
 	adds r2, r4, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	ldr r1, [r7]
 	ldr r0, _080D6530 @ =0x0000042C
 	adds r1, r1, r0
@@ -12042,7 +12042,7 @@ _080D6640:
 	movs r0, #0x80
 	lsls r0, r0, #2
 	adds r1, r5, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	movs r1, #0x80
 	lsls r1, r1, #2
 	adds r5, r5, r1
@@ -12051,7 +12051,7 @@ _080D6640:
 	adds r0, r1, #0
 	adds r1, r5, #0
 	adds r2, r4, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	ldr r1, [r7]
 	ldr r0, _080D669C @ =0x0000042C
 	adds r1, r1, r0
@@ -12099,7 +12099,7 @@ _080D66AC:
 	movs r0, #0x80
 	lsls r0, r0, #2
 	adds r1, r5, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	movs r1, #0x80
 	lsls r1, r1, #2
 	adds r5, r5, r1
@@ -12108,7 +12108,7 @@ _080D66AC:
 	adds r0, r1, #0
 	adds r1, r5, #0
 	adds r2, r4, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	ldr r1, [r6]
 	ldr r0, _080D671C @ =0x0000042C
 	adds r1, r1, r0
@@ -12384,7 +12384,7 @@ _080D6904:
 	movs r0, #0x80
 	lsls r0, r0, #2
 	adds r1, r5, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	movs r1, #0x80
 	lsls r1, r1, #2
 	adds r5, r5, r1
@@ -12393,7 +12393,7 @@ _080D6904:
 	adds r0, r1, #0
 	adds r1, r5, #0
 	adds r2, r4, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	ldr r1, [r7]
 	ldr r0, _080D6960 @ =0x0000042C
 	adds r1, r1, r0
@@ -12441,7 +12441,7 @@ _080D6970:
 	movs r0, #0x80
 	lsls r0, r0, #2
 	adds r1, r5, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	movs r1, #0x80
 	lsls r1, r1, #2
 	adds r5, r5, r1
@@ -12450,7 +12450,7 @@ _080D6970:
 	adds r0, r1, #0
 	adds r1, r5, #0
 	adds r2, r4, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	ldr r1, [r6]
 	ldr r0, _080D69E4 @ =0x0000042C
 	adds r1, r1, r0
@@ -13317,14 +13317,14 @@ sub_080D70A4: @ 0x080D70A4
 	adds r2, r4, r0
 	adds r0, r5, #0
 	adds r1, r6, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	adds r6, r6, r5
 	ldr r1, _080D7120 @ =0x06010400
 	adds r4, r4, r1
 	adds r0, r5, #0
 	adds r1, r6, #0
 	adds r2, r4, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	mov r0, r8
 	ldr r1, [r0]
 	ldr r0, _080D7110 @ =0x0000042C
@@ -13372,14 +13372,14 @@ sub_080D7124: @ 0x080D7124
 	adds r2, r4, r0
 	adds r0, r5, #0
 	adds r1, r6, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	adds r6, r6, r5
 	ldr r1, _080D7194 @ =0x06010400
 	adds r4, r4, r1
 	adds r0, r5, #0
 	adds r1, r6, #0
 	adds r2, r4, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	ldr r1, [r7]
 	ldr r0, _080D7188 @ =0x0000042C
 	adds r1, r1, r0
@@ -13438,7 +13438,7 @@ sub_080D7198: @ 0x080D7198
 	movs r0, #0x80
 	lsls r0, r0, #2
 	adds r1, r5, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	movs r1, #0x80
 	lsls r1, r1, #2
 	adds r5, r5, r1
@@ -13447,7 +13447,7 @@ sub_080D7198: @ 0x080D7198
 	adds r0, r1, #0
 	adds r1, r5, #0
 	adds r2, r4, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	mov r0, r8
 	ldr r1, [r0]
 	ldr r0, _080D723C @ =0x0000042C
@@ -13524,7 +13524,7 @@ sub_080D7250: @ 0x080D7250
 	movs r0, #0x80
 	lsls r0, r0, #2
 	adds r1, r5, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	movs r1, #0x80
 	lsls r1, r1, #2
 	adds r5, r5, r1
@@ -13533,7 +13533,7 @@ sub_080D7250: @ 0x080D7250
 	adds r0, r1, #0
 	adds r1, r5, #0
 	adds r2, r4, #0
-	bl sub_080016D0
+	bl DmaQueue_IndirectCopy
 	mov r0, r8
 	ldr r1, [r0]
 	ldr r0, _080D72F4 @ =0x0000042C

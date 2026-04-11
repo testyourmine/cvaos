@@ -97,7 +97,7 @@ void AgbMain(void)
                 DMA_COPY_16(3, &hBlankEffect->hBlankBuffer[hBlankEffect->currentBuffer], hBlankEffect->destReg, hBlankEffect->writeSize);
             }
 
-            sub_080015E4();
+            DmaQueue_Process();
             BgCmdBuffer_TransferToVram();
             sub_0803BF60();
             sub_0803E594();
@@ -359,8 +359,9 @@ void sub_08000658(void)
 void sub_080006CC(void)
 {
     DMA_FILL_32(3, 0, gEwramData, sizeof(struct EwramData));
-    gUnk_03002CB0.pBgCmdBuffer = (u16*)&gUnk_03002CB0.bgCmdBuffer;
-    gUnk_03002CB0.unk_808 = &gUnk_03002CB0.unk_80C;
+
+    gUnk_03002CB0.pBgCmdBuffer = &gUnk_03002CB0.bgCmdBuffer[0];
+    gUnk_03002CB0.dmaQueueEnd = &gUnk_03002CB0.dmaQueue[0];
 
     DMA_COPY_32(3, &sUnk_080E3664, VRAM_BASE + 0x6000, sizeof(sUnk_080E3664));
     DMA_COPY_32(3, &sUnk_080E5264, VRAM_BASE + 0x8000, sizeof(sUnk_080E5264));
@@ -384,7 +385,7 @@ void sub_080006CC(void)
     sub_0804059C();
     sub_08042754();
     sub_080137B8();
-    sub_0801391C();
+    SaveData_LoadLanguage();
 
     gUnk_03002CB0.dispCnt = DCNT_OBJ | DCNT_BG3 | DCNT_BG2 | DCNT_BG1 | DCNT_BG0;
     SetGameMode(GAME_MODE_KONAMI_LOGO);

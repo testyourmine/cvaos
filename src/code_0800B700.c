@@ -1381,7 +1381,7 @@ void sub_0800C7A4(struct EwramData_unk60 *param_0)
 
     sub_0804C3C8();
     sub_080137B8();
-    sub_0801391C();
+    SaveData_LoadLanguage();
     PlaySong(AUDIO_STOP);
 
     gEwramData->hBlankEffect.requestStop = 1;
