@@ -199,20 +199,39 @@ extern void sub_08040814(void);
 extern void sub_08040898(u16 param_0, u16 param_1);
 extern void sub_0804090C(u16 param_0, u16 param_1);
 extern void sub_08040970(u16 param_0, u16 param_1, u16 param_2, u16 param_3);
+extern void sub_08040A38(void);
+extern s32 sub_08040AB8(u16 param_0);
+extern s32 sub_08040BDC(u16 param_0, u16 param_1, u16 param_2);
 extern s32 sub_08040C60(u16 param_0);
+extern s32 sub_08040E10(u16 param_0, u16 param_1, u16 param_2);
+extern void sub_08040E90(void);
+extern void sub_08040F84(u16 param_0, u16 param_1);
 extern void sub_08040FE0(void);
+extern void sub_080410BC(void);
+extern void sub_080411AC(u16 param_0, u16 param_1);
 extern void sub_08041204(void);
 extern void sub_080412DC(void *param_0);
 extern void sub_080412F0(s32 param_0);
 extern void sub_08041304(s32 param_0);
-extern s32 sub_08041318(u8 *param_0, s32 param_1);
-extern u16 sub_0804136C(void);
 
 struct unk_08506B38 {
     u16 unk_0;
     u8* unk_2;
     u8 pad_6[0x8 - 0x6];
 };
-extern s32 sub_08041338(struct unk_08506B38* param_0, s32 param_1);
+extern s32 sub_08041318(void *param_0, s32 param_1);
+extern s32 sub_08041338(void *param_0, s32 param_1);
+
+extern u16 sub_08041358(void);
+extern u16 sub_0804136C(void);
+extern u16 sub_08041380(void);
+extern u16 sub_08041394(void);
+extern u16 sub_080413A8(void);
+extern u16 sub_080413BC(void);
+extern u16 sub_080413D0(void);
+extern u16 sub_080413E4(void);
+extern u16 sub_080413F8(void);
+extern u16 sub_0804140C(void);
+extern s32 sub_08041420(s32 param_0);
 
 #endif /* CODE_08039340_H */

@@ -6426,12 +6426,24 @@ void sub_0804059C(void)
     gEwramData->unk_115C6 = 0;
 }
 
-
-// TODO: is inline needed?
-static inline void sub_0804066C_inline_0()
+static inline u16 Get_unk_115A0_inline()
 {
-    gEwramData->unk_115A6 = gEwramData->unk_115A0 * 6;
-    gEwramData->unk_115A8 = gEwramData->unk_115A2 * 12;
+    return gEwramData->unk_115A0;
+}
+
+static inline u16 Get_unk_115A2_inline()
+{
+    return gEwramData->unk_115A2;
+}
+
+static inline u16 Get_unk_115B2_inline()
+{
+    return gEwramData->unk_115B2;
+}
+
+static inline u16 Get_unk_115B4_inline()
+{
+    return gEwramData->unk_115B4;
 }
 
 /**
@@ -6456,9 +6468,8 @@ void sub_0804066C(u16 param_0, u16 param_1)
     }
 
     gEwramData->unk_115A4 = 0;
-    // gEwramData->unk_115A6 = gEwramData->unk_115A0 * 6;
-    // gEwramData->unk_115A8 = gEwramData->unk_115A2 * 12;
-    sub_0804066C_inline_0();
+    gEwramData->unk_115A6 = Get_unk_115A0_inline() * 6;
+    gEwramData->unk_115A8 = Get_unk_115A2_inline() * 12;
 }
 
 /**
@@ -6528,13 +6539,6 @@ void sub_08040748(u16 param_0, u16 param_1, u16 param_2, u16 param_3)
     gEwramData->unk_115A8 = gEwramData->unk_115A2 * 12;
 }
 
-// TODO: is inline needed?
-static inline void sub_08040814_inline_0()
-{
-    gEwramData->unk_115A6 = gEwramData->unk_115A0 * 6;
-    gEwramData->unk_115A8 = gEwramData->unk_115A2 * 12;
-}
-
 /**
  * @brief 40814 | To document
  * 
@@ -6550,16 +6554,8 @@ void sub_08040814(void)
     }
 
     gEwramData->unk_115A4 = 0;
-    // gEwramData->unk_115A6 = gEwramData->unk_115A0 * 6;
-    // gEwramData->unk_115A8 = gEwramData->unk_115A2 * 12;
-    sub_08040814_inline_0();
-}
-
-// TODO: is inline needed?
-static inline void sub_08040898_inline_0()
-{
-    gEwramData->unk_115B8 = gEwramData->unk_115B2 * 6;
-    gEwramData->unk_115BA = gEwramData->unk_115B4 * 8;
+    gEwramData->unk_115A6 = Get_unk_115A0_inline() * 6;
+    gEwramData->unk_115A8 = Get_unk_115A2_inline() * 12;
 }
 
 /**
@@ -6584,9 +6580,8 @@ void sub_08040898(u16 param_0, u16 param_1)
     }
 
     gEwramData->unk_115B6 = 0;
-    // gEwramData->unk_115B8 = gEwramData->unk_115B2 * 6;
-    // gEwramData->unk_115BA = gEwramData->unk_115B4 * 8;
-    sub_08040898_inline_0();
+    gEwramData->unk_115B8 = Get_unk_115B2_inline() * 6;
+    gEwramData->unk_115BA = Get_unk_115B4_inline() * 8;
 }
 
 /**
@@ -6654,5 +6649,602 @@ void sub_08040970(u16 param_0, u16 param_1, u16 param_2, u16 param_3)
     gEwramData->unk_115B6 = 0;
     gEwramData->unk_115B8 = gEwramData->unk_115B2 * 6;
     gEwramData->unk_115BA = gEwramData->unk_115B4 * 8;
+}
+
+/**
+ * @brief 40A38 | To document
+ * 
+ */
+void sub_08040A38(void)
+{
+    gEwramData->unk_115B2 = gEwramData->unk_115BC;
+    gEwramData->unk_115B4 += 1;
+    if (gEwramData->unk_115B4 > gEwramData->unk_115C2)
+    {
+        gEwramData->unk_115B4 = gEwramData->unk_115BE;
+    }
+    gEwramData->unk_115B6 = 0;
+    gEwramData->unk_115B8 = Get_unk_115B2_inline() * 6;
+    gEwramData->unk_115BA = Get_unk_115B4_inline() * 8;
+}
+
+struct Unk_080E2B4C {
+    u8 unk_0;
+    u8 unk_1;
+    u8 pad_2[0x4 - 0x2];
+};
+extern struct Unk_080E2B4C sUnk_080E2B4C[];
+
+static inline void sub_08040AB8_inline_0()
+{
+    gEwramData->unk_115A8 = Get_unk_115A2_inline() * 0xC;
+    gEwramData->unk_115A4 = 0;
+    gEwramData->unk_115A6 = Get_unk_115A0_inline() * 6;
+}
+
+/**
+ * @brief 40AB8 | To document
+ * 
+ * @param param_0 To document
+ * @return s32 To document
+ */
+s32 sub_08040AB8(u16 param_0)
+{
+    s32 temp_r3;
+    s32 temp_r4;
+    s32 var_0;
+
+    if (!(param_0 & 0xE0))
+    {
+        return param_0;
+    }
+
+    var_0 = param_0 - 0x20;
+    temp_r3 = sUnk_080E2B4C[var_0].unk_0;
+    temp_r4 = sUnk_080E2B4C[var_0].unk_1;
+    if (((gEwramData->unk_115A6 & 7) + temp_r4) <= 7)
+    {
+        sub_0803FF64(param_0, temp_r3, temp_r4);
+    }
+    else
+    {
+        sub_08040048(param_0, temp_r3, temp_r4);
+    }
+
+    gEwramData->unk_115A4 += temp_r4;
+    if (gEwramData->unk_115A4 > 5)
+    {
+        gEwramData->unk_115A4 -= 6;
+
+        gEwramData->unk_115A0 += 1;
+        if (gEwramData->unk_115A0 > gEwramData->unk_115AE)
+        {
+            gEwramData->unk_115A0 = gEwramData->unk_115AA;
+
+            gEwramData->unk_115A2 += 1;
+            if (gEwramData->unk_115A2 > gEwramData->unk_115B0)
+            {
+                gEwramData->unk_115A2 = gEwramData->unk_115AC;
+            }
+
+            // gEwramData->unk_115A8 = gEwramData->unk_115A2 * 0xC;
+            // gEwramData->unk_115A4 = 0;
+            // gEwramData->unk_115A6 = gEwramData->unk_115A0 * 6;
+            sub_08040AB8_inline_0();
+        }
+        else
+        {
+            gEwramData->unk_115A6 += temp_r4;
+        }
+    }
+    else
+    {
+        gEwramData->unk_115A6 += temp_r4;
+    }
+
+    return -1;
+}
+
+/**
+ * @brief 40BDC | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @return s32 To document
+ */
+s32 sub_08040BDC(u16 param_0, u16 param_1, u16 param_2)
+{
+    if (param_0 > gEwramData->unk_115AE)
+    {
+        param_0 = gEwramData->unk_115AE;
+    }
+
+    if (param_1 > gEwramData->unk_115B0)
+    {
+        param_1 = gEwramData->unk_115B0;
+    }
+
+    gEwramData->unk_115A0 = param_0;
+    gEwramData->unk_115A2 = param_1;
+
+    gEwramData->unk_115A4 = 0;
+    gEwramData->unk_115A6 = Get_unk_115A0_inline() * 6;
+    gEwramData->unk_115A8 = Get_unk_115A2_inline() * 0xC;
+    return sub_08040AB8(param_2);
+}
+
+// nonmatch: https://decomp.me/scratch/o7OVy
+struct Unk_080E2EC0 {
+    u8 unk_0;
+    u8 unk_1;
+    u8 pad_2[0x4 - 0x2];
+};
+extern struct Unk_080E2EC0 sUnk_080E2EC0[];
+
+static inline void sub_08040C60_inline_0()
+{
+    gEwramData->unk_115BA = Get_unk_115B4_inline() * 8;
+    gEwramData->unk_115B6 = 0;
+    gEwramData->unk_115B8 = Get_unk_115B2_inline() * 6;
+}
+
+static inline s32 sub_08040C60_inline_1()
+{
+    return gEwramData->unk_115B8 & 7;
+}
+
+s32 sub_08040C60(u16 param_0)
+{
+    s32 *var_r2;
+    s32 var_r4;
+    u32 temp_r5;
+    s32 var_r3;
+    s32 temp_r6;
+    s32 temp_r7;
+    s32 temp_r8;
+    s32 var_0;
+
+    if (!(param_0 & 0xE0))
+    {
+        return param_0;
+    }
+
+    var_0 = param_0 - 0x20;
+    temp_r7 = sUnk_080E2EC0[var_0].unk_0;
+    temp_r6 = sUnk_080E2EC0[var_0].unk_1;
+    if (((gEwramData->unk_115B8 & 7) + temp_r6) <= 7)
+    {
+        // temp_r5 = gEwramData->unk_115B8 & 7;
+        temp_r5 = sub_08040C60_inline_1();
+        sub_080402DC(param_0, temp_r7, temp_r6);
+        var_r2 = (void*)gEwramData->unk_11598 + ((gEwramData->unk_115B8 >> 3) << 5) + (gEwramData->unk_115B4 << 0xA);
+        var_r4 = 0;
+        for (var_r3 = temp_r5; var_r3 < (temp_r5 + temp_r6); var_r3++)
+        {
+            var_r4 |= 0xF << (var_r3 * 4);
+        }
+        temp_r8 = ~var_r4;
+
+        temp_r5 *= 4;
+        for (var_r3 = 0; var_r3 < 8; var_r3++)
+        {
+            *var_r2++ = (*var_r2 & temp_r8) | ((sUnk_03001A18[var_r3] << temp_r5) & var_r4);
+        }
+    }
+    else
+    {
+        sub_0804039C(param_0, temp_r7, temp_r6);
+    }
+
+    gEwramData->unk_115B6 += temp_r6;
+    if (gEwramData->unk_115B6 > 5)
+    {
+        gEwramData->unk_115B6 -= 6;
+
+        gEwramData->unk_115B2 += 1;
+        if (gEwramData->unk_115B2 > gEwramData->unk_115C0)
+        {
+            gEwramData->unk_115B2 = gEwramData->unk_115BC;
+
+            gEwramData->unk_115B4 += 1;
+            if (gEwramData->unk_115B4 > gEwramData->unk_115C2)
+            {
+                gEwramData->unk_115B4 = gEwramData->unk_115BE;
+            }
+
+            // gEwramData->unk_115BA = gEwramData->unk_115B4 * 8;
+            // gEwramData->unk_115B6 = 0;
+            // gEwramData->unk_115B8 = gEwramData->unk_115B2 * 6;
+            sub_08040C60_inline_0();
+        }
+        else
+        {
+            gEwramData->unk_115B8 += temp_r6;
+        }
+    }
+    else
+    {
+        gEwramData->unk_115B8 += temp_r6;
+    }
+    return -1;
+}
+
+/**
+ * @brief 40E10 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @param param_2 To document
+ * @return s32 To document
+ */
+s32 sub_08040E10(u16 param_0, u16 param_1, u16 param_2)
+{
+    if (param_0 > gEwramData->unk_115C0)
+    {
+        param_0 = gEwramData->unk_115C0;
+    }
+
+    if (param_1 > gEwramData->unk_115C2)
+    {
+        param_1 = gEwramData->unk_115C2;
+    }
+
+    gEwramData->unk_115B2 = param_0;
+    gEwramData->unk_115B4 = param_1;
+
+    gEwramData->unk_115B6 = 0;
+    gEwramData->unk_115B8 = Get_unk_115B2_inline() * 6;
+    gEwramData->unk_115BA = Get_unk_115B4_inline() * 8;
+    return sub_08040C60(param_2);
+}
+
+/**
+ * @brief 40E90 | To document
+ * 
+ */
+void sub_08040E90(void)
+{
+    if (((gEwramData->unk_115A6 & 7) + 6) <= 7)
+    {
+        sub_0804017C(6);
+    }
+    else
+    {
+        sub_08040208(6);
+    }
+
+    gEwramData->unk_115A4 += 6;
+    if (gEwramData->unk_115A4 > 5)
+    {
+        gEwramData->unk_115A4 -= 6;
+        gEwramData->unk_115A0 += 1;
+        if (gEwramData->unk_115A0 > gEwramData->unk_115AE)
+        {
+            gEwramData->unk_115A0 = gEwramData->unk_115AA;
+            gEwramData->unk_115A2 += 1;
+            if (gEwramData->unk_115A2 > gEwramData->unk_115B0)
+            {
+                gEwramData->unk_115A2 = gEwramData->unk_115AC;
+            }
+            // gEwramData->unk_115A8 = Get_unk_115A2_inline() * 0xC;
+            // gEwramData->unk_115A4 = 0;
+            // gEwramData->unk_115A6 = Get_unk_115A0_inline() * 6;
+            sub_08040AB8_inline_0();
+        }
+        else
+        {
+            gEwramData->unk_115A6 += 6;
+        }
+    }
+    else
+    {
+        gEwramData->unk_115A6 += 6;
+    }
+}
+
+/**
+ * @brief 40F84 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ */
+void sub_08040F84(u16 param_0, u16 param_1)
+{
+    gEwramData->unk_115A0 = param_0;
+    gEwramData->unk_115A2 = param_1;
+    gEwramData->unk_115A4 = 0;
+    gEwramData->unk_115A6 = Get_unk_115A0_inline() * 6;
+    gEwramData->unk_115A8 = Get_unk_115A2_inline() * 0xC;
+    sub_08040E90();
+}
+
+/**
+ * @brief 40FE0 | To document
+ * 
+ */
+void sub_08040FE0(void)
+{
+    u16 var_r5;
+    u16 var_r4;
+
+    for (var_r5 = gEwramData->unk_115AC; var_r5 <= gEwramData->unk_115B0; var_r5++)
+    {
+        for (var_r4 = gEwramData->unk_115AA; var_r4 <= (gEwramData->unk_115AE + 1); var_r4++)
+        {
+                sub_08040F84(var_r4, var_r5);
+        }
+    }
+
+    gEwramData->unk_115A0 = gEwramData->unk_115AA;
+    gEwramData->unk_115A2 = gEwramData->unk_115AC;
+    gEwramData->unk_115A4 = 0;
+    gEwramData->unk_115A6 = Get_unk_115A0_inline() * 6;
+    gEwramData->unk_115A8 = Get_unk_115A2_inline() * 0xC;
+}
+
+static inline void sub_080410BC_inline_0()
+{
+    gEwramData->unk_115BA = Get_unk_115B4_inline() * 8;
+    gEwramData->unk_115B6 = 0;
+    gEwramData->unk_115B8 = Get_unk_115B2_inline() * 6;
+}
+
+/**
+ * @brief 410BC | To document
+ * 
+ */
+void sub_080410BC(void)
+{
+    if (((gEwramData->unk_115B8 & 7) + 6) <= 7)
+    {
+        sub_080404A0(6);
+    }
+    else
+    {
+        sub_08040508(6);
+    }
+
+    gEwramData->unk_115B6 += 6;
+    if (gEwramData->unk_115B6 > 5)
+    {
+        gEwramData->unk_115B6 -= 6;
+        gEwramData->unk_115B2 += 1;
+        if (gEwramData->unk_115B2 > gEwramData->unk_115C0)
+        {
+            gEwramData->unk_115B2 = gEwramData->unk_115BC;
+            gEwramData->unk_115B4 += 1;
+            if (gEwramData->unk_115B4 > gEwramData->unk_115C2)
+            {
+                gEwramData->unk_115B4 = gEwramData->unk_115BE;
+            }
+            sub_080410BC_inline_0();
+        }
+        else
+        {
+            gEwramData->unk_115B8 += 6;
+        }
+    }
+    else
+    {
+        gEwramData->unk_115B8 += 6;
+    }
+}
+
+/**
+ * @brief 411AC | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ */
+void sub_080411AC(u16 param_0, u16 param_1)
+{
+    gEwramData->unk_115B2 = param_0;
+    gEwramData->unk_115B4 = param_1;
+    gEwramData->unk_115B6 = 0;
+    gEwramData->unk_115B8 = Get_unk_115B2_inline() * 6;
+    gEwramData->unk_115BA = Get_unk_115B4_inline() * 8;
+    sub_080410BC();
+}
+
+/**
+ * @brief 41204 | To document
+ * 
+ */
+void sub_08041204(void)
+{
+    u16 var_r5;
+    u16 var_r4;
+
+    for (var_r5 = gEwramData->unk_115BE; var_r5 <= gEwramData->unk_115C2; var_r5++)
+    {
+        for (var_r4 = gEwramData->unk_115BC; var_r4 <= (gEwramData->unk_115C0 + 1); var_r4++)
+        {
+            sub_080411AC(var_r4, var_r5);
+        }
+    }
+
+    gEwramData->unk_115B2 = gEwramData->unk_115BC;
+    gEwramData->unk_115B4 = gEwramData->unk_115BE;
+    gEwramData->unk_115B6 = 0;
+    gEwramData->unk_115B8 = Get_unk_115B2_inline() * 6;
+    gEwramData->unk_115BA = Get_unk_115B4_inline() * 8;
+}
+
+/**
+ * @brief 412DC | To document
+ * 
+ * @param param_0 To document
+ */
+void sub_080412DC(void *param_0)
+{
+    gEwramData->unk_11598 = param_0;
+}
+
+/**
+ * @brief 412F0 | To document
+ * 
+ * @param param_0 To document
+ */
+void sub_080412F0(s32 param_0)
+{
+    gEwramData->unk_115C4 = param_0;
+}
+
+/**
+ * @brief 41304 | To document
+ * 
+ * @param param_0 To document
+ */
+void sub_08041304(s32 param_0)
+{
+    gEwramData->unk_115C6 = param_0;
+}
+
+/**
+ * @brief 41318 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @return s32 To document
+ */
+s32 sub_08041318(void *param_0, s32 param_1)
+{
+    u8 *var_r5;
+
+    var_r5 = param_0 + 2;
+    while (sub_08040AB8(var_r5[param_1++]) == -1);
+
+    return param_1 - 1;
+}
+
+/**
+ * @brief 41338 | To document
+ * 
+ * @param param_0 To document
+ * @param param_1 To document
+ * @return s32 To document
+ */
+s32 sub_08041338(void *param_0, s32 param_1)
+{
+    u8 *var_r5;
+
+    var_r5 = param_0 + 2;
+    while (sub_08040C60(var_r5[param_1++]) == -1);
+
+    return param_1 - 1;
+}
+
+// TODO: rest of functions are inlines?
+
+/**
+ * @brief 41358 | To document
+ * 
+ * @return u16 To document
+ */
+u16 sub_08041358(void)
+{
+    return gEwramData->unk_115A6;
+}
+
+/**
+ * @brief 4136C | To document
+ * 
+ * @return u16 To document
+ */
+u16 sub_0804136C(void)
+{
+    return gEwramData->unk_115B8;
+}
+
+/**
+ * @brief 41380 | To document
+ * 
+ * @return u16 To document
+ */
+u16 sub_08041380(void)
+{
+    return gEwramData->unk_115A0;
+}
+
+/**
+ * @brief 41394 | To document
+ * 
+ * @return u16 To document
+ */
+u16 sub_08041394(void)
+{
+    return gEwramData->unk_115B2;
+}
+
+/**
+ * @brief 413A8 | To document
+ * 
+ * @return u16 To document
+ */
+u16 sub_080413A8(void)
+{
+    return gEwramData->unk_115A4;
+}
+
+/**
+ * @brief 413BC | To document
+ * 
+ * @return u16 To document
+ */
+u16 sub_080413BC(void)
+{
+    return gEwramData->unk_115B6;
+}
+
+/**
+ * @brief 413D0 | To document
+ * 
+ * @return u16 To document
+ */
+u16 sub_080413D0(void)
+{
+    return gEwramData->unk_115A8;
+}
+
+/**
+ * @brief 413E4 | To document
+ * 
+ * @return u16 To document
+ */
+u16 sub_080413E4(void)
+{
+    return gEwramData->unk_115BA;
+}
+
+/**
+ * @brief 413F8 | To document
+ * 
+ * @return u16 To document
+ */
+u16 sub_080413F8(void)
+{
+    return gEwramData->unk_115A2;
+}
+
+/**
+ * @brief 4140C | To document
+ * 
+ * @return u16 To document
+ */
+u16 sub_0804140C(void)
+{
+    return gEwramData->unk_115B4;
+}
+
+/**
+ * @brief 41420 | To document
+ * 
+ * @param param_0 To document
+ * @return s32 To document
+ */
+s32 sub_08041420(s32 param_0)
+{
+    return sUnk_080E2EC0[param_0].unk_1 - sUnk_080E2EC0[param_0].unk_0;
 }
 
