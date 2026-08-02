@@ -2,7 +2,7 @@
 Anyone wanting to contribute *MUST* read the following and adhere to the steps
 outlined, in order to not violate any copyright.
 
-This decompilation does *NOT* incorperate any code owned by Nintendo, Konami, or other third parties.
+This decompilation does *NOT* incorporate any code owned by Nintendo, Konami, or other third parties.
 
 In order to achieve this, all code has to be written completely fresh, without
 reference to any third party code, no matter if leaked or not.
